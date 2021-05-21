@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "carpetfixes",
+  "version": "${version}",
+
+  "name": "Carpet-Fixes",
+  "description": "The fabric-carpet extension to fix all bugs",
+  "authors": [
+    "PR0CESS"
+  ],
+  "contact": {
+    "homepage": "https://github.com/fxmorin/CarpetFixes",
+    "sources": "https://github.com/fxmorin/CarpetFixes",
+    "issues": "https://github.com/fxmorin/CarpetFixes/issues"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/carpetfixes/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "carpetfixes.CarpetFixesServer"
+    ]
+  },
+  "mixins": [
+    "carpetfixes.mixins.json"
+  ],
+  "accessWidener" : "carpetfixes.accesswidener",
+  "depends": {
+    "minecraft": "1.16.x",
+    "fabricloader": ">=0.10.0",
+    "carpet": ">=1.4.26"
+  }
+}

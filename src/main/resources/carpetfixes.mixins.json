@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "carpetfixes.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "blockUpdates.SpongeBlock_MissingUpdateMixin",
+    "blockUpdates.World_blockUpdateOrderMixin",
+    "coreSystemFixes.Biome_featureOrderMixin",
+    "coreSystemFixes.Feature_featureOrderMixin",
+    "coreSystemFixes.StringTag_ChunkRegenMixin",
+    "dupeFixes.AbstractRailBlock_duplicationMixin",
+    "dupeFixes.FallingBlockEntity_duplicationMixin",
+    "dupeFixes.PistonBlock_tntDupingFixMixin",
+    "entityFixes.EndCrystalEntity_ExplosionChainingMixin",
+    "entityFixes.Entity_blockCollisionMixin",
+    "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
+    "redstoneFixes.PistonBlock_doubleRetractionMixin",
+    "redstoneFixes.World_ComparatorNotUpdatingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
