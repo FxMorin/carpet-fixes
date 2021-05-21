@@ -13,6 +13,7 @@
     "dupeFixes.PistonBlock_tntDupingFixMixin",
     "entityFixes.EndCrystalEntity_ExplosionChainingMixin",
     "entityFixes.Entity_blockCollisionMixin",
+    "entityFixes.ShulkerEntity_CustomDataMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
     "redstoneFixes.World_ComparatorNotUpdatingMixin"
