@@ -1,5 +1,8 @@
 # Carpet-Fixes
-[Fabric Carpet](https://github.com/gnembon/fabric-carpet) extension mod which attempts to fix as many bugs as possible
+[Fabric Carpet](https://github.com/gnembon/fabric-carpet) extension mod which attempts to fix as many vanilla bugs as possible!
+
+Feel free to contribute by adding as many fixes as you want
+
 
 # Features
 ## chunkRegenFix

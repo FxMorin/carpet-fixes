@@ -43,6 +43,14 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
+            desc = "Fixes sticky piston heads not giving a block update when failing to pull slime",
+            extra = "Fixes [MC-185572](https://bugs.mojang.com/browse/MC-185572)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean pistonPullingUpdateFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
             desc = "Fixes Chunk Regen due to StringTag writeUTF() not respecting readUTF() Limits",
             extra = "Fixes ChunkRegen & [MC-134892](https://bugs.mojang.com/browse/MC-134892)",
             category = {CARPETFIXES,BUGFIX}
