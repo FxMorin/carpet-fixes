@@ -106,6 +106,14 @@ public class CarpetFixesSettings {
     )
     public static boolean targetBlockPermanentlyPoweredFix = true;
 
+    //By Hendrix-Shen
+    @Rule(
+            desc = "Shulkers do not teleport correctly when going through a portal.",
+            extra = "Fixed [MC-139265](https://bugs.mojang.com/browse/MC-139265) in 21w03a",
+            category = {CARPETFIXES,BACKPORT}
+    )
+    public static boolean shulkerTeleportFix = false;
+
 
     /*
 
