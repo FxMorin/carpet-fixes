@@ -68,7 +68,7 @@ Fixes World Modifying tasks to be before decorations
 ## targetBlockPermanentlyPoweredFix
 Fixes target blocks being permanently powered when moved by pistons
 * Type: `boolean`
-* Default value: `false`
+* Default value: `true`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BACKPORT`
 * Fixes: [MC-173244](https://bugs.mojang.com/browse/MC-173244)
