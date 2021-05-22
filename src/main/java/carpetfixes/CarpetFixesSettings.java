@@ -91,6 +91,14 @@ public class CarpetFixesSettings {
     )
     public static boolean comparatorUpdateFix = false;
 
+    //By Hendrix-Shen
+    @Rule(
+            desc = "Tracing the target to another dimension does not stop checking for visibility, so that a large number of necessary chunks are loaded.",
+            extra = "This bug may cause server crash. Use 1.13",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean zombiePiglinTracingFix = false;
+
 
     /*
 
@@ -112,7 +120,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Shulkers do not teleport correctly when going through a portal.",
             extra = "Fixed [MC-139265](https://bugs.mojang.com/browse/MC-139265) from 21w03a",
-            category = {CARPETFIXES,BACKPORT}
+            category = {CARPETFIXES,BUGFIX,BACKPORT}
     )
     public static boolean shulkerTeleportFix = false;
 
