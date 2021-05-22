@@ -18,6 +18,7 @@
     "entityFixes.Entity_blockCollisionMixin",
     "entityFixes.EntityAccessorMixin",
     "entityFixes.ItemEntity_shulkerDroppingMixin",
+    "entityFixes.LivingEntity_VisibilityCheckMixin",
     "entityFixes.ShulkerEntity_CustomDataMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
