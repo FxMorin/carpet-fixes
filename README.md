@@ -76,6 +76,33 @@ Fixes target blocks being permanently powered when moved by pistons
 * Categories: `CARPETFIXES`,`BACKPORT`
 * Fixes: [MC-173244](https://bugs.mojang.com/browse/MC-173244)
 
+## shulkerTeleportFix
+Shulkers do not teleport correctly when going through a portal
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BACKPORT`
+* Fixes: [MC-139265](https://bugs.mojang.com/browse/MC-139265) in 21w03a
+* By: *Hendrix-Shen*
+
+## drownedMemoryLeakFix
+Fixes Drowned navigation causing memory leak/performance degradation
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BACKPORT`,`BUGFIX`
+* Fixes: [MC-202246](https://bugs.mojang.com/browse/MC-202246) from 20w45a
+* By: *Fallen-Breath*
+
+## shulkerBoxItemsDropContents
+Backport dropping the contents of a Shulker Box item when its item entity is destroyed
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BACKPORT`
+* Fixes: [MC-176615](https://bugs.mojang.com/browse/MC-176615) from 20w51a
+* By: *Copetan* from *lunaar-carpet-addons*
+
 # From Carpet & Other Extensions
 ## lightningKillsDropsFix
 Lightning kills the items that drop when lightning kills an entity
@@ -92,7 +119,7 @@ Re-adds 1.8 double retraction to pistons
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-88959](https://bugs.mojang.com/browse/MC-88959)
-* By: *DeadlyMC* in *Carpet-Extra*
+* By: *DeadlyMC* from *Carpet-Extra*
 
 ## repeaterPriorityFix
 Quick pulses won't get lost in repeater setups
@@ -101,7 +128,7 @@ Quick pulses won't get lost in repeater setups
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-54711](https://bugs.mojang.com/browse/MC-54711)
-* By: *DeadlyMC* in *Carpet-Extra*
+* By: *DeadlyMC* from *Carpet-Extra*
 
 ## railDuplicationFix
 Fixes rails duplicating
@@ -109,7 +136,7 @@ Fixes rails duplicating
 * Default value: `false`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
-* By: *Fallen-Breath* in *Carpet-TIS-Addition*
+* By: *Fallen-Breath* from *Carpet-TIS-Addition*
 
 ## pistonDupingFix
 Disable TNT, carpet and part of rail dupers
@@ -117,7 +144,7 @@ Disable TNT, carpet and part of rail dupers
 * Default value: `false`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
-* By: *Fallen-Breath* in *Carpet-TIS-Addition*
+* By: *Fallen-Breath* from *Carpet-TIS-Addition*
 
 
 

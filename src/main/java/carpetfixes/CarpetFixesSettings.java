@@ -42,12 +42,14 @@ public class CarpetFixesSettings {
     public static boolean spongeUpdateFix = false;
 
     //By FX - PR0CESS
+    /*
+    To Be Implemented later
     @Rule(
             desc = "Fixes sticky piston heads not giving a block update when failing to pull slime",
             extra = "Fixes [MC-185572](https://bugs.mojang.com/browse/MC-185572)",
             category = {CARPETFIXES,BUGFIX}
     )
-    public static boolean pistonPullingUpdateFix = false;
+    public static boolean pistonPullingUpdateFix = false;*/
 
     //By FX - PR0CESS
     @Rule(
@@ -109,11 +111,26 @@ public class CarpetFixesSettings {
     //By Hendrix-Shen
     @Rule(
             desc = "Shulkers do not teleport correctly when going through a portal.",
-            extra = "Fixed [MC-139265](https://bugs.mojang.com/browse/MC-139265) in 21w03a",
+            extra = "Fixed [MC-139265](https://bugs.mojang.com/browse/MC-139265) from 21w03a",
             category = {CARPETFIXES,BACKPORT}
     )
     public static boolean shulkerTeleportFix = false;
 
+    //By Fallen-Breath
+    @Rule(
+            desc = "Fixes Drowned navigation causing memory leak/performance degradation",
+            extra = "Fixed [MC-202246](https://bugs.mojang.com/browse/MC-202246) from 20w45a",
+            category = {CARPETFIXES,BACKPORT,BUGFIX}
+    )
+    public static boolean drownedMemoryLeakFix = false;
+
+    //By Copetan from lunaar-carpet-addons
+    @Rule(
+            desc = "Backport dropping the contents of a Shulker Box item when its item entity is destroyed",
+            extra = "Fixed [MC-176615](https://bugs.mojang.com/browse/MC-176615) from 20w51a",
+            category = {CARPETFIXES,BACKPORT}
+    )
+    public static boolean shulkerBoxItemsDropContents = false;
 
     /*
 
@@ -165,14 +182,14 @@ public class CarpetFixesSettings {
 
      */
 
-    //by Fallen-Breath, in Carpet-TIS-Addition
+    //by Fallen-Breath from Carpet-TIS-Addition
     @Rule(
             desc = "Fixes rails duplicating",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean railDuplicationFix = false;
 
-    //by Fallen-Breath, in Carpet-TIS-Addition
+    //by Fallen-Breath from Carpet-TIS-Addition
     @Rule(
             desc = "Disable TNT, carpet and part of rail dupers",
             extra = {

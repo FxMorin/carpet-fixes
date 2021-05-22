@@ -4,9 +4,13 @@
   "version": "${version}",
 
   "name": "Carpet-Fixes",
-  "description": "The fabric-carpet extension to fix all bugs",
+  "description": "The fabric-carpet extension to fix all vanilla bugs",
   "authors": [
-    "PR0CESS"
+    "PR0CESS",
+    "DeadlyMC",
+    "Fallen-Breath",
+    "Hendrix-Shen",
+    "Copetan"
   ],
   "contact": {
     "homepage": "https://github.com/fxmorin/CarpetFixes",
