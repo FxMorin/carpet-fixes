@@ -43,13 +43,14 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     /*
-    To Be Implemented later
+    To Be Implemented
     @Rule(
             desc = "Fixes sticky piston heads not giving a block update when failing to pull slime",
             extra = "Fixes [MC-185572](https://bugs.mojang.com/browse/MC-185572)",
             category = {CARPETFIXES,BUGFIX}
     )
-    public static boolean pistonPullingUpdateFix = false;*/
+    public static boolean pistonPullingUpdateFix = false;
+     */
 
     //By FX - PR0CESS
     @Rule(
@@ -91,10 +92,17 @@ public class CarpetFixesSettings {
     )
     public static boolean comparatorUpdateFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Prevents update suppression from working! Original concept by: Carpet-TCTC-Addition",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean updateSuppressionFix = false;
+
     //By Hendrix-Shen
     @Rule(
-            desc = "Tracing the target to another dimension does not stop checking for visibility, so that a large number of necessary chunks are loaded.",
-            extra = "This bug may cause server crash. Use 1.13",
+            desc = "Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded",
+            extra = "This bug may cause server crash",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean zombiePiglinTracingFix = false;
@@ -136,9 +144,26 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Backport dropping the contents of a Shulker Box item when its item entity is destroyed",
             extra = "Fixed [MC-176615](https://bugs.mojang.com/browse/MC-176615) from 20w51a",
-            category = {CARPETFIXES,BACKPORT}
+            category = {CARPETFIXES,BUGFIX,BACKPORT}
     )
     public static boolean shulkerBoxItemsDropContents = false;
+
+    //By whoImT from carpet-addons
+    @Rule(
+            desc = "Backport 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds",
+            extra = "Fixed [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a",
+            category = {CARPETFIXES,BUGFIX,BACKPORT}
+    )
+    public static boolean oldFlintAndSteelBehavior = false;
+
+    //By whoImT from carpet-addons
+    @Rule(
+            desc = "Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while riding donkey/llama",
+            extra = "Fixed [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a",
+            category = {CARPETFIXES,BUGFIX,BACKPORT}
+    )
+    public static boolean donkeyRidingDupeFix = true;
+
 
     /*
 

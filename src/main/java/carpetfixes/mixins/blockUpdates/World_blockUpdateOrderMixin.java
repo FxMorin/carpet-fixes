@@ -20,10 +20,8 @@ public class World_blockUpdateOrderMixin {
     @Inject(method = "updateNeighborsAlways(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V", at = @At("HEAD"), cancellable = true)
     private void updateNeighborsAlwaysWithBetterDirection(BlockPos pos, Block block, CallbackInfo ci) {
         if (CarpetFixesSettings.blockUpdateOrderFix) {
-            BlockPos.Mutable mutable = new BlockPos.Mutable();
             for(int dirNum = 0; dirNum < 6; ++dirNum) {
-                mutable.set(pos, CarpetFixesInit.directions[dirNum]);
-                this.updateNeighbor(mutable, block, pos);
+                this.updateNeighbor(pos.offset(CarpetFixesInit.directions[dirNum]), block, pos);
             }
             ci.cancel();
         }
@@ -32,12 +30,10 @@ public class World_blockUpdateOrderMixin {
     @Inject(method = "updateNeighborsExcept(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/Direction;)V", at = @At("HEAD"), cancellable = true)
     private void updateNeighborsExceptWithBetterDirection(BlockPos pos, Block sourceBlock, Direction direction, CallbackInfo ci) {
         if (CarpetFixesSettings.blockUpdateOrderFix) {
-            BlockPos.Mutable mutable = new BlockPos.Mutable();
             for(int dirNum = 0; dirNum < 6; ++dirNum) {
                 Direction dir = CarpetFixesInit.directions[dirNum];
                 if (direction != dir) {
-                    mutable.set(pos, dir);
-                    this.updateNeighbor(mutable, sourceBlock, pos);
+                    this.updateNeighbor(pos.offset(CarpetFixesInit.directions[dirNum]), sourceBlock, pos);
                 }
             }
             ci.cancel();

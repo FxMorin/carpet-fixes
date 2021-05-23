@@ -67,6 +67,21 @@ Fixes World Modifying tasks to be before decorations
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-610](https://bugs.mojang.com/browse/MC-610)
 
+## updateSuppressionFix
+Prevents update suppression from working! Original concept by: *Carpet-TCTC-Addition*
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+
+## zombiePiglinTracingFix
+Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* By: *Hendrix-Shen*
+
 # Backports
 ## targetBlockPermanentlyPoweredFix
 Fixes target blocks being permanently powered when moved by pistons
@@ -81,7 +96,7 @@ Shulkers do not teleport correctly when going through a portal
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BACKPORT`
+* Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`
 * Fixes: [MC-139265](https://bugs.mojang.com/browse/MC-139265) in 21w03a
 * By: *Hendrix-Shen*
 
@@ -102,6 +117,24 @@ Backport dropping the contents of a Shulker Box item when its item entity is des
 * Categories: `CARPETFIXES`,`BACKPORT`
 * Fixes: [MC-176615](https://bugs.mojang.com/browse/MC-176615) from 20w51a
 * By: *Copetan* from *lunaar-carpet-addons*
+
+## oldFlintAndSteelBehavior
+Backport 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`
+* Fixes: [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a
+* By: *whoImT* from *carpet-addons*
+
+## donkeyRidingDupeFix
+Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while riding donkey/llama
+* Type: `boolean`
+* Default value: `true`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`
+* Fixes: Fixed [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a
+* By: *whoImT* from *carpet-addons*
 
 # From Carpet & Other Extensions
 ## lightningKillsDropsFix
