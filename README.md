@@ -10,7 +10,7 @@ Fixes Chunk Regen due to StringTag writeUTF() not respecting readUTF() Limits
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`
+* Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
 
 ## blockCollisionCheckFix
 Fixes incorrect block collision checks
@@ -72,14 +72,14 @@ Prevents update suppression from working! Original concept by: *Carpet-TCTC-Addi
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`
+* Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
 
 ## zombiePiglinTracingFix
 Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`
+* Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
 * By: *Hendrix-Shen*
 
 # Backports
@@ -150,7 +150,7 @@ Re-adds 1.8 double retraction to pistons
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-88959](https://bugs.mojang.com/browse/MC-88959)
 * By: *DeadlyMC* from *Carpet-Extra*
 
@@ -159,7 +159,7 @@ Quick pulses won't get lost in repeater setups
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-54711](https://bugs.mojang.com/browse/MC-54711)
 * By: *DeadlyMC* from *Carpet-Extra*
 
@@ -176,7 +176,7 @@ Disable TNT, carpet and part of rail dupers
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Categories: `CARPETFIXES`,`BUGFIX`
 * By: *Fallen-Breath* from *Carpet-TIS-Addition*
 
 

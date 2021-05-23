@@ -1,6 +1,10 @@
 package carpetfixes;
 
+import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
+import carpet.settings.Validator;
+import carpetfixes.helpers.RulePresets;
+import net.minecraft.server.command.ServerCommandSource;
 
 import static carpet.settings.RuleCategory.BUGFIX;
 import static carpet.settings.RuleCategory.EXPERIMENTAL;
@@ -8,6 +12,7 @@ import static carpet.settings.RuleCategory.EXPERIMENTAL;
 public class CarpetFixesSettings {
 
     private final static String CARPETFIXES = "carpet-fixes";
+    private final static String CRASHFIX = "crashfix"; // For bugs that fix possible server crashes
     private final static String BACKPORT = "backport"; //A bug that got fixed which we don't want fixed or came from a snapshot
     private final static String WONTFIX = "wontfix"; //Marked as `won't fix` on the bug tracker
 
@@ -16,6 +21,35 @@ public class CarpetFixesSettings {
     private final static String INTENDED = "intended";
 
     //Don't include BUGFIX if the bug is not marked as Unresolved
+
+    public enum PresetSettings {
+        VANILLA, //Sets all rules to there default value
+        BACKPORT, //Sets all backports to true
+        CRASHFIX, //Sets all crashFixes to true
+        STABILITY, //Sets all crashfixes and stability fixes (Makes the game more stable)
+        NOTBACKPORTS, //Sets all rules to true except for backports (That are not crashfixes or stability fixes)
+        ALL, //Sets all rules to be the opposite of there default value
+        CUSTOM //Default (Does not get checked)
+    }
+
+
+    public CarpetFixesSettings() {
+
+    }
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "This rule allows you to change all Carpet-Fixes rules at the same time!",
+            extra = {"Vanilla: All rules set to there default value",
+                    "CRASHFIX: Only rules that fix Crashes are enabled",
+                    "STABILITY: Rules that make the game stable for multiplayer",
+                    "ALL: Enable all rules",
+                    "CUSTOM: Default (Does not change commands)"
+            },
+            validate = PresetValidator.class,
+            category = {CARPETFIXES}
+    )
+    public static PresetSettings carpetFixesPreset = PresetSettings.CUSTOM;
 
     //By FX - PR0CESS
     @Rule(
@@ -56,7 +90,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes Chunk Regen due to StringTag writeUTF() not respecting readUTF() Limits",
             extra = "Fixes ChunkRegen & [MC-134892](https://bugs.mojang.com/browse/MC-134892)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,CRASHFIX}
     )
     public static boolean chunkRegenFix = false;
 
@@ -95,7 +129,7 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Prevents update suppression from working! Original concept by: Carpet-TCTC-Addition",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,CRASHFIX}
     )
     public static boolean updateSuppressionFix = false;
 
@@ -103,7 +137,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded",
             extra = "This bug may cause server crash",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,CRASHFIX}
     )
     public static boolean zombiePiglinTracingFix = false;
 
@@ -204,7 +238,7 @@ public class CarpetFixesSettings {
             desc = "Quick pulses won't get lost in repeater setups",
             extra = {"Probably brings back pre 1.8 behaviour.",
                     "Fixes [MC-54711](https://bugs.mojang.com/browse/MC-54711)"},
-            category = {CARPETFIXES, BUGFIX, EXPERIMENTAL}
+            category = {CARPETFIXES, BUGFIX}
     )
     public static boolean repeaterPriorityFix = false;
 
@@ -229,8 +263,48 @@ public class CarpetFixesSettings {
                     "Attachment block update based dupers will do nothing and redstone component update based dupers can no longer keep their duped block",
                     "Implementation by Carpet-TIS-Addition - Dupe bad dig good"
             },
-            category = {CARPETFIXES, BUGFIX, EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX}
     )
     public static boolean pistonDupingFix = false;
+
+    /*
+
+    VALIDATOR'S
+
+     */
+
+    private static class PresetValidator extends Validator<PresetSettings> {
+        @Override public PresetSettings validate(ServerCommandSource source, ParsedRule<PresetSettings> currentRule, PresetSettings newValue, String string) {
+            switch(newValue) {
+                case VANILLA:
+                    RulePresets.setVanilla(source);
+                    break;
+                case BACKPORT:
+                    RulePresets.setBackport(source);
+                    break;
+                case CRASHFIX:
+                    RulePresets.setCrashFix(source);
+                    break;
+                case STABILITY:
+                    RulePresets.setStability(source);
+                    break;
+                case NOTBACKPORTS:
+                    RulePresets.setNotBackport(source);
+                    break;
+                case ALL:
+                    RulePresets.setAll(source);
+                    break;
+                case CUSTOM:
+                default:
+            }
+            return newValue;
+        }
+    }
+
+    /*
+
+
+
+     */
 
 }
