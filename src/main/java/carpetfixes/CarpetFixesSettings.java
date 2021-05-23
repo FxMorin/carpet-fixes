@@ -42,7 +42,7 @@ public class CarpetFixesSettings {
             desc = "This rule allows you to change all Carpet-Fixes rules at the same time!",
             extra = {"Vanilla: All rules set to there default value",
                     "CRASHFIX: Only rules that fix Crashes are enabled",
-                    "STABILITY: Rules that make the game stable for multiplayer",
+                    "STABILITY: Rules that make the game stable",
                     "ALL: Enable all rules",
                     "CUSTOM: Default (Does not change commands)"
             },
