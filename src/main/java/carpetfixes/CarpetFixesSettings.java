@@ -1,10 +1,6 @@
 package carpetfixes;
 
-import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
-import carpet.settings.Validator;
-import carpetfixes.helpers.RulePresets;
-import net.minecraft.server.command.ServerCommandSource;
 
 import static carpet.settings.RuleCategory.BUGFIX;
 import static carpet.settings.RuleCategory.EXPERIMENTAL;

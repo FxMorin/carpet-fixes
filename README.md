@@ -5,6 +5,15 @@ Feel free to contribute by adding as many fixes as you want
 
 
 # Features
+## carpetFixesPreset
+Allows you to choose different pre-defined groups of rules to use
+* Type: `PresetSettings`
+* Default value: `Custom`
+* Required options: `Custom`,`Vanilla`,`Backport`,`CrashFix`,`Stability`,`NotBackports`,`All`
+* Categories: `CARPETFIXES`
+* Additional notes:
+    * Information about what each preset does can be found in-game by doing `/carpet carpetFixesPreset`
+
 ## chunkRegenFix
 Fixes Chunk Regen due to StringTag writeUTF() not respecting readUTF() Limits
 * Type: `boolean`
