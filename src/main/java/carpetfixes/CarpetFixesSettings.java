@@ -32,21 +32,15 @@ public class CarpetFixesSettings {
         CUSTOM //Default (Does not get checked)
     }
 
-
-    public CarpetFixesSettings() {
-
-    }
-
     //By FX - PR0CESS
     @Rule(
             desc = "This rule allows you to change all Carpet-Fixes rules at the same time!",
             extra = {"Vanilla: All rules set to there default value",
-                    "CRASHFIX: Only rules that fix Crashes are enabled",
-                    "STABILITY: Rules that make the game stable",
-                    "ALL: Enable all rules",
-                    "CUSTOM: Default (Does not change commands)"
+                    "CrashFix: Only rules that fix Crashes are enabled",
+                    "Stability: Rules that make the game stable",
+                    "All: Enable all rules",
+                    "Custom: Default (Does not change commands)"
             },
-            validate = PresetValidator.class,
             category = {CARPETFIXES}
     )
     public static PresetSettings carpetFixesPreset = PresetSettings.CUSTOM;
@@ -266,45 +260,5 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean pistonDupingFix = false;
-
-    /*
-
-    VALIDATOR'S
-
-     */
-
-    private static class PresetValidator extends Validator<PresetSettings> {
-        @Override public PresetSettings validate(ServerCommandSource source, ParsedRule<PresetSettings> currentRule, PresetSettings newValue, String string) {
-            switch(newValue) {
-                case VANILLA:
-                    RulePresets.setVanilla(source);
-                    break;
-                case BACKPORT:
-                    RulePresets.setBackport(source);
-                    break;
-                case CRASHFIX:
-                    RulePresets.setCrashFix(source);
-                    break;
-                case STABILITY:
-                    RulePresets.setStability(source);
-                    break;
-                case NOTBACKPORTS:
-                    RulePresets.setNotBackport(source);
-                    break;
-                case ALL:
-                    RulePresets.setAll(source);
-                    break;
-                case CUSTOM:
-                default:
-            }
-            return newValue;
-        }
-    }
-
-    /*
-
-
-
-     */
 
 }

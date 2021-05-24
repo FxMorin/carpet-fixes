@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MovementType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -55,7 +56,7 @@ public abstract class Entity_blockCollisionMixin {
     )
     public void checkBlockCollisionBetter(BlockState blockState, World world, BlockPos pos, Entity entity) {
         boolean pass = shouldCheckCollision(blockState.getBlock());
-        if (!CarpetFixesSettings.blockCollisionCheckFix || (first && pass) || (!first && !pass)) {
+        if (entity instanceof PlayerEntity && (!CarpetFixesSettings.blockCollisionCheckFix || (first && pass) || (!first && !pass))) {
             blockState.onEntityCollision(world, pos, entity);
         }
     }
