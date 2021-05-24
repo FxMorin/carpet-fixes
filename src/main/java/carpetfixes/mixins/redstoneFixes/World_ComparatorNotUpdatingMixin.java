@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -19,11 +20,9 @@ public class World_ComparatorNotUpdatingMixin {
 
     @Shadow public BlockState getBlockState(BlockPos pos) { return null;}
 
-    @Inject(method = "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;II)Z", at = @At(value ="INVOKE",target = "Lnet/minecraft/block/BlockState;hasComparatorOutput()Z"), cancellable = true)
-    private void updateNeighborsAlwaysWithBetterDirection(BlockPos pos, BlockState state, int flags, int maxUpdateDepth, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.comparatorUpdateFix) {
-            cir.setReturnValue(false);
-        }
+    @Redirect(method = "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;II)Z", at = @At(value ="INVOKE",target = "Lnet/minecraft/block/BlockState;hasComparatorOutput()Z"))
+    private boolean updateNeighborsAlwaysWithBetterDirection(BlockState blockState) {
+        return !CarpetFixesSettings.comparatorUpdateFix && blockState.hasComparatorOutput();
     }
 
     @Inject(method = "updateNeighbor(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;)V", at = @At(value ="INVOKE",target = "Lnet/minecraft/block/BlockState;neighborUpdate(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;Z)V"))

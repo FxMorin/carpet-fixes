@@ -29,10 +29,8 @@ public abstract class Entity_blockCollisionMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;checkBlockCollision()V")
     )
     protected void onEntityCollision(Entity entity) {
-        //if (!CarpetFixesSettings.blockCollisionCheckFix) {
-            first = true;
-            this.checkBlockCollision();
-        //}
+        first = true;
+        this.checkBlockCollision();
     }
 
     @Inject(
