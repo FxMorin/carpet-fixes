@@ -3,6 +3,8 @@
 
 Feel free to contribute by adding as many fixes as you want
 
+Join my discord for more information, updates, and discussion on the mod [FX's Discord](https://discord.gg/vurv5pdFpa)
+
 
 # Features
 ## carpetFixesPreset
