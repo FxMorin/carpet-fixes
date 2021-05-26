@@ -28,7 +28,7 @@ public abstract class StringTag_ChunkRegenMixin {
     private void respectReadLimitDuringWrite(DataOutput output, CallbackInfo ci) {
         if(CarpetFixesSettings.chunkRegenFix) {
             int strlen = this.value.length();
-            if(strlen > 21850) { //Minimum number that could bypass limit
+            if(strlen > 28501) { //Minimum number that could bypass limit
                 int utflen = 0;
                 char c;
                 /* Mostly same equation used in DataOutputStream */

@@ -54,7 +54,7 @@ public abstract class Entity_blockCollisionMixin {
     )
     public void checkBlockCollisionBetter(BlockState blockState, World world, BlockPos pos, Entity entity) {
         boolean pass = shouldCheckCollision(blockState.getBlock());
-        if (entity instanceof PlayerEntity && (!CarpetFixesSettings.blockCollisionCheckFix || (first && pass) || (!first && !pass))) {
+        if (!CarpetFixesSettings.blockCollisionCheckFix || !(entity instanceof PlayerEntity) || (first && pass) || (!first && !pass)) {
             blockState.onEntityCollision(world, pos, entity);
         }
     }

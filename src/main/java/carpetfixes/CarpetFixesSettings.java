@@ -28,6 +28,8 @@ public class CarpetFixesSettings {
         CUSTOM //Default (Does not get checked)
     }
 
+    //Add your name above the rules so people know who to contact about changing the code. E.x. By FX - PR0CESS
+
     //By FX - PR0CESS
     @Rule(
             desc = "This rule allows you to change all Carpet-Fixes rules at the same time!",
@@ -86,7 +88,7 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes incorrect block collision checks",
+            desc = "Fixes incorrect block collision checks for players",
             extra = "Fixes [MC-123364](https://bugs.mojang.com/browse/MC-123364)",
             category = {CARPETFIXES,BUGFIX}
     )
@@ -117,11 +119,76 @@ public class CarpetFixesSettings {
     public static boolean comparatorUpdateFix = false;
 
     //by FX - PR0CESS
+    /* Not working as Intended, needs a rewrite
     @Rule(
             desc = "Prevents update suppression from working! Original concept by: Carpet-TCTC-Addition",
             category = {CARPETFIXES,BUGFIX,CRASHFIX}
     )
-    public static boolean updateSuppressionFix = false;
+    public static boolean updateSuppressionFix = false;*/
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes some entities not bouncing on slime blocks and getting stuck",
+            extra = "Fixes [MC-216985](https://bugs.mojang.com/browse/MC-216985)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean incorrectBounceLogicFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes some entities getting stuck in bubble columns",
+            extra = "Fixes [MC-207866](https://bugs.mojang.com/browse/MC-207866)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean incorrectBubbleColumnLogicFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes movement slowdown being calculated based on last block in search. Uses the slowest value instead",
+            extra = "Fixes [MC-202654](https://bugs.mojang.com/browse/MC-202654)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean directionalBlockSlowdownFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes cats sometimes breaking there leads after giving a gift",
+            extra = "Fixes [MC-202607](https://bugs.mojang.com/browse/MC-202607)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean catsBreakLeadsDuringGiftFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes enderman not updating the block they place correctly",
+            extra = "Fixes [MC-183054](https://bugs.mojang.com/browse/MC-183054)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean endermanDontUpdateOnPlaceFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes rails updating other rails before checking if they are in a valid location",
+            extra = "Fixes [MC-174864](https://bugs.mojang.com/browse/MC-174864)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean railInvalidUpdateOnPushFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the bug which causes there to be void rings (empty chunks) in the end",
+            extra = "Fixes [MC-159283](https://bugs.mojang.com/browse/MC-159283)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean endVoidRingsFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes getting kicked for flying too long when jumping and riding an entity",
+            extra = "Fixes [MC-98727](https://bugs.mojang.com/browse/MC-98727)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean mountingFlyingTooLongFix = false;
 
     //By Hendrix-Shen
     @Rule(

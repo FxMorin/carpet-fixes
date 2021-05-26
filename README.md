@@ -22,6 +22,8 @@ Fixes Chunk Regen due to StringTag writeUTF() not respecting readUTF() Limits
 * Default value: `false`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
+* Additional notes:
+  * This fixes inventory duping using books and chunk regen using books.
 
 ## blockCollisionCheckFix
 Fixes incorrect block collision checks
@@ -78,12 +80,69 @@ Fixes World Modifying tasks to be before decorations
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-610](https://bugs.mojang.com/browse/MC-610)
 
-## updateSuppressionFix
-Prevents update suppression from working! Original concept by: *Carpet-TCTC-Addition*
+## incorrectBounceLogicFix
+Fixes some entities not bouncing on slime blocks and getting stuck
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-216985](https://bugs.mojang.com/browse/MC-216985)
+
+## incorrectBubbleColumnLogicFix
+Fixes some entities getting stuck in bubble columns
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-207866](https://bugs.mojang.com/browse/MC-207866)
+
+## directionalBlockSlowdownFix
+Fixes movement slowdown being calculated based on last block in search. Uses the slowest value instead
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-202654](https://bugs.mojang.com/browse/MC-202654)
+
+## catsBreakLeadsDuringGiftFix
+Fixes cats sometimes breaking there leads after giving a gift
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-202607](https://bugs.mojang.com/browse/MC-202607)
+
+## endermanDontUpdateOnPlaceFix
+Fixes enderman not updating the block they place correctly
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-183054](https://bugs.mojang.com/browse/MC-183054)
+
+## railInvalidUpdateOnPushFix
+Fixes rails updating other rails before checking if they are in a valid location
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-174864](https://bugs.mojang.com/browse/MC-174864)
+
+## endVoidRingsFix
+Fixes the bug which causes there to be void rings (empty chunks) in the end
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-159283](https://bugs.mojang.com/browse/MC-159283)
+
+## mountingFlyingTooLongFix
+Fixes getting kicked for flying too long when jumping and riding an entity
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-98727](https://bugs.mojang.com/browse/MC-98727)
 
 ## zombiePiglinTracingFix
 Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded
