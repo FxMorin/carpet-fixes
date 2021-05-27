@@ -193,7 +193,7 @@ public class CarpetFixesSettings {
     //By Hendrix-Shen
     @Rule(
             desc = "Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded",
-            extra = "This bug may cause server crash",
+            extra = "Fixes [MC-202249](https://bugs.mojang.com/browse/MC-202249)",
             category = {CARPETFIXES,BUGFIX,CRASHFIX}
     )
     public static boolean zombiePiglinTracingFix = false;
