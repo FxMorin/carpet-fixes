@@ -144,6 +144,30 @@ Fixes getting kicked for flying too long when jumping and riding an entity
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-98727](https://bugs.mojang.com/browse/MC-98727)
 
+## tntCantUseNetherPortalsFix
+Fixes TNT Entity not being able to go through nether portals
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-8983](https://bugs.mojang.com/browse/MC-8983)
+
+## fallingBlocksCantUseNetherPortalsFix
+Fixes Falling Blocks not being able to go through nether portals
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-9644](https://bugs.mojang.com/browse/MC-9644)
+
+## spawnChunkEntitiesUnloadingFix
+Fixes Spawn Chunks not ticking entities and block entities if no player online
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-59134](https://bugs.mojang.com/browse/MC-59134)
+
 ## zombiePiglinTracingFix
 Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded
 * Type: `boolean`

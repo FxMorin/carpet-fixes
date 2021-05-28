@@ -190,6 +190,30 @@ public class CarpetFixesSettings {
     )
     public static boolean mountingFlyingTooLongFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes TNT Entity not being able to go through nether portals",
+            extra = "Fixes [MC-8983](https://bugs.mojang.com/browse/MC-8983)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean tntCantUseNetherPortalsFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Falling Blocks not being able to go through nether portals",
+            extra = "Fixes [MC-9644](https://bugs.mojang.com/browse/MC-9644)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean fallingBlocksCantUseNetherPortalsFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Spawn Chunks not ticking entities and block entities if no player online",
+            extra = "Fixes [MC-59134](https://bugs.mojang.com/browse/MC-59134)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean spawnChunkEntitiesUnloadingFix = false;
+
     //By Hendrix-Shen
     @Rule(
             desc = "Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded",
