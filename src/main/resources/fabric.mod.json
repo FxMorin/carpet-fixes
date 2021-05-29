@@ -35,5 +35,10 @@
     "minecraft": "1.16.x",
     "fabricloader": ">=0.10.0",
     "carpet": ">=1.4.26"
+  },
+  "custom": {
+    "modmenu": {
+      "parent": "carpet"
+    }
   }
 }
