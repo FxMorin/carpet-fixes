@@ -202,6 +202,14 @@ Tracing the target to another dimension does not stop checking for visibility, s
 * Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
 * By: *Hendrix-Shen*
 
+## drownedEnchantedTridentsFix
+Makes enchantments work on tridents thrown by drowned
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* By: *Skyrising*
+
 # Backports
 ## targetBlockPermanentlyPoweredFix
 Fixes target blocks being permanently powered when moved by pistons

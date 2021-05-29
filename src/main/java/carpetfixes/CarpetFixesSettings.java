@@ -246,6 +246,14 @@ public class CarpetFixesSettings {
     )
     public static boolean zombiePiglinTracingFix = false;
 
+    //By Skyrising
+    @Rule(
+            desc = "Makes enchantments work on tridents thrown by drowned",
+            extra = "Fixes [MC-127321](https://bugs.mojang.com/browse/MC-127321)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean drownedEnchantedTridentsFix = false;
+
 
     /*
 

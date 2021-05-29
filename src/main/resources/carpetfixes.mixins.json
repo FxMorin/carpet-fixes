@@ -24,6 +24,7 @@
     "dupeFixes.FallingBlockEntity_duplicationMixin",
     "dupeFixes.PistonBlock_tntDupingFixMixin",
     "entityFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
+    "entityFixes.DrownedEntity_enchantedTridentMixin",
     "entityFixes.EndCrystalEntity_ExplosionChainingMixin",
     "entityFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "entityFixes.Entity_blockCollisionMixin",
