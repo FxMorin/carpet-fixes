@@ -25,15 +25,15 @@ public class DrownedEntity_enchantedTridentMixin extends ZombieEntity {
 
     @Redirect(method = "attack", at = @At(value = "NEW", target = "net/minecraft/item/ItemStack"))
     private ItemStack createItemStack(ItemConvertible item) {
+        ItemStack trident = new ItemStack(item);
         if (CarpetFixesSettings.drownedEnchantedTridentsFix) {
             ItemStack holding = this.getActiveItem();
-            ItemStack trident = new ItemStack(item);
-            if (holding.getItem() != Items.TRIDENT) return trident;
-            Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(holding);
-            enchantments.remove(Enchantments.LOYALTY);
-            EnchantmentHelper.set(enchantments, trident);
-            return trident;
+            if (holding.getItem() == Items.TRIDENT) {
+                Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(holding);
+                enchantments.remove(Enchantments.LOYALTY);
+                EnchantmentHelper.set(enchantments, trident);
+            }
         }
-        return new ItemStack(item);
+        return trident;
     }
 }
