@@ -176,6 +176,22 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
+            desc = "Fixes rails not updating other rails on being moved, allowing for invalid states",
+            extra = {"Prevents redstone budding from working","Fixes [MC-123311](https://bugs.mojang.com/browse/MC-123311)"},
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean railMissingUpdateOnPushFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes rails not updating other rails after being moved",
+            extra = "Fixes [MC-96224](https://bugs.mojang.com/browse/MC-96224)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean railMissingUpdateAfterPushFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
             desc = "Fixes the bug which causes there to be void rings (empty chunks) in the end",
             extra = "Fixes [MC-159283](https://bugs.mojang.com/browse/MC-159283)",
             category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
@@ -213,6 +229,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean spawnChunkEntitiesUnloadingFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Named Blocks not stacking due to useless RepairCost tag",
+            extra = "Fixes [MC-197473](https://bugs.mojang.com/browse/MC-197473)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean repairCostItemNotStackingFix = false;
 
     //By Hendrix-Shen
     @Rule(

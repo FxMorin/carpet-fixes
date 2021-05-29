@@ -16,25 +16,28 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractRailBlock.class)
-public abstract class AbstractRailBlock_invalidUpdateMixin extends Block {
+public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Block {
 
-    public AbstractRailBlock_invalidUpdateMixin(Settings settings) {
+    public AbstractRailBlock_missingUpdateAfterPushMixin(Settings settings) {
         super(settings);
     }
 
     @Shadow public abstract Property<RailShape> getShapeProperty();
-
-    @Shadow private static boolean shouldDropRail(BlockPos pos, World world, RailShape shape) { return true;}
+    @Shadow @Final private boolean allowCurves;
 
     @Inject(method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V", at = @At("HEAD"), cancellable = true)
-    private void updateNeighborsExceptWithBetterDirection(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CarpetFixesSettings.railInvalidUpdateOnPushFix) {
-            RailShape railShape = state.get(this.getShapeProperty());
-            if (shouldDropRail(pos, world, railShape)) {
-                dropStacks(state, world, pos);
-                world.removeBlock(pos, notify);
-                ci.cancel();
+    protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
+        if (CarpetFixesSettings.railMissingUpdateAfterPushFix) {
+            if (!oldState.isOf(state.getBlock())) {
+                if ((state.get(this.getShapeProperty())).isAscending()) {
+                    world.updateNeighborsAlways(pos.up(), this);
+                }
+                if (this.allowCurves) {
+                    world.updateNeighborsAlways(pos, this);
+                    world.updateNeighborsAlways(pos.down(), this);
+                }
             }
+            ci.cancel();
         }
     }
 }

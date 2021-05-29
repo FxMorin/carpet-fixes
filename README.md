@@ -128,6 +128,24 @@ Fixes rails updating other rails before checking if they are in a valid location
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-174864](https://bugs.mojang.com/browse/MC-174864)
 
+## railMissingUpdateOnPushFix
+Fixes rails not updating other rails on being moved, allowing for invalid states
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-123311](https://bugs.mojang.com/browse/MC-123311)
+* Additional notes:
+  * Prevents redstone budding from working
+
+## railMissingUpdateAfterPushFix
+Fixes rails not updating other rails after being moved
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-96224](https://bugs.mojang.com/browse/MC-96224)
+
 ## endVoidRingsFix
 Fixes the bug which causes there to be void rings (empty chunks) in the end
 * Type: `boolean`
@@ -167,6 +185,14 @@ Fixes Spawn Chunks not ticking entities and block entities if no player online
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-59134](https://bugs.mojang.com/browse/MC-59134)
+
+## repairCostItemNotStackingFix
+Fixes Named Blocks not stacking due to useless RepairCost tag
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-197473](https://bugs.mojang.com/browse/MC-197473)
 
 ## zombiePiglinTracingFix
 Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded
