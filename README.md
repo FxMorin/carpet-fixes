@@ -219,6 +219,13 @@ Fixes target blocks being permanently powered when moved by pistons
 * Categories: `CARPETFIXES`,`BACKPORT`
 * Fixes: [MC-173244](https://bugs.mojang.com/browse/MC-173244)
 
+## portalGeneralItemDupeFix
+Fixes general item dupe using dolphins, and some other dimension change dupes
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`
+
 ## shulkerTeleportFix
 Shulkers do not teleport correctly when going through a portal
 * Type: `boolean`

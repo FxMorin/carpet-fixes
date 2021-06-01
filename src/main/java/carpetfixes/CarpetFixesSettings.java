@@ -273,7 +273,7 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes general item dupe using dolphins and some other dimension change dupes",
+            desc = "Fixes general item dupe using dolphins, and some other dimension change dupes",
             category = {CARPETFIXES,BUGFIX,BACKPORT}
     )
     public static boolean portalGeneralItemDupeFix = true;

@@ -16,7 +16,7 @@ abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
         super(entityType, world);
     }
 
-    @Inject(method="Lnet/minecraft/entity/mob/MobEntity;method_30076()V",at=@At("RETURN"))
+    @Inject(method= "method_30076()V",at=@At("RETURN"))
     protected void stopGeneralItemDupes(CallbackInfo ci) {
         if (CarpetFixesSettings.portalGeneralItemDupeFix) {
             this.getItemsEquipped().forEach(lvt0 -> lvt0.setCount(0));
