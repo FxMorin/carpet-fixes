@@ -271,6 +271,13 @@ public class CarpetFixesSettings {
     )
     public static boolean targetBlockPermanentlyPoweredFix = true;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes general item dupe using dolphins and some other dimension change dupes",
+            category = {CARPETFIXES,BUGFIX,BACKPORT}
+    )
+    public static boolean portalGeneralItemDupeFix = true;
+
     //By Hendrix-Shen
     @Rule(
             desc = "Shulkers do not teleport correctly when going through a portal.",
