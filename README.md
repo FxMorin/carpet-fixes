@@ -72,6 +72,14 @@ Makes it so that sponges give block updates when absorbing water
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-220636](https://bugs.mojang.com/browse/MC-220636)
 
+## hopperUpdateFix
+Makes it so that hoppers give block updates when placed while powered
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [2No2Name's video](https://www.youtube.com/watch?v=QVOONJ1OY44)
+
 ## worldgenIncorrectOrderFix
 Fixes World Modifying tasks to be before decorations
 * Type: `boolean`
@@ -111,6 +119,14 @@ Fixes cats sometimes breaking there leads after giving a gift
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-202607](https://bugs.mojang.com/browse/MC-202607)
+
+## petsBreakLeadsDuringReloadFix
+Fixes Leashed pets teleporting to the player when reloaded
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-173303](https://bugs.mojang.com/browse/MC-173303)
 
 ## endermanDontUpdateOnPlaceFix
 Fixes enderman not updating the block they place correctly
@@ -161,6 +177,14 @@ Fixes getting kicked for flying too long when jumping and riding an entity
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-98727](https://bugs.mojang.com/browse/MC-98727)
+
+## sleepingDelaysFallDamageFix
+Fixes fall damage being delayed by sleeping, fall damage will be removed instead
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-19830](https://bugs.mojang.com/browse/MC-19830)
 
 ## tntCantUseNetherPortalsFix
 Fixes TNT Entity not being able to go through nether portals

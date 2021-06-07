@@ -68,6 +68,14 @@ public class CarpetFixesSettings {
     public static boolean spongeUpdateFix = false;
 
     //By FX - PR0CESS
+    @Rule(
+            desc = "Makes it so that hoppers give block updates when placed while powered",
+            extra = "Fixes https://www.youtube.com/watch?v=QVOONJ1OY44",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean hopperUpdateFix = false;
+
+    //By FX - PR0CESS
     /*
     To Be Implemented
     @Rule(
@@ -160,6 +168,14 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
+            desc = "Fixes Leashed pets teleporting to the player when reloaded",
+            extra = "Fixes [MC-173303](https://bugs.mojang.com/browse/MC-173303)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean petsBreakLeadsDuringReloadFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
             desc = "Fixes enderman not updating the block they place correctly",
             extra = "Fixes [MC-183054](https://bugs.mojang.com/browse/MC-183054)",
             category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
@@ -205,6 +221,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
     )
     public static boolean mountingFlyingTooLongFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes fall damage being delayed by sleeping, fall damage will be removed instead",
+            extra = "Fixes [MC-19830](https://bugs.mojang.com/browse/MC-19830)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean sleepingDelaysFallDamageFix = false;
 
     //by FX - PR0CESS
     @Rule(
