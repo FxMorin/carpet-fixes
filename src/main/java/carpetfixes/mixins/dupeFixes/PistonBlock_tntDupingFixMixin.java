@@ -39,7 +39,7 @@ public abstract class PistonBlock_tntDupingFixMixin {
             slice = @Slice(
                     from = @At(
                             value = "INVOKE",
-                            target = "Lnet/minecraft/block/Block;hasBlockEntity()Z"
+                            target = "Lnet/minecraft/block/BlockState;hasBlockEntity()Z"
                     )
             ),
             at = @At(

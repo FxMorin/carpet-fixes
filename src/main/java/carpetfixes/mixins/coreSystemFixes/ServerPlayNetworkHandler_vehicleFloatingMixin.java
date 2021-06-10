@@ -3,6 +3,7 @@ package carpetfixes.mixins.coreSystemFixes;
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ServerPlayNetworkHandler_vehicleFloatingMixin {
 
     @Shadow private boolean floating;
-    @Shadow private boolean ridingEntity;
+    @Shadow public ServerPlayerEntity player;
 
     /**
      * You can get kicked for flying by mounding an entity after jumping, this is
@@ -23,7 +24,7 @@ public class ServerPlayNetworkHandler_vehicleFloatingMixin {
      */
     @Inject(method = "onVehicleMove(Lnet/minecraft/network/packet/c2s/play/VehicleMoveC2SPacket;)V", at = @At("RETURN"))
     public void IfVehicleMovedPlayerNotFlying(VehicleMoveC2SPacket packet, CallbackInfo ci){
-        if (CarpetFixesSettings.mountingFlyingTooLongFix && this.ridingEntity) {
+        if (CarpetFixesSettings.mountingFlyingTooLongFix && this.player.hasVehicle() && this.player.getVehicle() != this.player) {
             this.floating = false;
         }
     }

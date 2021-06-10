@@ -23,7 +23,7 @@ Fixes Chunk Regen due to StringTag writeUTF() not respecting readUTF() Limits
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
 * Additional notes:
-  * This fixes inventory duping using books and chunk regen using books.
+  * This fixes using books to dupe inventories, regen chunks, and vanilla tick freeze chunks.
 
 ## blockCollisionCheckFix
 Fixes incorrect block collision checks
@@ -79,14 +79,6 @@ Makes it so that hoppers give block updates when placed while powered
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [2No2Name's video](https://www.youtube.com/watch?v=QVOONJ1OY44)
-
-## worldgenIncorrectOrderFix
-Fixes World Modifying tasks to be before decorations
-* Type: `boolean`
-* Default value: `false`
-* Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
-* Fixes: [MC-610](https://bugs.mojang.com/browse/MC-610)
 
 ## incorrectBounceLogicFix
 Fixes some entities not bouncing on slime blocks and getting stuck
@@ -218,14 +210,6 @@ Fixes Named Blocks not stacking due to useless RepairCost tag
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-197473](https://bugs.mojang.com/browse/MC-197473)
 
-## zombiePiglinTracingFix
-Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded
-* Type: `boolean`
-* Default value: `false`
-* Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
-* By: *Hendrix-Shen*
-
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
@@ -243,39 +227,13 @@ Fixes target blocks being permanently powered when moved by pistons
 * Categories: `CARPETFIXES`,`BACKPORT`
 * Fixes: [MC-173244](https://bugs.mojang.com/browse/MC-173244)
 
-## portalGeneralItemDupeFix
-Fixes general item dupe using dolphins, and some other dimension change dupes
+## lightningRodPermanentlyPoweredFix
+Fixes lightning rods being permanently powered when moved by pistons
 * Type: `boolean`
-* Default value: `false`
-* Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`
-
-## shulkerTeleportFix
-Shulkers do not teleport correctly when going through a portal
-* Type: `boolean`
-* Default value: `false`
-* Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`
-* Fixes: [MC-139265](https://bugs.mojang.com/browse/MC-139265) in 21w03a
-* By: *Hendrix-Shen*
-
-## drownedMemoryLeakFix
-Fixes Drowned navigation causing memory leak/performance degradation
-* Type: `boolean`
-* Default value: `false`
-* Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BACKPORT`,`BUGFIX`
-* Fixes: [MC-202246](https://bugs.mojang.com/browse/MC-202246) from 20w45a
-* By: *Fallen-Breath*
-
-## shulkerBoxItemsDropContents
-Backport dropping the contents of a Shulker Box item when its item entity is destroyed
-* Type: `boolean`
-* Default value: `false`
+* Default value: `true`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BACKPORT`
-* Fixes: [MC-176615](https://bugs.mojang.com/browse/MC-176615) from 20w51a
-* By: *Copetan* from *lunaar-carpet-addons*
+* Fixes: [MC-203718](https://bugs.mojang.com/browse/MC-203718)
 
 ## oldFlintAndSteelBehavior
 Backport 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds
@@ -291,9 +249,11 @@ Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while rid
 * Type: `boolean`
 * Default value: `true`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`
+* Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`,`EXPERIMENTAL`
 * Fixes: Fixed [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a
 * By: *whoImT* from *carpet-addons*
+* Additional notes:
+  * This has not been tested in 1.17 and may not work!
 
 # From Carpet & Other Extensions
 ## lightningKillsDropsFix

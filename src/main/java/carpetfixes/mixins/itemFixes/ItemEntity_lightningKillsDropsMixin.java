@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntity_lightningKillsDropsMixin extends Entity {
-    @Shadow private int age;
+    @Shadow private int itemAge;
 
     public ItemEntity_lightningKillsDropsMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -27,7 +27,7 @@ public abstract class ItemEntity_lightningKillsDropsMixin extends Entity {
     @Override
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
         if (CarpetFixesSettings.lightningKillsDropsFix) {
-            if (this.age > 8) {
+            if (this.itemAge > 8) {
                 super.onStruckByLightning(world, lightning);
             }
         } else {

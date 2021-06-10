@@ -1,6 +1,5 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import net.minecraft.nbt.StringTag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
@@ -13,8 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import carpetfixes.CarpetFixesSettings;
 
 import java.io.DataOutput;
+import net.minecraft.nbt.NbtString;
 
-@Mixin(StringTag.class)
+@Mixin(NbtString.class)
 public abstract class StringTag_ChunkRegenMixin {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -34,9 +34,8 @@ public abstract class StringTag_ChunkRegenMixin {
             int strlen = this.value.length();
             if(strlen > 28501) { //Minimum number that could bypass limit
                 int utflen = 0;
-                char c;
                 for (int i = 0; i < strlen; i++) {
-                    c = this.value.charAt(i);
+                    char c = this.value.charAt(i);
                     utflen += ((c >= 0x0001) && (c <= 0x007F)) ? 1 : (c <= 0x07FF) ? 2 : 3;
                     if (utflen > 65535) {
                         this.value = this.value.substring(0, i-2);

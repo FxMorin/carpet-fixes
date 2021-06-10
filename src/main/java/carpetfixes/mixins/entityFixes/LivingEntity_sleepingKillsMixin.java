@@ -22,8 +22,6 @@ public abstract class LivingEntity_sleepingKillsMixin extends Entity {
      */
     @Inject(method= "setPositionInBed(Lnet/minecraft/util/math/BlockPos;)V",at=@At("HEAD"))
     private void saferSleep(BlockPos pos, CallbackInfo ci) {
-        if (CarpetFixesSettings.sleepingDelaysFallDamageFix) {
-            this.fallDistance = 0.0F;
-        }
+        if (CarpetFixesSettings.sleepingDelaysFallDamageFix) { this.fallDistance = 0.0F; }
     }
 }

@@ -26,7 +26,7 @@ public abstract class Entity_blockCollisionMixin {
 
     @Redirect(
             method = "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;checkBlockCollision()V")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;tryCheckBlockCollision()V")
     )
     protected void onEntityCollision(Entity entity) {
         first = true;

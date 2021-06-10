@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractFireBlock.class)
 public class AbstractFireBlock_flintAndSteelMixin {
-    @Inject(method = "method_30032", require = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;canPlaceAt(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z"), cancellable = true)
+    @Inject(method = "canPlaceAt", require = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;canPlaceAt(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z"), cancellable = true)
     private static void canPlaceAt(World world, BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir){
         if(CarpetFixesSettings.oldFlintAndSteelBehavior) cir.setReturnValue(true);
     }

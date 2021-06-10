@@ -25,14 +25,12 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             if (entity.hasPlayerRider()) {
                 LOGGER.debug("Removing player mount");
                 serverPlayerEntity.stopRiding();
-                serverPlayerEntity.getServerWorld().removeEntity(entity);
-                entity.removed = false;
                 Entity entity2;
-                for(Iterator var4 = entity.getPassengersDeep().iterator(); var4.hasNext(); entity2.removed = false) {
+                for(Iterator var4 = entity.getPassengersDeep().iterator(); var4.hasNext();) {
                     entity2 = (Entity)var4.next();
-                    serverPlayerEntity.getServerWorld().removeEntity(entity2);
+                    entity2.discard();
                 }
-                serverPlayerEntity.getServerWorld().getChunk(serverPlayerEntity.chunkX, serverPlayerEntity.chunkZ).markDirty();
+                serverPlayerEntity.getServerWorld().getChunk(serverPlayerEntity.getChunkPos().x, serverPlayerEntity.getChunkPos().z).markDirty();
             }
         }
         return false;

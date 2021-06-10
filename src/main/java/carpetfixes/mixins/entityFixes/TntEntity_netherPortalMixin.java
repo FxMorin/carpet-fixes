@@ -21,8 +21,6 @@ public abstract class TntEntity_netherPortalMixin extends Entity  {
      */
     @Inject(method= "tick()V",at=@At("HEAD"))
     public void tickNetherPortal(CallbackInfo ci) {
-        if (CarpetFixesSettings.tntCantUseNetherPortalsFix) {
-            this.tickNetherPortal();
-        }
+        if (CarpetFixesSettings.tntCantUseNetherPortalsFix) { this.tickNetherPortal(); }
     }
 }

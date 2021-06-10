@@ -24,11 +24,9 @@ public class Entity_directionalBlockSlowdownMixin {
     public void slowMovement(BlockState state, Vec3d m, CallbackInfo ci) {
         if (CarpetFixesSettings.directionalBlockSlowdownFix) {
             this.fallDistance = 0.0F;
-            this.movementMultiplier = new Vec3d(
-                    this.movementMultiplier.x > 0 ? Math.min(this.movementMultiplier.x, m.x) : m.x,
-                    this.movementMultiplier.y > 0 ? Math.min(this.movementMultiplier.y, m.y) : m.y,
-                    this.movementMultiplier.z > 0 ? Math.min(this.movementMultiplier.z, m.z) : m.z
-            );
+            if (this.movementMultiplier.length() > 0.0) {
+                this.movementMultiplier = new Vec3d(Math.min(this.movementMultiplier.x, m.x), Math.min(this.movementMultiplier.y, m.y), Math.min(this.movementMultiplier.z, m.z));
+            }
             ci.cancel();
         }
     }

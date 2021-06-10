@@ -33,7 +33,7 @@ public class RulePresets {
 
     public static boolean isStabilityRuleException(String name) {
         //List of rules which should count as stability even tho they don't fit the requirements
-        return name.equals("drownedMemoryLeakFix"); // || ...
+        return false; //name.equals("drownedMemoryLeakFix"); // || ...
     }
 
     public static void setAll(ServerCommandSource source) {

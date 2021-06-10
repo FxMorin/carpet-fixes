@@ -45,14 +45,6 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes World Modifying tasks to be before decorations [lakes]",
-            extra = {"Warning! This is extremely unstable and modifies vanilla mechanics. Should be enabled before stating the server!","Fixes [MC-610](https://bugs.mojang.com/browse/MC-610)"},
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
-    )
-    public static boolean worldgenIncorrectOrderFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
             desc = "End Crystals now explode when damaged from explosions. End Crystal chaining",
             extra = "Fixes [MC-118429](https://bugs.mojang.com/browse/MC-118429)",
             category = {CARPETFIXES,BUGFIX}
@@ -262,14 +254,6 @@ public class CarpetFixesSettings {
     )
     public static boolean repairCostItemNotStackingFix = false;
 
-    //By Hendrix-Shen
-    @Rule(
-            desc = "Tracing the target to another dimension does not stop checking for visibility, so that many unnecessary chunks are loaded",
-            extra = "Fixes [MC-202249](https://bugs.mojang.com/browse/MC-202249)",
-            category = {CARPETFIXES,BUGFIX,CRASHFIX}
-    )
-    public static boolean zombiePiglinTracingFix = false;
-
     //By Skyrising
     @Rule(
             desc = "Makes enchantments work on tridents thrown by drowned",
@@ -277,6 +261,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean drownedEnchantedTridentsFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes general item dupe using dolphins, and some other dimension change dupes",
+            extra = "On by default, mojang has fixed this. Turning the rule off re-enables the dupe to work",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean portalGeneralItemDupeFix = true;
 
 
     /*
@@ -297,34 +289,11 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes general item dupe using dolphins, and some other dimension change dupes",
-            category = {CARPETFIXES,BUGFIX,BACKPORT}
+            desc = "Fixes lightning rods being permanently powered when moved by pistons",
+            extra = "Fixes [MC-203718](https://bugs.mojang.com/browse/MC-203718)",
+            category = {CARPETFIXES,BACKPORT}
     )
-    public static boolean portalGeneralItemDupeFix = true;
-
-    //By Hendrix-Shen
-    @Rule(
-            desc = "Shulkers do not teleport correctly when going through a portal.",
-            extra = "Fixed [MC-139265](https://bugs.mojang.com/browse/MC-139265) from 21w03a",
-            category = {CARPETFIXES,BUGFIX,BACKPORT}
-    )
-    public static boolean shulkerTeleportFix = false;
-
-    //By Fallen-Breath
-    @Rule(
-            desc = "Fixes Drowned navigation causing memory leak/performance degradation",
-            extra = "Fixed [MC-202246](https://bugs.mojang.com/browse/MC-202246) from 20w45a",
-            category = {CARPETFIXES,BACKPORT,BUGFIX}
-    )
-    public static boolean drownedMemoryLeakFix = false;
-
-    //By Copetan from lunaar-carpet-addons
-    @Rule(
-            desc = "Backport dropping the contents of a Shulker Box item when its item entity is destroyed",
-            extra = "Fixed [MC-176615](https://bugs.mojang.com/browse/MC-176615) from 20w51a",
-            category = {CARPETFIXES,BUGFIX,BACKPORT}
-    )
-    public static boolean shulkerBoxItemsDropContents = false;
+    public static boolean lightningRodPermanentlyPoweredFix = true;
 
     //By whoImT from carpet-addons
     @Rule(
@@ -337,11 +306,10 @@ public class CarpetFixesSettings {
     //By whoImT from carpet-addons
     @Rule(
             desc = "Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while riding donkey/llama",
-            extra = "Fixed [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a",
-            category = {CARPETFIXES,BUGFIX,BACKPORT}
+            extra = {"Fixed [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a","This has not been tested in 1.17 and may not work!"},
+            category = {CARPETFIXES,BUGFIX,BACKPORT,EXPERIMENTAL}
     )
     public static boolean donkeyRidingDupeFix = true;
-
 
     /*
 

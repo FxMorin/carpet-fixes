@@ -32,9 +32,10 @@
   ],
   "accessWidener" : "carpetfixes.accesswidener",
   "depends": {
-    "minecraft": "1.16.x",
-    "fabricloader": ">=0.10.0",
-    "carpet": ">=1.4.26"
+    "minecraft": "1.17.x",
+    "fabricloader": ">=0.11.3",
+    "carpet": ">=1.4.26",
+    "java": ">=16"
   },
   "custom": {
     "modmenu": {

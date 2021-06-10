@@ -2,7 +2,7 @@ package carpetfixes.mixins.itemFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ItemStack_repairCostMixin {
 
     @Shadow public boolean hasTag() { return false; }
-    @Shadow private CompoundTag tag;
+    @Shadow private NbtCompound tag;
 
     private int getHideFlags() {
         return this.hasTag() && this.tag.contains("HideFlags", 99) ? this.tag.getInt("HideFlags") : 0;

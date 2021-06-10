@@ -11,17 +11,17 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MobEntity.class)
-abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
+public abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
     protected MobEntity_portalGeneralItemMixin(EntityType<? extends LivingEntity> entityType, World world) { super(entityType, world); }
 
     /**
-     * Set all stack counts to 0 when changing dimension. This makes absolutely
-     * sure that no item can be duped while changing dimension.
+     * Remove the part where it sets all stack counts to 0, allows for some
+     * interesting general item dupes to work.
      */
-    @Inject(method= "method_30076()V",at=@At("RETURN"))
-    protected void stopGeneralItemDupes(CallbackInfo ci) {
+    @Inject(method="removeFromDimension",at=@At(value="INVOKE",target="Lnet/minecraft/entity/mob/MobEntity;getItemsEquipped()Ljava/lang/Iterable;"), cancellable = true)
+    protected void reEnableGeneralItemDupe(CallbackInfo ci) {
         if (CarpetFixesSettings.portalGeneralItemDupeFix) {
-            this.getItemsEquipped().forEach(lvt0 -> lvt0.setCount(0));
+            ci.cancel();
         }
     }
 }
