@@ -1,6 +1,7 @@
-package carpetfixes.mixins.entityFixes;
+package carpetfixes.mixins.itemFixes;
 
 import carpetfixes.CarpetFixesSettings;
+import carpetfixes.mixins.entityFixes.EntityAccessorMixin;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.BlockItem;

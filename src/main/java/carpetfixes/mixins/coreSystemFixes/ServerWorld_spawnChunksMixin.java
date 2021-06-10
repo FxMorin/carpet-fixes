@@ -11,6 +11,11 @@ import java.util.List;
 @Mixin(ServerWorld.class)
 public class ServerWorld_spawnChunksMixin {
 
+    /**
+     * If the player list is considered empty, the spawn chunks are no longer
+     * loaded. The fix is just to make sure that the player list is never
+     * considered empty.
+     */
     @Redirect(method= "tick(Ljava/util/function/BooleanSupplier;)V",at=@At(value="INVOKE",target="Ljava/util/List;isEmpty()Z"))
     public boolean spawnChunksStayLoaded(List list) {
         return !CarpetFixesSettings.spawnChunkEntitiesUnloadingFix && list.isEmpty();

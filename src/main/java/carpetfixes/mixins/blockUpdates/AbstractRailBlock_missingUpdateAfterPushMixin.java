@@ -25,6 +25,11 @@ public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Bloc
     @Shadow public abstract Property<RailShape> getShapeProperty();
     @Shadow @Final private boolean allowCurves;
 
+    /**
+     * Due to how rails work, if you push them they don't get an update once
+     * they arrive at there new spot, causing some illegal states that should
+     * not be happening. We fix this by giving the correct updates.
+     */
     @Inject(method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V", at = @At("HEAD"), cancellable = true)
     protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CarpetFixesSettings.railMissingUpdateAfterPushFix) {

@@ -19,6 +19,13 @@ public class ItemStack_repairCostMixin {
         return this.hasTag() && this.tag.contains("HideFlags", 99) ? this.tag.getInt("HideFlags") : 0;
     }
 
+    /**
+     * I use a very interesting way of getting around the problem here. I look for
+     * the hidden tag called CAN_PLACE and if I find it, then it means that the
+     * block can be placed, so the repairCost tag can be removed from it by just
+     * placing it on the ground, so don't add a repairCost nbt tag to it,
+     * since its useless.
+     */
     @Inject(method = "setRepairCost(I)V", at = @At("HEAD"), cancellable = true)
     public void setRepairCost(int repairCost, CallbackInfo ci) {
         if (CarpetFixesSettings.repairCostItemNotStackingFix && (this.getHideFlags() & ItemStack.TooltipSection.CAN_PLACE.getFlag()) == 0) {

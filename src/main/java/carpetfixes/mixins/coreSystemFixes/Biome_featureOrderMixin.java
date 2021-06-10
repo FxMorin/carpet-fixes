@@ -19,6 +19,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Biome.class)
 public class Biome_featureOrderMixin {
 
+    /**
+     * Here we inject the lake feature before every other feature. This makes sure
+     * that vegetation is done after the lakes, so that no lakes replace the blocks
+     * below grass & other vegetation.
+     */
     @Inject(
             method = "generateFeatureStep(Lnet/minecraft/world/gen/StructureAccessor;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Lnet/minecraft/world/ChunkRegion;JLnet/minecraft/world/gen/ChunkRandom;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At(value = "INVOKE", target = "Ljava/util/List;size()I")

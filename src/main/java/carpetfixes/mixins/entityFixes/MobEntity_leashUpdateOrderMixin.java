@@ -19,6 +19,13 @@ public abstract class MobEntity_leashUpdateOrderMixin extends LivingEntity {
 
     @Shadow protected void updateLeash() {}
 
+    /**
+     * For this fix we simply move this.updateLeash() to happen first in tick()
+     * since super.tick() sometimes does some leash checks such as isLeashed()
+     * which return false in the first tick before the leash gets initialized
+     * in this.updateLeash() so we inject this.updateLeash() to the top, and
+     * make the original do nothing :)
+     */
     @Inject(method= "tick()V",at=@At("HEAD"),cancellable = true)
     public void dontTickEarly(CallbackInfo ci) {
         if (CarpetFixesSettings.petsBreakLeadsDuringReloadFix && !this.world.isClient) {

@@ -11,15 +11,18 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(World.class)
 public class World_ComparatorNotUpdatingMixin {
 
     @Shadow public void updateComparators(BlockPos pos, Block block) {}
-
     @Shadow public BlockState getBlockState(BlockPos pos) { return null;}
 
+    /**
+     * Move comparator updates over to neighbor updates like everything else.
+     * To do this we first prevent the other updates from working, then add the
+     * comparator update if they have a comparator output into updateNeighbor()
+     */
     @Redirect(method = "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;II)Z", at = @At(value ="INVOKE",target = "Lnet/minecraft/block/BlockState;hasComparatorOutput()Z"))
     private boolean updateNeighborsAlwaysWithBetterDirection(BlockState blockState) {
         return !CarpetFixesSettings.comparatorUpdateFix && blockState.hasComparatorOutput();

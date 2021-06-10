@@ -17,6 +17,10 @@ public abstract class FallingBlockEntity_duplicationMixin extends Entity {
         super(type, world);
     }
 
+    /**
+     * Cancel the entity removal if the entity is already considered dead. This
+     * prevents duplication of the falling block entity using portals
+     */
     @Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/FallingBlockEntity;remove()V"), cancellable = true)
     private void cancelDupe(CallbackInfo ci) {
         if(CarpetFixesSettings.fallingBlockDuplicationFix && !this.isAlive()) {

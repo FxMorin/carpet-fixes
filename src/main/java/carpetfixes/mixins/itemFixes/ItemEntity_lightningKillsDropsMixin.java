@@ -1,4 +1,4 @@
-package carpetfixes.mixins.entityFixes;
+package carpetfixes.mixins.itemFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.entity.Entity;
@@ -18,10 +18,16 @@ public abstract class ItemEntity_lightningKillsDropsMixin extends Entity {
         super(type, world);
     }
 
+    /**
+     * Here we add a onStruckByLightning condition, so that the lightning bolt
+     * entity does not destroy items that where created by the entities it created
+     * since the lightning bolt can live for 8 ticks, we make sure to avoid all
+     * item entities that have been alive for less then 9 ticks
+     */
     @Override
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
         if (CarpetFixesSettings.lightningKillsDropsFix) {
-            if (this.age > 8) { //Only kill item if its older then 8 ticks
+            if (this.age > 8) {
                 super.onStruckByLightning(world, lightning);
             }
         } else {

@@ -21,9 +21,13 @@ public abstract class StringTag_ChunkRegenMixin {
 
     @Mutable @Shadow @Final private String value;
 
-    //DataInput.readUTF() is the issue only because DataInput.writeUTF() is writing strings that
-    //DataInput.readUTF() is unable to read. This crops string during the write so its fine during read
-
+    /**
+     * This fix is crucial for multiple game breaking crashes, exploits, banning
+     * methods. This bug happens because DataInput.writeUTF() is writing strings
+     * that DataInput.readUTF() is unable to read. For some reason they do not
+     * follow the same restrictions. The fix crops the strings during the write
+     * so its fine during read. Therefore fixing all the issues
+     */
     @Inject(method = "write(Ljava/io/DataOutput;)V", at = @At("HEAD"))
     private void respectReadLimitDuringWrite(DataOutput output, CallbackInfo ci) {
         if(CarpetFixesSettings.chunkRegenFix) {
@@ -31,16 +35,9 @@ public abstract class StringTag_ChunkRegenMixin {
             if(strlen > 28501) { //Minimum number that could bypass limit
                 int utflen = 0;
                 char c;
-                /* Mostly same equation used in DataOutputStream */
                 for (int i = 0; i < strlen; i++) {
                     c = this.value.charAt(i);
-                    if ((c >= 0x0001) && (c <= 0x007F)) {
-                        utflen++;
-                    } else if (c <= 0x07FF) {
-                        utflen += 2;
-                    } else {
-                        utflen += 3;
-                    }
+                    utflen += ((c >= 0x0001) && (c <= 0x007F)) ? 1 : (c <= 0x07FF) ? 2 : 3;
                     if (utflen > 65535) {
                         this.value = this.value.substring(0, i-2);
                         LOGGER.debug("Trimming Large String ("+strlen+" -> "+this.value.length()+")");

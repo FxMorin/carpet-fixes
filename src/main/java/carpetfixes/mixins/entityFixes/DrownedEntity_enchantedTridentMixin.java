@@ -19,9 +19,7 @@ import java.util.Map;
 
 @Mixin(DrownedEntity.class)
 public class DrownedEntity_enchantedTridentMixin extends ZombieEntity {
-    public DrownedEntity_enchantedTridentMixin(EntityType<? extends ZombieEntity> entityType, World world) {
-        super(entityType, world);
-    }
+    public DrownedEntity_enchantedTridentMixin(EntityType<? extends ZombieEntity> entityType, World world) { super(entityType, world); }
 
     @Redirect(method = "attack", at = @At(value = "NEW", target = "net/minecraft/item/ItemStack"))
     private ItemStack createItemStack(ItemConvertible item) {

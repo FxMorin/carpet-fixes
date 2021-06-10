@@ -12,10 +12,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MobEntity.class)
 abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
-    protected MobEntity_portalGeneralItemMixin(EntityType<? extends LivingEntity> entityType, World world) {
-        super(entityType, world);
-    }
+    protected MobEntity_portalGeneralItemMixin(EntityType<? extends LivingEntity> entityType, World world) { super(entityType, world); }
 
+    /**
+     * Set all stack counts to 0 when changing dimension. This makes absolutely
+     * sure that no item can be duped while changing dimension.
+     */
     @Inject(method= "method_30076()V",at=@At("RETURN"))
     protected void stopGeneralItemDupes(CallbackInfo ci) {
         if (CarpetFixesSettings.portalGeneralItemDupeFix) {

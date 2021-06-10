@@ -16,6 +16,10 @@ public abstract class LivingEntity_sleepingKillsMixin extends Entity {
 
     public LivingEntity_sleepingKillsMixin(EntityType<?> type, World world) { super(type, world); }
 
+    /**
+     * When velocity gets set to ZERO, we should also be setting the fallDistance
+     * to 0, to ensure that no weird behaviour happens.
+     */
     @Inject(method= "setPositionInBed(Lnet/minecraft/util/math/BlockPos;)V",at=@At("HEAD"))
     private void saferSleep(BlockPos pos, CallbackInfo ci) {
         if (CarpetFixesSettings.sleepingDelaysFallDamageFix) {
