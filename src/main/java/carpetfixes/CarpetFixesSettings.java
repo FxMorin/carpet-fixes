@@ -270,6 +270,13 @@ public class CarpetFixesSettings {
     )
     public static boolean portalGeneralItemDupeFix = true;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes multiple bugs related to effects happening only when player center in block instead of hitbox",
+            extra = "Fixes [MC-1133](https://bugs.mojang.com/browse/MC-1133)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean playerBlockCollisionUsingCenterFix = false;
 
     /*
 
