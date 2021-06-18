@@ -226,6 +226,14 @@ Fixes incorrect cat types spawning inside swamp huts
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-147659](https://bugs.mojang.com/browse/MC-147659)
 
+## hardcodedSeaLevelFix
+Fixes incorrect sea level height being used when datapacks change the sea height
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-226687](https://bugs.mojang.com/browse/MC-226687)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

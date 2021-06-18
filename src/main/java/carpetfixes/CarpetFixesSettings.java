@@ -286,6 +286,14 @@ public class CarpetFixesSettings {
     )
     public static boolean witchHutsSpawnIncorrectCatFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes incorrect sea level height being used when datapacks change the sea height",
+            extra = "Fixes [MC-226687](https://bugs.mojang.com/browse/MC-226687)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean hardcodedSeaLevelFix = false;
+
     /*
 
     BACKPORTS
