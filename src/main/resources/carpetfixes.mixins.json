@@ -3,6 +3,7 @@
   "package": "carpetfixes.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "entityFixes.CatSpawner_incorrectCatMixin",
     "backports.AbstractFireBlock_flintAndSteelMixin",
     "backports.PlayerManager_LlamaRidingDupeMixin",
     "blockFixes.LightningRodBlock_PermanentlyPoweredMixin",

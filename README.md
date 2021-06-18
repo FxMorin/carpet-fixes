@@ -210,6 +210,22 @@ Fixes Named Blocks not stacking due to useless RepairCost tag
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-197473](https://bugs.mojang.com/browse/MC-197473)
 
+## playerBlockCollisionUsingCenterFix
+Fixes multiple bugs related to effects happening only when player center in block instead of hitbox
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-1133](https://bugs.mojang.com/browse/MC-1133)
+
+## witchHutsSpawnIncorrectCatFix
+Fixes incorrect cat types spawning inside swamp huts
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-147659](https://bugs.mojang.com/browse/MC-147659)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

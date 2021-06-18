@@ -278,6 +278,14 @@ public class CarpetFixesSettings {
     )
     public static boolean playerBlockCollisionUsingCenterFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes incorrect cat types spawning inside swamp huts",
+            extra = "Fixes [MC-147659](https://bugs.mojang.com/browse/MC-147659)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean witchHutsSpawnIncorrectCatFix = false;
+
     /*
 
     BACKPORTS
