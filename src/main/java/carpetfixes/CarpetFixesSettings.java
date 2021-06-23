@@ -294,6 +294,14 @@ public class CarpetFixesSettings {
     )
     public static boolean hardcodedSeaLevelFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to fish outside of water",
+            extra = "Fixes [MC-175544](https://bugs.mojang.com/browse/MC-175544)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean fishingOutsideWaterFix = false;
+
     /*
 
     BACKPORTS

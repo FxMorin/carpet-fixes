@@ -2,7 +2,6 @@ package carpetfixes.mixins.coreSystemFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -19,6 +18,8 @@ public abstract class World_seaLevelMixin implements WorldAccess  {
     @Shadow @Nullable public abstract MinecraftServer getServer();
 
     @Shadow @Final private RegistryKey<World> registryKey;
+
+    // Doing the biome hardcoded values is going to need a lot of work, so im waiting for 1.18 since all biome code will change
 
     @Inject(method= "getSeaLevel()I",at=@At("HEAD"),cancellable = true)
     public void getSeaLevel(CallbackInfoReturnable<Integer> cir) {

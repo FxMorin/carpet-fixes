@@ -34,6 +34,7 @@
     "entityFixes.Entity_directionalBlockSlowdownMixin",
     "entityFixes.Entity_incorrectLogicMixin",
     "entityFixes.FallingBlockEntity_netherPortalMixin",
+    "entityFixes.FishingBobberEntity_outsideWaterMixin",
     "entityFixes.LivingEntity_sleepingKillsMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
     "entityFixes.TntEntity_netherPortalMixin",
