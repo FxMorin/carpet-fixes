@@ -242,6 +242,14 @@ Fixes being able to fish outside of water
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-175544](https://bugs.mojang.com/browse/MC-175544)
 
+## giveCommandDupeFix
+Fixes being able to dupe items using the /give command
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-120507](https://bugs.mojang.com/browse/MC-120507)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

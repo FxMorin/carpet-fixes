@@ -22,6 +22,7 @@
     "coreSystemFixes.World_seaLevelMixin",
     "dupeFixes.AbstractRailBlock_duplicationMixin",
     "dupeFixes.FallingBlockEntity_duplicationMixin",
+    "dupeFixes.HopperBlockEntity_giveMixin",
     "dupeFixes.MobEntity_portalGeneralItemMixin",
     "dupeFixes.PistonBlock_tntDupingFixMixin",
     "entityFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",

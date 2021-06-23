@@ -1,2 +1,3 @@
 accessWidener	v1	named
 extendable class net/minecraft/entity/projectile/FishingBobberEntity$State
+accessible field net/minecraft/entity/ItemEntity pickupDelay I

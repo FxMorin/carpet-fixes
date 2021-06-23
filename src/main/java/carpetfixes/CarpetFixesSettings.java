@@ -302,6 +302,14 @@ public class CarpetFixesSettings {
     )
     public static boolean fishingOutsideWaterFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to dupe items using the /give command",
+            extra = "Fixes [MC-120507](https://bugs.mojang.com/browse/MC-120507)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean giveCommandDupeFix = false;
+
     /*
 
     BACKPORTS
