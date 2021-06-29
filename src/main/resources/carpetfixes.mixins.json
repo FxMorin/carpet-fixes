@@ -5,6 +5,7 @@
   "mixins": [
     "backports.AbstractFireBlock_flintAndSteelMixin",
     "backports.PlayerManager_LlamaRidingDupeMixin",
+    "blockFixes.ChestBlock_spectatorMixin",
     "blockFixes.LightningRodBlock_PermanentlyPoweredMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
