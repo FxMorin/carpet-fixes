@@ -5,7 +5,6 @@
   "mixins": [
     "backports.AbstractFireBlock_flintAndSteelMixin",
     "backports.PlayerManager_LlamaRidingDupeMixin",
-    "blockFixes.ChestBlock_spectatorMixin",
     "blockFixes.LightningRodBlock_PermanentlyPoweredMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
@@ -35,6 +34,7 @@
     "entityFixes.Entity_centerCollisionMixin",
     "entityFixes.Entity_directionalBlockSlowdownMixin",
     "entityFixes.Entity_incorrectLogicMixin",
+    "entityFixes.ExperienceOrbEntity_lavaCollisionMixin",
     "entityFixes.FallingBlockEntity_netherPortalMixin",
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
     "entityFixes.LivingEntity_sleepingKillsMixin",
