@@ -310,6 +310,23 @@ public class CarpetFixesSettings {
     )
     public static boolean giveCommandDupeFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes experience orbs acting as if flowing lava is a full block",
+            extra = "Fixes [MC-226961](https://bugs.mojang.com/browse/MC-226961)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean xpOrbCollisionFix = false;
+
+    //by FX - PR0CESS
+    //Currently only Slime & Mushroom are supported. More to come eventually when I stop being lazy
+    @Rule(
+            desc = "Fixes mob multiple different mob conversions",
+            extra = "Fixes [MC-88967](https://bugs.mojang.com/browse/MC-88967)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean conversionFix = false;
+
     /*
 
     BACKPORTS

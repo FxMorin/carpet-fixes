@@ -250,6 +250,24 @@ Fixes being able to dupe items using the /give command
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-120507](https://bugs.mojang.com/browse/MC-120507)
 
+## xpOrbCollisionFix
+Fixes experience orbs acting as if flowing lava is a full block
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-226961](https://bugs.mojang.com/browse/MC-226961)
+
+## conversionFix
+Fixes mob multiple different mob conversions
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-88967](https://bugs.mojang.com/browse/MC-88967)
+* Additional notes:
+  * Currently only fixes Slimes & Mooshrooms
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

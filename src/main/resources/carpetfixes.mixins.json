@@ -15,6 +15,8 @@
     "blockUpdates.HopperBlock_MissingUpdateMixin",
     "blockUpdates.SpongeBlock_MissingUpdateMixin",
     "blockUpdates.World_blockUpdateOrderMixin",
+    "conversionFixes.MooshroomEntity_conversionMixin",
+    "conversionFixes.SlimeEntity_conversionMixin",
     "coreSystemFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
     "coreSystemFixes.StringTag_ChunkRegenMixin",
