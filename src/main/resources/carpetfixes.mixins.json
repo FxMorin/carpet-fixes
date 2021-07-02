@@ -48,8 +48,7 @@
     "itemFixes.ItemStack_repairCostMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
-    "redstoneFixes.World_ComparatorNotUpdatingMixin",
-    "weirdaddons.mixins.ServerWorld_accuratePositionMixin"
+    "redstoneFixes.World_ComparatorNotUpdatingMixin"
   ],
   "injectors": {
     "defaultRequire": 1
