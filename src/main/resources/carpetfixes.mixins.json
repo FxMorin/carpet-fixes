@@ -41,6 +41,7 @@
     "entityFixes.ExperienceOrbEntity_lavaCollisionMixin",
     "entityFixes.FallingBlockEntity_netherPortalMixin",
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
+    "entityFixes.ItemFrameEntity_explosionWaterMixin",
     "entityFixes.LivingEntity_sleepingKillsMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
     "entityFixes.TntEntity_netherPortalMixin",

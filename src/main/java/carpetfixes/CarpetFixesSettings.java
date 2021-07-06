@@ -319,13 +319,21 @@ public class CarpetFixesSettings {
     public static boolean xpOrbCollisionFix = false;
 
     //by FX - PR0CESS
-    //Currently only Slime, Mushroom, Zombie, Zombie Villager &  are supported. More to come eventually when I stop being lazy
+    //Currently only Slime, Mushroom, Zombie, Zombie Villager, & piglins are supported. More to come eventually when I stop being lazy
     @Rule(
             desc = "Fixes mob multiple different mob conversions",
             extra = "Fixes [MC-88967](https://bugs.mojang.com/browse/MC-88967)",
             category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
     )
     public static boolean conversionFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Explosions being able to destroy item frames in water",
+            extra = "Fixes [MC-3697](https://bugs.mojang.com/browse/MC-3697)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean explosionBreaksItemFrameInWaterFix = false;
 
     /*
 

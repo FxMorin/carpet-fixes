@@ -266,7 +266,17 @@ Fixes mob multiple different mob conversions
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-88967](https://bugs.mojang.com/browse/MC-88967)
 * Additional notes:
-  * Currently only fixes Slimes & Mooshrooms
+  * Currently only fixes Slimes Mooshrooms, Zombies, Zombie Villagers, & Piglins
+
+## explosionBreaksItemFrameInWaterFix
+Fixes Explosions being able to destroy item frames in water
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-3697](https://bugs.mojang.com/browse/MC-3697)
+* Additional notes:
+  * Only doing so for Item Frames
 
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned

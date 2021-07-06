@@ -15,7 +15,7 @@ public class VillagerEntity_conversionMixin {
 
     private final VillagerEntity self = (VillagerEntity)(Object)this;
 
-    @Redirect(method= "onStruckByLightning(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LightningEntity;)V",at=@At(value="INVOKE",target="Lnet/minecraft/world/ServerWorld;spawnEntityAndPassengers(Lnet/minecraft/entity/Entity;)V"))
+    /*@Redirect(method= "onStruckByLightning(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LightningEntity;)V",at=@At(value="INVOKE",target="Lnet/minecraft/world/ServerWorld;spawnEntityAndPassengers(Lnet/minecraft/entity/Entity;)V"))
     public void spawnEntityAndPassengers(ServerWorld serverWorld, Entity entity) {
         if (CarpetFixesSettings.conversionFix) {
             entity.setFireTicks(self.getFireTicks()); //Fire
@@ -32,5 +32,5 @@ public class VillagerEntity_conversionMixin {
         } else {
             serverWorld.spawnEntityAndPassengers(entity);
         }
-    }
+    }*/
 }
