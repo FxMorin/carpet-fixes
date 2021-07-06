@@ -331,9 +331,17 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes Explosions being able to destroy item frames in water",
             extra = "Fixes [MC-3697](https://bugs.mojang.com/browse/MC-3697)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX}
     )
     public static boolean explosionBreaksItemFrameInWaterFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Moving Blocks from destroying path blocks",
+            extra = "Fixes [MC-161026](https://bugs.mojang.com/browse/MC-161026)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean movingBlocksDestroyPathFix = false;
 
     /*
 

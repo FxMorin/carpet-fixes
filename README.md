@@ -273,10 +273,18 @@ Fixes Explosions being able to destroy item frames in water
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-3697](https://bugs.mojang.com/browse/MC-3697)
 * Additional notes:
   * Only doing so for Item Frames
+
+## movingBlocksDestroyPathFix
+Fixes Moving Blocks from destroying path blocks
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-161026](https://bugs.mojang.com/browse/MC-161026)
 
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
