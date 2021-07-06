@@ -6,7 +6,6 @@ import net.minecraft.entity.decoration.EndCrystalEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EndCrystalEntity.class)
 public class EndCrystalEntity_ExplosionChainingMixin {

@@ -41,7 +41,7 @@ public class CarpetFixesSettings {
             },
             category = {CARPETFIXES}
     )
-    public static PresetSettings carpetFixesPreset = PresetSettings.CUSTOM;
+    public static PresetSettings carpetFixesPreset = PresetSettings.VANILLA;
 
     //By FX - PR0CESS
     @Rule(
