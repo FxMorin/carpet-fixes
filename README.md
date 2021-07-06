@@ -128,6 +128,14 @@ Fixes enderman not updating the block they place correctly
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-183054](https://bugs.mojang.com/browse/MC-183054)
 
+## endermanUselessMinecartTeleportingFix
+Fixes enderman constantly trying to teleport when in a minecart under daylight
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-227008](https://bugs.mojang.com/browse/MC-227008)
+
 ## railInvalidUpdateOnPushFix
 Fixes rails updating other rails before checking if they are in a valid location
 * Type: `boolean`
