@@ -176,6 +176,14 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
+            desc = "Fixes enderman constantly trying to teleport when in a minecart under daylight",
+            extra = "Fixes [MC-227008](https://bugs.mojang.com/browse/MC-227008)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean endermanUselessMinecartTeleportingFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
             desc = "Fixes rails updating other rails before checking if they are in a valid location",
             extra = "Fixes [MC-174864](https://bugs.mojang.com/browse/MC-174864)",
             category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
