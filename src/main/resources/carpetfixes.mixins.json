@@ -5,11 +5,13 @@
   "mixins": [
     "backports.AbstractFireBlock_flintAndSteelMixin",
     "backports.PlayerManager_LlamaRidingDupeMixin",
+    "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.LightningRodBlock_PermanentlyPoweredMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
     "blockFixes.TargetBlock_PermanentlyPoweredMixin",
+    "blockFixes.WitherSkullBlock_spawningMixin",
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateAfterPushMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateOnPushMixin",

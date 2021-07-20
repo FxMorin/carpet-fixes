@@ -20,9 +20,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     public void onInitialize() { CarpetServer.manageExtension(new CarpetFixesServer()); }
 
     @Override
-    public void onGameStarted() {
-        CarpetServer.settingsManager.parseSettingsClass(CarpetFixesSettings.class);
-    }
+    public void onGameStarted() { CarpetServer.settingsManager.parseSettingsClass(CarpetFixesSettings.class); }
 
     @Override
     public void onServerLoaded(MinecraftServer server) {

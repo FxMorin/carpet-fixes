@@ -294,6 +294,14 @@ Fixes Moving Blocks from destroying path blocks
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-161026](https://bugs.mojang.com/browse/MC-161026)
 
+## witherGolemSpawningFix
+Fixes Withers and Golems not spawning due to replaceable blocks being in the way
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`INTENDED`
+* Fixes: [MC-60792](https://bugs.mojang.com/browse/MC-60792)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

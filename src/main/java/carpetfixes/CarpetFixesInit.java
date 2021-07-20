@@ -8,8 +8,12 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
+import java.util.function.Predicate;
+
 public class CarpetFixesInit {
     public static Direction[] directions = new Direction[]{Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.DOWN, Direction.UP};
+
+    public static final Predicate<BlockState> IS_REPLACEABLE = (blockState) -> blockState.getMaterial().isReplaceable();
 
     public static void checkStepOnCollision(Entity entity) {
         Box box = entity.getBoundingBox();

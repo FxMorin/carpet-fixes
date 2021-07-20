@@ -1,6 +1,11 @@
 package carpetfixes;
 
+import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
+import carpet.settings.Validator;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CarvedPumpkinBlock;
+import net.minecraft.server.command.ServerCommandSource;
 
 import static carpet.settings.RuleCategory.BUGFIX;
 import static carpet.settings.RuleCategory.EXPERIMENTAL;
@@ -12,8 +17,9 @@ public class CarpetFixesSettings {
     private final static String BACKPORT = "backport"; //A bug that got fixed which we don't want fixed or came from a snapshot
     private final static String WONTFIX = "wontfix"; //Marked as `won't fix` on the bug tracker
 
-    //Marked as `Works as Intended` on the bug tracker. I don't like these, usually will only implement for backports
+    // Marked as `Works as Intended` on the bug tracker. I don't like these, usually will only implement for backports
     // It's not Vanilla if you aren't playing the game as the developers intended it to be played :thonk:
+    // Although sometimes, its just stupid that its not fixed. So we fix it anyways, hence why its here.
     private final static String INTENDED = "intended";
 
     //Don't include BUGFIX if the bug is not marked as Unresolved
@@ -279,6 +285,7 @@ public class CarpetFixesSettings {
     public static boolean portalGeneralItemDupeFix = true;
 
     //by FX - PR0CESS
+    //Also fixes: MC-158154
     @Rule(
             desc = "Fixes multiple bugs related to effects happening only when player center in block instead of hitbox",
             extra = "Fixes [MC-1133](https://bugs.mojang.com/browse/MC-1133)",
@@ -350,6 +357,16 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean movingBlocksDestroyPathFix = false;
+
+    //by FX - PR0CESS
+    //My Bug on it: MC-232725
+    @Rule(
+            desc = "Fixes Withers and Golems not spawning due to replaceable blocks being in the way",
+            extra = "Fixes [MC-60792](https://bugs.mojang.com/browse/MC-60792)",
+            validate = WitherGolemSpawningFixValidator.class,
+            category = {CARPETFIXES,BUGFIX,INTENDED}
+    )
+    public static boolean witherGolemSpawningFix = false;
 
     /*
 
@@ -439,7 +456,7 @@ public class CarpetFixesSettings {
 
     FROM OTHER CARPET EXTENSIONS
 
-     */
+    */
 
     //by Fallen-Breath from Carpet-TIS-Addition
     @Rule(
@@ -458,5 +475,19 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean pistonDupingFix = false;
+
+
+    /*
+
+    VALIDATORS
+
+    */
+    private static class WitherGolemSpawningFixValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemPattern = null;
+            ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemDispenserPattern = null;
+            return newValue;
+        }
+    }
 
 }
