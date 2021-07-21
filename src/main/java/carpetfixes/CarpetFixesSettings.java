@@ -368,6 +368,22 @@ public class CarpetFixesSettings {
     )
     public static boolean witherGolemSpawningFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Bedrock Breaking using headless pistons",
+            extra = "Fixes [MC-188220](https://bugs.mojang.com/browse/MC-188220)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean bedrockBreakingFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to make and use Headless Pistons",
+            extra = "Fixes [MC-27056](https://bugs.mojang.com/browse/MC-27056)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean headlessPistonFix = false;
+
     /*
 
     BACKPORTS

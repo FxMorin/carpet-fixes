@@ -302,6 +302,22 @@ Fixes Withers and Golems not spawning due to replaceable blocks being in the way
 * Categories: `CARPETFIXES`,`BUGFIX`,`INTENDED`
 * Fixes: [MC-60792](https://bugs.mojang.com/browse/MC-60792)
 
+## bedrockBreakingFix
+Fixes Bedrock Breaking using headless pistons
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-188220](https://bugs.mojang.com/browse/MC-188220)
+
+## headlessPistonFix
+Fixes being able to make and use Headless Pistons
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-27056](https://bugs.mojang.com/browse/MC-27056)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

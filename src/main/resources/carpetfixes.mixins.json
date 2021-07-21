@@ -8,6 +8,8 @@
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.LightningRodBlock_PermanentlyPoweredMixin",
+    "blockFixes.PistonBlock_bedrockBreakingMixin",
+    "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
     "blockFixes.TargetBlock_PermanentlyPoweredMixin",
