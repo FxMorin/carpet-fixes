@@ -384,6 +384,14 @@ public class CarpetFixesSettings {
     )
     public static boolean headlessPistonFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the rain timer being reset whenever players sleep",
+            extra = "Fixes [MC-63340](https://bugs.mojang.com/browse/MC-63340",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean sleepingResetsRainFix = false;
+
     /*
 
     BACKPORTS

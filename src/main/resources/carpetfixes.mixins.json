@@ -25,6 +25,7 @@
     "conversionFixes.SlimeEntity_conversionMixin",
     "conversionFixes.VillagerEntity_conversionMixin",
     "coreSystemFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
+    "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
     "coreSystemFixes.StringTag_ChunkRegenMixin",
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",

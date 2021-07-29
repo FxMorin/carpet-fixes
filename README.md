@@ -318,6 +318,14 @@ Fixes being able to make and use Headless Pistons
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-27056](https://bugs.mojang.com/browse/MC-27056)
 
+## sleepingResetsRainFix
+Fixes the rain timer being reset whenever players sleep. The fix makes it only reset if it was raining when the player slept.
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-63340](https://bugs.mojang.com/browse/MC-63340)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
