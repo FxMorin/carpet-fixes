@@ -27,7 +27,7 @@
     "coreSystemFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
     "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
-    "coreSystemFixes.StringTag_ChunkRegenMixin",
+    "coreSystemFixes.StringTag_stringTagExploitMixin",
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",
     "coreSystemFixes.World_seaLevelMixin",
     "dupeFixes.AbstractRailBlock_duplicationMixin",
