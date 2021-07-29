@@ -16,14 +16,14 @@ Allows you to choose different pre-defined groups of rules to use
 * Additional notes:
     * Information about what each preset does can be found in-game by doing `/carpet carpetFixesPreset`
 
-## chunkRegenFix
-Fixes Chunk Regen due to StringTag writeUTF() not respecting readUTF() Limits
+## stringTagExploitFix
+Fixes StringTag Exploits due to StringTag writeUTF() not respecting readUTF() Limits
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
 * Additional notes:
-  * This fixes using books to dupe inventories, regen chunks, and vanilla tick freeze chunks.
+  * This fixes using books to dupe inventories, regen chunks, and vanilla tick freeze chunks. Most of these where fixed in 1.17.1 although the core system was not!
 
 ## blockCollisionCheckFix
 Fixes incorrect block collision checks

@@ -86,11 +86,11 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes Chunk Regen due to StringTag writeUTF() not respecting readUTF() Limits",
+            desc = "Fixes StringTag Exploits due to StringTag writeUTF() not respecting readUTF() Limits causing crashes internally",
             extra = "Fixes ChunkRegen & [MC-134892](https://bugs.mojang.com/browse/MC-134892)",
             category = {CARPETFIXES,BUGFIX,CRASHFIX}
     )
-    public static boolean chunkRegenFix = false;
+    public static boolean stringTagExploitFix = false;
 
     //By FX - PR0CESS
     @Rule(
