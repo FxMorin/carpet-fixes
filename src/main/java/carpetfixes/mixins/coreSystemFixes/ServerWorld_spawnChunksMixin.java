@@ -16,7 +16,7 @@ public class ServerWorld_spawnChunksMixin {
      * loaded. The fix is just to make sure that the player list is never
      * considered empty.
      */
-    @Redirect(method= "tick(Ljava/util/function/BooleanSupplier;)V",at=@At(value="INVOKE",target="Ljava/util/List;isEmpty()Z"))
+    @Redirect(method= "tick(Ljava/util/function/BooleanSupplier;)V",require=0,at=@At(value="INVOKE",target="Ljava/util/List;isEmpty()Z"))
     public boolean spawnChunksStayLoaded(List list) {
         return !CarpetFixesSettings.spawnChunkEntitiesUnloadingFix && list.isEmpty();
     }
