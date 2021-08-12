@@ -24,6 +24,7 @@
     "conversionFixes.MooshroomEntity_conversionMixin",
     "conversionFixes.SlimeEntity_conversionMixin",
     "conversionFixes.VillagerEntity_conversionMixin",
+    "coreSystemFixes.Explosion_exposureMixin",
     "coreSystemFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
     "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",

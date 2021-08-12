@@ -334,6 +334,14 @@ Makes enchantments work on tridents thrown by drowned
 * Categories: `CARPETFIXES`,`BUGFIX`
 * By: *Skyrising*
 
+## incorrectExplosionExposureFix
+Fixes incorrect explosion exposure calculations
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-207866](https://bugs.mojang.com/browse/MC-207866)
+
 # Backports
 ## targetBlockPermanentlyPoweredFix
 Fixes target blocks being permanently powered when moved by pistons

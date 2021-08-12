@@ -400,6 +400,15 @@ public class CarpetFixesSettings {
     )
     public static boolean spectatorLowersPlayerFix = false;*/
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes incorrect explosion exposure calculations",
+            extra = "Fixes [MC-232355](https://bugs.mojang.com/browse/MC-232355",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean incorrectExplosionExposureFix = false;
+
+
     /*
 
     BACKPORTS
