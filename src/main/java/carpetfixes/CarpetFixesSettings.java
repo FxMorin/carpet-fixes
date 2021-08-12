@@ -392,6 +392,14 @@ public class CarpetFixesSettings {
     )
     public static boolean sleepingResetsRainFix = false;
 
+    //by FX - PR0CESS
+    /*@Rule(
+            desc = "Fixes changing between spactator lowering your player",
+            extra = "Fixes [MC-146582](https://bugs.mojang.com/browse/MC-146582",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean spectatorLowersPlayerFix = false;*/
+
     /*
 
     BACKPORTS

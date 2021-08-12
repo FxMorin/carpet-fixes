@@ -51,6 +51,7 @@
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
     "entityFixes.LivingEntity_sleepingKillsMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
+    "entityFixes.ServerPlayerEntity_spectatorMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "itemFixes.ItemEntity_lightningKillsDropsMixin",
     "itemFixes.ItemStack_repairCostMixin",
