@@ -341,6 +341,7 @@ Fixes incorrect explosion exposure calculations
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-207866](https://bugs.mojang.com/browse/MC-207866)
+* Solution By: *DawNemo*
 
 # Backports
 ## targetBlockPermanentlyPoweredFix
