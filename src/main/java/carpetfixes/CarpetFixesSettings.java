@@ -126,7 +126,7 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Prevents update suppression from working! Original concept by: Carpet-TCTC-Addition",
+            desc = "Prevents update suppression from working. When the stack is reached, the following updates are moved to the next tick",
             category = {CARPETFIXES,BUGFIX,CRASHFIX}
     )
     public static boolean updateSuppressionFix = false;

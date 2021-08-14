@@ -56,6 +56,13 @@ Fixes the issue where comparators don't always get updated correctly
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-120986](https://bugs.mojang.com/browse/MC-120986)
 
+## updateSuppressionFix
+Prevents update suppression from working. When the stack is reached, the following updates are moved to the next tick
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`CRASHFIX`
+
 ## crystalExplodeOnExplodedFix
 End Crystals now explode when damaged from explosions. End Crystal chaining
 * Type: `boolean`
