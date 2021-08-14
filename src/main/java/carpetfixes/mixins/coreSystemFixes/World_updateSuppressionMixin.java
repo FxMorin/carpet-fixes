@@ -1,0 +1,42 @@
+package carpetfixes.mixins.coreSystemFixes;
+
+import carpetfixes.CarpetFixesInit;
+import carpetfixes.CarpetFixesSettings;
+import carpetfixes.helpers.UpdateScheduler;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(World.class)
+public class World_updateSuppressionMixin {
+
+    private final World self = (World)(Object)this;
+
+    @Redirect(method = "updateNeighbor(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;neighborUpdate(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;Z)V"))
+    public void betterUpdateNeighbour(BlockState blockState, World world, BlockPos pos, Block block, BlockPos posFrom, boolean notify){
+        if (CarpetFixesSettings.updateSuppressionFix) {
+            try {
+                blockState.neighborUpdate(world, pos, block, posFrom, notify);
+            } catch (Throwable var7) {
+                throw new StackOverflowError();
+            }
+            return;
+        }
+        blockState.neighborUpdate(world, pos, block, posFrom, notify);
+    }
+
+    @Inject(method = "updateNeighbor", at = @At(shift= At.Shift.BEFORE,value="INVOKE", target = "Lnet/minecraft/util/crash/CrashReport;create(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/util/crash/CrashReport;"),cancellable = true)
+    public void checkUpdateSuppression(BlockPos sourcePos, Block sourceBlock, BlockPos neighborPos, CallbackInfo ci) {
+        if(CarpetFixesSettings.updateSuppressionFix) {
+            CarpetFixesInit.updateScheduler.get(self).addScheduledUpdate(new UpdateScheduler.ScheduledUpdate(sourcePos, sourceBlock));
+            ci.cancel();
+        }
+    }
+}
+

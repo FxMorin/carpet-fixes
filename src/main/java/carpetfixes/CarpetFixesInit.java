@@ -1,5 +1,6 @@
 package carpetfixes;
 
+import carpetfixes.helpers.UpdateScheduler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -8,9 +9,13 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 public class CarpetFixesInit {
+
+    public static HashMap<World,UpdateScheduler> updateScheduler = new HashMap<>();
+
     public static Direction[] directions = new Direction[]{Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.DOWN, Direction.UP};
 
     public static final Predicate<BlockState> IS_REPLACEABLE = (blockState) -> blockState.getMaterial().isReplaceable();

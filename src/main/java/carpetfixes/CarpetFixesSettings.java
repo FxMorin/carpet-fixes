@@ -125,12 +125,11 @@ public class CarpetFixesSettings {
     public static boolean comparatorUpdateFix = false;
 
     //by FX - PR0CESS
-    /* Not working as Intended, needs a rewrite
     @Rule(
             desc = "Prevents update suppression from working! Original concept by: Carpet-TCTC-Addition",
             category = {CARPETFIXES,BUGFIX,CRASHFIX}
     )
-    public static boolean updateSuppressionFix = false;*/
+    public static boolean updateSuppressionFix = false;
 
     //by FX - PR0CESS
     @Rule(

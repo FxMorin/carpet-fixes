@@ -3,8 +3,10 @@ package carpetfixes;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpetfixes.helpers.RulePresets;
+import carpetfixes.helpers.UpdateScheduler;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
 
 public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
@@ -39,5 +41,8 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
                 CarpetServer.settingsManager.getRule("carpetFixesPreset").set(source, "custom");
             }
         }));
+        for (ServerWorld world : minecraftServer.getWorlds()) {
+            CarpetFixesInit.updateScheduler.put(world,new UpdateScheduler(world));
+        }
     }
 }
