@@ -409,6 +409,14 @@ public class CarpetFixesSettings {
     )
     public static boolean incorrectExplosionExposureFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Prevents players from placing sugar cane inside of water",
+            extra = "Fixes [MC-929](https://bugs.mojang.com/browse/MC-929",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean underwaterSugarcaneFix = false;
+
 
     /*
 

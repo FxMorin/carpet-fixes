@@ -326,6 +326,14 @@ Fixes the rain timer being reset whenever players sleep. The fix makes it only r
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-63340](https://bugs.mojang.com/browse/MC-63340)
 
+## underwaterSugarcaneFix
+Prevents players from placing sugar cane inside of water
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-929](https://bugs.mojang.com/browse/MC-929)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

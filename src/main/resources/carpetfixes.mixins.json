@@ -12,6 +12,7 @@
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
+    "blockFixes.SugarCaneBlock_waterMixin",
     "blockFixes.TargetBlock_PermanentlyPoweredMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
