@@ -26,7 +26,7 @@
     "conversionFixes.SlimeEntity_conversionMixin",
     "conversionFixes.VillagerEntity_conversionMixin",
     "coreSystemFixes.Explosion_exposureMixin",
-    "coreSystemFixes.MinecraftServer_updateSuppressionMixin",
+    "coreSystemFixes.ServerWorld_updateSuppressionMixin",
     "coreSystemFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
     "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
