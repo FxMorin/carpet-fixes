@@ -24,6 +24,7 @@ import java.util.Map;
  * Link: https://github.com/TISUnion/Carpet-TIS-Addition
  */
 
+
 @Mixin(PistonBlock.class)
 public abstract class PistonBlock_tntDupingFixMixin {
     private final ThreadLocal<Boolean> isDupeFixed = ThreadLocal.withInitial(() -> false);
@@ -35,31 +36,28 @@ public abstract class PistonBlock_tntDupingFixMixin {
      * will happen (yeeted onRemoved block updater like lit observer).
      */
     @Inject(
-            method = "move",
-            slice = @Slice(
-                    from = @At(
-                            value = "INVOKE",
-                            target = "Lnet/minecraft/block/BlockState;hasBlockEntity()Z"
-                    )
-            ),
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ljava/util/List;size()I",
-                    shift = At.Shift.AFTER,  // to make sure this will be injected after onMove in PistonBlock_movableTEMixin in fabric-carpet
-                    ordinal = 0
-            ),
-            locals = LocalCapture.CAPTURE_FAILHARD
+        method = "move",
+        slice = @Slice(
+            from = @At(
+                value = "INVOKE",
+                target = "Lnet/minecraft/block/BlockState;hasBlockEntity()Z"
+            )
+        ),
+        at = @At(
+            value = "INVOKE",
+            target = "Ljava/util/List;size()I",
+            shift = At.Shift.AFTER,  // to make sure this will be injected after onMove in PistonBlock_movableTEMixin in fabric-carpet
+            ordinal = 0
+        ),
+        locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void setAllToBeMovedBlockToAirFirst(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map<BlockPos, BlockState> map, List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3, BlockState blockStates[], Direction direction, int j)
-    {
+    private void setAllToBeMovedBlockToAirFirst(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map<BlockPos, BlockState> map, List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3, BlockState blockStates[], Direction direction, int j) {
         // just in case the rule gets changed halfway
         this.isDupeFixed.set(CarpetFixesSettings.pistonDupingFix);
 
-        if (this.isDupeFixed.get())
-        {
+        if (this.isDupeFixed.get()) {
             // vanilla iterating order
-            for (int l = list.size() - 1; l >= 0; --l)
-            {
+            for (int l = list.size() - 1; l >= 0; --l) {
                 BlockPos toBeMovedBlockPos = list.get(l);
                 // Get the current state to make sure it is the state we want
                 BlockState toBeMovedBlockState = world.getBlockState(toBeMovedBlockPos);
@@ -69,7 +67,6 @@ public abstract class PistonBlock_tntDupingFixMixin {
                 // Although this cannot yeet onRemoved updaters, but it can prevent attached blocks from breaking,
                 // which is nicer than just let them break imo
                 world.setBlockState(toBeMovedBlockPos, Blocks.AIR.getDefaultState(), 2 | 4 | 16 | 64);
-
                 // Update containers which contain the old state
                 list2.set(l, toBeMovedBlockState);
                 // map stores block pos and block state of moved blocks which changed into air due to block being moved
@@ -93,30 +90,27 @@ public abstract class PistonBlock_tntDupingFixMixin {
      * Whatever, just make it behave like vanilla
      */
     @Inject(
-            method = "move",
-            slice = @Slice(
-                    from = @At(
-                            value = "FIELD",
-                            target = "Lnet/minecraft/block/PistonBlock;sticky:Z"
-                    )
-            ),
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ljava/util/Map;keySet()Ljava/util/Set;",
-                    ordinal = 0
-            ),
-            locals = LocalCapture.CAPTURE_FAILHARD
+        method = "move",
+        slice = @Slice(
+            from = @At(
+                value = "FIELD",
+                target = "Lnet/minecraft/block/PistonBlock;sticky:Z"
+            )
+        ),
+        at = @At(
+            value = "INVOKE",
+            target = "Ljava/util/Map;keySet()Ljava/util/Set;",
+            ordinal = 0
+        ),
+        locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void makeSureStatesInBlockStatesIsCorrect(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map<BlockPos, BlockState> map, List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3, BlockState[] blockStates, BlockState blockState6)
-    {
-        if (this.isDupeFixed.get())
-        {
+    private void makeSureStatesInBlockStatesIsCorrect(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map<BlockPos, BlockState> map, List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3, BlockState[] blockStates, BlockState blockState6) {
+        if (this.isDupeFixed.get()) {
             // since blockState8 = world.getBlockState(blockPos4) always return AIR due to the changes above
             // some states value in blockStates array need to be corrected
             // list and list2 has the same size and indicating the same block
             int j2 = list3.size();
-            for (int l2 = list.size() - 1; l2 >= 0; --l2)
-            {
+            for (int l2 = list.size() - 1; l2 >= 0; --l2) {
                 blockStates[j2++] = list2.get(l2);
             }
         }

@@ -12,18 +12,21 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntity_lightningKillsDropsMixin extends Entity {
-    @Shadow private int itemAge;
-
-    public ItemEntity_lightningKillsDropsMixin(EntityType<?> type, World world) {
-        super(type, world);
-    }
 
     /**
      * Here we add a onStruckByLightning condition, so that the lightning bolt
      * entity does not destroy items that where created by the entities it created
      * since the lightning bolt can live for 8 ticks, we make sure to avoid all
-     * item entities that have been alive for less then 9 ticks
+     * item entities that have been alive for less than 9 ticks
      */
+
+
+    @Shadow private int itemAge;
+    public ItemEntity_lightningKillsDropsMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
+
+
     @Override
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
         if (CarpetFixesSettings.lightningKillsDropsFix) {

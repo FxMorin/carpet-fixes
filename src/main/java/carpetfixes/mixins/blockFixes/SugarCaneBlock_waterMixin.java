@@ -14,10 +14,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(SugarCaneBlock.class)
 public class SugarCaneBlock_waterMixin {
 
-    @Inject(method= "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z",at=@At("HEAD"), cancellable = true)
+    /**
+     * Prevents players from placing sugar cane in water xD
+     */
+
+
+    @Inject(
+            method= "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z",
+            at=@At("HEAD"),
+            cancellable = true
+    )
     public void canPlaceAt(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.underwaterSugarcaneFix && state.getFluidState().isIn(FluidTags.WATER)) {
+        if (CarpetFixesSettings.underwaterSugarcaneFix && state.getFluidState().isIn(FluidTags.WATER))
             cir.setReturnValue(false);
-        }
     }
 }

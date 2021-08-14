@@ -16,7 +16,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Explosion.class)
 public class Explosion_exposureMixin {
 
-    @Inject(method= "getExposure(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/entity/Entity;)F",at=@At("HEAD"), cancellable = true)
+    /**
+     * TNT Calculations are directional due to an offset in the calculation code.
+     * This fix changes the exposure code to use the correct calculation.
+     */
+
+
+    @Inject(
+            method= "getExposure(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/entity/Entity;)F",
+            at=@At("HEAD"),
+            cancellable = true
+    )
     private static void getExposure(Vec3d source, Entity entity, CallbackInfoReturnable<Float> cir) {
         if (CarpetFixesSettings.incorrectExplosionExposureFix) {
             Box box = entity.getBoundingBox();
@@ -34,15 +44,14 @@ public class Explosion_exposureMixin {
                             double o = MathHelper.lerp(l, box.minY, box.maxY);
                             double p = MathHelper.lerp((double)m + h, box.minZ, box.maxZ);
                             Vec3d vec3d = new Vec3d(n, o, p);
-                            if (entity.world.raycast(new RaycastContext(vec3d, source, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getType() == HitResult.Type.MISS) {++i;}
+                            if (entity.world.raycast(new RaycastContext(vec3d, source, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getType() == HitResult.Type.MISS) ++i;
                             ++j;
                         }
                     }
                 }
                 cir.setReturnValue((float)i / (float)j);
-            } else {
-                cir.setReturnValue(0.0F);
             }
+            cir.setReturnValue(0.0F);
         }
     }
 }

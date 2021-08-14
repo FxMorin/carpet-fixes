@@ -3,8 +3,8 @@
   "id": "carpetfixes",
   "version": "${version}",
 
-  "name": "Carpet-Fixes",
-  "description": "The fabric-carpet extension to fix all vanilla bugs",
+  "name": "Carpet Fixes",
+  "description": "The carpet extension to fix all vanilla bugs",
   "authors": [
     "PR0CESS",
     "DeadlyMC",
@@ -38,6 +38,9 @@
   },
   "custom": {
     "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/scicraft"
+      },
       "parent": "carpet"
     }
   }

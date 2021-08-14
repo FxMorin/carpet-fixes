@@ -17,40 +17,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CatSpawner.class)
 public class CatSpawner_incorrectCatMixin {
 
-    @Inject(method= "spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",at=@At("HEAD"),cancellable = true)
+    /**
+     * Cats in witch huts that spawn with world gen will sometimes not be a black cat.
+     * This is due to the cat not being initialized in the right order. We simply
+     * make sure the initializations are done in the right order to prevent this.
+     */
+
+
+    @Inject(
+            method= "spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",
+            at=@At("HEAD"),
+            cancellable = true
+    )
     private void spawn(BlockPos pos, ServerWorld world, CallbackInfoReturnable<Integer> cir) {
         if (CarpetFixesSettings.witchHutsSpawnIncorrectCatFix) {
             CatEntity catEntity = EntityType.CAT.create(world);
-            if (catEntity == null) {
-                cir.setReturnValue(0);
-            } else {
+            if (catEntity != null) {
                 catEntity.refreshPositionAndAngles(pos, 0.0F, 0.0F);
                 catEntity.initialize(world, world.getLocalDifficulty(pos), SpawnReason.NATURAL, (EntityData) null, (NbtCompound) null);
                 world.spawnEntityAndPassengers(catEntity);
                 cir.setReturnValue(1);
             }
+            cir.setReturnValue(0);
         }
     }
-    /*@Redirect(method="spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",at=@At(value="INVOKE",target="Lnet/minecraft/entity/passive/CatEntity;initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/entity/EntityData;"))
-    private EntityData weDontWantThis(CatEntity catEntity, ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt) {
-        if (!CarpetFixesSettings.witchHutsSpawnIncorrectCatFix) {
-            return catEntity.initialize(world, difficulty, spawnReason, entityData, entityNbt);
-        }
-        return null;
-    }
-
-    @Redirect(method= "spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",at=@At(value="INVOKE",target="Lnet/minecraft/entity/Entity;refreshPositionAndAngles(Lnet/minecraft/util/math/BlockPos;FF)V"))
-    private void weAlsoDontWantThis(Entity entity, BlockPos pos, float yaw, float pitch) {
-        if (!CarpetFixesSettings.witchHutsSpawnIncorrectCatFix) {
-            entity.refreshPositionAndAngles(pos, 0.0F, 0.0F);
-        }
-    }
-
-    @Inject(method="spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",locals = LocalCapture.CAPTURE_FAILSOFT,at=@At(value="INVOKE",target="Lnet/minecraft/entity/passive/CatEntity;initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/entity/EntityData;",shift= At.Shift.BEFORE))
-    private void MuchBetter(BlockPos pos, ServerWorld world, CallbackInfoReturnable<Integer> cir, CatEntity catEntity) {
-        if (CarpetFixesSettings.witchHutsSpawnIncorrectCatFix) {
-            catEntity.refreshPositionAndAngles(pos, 0.0F, 0.0F);
-            catEntity.initialize(world, world.getLocalDifficulty(pos), SpawnReason.NATURAL, null, null);
-        }
-    }*/
 }

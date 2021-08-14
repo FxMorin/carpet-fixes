@@ -18,6 +18,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractRailBlock.class)
 public abstract class AbstractRailBlock_missingUpdateOnPushMixin extends Block {
 
+    /**
+     * When pushing rails, we don't update blocks right after turning into a B36
+     * (Moving_Piston) so some blocks do not realize that they are no longer
+     * powered or are curved incorrectly. Therefore, the fix is to give the
+     * extra block updates to make sure the rails are updated correctly.
+     */
+
+
     public AbstractRailBlock_missingUpdateOnPushMixin(Settings settings) {
         super(settings);
     }
@@ -25,19 +33,15 @@ public abstract class AbstractRailBlock_missingUpdateOnPushMixin extends Block {
     @Shadow public abstract Property<RailShape> getShapeProperty();
     @Shadow @Final private boolean allowCurves;
 
-    /**
-     * When pushing rails, we don't update blocks right after turning into a B36
-     * (Moving_Piston) so some blocks do not realize that they are no longer
-     * powered or are curved incorrectly. Therefore the fix is to give the
-     * extra block updates to make sure the rails are updated correctly.
-     */
-    @Inject(method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V", at = @At("HEAD"))
+
+    @Inject(
+            method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            at = @At("HEAD")
+    )
     protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
         if (moved && CarpetFixesSettings.railMissingUpdateOnPushFix) {
             super.onStateReplaced(state, world, pos, newState, true);
-            if ((state.get(this.getShapeProperty())).isAscending()) {
-                world.updateNeighborsAlways(pos.up(), this);
-            }
+            if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);
             if (this.allowCurves) {
                 world.updateNeighborsAlways(pos, this);
                 world.updateNeighborsAlways(pos.down(), this);

@@ -39,7 +39,8 @@ public class CarpetFixesSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "This rule allows you to change all Carpet-Fixes rules at the same time!",
-            extra = {"Vanilla: All rules set to there default value",
+            extra = {
+                    "Vanilla: All rules set to there default value",
                     "CrashFix: Only rules that fix Crashes are enabled",
                     "Stability: Rules that make the game stable",
                     "All: Enable all rules",

@@ -22,10 +22,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Entity.class)
 public abstract class Entity_centerCollisionMixin implements EntityLike {
 
+    /**
+     * Player effects for blocks that you stand on are chosen based on which block is directly
+     * below the center of your player. Instead of checking all the blocks you are standing on.
+     * What I am doing here is checking each block you are standing on.
+     * I am also doing hitboxes, not just blocks the player is standing on.
+     */
+
+
     @Shadow public abstract Box getBoundingBox();
     @Shadow public World world;
 
-    @Redirect(method= "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",at=@At(value="INVOKE",target="Lnet/minecraft/block/Block;onSteppedOn(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/Entity;)V"))
+
+    @Redirect(
+            method= "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",
+            at=@At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/block/Block;onSteppedOn(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/Entity;)V"
+            ))
     public void onSteppingCollisionCheck(Block block, World world, BlockPos pos, BlockState state, Entity entity) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
             CarpetFixesInit.checkStepOnCollision(entity);
@@ -34,7 +48,13 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
         }
     }
 
-    @Redirect(method= "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",at=@At(value="INVOKE",target="Lnet/minecraft/block/Block;onEntityLand(Lnet/minecraft/world/BlockView;Lnet/minecraft/entity/Entity;)V"))
+
+    @Redirect(
+            method= "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",
+            at=@At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/block/Block;onEntityLand(Lnet/minecraft/world/BlockView;Lnet/minecraft/entity/Entity;)V"
+            ))
     public void onEntityLandCollisionCheck(Block block, BlockView world, Entity entity) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
             CarpetFixesInit.checkEntityLandOnCollision(entity);
@@ -43,7 +63,13 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
         }
     }
 
-    @Redirect(method= "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",at=@At(value="INVOKE",target="Lnet/minecraft/block/Block;onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"))
+
+    @Redirect(
+            method= "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
+            at=@At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/block/Block;onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"
+            ))
     public void onFallCollisionCheck(Block block, World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
             CarpetFixesInit.checkFallCollision(entity,fallDistance);
@@ -52,19 +78,35 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
         }
     }
 
-    @Redirect(method= "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",at=@At(value="INVOKE",target="Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/tag/Tag;)Z"))
+
+    @Redirect(
+            method= "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
+            at=@At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/tag/Tag;)Z"
+            ))
     public boolean onFallStopVibration(BlockState blockState, Tag<Block> tag) {
         return CarpetFixesSettings.playerBlockCollisionUsingCenterFix || blockState.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS);
     }
 
-    @Inject(method= "getJumpVelocityMultiplier()F",at=@At(value="HEAD"),cancellable = true)
+
+    @Inject(
+            method= "getJumpVelocityMultiplier()F",
+            at=@At(value="HEAD"),
+            cancellable = true
+    )
     public void onJumpVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
             cir.setReturnValue(CarpetFixesInit.checkJumpVelocityOnCollision(this.getBoundingBox(),this.world));
         }
     }
 
-    @Inject(method= "getVelocityMultiplier()F",at=@At(value="HEAD"),cancellable = true)
+
+    @Inject(
+            method= "getVelocityMultiplier()F",
+            at=@At(value="HEAD"),
+            cancellable = true
+    )
     public void onVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
             cir.setReturnValue(CarpetFixesInit.checkVelocityOnCollision(this.getBoundingBox(),this.world));

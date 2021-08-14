@@ -13,13 +13,23 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(MooshroomEntity.class)
 public abstract class MooshroomEntity_conversionMixin {
 
+    /**
+     * Mooshroom convert into cows when sheared. When they convert, they do not transfer
+     * all the correct data to the new entity. The fix is simply to transfer the missing
+     * information over to the new entity.
+     */
+
+
     private final CowEntity self = (CowEntity)(Object)this;
 
-    @Redirect(method = "sheared(Lnet/minecraft/sound/SoundCategory;)V", at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z",
-            ordinal = 0
-    ))
+
+    @Redirect(
+            method = "sheared(Lnet/minecraft/sound/SoundCategory;)V",
+            at = @At(
+                value = "INVOKE",
+                target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z",
+                ordinal = 0
+            ))
     public boolean ConversionFix(World world, Entity cowEntity) {
         if (CarpetFixesSettings.conversionFix && cowEntity instanceof CowEntity) {
             cowEntity.setVelocity(self.getVelocity()); //Motion

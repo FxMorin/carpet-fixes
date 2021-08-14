@@ -14,12 +14,19 @@ import java.util.function.BooleanSupplier;
 @Mixin(ServerWorld.class)
 public class ServerWorld_updateSuppressionMixin {
 
+    /**
+     * This ticks the updateScheduler. A system used for the updateSuppressionFix
+     */
+
+
     World self = (World)(Object)this;
 
-    @Inject(method = "tick(Ljava/util/function/BooleanSupplier;)V", at = @At("HEAD"))
+
+    @Inject(
+            method = "tick(Ljava/util/function/BooleanSupplier;)V",
+            at = @At("HEAD")
+    )
     public void tick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-        if(CarpetFixesSettings.updateSuppressionFix) {
-            CarpetFixesInit.updateScheduler.get(self).tick();
-        }
+        if(CarpetFixesSettings.updateSuppressionFix) CarpetFixesInit.updateScheduler.get(self).tick();
     }
 }

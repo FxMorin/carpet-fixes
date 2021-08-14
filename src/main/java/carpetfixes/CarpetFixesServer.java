@@ -41,8 +41,6 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
                 CarpetServer.settingsManager.getRule("carpetFixesPreset").set(source, "custom");
             }
         }));
-        for (ServerWorld world : minecraftServer.getWorlds()) {
-            CarpetFixesInit.updateScheduler.put(world,new UpdateScheduler(world));
-        }
+        for (ServerWorld world : minecraftServer.getWorlds()) { CarpetFixesInit.updateScheduler.put(world,new UpdateScheduler(world));}
     }
 }

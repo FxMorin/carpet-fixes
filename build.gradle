@@ -45,21 +45,12 @@ tasks.withType(JavaCompile).configureEach {
 	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 	// If Javadoc is generated, this must be specified in that task too.
 	it.options.encoding = "UTF-8"
-
-	// Minecraft 1.17 (21w19a) upwards uses Java 16.
 	it.options.release = 16
 }
 
-java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
-	withSourcesJar()
-}
+java {withSourcesJar()}
 
-jar {
-	from "LICENSE"
-}
+jar {from "LICENSE"}
 
 // configure the maven publication
 publishing {

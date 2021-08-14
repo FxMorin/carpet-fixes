@@ -18,6 +18,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractRailBlock.class)
 public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Block {
 
+    /**
+     * Due to how rails work if you push them they don't give any updates once
+     * they arrive at their new spot, causing some illegal states that should
+     * not be happening. We fix this by giving the correct updates.
+     */
+
+
     public AbstractRailBlock_missingUpdateAfterPushMixin(Settings settings) {
         super(settings);
     }
@@ -25,18 +32,16 @@ public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Bloc
     @Shadow public abstract Property<RailShape> getShapeProperty();
     @Shadow @Final private boolean allowCurves;
 
-    /**
-     * Due to how rails work, if you push them they don't get an update once
-     * they arrive at there new spot, causing some illegal states that should
-     * not be happening. We fix this by giving the correct updates.
-     */
-    @Inject(method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V", at = @At("HEAD"), cancellable = true)
+
+    @Inject(
+            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            at = @At("HEAD"),
+            cancellable = true
+    )
     protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CarpetFixesSettings.railMissingUpdateAfterPushFix) {
             if (!oldState.isOf(state.getBlock())) {
-                if ((state.get(this.getShapeProperty())).isAscending()) {
-                    world.updateNeighborsAlways(pos.up(), this);
-                }
+                if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);
                 if (this.allowCurves) {
                     world.updateNeighborsAlways(pos, this);
                     world.updateNeighborsAlways(pos.down(), this);

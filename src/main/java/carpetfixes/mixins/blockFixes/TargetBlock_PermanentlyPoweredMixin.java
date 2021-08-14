@@ -14,13 +14,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class TargetBlock_PermanentlyPoweredMixin {
 
     /**
-     * Make it so that the targetBlock does not do any check when added. Just
-     * like it use to be, so its movable while keeping its power level
+     * Make it so that the targetBlock does not do any checks when placed. Just like it used to do
+     * during the snapshot that its ability to redirect redstone was added, so its movable while
+     * keeping its power level permanently.
      */
-    @Inject(method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V", at = @At(value = "INVOKE"),cancellable = true)
+
+
+    @Inject(
+            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            at = @At("INVOKE"),
+            cancellable = true
+    )
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CarpetFixesSettings.targetBlockPermanentlyPoweredFix) {
-            ci.cancel();
-        }
+        if (CarpetFixesSettings.targetBlockPermanentlyPoweredFix) ci.cancel();
     }
 }

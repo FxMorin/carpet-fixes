@@ -16,19 +16,28 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(SlimeEntity.class)
 public abstract class SlimeEntity_conversionMixin extends MobEntity implements Monster {
 
-    protected SlimeEntity_conversionMixin(EntityType<? extends MobEntity> entityType, World world) {
-        super(entityType, world);
-    }
+    /**
+     * Slime convert into smaller slimes when killed. When they die, they do not transfer
+     * all the correct data to the new entities. The fix is simply to transfer the missing
+     * information over to the new entity.
+     */
+
 
     //Since slime is not a full conversion and instead splits into multiple entities
     //PortalCooldown, Rotation, effects, & Health are ignored
     //DeathLootTable & tags still need to be implemented!
 
-    @Redirect(method = "remove", at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z",
-            ordinal = 0
-    ))
+
+    protected SlimeEntity_conversionMixin(EntityType<? extends MobEntity> entityType, World world) {super(entityType, world);}
+
+
+    @Redirect(
+            method = "remove",
+            at = @At(
+                value = "INVOKE",
+                target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z",
+                ordinal = 0
+            ))
     public boolean ConversionFixSlime(World world, Entity slimeEntity) {
         if (CarpetFixesSettings.conversionFix) {
             slimeEntity.setFireTicks(this.getFireTicks()); //Fire
@@ -39,9 +48,7 @@ public abstract class SlimeEntity_conversionMixin extends MobEntity implements M
             boolean didWork = this.world.spawnEntity(slimeEntity);
             slimeEntity.resetPosition();
             slimeEntity.tick();
-            if (!world.isClient) {
-                ((ServerWorld) slimeEntity.getEntityWorld()).getChunkManager().sendToNearbyPlayers(slimeEntity, new EntityPositionS2CPacket(slimeEntity));
-            }
+            if (!world.isClient) ((ServerWorld) slimeEntity.getEntityWorld()).getChunkManager().sendToNearbyPlayers(slimeEntity, new EntityPositionS2CPacket(slimeEntity));
             return didWork;
         }
         return this.world.spawnEntity(slimeEntity);

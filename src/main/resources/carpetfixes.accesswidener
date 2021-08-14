@@ -1,4 +1,4 @@
-accessWidener	v1	named
+accessWidener	v1	 named
 extendable class net/minecraft/entity/projectile/FishingBobberEntity$State
 accessible field net/minecraft/entity/ItemEntity pickupDelay I
 accessible field net/minecraft/block/CarvedPumpkinBlock ironGolemDispenserPattern Lnet/minecraft/block/pattern/BlockPattern;

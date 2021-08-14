@@ -19,19 +19,28 @@ public class WitherSkullBlock_spawningMixin {
      * when the wither is spawning.
      */
 
-    @Redirect(method = "getWitherBossPattern()Lnet/minecraft/block/pattern/BlockPattern;", at = @At(value="INVOKE", target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",ordinal=1))
+
+    @Redirect(
+            method = "getWitherBossPattern()Lnet/minecraft/block/pattern/BlockPattern;",
+            at = @At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
+                    ordinal=1
+            ))
     private static Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state){
-        if (CarpetFixesSettings.witherGolemSpawningFix) {
-            state = CarpetFixesInit.IS_REPLACEABLE;
-        }
+        if (CarpetFixesSettings.witherGolemSpawningFix) state = CarpetFixesInit.IS_REPLACEABLE;
         return CachedBlockPosition.matchesBlockState(state);
     }
 
-    @Redirect(method = "getWitherDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;", at = @At(value="INVOKE", target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;"))
+
+    @Redirect(
+            method = "getWitherDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;",
+            at = @At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;"
+            ))
     private static Predicate<CachedBlockPosition> replaceableMaterialPredicateDispenser(Predicate<BlockState> state){
-        if (CarpetFixesSettings.witherGolemSpawningFix) {
-            state = CarpetFixesInit.IS_REPLACEABLE;
-        }
+        if (CarpetFixesSettings.witherGolemSpawningFix) state = CarpetFixesInit.IS_REPLACEABLE;
         return CachedBlockPosition.matchesBlockState(state);
     }
 }

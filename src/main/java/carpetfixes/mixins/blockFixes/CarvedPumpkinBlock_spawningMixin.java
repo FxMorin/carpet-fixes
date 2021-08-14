@@ -19,7 +19,14 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
      * when the iron golem is spawning.
      */
 
-    @Redirect(method = "getIronGolemPattern()Lnet/minecraft/block/pattern/BlockPattern;", at = @At(value="INVOKE", target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",ordinal=2))
+
+    @Redirect(
+            method = "getIronGolemPattern()Lnet/minecraft/block/pattern/BlockPattern;",
+            at = @At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
+                    ordinal=2
+            ))
     private Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state){
         if (CarpetFixesSettings.witherGolemSpawningFix) {
             state = CarpetFixesInit.IS_REPLACEABLE;
@@ -27,7 +34,14 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
         return CachedBlockPosition.matchesBlockState(state);
     }
 
-    @Redirect(method = "getIronGolemDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;", at = @At(value="INVOKE", target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",ordinal=1))
+
+    @Redirect(
+            method = "getIronGolemDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;",
+            at = @At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
+                    ordinal=1
+            ))
     private Predicate<CachedBlockPosition> replaceableMaterialPredicateDispenser(Predicate<BlockState> state){
         if (CarpetFixesSettings.witherGolemSpawningFix) {
             state = CarpetFixesInit.IS_REPLACEABLE;

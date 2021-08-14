@@ -48,11 +48,7 @@ public class UpdateScheduler {
         }
 
         public boolean equals(Object o) {
-            if (!(o instanceof ScheduledUpdate com)) {
-                return false;
-            } else {
-                return this.pos.equals(com.pos) && this.block == com.block;
-            }
+            return (o instanceof ScheduledUpdate com) && (this.pos.equals(com.pos) && this.block == com.block);
         }
 
         public int hashCode() {

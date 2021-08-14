@@ -21,6 +21,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PistonBlock.class)
 public abstract class PistonBlock_headlessMixin extends FacingBlock {
+
+    /**
+     * Prevents Headless pistons from existing, since headless pistons are able to break any
+     * block in the game. This fix prevents bedrock breaking!
+     */
+
+
     @Shadow @Final public static BooleanProperty EXTENDED;
     @Shadow @Final private boolean sticky;
 
@@ -28,7 +35,16 @@ public abstract class PistonBlock_headlessMixin extends FacingBlock {
 
     @Shadow @Final private boolean shouldExtend(World world, BlockPos pos, Direction pistonFace) { return true; };
 
-    @Inject(method= "tryMove(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",at=@At(value="INVOKE_ASSIGN",target="Lnet/minecraft/block/PistonBlock;shouldExtend(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;)Z",shift= At.Shift.AFTER), cancellable = true)
+
+    @Inject(
+            method= "tryMove(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",
+            at=@At(
+                    value="INVOKE_ASSIGN",
+                    target="Lnet/minecraft/block/PistonBlock;shouldExtend(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;)Z",
+                    shift= At.Shift.AFTER
+            ),
+            cancellable = true
+    )
     private void stopHeadlessPiston(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
         if (CarpetFixesSettings.headlessPistonFix && state.get(EXTENDED)) {
             Direction direction = state.get(FACING);

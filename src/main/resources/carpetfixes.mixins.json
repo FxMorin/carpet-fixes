@@ -63,7 +63,5 @@
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
     "redstoneFixes.World_ComparatorNotUpdatingMixin"
   ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+  "injectors": {"defaultRequire": 1}
 }

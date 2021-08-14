@@ -16,12 +16,27 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PowderSnowBlock.class)
 public class PowderSnowBlock_centerCollisionMixin {
 
-    @Redirect(method= "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",at=@At(value="INVOKE",target="Lnet/minecraft/entity/Entity;slowMovement(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Vec3d;)V"))
+    /**
+     * Makes it so that powdered snow starts slowing you down once you touch it, instead of once
+     * the center of your player touches it.
+     */
+
+
+    @Redirect(
+            method= "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",
+            at=@At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/entity/Entity;slowMovement(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Vec3d;)V"
+            ))
     public void slowMovementAtNewLocation(Entity entity, BlockState state, Vec3d multiplier) {
         if (!CarpetFixesSettings.playerBlockCollisionUsingCenterFix) entity.slowMovement(state,multiplier);
     }
 
-    @Inject(method= "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",at=@At("HEAD"))
+
+    @Inject(
+            method= "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",
+            at=@At("HEAD")
+    )
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) entity.slowMovement(state,new Vec3d(0.8999999761581421D, 1.5D, 0.8999999761581421D));
     }

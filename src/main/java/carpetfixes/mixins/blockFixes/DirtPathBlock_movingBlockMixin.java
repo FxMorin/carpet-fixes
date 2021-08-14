@@ -15,7 +15,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(DirtPathBlock.class)
 public class DirtPathBlock_movingBlockMixin {
 
-    @Inject(method= "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z",at=@At("HEAD"),cancellable = true)
+    /**
+     * Makes it so that path blocks do not get destroyed if a moving piston is above them
+     */
+
+
+    @Inject(
+            method= "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z",
+            at=@At("HEAD"),
+            cancellable = true
+    )
     public void canPlaceAt(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (CarpetFixesSettings.movingBlocksDestroyPathFix) {
             BlockState blockState = world.getBlockState(pos.up());

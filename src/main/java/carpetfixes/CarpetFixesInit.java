@@ -46,9 +46,7 @@ public class CarpetFixesInit {
                 for(int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k) {
                     mutable.set(i, blockPos.getY(), k);
                     BlockState blockState = entity.world.getBlockState(mutable);
-                    if (!blockState.isAir()) {
-                        blockState.getBlock().onEntityLand(entity.world, entity);
-                    }
+                    if (!blockState.isAir()) blockState.getBlock().onEntityLand(entity.world, entity);
                 }
             }
         }
@@ -65,9 +63,7 @@ public class CarpetFixesInit {
                     mutable.set(i, blockPos.getY(), k);
                     BlockState blockState = entity.world.getBlockState(mutable);
                     blockState.getBlock().onLandedUpon(entity.world, blockState, mutable, entity, fallDistance);
-                    if (!blockState.isAir() && !blockState.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
-                        entity.emitGameEvent(GameEvent.HIT_GROUND);
-                    }
+                    if (!blockState.isAir() && !blockState.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) entity.emitGameEvent(GameEvent.HIT_GROUND);
                 }
             }
         }

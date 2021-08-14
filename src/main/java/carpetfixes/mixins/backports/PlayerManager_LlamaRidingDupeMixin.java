@@ -14,14 +14,21 @@ import org.apache.logging.log4j.Logger;
 public abstract class PlayerManager_LlamaRidingDupeMixin {
 
     /**
-     * Reimplements the dupe method where player1 can look into a Llama's inventory. Then player2 gets on the
-     * llama and disconnects. Player1 can then take the items out of the llama's inventory. Then when player2
-     * logs back in, the items will still be in the llama's inventory. Duping it.
+     * Reimplements the dupe method where player1 can look into a Llama's inventory. Then player2 gets
+     * on the llama and disconnects. Player1 can then take the items out of the llama's inventory.
+     * Then when player2 logs back in, the items will still be in the llama's inventory. Duping it.
      */
+
 
     @Final @Shadow private static final Logger LOGGER = LogManager.getLogger();
 
-    @Redirect(method = "remove", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;hasVehicle()Z"))
+
+    @Redirect(
+            method = "remove",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;hasVehicle()Z"
+            ))
     private boolean llamaDupe(ServerPlayerEntity serverPlayerEntity){
         if (serverPlayerEntity.hasVehicle()) {
             if(CarpetFixesSettings.donkeyRidingDupeFix)

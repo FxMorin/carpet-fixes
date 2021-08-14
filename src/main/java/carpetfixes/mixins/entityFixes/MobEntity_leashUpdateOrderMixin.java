@@ -15,28 +15,36 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MobEntity.class)
 public abstract class MobEntity_leashUpdateOrderMixin extends LivingEntity {
 
-    protected MobEntity_leashUpdateOrderMixin(EntityType<? extends LivingEntity> entityType, World world) { super(entityType, world); }
-
-    @Shadow protected void updateLeash() {}
-
     /**
      * For this fix we simply move this.updateLeash() to happen first in tick()
      * since super.tick() sometimes does some leash checks such as isLeashed()
      * which return false in the first tick before the leash gets initialized
-     * in this.updateLeash() so we inject this.updateLeash() to the top, and
+     * in this.updateLeash(), so we inject this.updateLeash() to the top, and
      * make the original do nothing :)
      */
-    @Inject(method= "tick()V",at=@At("HEAD"),cancellable = true)
+
+
+    protected MobEntity_leashUpdateOrderMixin(EntityType<? extends LivingEntity> entityType, World world) { super(entityType, world); }
+    @Shadow protected void updateLeash() {}
+
+
+    @Inject(
+            method= "tick()V",
+            at=@At("HEAD"),
+            cancellable = true
+    )
     public void dontTickEarly(CallbackInfo ci) {
-        if (CarpetFixesSettings.petsBreakLeadsDuringReloadFix && !this.world.isClient) {
-            this.updateLeash();
-        }
+        if (CarpetFixesSettings.petsBreakLeadsDuringReloadFix && !this.world.isClient) this.updateLeash();
     }
 
-    @Redirect(method= "tick()V",at=@At(value="INVOKE",target="Lnet/minecraft/entity/mob/MobEntity;updateLeash()V"))
+
+    @Redirect(
+            method= "tick()V",
+            at=@At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/entity/mob/MobEntity;updateLeash()V"
+            ))
     public void weAlreadyUpdatedLeash(MobEntity mobEntity) {
-        if (!CarpetFixesSettings.petsBreakLeadsDuringReloadFix) {
-            this.updateLeash();
-        }
+        if (!CarpetFixesSettings.petsBreakLeadsDuringReloadFix) this.updateLeash();
     }
 }

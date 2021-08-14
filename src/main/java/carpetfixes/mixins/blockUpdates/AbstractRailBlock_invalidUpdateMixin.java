@@ -17,6 +17,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractRailBlock.class)
 public abstract class AbstractRailBlock_invalidUpdateMixin extends Block {
 
+    /**
+     * The issue here is that the rail updates the other rails near it before
+     * checking if it's in a valid place. This should be the other way round,
+     * we check if it's in a valid place and if it's not, then we break the rail.
+     * Once we know it's in a valid place, then we can update the other rails.
+     */
+
+
     public AbstractRailBlock_invalidUpdateMixin(Settings settings) {
         super(settings);
     }
@@ -24,13 +32,12 @@ public abstract class AbstractRailBlock_invalidUpdateMixin extends Block {
     @Shadow public abstract Property<RailShape> getShapeProperty();
     @Shadow private static boolean shouldDropRail(BlockPos pos, World world, RailShape shape) { return true;}
 
-    /**
-     * The issue here is that the rail updates the other rails near it before
-     * checking if its in a valid place. This should be the other way round,
-     * we check if its in a valid place and if its not, then we break the rail
-     * on if its in a valid place do we update the rails near it.
-     */
-    @Inject(method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V", at = @At("HEAD"), cancellable = true)
+
+    @Inject(
+            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            at = @At("HEAD"),
+            cancellable = true
+    )
     private void updateNeighborsExceptWithBetterDirection(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CarpetFixesSettings.railInvalidUpdateOnPushFix) {
             RailShape railShape = state.get(this.getShapeProperty());

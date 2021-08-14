@@ -20,23 +20,43 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 public abstract class Entity_blockCollisionMixin {
 
-    private boolean first = true;
+    /**
+     * Due to how minecraft handles prediction, some collisions are not handled correctly.
+     * So here we move the collision checks to be executed at the correct position in the
+     * code to prevent collisions from being executed at the wrong time in the code.
+     * This bug makes the following possible:
+     * - x8 coords multiplication using end portal
+     * - Clipping blocks that you are not actually touching
+     */
 
+
+    private boolean first = true;
     @Shadow protected void checkBlockCollision() {}
+
+
+    public boolean shouldCheckCollision(Block block) {
+        return block != Blocks.END_PORTAL && block != Blocks.NETHER_PORTAL && block != Blocks.CACTUS && block != Blocks.FIRE && block != Blocks.LAVA;
+    }
+
 
     @Redirect(
             method = "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;tryCheckBlockCollision()V")
-    )
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/Entity;tryCheckBlockCollision()V"
+            ))
     protected void onEntityCollision(Entity entity) {
         first = true;
         this.checkBlockCollision();
     }
 
+
     @Inject(
             method = "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",
-            at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/entity/Entity;adjustMovementForCollisions(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;")
-    )
+            at = @At(
+                    value = "INVOKE_ASSIGN",
+                    target = "Lnet/minecraft/entity/Entity;adjustMovementForCollisions(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;"
+            ))
     protected void InjectOnEntityCollisionHere(MovementType type, Vec3d movement, CallbackInfo ci) {
         if (CarpetFixesSettings.blockCollisionCheckFix) {
             first = false;
@@ -44,14 +64,13 @@ public abstract class Entity_blockCollisionMixin {
         }
     }
 
-    public boolean shouldCheckCollision(Block block) {
-        return block != Blocks.END_PORTAL && block != Blocks.NETHER_PORTAL && block != Blocks.CACTUS && block != Blocks.FIRE && block != Blocks.LAVA;
-    }
 
     @Redirect(
             method = "checkBlockCollision()V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;onEntityCollision(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V")
-    )
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/BlockState;onEntityCollision(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V"
+            ))
     public void checkBlockCollisionBetter(BlockState blockState, World world, BlockPos pos, Entity entity) {
         boolean pass = shouldCheckCollision(blockState.getBlock());
         if (!CarpetFixesSettings.blockCollisionCheckFix || !(entity instanceof PlayerEntity) || (first && pass) || (!first && !pass)) {

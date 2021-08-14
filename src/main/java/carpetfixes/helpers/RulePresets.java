@@ -48,7 +48,7 @@ public class RulePresets {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
             if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
                 if ((rule.categories.contains("backport") && !rule.isDefault()) || rule.isDefault()) {
-                    rule.set(source,  Boolean.toString(!rule.getBoolValue()));
+                    rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }
         }
@@ -58,7 +58,7 @@ public class RulePresets {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
             if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
                 if ((rule.categories.contains("crashfix") && rule.isDefault()) || !rule.isDefault()) {
-                    rule.set(source,  Boolean.toString(!rule.getBoolValue()));
+                    rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }
         }
@@ -68,7 +68,7 @@ public class RulePresets {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
             if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
                 if ((rule.categories.contains("backport") && rule.isDefault()) || !rule.isDefault()) {
-                    rule.set(source,  Boolean.toString(!rule.getBoolValue()));
+                    rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }
         }
@@ -78,7 +78,7 @@ public class RulePresets {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
             if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
                 if (!rule.isDefault()) {
-                    rule.set(source,  Boolean.toString(!rule.getBoolValue()));
+                    rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }
         }
@@ -88,7 +88,7 @@ public class RulePresets {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
             if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
                 if (rule.isDefault() && rule.categories.contains("crashfix") || (!rule.categories.contains("backport") && !rule.categories.contains("experimental")) || isStabilityRuleException(rule.name) || !rule.isDefault()) {
-                    rule.set(source,  Boolean.toString(!rule.getBoolValue()));
+                    rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }
         }
