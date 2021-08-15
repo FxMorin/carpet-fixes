@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(HopperBlock.class)
-public class HopperBlock_MissingUpdateMixin extends Block {
+public class HopperBlock_missingUpdateMixin extends Block {
 
     /**
      * The hopper when placed next to a power source does not give a block update, causing
@@ -18,7 +18,7 @@ public class HopperBlock_MissingUpdateMixin extends Block {
      */
 
 
-    public HopperBlock_MissingUpdateMixin(Settings settings) {super(settings);}
+    public HopperBlock_missingUpdateMixin(Settings settings) {super(settings);}
 
 
     @ModifyArg(

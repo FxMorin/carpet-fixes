@@ -18,18 +18,19 @@
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateAfterPushMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateOnPushMixin",
-    "blockUpdates.HopperBlock_MissingUpdateMixin",
-    "blockUpdates.SpongeBlock_MissingUpdateMixin",
+    "blockUpdates.HopperBlock_missingUpdateMixin",
+    "blockUpdates.ObserverBlock_missingUpdateMixin",
+    "blockUpdates.SpongeBlock_missingUpdateMixin",
     "blockUpdates.World_blockUpdateOrderMixin",
     "conversionFixes.MobEntity_conversionMixin",
     "conversionFixes.MooshroomEntity_conversionMixin",
     "conversionFixes.SlimeEntity_conversionMixin",
     "conversionFixes.VillagerEntity_conversionMixin",
     "coreSystemFixes.Explosion_exposureMixin",
-    "coreSystemFixes.ServerWorld_updateSuppressionMixin",
     "coreSystemFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
     "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
+    "coreSystemFixes.ServerWorld_updateSuppressionMixin",
     "coreSystemFixes.StringTag_stringTagExploitMixin",
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",
     "coreSystemFixes.World_seaLevelMixin",
@@ -63,5 +64,6 @@
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
     "redstoneFixes.World_ComparatorNotUpdatingMixin"
   ],
-  "injectors": {"defaultRequire": 1}
+  "injectors": {
+    "defaultRequire": 1}
 }

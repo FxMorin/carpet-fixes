@@ -75,6 +75,14 @@ public class CarpetFixesSettings {
     public static boolean hopperUpdateFix = false;
 
     //By FX - PR0CESS
+    @Rule(
+            desc = "Make it so that observers give block updates when retracted and immediately repowered",
+            extra = "Fixes [MC-136566](https://bugs.mojang.com/browse/MC-136566)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean observerUpdateFix = false;
+
+    //By FX - PR0CESS
     /*
     To Be Implemented
     @Rule(

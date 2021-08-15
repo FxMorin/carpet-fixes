@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import carpetfixes.CarpetFixesSettings;
 
 @Mixin(SpongeBlock.class)
-public class SpongeBlock_MissingUpdateMixin extends Block {
+public class SpongeBlock_missingUpdateMixin extends Block {
 
     /**
      * The sponge when placed next to a water source does not give a block update, causing
@@ -16,7 +16,7 @@ public class SpongeBlock_MissingUpdateMixin extends Block {
      */
 
 
-    public SpongeBlock_MissingUpdateMixin(Settings settings) {super(settings);}
+    public SpongeBlock_missingUpdateMixin(Settings settings) {super(settings);}
 
 
     @ModifyArg(

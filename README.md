@@ -87,6 +87,14 @@ Makes it so that hoppers give block updates when placed while powered
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [2No2Name's video](https://www.youtube.com/watch?v=QVOONJ1OY44)
 
+## observerUpdateFix
+Make it so that observers give block updates when retracted and immediately repowered
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-136566](https://bugs.mojang.com/browse/MC-136566)
+
 ## incorrectBounceLogicFix
 Fixes some entities not bouncing on slime blocks and getting stuck
 * Type: `boolean`
