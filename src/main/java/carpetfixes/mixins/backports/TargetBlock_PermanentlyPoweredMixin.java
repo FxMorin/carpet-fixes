@@ -1,4 +1,4 @@
-package carpetfixes.mixins.blockFixes;
+package carpetfixes.mixins.backports;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.BlockState;
@@ -26,6 +26,6 @@ public class TargetBlock_PermanentlyPoweredMixin {
             cancellable = true
     )
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CarpetFixesSettings.targetBlockPermanentlyPoweredFix) ci.cancel();
+        if (CarpetFixesSettings.oldTargetBlockPermanentlyPowered) ci.cancel();
     }
 }

@@ -283,14 +283,6 @@ public class CarpetFixesSettings {
     )
     public static boolean drownedEnchantedTridentsFix = false;
 
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes general item dupe using dolphins, and some other dimension change dupes",
-            extra = "On by default, mojang has fixed this. Turning the rule off re-enables the dupe to work",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
-    )
-    public static boolean portalGeneralItemDupeFix = true;
-
     //by FX - PR0CESS
     //Also fixes: MC-158154
     @Rule(
@@ -442,24 +434,31 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes target blocks being permanently powered when moved by pistons",
-            extra = "Fixes [MC-173244](https://bugs.mojang.com/browse/MC-173244)",
+            desc = "Re-introduces target blocks being permanently powered when moved by pistons",
+            extra = "Backports [MC-173244](https://bugs.mojang.com/browse/MC-173244)",
             category = {CARPETFIXES,BACKPORT}
     )
-    public static boolean targetBlockPermanentlyPoweredFix = true;
+    public static boolean oldTargetBlockPermanentlyPowered = false;
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes lightning rods being permanently powered when moved by pistons",
-            extra = "Fixes [MC-203718](https://bugs.mojang.com/browse/MC-203718)",
+            desc = "Re-introduces lightning rods being permanently powered when moved by pistons",
+            extra = "Backports [MC-203718](https://bugs.mojang.com/browse/MC-203718)",
             category = {CARPETFIXES,BACKPORT}
     )
-    public static boolean lightningRodPermanentlyPoweredFix = true;
+    public static boolean oldLightningRodPermanentlyPowered = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces general item dupe using dolphins, and some other dimension change dupes",
+            category = {CARPETFIXES,BACKPORT}
+    )
+    public static boolean oldPortalGeneralItemDupe = false;
 
     //By whoImT from carpet-addons
     @Rule(
-            desc = "Backport 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds",
-            extra = "Fixed [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a",
+            desc = "Re-introduces 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds",
+            extra = "Backports [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a",
             category = {CARPETFIXES,BUGFIX,BACKPORT}
     )
     public static boolean oldFlintAndSteelBehavior = false;
@@ -467,10 +466,10 @@ public class CarpetFixesSettings {
     //By whoImT from carpet-addons
     @Rule(
             desc = "Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while riding donkey/llama",
-            extra = {"Fixed [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a","This has not been tested in 1.17 and may not work!"},
+            extra = {"Backports [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a","This has not been tested in 1.17 and may not work!"},
             category = {CARPETFIXES,BUGFIX,BACKPORT,EXPERIMENTAL}
     )
-    public static boolean donkeyRidingDupeFix = true;
+    public static boolean oldDonkeyRidingDupe = false;
 
     /*
 

@@ -26,7 +26,8 @@ public class AbstractFireBlock_flintAndSteelMixin {
                     value = "INVOKE",
                     target = "Lnet/minecraft/block/BlockState;canPlaceAt(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z"
             ),
-            cancellable = true)
+            cancellable = true
+    )
     private static void canPlaceAt(World world, BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir){
         if(CarpetFixesSettings.oldFlintAndSteelBehavior) cir.setReturnValue(true);
     }

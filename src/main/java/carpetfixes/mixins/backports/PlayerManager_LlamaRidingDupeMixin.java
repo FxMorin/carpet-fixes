@@ -31,7 +31,7 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             ))
     private boolean llamaDupe(ServerPlayerEntity serverPlayerEntity){
         if (serverPlayerEntity.hasVehicle()) {
-            if(CarpetFixesSettings.donkeyRidingDupeFix)
+            if(!CarpetFixesSettings.oldDonkeyRidingDupe)
                 return true;
             Entity entity = serverPlayerEntity.getRootVehicle();
             if (entity.hasPlayerRider()) {

@@ -1,4 +1,4 @@
-package carpetfixes.mixins.dupeFixes;
+package carpetfixes.mixins.backports;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.entity.EntityType;
@@ -26,11 +26,12 @@ public abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
             method="removeFromDimension",
             at=@At(
                     value="INVOKE",
-                    target="Lnet/minecraft/entity/mob/MobEntity;getItemsEquipped()Ljava/lang/Iterable;"
+                    target="Lnet/minecraft/entity/mob/MobEntity;getItemsEquipped()Ljava/lang/Iterable;",
+                    shift = At.Shift.BEFORE
             ),
             cancellable = true
     )
     protected void reEnableGeneralItemDupe(CallbackInfo ci) {
-        if (CarpetFixesSettings.portalGeneralItemDupeFix) ci.cancel();
+        if (CarpetFixesSettings.oldPortalGeneralItemDupe) ci.cancel();
     }
 }

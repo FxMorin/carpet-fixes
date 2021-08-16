@@ -375,38 +375,45 @@ Fixes incorrect explosion exposure calculations
 * Solution By: *DawNemo*
 
 # Backports
-## targetBlockPermanentlyPoweredFix
-Fixes target blocks being permanently powered when moved by pistons
+## oldTargetBlockPermanentlyPowered
+Re-introduces target blocks being permanently powered when moved by pistons
 * Type: `boolean`
 * Default value: `true`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BACKPORT`
-* Fixes: [MC-173244](https://bugs.mojang.com/browse/MC-173244)
+* Backports: [MC-173244](https://bugs.mojang.com/browse/MC-173244)
 
-## lightningRodPermanentlyPoweredFix
-Fixes lightning rods being permanently powered when moved by pistons
+## oldLightningRodPermanentlyPowered
+Re-introduces lightning rods being permanently powered when moved by pistons
 * Type: `boolean`
 * Default value: `true`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BACKPORT`
-* Fixes: [MC-203718](https://bugs.mojang.com/browse/MC-203718)
+* Backports: [MC-203718](https://bugs.mojang.com/browse/MC-203718)
+
+## oldPortalGeneralItemDupe
+Re-introduces general item dupe using dolphins, and some other dimension change dupes
+* Type: `boolean`
+* Default value: `true`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BACKPORT`
 
 ## oldFlintAndSteelBehavior
-Backport 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds
+Re-introduces 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`
-* Fixes: [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a
+* Backports: [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a
 * By: *whoImT* from *carpet-addons*
 
-## donkeyRidingDupeFix
+## oldDonkeyRidingDupe
 Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while riding donkey/llama
 * Type: `boolean`
 * Default value: `true`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`BACKPORT`,`EXPERIMENTAL`
-* Fixes: Fixed [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a
+* Backports: [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a
 * By: *whoImT* from *carpet-addons*
 * Additional notes:
   * This has not been tested in 1.17 and may not work!
