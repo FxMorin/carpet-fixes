@@ -349,6 +349,14 @@ Prevents players from placing sugar cane inside of water
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-929](https://bugs.mojang.com/browse/MC-929)
 
+## nbtDataDupeFix
+Fixes /data duping inventories when modifying entity data
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-112826](https://bugs.mojang.com/browse/MC-112826) & [MC-191011](https://bugs.mojang.com/browse/MC-191011)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

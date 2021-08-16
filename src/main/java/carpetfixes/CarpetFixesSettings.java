@@ -7,8 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.server.command.ServerCommandSource;
 
-import static carpet.settings.RuleCategory.BUGFIX;
-import static carpet.settings.RuleCategory.EXPERIMENTAL;
+import static carpet.settings.RuleCategory.*;
 
 public class CarpetFixesSettings {
 
@@ -395,7 +394,7 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes the rain timer being reset whenever players sleep",
-            extra = "Fixes [MC-63340](https://bugs.mojang.com/browse/MC-63340",
+            extra = "Fixes [MC-63340](https://bugs.mojang.com/browse/MC-63340)",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean sleepingResetsRainFix = false;
@@ -403,7 +402,7 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     /*@Rule(
             desc = "Fixes changing between spactator lowering your player",
-            extra = "Fixes [MC-146582](https://bugs.mojang.com/browse/MC-146582",
+            extra = "Fixes [MC-146582](https://bugs.mojang.com/browse/MC-146582)",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean spectatorLowersPlayerFix = false;*/
@@ -412,7 +411,7 @@ public class CarpetFixesSettings {
     //solution by DawNemo
     @Rule(
             desc = "Fixes incorrect explosion exposure calculations",
-            extra = "Fixes [MC-232355](https://bugs.mojang.com/browse/MC-232355",
+            extra = "Fixes [MC-232355](https://bugs.mojang.com/browse/MC-232355)",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean incorrectExplosionExposureFix = false;
@@ -420,11 +419,18 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Prevents players from placing sugar cane inside of water",
-            extra = "Fixes [MC-929](https://bugs.mojang.com/browse/MC-929",
+            extra = "Fixes [MC-929](https://bugs.mojang.com/browse/MC-929)",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean underwaterSugarcaneFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes /data duping inventories when modifying entity data",
+            extra = "Fixes [MC-112826](https://bugs.mojang.com/browse/MC-112826) & [MC-191011](https://bugs.mojang.com/browse/MC-191011)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean nbtDataDupeFix = false;
 
     /*
 
