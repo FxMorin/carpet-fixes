@@ -410,14 +410,6 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Prevents players from placing sugar cane inside of water",
-            extra = "Fixes [MC-929](https://bugs.mojang.com/browse/MC-929)",
-            category = {CARPETFIXES,BUGFIX}
-    )
-    public static boolean underwaterSugarcaneFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes /data duping inventories when modifying entity data",
             extra = "Fixes [MC-112826](https://bugs.mojang.com/browse/MC-112826) & [MC-191011](https://bugs.mojang.com/browse/MC-191011)",
             category = {CARPETFIXES,BUGFIX}
