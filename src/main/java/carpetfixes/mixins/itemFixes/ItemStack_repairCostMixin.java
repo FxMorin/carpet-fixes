@@ -21,12 +21,12 @@ public class ItemStack_repairCostMixin {
      */
 
 
-    @Shadow public boolean hasTag() { return false; }
-    @Shadow private NbtCompound tag;
+    @Shadow public boolean hasNbt() { return false; }
+    @Shadow private NbtCompound nbt;
 
 
     private int getHideFlags() {
-        return this.hasTag() && this.tag.contains("HideFlags", 99) ? this.tag.getInt("HideFlags") : 0;
+        return this.hasNbt() && this.nbt.contains("HideFlags", 99) ? this.nbt.getInt("HideFlags") : 0;
     }
 
 
