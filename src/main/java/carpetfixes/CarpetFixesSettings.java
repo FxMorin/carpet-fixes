@@ -8,18 +8,9 @@ import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.server.command.ServerCommandSource;
 
 import static carpet.settings.RuleCategory.*;
+import static carpetfixes.helpers.RuleCategory.*;
 
 public class CarpetFixesSettings {
-
-    private final static String CARPETFIXES = "carpet-fixes";
-    private final static String CRASHFIX = "crashfix"; // For bugs that fix possible server crashes
-    private final static String BACKPORT = "backport"; //A bug that got fixed which we don't want fixed or came from a snapshot
-    private final static String WONTFIX = "wontfix"; //Marked as `won't fix` on the bug tracker
-
-    // Marked as `Works as Intended` on the bug tracker. I don't like these, usually will only implement for backports
-    // It's not Vanilla if you aren't playing the game as the developers intended it to be played :thonk:
-    // Although sometimes, its just stupid that its not fixed. So we fix it anyways, hence why its here.
-    private final static String INTENDED = "intended";
 
     //Don't include BUGFIX if the bug is not marked as Unresolved
 
@@ -36,7 +27,8 @@ public class CarpetFixesSettings {
     //Add your name above the rules so people know who to contact about changing the code. E.x. By FX - PR0CESS
 
     //By FX - PR0CESS
-    @Rule(
+    //Disabled until I figure out why it causes a crash, issue #15
+    /*@Rule(
             desc = "This rule allows you to change all Carpet-Fixes rules at the same time!",
             extra = {
                     "Vanilla: All rules set to there default value",
@@ -47,7 +39,7 @@ public class CarpetFixesSettings {
             },
             category = {CARPETFIXES}
     )
-    public static PresetSettings carpetFixesPreset = PresetSettings.VANILLA;
+    public static PresetSettings carpetFixesPreset = PresetSettings.VANILLA;*/
 
     //By FX - PR0CESS
     @Rule(

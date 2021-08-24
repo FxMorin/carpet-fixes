@@ -4,6 +4,9 @@ import carpet.CarpetServer;
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.server.command.ServerCommandSource;
 
+import static carpet.settings.RuleCategory.EXPERIMENTAL;
+import static carpetfixes.helpers.RuleCategory.*;
+
 public class RulePresets {
 
     public static void runChangePresetRule(ServerCommandSource source, CarpetFixesSettings.PresetSettings newValue) {
@@ -38,7 +41,7 @@ public class RulePresets {
 
     public static void setAll(ServerCommandSource source) {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
-            if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset") && rule.isDefault()) {
+            if (rule.categories.contains(CARPETFIXES) && !rule.name.equals("carpetFixesPreset") && rule.isDefault()) {
                 rule.set(source, Boolean.toString(!rule.getBoolValue()));
             }
         }
@@ -46,8 +49,8 @@ public class RulePresets {
 
     public static void setNotBackport(ServerCommandSource source) {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
-            if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
-                if ((rule.categories.contains("backport") && !rule.isDefault()) || rule.isDefault()) {
+            if (rule.categories.contains(CARPETFIXES) && !rule.name.equals("carpetFixesPreset")) {
+                if ((rule.categories.contains(BACKPORT) && !rule.isDefault()) || rule.isDefault()) {
                     rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }
@@ -56,8 +59,8 @@ public class RulePresets {
 
     public static void setCrashFix(ServerCommandSource source) {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
-            if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
-                if ((rule.categories.contains("crashfix") && rule.isDefault()) || !rule.isDefault()) {
+            if (rule.categories.contains(CARPETFIXES) && !rule.name.equals("carpetFixesPreset")) {
+                if ((rule.categories.contains(CRASHFIX) && rule.isDefault()) || !rule.isDefault()) {
                     rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }
@@ -66,8 +69,8 @@ public class RulePresets {
 
     public static void setBackport(ServerCommandSource source) {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
-            if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
-                if ((rule.categories.contains("backport") && rule.isDefault()) || !rule.isDefault()) {
+            if (rule.categories.contains(CARPETFIXES) && !rule.name.equals("carpetFixesPreset")) {
+                if ((rule.categories.contains(BACKPORT) && rule.isDefault()) || !rule.isDefault()) {
                     rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }
@@ -76,7 +79,7 @@ public class RulePresets {
 
     public static void setVanilla(ServerCommandSource source) {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
-            if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
+            if (rule.categories.contains(CARPETFIXES) && !rule.name.equals("carpetFixesPreset")) {
                 if (!rule.isDefault()) {
                     rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
@@ -86,8 +89,8 @@ public class RulePresets {
 
     public static void setStability(ServerCommandSource source) {
         for (carpet.settings.ParsedRule<?> rule : CarpetServer.settingsManager.getRules()) {
-            if (rule.categories.contains("carpet-fixes") && !rule.name.equals("carpetFixesPreset")) {
-                if (rule.isDefault() && rule.categories.contains("crashfix") || (!rule.categories.contains("backport") && !rule.categories.contains("experimental")) || isStabilityRuleException(rule.name) || !rule.isDefault()) {
+            if (rule.categories.contains(CARPETFIXES) && !rule.name.equals("carpetFixesPreset")) {
+                if (rule.isDefault() && rule.categories.contains(CRASHFIX) || (!rule.categories.contains(BACKPORT) && !rule.categories.contains(EXPERIMENTAL)) || isStabilityRuleException(rule.name) || !rule.isDefault()) {
                     rule.set(source, Boolean.toString(!rule.getBoolValue()));
                 }
             }

@@ -8,9 +8,11 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 
+import static carpetfixes.helpers.RuleCategory.CARPETFIXES;
+
 public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
-    public static boolean initialPreset = true;
+    //public static boolean initialPreset = true;
 
     @Override
     public String version()
@@ -26,21 +28,21 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
-        if (initialPreset) {
+        /*if (initialPreset) {
             initialPreset = false;
             RulePresets.runChangePresetRule(CarpetServer.minecraft_server.getCommandSource(), (CarpetFixesSettings.PresetSettings) CarpetServer.settingsManager.getRule("carpetFixesPreset").get());
-        }
+        }*/
     }
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer minecraftServer) {
-        CarpetServer.settingsManager.addRuleObserver(((source, rule, s) -> {
+        /*CarpetServer.settingsManager.addRuleObserver(((source, rule, s) -> {
             if (rule.name.equals("carpetFixesPreset")) {
                 RulePresets.runChangePresetRule(CarpetServer.minecraft_server.getCommandSource(), (CarpetFixesSettings.PresetSettings) rule.get());
-            } else if (!source.getName().equals("Server") && rule.categories.contains("carpet-fixes") && !CarpetServer.settingsManager.getRule("carpetFixesPreset").equals(CarpetFixesSettings.PresetSettings.CUSTOM)) {
+            } else if (!source.getName().equals("Server") && rule.categories.contains(CARPETFIXES) && !CarpetServer.settingsManager.getRule("carpetFixesPreset").equals(CarpetFixesSettings.PresetSettings.CUSTOM)) {
                 CarpetServer.settingsManager.getRule("carpetFixesPreset").set(source, "custom");
             }
-        }));
+        }));*/
         for (ServerWorld world : minecraftServer.getWorlds()) { CarpetFixesInit.updateScheduler.put(world,new UpdateScheduler(world));}
     }
 }
