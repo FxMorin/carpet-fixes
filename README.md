@@ -349,6 +349,14 @@ Fixes /data duping inventories when modifying entity data
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-112826](https://bugs.mojang.com/browse/MC-112826) & [MC-191011](https://bugs.mojang.com/browse/MC-191011)
 
+## duplicateBlockUpdatesFix
+Fixes some redstone components send duplicated block updates
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-231071](https://bugs.mojang.com/browse/MC-231071)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

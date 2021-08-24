@@ -408,6 +408,14 @@ public class CarpetFixesSettings {
     )
     public static boolean nbtDataDupeFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes some redstone components send duplicated block updates",
+            extra = "Fixes [MC-231071](https://bugs.mojang.com/browse/MC-231071)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean duplicateBlockUpdatesFix = false;
+
     /*
 
     BACKPORTS

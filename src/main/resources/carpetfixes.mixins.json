@@ -4,15 +4,16 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "backports.AbstractFireBlock_flintAndSteelMixin",
+    "backports.LightningRodBlock_PermanentlyPoweredMixin",
+    "backports.MobEntity_portalGeneralItemMixin",
     "backports.PlayerManager_LlamaRidingDupeMixin",
+    "backports.TargetBlock_PermanentlyPoweredMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
-    "backports.LightningRodBlock_PermanentlyPoweredMixin",
     "blockFixes.PistonBlock_bedrockBreakingMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
-    "backports.TargetBlock_PermanentlyPoweredMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateAfterPushMixin",
@@ -37,7 +38,6 @@
     "dupeFixes.AbstractRailBlock_duplicationMixin",
     "dupeFixes.FallingBlockEntity_duplicationMixin",
     "dupeFixes.HopperBlockEntity_giveMixin",
-    "backports.MobEntity_portalGeneralItemMixin",
     "dupeFixes.PistonBlock_tntDupingFixMixin",
     "dupeFixes.SimpleInventory_dataDupeMixin",
     "entityFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
@@ -62,7 +62,13 @@
     "itemFixes.ItemStack_repairCostMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
-    "redstoneFixes.World_ComparatorNotUpdatingMixin"
+    "redstoneFixes.World_ComparatorNotUpdatingMixin",
+    "redstoneFixes.duplicateUpdates.AbstractButtonBlock_updateMixin",
+    "redstoneFixes.duplicateUpdates.ComparatorBlock_updateMixin",
+    "redstoneFixes.duplicateUpdates.DetectorRailBlock_updateMixin",
+    "redstoneFixes.duplicateUpdates.LeverBlock_updateMixin",
+    "redstoneFixes.duplicateUpdates.PoweredRailBlock_updateMixin",
+    "redstoneFixes.duplicateUpdates.RedstoneTorchBlock_updateMixin"
   ],
   "injectors": {
     "defaultRequire": 1}
