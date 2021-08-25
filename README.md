@@ -357,6 +357,14 @@ Fixes some redstone components send duplicated block updates
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-231071](https://bugs.mojang.com/browse/MC-231071)
 
+## trapdoorMissingUpdateFix
+Fixes some blocks not popping off when a trapdoor opens
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-157300](https://bugs.mojang.com/browse/MC-157300)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

@@ -416,6 +416,14 @@ public class CarpetFixesSettings {
     )
     public static boolean duplicateBlockUpdatesFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes some blocks not popping off when a trapdoor opens",
+            extra = "Fixes [MC-157300](https://bugs.mojang.com/browse/MC-157300)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean trapdoorMissingUpdateFix = false;
+
     /*
 
     BACKPORTS

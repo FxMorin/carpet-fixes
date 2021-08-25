@@ -21,6 +21,7 @@
     "blockUpdates.HopperBlock_missingUpdateMixin",
     "blockUpdates.ObserverBlock_missingUpdateMixin",
     "blockUpdates.SpongeBlock_missingUpdateMixin",
+    "blockUpdates.TrapdoorBlock_missingUpdateMixin",
     "blockUpdates.World_blockUpdateOrderMixin",
     "conversionFixes.MobEntity_conversionMixin",
     "conversionFixes.MooshroomEntity_conversionMixin",
