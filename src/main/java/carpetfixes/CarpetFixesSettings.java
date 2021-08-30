@@ -424,6 +424,14 @@ public class CarpetFixesSettings {
     )
     public static boolean trapdoorMissingUpdateFix = false;
 
+    //by FX - PR0CESS
+    //No bug report has been made about this bug yet
+    @Rule(
+            desc = "Fixes the detector rail giving useless comparator updates on entity collision",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean uselessDetectorRailUpdateFix = false;
+
     /*
 
     BACKPORTS

@@ -18,6 +18,7 @@
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateAfterPushMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateOnPushMixin",
+    "blockUpdates.DetectorRailBlock_comparatorMixin",
     "blockUpdates.HopperBlock_missingUpdateMixin",
     "blockUpdates.ObserverBlock_missingUpdateMixin",
     "blockUpdates.SpongeBlock_missingUpdateMixin",

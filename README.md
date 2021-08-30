@@ -365,6 +365,13 @@ Fixes some blocks not popping off when a trapdoor opens
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-157300](https://bugs.mojang.com/browse/MC-157300)
 
+## uselessDetectorRailUpdateFix
+Fixes the detector rail giving useless comparator updates on entity collision
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
