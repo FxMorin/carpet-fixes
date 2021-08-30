@@ -42,6 +42,7 @@
     "dupeFixes.HopperBlockEntity_giveMixin",
     "dupeFixes.PistonBlock_tntDupingFixMixin",
     "dupeFixes.SimpleInventory_dataDupeMixin",
+    "entityFixes.BeeEntity_voidMixin",
     "entityFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
     "entityFixes.CatSpawner_incorrectCatMixin",
     "entityFixes.DrownedEntity_enchantedTridentMixin",

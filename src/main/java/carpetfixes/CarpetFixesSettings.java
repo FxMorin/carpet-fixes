@@ -432,6 +432,14 @@ public class CarpetFixesSettings {
     )
     public static boolean uselessDetectorRailUpdateFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes bees getting stuck in the void due to gravity being disabled",
+            extra = "Fixes [MC-167279](https://bugs.mojang.com/browse/MC-167279)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean beeStuckInVoidFix = false;
+
     /*
 
     BACKPORTS

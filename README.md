@@ -372,6 +372,14 @@ Fixes the detector rail giving useless comparator updates on entity collision
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 
+## beeStuckInVoidFix
+Fixes bees getting stuck in the void due to gravity being disabled
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-167279](https://bugs.mojang.com/browse/MC-167279)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

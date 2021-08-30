@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ServerPlayNetworkHandler_vehicleFloatingMixin {
 
     /**
-     * Players can get kicked for flying by mounding an entity after jumping, this is
+     * Players can get kicked for flying by mounting an entity after jumping, this is
      * because the server does not realize that players mounting an entity means they
      * are no longer jumping. So this fix is as simple as telling the server
      * that if they are riding an entity, they should not be considered floating.
