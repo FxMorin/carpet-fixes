@@ -487,6 +487,22 @@ public class CarpetFixesSettings {
     )
     public static boolean soulSpeedIncorrectDamageFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes placing end crystals too early doesn't resummon the Ender Dragon",
+            extra = "Fixes [MC-215763](https://bugs.mojang.com/browse/MC-215763)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean endCrystalPlacingTooEarlyFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to respawn the ender dragon using only 2 ender crystals instead of the intended 4",
+            extra = "Fixes [MC-102774](https://bugs.mojang.com/browse/MC-102774)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean respawnDragonWithoutAllEndCrystalsFix = false;
+
     /*
 
     BACKPORTS

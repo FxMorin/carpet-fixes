@@ -435,6 +435,14 @@ Fixes placing end crystals too early doesn't resummon the Ender Dragon
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-215763](https://bugs.mojang.com/browse/MC-215763)
 
+## respawnDragonWithoutAllEndCrystalsFix
+Fixes being able to respawn the ender dragon using only 2 ender crystals instead of the intended 4
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-102774](https://bugs.mojang.com/browse/MC-102774)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
