@@ -12,6 +12,7 @@ public class SculkSensorBlockEntity_roundMixin {
 
     /**
      * @author FX - PR0CESS, ncolyer11
+     * @reason Cause I want to... why am I forced to write these
      */
     @Overwrite
     public static int getPower(int distance, int range) {
