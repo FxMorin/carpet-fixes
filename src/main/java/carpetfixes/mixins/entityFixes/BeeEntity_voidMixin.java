@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.classes.BeeFlightMoveControl;
+import carpetfixes.patches.BeeFlightMoveControl;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.BeeEntity;

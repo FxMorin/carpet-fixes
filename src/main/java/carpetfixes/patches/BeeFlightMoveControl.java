@@ -1,4 +1,4 @@
-package carpetfixes.classes;
+package carpetfixes.patches;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.entity.ai.control.FlightMoveControl;
