@@ -427,6 +427,14 @@ Fixes soul speed enchantment from damaging boots when riding a vehicle
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-200991](https://bugs.mojang.com/browse/MC-200991)
 
+## endCrystalPlacingTooEarlyFix
+Fixes placing end crystals too early doesn't resummon the Ender Dragon
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-215763](https://bugs.mojang.com/browse/MC-215763)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

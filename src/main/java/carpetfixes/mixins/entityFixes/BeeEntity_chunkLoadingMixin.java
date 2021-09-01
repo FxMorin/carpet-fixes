@@ -33,7 +33,7 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
             cancellable = true
     )
     public void isChunkLoaded1(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.beeDupeFix && !this.world.isChunkLoaded(this.hivePos)) cir.setReturnValue(false);
+        if (CarpetFixesSettings.beeDupeFix && this.hivePos != null && !this.world.isChunkLoaded(this.hivePos)) cir.setReturnValue(false);
     }
 
 
@@ -47,7 +47,7 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
             cancellable = true
     )
     public void isChunkLoaded2(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.beeDupeFix && !this.world.isChunkLoaded(this.hivePos)) cir.setReturnValue(false);
+        if (CarpetFixesSettings.beeDupeFix && this.hivePos != null && !this.world.isChunkLoaded(this.hivePos)) cir.setReturnValue(false);
     }
 
 
@@ -61,6 +61,6 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
             cancellable = true
     )
     public void isChunkLoaded3(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.beeDupeFix && !this.world.isChunkLoaded(this.hivePos)) cir.setReturnValue(false);
+        if (CarpetFixesSettings.beeDupeFix && this.hivePos != null && !this.world.isChunkLoaded(this.hivePos)) cir.setReturnValue(false);
     }
 }
