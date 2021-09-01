@@ -396,6 +396,13 @@ Fixes illegal/corrupt block entities from existing
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-234396](https://bugs.mojang.com/browse/MC-234396)
 
+## invulnerableEndCrystalFix
+Fixes being able to make permanent invulnerable end crystals
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

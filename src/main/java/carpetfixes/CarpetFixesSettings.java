@@ -456,6 +456,13 @@ public class CarpetFixesSettings {
     )
     public static boolean illegalBlockEntityFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to make permanent invulnerable end crystals",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean invulnerableEndCrystalFix = false;
+
     /*
 
     BACKPORTS

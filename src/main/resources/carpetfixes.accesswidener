@@ -3,3 +3,4 @@ extendable class net/minecraft/entity/projectile/FishingBobberEntity$State
 accessible field net/minecraft/entity/ItemEntity pickupDelay I
 accessible field net/minecraft/block/CarvedPumpkinBlock ironGolemDispenserPattern Lnet/minecraft/block/pattern/BlockPattern;
 accessible field net/minecraft/block/CarvedPumpkinBlock ironGolemPattern Lnet/minecraft/block/pattern/BlockPattern;
+accessible field net/minecraft/entity/boss/dragon/EnderDragonFight dragonSpawnState Lnet/minecraft/entity/boss/dragon/EnderDragonSpawnState;

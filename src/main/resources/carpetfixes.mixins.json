@@ -50,6 +50,7 @@
     "entityFixes.CatSpawner_incorrectCatMixin",
     "entityFixes.DrownedEntity_enchantedTridentMixin",
     "entityFixes.EndCrystalEntity_ExplosionChainingMixin",
+    "entityFixes.EndCrystalEntity_InvulnerableMixin",
     "entityFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "entityFixes.EndermanEntity_teleportingMixin",
     "entityFixes.Entity_blockCollisionMixin",
