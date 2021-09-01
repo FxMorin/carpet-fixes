@@ -479,6 +479,14 @@ public class CarpetFixesSettings {
     )
     public static boolean creeperPortalFuseResetsFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes soul speed enchantment from damaging boots when riding a vehicle",
+            extra = "Fixes [MC-200991](https://bugs.mojang.com/browse/MC-200991)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean soulSpeedIncorrectDamageFix = false;
+
     /*
 
     BACKPORTS

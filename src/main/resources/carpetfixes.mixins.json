@@ -64,6 +64,7 @@
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
     "entityFixes.LivingEntity_sleepingKillsMixin",
+    "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
     "entityFixes.ServerPlayerEntity_spectatorMixin",
     "entityFixes.TntEntity_netherPortalMixin",

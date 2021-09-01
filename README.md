@@ -419,6 +419,14 @@ Fixes creepers resetting there fuse duration when travelling through a nether po
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-234754](https://bugs.mojang.com/browse/MC-234754)
 
+## soulSpeedIncorrectDamageFix
+Fixes soul speed enchantment from damaging boots when riding a vehicle
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-200991](https://bugs.mojang.com/browse/MC-200991)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
