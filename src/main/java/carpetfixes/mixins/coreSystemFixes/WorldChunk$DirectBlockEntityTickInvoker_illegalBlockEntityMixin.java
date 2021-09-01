@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class WorldChunk$DirectBlockEntityTickInvoker_illegalBlockEntityMixin <T extends BlockEntity> implements BlockEntityTickInvoker {
 
 
-    @Shadow @Final private T blockEntity;
+    /*@Shadow @Final private T blockEntity;
 
 
     @Inject(
@@ -29,5 +29,5 @@ public abstract class WorldChunk$DirectBlockEntityTickInvoker_illegalBlockEntity
             BlockEntity blockEntity = this.blockEntity;
             blockEntity.getWorld().getChunk(blockEntity.getPos()).removeBlockEntity(blockEntity.getPos());
         }
-    }
+    }*/
 }
