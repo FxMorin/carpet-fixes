@@ -440,6 +440,14 @@ public class CarpetFixesSettings {
     )
     public static boolean beeStuckInVoidFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes bees duplicating while trying to load a beehive/beenest in unloaded chunks",
+            extra = "Fixes [MC-234471](https://bugs.mojang.com/browse/MC-234471)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean beeDupeFix = false;
+
     /*
 
     BACKPORTS

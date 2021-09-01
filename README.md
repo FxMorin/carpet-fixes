@@ -380,6 +380,14 @@ Fixes bees getting stuck in the void due to gravity being disabled
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-167279](https://bugs.mojang.com/browse/MC-167279)
 
+## beeDupeFix
+Fixes bees duplicating while trying to load a beehive/beenest in unloaded chunks
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-234471](https://bugs.mojang.com/browse/MC-234471)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
