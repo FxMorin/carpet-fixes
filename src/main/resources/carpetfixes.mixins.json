@@ -49,6 +49,7 @@
     "entityFixes.BeeEntity_voidMixin",
     "entityFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
     "entityFixes.CatSpawner_incorrectCatMixin",
+    "entityFixes.CreeperEntity_fuseMixin",
     "entityFixes.DrownedEntity_enchantedTridentMixin",
     "entityFixes.EndCrystalEntity_ExplosionChainingMixin",
     "entityFixes.EndCrystalEntity_InvulnerableMixin",

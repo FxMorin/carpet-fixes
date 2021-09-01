@@ -471,6 +471,14 @@ public class CarpetFixesSettings {
     )
     public static boolean sculkSensorPrecisionLossFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes creepers resetting there fuse duration when travelling through a nether portal after being ignited by flint & steel",
+            extra = "Fixes [MC-234754](https://bugs.mojang.com/browse/MC-234754)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean creeperPortalFuseResetsFix = false;
+
     /*
 
     BACKPORTS

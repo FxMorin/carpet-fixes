@@ -411,6 +411,14 @@ Fixes signal strength being inaccurate and skipping odd signal strengths due to 
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-218222](https://bugs.mojang.com/browse/MC-218222)
 
+## creeperPortalFuseResetsFix
+Fixes creepers resetting there fuse duration when travelling through a nether portal after being ignited by flint & steel
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-234754](https://bugs.mojang.com/browse/MC-234754)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
