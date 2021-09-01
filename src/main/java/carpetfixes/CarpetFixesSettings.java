@@ -448,6 +448,14 @@ public class CarpetFixesSettings {
     )
     public static boolean beeDupeFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes illegal/corrupt block entities from existing",
+            extra = "Fixes [MC-234396](https://bugs.mojang.com/browse/MC-234396)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean illegalBlockEntityFix = false;
+
     /*
 
     BACKPORTS

@@ -388,6 +388,14 @@ Fixes bees duplicating while trying to load a beehive/beenest in unloaded chunks
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 * Fixes: [MC-234471](https://bugs.mojang.com/browse/MC-234471)
 
+## illegalBlockEntityFix
+Fixes illegal/corrupt block entities from existing
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
+* Fixes: [MC-234396](https://bugs.mojang.com/browse/MC-234396)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
