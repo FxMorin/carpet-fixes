@@ -15,13 +15,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Objects;
-
 @Mixin(EndCrystalEntity.class)
 public abstract class EndCrystalEntity_InvulnerableMixin extends Entity {
-
-
-    private final BlockPos originalLocation = new BlockPos(0, 128, 0);
 
 
     @Shadow public abstract void setBeamTarget(@Nullable BlockPos beamTarget);
@@ -36,7 +31,7 @@ public abstract class EndCrystalEntity_InvulnerableMixin extends Entity {
             at=@At("RETURN")
     )
     public void tick(CallbackInfo ci) {
-        if (CarpetFixesSettings.invulnerableEndCrystalFix && this.isInvulnerable() && Objects.equals(this.getBeamTarget(), originalLocation) && ((this.world.getRegistryKey() == World.END && ((ServerWorld)this.world).getEnderDragonFight() != null && ((((ServerWorld) this.world).getEnderDragonFight().dragonSpawnState != null && ((ServerWorld) this.world).getEnderDragonFight().dragonSpawnState.ordinal() > EnderDragonSpawnState.SUMMONING_DRAGON.ordinal()) || ((ServerWorld) this.world).getEnderDragonFight().dragonSpawnState == null)) || this.world.getRegistryKey() != World.END)) {
+        if (CarpetFixesSettings.invulnerableEndCrystalFix && this.isInvulnerable() && this.getBeamTarget() != null && ((this.world.getRegistryKey() == World.END && ((ServerWorld)this.world).getEnderDragonFight() != null && ((((ServerWorld) this.world).getEnderDragonFight().dragonSpawnState != null && ((ServerWorld) this.world).getEnderDragonFight().dragonSpawnState.ordinal() > EnderDragonSpawnState.SUMMONING_DRAGON.ordinal()) || ((ServerWorld) this.world).getEnderDragonFight().dragonSpawnState == null)) || this.world.getRegistryKey() != World.END)) {
             this.setInvulnerable(false);
             this.setBeamTarget(null);
         }
