@@ -27,7 +27,6 @@ public class DetectorRailBlock_comparatorMixin {
             method= "updatePoweredStatus(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",
             at = @At(
                     value="INVOKE",
-                    remap = false,
                     target="Lnet/minecraft/world/World;updateComparators(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
                     shift= At.Shift.BEFORE,
                     ordinal = 0
