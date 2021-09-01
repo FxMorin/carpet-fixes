@@ -18,6 +18,7 @@ public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
 
     public BeehiveBlockEntity_dupeMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {super(type, pos, state);}
 
+
     @Inject(
             method= "tryEnterHive(Lnet/minecraft/entity/Entity;ZI)V",
             at = @At("HEAD"),
