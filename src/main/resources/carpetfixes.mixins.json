@@ -8,7 +8,7 @@
     "backports.MobEntity_portalGeneralItemMixin",
     "backports.PlayerManager_LlamaRidingDupeMixin",
     "backports.TargetBlock_PermanentlyPoweredMixin",
-    "blockFixes.BeehiveBlockEntity_dupeMixin",
+    "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.PistonBlock_bedrockBreakingMixin",
