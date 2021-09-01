@@ -463,6 +463,14 @@ public class CarpetFixesSettings {
     )
     public static boolean invulnerableEndCrystalFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance",
+            extra = "Fixes [MC-218222](https://bugs.mojang.com/browse/MC-218222)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean sculkSensorPrecisionLossFix = false;
+
     /*
 
     BACKPORTS

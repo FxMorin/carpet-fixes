@@ -403,6 +403,14 @@ Fixes being able to make permanent invulnerable end crystals
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 
+## sculkSensorPrecisionLossFix
+Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-218222](https://bugs.mojang.com/browse/MC-218222)
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`
