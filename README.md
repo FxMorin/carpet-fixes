@@ -427,6 +427,13 @@ Fixes being able to respawn the ender dragon using only 2 ender crystals instead
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-102774](https://bugs.mojang.com/browse/MC-102774)
 
+## treeTrunkLogicFix
+Fixes trees considering the bottom block as a trunk and modifying leaves because of it
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

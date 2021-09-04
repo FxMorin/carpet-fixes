@@ -503,6 +503,13 @@ public class CarpetFixesSettings {
     )
     public static boolean respawnDragonWithoutAllEndCrystalsFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes trees considering the bottom block as a trunk and modifying leaves because of it",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean treeTrunkLogicFix = false;
+
     /*
 
     BACKPORTS

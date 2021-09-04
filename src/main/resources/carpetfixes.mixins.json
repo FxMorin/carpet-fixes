@@ -41,6 +41,8 @@
     "coreSystemFixes.World_seaLevelMixin",
     "coreSystemFixes.World_updateSuppressionMixin",
     "coreSystemFixes.WorldChunk$DirectBlockEntityTickInvoker_illegalBlockEntityMixin",
+    "coreSystemFixes.TreeLogic.TreeFeature_removeDirtMixin",
+    "coreSystemFixes.TreeLogic.TrunkPlacer_logMixin",
     "dupeFixes.AbstractRailBlock_duplicationMixin",
     "dupeFixes.FallingBlockEntity_duplicationMixin",
     "dupeFixes.HopperBlockEntity_giveMixin",

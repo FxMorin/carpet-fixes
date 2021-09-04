@@ -10,9 +10,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class CarpetFixesInit {
+
+    public static Set<BlockPos> lastDirt = new HashSet<>();
 
     public static HashMap<World,UpdateScheduler> updateScheduler = new HashMap<>();
 
