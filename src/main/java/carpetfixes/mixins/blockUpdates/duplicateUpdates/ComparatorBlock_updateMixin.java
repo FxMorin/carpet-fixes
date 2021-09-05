@@ -1,4 +1,4 @@
-package carpetfixes.mixins.redstoneFixes.duplicateUpdates;
+package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.BlockState;

@@ -77,12 +77,12 @@
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
     "redstoneFixes.World_ComparatorNotUpdatingMixin",
-    "redstoneFixes.duplicateUpdates.AbstractButtonBlock_updateMixin",
-    "redstoneFixes.duplicateUpdates.ComparatorBlock_updateMixin",
-    "redstoneFixes.duplicateUpdates.DetectorRailBlock_updateMixin",
-    "redstoneFixes.duplicateUpdates.LeverBlock_updateMixin",
-    "redstoneFixes.duplicateUpdates.PoweredRailBlock_updateMixin",
-    "redstoneFixes.duplicateUpdates.RedstoneTorchBlock_updateMixin"
+    "blockUpdates.duplicateUpdates.AbstractButtonBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.ComparatorBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.DetectorRailBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.LeverBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.PoweredRailBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.RedstoneTorchBlock_updateMixin"
   ],
   "injectors": {
     "defaultRequire": 1}

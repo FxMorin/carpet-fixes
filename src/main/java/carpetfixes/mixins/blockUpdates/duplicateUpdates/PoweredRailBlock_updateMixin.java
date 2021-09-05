@@ -1,17 +1,17 @@
-package carpetfixes.mixins.redstoneFixes.duplicateUpdates;
+package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
 import carpetfixes.CarpetFixesSettings;
-import net.minecraft.block.LeverBlock;
+import net.minecraft.block.PoweredRailBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(LeverBlock.class)
-public class LeverBlock_updateMixin {
+@Mixin(PoweredRailBlock.class)
+public abstract class PoweredRailBlock_updateMixin {
 
 
     @ModifyArg(
-            method = "togglePower",
+            method = "updateBlockState",
             at = @At(
                     value = "INVOKE",
                     target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"),

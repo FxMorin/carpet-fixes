@@ -1,4 +1,4 @@
-package carpetfixes.mixins.redstoneFixes.duplicateUpdates;
+package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.BlockState;
@@ -27,11 +27,29 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
 
 
     @Inject(
+            method="onBlockAdded",
+            at=@At("HEAD"),
+            cancellable = true
+    )
+    public void onBlockAddedBetter(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
+        if (CarpetFixesSettings.duplicateBlockUpdatesFix) {
+            Direction[] var6 = Direction.values();
+            int var7 = var6.length;
+            for (int var8 = 0; var8 < var7; ++var8) {
+                Direction direction = var6[var8];
+                world.updateNeighborsExcept(pos.offset(direction),this,direction.getOpposite());
+            }
+            ci.cancel();
+        }
+    }
+
+
+    @Inject(
             method="onStateReplaced",
             at=@At("HEAD"),
             cancellable = true
     )
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
+    public void onStateReplacedBetter(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
         if (CarpetFixesSettings.duplicateBlockUpdatesFix) {
             if (!moved && !state.isOf(newState.getBlock())) { //Added missing: !state.isOf(newState.getBlock())
                 if (state.get(LIT)) { //Added missing: state.get(LIT)
@@ -39,7 +57,7 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
                     int var7 = var6.length;
                     for (int var8 = 0; var8 < var7; ++var8) {
                         Direction direction = var6[var8];
-                        world.updateNeighborsAlways(pos.offset(direction), this);
+                        world.updateNeighborsExcept(pos.offset(direction),this,direction.getOpposite());
                     }
                 }
                 super.onStateReplaced(state, world, pos, newState, moved); //Added missing: super.onStateReplaced(...)
