@@ -20,8 +20,7 @@ public class TreeFeature_removeDirtMixin {
                     value="INVOKE",
                     target="Lcom/google/common/collect/Lists;newArrayList(Ljava/lang/Iterable;)Ljava/util/ArrayList;",
                     ordinal = 1
-            )
-    )
+            ))
     private static <E> ArrayList<E> modifySet(Iterable<? extends E> elements) {
         ArrayList<E> list = Lists.newArrayList(elements);
         if (CarpetFixesSettings.treeTrunkLogicFix) {

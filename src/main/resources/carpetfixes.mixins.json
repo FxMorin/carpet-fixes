@@ -26,6 +26,13 @@
     "blockUpdates.SpongeBlock_missingUpdateMixin",
     "blockUpdates.TrapdoorBlock_missingUpdateMixin",
     "blockUpdates.World_blockUpdateOrderMixin",
+    "blockUpdates.duplicateUpdates.AbstractButtonBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.AbstractPressurePlateBlock_uselessMixin",
+    "blockUpdates.duplicateUpdates.ComparatorBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.DetectorRailBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.LeverBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.PoweredRailBlock_updateMixin",
+    "blockUpdates.duplicateUpdates.RedstoneTorchBlock_updateMixin",
     "conversionFixes.MobEntity_conversionMixin",
     "conversionFixes.MooshroomEntity_conversionMixin",
     "conversionFixes.SlimeEntity_conversionMixin",
@@ -76,13 +83,7 @@
     "itemFixes.ItemStack_repairCostMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
-    "redstoneFixes.World_ComparatorNotUpdatingMixin",
-    "blockUpdates.duplicateUpdates.AbstractButtonBlock_updateMixin",
-    "blockUpdates.duplicateUpdates.ComparatorBlock_updateMixin",
-    "blockUpdates.duplicateUpdates.DetectorRailBlock_updateMixin",
-    "blockUpdates.duplicateUpdates.LeverBlock_updateMixin",
-    "blockUpdates.duplicateUpdates.PoweredRailBlock_updateMixin",
-    "blockUpdates.duplicateUpdates.RedstoneTorchBlock_updateMixin"
+    "redstoneFixes.World_ComparatorNotUpdatingMixin"
   ],
   "injectors": {
     "defaultRequire": 1}

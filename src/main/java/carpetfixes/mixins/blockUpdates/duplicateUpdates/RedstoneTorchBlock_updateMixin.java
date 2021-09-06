@@ -20,28 +20,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
 
 
+    RedstoneTorchBlock self = (RedstoneTorchBlock)(Object)this;
+
+
     @Shadow @Final public static BooleanProperty LIT;
 
 
     protected RedstoneTorchBlock_updateMixin(Settings settings, ParticleEffect particle) {super(settings, particle);}
-
-
-    @Inject(
-            method="onBlockAdded",
-            at=@At("HEAD"),
-            cancellable = true
-    )
-    public void onBlockAddedBetter(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
-        if (CarpetFixesSettings.duplicateBlockUpdatesFix) {
-            Direction[] var6 = Direction.values();
-            int var7 = var6.length;
-            for (int var8 = 0; var8 < var7; ++var8) {
-                Direction direction = var6[var8];
-                world.updateNeighborsExcept(pos.offset(direction),this,direction.getOpposite());
-            }
-            ci.cancel();
-        }
-    }
 
 
     @Inject(
@@ -57,10 +42,41 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
                     int var7 = var6.length;
                     for (int var8 = 0; var8 < var7; ++var8) {
                         Direction direction = var6[var8];
-                        world.updateNeighborsExcept(pos.offset(direction),this,direction.getOpposite());
+                        if (CarpetFixesSettings.uselessSelfBlockUpdateFix) { //Must include in this
+                            world.updateNeighborsExcept(pos.offset(direction), self, direction.getOpposite());
+                        } else {
+                            world.updateNeighborsAlways(pos.offset(direction), self);
+                        }
                     }
                 }
                 super.onStateReplaced(state, world, pos, newState, moved); //Added missing: super.onStateReplaced(...)
+            }
+            ci.cancel();
+        } else if (CarpetFixesSettings.uselessSelfBlockUpdateFix) { // Do CarpetFixesSettings.uselessSelfBlockUpdateFix here
+            if (!moved) {
+                Direction[] var6 = Direction.values();
+                int var7 = var6.length;
+                for(int var8 = 0; var8 < var7; ++var8) {
+                    Direction direction = var6[var8];
+                    world.updateNeighborsExcept(pos.offset(direction),self,direction.getOpposite());
+                }
+            }
+            ci.cancel();
+        }
+    }
+
+    @Inject(
+            method="onBlockAdded",
+            at=@At("HEAD"),
+            cancellable = true
+    )
+    public void onBlockAddedBetter(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
+        if (CarpetFixesSettings.uselessSelfBlockUpdateFix) {
+            Direction[] var6 = Direction.values();
+            int var7 = var6.length;
+            for (int var8 = 0; var8 < var7; ++var8) {
+                Direction direction = var6[var8];
+                world.updateNeighborsExcept(pos.offset(direction),self,direction.getOpposite());
             }
             ci.cancel();
         }

@@ -434,6 +434,13 @@ Fixes trees considering the bottom block as a trunk and modifying leaves because
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 
+## uselessSelfBlockUpdateFix
+Fixes blocks using updateNeighbors() on blocks next to them, making itself get a block update even though it does not accept block updates
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
 * Type: `boolean`

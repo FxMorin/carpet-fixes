@@ -510,6 +510,13 @@ public class CarpetFixesSettings {
     )
     public static boolean treeTrunkLogicFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes blocks using updateNeighbors() on blocks next to them, making itself get a block update even though it does not accept block updates",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean uselessSelfBlockUpdateFix = false;
+
     /*
 
     BACKPORTS
