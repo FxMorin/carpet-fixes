@@ -79,6 +79,7 @@
     "entityFixes.MobEntity_leashUpdateOrderMixin",
     "entityFixes.ServerPlayerEntity_spectatorMixin",
     "entityFixes.TntEntity_netherPortalMixin",
+    "entityFixes.TntMinecartEntity_doubleExplodeMixin",
     "itemFixes.ItemEntity_lightningKillsDropsMixin",
     "itemFixes.ItemStack_repairCostMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",

@@ -517,6 +517,13 @@ public class CarpetFixesSettings {
     )
     public static boolean uselessSelfBlockUpdateFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Tnt Minecarts being able to explode twice, killing there own drops",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean tntMinecartExplodesTwiceFix = false;
+
     /*
 
     BACKPORTS
