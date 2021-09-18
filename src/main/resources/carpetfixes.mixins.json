@@ -12,7 +12,7 @@
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
-    "blockFixes.PistonBlock_bedrockBreakingMixin",
+    "blockFixes.PistonBlock_illegalBreakingMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",

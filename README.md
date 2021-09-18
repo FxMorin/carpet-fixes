@@ -309,13 +309,15 @@ Fixes Withers and Golems not spawning due to replaceable blocks being in the way
 * Categories: `CARPETFIXES`,`BUGFIX`,`INTENDED`
 * Fixes: [MC-60792](https://bugs.mojang.com/browse/MC-60792)
 
-## bedrockBreakingFix
-Fixes Bedrock Breaking using headless pistons
+## illegalBreakingFix
+Fixes Breaking blocks that should not be able to be broken using headless pistons.
 * Type: `boolean`
 * Default value: `false`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-188220](https://bugs.mojang.com/browse/MC-188220)
+* Additional notes:
+  * Illegal blocks are any blocks that have a hardness value of -1.0F
 
 ## headlessPistonFix
 Fixes being able to make and use Headless Pistons
@@ -387,14 +389,6 @@ Fixes being able to make permanent invulnerable end crystals
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`,`EXPERIMENTAL`
 
-## sculkSensorPrecisionLossFix
-Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance
-* Type: `boolean`
-* Default value: `false`
-* Required options: `false`,`true`
-* Categories: `CARPETFIXES`,`BUGFIX`
-* Fixes: [MC-218222](https://bugs.mojang.com/browse/MC-218222)
-
 ## creeperPortalFuseResetsFix
 Fixes creepers resetting there fuse duration when travelling through a nether portal after being ignited by flint & steel
 * Type: `boolean`
@@ -440,6 +434,15 @@ Fixes blocks using updateNeighbors() on blocks next to them, making itself get a
 * Default value: `false`
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
+
+## sculkSensorPrecisionLossFix
+Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-218222](https://bugs.mojang.com/browse/MC-218222)
+* Solution By: *ncolyer*
 
 ## drownedEnchantedTridentsFix
 Makes enchantments work on tridents thrown by drowned
