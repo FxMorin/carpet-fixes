@@ -24,7 +24,7 @@ public abstract class PistonBlock_headlessMixin extends FacingBlock {
 
     /**
      * Prevents Headless pistons from existing, since headless pistons are able to break any
-     * block in the game. This fix prevents bedrock breaking!
+     * block in the game. This fix prevents should prevent being able to break most blocks such as bedrock!
      */
 
 
