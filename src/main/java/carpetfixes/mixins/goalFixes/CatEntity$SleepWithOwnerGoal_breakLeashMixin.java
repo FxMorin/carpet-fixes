@@ -1,4 +1,4 @@
-package carpetfixes.mixins.entityFixes;
+package carpetfixes.mixins.goalFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.entity.passive.CatEntity;

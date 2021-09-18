@@ -520,10 +520,17 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes Tnt Minecarts being able to explode twice, killing there own drops",
+            desc = "Fixes Tnt Minecarts being able to explode twice, killing their own drops",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean tntMinecartExplodesTwiceFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Zombies & Vindicators being able to break any block where a door was",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean breakAnythingDoorGoalFix = false;
 
     /*
 

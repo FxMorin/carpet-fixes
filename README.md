@@ -435,6 +435,21 @@ Fixes blocks using updateNeighbors() on blocks next to them, making itself get a
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 
+## tntMinecartExplodesTwiceFix
+Fixes Tnt Minecarts being able to explode twice, killing their own drops
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+
+## breakAnythingDoorGoalFix
+Fixes Zombies & Vindicators being able to break any block where a door was
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-95467](https://bugs.mojang.com/browse/MC-95467)
+
 ## sculkSensorPrecisionLossFix
 Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance
 * Type: `boolean`

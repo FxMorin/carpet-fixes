@@ -12,8 +12,8 @@
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
-    "blockFixes.PistonBlock_illegalBreakingMixin",
     "blockFixes.PistonBlock_headlessMixin",
+    "blockFixes.PistonBlock_illegalBreakingMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
@@ -57,14 +57,12 @@
     "dupeFixes.SimpleInventory_dataDupeMixin",
     "entityFixes.BeeEntity_chunkLoadingMixin",
     "entityFixes.BeeEntity_voidMixin",
-    "entityFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
     "entityFixes.CatSpawner_incorrectCatMixin",
     "entityFixes.CreeperEntity_fuseMixin",
     "entityFixes.DrownedEntity_enchantedTridentMixin",
     "entityFixes.EndCrystalEntity_ExplosionChainingMixin",
     "entityFixes.EndCrystalEntity_InvulnerableMixin",
     "entityFixes.EnderDragonFight_respawnMixin",
-    "entityFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "entityFixes.EndermanEntity_teleportingMixin",
     "entityFixes.Entity_blockCollisionMixin",
     "entityFixes.Entity_centerCollisionMixin",
@@ -80,6 +78,9 @@
     "entityFixes.ServerPlayerEntity_spectatorMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
+    "goalFixes.BreakDoorGoal_breakAnythingMixin",
+    "goalFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
+    "goalFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "itemFixes.ItemEntity_lightningKillsDropsMixin",
     "itemFixes.ItemStack_repairCostMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
@@ -87,5 +88,6 @@
     "redstoneFixes.World_ComparatorNotUpdatingMixin"
   ],
   "injectors": {
-    "defaultRequire": 1}
+    "defaultRequire": 1
+  }
 }
