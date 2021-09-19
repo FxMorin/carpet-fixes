@@ -26,11 +26,6 @@ See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wik
 This mod works for both Singleplayer & Multiplayer, although it only modifies server-side functionality!
 The mod does **not** fix any client-side bugs!
 
-## Contributors
-<a href="https://github.com/fxmorin/carpet-fixes/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=fxmorin/carpet-fixes" />
-</a>
-
 
 
 
