@@ -1,7 +1,7 @@
 # Carpet-Fixes
-[Fabric Carpet](https://github.com/gnembon/fabric-carpet) extension mod which attempts to fix as many vanilla bugs as possible!
+[Fabric Carpet](https://github.com/gnembon/fabric-carpet) extension mod which attempts to fix as many vanilla minecraft bugs as possible!
 
-Feel free to contribute by adding as many fixes as you want
+If you enjoy the mod, help me out by giving this project a star, thanks.
 
 Join my discord for more information, updates, and discussion on the mod [FX's Discord](https://discord.gg/vurv5pdFpa)
 
@@ -449,6 +449,14 @@ Fixes Zombies & Vindicators being able to break any block where a door was
 * Required options: `false`,`true`
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-95467](https://bugs.mojang.com/browse/MC-95467)
+
+## blackstoneButtonBreakSpeedFix
+Fixes Blackstone Buttons taking longer then other buttons to break
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-199752](https://bugs.mojang.com/browse/MC-199752)
 
 ## sculkSensorPrecisionLossFix
 Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance

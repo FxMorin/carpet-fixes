@@ -83,6 +83,7 @@
     "goalFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "itemFixes.ItemEntity_lightningKillsDropsMixin",
     "itemFixes.ItemStack_repairCostMixin",
+    "itemFixes.PickaxeItem_blackstoneButtonMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
     "redstoneFixes.World_ComparatorNotUpdatingMixin"

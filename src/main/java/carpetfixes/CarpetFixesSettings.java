@@ -532,6 +532,14 @@ public class CarpetFixesSettings {
     )
     public static boolean breakAnythingDoorGoalFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Blackstone Buttons taking longer then other buttons to break",
+            extra = "Fixes [MC-199752](https://bugs.mojang.com/browse/MC-199752)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean blackstoneButtonBreakSpeedFix = false;
+
     /*
 
     BACKPORTS
@@ -660,5 +668,4 @@ public class CarpetFixesSettings {
             return newValue;
         }
     }
-
 }
