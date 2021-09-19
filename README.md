@@ -458,6 +458,14 @@ Fixes Blackstone Buttons taking longer then other buttons to break
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-199752](https://bugs.mojang.com/browse/MC-199752)
 
+## transparentBlocksNegateEnchantingFix
+Fixes Transparent blocks placed between bookshelves and enchanting tables negating bonuses received
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-2474](https://bugs.mojang.com/browse/MC-2474)
+
 ## sculkSensorPrecisionLossFix
 Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance
 * Type: `boolean`

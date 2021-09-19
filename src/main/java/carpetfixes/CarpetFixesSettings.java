@@ -540,6 +540,14 @@ public class CarpetFixesSettings {
     )
     public static boolean blackstoneButtonBreakSpeedFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Transparent blocks placed between bookshelves and enchanting tables negating bonuses received",
+            extra = "Fixes [MC-2474](https://bugs.mojang.com/browse/MC-2474)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean transparentBlocksNegateEnchantingFix = false;
+
     /*
 
     BACKPORTS

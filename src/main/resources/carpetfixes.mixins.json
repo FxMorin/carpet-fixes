@@ -86,7 +86,8 @@
     "itemFixes.PickaxeItem_blackstoneButtonMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
-    "redstoneFixes.World_ComparatorNotUpdatingMixin"
+    "redstoneFixes.World_ComparatorNotUpdatingMixin",
+    "screenHandlerFixes.EnchantmentScreenHandler_transparentBlocksMixin"
   ],
   "injectors": {
     "defaultRequire": 1
