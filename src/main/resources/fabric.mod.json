@@ -1,16 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "carpetfixes",
+  "id": "carpet-fixes",
   "version": "${version}",
-
   "name": "Carpet Fixes",
-  "description": "The carpet extension to fix all vanilla bugs",
+  "description": "The carpet extension to fix all vanilla minecraft bugs",
   "authors": [
-    "PR0CESS",
-    "DeadlyMC",
-    "Fallen-Breath",
-    "Hendrix-Shen",
-    "Copetan"
+    "FX - PR0CESS, ..."
   ],
   "contact": {
     "homepage": "https://github.com/fxmorin/carpet-fixes",
@@ -18,8 +13,8 @@
     "issues": "https://github.com/fxmorin/carpet-fixes/issues"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/carpetfixes/icon.png",
+  "license": "LGPL-3.0",
+  "icon": "assets/carpet-fixes/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -28,9 +23,9 @@
     ]
   },
   "mixins": [
-    "carpetfixes.mixins.json"
+    "carpet-fixes.mixins.json"
   ],
-  "accessWidener" : "carpetfixes.accesswidener",
+  "accessWidener" : "carpet-fixes.accesswidener",
   "depends": {
     "minecraft": "1.17.x",
     "fabricloader": ">=0.11.3",
@@ -39,7 +34,8 @@
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.discord": "https://discord.gg/scicraft"
+        "modmenu.discord": "https://discord.gg/mezndgtD83",
+        "SciCraft": "https://discord.gg/scicraft"
       },
       "parent": "carpet"
     }
