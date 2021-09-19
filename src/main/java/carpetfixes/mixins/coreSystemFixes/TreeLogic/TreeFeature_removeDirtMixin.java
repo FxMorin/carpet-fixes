@@ -15,6 +15,7 @@ public class TreeFeature_removeDirtMixin {
 
 
     @Redirect(
+            require=0,
             method= "placeLogsAndLeaves(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockBox;Ljava/util/Set;Ljava/util/Set;)Lnet/minecraft/util/shape/VoxelSet;",
             at=@At(
                     value="INVOKE",
