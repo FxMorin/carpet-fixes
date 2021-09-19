@@ -564,6 +564,14 @@ public class CarpetFixesSettings {
     )
     public static boolean bedsCanBeInWorldBorderFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes item frames playing a sound when they are read from nbt",
+            extra = "Fixes [MC-117800](https://bugs.mojang.com/browse/MC-117800)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean itemFramePlaysSoundOnReadFix = false;
+
     /*
 
     BACKPORTS

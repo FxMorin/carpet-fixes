@@ -74,6 +74,7 @@
     "entityFixes.FallingBlockEntity_netherPortalMixin",
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
+    "entityFixes.ItemFrameEntity_soundMixin",
     "entityFixes.LivingEntity_sleepingKillsMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
