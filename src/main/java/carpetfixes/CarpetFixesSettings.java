@@ -556,6 +556,14 @@ public class CarpetFixesSettings {
     )
     public static boolean chestUsablePastWorldBorderFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to place half beds outside of the world border",
+            extra = "Fixes [MC-117800](https://bugs.mojang.com/browse/MC-117800)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean bedsCanBeInWorldBorderFix = false;
+
     /*
 
     BACKPORTS

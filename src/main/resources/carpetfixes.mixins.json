@@ -10,6 +10,7 @@
     "backports.TargetBlock_PermanentlyPoweredMixin",
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
+    "blockFixes.BedBlock_worldBorderMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.ChestBlock_worldBorderMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
