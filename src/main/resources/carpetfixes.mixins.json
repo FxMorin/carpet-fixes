@@ -11,6 +11,7 @@
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
+    "blockFixes.ChestBlock_worldBorderMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PistonBlock_illegalBreakingMixin",

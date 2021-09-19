@@ -548,6 +548,14 @@ public class CarpetFixesSettings {
     )
     public static boolean transparentBlocksNegateEnchantingFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes chests being accessible outside the world border by placing a chest near it, simply by preventing chests from merging at the world border",
+            extra = "Fixes [MC-67844](https://bugs.mojang.com/browse/MC-67844)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean chestUsablePastWorldBorderFix = false;
+
     /*
 
     BACKPORTS
