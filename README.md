@@ -9,16 +9,27 @@
 
 If you enjoy the mod, help me out by giving this project a star, thanks.
 
-Join my discord for more information, updates, and discussion on the mod [FX's Discord](https://discord.gg/vurv5pdFpa)
-
-This mod works for both Singleplayer & Multiplayer, although it only modifies server-side code!
-
 ## Settings
 
 See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings)
 
 ## Stats
 #### Bugs Fixed: `73`
+
+## How to Use
+*coming soon*
+
+## Contributing
+*coming soon*
+
+## More detail
+This mod works for both Singleplayer & Multiplayer, although it only modifies server-side functionality!
+The mod does **not** fix any client-side bugs!
+
+## Contributors
+<a href="https://github.com/fxmorin/carpet-fixes/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=fxmorin/carpet-fixes" />
+</a>
 
 
 
