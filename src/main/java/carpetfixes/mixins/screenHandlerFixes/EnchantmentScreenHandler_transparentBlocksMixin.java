@@ -14,7 +14,6 @@ public class EnchantmentScreenHandler_transparentBlocksMixin {
 
     @SuppressWarnings("target")
     @Redirect(
-            remap = false,
             method="method_17411(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
             at=@At(
                     value="INVOKE",
