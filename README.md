@@ -466,6 +466,30 @@ Fixes Transparent blocks placed between bookshelves and enchanting tables negati
 * Categories: `CARPETFIXES`,`BUGFIX`
 * Fixes: [MC-2474](https://bugs.mojang.com/browse/MC-2474)
 
+## chestUsablePastWorldBorderFix
+Fixes chests being accessible outside the world border by placing a chest near it, simply by preventing chests from merging at the world border
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-67844](https://bugs.mojang.com/browse/MC-67844)
+
+## bedsCanBeInWorldBorderFix
+Fixes being able to place half beds outside of the world border
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-117800](https://bugs.mojang.com/browse/MC-117800)
+
+## itemFramePlaysSoundOnReadFix
+Fixes item frames playing a sound when they are read from nbt
+* Type: `boolean`
+* Default value: `false`
+* Required options: `false`,`true`
+* Categories: `CARPETFIXES`,`BUGFIX`
+* Fixes: [MC-123450](https://bugs.mojang.com/browse/MC-123450)
+
 ## sculkSensorPrecisionLossFix
 Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance
 * Type: `boolean`
