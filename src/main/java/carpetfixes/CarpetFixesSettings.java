@@ -74,15 +74,12 @@ public class CarpetFixesSettings {
     public static boolean observerUpdateFix = false;
 
     //By FX - PR0CESS
-    /*
-    To Be Implemented
     @Rule(
             desc = "Fixes sticky piston heads not giving a block update when failing to pull slime",
             extra = "Fixes [MC-185572](https://bugs.mojang.com/browse/MC-185572)",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean pistonPullingUpdateFix = false;
-     */
 
     //By FX - PR0CESS
     @Rule(

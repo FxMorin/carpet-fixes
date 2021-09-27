@@ -25,6 +25,7 @@
     "blockUpdates.DetectorRailBlock_comparatorMixin",
     "blockUpdates.HopperBlock_missingUpdateMixin",
     "blockUpdates.ObserverBlock_missingUpdateMixin",
+    "blockUpdates.PistonBlock_missingUpdateMixin",
     "blockUpdates.SpongeBlock_missingUpdateMixin",
     "blockUpdates.TrapdoorBlock_missingUpdateMixin",
     "blockUpdates.World_blockUpdateOrderMixin",
