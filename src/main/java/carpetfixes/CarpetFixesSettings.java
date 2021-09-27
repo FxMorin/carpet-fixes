@@ -569,6 +569,14 @@ public class CarpetFixesSettings {
     )
     public static boolean itemFramePlaysSoundOnReadFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes commands not allowing all nbt tags to work correctly",
+            extra = "Fixes [MC-112257](https://bugs.mojang.com/browse/MC-112257)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean incorrectNbtChecks = false;
+
     /*
 
     BACKPORTS
