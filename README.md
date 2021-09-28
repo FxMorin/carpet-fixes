@@ -26,6 +26,13 @@ See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wik
 This mod works for both Singleplayer & Multiplayer, although it only modifies server-side functionality!
 The mod does **not** fix any client-side bugs!
 
+---
 
+[![YourKit](https://www.yourkit.com/images/yklogo.png)](https://www.yourkit.com/)
 
+### YourKit supports open source projects with innovative and intelligent tools for monitoring and profiling Java and .NET applications.
+### YourKit is the creator of [YourKit Java Profiler](https://www.yourkit.com/java/profiler/), [YourKit .NET Profiler](https://www.yourkit.com/.net/profiler/), and [YourKit YouMonitor](https://www.yourkit.com/youmonitor/)
 
+I'm using YourKit's Java Profiler for this project, to make sure that this mod does not cause any memory leaks or degrade performance!
+
+---
