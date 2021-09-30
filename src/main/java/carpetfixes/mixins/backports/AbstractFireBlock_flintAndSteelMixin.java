@@ -2,6 +2,7 @@ package carpetfixes.mixins.backports;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.AbstractFireBlock;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -28,7 +29,7 @@ public class AbstractFireBlock_flintAndSteelMixin {
             ),
             cancellable = true
     )
-    private static void canPlaceAt(World world, BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir){
-        if(CarpetFixesSettings.oldFlintAndSteelBehavior) cir.setReturnValue(true);
+    private static void canPlaceAt(World world, BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
+        if(CarpetFixesSettings.oldFlintAndSteelBehavior && world.getBlockState(blockPos.down()).getBlock() != Blocks.FIRE) cir.setReturnValue(true);
     }
 }
