@@ -16,6 +16,7 @@ public class SculkSensorBlockEntity_roundMixin {
      */
     @Overwrite
     public static int getPower(int distance, int range) {
-        return CarpetFixesSettings.sculkSensorPrecisionLossFix ? MathHelper.floor((double)distance*-14.99d+15.99d) : Math.max(1,15-MathHelper.floor(((double)distance / (double)range)*15.0D));
+        double d = (double)distance / (double)range;
+        return CarpetFixesSettings.sculkSensorPrecisionLossFix ? MathHelper.floor(d*-14.99d+15.99d) : Math.max(1,15-MathHelper.floor(((double)distance / (double)range)*15.0D));
     }
 }
