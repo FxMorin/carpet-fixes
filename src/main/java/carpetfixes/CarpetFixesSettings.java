@@ -585,6 +585,14 @@ public class CarpetFixesSettings {
     )
     public static boolean endPortalRemovesEffectsFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes burnt-out redstone torches having inconsistent behavior for turning on again",
+            extra = "Fixes [MC-120938](https://bugs.mojang.com/browse/MC-120938)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean inconsistentRedstoneTorchFix = false;
+
     /*
 
     BACKPORTS
