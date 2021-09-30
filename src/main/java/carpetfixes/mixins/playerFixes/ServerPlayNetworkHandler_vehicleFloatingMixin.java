@@ -1,4 +1,4 @@
-package carpetfixes.mixins.coreSystemFixes;
+package carpetfixes.mixins.playerFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;

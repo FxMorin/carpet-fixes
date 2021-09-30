@@ -577,6 +577,14 @@ public class CarpetFixesSettings {
     )
     public static boolean incorrectNbtChecks = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the end portal removing your status effects when going from the overworld to the end",
+            extra = "Fixes [MC-6431](https://bugs.mojang.com/browse/MC-6431)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean endPortalRemovesEffectsFix = false;
+
     /*
 
     BACKPORTS

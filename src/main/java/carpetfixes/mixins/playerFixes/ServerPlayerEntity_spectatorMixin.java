@@ -1,4 +1,4 @@
-package carpetfixes.mixins.entityFixes;
+package carpetfixes.mixins.playerFixes;
 
 import org.spongepowered.asm.mixin.Mixin;
 import com.mojang.authlib.GameProfile;

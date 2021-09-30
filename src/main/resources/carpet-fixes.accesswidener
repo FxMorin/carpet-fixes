@@ -8,3 +8,4 @@ accessible field net/minecraft/entity/Entity netherPortalCooldown I
 accessible field net/minecraft/entity/Entity lastNetherPortalPosition Lnet/minecraft/util/math/BlockPos;
 accessible field net/minecraft/entity/mob/CreeperEntity lastFuseTime I
 accessible field net/minecraft/entity/mob/CreeperEntity currentFuseTime I
+accessible field net/minecraft/entity/LivingEntity activeStatusEffects Ljava/util/Map;
