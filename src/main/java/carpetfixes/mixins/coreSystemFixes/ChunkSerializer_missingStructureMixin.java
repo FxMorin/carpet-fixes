@@ -35,13 +35,10 @@ public class ChunkSerializer_missingStructureMixin {
     @Inject(
             method = "readStructureReferences",
             require = 0,
-            at = @At(
-                    value="INVOKE",
-                    target="Lorg/apache/logging/log4j/Logger;warn(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V",
-                    ordinal = 0
-            ))
+            at = @At("TAIL")
+    )
     private static void readInvalidStructures(ChunkPos pos, NbtCompound nbt, CallbackInfoReturnable<Map<StructureFeature<?>, LongSet>> cir) {
-        if (CarpetFixesSettings.missingStructureCorruptionFix) {
+        if (CarpetFixesSettings.missingStructureCorruptionFix && cir.getReturnValue().remove(null) != null) {
             ChunkSerializer_missingStructureMixin.preSaveList.set(true);
         }
     }
