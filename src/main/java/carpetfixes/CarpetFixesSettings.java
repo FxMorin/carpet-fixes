@@ -58,10 +58,11 @@ public class CarpetFixesSettings {
     public static boolean spongeUpdateFix = false;
 
     //By FX - PR0CESS
+    //Recommended since it allows illegal blocks to be made. Suppresses Multiple Updates
     @Rule(
             desc = "Makes it so that hoppers give block updates when placed while powered",
             extra = "Fixes https://www.youtube.com/watch?v=QVOONJ1OY44",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean hopperUpdateFix = false;
 
@@ -74,10 +75,11 @@ public class CarpetFixesSettings {
     public static boolean observerUpdateFix = false;
 
     //By FX - PR0CESS
+    //Recommended since it allows illegal blocks to be made. Suppresses Lots of Update
     @Rule(
             desc = "Fixes sticky piston heads not giving a block update when failing to pull slime",
             extra = "Fixes [MC-185572](https://bugs.mojang.com/browse/MC-185572)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean pistonPullingUpdateFix = false;
 
@@ -85,7 +87,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes StringTag Exploits due to StringTag writeUTF() not respecting readUTF() Limits causing crashes internally",
             extra = "Fixes ChunkRegen & [MC-134892](https://bugs.mojang.com/browse/MC-134892)",
-            category = {CARPETFIXES,BUGFIX,CRASHFIX}
+            category = {CARPETFIXES,BUGFIX,CRASHFIX,RECOMMENDED,VANILLA}
     )
     public static boolean stringTagExploitFix = false;
 
@@ -122,9 +124,10 @@ public class CarpetFixesSettings {
     public static boolean comparatorUpdateFix = false;
 
     //by FX - PR0CESS
+    //Recommended since it not only negates a crash but also tried to keep behaviour after it
     @Rule(
             desc = "Prevents update suppression from working. When the stack is reached, the following updates are moved to the next tick",
-            category = {CARPETFIXES,BUGFIX,CRASHFIX}
+            category = {CARPETFIXES,BUGFIX,CRASHFIX,RECOMMENDED}
     )
     public static boolean updateSuppressionFix = false;
 
@@ -156,7 +159,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes cats sometimes breaking there leads after giving a gift",
             extra = "Fixes [MC-202607](https://bugs.mojang.com/browse/MC-202607)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean catsBreakLeadsDuringGiftFix = false;
 
@@ -164,7 +167,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes Leashed pets teleporting to the player when reloaded",
             extra = "Fixes [MC-173303](https://bugs.mojang.com/browse/MC-173303)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean petsBreakLeadsDuringReloadFix = false;
 
@@ -180,7 +183,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes enderman constantly trying to teleport when in a minecart under daylight",
             extra = "Fixes [MC-227008](https://bugs.mojang.com/browse/MC-227008)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,VANILLA}
     )
     public static boolean endermanUselessMinecartTeleportingFix = false;
 
@@ -188,7 +191,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes rails updating other rails before checking if they are in a valid location",
             extra = "Fixes [MC-174864](https://bugs.mojang.com/browse/MC-174864)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX}
     )
     public static boolean railInvalidUpdateOnPushFix = false;
 
@@ -196,7 +199,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes rails not updating other rails on being moved, allowing for invalid states",
             extra = {"Prevents redstone budding from working","Fixes [MC-123311](https://bugs.mojang.com/browse/MC-123311)"},
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX}
     )
     public static boolean railMissingUpdateOnPushFix = false;
 
@@ -204,7 +207,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes rails not updating other rails after being moved",
             extra = "Fixes [MC-96224](https://bugs.mojang.com/browse/MC-96224)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX}
     )
     public static boolean railMissingUpdateAfterPushFix = false;
 
@@ -217,10 +220,11 @@ public class CarpetFixesSettings {
     public static boolean endVoidRingsFix = false;
 
     //by FX - PR0CESS
+    //Recommended since it just prevents the server from kicking you for not hacking
     @Rule(
             desc = "Fixes getting kicked for flying too long when jumping and riding an entity",
             extra = "Fixes [MC-98727](https://bugs.mojang.com/browse/MC-98727)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA}
     )
     public static boolean mountingFlyingTooLongFix = false;
 
@@ -228,7 +232,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes fall damage being delayed by sleeping, fall damage will be removed instead",
             extra = "Fixes [MC-19830](https://bugs.mojang.com/browse/MC-19830)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean sleepingDelaysFallDamageFix = false;
 
@@ -249,10 +253,11 @@ public class CarpetFixesSettings {
     public static boolean fallingBlocksCantUseNetherPortalsFix = false;
 
     //by FX - PR0CESS
+    //Marked as vanilla since it does not change any behaviour, just keeps spawn chunks loaded
     @Rule(
             desc = "Fixes Spawn Chunks not ticking entities and block entities if no player online",
             extra = "Fixes [MC-59134](https://bugs.mojang.com/browse/MC-59134)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,VANILLA}
     )
     public static boolean spawnChunkEntitiesUnloadingFix = false;
 
@@ -260,7 +265,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes Named Blocks not stacking due to useless RepairCost tag",
             extra = "Fixes [MC-197473](https://bugs.mojang.com/browse/MC-197473)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean repairCostItemNotStackingFix = false;
 
@@ -285,7 +290,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes incorrect cat types spawning inside swamp huts",
             extra = "Fixes [MC-147659](https://bugs.mojang.com/browse/MC-147659)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA}
     )
     public static boolean witchHutsSpawnIncorrectCatFix = false;
 
@@ -301,7 +306,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes being able to fish outside of water",
             extra = "Fixes [MC-175544](https://bugs.mojang.com/browse/MC-175544)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean fishingOutsideWaterFix = false;
 
@@ -309,7 +314,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes being able to dupe items using the /give command",
             extra = "Fixes [MC-120507](https://bugs.mojang.com/browse/MC-120507)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean giveCommandDupeFix = false;
 
@@ -317,7 +322,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes experience orbs acting as if flowing lava is a full block",
             extra = "Fixes [MC-226961](https://bugs.mojang.com/browse/MC-226961)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean xpOrbCollisionFix = false;
 
@@ -352,7 +357,7 @@ public class CarpetFixesSettings {
             desc = "Fixes Withers and Golems not spawning due to replaceable blocks being in the way",
             extra = "Fixes [MC-60792](https://bugs.mojang.com/browse/MC-60792)",
             validate = WitherGolemSpawningFixValidator.class,
-            category = {CARPETFIXES,BUGFIX,INTENDED}
+            category = {CARPETFIXES,BUGFIX,INTENDED,RECOMMENDED}
     )
     public static boolean witherGolemSpawningFix = false;
 
@@ -361,7 +366,7 @@ public class CarpetFixesSettings {
             desc = "Fixes Breaking blocks that should not be able to be broken using headless pistons",
             extra = {"Illegal blocks are any blocks that have a hardness value of -1.0F",
                      "Fixes [MC-188220](https://bugs.mojang.com/browse/MC-188220)"},
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean illegalBreakingFix = false;
 
@@ -369,7 +374,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes being able to make and use Headless Pistons",
             extra = "Fixes [MC-27056](https://bugs.mojang.com/browse/MC-27056)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean headlessPistonFix = false;
 
@@ -394,7 +399,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes incorrect explosion exposure calculations",
             extra = "Fixes [MC-232355](https://bugs.mojang.com/browse/MC-232355)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA}
     )
     public static boolean incorrectExplosionExposureFix = false;
 
@@ -402,15 +407,17 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes /data duping inventories when modifying entity data",
             extra = "Fixes [MC-112826](https://bugs.mojang.com/browse/MC-112826) & [MC-191011](https://bugs.mojang.com/browse/MC-191011)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA}
     )
     public static boolean nbtDataDupeFix = false;
 
     //by FX - PR0CESS
+    //Recommended even thought its experimental since it does save a ton of performance
+    //Marked as Vanilla since its very very hard to run into a situation where it affects vanilla
     @Rule(
             desc = "Fixes some redstone components send duplicated block updates",
             extra = "Fixes [MC-231071](https://bugs.mojang.com/browse/MC-231071)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL,RECOMMENDED,VANILLA}
     )
     public static boolean duplicateBlockUpdatesFix = false;
 
@@ -434,7 +441,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes bees getting stuck in the void due to gravity being disabled",
             extra = "Fixes [MC-167279](https://bugs.mojang.com/browse/MC-167279)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean beeStuckInVoidFix = false;
 
@@ -465,7 +472,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance",
             extra = "Fixes [MC-218222](https://bugs.mojang.com/browse/MC-218222)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
     )
     public static boolean sculkSensorPrecisionLossFix = false;
 
@@ -481,7 +488,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes soul speed enchantment from damaging boots when riding a vehicle",
             extra = "Fixes [MC-200991](https://bugs.mojang.com/browse/MC-200991)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean soulSpeedIncorrectDamageFix = false;
 
@@ -489,7 +496,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes placing end crystals too early doesn't resummon the Ender Dragon",
             extra = "Fixes [MC-215763](https://bugs.mojang.com/browse/MC-215763)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean endCrystalPlacingTooEarlyFix = false;
 
@@ -511,21 +518,21 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes blocks using updateNeighbors() on blocks next to them, making itself get a block update even though it does not accept block updates",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA}
     )
     public static boolean uselessSelfBlockUpdateFix = false;
 
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes Tnt Minecarts being able to explode twice, killing their own drops",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,VANILLA}
     )
     public static boolean tntMinecartExplodesTwiceFix = false;
 
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes Zombies & Vindicators being able to break any block where a door was",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean breakAnythingDoorGoalFix = false;
 
@@ -541,7 +548,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes Transparent blocks placed between bookshelves and enchanting tables negating bonuses received",
             extra = "Fixes [MC-2474](https://bugs.mojang.com/browse/MC-2474)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean transparentBlocksNegateEnchantingFix = false;
 
@@ -565,7 +572,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes item frames playing a sound when they are read from nbt",
             extra = "Fixes [MC-123450](https://bugs.mojang.com/browse/MC-123450)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,VANILLA}
     )
     public static boolean itemFramePlaysSoundOnReadFix = false;
 
@@ -573,7 +580,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes commands not allowing all nbt tags to work correctly",
             extra = "Fixes [MC-112257](https://bugs.mojang.com/browse/MC-112257)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean incorrectNbtChecks = false;
 
@@ -581,7 +588,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes the end portal removing your status effects when going from the overworld to the end",
             extra = "Fixes [MC-6431](https://bugs.mojang.com/browse/MC-6431)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean endPortalRemovesEffectsFix = false;
 
@@ -589,7 +596,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes burnt-out redstone torches having inconsistent behavior for turning on again",
             extra = "Fixes [MC-120938](https://bugs.mojang.com/browse/MC-120938)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean inconsistentRedstoneTorchFix = false;
 
@@ -605,7 +612,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes saved worlds corrupting due to missing structures",
             extra = "Fixes [MC-194811](https://bugs.mojang.com/browse/MC-194811)",
-            category = {CARPETFIXES,BUGFIX,CRASHFIX}
+            category = {CARPETFIXES,BUGFIX,CRASHFIX,RECOMMENDED,VANILLA}
     )
     public static boolean missingStructureCorruptionFix = false;
 
