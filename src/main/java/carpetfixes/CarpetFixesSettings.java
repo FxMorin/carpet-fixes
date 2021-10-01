@@ -601,6 +601,14 @@ public class CarpetFixesSettings {
     )
     public static boolean foxesDropItemsWithLootOffFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes saved worlds corrupting due to missing structures",
+            extra = "Fixes [MC-194811](https://bugs.mojang.com/browse/MC-194811)",
+            category = {CARPETFIXES,BUGFIX,CRASHFIX}
+    )
+    public static boolean missingStructureCorruptionFix = false;
+
     /*
 
     BACKPORTS

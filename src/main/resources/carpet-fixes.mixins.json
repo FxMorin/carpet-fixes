@@ -41,6 +41,7 @@
     "conversionFixes.MooshroomEntity_conversionMixin",
     "conversionFixes.SlimeEntity_conversionMixin",
     "conversionFixes.VillagerEntity_conversionMixin",
+    "coreSystemFixes.ChunkSerializer_missingStructureMixin",
     "coreSystemFixes.EnderDragonFight_twoCrystalMixin",
     "coreSystemFixes.Explosion_exposureMixin",
     "coreSystemFixes.ServerWorld_rainTimerMixin",
