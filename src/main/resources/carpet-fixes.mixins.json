@@ -75,6 +75,7 @@
     "entityFixes.ExperienceOrbEntity_lavaCollisionMixin",
     "entityFixes.FallingBlockEntity_netherPortalMixin",
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
+    "entityFixes.FoxEntity_lootDropMixin",
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
     "entityFixes.ItemFrameEntity_soundMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",

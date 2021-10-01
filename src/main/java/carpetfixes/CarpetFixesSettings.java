@@ -593,6 +593,14 @@ public class CarpetFixesSettings {
     )
     public static boolean inconsistentRedstoneTorchFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes gamerule doMobLoot not effecting foxes from dropping their items",
+            extra = "Fixes [MC-153010](https://bugs.mojang.com/browse/MC-153010)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean foxesDropItemsWithLootOffFix = false;
+
     /*
 
     BACKPORTS
