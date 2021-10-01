@@ -21,6 +21,7 @@ public class SpongeBlock_missingUpdateMixin extends Block {
 
     @ModifyArg(
             method = "update(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
+            require = 0,
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
