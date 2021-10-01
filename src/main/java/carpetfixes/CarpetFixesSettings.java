@@ -12,34 +12,7 @@ import static carpetfixes.helpers.RuleCategory.*;
 
 public class CarpetFixesSettings {
 
-    //Don't include BUGFIX if the bug is not marked as Unresolved
-
-    public enum PresetSettings {
-        VANILLA, //Sets all rules to there default value
-        BACKPORT, //Sets all backports to true
-        CRASHFIX, //Sets all crashFixes to true
-        STABILITY, //Sets all crashfixes and stability fixes (Makes the game more stable)
-        NOTBACKPORTS, //Sets all rules to true except for backports (That are not crashfixes or stability fixes)
-        ALL, //Sets all rules to be the opposite of there default value
-        CUSTOM //Default (Does not get checked)
-    }
-
     //Add your name above the rules so people know who to contact about changing the code. E.x. By FX - PR0CESS
-
-    //By FX - PR0CESS
-    //Disabled until I figure out why it causes a crash, issue #15
-    /*@Rule(
-            desc = "This rule allows you to change all Carpet-Fixes rules at the same time!",
-            extra = {
-                    "Vanilla: All rules set to there default value",
-                    "CrashFix: Only rules that fix Crashes are enabled",
-                    "Stability: Rules that make the game stable",
-                    "All: Enable all rules",
-                    "Custom: Default (Does not change commands)"
-            },
-            category = {CARPETFIXES}
-    )
-    public static PresetSettings carpetFixesPreset = PresetSettings.VANILLA;*/
 
     //By FX - PR0CESS
     @Rule(

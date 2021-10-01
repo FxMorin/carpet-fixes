@@ -24,16 +24,13 @@ public class UpdateScheduler {
         while((nextBlockUpdate = tempUpdates.poll()) != null) {
             try {
                 world.updateNeighbor(nextBlockUpdate.pos, nextBlockUpdate.block, nextBlockUpdate.pos);
-            } catch (Throwable var7) {
-                //empty
-            }
+            } catch (Throwable var7) {}
         }
     }
 
     public void addScheduledUpdate(ScheduledUpdate update) {
         if (!this.currentUpdates.contains(update)) {
             this.currentUpdates.add(update);
-            //System.out.println("["+this.currentUpdates.size()+"] ScheduleUpdate - pos: "+update.pos.toShortString());
         }
     }
 
