@@ -2,34 +2,30 @@ package carpetfixes.mixins.coreSystemFixes.TreeLogic;
 
 import carpetfixes.CarpetFixesInit;
 import carpetfixes.CarpetFixesSettings;
-import com.google.common.collect.Lists;
+import net.minecraft.util.math.BlockBox;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelSet;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.feature.TreeFeature;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 @Mixin(TreeFeature.class)
 public class TreeFeature_removeDirtMixin {
 
 
-    @Redirect(
-            require=0,
+    @Inject(
             method= "placeLogsAndLeaves(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockBox;Ljava/util/Set;Ljava/util/Set;)Lnet/minecraft/util/shape/VoxelSet;",
-            at=@At(
-                    value="INVOKE",
-                    target="Lcom/google/common/collect/Lists;newArrayList(Ljava/lang/Iterable;)Ljava/util/ArrayList;",
-                    ordinal = 1
-            ))
-    private static <E> ArrayList<E> modifySet(Iterable<? extends E> elements) {
-        ArrayList<E> list = Lists.newArrayList(elements);
+            at=@At("HEAD")
+    )
+    private static void placeLogsAndLeaves(WorldAccess world, BlockBox box, Set<BlockPos> trunkPositions, Set<BlockPos> decorationPositions, CallbackInfoReturnable<VoxelSet> cir) {
         if (CarpetFixesSettings.treeTrunkLogicFix) {
-            CarpetFixesInit.lastDirt.forEach(list::remove);
-            CarpetFixesInit.lastDirt.clear();
-            return list;
+            trunkPositions.removeAll(CarpetFixesInit.lastDirt.get());
         }
-        CarpetFixesInit.lastDirt.clear();
-        return list;
+        CarpetFixesInit.lastDirt.get().clear();
     }
 }

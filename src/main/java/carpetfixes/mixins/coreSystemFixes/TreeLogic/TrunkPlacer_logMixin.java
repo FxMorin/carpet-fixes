@@ -11,7 +11,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.BiConsumer;
 
 @Mixin(TrunkPlacer.class)
@@ -23,6 +25,6 @@ public class TrunkPlacer_logMixin {
             at=@At("HEAD")
     )
     private static void setToDirtNotTrunk(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, BlockPos pos, TreeFeatureConfig config, CallbackInfo ci) {
-        CarpetFixesInit.lastDirt.add(pos);
+        CarpetFixesInit.lastDirt.get().add(pos);
     }
 }
