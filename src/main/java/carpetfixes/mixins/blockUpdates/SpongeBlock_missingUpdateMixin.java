@@ -19,16 +19,12 @@ public class SpongeBlock_missingUpdateMixin extends Block {
     public SpongeBlock_missingUpdateMixin(Settings settings) {super(settings);}
 
 
-    @ModifyArg(
-            method = "update(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
+    @ModifyConstant(
+            method = "Lnet/minecraft/block/SpongeBlock;update(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
             require = 0,
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
-            ),
-            index = 2
+            constant = @Constant(intValue = 2)
     )
-    protected int spongeUpdate(int value) {
+    private int spongeUpdate(int value) {
         return CarpetFixesSettings.spongeUpdateFix ? 3 : 2;
     }
 }
