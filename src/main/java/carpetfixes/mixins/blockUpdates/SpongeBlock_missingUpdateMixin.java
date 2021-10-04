@@ -24,7 +24,7 @@ public class SpongeBlock_missingUpdateMixin extends Block {
             require = 0,
             constant = @Constant(intValue = 2)
     )
-    private int spongeUpdate(int value) {
+    protected int spongeUpdate(int value) {
         return CarpetFixesSettings.spongeUpdateFix ? 3 : 2;
     }
 }
