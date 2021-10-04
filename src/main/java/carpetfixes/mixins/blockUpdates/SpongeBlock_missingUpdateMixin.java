@@ -20,7 +20,7 @@ public class SpongeBlock_missingUpdateMixin extends Block {
 
 
     @ModifyConstant(
-            method = "Lnet/minecraft/block/SpongeBlock;update(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
+            method = "update(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
             require = 0,
             constant = @Constant(intValue = 2)
     )
