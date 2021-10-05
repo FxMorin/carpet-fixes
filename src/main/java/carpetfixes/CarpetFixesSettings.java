@@ -591,8 +591,8 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes ...",
-            extra = "Fixes [MC-194811](https://bugs.mojang.com/browse/MC-194811)",
+            desc = "Fixes fluids being able to instantly flow!",
+            extra = "Fixes [MC-215636](https://bugs.mojang.com/browse/MC-215636)",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean instantFluidFlowingFix = false;
