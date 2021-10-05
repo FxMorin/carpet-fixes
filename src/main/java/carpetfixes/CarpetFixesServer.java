@@ -2,24 +2,51 @@ package carpetfixes;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
+import carpet.settings.SettingsManager;
 import carpetfixes.helpers.UpdateScheduler;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.Version;
+import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 
 public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
-    @Override
-    public String version()
+    private static final SettingsManager carpetFixesSettingsManager;
+
+    private static final String MOD_ID = "carpet-fixes";
+    private static final String MOD_NAME;
+    private static final Version MOD_VERSION;
+
+    public static String modId() {return MOD_ID;}
+
+    public static String modName()
     {
-        return "carpetfixes";
+        return MOD_NAME;
+    }
+
+    static {
+        ModMetadata metadata = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata();
+        MOD_NAME = metadata.getName();
+        MOD_VERSION = metadata.getVersion();
+        carpetFixesSettingsManager = new SettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
+        CarpetServer.manageExtension(new CarpetFixesServer());
     }
 
     @Override
-    public void onInitialize() {CarpetServer.manageExtension(new CarpetFixesServer());}
+    public String version()
+    {
+        return MOD_VERSION.getFriendlyString();
+    }
 
     @Override
-    public void onGameStarted() { CarpetServer.settingsManager.parseSettingsClass(CarpetFixesSettings.class); }
+    public void onInitialize() {}
+
+    @Override
+    public void onGameStarted() {
+        carpetFixesSettingsManager.parseSettingsClass(CarpetFixesSettings.class);
+    }
 
     @Override
     public void onServerLoaded(MinecraftServer server) {}
@@ -27,5 +54,13 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     @Override
     public void onServerLoadedWorlds(MinecraftServer minecraftServer) {
         for (ServerWorld world : minecraftServer.getWorlds()) { CarpetFixesInit.updateScheduler.put(world,new UpdateScheduler(world));}
+    }
+
+    @Override
+    public void onTick(MinecraftServer server) {}
+
+    @Override
+    public SettingsManager customSettingsManager() {
+        return carpetFixesSettingsManager;
     }
 }
