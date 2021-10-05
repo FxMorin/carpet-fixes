@@ -14,6 +14,7 @@
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.ChestBlock_worldBorderMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
+    "blockFixes.FlowableFluid_chainedTickMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PistonBlock_illegalBreakingMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",

@@ -589,6 +589,14 @@ public class CarpetFixesSettings {
     )
     public static boolean missingStructureCorruptionFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes ...",
+            extra = "Fixes [MC-194811](https://bugs.mojang.com/browse/MC-194811)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean instantFluidFlowingFix = false;
+
     /*
 
     BACKPORTS
