@@ -31,7 +31,6 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
         MOD_NAME = metadata.getName();
         MOD_VERSION = metadata.getVersion();
         carpetFixesSettingsManager = new SettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
-        CarpetServer.manageExtension(new CarpetFixesServer());
     }
 
     @Override
@@ -41,7 +40,9 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     }
 
     @Override
-    public void onInitialize() {}
+    public void onInitialize() {
+        CarpetServer.manageExtension(new CarpetFixesServer());
+    }
 
     @Override
     public void onGameStarted() {

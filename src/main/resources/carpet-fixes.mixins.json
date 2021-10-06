@@ -3,6 +3,7 @@
   "package": "carpetfixes.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "ComparatorBlock_suppressMixin",
     "backports.AbstractFireBlock_flintAndSteelMixin",
     "backports.LightningRodBlock_PermanentlyPoweredMixin",
     "backports.MobEntity_portalGeneralItemMixin",
