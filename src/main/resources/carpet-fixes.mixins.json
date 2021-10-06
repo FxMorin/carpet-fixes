@@ -3,7 +3,6 @@
   "package": "carpetfixes.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "ComparatorBlock_suppressMixin",
     "backports.AbstractFireBlock_flintAndSteelMixin",
     "backports.LightningRodBlock_PermanentlyPoweredMixin",
     "backports.MobEntity_portalGeneralItemMixin",
@@ -52,7 +51,6 @@
     "coreSystemFixes.StatusEffectInstance_nbtSuffixMixin",
     "coreSystemFixes.StringTag_stringTagExploitMixin",
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",
-    "coreSystemFixes.TradeOffer_nbtSuffixMixin",
     "coreSystemFixes.World_seaLevelMixin",
     "coreSystemFixes.World_updateSuppressionMixin",
     "coreSystemFixes.WorldChunk$DirectBlockEntityTickInvoker_illegalBlockEntityMixin",
