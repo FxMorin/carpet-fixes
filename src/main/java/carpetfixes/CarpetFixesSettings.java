@@ -597,6 +597,20 @@ public class CarpetFixesSettings {
     )
     public static boolean instantFluidFlowingFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes general item dupe using <leak>",
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
+    )
+    public static boolean swapGeneralItemDupeFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Changes the code to use less copy calls, and instead pass references when possible",
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
+    )
+    public static boolean saferItemTransfers = false;
+
     /*
 
     BACKPORTS
