@@ -599,7 +599,7 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes general item dupe using <leak>",
+            desc = "Fixes general item dupe using ShadowItems. This stops shadow items from working!",
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean swapGeneralItemDupeFix = false;
@@ -610,6 +610,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean saferItemTransfers = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the sculk sensor have a directional bias with wool occlusion",
+            extra = "Fixes [MC-207289](https://bugs.mojang.com/browse/MC-207289)",
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
+    )
+    public static boolean sculkSensorBiasFix = false;
 
     /*
 

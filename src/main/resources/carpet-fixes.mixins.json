@@ -44,6 +44,7 @@
     "coreSystemFixes.ChunkSerializer_missingStructureMixin",
     "coreSystemFixes.EnderDragonFight_twoCrystalMixin",
     "coreSystemFixes.Explosion_exposureMixin",
+    "coreSystemFixes.SculkSensorListener_betterRaycastMixin",
     "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
     "coreSystemFixes.ServerWorld_updateSuppressionMixin",
