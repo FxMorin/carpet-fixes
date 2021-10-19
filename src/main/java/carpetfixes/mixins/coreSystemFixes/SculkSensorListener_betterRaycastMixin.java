@@ -35,5 +35,4 @@ public class SculkSensorListener_betterRaycastMixin {
     private BlockHitResult isOccluded(World world, BlockStateRaycastContext context) {
         return CarpetFixesSettings.sculkSensorBiasFix ? Utils.raycast(world, context) : world.raycast(context);
     }
-
 }

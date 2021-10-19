@@ -17,6 +17,7 @@ public abstract class ServerWorld_rainTimerMixin {
      * much longer until it rains again. If you sleep every night, you will never see rain.
      * This fix makes it so that the RainTime only gets reset when players sleep and its
      * raining.
+     * Same for ThunderTime
      */
 
 
@@ -34,7 +35,9 @@ public abstract class ServerWorld_rainTimerMixin {
             this.worldProperties.setRainTime(0);
             this.worldProperties.setRaining(false);
         }
-        this.worldProperties.setThunderTime(0); //Should thunder follow the same rules?
-        this.worldProperties.setThundering(false); //I see this as prob annoying also does not seem to have a bug report on it
+        if (!CarpetFixesSettings.sleepingResetsThunderFix || this.worldProperties.isThundering()) {
+            this.worldProperties.setThunderTime(0); //Should thunder follow the same rules?
+            this.worldProperties.setThundering(false); //I see this as prob annoying also does not seem to have a bug report on it
+        }
     }
 }

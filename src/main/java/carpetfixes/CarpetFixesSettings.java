@@ -360,6 +360,14 @@ public class CarpetFixesSettings {
     public static boolean sleepingResetsRainFix = false;
 
     //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the thunder timer being reset whenever players sleep",
+            extra = "Fixes [MC-222596](https://bugs.mojang.com/browse/MC-222596)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean sleepingResetsThunderFix = false;
+
+    //by FX - PR0CESS
     /*@Rule(
             desc = "Fixes changing between spactator lowering your player",
             extra = "Fixes [MC-146582](https://bugs.mojang.com/browse/MC-146582)",
@@ -599,7 +607,7 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes general item dupe using ShadowItems. This stops shadow items from working!",
+            desc = "Fixes general item dupe using ShadowItems. This stops shadow items from being created!",
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean swapGeneralItemDupeFix = false;
