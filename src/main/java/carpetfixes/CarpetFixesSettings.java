@@ -627,6 +627,13 @@ public class CarpetFixesSettings {
     )
     public static boolean sculkSensorBiasFix = false;
 
+    // by apple502j
+    @Rule(
+            desc = "Fixes general item dupe using <leak>",
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
+    )
+    public static boolean breakSwapGeneralItemDupeFix = false;
+
     /*
 
     BACKPORTS
