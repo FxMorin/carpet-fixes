@@ -620,6 +620,13 @@ public class CarpetFixesSettings {
     )
     public static boolean sculkSensorBiasFix = false;
 
+    // by apple502j
+    @Rule(
+            desc = "Fixes general item dupe using <leak>",
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
+    )
+    public static boolean breakSwapGeneralItemDupeFix = false;
+
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes bees not leaving the hive in the end & nether due to weather conditions",
@@ -627,6 +634,7 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean beeNotLeavingHiveFix = false;
+  
 
     /*
 

@@ -61,6 +61,7 @@
     "dupeFixes.HopperBlockEntity_giveMixin",
     "dupeFixes.PistonBlock_tntDupingFixMixin",
     "dupeFixes.ScreenHandler_swapDupeMixin",
+    "dupeFixes.ShulkerBoxBlock_breakSwapDupeMixin",
     "dupeFixes.SimpleInventory_dataDupeMixin",
     "dupeFixes.saferItemTransfer.DropperBlock_dontCopyMixin",
     "entityFixes.BeeEntity_chunkLoadingMixin",
