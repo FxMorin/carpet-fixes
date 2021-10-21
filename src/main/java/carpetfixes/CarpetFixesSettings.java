@@ -627,6 +627,14 @@ public class CarpetFixesSettings {
     )
     public static boolean sculkSensorBiasFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes bees not leaving the hive in the end & nether due to weather conditions",
+            extra = "Fixes [MC-168329](https://bugs.mojang.com/browse/MC-168329)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean beeNotLeavingHiveFix = false;
+
     /*
 
     BACKPORTS
