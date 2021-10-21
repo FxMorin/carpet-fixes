@@ -48,6 +48,9 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
                             world.updateNeighborsAlways(pos.offset(direction), self);
                         }
                     }
+                    if (CarpetFixesSettings.uselessSelfBlockUpdateFix) {
+                        world.updateNeighbor(pos,self,pos); //Still needs a single self update
+                    }
                 }
                 super.onStateReplaced(state, world, pos, newState, moved); //Added missing: super.onStateReplaced(...)
             }
@@ -60,6 +63,7 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
                     Direction direction = var6[var8];
                     world.updateNeighborsExcept(pos.offset(direction),self,direction.getOpposite());
                 }
+                world.updateNeighbor(pos,self,pos); //Still needs a single self update
             }
             ci.cancel();
         }
@@ -78,6 +82,7 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
                 Direction direction = var6[var8];
                 world.updateNeighborsExcept(pos.offset(direction),self,direction.getOpposite());
             }
+            world.updateNeighbor(pos,self,pos); //Still needs a single self update
             ci.cancel();
         }
     }

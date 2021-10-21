@@ -29,5 +29,5 @@ public class HopperBlock_missingUpdateMixin extends Block {
             ),
             index = 2
     )
-    protected int hopperUpdate(int value) { return CarpetFixesSettings.hopperUpdateFix ? 5 : 4; }
+    protected int hopperUpdate(int value) { return CarpetFixesSettings.hopperUpdateFix ? ++value : value; }
 }

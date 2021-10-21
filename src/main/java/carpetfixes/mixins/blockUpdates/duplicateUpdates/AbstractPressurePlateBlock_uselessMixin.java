@@ -26,6 +26,7 @@ public class AbstractPressurePlateBlock_uselessMixin {
         if (CarpetFixesSettings.uselessSelfBlockUpdateFix) {
             world.updateNeighborsAlways(pos, self);
             world.updateNeighborsExcept(pos.down(),self, Direction.UP);
+            ci.cancel();
         }
     }
 }

@@ -49,12 +49,13 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     //Recommended since it allows illegal blocks to be made. Suppresses Lots of Update
-    @Rule(
+    //Still requires more testing to perfect
+    /*@Rule(
             desc = "Fixes sticky piston heads not giving a block update when failing to pull slime",
             extra = "Fixes [MC-185572](https://bugs.mojang.com/browse/MC-185572)",
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
-    public static boolean pistonPullingUpdateFix = false;
+    public static boolean pistonPullingUpdateFix = false;*/
 
     //By FX - PR0CESS
     @Rule(
@@ -435,14 +436,6 @@ public class CarpetFixesSettings {
     public static boolean beeDupeFix = false;
 
     //by FX - PR0CESS
-    /*@Rule(
-            desc = "Fixes illegal/corrupt block entities from existing",
-            extra = "Fixes [MC-234396](https://bugs.mojang.com/browse/MC-234396)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
-    )
-    public static boolean illegalBlockEntityFix = false;*/
-
-    //by FX - PR0CESS
     @Rule(
             desc = "Fixes being able to make permanent invulnerable end crystals",
             category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
@@ -633,6 +626,15 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean breakSwapGeneralItemDupeFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes bees not leaving the hive in the end & nether due to weather conditions",
+            extra = "Fixes [MC-168329](https://bugs.mojang.com/browse/MC-168329)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean beeNotLeavingHiveFix = false;
+  
 
     /*
 
