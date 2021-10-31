@@ -47,6 +47,6 @@ public abstract class BoatEntity_fallDamageMixin extends Entity {
             )
     )
     protected BoatEntity.Location fall(BoatEntity instance) {
-        return CarpetFixesSettings.boatsDontFallDamageFix ? BoatEntity.Location.ON_LAND : this.location;
+        return CarpetFixesSettings.boatsDontTakeFallDamageFix ? BoatEntity.Location.ON_LAND : this.location;
     }
 }

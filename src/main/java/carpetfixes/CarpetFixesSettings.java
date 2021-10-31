@@ -657,7 +657,7 @@ public class CarpetFixesSettings {
             extra = "Fixes [MC-98160](https://bugs.mojang.com/browse/MC-98160)",
             category = {CARPETFIXES,BUGFIX}
     )
-    public static boolean boatsDontFallDamageFix = false;
+    public static boolean boatsDontTakeFallDamageFix = false;
   
 
     /*
