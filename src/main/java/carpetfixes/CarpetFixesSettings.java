@@ -642,6 +642,22 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean hangingEntityTriggersTrapsFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes boats breaking and giving fall damage under certain circumstances",
+            extra = "Fixes [MC-119369](https://bugs.mojang.com/browse/MC-119369)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean boatsTakeFallDamageFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes boats not being destroyed by fall damage",
+            extra = "Fixes [MC-98160](https://bugs.mojang.com/browse/MC-98160)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean boatsDontFallDamageFix = false;
   
 
     /*
