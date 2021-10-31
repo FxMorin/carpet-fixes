@@ -634,6 +634,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean beeNotLeavingHiveFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes item frames & paintings being able to interact with pressure plates & tripwire hooks, causing them to not de-power",
+            extra = "Fixes [MC-82055](https://bugs.mojang.com/browse/MC-82055)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean hangingEntityTriggersTrapsFix = false;
   
 
     /*

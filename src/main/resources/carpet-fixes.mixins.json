@@ -81,6 +81,7 @@
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
     "entityFixes.FoxEntity_lootDropMixin",
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
+    "entityFixes.AbstractDecorationEntity_triggersTrapsMixin",
     "entityFixes.ItemFrameEntity_soundMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
