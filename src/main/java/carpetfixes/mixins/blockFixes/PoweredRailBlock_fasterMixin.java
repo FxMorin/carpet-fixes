@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(PoweredRailBlock.class)
+@Mixin(value = PoweredRailBlock.class,priority = 990)
 public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
 
     protected PoweredRailBlock_fasterMixin(boolean allowCurves, Settings settings) {super(allowCurves, settings);}
@@ -28,6 +28,8 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
     @Shadow protected boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) { return false;}
 
     PoweredRailBlock self = (PoweredRailBlock)(Object)this;
+
+    private static final int FORCE_PLACE = MOVED | FORCE_STATE | NOTIFY_LISTENERS;
 
 
     @Inject(
@@ -55,21 +57,21 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
     }
 
     public void powerLane(World world, BlockPos pos, BlockState mainstate, RailShape railShape) {
-        world.setBlockState(pos, mainstate.with(POWERED, true), 82);
+        world.setBlockState(pos, mainstate.with(POWERED, true), FORCE_PLACE);
         if (railShape == RailShape.NORTH_SOUTH) { //Order: +z, -z
             int z11 = 0, z22 = 0;
             for (int z1 = 1; z1 < CarpetSettings.railPowerLimit; z1++) {
                 BlockPos newPos = pos.south(z1);
                 BlockState state = world.getBlockState(newPos);
                 if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
-                world.setBlockState(newPos, state.with(POWERED, true), 82);
+                world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
                 z11++;
             }
             for (int z2 = 1; z2 < CarpetSettings.railPowerLimit; z2++) {
                 BlockPos newPos = pos.north(z2);
                 BlockState state = world.getBlockState(newPos);
                 if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
-                world.setBlockState(newPos, state.with(POWERED, true), 82);
+                world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
                 z22++;
             }
             if (z11 != 0) {
@@ -134,14 +136,14 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 BlockPos newPos = pos.west(x1);
                 BlockState state = world.getBlockState(newPos);
                 if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
-                world.setBlockState(newPos, state.with(POWERED, true), 82);
+                world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
                 x11++;
             }
             for (int x2 = 1; x2 < CarpetSettings.railPowerLimit; x2++) {
                 BlockPos newPos = pos.east(x2);
                 BlockState state = world.getBlockState(newPos);
                 if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
-                world.setBlockState(newPos, state.with(POWERED, true), 82);
+                world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
                 x22++;
             }
             if (x11 != 0) {
