@@ -1,5 +1,6 @@
 package carpetfixes.helpers;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -87,5 +88,11 @@ public class Utils {
                 return (T) object2;
             }
         }
+    }
+
+
+    public static void updateNeighborWithShape(World world, BlockState state, BlockPos pos, Block block, BlockPos fromPos, Direction direction) {
+        world.updateNeighbor(pos, block, fromPos);
+        world.getBlockState(pos).getStateForNeighborUpdate(direction.getOpposite(), state, world, pos, fromPos);
     }
 }

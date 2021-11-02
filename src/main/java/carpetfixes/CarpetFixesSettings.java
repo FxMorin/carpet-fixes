@@ -658,6 +658,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean boatsDontTakeFallDamageFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Makes rails faster by removing most updates on themselves, duplicate updates, and doing rail search internally",
+            extra = "This probobly changes some rail behavior although so far does not seem to do so. Does change amount of block updates tho",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean optimizedPoweredRails = false;
   
 
     /*

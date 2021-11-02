@@ -48,10 +48,9 @@ public abstract class PoweredRailBlock_updateMixin {
             cancellable = true
     )
     protected void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
-        if (CarpetFixesSettings.uselessSelfBlockUpdateFix) {
-            boolean bl = state.get(POWERED);
+        if (!CarpetFixesSettings.optimizedPoweredRails && CarpetFixesSettings.uselessSelfBlockUpdateFix) {
             boolean bl2 = world.isReceivingRedstonePower(pos) || this.isPoweredByOtherRails(world, pos, state, true, 0) || this.isPoweredByOtherRails(world, pos, state, false, 0);
-            if (bl2 != bl) {
+            if (bl2 != state.get(POWERED)) {
                 world.setBlockState(pos, state.with(POWERED, bl2), 3);
                 world.updateNeighborsExcept(pos.down(),self, Direction.UP);
                 if ((state.get(SHAPE)).isAscending()) {
