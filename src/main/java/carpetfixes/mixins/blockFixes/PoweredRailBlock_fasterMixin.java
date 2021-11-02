@@ -1,4 +1,4 @@
-package carpetfixes.mixins.blockUpdates;
+package carpetfixes.mixins.blockFixes;
 
 import carpet.CarpetSettings;
 import carpetfixes.CarpetFixesSettings;
@@ -54,7 +54,7 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                         }
                     }
                 } else {
-                    powerLane(world, pos, state, railShape); //no ascending rails & should be powered. So very small performance change
+                    powerLane(world, pos, state, railShape);
                 }
             }
             ci.cancel();
@@ -67,13 +67,13 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
         world.setBlockState(pos, mainstate.with(POWERED, true), 18);
         if (railShape == RailShape.NORTH_SOUTH) { //Order: +z, -z
             int z11 = 0, z22 = 0;
-            for (int z1 = 1; z1 < 9; z1++) {
+            for (int z1 = 1; z1 < CarpetSettings.railPowerLimit; z1++) {
                 BlockState state = world.getBlockState(pos.south(z1));
                 if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED)) break;
                 world.setBlockState(pos.south(z1), state.with(POWERED, true), 18);
                 z11++;
             }
-            for (int z2 = 1; z2 < 9; z2++) {
+            for (int z2 = 1; z2 < CarpetSettings.railPowerLimit; z2++) {
                 BlockState state = world.getBlockState(pos.north(z2));
                 if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED)) break;
                 world.setBlockState(pos.north(z2), state.with(POWERED, true), 18);
@@ -127,13 +127,13 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
             }
         } else if (railShape == RailShape.EAST_WEST) { //Order: -x, +x
             int x11 = 0, x22 = 0;
-            for (int x1 = 1; x1 < 9; x1++) {
+            for (int x1 = 1; x1 < CarpetSettings.railPowerLimit; x1++) {
                 BlockState state = world.getBlockState(pos.west(x1));
                 if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED)) break;
                 world.setBlockState(pos.west(x1), state.with(POWERED, true), 18);
                 x11++;
             }
-            for (int x2 = 1; x2 < 9; x2++) {
+            for (int x2 = 1; x2 < CarpetSettings.railPowerLimit; x2++) {
                 BlockState state = world.getBlockState(pos.east(x2));
                 if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED)) break;
                 world.setBlockState(pos.east(x2), state.with(POWERED, true), 18);

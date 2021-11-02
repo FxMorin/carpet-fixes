@@ -29,7 +29,7 @@
     "blockUpdates.HopperBlock_missingUpdateMixin",
     "blockUpdates.ObserverBlock_missingUpdateMixin",
     "blockUpdates.PistonBlockEntity_missingUpdateMixin",
-    "blockUpdates.PoweredRailBlock_fasterMixin",
+    "blockFixes.PoweredRailBlock_fasterMixin",
     "blockUpdates.SpongeBlock_missingUpdateMixin",
     "blockUpdates.TrapdoorBlock_missingUpdateMixin",
     "blockUpdates.World_blockUpdateOrderMixin",
