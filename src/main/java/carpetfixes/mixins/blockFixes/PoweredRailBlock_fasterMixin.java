@@ -42,16 +42,9 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 RailShape railShape = state.get(SHAPE);
                 if (!shouldBePowered || railShape.isAscending()) {
                     world.setBlockState(pos, state.with(POWERED, shouldBePowered), 3);
-                    if (CarpetFixesSettings.uselessSelfBlockUpdateFix) {
-                        world.updateNeighborsExcept(pos.down(),self, Direction.UP);
-                        if ((state.get(SHAPE)).isAscending()) {
-                            world.updateNeighborsExcept(pos.down(),self, Direction.DOWN);
-                        }
-                    } else {
-                        world.updateNeighborsAlways(pos.down(), self);
-                        if (railShape.isAscending()) {
-                            world.updateNeighborsAlways(pos.up(), self);
-                        }
+                    world.updateNeighborsExcept(pos.down(),self, Direction.UP);
+                    if (railShape.isAscending()) {
+                        world.updateNeighborsExcept(pos.down(),self, Direction.DOWN);
                     }
                 } else {
                     powerLane(world, pos, state, railShape);
@@ -62,21 +55,21 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
     }
 
     public void powerLane(World world, BlockPos pos, BlockState mainstate, RailShape railShape) {
-        boolean wasOn = CarpetSettings.impendingFillSkipUpdates.get();
-        CarpetSettings.impendingFillSkipUpdates.set(true);
-        world.setBlockState(pos, mainstate.with(POWERED, true), 18);
+        world.setBlockState(pos, mainstate.with(POWERED, true), 82);
         if (railShape == RailShape.NORTH_SOUTH) { //Order: +z, -z
             int z11 = 0, z22 = 0;
             for (int z1 = 1; z1 < CarpetSettings.railPowerLimit; z1++) {
-                BlockState state = world.getBlockState(pos.south(z1));
-                if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED)) break;
-                world.setBlockState(pos.south(z1), state.with(POWERED, true), 18);
+                BlockPos newPos = pos.south(z1);
+                BlockState state = world.getBlockState(newPos);
+                if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
+                world.setBlockState(newPos, state.with(POWERED, true), 82);
                 z11++;
             }
             for (int z2 = 1; z2 < CarpetSettings.railPowerLimit; z2++) {
-                BlockState state = world.getBlockState(pos.north(z2));
-                if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED)) break;
-                world.setBlockState(pos.north(z2), state.with(POWERED, true), 18);
+                BlockPos newPos = pos.north(z2);
+                BlockState state = world.getBlockState(newPos);
+                if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
+                world.setBlockState(newPos, state.with(POWERED, true), 82);
                 z22++;
             }
             if (z11 != 0) {
@@ -88,7 +81,12 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     Utils.updateNeighborWithShape(world, mainstate, pos1.down(), block, pos, Direction.DOWN);
                     Utils.updateNeighborWithShape(world, mainstate, pos1.up(), block, pos, Direction.UP);
                     if (zu1 == z11) {
-                        Utils.updateNeighborWithShape(world, mainstate, pos.south(zu1+1), block, pos, Direction.SOUTH);
+                        BlockPos newPos = pos.south(zu1+1);
+                        Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, Direction.SOUTH);
+                        BlockState state = world.getBlockState(pos1);
+                        if (state.isOf(Blocks.POWERED_RAIL) && state.get(SHAPE).isAscending()) {
+                            world.updateNeighbor(newPos.up(), block, pos1);
+                        }
                     }
                     if (zu1 == 0 && z22 == 0) {
                         Utils.updateNeighborWithShape(world, mainstate, pos1.north(), block, pos, Direction.NORTH);
@@ -111,7 +109,12 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     Utils.updateNeighborWithShape(world, mainstate, pos1.down(), block, pos, Direction.DOWN);
                     Utils.updateNeighborWithShape(world, mainstate, pos1.up(), block, pos, Direction.UP);
                     if (zu2 == z22) {
-                        Utils.updateNeighborWithShape(world, mainstate, pos.north(zu2+1), block, pos, Direction.NORTH);
+                        BlockPos newPos = pos.north(zu2+1);
+                        Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, Direction.NORTH);
+                        BlockState state = world.getBlockState(pos1);
+                        if (state.isOf(Blocks.POWERED_RAIL) && state.get(SHAPE).isAscending()) {
+                            world.updateNeighbor(newPos.up(), block, pos1);
+                        }
                     }
                     if (zu2 == 0 && z11 == 0) {
                         Utils.updateNeighborWithShape(world, mainstate, pos1.south(), block, pos, Direction.SOUTH);
@@ -128,15 +131,17 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
         } else if (railShape == RailShape.EAST_WEST) { //Order: -x, +x
             int x11 = 0, x22 = 0;
             for (int x1 = 1; x1 < CarpetSettings.railPowerLimit; x1++) {
-                BlockState state = world.getBlockState(pos.west(x1));
-                if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED)) break;
-                world.setBlockState(pos.west(x1), state.with(POWERED, true), 18);
+                BlockPos newPos = pos.west(x1);
+                BlockState state = world.getBlockState(newPos);
+                if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
+                world.setBlockState(newPos, state.with(POWERED, true), 82);
                 x11++;
             }
             for (int x2 = 1; x2 < CarpetSettings.railPowerLimit; x2++) {
-                BlockState state = world.getBlockState(pos.east(x2));
-                if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED)) break;
-                world.setBlockState(pos.east(x2), state.with(POWERED, true), 18);
+                BlockPos newPos = pos.east(x2);
+                BlockState state = world.getBlockState(newPos);
+                if (!state.isOf(Blocks.POWERED_RAIL) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
+                world.setBlockState(newPos, state.with(POWERED, true), 82);
                 x22++;
             }
             if (x11 != 0) {
@@ -144,7 +149,12 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 for (int xu1 = x11; xu1 >= 0; xu1--) {
                     BlockPos pos1 = pos.west(xu1);
                     if (xu1 == x11) {
-                        Utils.updateNeighborWithShape(world, mainstate, pos.west(xu1+1), block, pos, Direction.WEST);
+                        BlockPos newPos = pos.west(xu1+1);
+                        Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, Direction.WEST);
+                        BlockState state = world.getBlockState(pos1);
+                        if (state.isOf(Blocks.POWERED_RAIL) && state.get(SHAPE).isAscending()) {
+                            world.updateNeighbor(newPos.up(), block, pos1);
+                        }
                     }
                     if (xu1 == 0 && x22 == 0) {
                         Utils.updateNeighborWithShape(world, mainstate, pos1.east(), block, pos, Direction.EAST);
@@ -170,7 +180,12 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                         Utils.updateNeighborWithShape(world, mainstate, pos1.west(), block, pos, Direction.WEST);
                     }
                     if (xu2 == x22) {
-                        Utils.updateNeighborWithShape(world, mainstate, pos.east(xu2+1), block, pos, Direction.EAST);
+                        BlockPos newPos = pos.east(xu2+1);
+                        Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, Direction.EAST);
+                        BlockState state = world.getBlockState(pos1);
+                        if (state.isOf(Blocks.POWERED_RAIL) && state.get(SHAPE).isAscending()) {
+                            world.updateNeighbor(newPos.up(), block, pos1);
+                        }
                     }
                     Utils.updateNeighborWithShape(world, mainstate, pos1.down(), block, pos, Direction.DOWN);
                     Utils.updateNeighborWithShape(world, mainstate, pos1.up(), block, pos, Direction.UP);
@@ -186,6 +201,5 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 }
             }
         }
-        CarpetSettings.impendingFillSkipUpdates.set(wasOn);
     }
 }
