@@ -666,6 +666,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean optimizedPoweredRails = false;
+
+    //by apple502j
+    @Rule(
+            desc = "Fixes jukebox item stacks setting NBT and not stacking with others after placing",
+            extra = "Fixes [MC-216362](https://bugs.mojang.com/browse/MC-216362)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean unstackableJukeboxFix = false;
   
 
     /*
