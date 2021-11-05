@@ -17,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.HashMap;
+
 @Mixin(value = PoweredRailBlock.class,priority = 990)
 public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
 
@@ -26,6 +28,7 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
     @Shadow @Final public static BooleanProperty POWERED;
 
     @Shadow protected boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) { return false;}
+    @Shadow protected boolean isPoweredByOtherRails(World world, BlockPos pos, boolean bl, int distance, RailShape shape) { return false;}
 
     PoweredRailBlock self = (PoweredRailBlock)(Object)this;
 
@@ -33,6 +36,93 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
     private static final Direction[] NORTH_SOUTH_DIR = new Direction[]{Direction.SOUTH, Direction.NORTH};
 
     private static final int FORCE_PLACE = MOVED | FORCE_STATE | NOTIFY_LISTENERS;
+
+
+    protected boolean isPoweredByOtherRailsFaster(World world, BlockPos pos, BlockState state, boolean bl, HashMap<Long,Boolean> checkedPos) {
+        int i = pos.getX();
+        int j = pos.getY();
+        int k = pos.getZ();
+        boolean bl2 = true;
+        RailShape railShape = state.get(SHAPE);
+        switch(railShape) {
+            case NORTH_SOUTH:
+                if (bl) {
+                    ++k;
+                } else {
+                    --k;
+                }
+                break;
+            case EAST_WEST:
+                if (bl) {
+                    --i;
+                } else {
+                    ++i;
+                }
+                break;
+            case ASCENDING_EAST:
+                if (bl) {
+                    --i;
+                } else {
+                    ++i;
+                    ++j;
+                    bl2 = false;
+                }
+                railShape = RailShape.EAST_WEST;
+                break;
+            case ASCENDING_WEST:
+                if (bl) {
+                    --i;
+                    ++j;
+                    bl2 = false;
+                } else {
+                    ++i;
+                }
+                railShape = RailShape.EAST_WEST;
+                break;
+            case ASCENDING_NORTH:
+                if (bl) {
+                    ++k;
+                } else {
+                    --k;
+                    ++j;
+                    bl2 = false;
+                }
+                railShape = RailShape.NORTH_SOUTH;
+                break;
+            case ASCENDING_SOUTH:
+                if (bl) {
+                    ++k;
+                    ++j;
+                    bl2 = false;
+                } else {
+                    --k;
+                }
+                railShape = RailShape.NORTH_SOUTH;
+        }
+        BlockPos newPos = new BlockPos(i, j, k);
+        if (checkedPos.containsKey(newPos.asLong())) {
+            return checkedPos.get(newPos.asLong());
+        }
+        if (this.isPoweredByOtherRails(world, newPos, bl, 0, railShape)) {
+            checkedPos.put(newPos.asLong(),true);
+            return true;
+        } else { //Don't cache this since the chances of reading a rail going down is minimal
+            if (bl2) {
+                BlockPos pos5 = new BlockPos(i, j - 1, k);
+                if (checkedPos.containsKey(pos5.asLong())) {
+                    return checkedPos.get(pos5.asLong());
+                }
+                if (this.isPoweredByOtherRails(world, pos5, bl, 0, railShape)) {
+                    checkedPos.put(pos5.asLong(),true);
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
 
 
     @Inject(
@@ -48,9 +138,7 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 if (railShape.isAscending()) {
                     world.setBlockState(pos, state.with(POWERED, shouldBePowered), 3);
                     world.updateNeighborsExcept(pos.down(),self, Direction.UP);
-                    if (railShape.isAscending()) {
-                        world.updateNeighborsExcept(pos.down(),self, Direction.DOWN);
-                    }
+                    world.updateNeighborsExcept(pos.down(),self, Direction.DOWN); //isAscending
                 } else if (shouldBePowered) {
                     powerLane(world, pos, state, railShape);
                 } else {
@@ -63,6 +151,8 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
 
     public void powerLane(World world, BlockPos pos, BlockState mainstate, RailShape railShape) {
         world.setBlockState(pos, mainstate.with(POWERED, true), FORCE_PLACE);
+        HashMap<Long,Boolean> checkedPos = new HashMap<>();
+        checkedPos.put(pos.asLong(),true);
         if (railShape == RailShape.NORTH_SOUTH) { //Order: +z, -z
             int[] zcount = new int[2];
             for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
@@ -70,9 +160,18 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 for (int z = 1; z < CarpetSettings.railPowerLimit; z++) {
                     BlockPos newPos = pos.offset(direction,z);
                     BlockState state = world.getBlockState(newPos);
-                    if (!state.isOf(this) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
-                    world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
-                    zcount[i]++;
+                    if (checkedPos.containsKey(newPos.asLong())) {
+                        if (!checkedPos.get(newPos.asLong())) break;
+                        zcount[i]++;
+                    } else {
+                        if (!state.isOf(this) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, true,checkedPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, false,checkedPos))) {
+                            checkedPos.put(newPos.asLong(),false);
+                            break;
+                        }
+                        checkedPos.put(newPos.asLong(),true);
+                        world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
+                        zcount[i]++;
+                    }
                 }
             }
             for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
@@ -114,9 +213,18 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 for (int z = 1; z < CarpetSettings.railPowerLimit; z++) {
                     BlockPos newPos = pos.offset(direction,z);
                     BlockState state = world.getBlockState(newPos);
-                    if (!state.isOf(this) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0))) break;
-                    world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
-                    xcount[i]++;
+                    if (checkedPos.containsKey(newPos.asLong())) {
+                        if (!checkedPos.get(newPos.asLong())) break;
+                        xcount[i]++;
+                    } else {
+                        if (!state.isOf(this) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, true, checkedPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, false, checkedPos))) {
+                            checkedPos.put(newPos.asLong(),false);
+                            break;
+                        }
+                        checkedPos.put(newPos.asLong(),true);
+                        world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
+                        xcount[i]++;
+                    }
                 }
             }
             for(int i = 0; i < EAST_WEST_DIR.length; ++i) {
