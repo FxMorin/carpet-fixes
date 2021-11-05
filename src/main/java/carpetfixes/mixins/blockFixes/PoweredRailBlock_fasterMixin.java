@@ -124,6 +124,9 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     Block block = mainstate.getBlock();
                     for (int xu1 = x11; xu1 >= 0; xu1--) {
                         BlockPos pos1 = pos.offset(direction,xu1);
+                        if (i == 0 && xu1 == 0 && xcount[1] == 0) {
+                            Utils.updateNeighborWithShape(world, mainstate, pos1.offset(direction.getOpposite()), block, pos, direction.getOpposite());
+                        }
                         if (xu1 == x11) {
                             BlockPos newPos = pos.offset(direction,xu1+1);
                             Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, direction);
@@ -132,7 +135,7 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                                 world.updateNeighbor(newPos.up(), block, pos1);
                             }
                         }
-                        if (xu1 == 0 && xcount[i == 0 ? 1 : 0] == 0) {
+                        if (i == 1 && xu1 == 0 && xcount[0] == 0) {
                             Utils.updateNeighborWithShape(world, mainstate, pos1.offset(direction.getOpposite()), block, pos, direction.getOpposite());
                         }
                         Utils.updateNeighborWithShape(world, mainstate, pos1.down(), block, pos, Direction.DOWN);
