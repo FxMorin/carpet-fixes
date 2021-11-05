@@ -45,6 +45,7 @@
     "conversionFixes.SlimeEntity_conversionMixin",
     "conversionFixes.VillagerEntity_conversionMixin",
     "coreSystemFixes.ChunkSerializer_missingStructureMixin",
+    "coreSystemFixes.ChunkTicketManager_optimizationMixin",
     "coreSystemFixes.EnderDragonFight_twoCrystalMixin",
     "coreSystemFixes.Explosion_exposureMixin",
     "coreSystemFixes.SculkSensorListener_betterRaycastMixin",

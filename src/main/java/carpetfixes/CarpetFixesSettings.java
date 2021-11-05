@@ -8,6 +8,7 @@ import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.server.command.ServerCommandSource;
 
 import static carpet.settings.RuleCategory.*;
+import static carpet.settings.RuleCategory.OPTIMIZATION;
 import static carpetfixes.helpers.RuleCategory.*;
 
 public class CarpetFixesSettings {
@@ -663,7 +664,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Makes rails faster by removing most updates on themselves, duplicate updates, and doing rail search internally",
             extra = "This probobly changes some rail behavior although so far does not seem to do so. Does change amount of block updates tho",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,OPTIMIZATION}
     )
     public static boolean optimizedPoweredRails = false;
 
@@ -674,6 +675,13 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean unstackableJukeboxFix = false;
+
+    //by 2No2Name, JellySquid
+    @Rule(
+            desc = "Initial made for Lithium, although was not exactly vanilla behavior. This is a very small optimization!",
+            category = {CARPETFIXES,OPTIMIZATION}
+    )
+    public static boolean optimizedTicketManager = false;
   
 
     /*
