@@ -40,7 +40,7 @@ public abstract class BuriedTreasureFeature$Start_centerMixin extends StructureS
     }
 
     @Inject(
-            method = "getBlockPos",
+            method = "getBlockPos()Lnet/minecraft/util/math/BlockPos;",
             at = @At("HEAD"),
             cancellable = true
     )

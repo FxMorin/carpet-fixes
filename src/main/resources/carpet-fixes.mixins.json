@@ -93,7 +93,6 @@
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
     "featureFixes.BuriedTreasureFeature$Start_centerMixin",
-    "featureFixes.BuriedTreasureFeature_centerMixin",
     "goalFixes.BreakDoorGoal_breakAnythingMixin",
     "goalFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
     "goalFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
