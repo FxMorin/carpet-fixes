@@ -690,7 +690,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean buriedTreasureAlwaysCenterFix = false;
-  
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes reinforcements only spawn zombies",
+            extra = "Fixes [MC-14800](https://bugs.mojang.com/browse/MC-14800)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean reinforcementsOnlySpawnZombiesFix = false;
 
     /*
 

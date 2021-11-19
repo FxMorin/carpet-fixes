@@ -92,6 +92,7 @@
     "entityFixes.MobEntity_nbtSuffixMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
+    "entityFixes.ZombieEntity_reinforcementMixin",
     "featureFixes.BuriedTreasureFeature$Start_centerMixin",
     "goalFixes.BreakDoorGoal_breakAnythingMixin",
     "goalFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
