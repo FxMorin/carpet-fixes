@@ -682,6 +682,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,OPTIMIZATION}
     )
     public static boolean optimizedTicketManager = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes buried treasure always generating in the center of a chunk",
+            extra = "Fixes [MC-227443](https://bugs.mojang.com/browse/MC-227443)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean buriedTreasureAlwaysCenterFix = false;
   
 
     /*
