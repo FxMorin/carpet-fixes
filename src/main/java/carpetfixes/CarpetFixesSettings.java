@@ -699,6 +699,14 @@ public class CarpetFixesSettings {
     )
     public static boolean reinforcementsOnlySpawnZombiesFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes incorrect fall distance calculations causing fall distance to build up over time one leads",
+            extra = "Fixes [MC-14167](https://bugs.mojang.com/browse/MC-14167)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean incorrectFallDamageFix = false;
+
     /*
 
     BACKPORTS

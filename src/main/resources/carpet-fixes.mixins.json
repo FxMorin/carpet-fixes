@@ -80,6 +80,7 @@
     "entityFixes.EndermanEntity_teleportingMixin",
     "entityFixes.Entity_centerCollisionMixin",
     "entityFixes.Entity_directionalBlockSlowdownMixin",
+    "entityFixes.Entity_fallDistanceMixin",
     "entityFixes.Entity_incorrectLogicMixin",
     "entityFixes.ExperienceOrbEntity_lavaCollisionMixin",
     "entityFixes.FallingBlockEntity_netherPortalMixin",
