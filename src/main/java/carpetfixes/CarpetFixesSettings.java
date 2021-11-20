@@ -701,7 +701,7 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes incorrect fall distance calculations causing fall distance to build up over time one leads",
+            desc = "Fixes incorrect fall distance calculations causing fall distance to build up over time on leads",
             extra = "Fixes [MC-14167](https://bugs.mojang.com/browse/MC-14167)",
             category = {CARPETFIXES,BUGFIX}
     )

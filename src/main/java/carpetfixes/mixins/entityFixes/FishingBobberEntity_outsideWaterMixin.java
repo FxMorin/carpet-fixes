@@ -2,10 +2,10 @@ package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.entity.projectile.FishingBobberEntity;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.tag.FluidTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,11 +31,11 @@ public abstract class FishingBobberEntity_outsideWaterMixin {
             method= "tick()V",
             at=@At(
                     value="INVOKE",
-                    target="Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/Tag;)Z"
+                    target="Lnet/minecraft/world/World;getFluidState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/fluid/FluidState;"
             ))
-    private boolean betterTick(FluidState fluidState, Tag<Fluid> tag) {
-        boolean state = fluidState.isIn(FluidTags.WATER);
-        if (CarpetFixesSettings.fishingOutsideWaterFix && !state) {
+    private FluidState checkAfterBeingSet(World instance, BlockPos pos) {
+        FluidState state = instance.getFluidState(pos);
+        if (CarpetFixesSettings.fishingOutsideWaterFix && !state.isIn(FluidTags.WATER)) {
             this.state = FishingBobberEntity.State.FLYING;
             this.inOpenWater = false;
             this.hookCountdown = 0;
