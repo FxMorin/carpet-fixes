@@ -731,6 +731,14 @@ public class CarpetFixesSettings {
     )
     public static boolean projectileNotDetectedOnPlaceFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes arrows of harming bypassing Totems of Undying",
+            extra = "Fixes [MC-206307](https://bugs.mojang.com/browse/MC-206307)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean arrowEffectsBypassTotemsFix = false;
+
     /*
 
     BACKPORTS
