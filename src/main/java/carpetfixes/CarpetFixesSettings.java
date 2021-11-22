@@ -715,6 +715,14 @@ public class CarpetFixesSettings {
     )
     public static boolean voidKillsloyaltyTridentsFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes piercing projectiles lowering there projectile when 'hitting' an enderman",
+            extra = "Fixes [MC-145557](https://bugs.mojang.com/browse/MC-145557)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean endermanLowerPiercingFix = false;
+
     /*
 
     BACKPORTS

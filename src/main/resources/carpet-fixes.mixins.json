@@ -91,6 +91,7 @@
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
     "entityFixes.MobEntity_nbtSuffixMixin",
+    "entityFixes.PersistentProjectileEntity_piercingMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
     "entityFixes.TridentEntity_voidLoyaltyMixin",
