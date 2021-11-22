@@ -723,6 +723,14 @@ public class CarpetFixesSettings {
     )
     public static boolean endermanLowerPiercingFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes placing a button/pressure plate inside of a projectile not activating it",
+            extra = "Fixes [MC-209284](https://bugs.mojang.com/browse/MC-209284)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean projectileNotDetectedOnPlaceFix = false;
+
     /*
 
     BACKPORTS
