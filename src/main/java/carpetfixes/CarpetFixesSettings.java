@@ -707,6 +707,14 @@ public class CarpetFixesSettings {
     )
     public static boolean incorrectFallDamageFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the void killing loyalty tridents, even though they should come back to the player",
+            extra = "Fixes [MC-125755](https://bugs.mojang.com/browse/MC-125755)",
+            category = {CARPETFIXES,BUGFIX,INTENDED}
+    )
+    public static boolean voidKillsloyaltyTridentsFix = false;
+
     /*
 
     BACKPORTS

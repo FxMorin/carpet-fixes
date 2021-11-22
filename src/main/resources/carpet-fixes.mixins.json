@@ -93,6 +93,7 @@
     "entityFixes.MobEntity_nbtSuffixMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
+    "entityFixes.TridentEntity_voidLoyaltyMixin",
     "entityFixes.ZombieEntity_reinforcementMixin",
     "featureFixes.BuriedTreasureFeature$Start_centerMixin",
     "goalFixes.BreakDoorGoal_breakAnythingMixin",
