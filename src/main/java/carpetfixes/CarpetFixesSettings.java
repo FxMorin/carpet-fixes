@@ -355,16 +355,7 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes the rain timer being reset whenever players sleep",
-            extra = "Fixes [MC-63340](https://bugs.mojang.com/browse/MC-63340)",
-            category = {CARPETFIXES,BUGFIX}
-    )
-    public static boolean sleepingResetsRainFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes the thunder timer being reset whenever players sleep",
-            extra = "Fixes [MC-222596](https://bugs.mojang.com/browse/MC-222596)",
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean sleepingResetsThunderFix = false;
