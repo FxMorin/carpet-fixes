@@ -36,7 +36,7 @@ public class RedstoneTorchBlock_inconsistentMixin {
         if (CarpetFixesSettings.inconsistentRedstoneTorchFix) {
             if (isBurnedOut(world, pos, true)) {
                 world.syncWorldEvent(1502, pos, 0);
-                world.getBlockTickScheduler().schedule(pos, world.getBlockState(pos).getBlock(), 160);
+                world.createAndScheduleBlockTick(pos, world.getBlockState(pos).getBlock(), 160);
             }
             world.setBlockState(pos, state.with(LIT, false), 3);
             ci.cancel();

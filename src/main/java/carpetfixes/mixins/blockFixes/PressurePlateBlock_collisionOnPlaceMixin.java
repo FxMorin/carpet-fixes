@@ -45,7 +45,7 @@ public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractP
             }
         }
         if (bl) {
-            world.getBlockTickScheduler().schedule(new BlockPos(pos), this, this.getTickRate());
+            world.createAndScheduleBlockTick(new BlockPos(pos), this, this.getTickRate());
         }
     }
 }

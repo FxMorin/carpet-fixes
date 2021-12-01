@@ -42,7 +42,7 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
                     entity2 = (Entity)var4.next();
                     entity2.discard();
                 }
-                serverPlayerEntity.getServerWorld().getChunk(serverPlayerEntity.getChunkPos().x, serverPlayerEntity.getChunkPos().z).markDirty();
+                serverPlayerEntity.getWorld().getChunk(serverPlayerEntity.getChunkPos().x, serverPlayerEntity.getChunkPos().z).setShouldSave(true);
             }
         }
         return false;

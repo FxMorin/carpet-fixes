@@ -22,7 +22,7 @@ public class LightningRodBlock_PermanentlyPoweredMixin {
 
     @Inject(
             method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
-            at = @At("INVOKE"),
+            at = @At("HEAD"),
             cancellable = true
     )
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
@@ -32,7 +32,7 @@ public class LightningRodBlock_PermanentlyPoweredMixin {
 
     @Inject(
             method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
-            at = @At("INVOKE"),
+            at = @At("HEAD"),
             cancellable = true
     )
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {

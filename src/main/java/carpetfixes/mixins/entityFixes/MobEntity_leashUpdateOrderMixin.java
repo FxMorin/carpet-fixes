@@ -30,8 +30,7 @@ public abstract class MobEntity_leashUpdateOrderMixin extends LivingEntity {
 
     @Inject(
             method= "tick()V",
-            at=@At("HEAD"),
-            cancellable = true
+            at=@At("HEAD")
     )
     public void dontTickEarly(CallbackInfo ci) {
         if (CarpetFixesSettings.petsBreakLeadsDuringReloadFix && !this.world.isClient) this.updateLeash();

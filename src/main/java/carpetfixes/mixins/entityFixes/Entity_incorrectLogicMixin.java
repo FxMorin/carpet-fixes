@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class Entity_incorrectLogicMixin {
 
     /**
-     * Bubble collumns do some incorrect logic calculations based on the Y velocity being
+     * Bubble columns do some incorrect logic calculations based on the Y velocity being
      * multiplied by -1 for being onGround. The fix is to not set the entity to be onGround
      * when in a bubble column.
      */
@@ -23,8 +23,7 @@ public abstract class Entity_incorrectLogicMixin {
 
     @Inject(
             method = "onBubbleColumnCollision(Z)V",
-            at = @At("HEAD"),
-            cancellable = true
+            at = @At("HEAD")
     )
     public void onBubbleColumnCollision(boolean drag, CallbackInfo ci) {
         if (CarpetFixesSettings.incorrectBubbleColumnLogicFix) this.setOnGround(false);
@@ -33,8 +32,7 @@ public abstract class Entity_incorrectLogicMixin {
 
     @Inject(
             method = "onBubbleColumnSurfaceCollision(Z)V",
-            at = @At("HEAD"),
-            cancellable = true
+            at = @At("HEAD")
     )
     public void onBubbleColumnSurfaceCollision(boolean drag, CallbackInfo ci) {
         if (CarpetFixesSettings.incorrectBubbleColumnLogicFix) this.setOnGround(false);

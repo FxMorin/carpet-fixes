@@ -60,8 +60,7 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
                     shift = At.Shift.AFTER,
                     value = "INVOKE",
                     target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
-            ),
-            cancellable = true
+            )
     )
     private void updateCorrectly(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify, CallbackInfo ci) {
         if (CarpetFixesSettings.trapdoorMissingUpdateFix) {
