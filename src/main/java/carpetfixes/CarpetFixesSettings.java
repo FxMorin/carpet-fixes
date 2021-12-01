@@ -584,13 +584,6 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes general item dupe using ShadowItems. This stops shadow items from being created!",
-            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
-    )
-    public static boolean swapGeneralItemDupeFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Changes the code to use less copy calls, and instead pass references when possible",
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
@@ -716,9 +709,11 @@ public class CarpetFixesSettings {
 
     /*
 
-    BACKPORTS
+    RE-INTRODUCE
     Bugs that are no longer Unresolved that we reintroduce into the game
-    or Bugs that where fixed in the snapshots that we backport to older versions
+    or Bugs that where fixed in the snapshots that we re-introduce from older versions
+
+    Damn these are some long rule names
 
      */
 
@@ -726,40 +721,47 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Re-introduces target blocks being permanently powered when moved by pistons",
             extra = "Backports [MC-173244](https://bugs.mojang.com/browse/MC-173244)",
-            category = {CARPETFIXES,BACKPORT}
+            category = {CARPETFIXES,REINTRODUCE}
     )
-    public static boolean oldTargetBlockPermanentlyPowered = false;
+    public static boolean reIntroduceTargetBlockPermanentlyPowered = false;
 
     //By FX - PR0CESS
     @Rule(
             desc = "Re-introduces lightning rods being permanently powered when moved by pistons",
             extra = "Backports [MC-203718](https://bugs.mojang.com/browse/MC-203718)",
-            category = {CARPETFIXES,BACKPORT}
+            category = {CARPETFIXES,REINTRODUCE}
     )
-    public static boolean oldLightningRodPermanentlyPowered = false;
+    public static boolean reIntroduceLightningRodPermanentlyPowered = false;
 
     //By FX - PR0CESS
     @Rule(
             desc = "Re-introduces general item dupe using dolphins, and some other dimension change dupes",
-            category = {CARPETFIXES,BACKPORT}
+            category = {CARPETFIXES,REINTRODUCE}
     )
-    public static boolean oldPortalGeneralItemDupe = false;
+    public static boolean reIntroducePortalGeneralItemDupe = false;
 
     //By whoImT from carpet-addons
     @Rule(
             desc = "Re-introduces 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds",
             extra = "Backports [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a",
-            category = {CARPETFIXES,BUGFIX,BACKPORT}
+            category = {CARPETFIXES,BUGFIX,REINTRODUCE}
     )
-    public static boolean oldFlintAndSteelBehavior = false;
+    public static boolean reIntroduceFlintAndSteelBehavior = false;
 
     //By whoImT from carpet-addons
     @Rule(
             desc = "Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while riding donkey/llama",
             extra = {"Backports [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a","This has not been tested in 1.17 and may not work!"},
-            category = {CARPETFIXES,BUGFIX,BACKPORT,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX,REINTRODUCE,EXPERIMENTAL}
     )
-    public static boolean oldDonkeyRidingDupe = false;
+    public static boolean reIntroduceDonkeyRidingDupe = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces item shadowing! [Video](https://www.youtube.com/watch?v=i8_FPyn20ns)",
+            category = {CARPETFIXES,REINTRODUCE}
+    )
+    public static boolean reIntroduceItemShadowing = false;
 
     /*
 

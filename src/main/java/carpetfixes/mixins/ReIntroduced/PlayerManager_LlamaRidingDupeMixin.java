@@ -1,4 +1,4 @@
-package carpetfixes.mixins.backports;
+package carpetfixes.mixins.ReIntroduced;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.entity.Entity;
@@ -31,7 +31,7 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             ))
     private boolean llamaDupe(ServerPlayerEntity serverPlayerEntity){
         if (serverPlayerEntity.hasVehicle()) {
-            if(!CarpetFixesSettings.oldDonkeyRidingDupe)
+            if(!CarpetFixesSettings.reIntroduceDonkeyRidingDupe)
                 return true;
             Entity entity = serverPlayerEntity.getRootVehicle();
             if (entity.hasPlayerRider()) {

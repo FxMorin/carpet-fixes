@@ -1,4 +1,4 @@
-package carpetfixes.mixins.backports;
+package carpetfixes.mixins.ReIntroduced;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.BlockState;
@@ -26,7 +26,7 @@ public class LightningRodBlock_PermanentlyPoweredMixin {
             cancellable = true
     )
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CarpetFixesSettings.oldLightningRodPermanentlyPowered) ci.cancel();
+        if (CarpetFixesSettings.reIntroduceLightningRodPermanentlyPowered) ci.cancel();
     }
 
 
@@ -36,6 +36,6 @@ public class LightningRodBlock_PermanentlyPoweredMixin {
             cancellable = true
     )
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CarpetFixesSettings.oldLightningRodPermanentlyPowered) ci.cancel();
+        if (CarpetFixesSettings.reIntroduceLightningRodPermanentlyPowered) ci.cancel();
     }
 }
