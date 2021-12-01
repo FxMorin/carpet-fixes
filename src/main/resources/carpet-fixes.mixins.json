@@ -12,7 +12,6 @@
     "blockEntityFixes.BeehiveBlockEntity_stuckMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
     "blockFixes.AbstractButtonBlock_collisionOnPlaceMixin",
-    "blockFixes.BedBlock_worldBorderMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.ChestBlock_worldBorderMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",

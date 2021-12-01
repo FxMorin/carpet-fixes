@@ -537,14 +537,6 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes being able to place half beds outside of the world border",
-            extra = "Fixes [MC-117800](https://bugs.mojang.com/browse/MC-117800)",
-            category = {CARPETFIXES,BUGFIX}
-    )
-    public static boolean bedsCanBeInWorldBorderFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes item frames playing a sound when they are read from nbt",
             extra = "Fixes [MC-123450](https://bugs.mojang.com/browse/MC-123450)",
             category = {CARPETFIXES,BUGFIX,VANILLA}
