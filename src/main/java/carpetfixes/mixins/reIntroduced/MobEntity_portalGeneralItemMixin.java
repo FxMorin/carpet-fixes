@@ -1,4 +1,4 @@
-package carpetfixes.mixins.ReIntroduced;
+package carpetfixes.mixins.reIntroduced;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.entity.EntityType;

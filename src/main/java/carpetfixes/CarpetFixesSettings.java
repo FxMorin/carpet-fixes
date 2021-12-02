@@ -265,7 +265,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes incorrect cat types spawning inside swamp huts",
             extra = "Fixes [MC-147659](https://bugs.mojang.com/browse/MC-147659)",
-            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,WONTFIX,VANILLA}
     )
     public static boolean witchHutsSpawnIncorrectCatFix = false;
 
@@ -661,7 +661,7 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes reinforcements only spawn zombies",
+            desc = "Fixes reinforcements only spawning zombies",
             extra = "Fixes [MC-14800](https://bugs.mojang.com/browse/MC-14800)",
             category = {CARPETFIXES,BUGFIX}
     )
