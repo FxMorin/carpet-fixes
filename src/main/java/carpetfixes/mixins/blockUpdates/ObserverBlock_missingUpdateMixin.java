@@ -18,6 +18,6 @@ public class ObserverBlock_missingUpdateMixin {
             index = 2
     )
     public int observerUpdate(int value) {
-        return CarpetFixesSettings.observerUpdateFix ? 19 : 18;
+        return CarpetFixesSettings.observerUpdateFix && value%2 == 0 ? ++value : value;
     }
 }
