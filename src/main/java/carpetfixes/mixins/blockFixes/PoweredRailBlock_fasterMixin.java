@@ -28,7 +28,6 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
     @Shadow @Final public static BooleanProperty POWERED;
 
     @Shadow protected boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) { return false;}
-    @Shadow protected boolean isPoweredByOtherRails(World world, BlockPos pos, boolean bl, int distance, RailShape shape) { return false;}
 
     PoweredRailBlock self = (PoweredRailBlock)(Object)this;
 
@@ -37,8 +36,29 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
 
     private static final int FORCE_PLACE = MOVED | FORCE_STATE | NOTIFY_LISTENERS;
 
+    protected boolean isPoweredByOtherRailsFaster(World world, BlockPos pos, boolean bl, int distance, RailShape shape, HashMap<BlockPos,Boolean> checkedPos) {
+        BlockState blockState = world.getBlockState(pos);
+        boolean speedCheck = checkedPos.containsKey(pos) && checkedPos.get(pos);
+        if (speedCheck) {
+            return world.isReceivingRedstonePower(pos) || this.isPoweredByOtherRailsFaster(world, pos, blockState, bl, distance + 1, checkedPos);
+        } else {
+            if (!blockState.isOf(this)) {
+                return false;
+            } else {
+                RailShape railShape = blockState.get(SHAPE);
+                if (shape == RailShape.EAST_WEST && (railShape == RailShape.NORTH_SOUTH || railShape == RailShape.ASCENDING_NORTH || railShape == RailShape.ASCENDING_SOUTH) || shape == RailShape.NORTH_SOUTH && (railShape == RailShape.EAST_WEST || railShape == RailShape.ASCENDING_EAST || railShape == RailShape.ASCENDING_WEST)) {
+                    return false;
+                } else if (blockState.get(POWERED)) {
+                    return world.isReceivingRedstonePower(pos) || this.isPoweredByOtherRailsFaster(world, pos, blockState, bl, distance + 1, checkedPos);
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
 
-    protected boolean isPoweredByOtherRailsFaster(World world, BlockPos pos, BlockState state, boolean bl, HashMap<Long,Boolean> checkedPos) {
+    protected boolean isPoweredByOtherRailsFaster(World world, BlockPos pos, BlockState state, boolean bl, int distance, HashMap<BlockPos,Boolean> checkedPos) {
+        if (distance >= CarpetSettings.railPowerLimit-1) return false;
         int i = pos.getX();
         int j = pos.getY();
         int k = pos.getZ();
@@ -46,18 +66,12 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
         RailShape railShape = state.get(SHAPE);
         switch(railShape.ordinal()) {
             case 0:
-                if (bl) {
-                    ++k;
-                } else {
-                    --k;
-                }
+                if (bl) ++k;
+                else --k;
                 break;
             case 1:
-                if (bl) {
-                    --i;
-                } else {
-                    ++i;
-                }
+                if (bl) --i;
+                else ++i;
                 break;
             case 2:
                 if (bl) {
@@ -99,33 +113,8 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 }
                 railShape = RailShape.NORTH_SOUTH;
         }
-        BlockPos newPos = new BlockPos(i, j, k);
-        long newPosLong = newPos.asLong();
-        if (checkedPos.containsKey(newPosLong)) {
-            return checkedPos.get(newPosLong);
-        }
-        if (this.isPoweredByOtherRails(world, newPos, bl, 0, railShape)) {
-            checkedPos.put(newPosLong,true);
-            return true;
-        } else {
-            if (bl2) {
-                BlockPos pos5 = new BlockPos(i, j - 1, k);
-                long pos5long = pos5.asLong();
-                if (checkedPos.containsKey(pos5long)) {
-                    return checkedPos.get(pos5long);
-                }
-                if (this.isPoweredByOtherRails(world, pos5, bl, 0, railShape)) {
-                    checkedPos.put(pos5long,true);
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
+        return this.isPoweredByOtherRailsFaster(world, new BlockPos(i, j, k), bl, distance, railShape, checkedPos) || (bl2 && this.isPoweredByOtherRailsFaster(world, new BlockPos(i, j - 1, k), bl, distance, railShape, checkedPos));
     }
-
 
     @Inject(
             method = "updateBlockState(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
@@ -140,222 +129,170 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 if (railShape.isAscending()) {
                     world.setBlockState(pos, state.with(POWERED, shouldBePowered), 3);
                     world.updateNeighborsExcept(pos.down(),self, Direction.UP);
-                    world.updateNeighborsExcept(pos.down(),self, Direction.DOWN); //isAscending
+                    world.updateNeighborsExcept(pos.up(),self, Direction.DOWN); //isAscending
                 } else if (shouldBePowered) {
                     powerLane(world, pos, state, railShape);
                 } else {
-                    depowerLane(world, pos, state, railShape);
+                    dePowerLane(world, pos, state, railShape);
                 }
             }
             ci.cancel();
         }
     }
 
-    public void powerLane(World world, BlockPos pos, BlockState mainstate, RailShape railShape) {
-        world.setBlockState(pos, mainstate.with(POWERED, true), FORCE_PLACE);
-        HashMap<Long,Boolean> checkedPos = new HashMap<>();
-        checkedPos.put(pos.asLong(),true);
+    public void powerLane(World world, BlockPos pos, BlockState mainState, RailShape railShape) {
+        world.setBlockState(pos, mainState.with(POWERED, true), FORCE_PLACE);
+        HashMap<BlockPos,Boolean> checkedPos = new HashMap<>();
+        checkedPos.put(pos,true);
+        int[] count = new int[2];
         if (railShape == RailShape.NORTH_SOUTH) { //Order: +z, -z
-            int[] zcount = new int[2];
             for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
-                Direction direction = NORTH_SOUTH_DIR[i];
-                for (int z = 1; z < CarpetSettings.railPowerLimit; z++) {
-                    BlockPos newPos = pos.offset(direction,z);
-                    BlockState state = world.getBlockState(newPos);
-                    long newPosLong = newPos.asLong();
-                    if (checkedPos.containsKey(newPosLong)) {
-                        if (!checkedPos.get(newPosLong)) break;
-                        zcount[i]++;
-                    } else if (!state.isOf(this) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, true,checkedPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, false,checkedPos))) {
-                        checkedPos.put(newPosLong,false);
-                        break;
-                    } else {
-                        checkedPos.put(newPosLong,true);
-                        world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
-                        zcount[i]++;
-                    }
-                }
+                setRailPositionsPower(world, pos, checkedPos, count, i, NORTH_SOUTH_DIR[i]);
             }
-            for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
-                int z11 = zcount[i];
-                if (z11 != 0) {
-                    Direction direction = NORTH_SOUTH_DIR[i];
-                    Block block = mainstate.getBlock();
-                    for (int zu1 = z11; zu1 >= 0; zu1--) {
-                        BlockPos pos1 = pos.offset(direction,zu1);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.west(), block, pos, Direction.WEST);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.east(), block, pos, Direction.EAST);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.down(), block, pos, Direction.DOWN);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.up(), block, pos, Direction.UP);
-                        if (zu1 == z11) {
-                            BlockPos newPos = pos.offset(direction,zu1 + 1);
-                            Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, direction);
-                            BlockState state = world.getBlockState(pos1);
-                            if (state.isOf(this) && state.get(SHAPE).isAscending()) {
-                                world.updateNeighbor(newPos.up(), block, pos1);
-                            }
-                        }
-                        if (zu1 == 0 && zcount[i == 0 ? 1 : 0] == 0) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos1.offset(direction), block, pos, direction);
-                        }
-                        BlockPos pos2 = pos.offset(direction,zu1).down();
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.west(), block, pos, Direction.WEST);
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.east(), block, pos, Direction.EAST);
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.down(), block, pos, Direction.DOWN);
-                        if (zu1 == z11) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos.offset(direction,zu1 + 1).down(), block, pos, Direction.DOWN);
-                        }
-                    }
-                }
-            }
+            updateRails(false, world, pos, mainState, count);
         } else if (railShape == RailShape.EAST_WEST) { //Order: -x, +x
-            int[] xcount = new int[2];
             for(int i = 0; i < EAST_WEST_DIR.length; ++i) {
-                Direction direction = EAST_WEST_DIR[i];
-                for (int z = 1; z < CarpetSettings.railPowerLimit; z++) {
-                    BlockPos newPos = pos.offset(direction,z);
-                    BlockState state = world.getBlockState(newPos);
-                    long newPosLong = newPos.asLong();
-                    if (checkedPos.containsKey(newPosLong)) {
-                        if (!checkedPos.get(newPosLong)) break;
-                        xcount[i]++;
-                    } else if (!state.isOf(this) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, true, checkedPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, false, checkedPos))) {
-                        checkedPos.put(newPosLong,false);
-                        break;
-                    } else {
-                        checkedPos.put(newPosLong,true);
-                        world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
-                        xcount[i]++;
-                    }
-                }
+                setRailPositionsPower(world, pos, checkedPos, count, i, EAST_WEST_DIR[i]);
             }
+            updateRails(true, world, pos, mainState, count);
+        }
+    }
+
+    public void dePowerLane(World world, BlockPos pos, BlockState mainState, RailShape railShape) {
+        world.setBlockState(pos, mainState.with(POWERED, false), FORCE_PLACE);
+        int[] count = new int[2];
+        if (railShape == RailShape.NORTH_SOUTH) { //Order: +z, -z
+            for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
+                setRailPositionsDePower(world, pos, count, i, NORTH_SOUTH_DIR[i]);
+            }
+            updateRails(false, world, pos, mainState, count);
+        } else if (railShape == RailShape.EAST_WEST) { //Order: -x, +x
             for(int i = 0; i < EAST_WEST_DIR.length; ++i) {
-                int x11 = xcount[i];
-                if (x11 != 0) {
-                    Direction direction = EAST_WEST_DIR[i];
-                    Block block = mainstate.getBlock();
-                    for (int xu1 = x11; xu1 >= 0; xu1--) {
-                        BlockPos pos1 = pos.offset(direction,xu1);
-                        if (i == 0 && xu1 == 0 && xcount[1] == 0) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos1.offset(direction.getOpposite()), block, pos, direction.getOpposite());
-                        }
-                        if (xu1 == x11) {
-                            BlockPos newPos = pos.offset(direction,xu1+1);
-                            Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, direction);
-                            BlockState state = world.getBlockState(pos1);
-                            if (state.isOf(this) && state.get(SHAPE).isAscending()) {
-                                world.updateNeighbor(newPos.up(), block, pos1);
-                            }
-                        }
-                        if (i == 1 && xu1 == 0 && xcount[0] == 0) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos1.offset(direction.getOpposite()), block, pos, direction.getOpposite());
-                        }
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.down(), block, pos, Direction.DOWN);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.up(), block, pos, Direction.UP);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.north(), block, pos, Direction.NORTH);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.south(), block, pos, Direction.SOUTH);
-                        BlockPos pos2 = pos.offset(direction,xu1).down();
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.down(), block, pos, Direction.DOWN);
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.north(), block, pos, Direction.NORTH);
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.south(), block, pos, Direction.SOUTH);
-                        if (xu1 == x11) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos.offset(direction,xu1+1).down(), block, pos, Direction.DOWN);
-                        }
-                    }
-                }
+                setRailPositionsDePower(world, pos, count, i, EAST_WEST_DIR[i]);
+            }
+            updateRails(true, world, pos, mainState, count);
+        }
+    }
+
+    private void setRailPositionsPower(World world, BlockPos pos, HashMap<BlockPos, Boolean> checkedPos, int[] count, int i, Direction direction) {
+        for (int z = 1; z < CarpetSettings.railPowerLimit; z++) {
+            BlockPos newPos = pos.offset(direction,z);
+            BlockState state = world.getBlockState(newPos);
+            if (checkedPos.containsKey(newPos)) {
+                if (!checkedPos.get(newPos)) break;
+                count[i]++;
+            } else if (!state.isOf(this) || state.get(POWERED) || !(world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, true, 0, checkedPos) || this.isPoweredByOtherRailsFaster(world, newPos, state, false, 0, checkedPos))) {
+                checkedPos.put(newPos,false);
+                break;
+            } else {
+                checkedPos.put(newPos,true);
+                world.setBlockState(newPos, state.with(POWERED, true), FORCE_PLACE);
+                count[i]++;
             }
         }
     }
 
-    public void depowerLane(World world, BlockPos pos, BlockState mainstate, RailShape railShape) {
-        world.setBlockState(pos, mainstate.with(POWERED, false), FORCE_PLACE);
-        if (railShape == RailShape.NORTH_SOUTH) { //Order: +z, -z
-            int[] zcount = new int[2];
+    private void setRailPositionsDePower(World world, BlockPos pos, int[] count, int i, Direction direction) {
+        for (int z = 1; z < CarpetSettings.railPowerLimit; z++) {
+            BlockPos newPos = pos.offset(direction,z);
+            BlockState state = world.getBlockState(newPos);
+            if (!state.isOf(this) || !state.get(POWERED) || world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0)) break;
+            world.setBlockState(newPos, state.with(POWERED, false), FORCE_PLACE);
+            count[i]++;
+        }
+    }
+
+    private void shapeUpdateEnd(World world, BlockPos pos, BlockState mainState, int endPos, Direction direction, int currentPos, BlockPos blockPos) {
+        if (currentPos == endPos) {
+            BlockPos newPos = pos.offset(direction,currentPos+1);
+            Utils.giveShapeUpdate(world, mainState, newPos, pos, direction);
+            BlockState state = world.getBlockState(blockPos);
+            if (state.isOf(this) && state.get(SHAPE).isAscending()) Utils.giveShapeUpdate(world, mainState, newPos.up(), pos, direction);
+        }
+    }
+
+    private void neighborUpdateEnd(World world, BlockPos pos, int endPos, Direction direction, Block block, int currentPos, BlockPos blockPos) {
+        if (currentPos == endPos) {
+            BlockPos newPos = pos.offset(direction,currentPos+1);
+            world.updateNeighbor(newPos, block, pos);
+            BlockState state = world.getBlockState(blockPos);
+            if (state.isOf(this) && state.get(SHAPE).isAscending()) world.updateNeighbor(newPos.up(), block, blockPos);
+        }
+    }
+
+    private void updateRails(boolean eastWest, World world, BlockPos pos, BlockState mainState, int[] count) {
+        if (eastWest) {
+            for (int i = 0; i < EAST_WEST_DIR.length; ++i) {
+                int countAmt = count[i];
+                if (i == 1 && countAmt == 0) continue;
+                Direction direction = EAST_WEST_DIR[i];
+                Block block = mainState.getBlock();
+                for (int c = countAmt; c >= i; c--) {
+                    BlockPos pos1 = pos.offset(direction, c);
+                    if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(direction.getOpposite()), block, pos);
+                    neighborUpdateEnd(world, pos, countAmt, direction, block, c, pos1);
+                    world.updateNeighbor(pos1.down(), block, pos);
+                    world.updateNeighbor(pos1.up(), block, pos);
+                    world.updateNeighbor(pos1.north(), block, pos);
+                    world.updateNeighbor(pos1.south(), block, pos);
+                    BlockPos pos2 = pos.offset(direction, c).down();
+                    world.updateNeighbor(pos2.down(), block, pos);
+                    world.updateNeighbor(pos2.north(), block, pos);
+                    world.updateNeighbor(pos2.south(), block, pos);
+                    if (c == countAmt) world.updateNeighbor(pos.offset(direction, c + 1).down(), block, pos);
+                    if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(direction.getOpposite()).down(), block, pos);
+                }
+                for (int c = countAmt; c >= i; c--) {
+                    BlockPos pos1 = pos.offset(direction, c);
+                    if (c == 0 && count[1] == 0) Utils.giveShapeUpdate(world, mainState, pos1.offset(direction.getOpposite()), pos, direction.getOpposite());
+                    shapeUpdateEnd(world, pos, mainState, countAmt, direction, c, pos1);
+                    Utils.giveShapeUpdate(world, mainState, pos1.down(), pos, Direction.DOWN);
+                    Utils.giveShapeUpdate(world, mainState, pos1.up(), pos, Direction.UP);
+                    Utils.giveShapeUpdate(world, mainState, pos1.north(), pos, Direction.NORTH);
+                    Utils.giveShapeUpdate(world, mainState, pos1.south(), pos, Direction.SOUTH);
+                    BlockPos pos2 = pos.offset(direction, c).down();
+                    Utils.giveShapeUpdate(world, mainState, pos2.down(), pos, Direction.DOWN);
+                    Utils.giveShapeUpdate(world, mainState, pos2.north(), pos, Direction.NORTH);
+                    Utils.giveShapeUpdate(world, mainState, pos2.south(), pos, Direction.SOUTH);
+                    if (c == countAmt) Utils.giveShapeUpdate(world, mainState, pos.offset(direction, c + 1).down(), pos, Direction.DOWN);
+                    if (c == 0 && count[1] == 0) Utils.giveShapeUpdate(world, mainState, pos1.offset(direction.getOpposite()).down(), pos, direction.getOpposite());
+                }
+            }
+        } else {
             for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
-                for (int z = 1; z < CarpetSettings.railPowerLimit; z++) {
-                    BlockPos newPos = pos.offset(NORTH_SOUTH_DIR[i],z);
-                    BlockState state = world.getBlockState(newPos);
-                    if (!state.isOf(this) || !state.get(POWERED) || world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0)) break;
-                    world.setBlockState(newPos, state.with(POWERED, false), FORCE_PLACE);
-                    zcount[i]++;
+                int countAmt = count[i];
+                if (i == 1 && countAmt == 0) continue;
+                Direction direction = NORTH_SOUTH_DIR[i];
+                Block block = mainState.getBlock();
+                for (int c = countAmt; c >= i; c--) {
+                    BlockPos pos1 = pos.offset(direction,c);
+                    world.updateNeighbor(pos1.west(), block, pos);
+                    world.updateNeighbor(pos1.east(), block, pos);
+                    world.updateNeighbor(pos1.down(), block, pos);
+                    world.updateNeighbor(pos1.up(), block, pos);
+                    neighborUpdateEnd(world, pos, countAmt, direction, block, c, pos1);
+                    if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(direction.getOpposite()), block, pos);
+                    BlockPos pos2 = pos.offset(direction,c).down();
+                    world.updateNeighbor(pos2.west(), block, pos);
+                    world.updateNeighbor(pos2.east(), block, pos);
+                    world.updateNeighbor(pos2.down(), block, pos);
+                    if (c == countAmt) world.updateNeighbor(pos.offset(direction,c + 1).down(), block, pos);
+                    if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(direction.getOpposite()).down(), block, pos);
                 }
-            }
-            for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
-                int z11 = zcount[i];
-                if (z11 != 0) {
-                    Direction direction = NORTH_SOUTH_DIR[i];
-                    Block block = mainstate.getBlock();
-                    for (int zu1 = z11; zu1 >= 0; zu1--) {
-                        BlockPos pos1 = pos.offset(direction,zu1);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.west(), block, pos, Direction.WEST);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.east(), block, pos, Direction.EAST);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.down(), block, pos, Direction.DOWN);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.up(), block, pos, Direction.UP);
-                        if (zu1 == z11) {
-                            BlockPos newPos = pos.offset(direction,zu1 + 1);
-                            Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, direction);
-                            BlockState state = world.getBlockState(pos1);
-                            if (state.isOf(this) && state.get(SHAPE).isAscending()) {
-                                world.updateNeighbor(newPos.up(), block, pos1);
-                            }
-                        }
-                        if (zu1 == 0 && zcount[i == 0 ? 1 : 0] == 0) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos1.offset(direction), block, pos, direction);
-                        }
-                        BlockPos pos2 = pos.offset(direction,zu1).down();
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.west(), block, pos, Direction.WEST);
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.east(), block, pos, Direction.EAST);
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.down(), block, pos, Direction.DOWN);
-                        if (zu1 == z11) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos.offset(direction,zu1 + 1).down(), block, pos, Direction.DOWN);
-                        }
-                    }
-                }
-            }
-        } else if (railShape == RailShape.EAST_WEST) { //Order: -x, +x
-            int[] xcount = new int[2];
-            for(int i = 0; i < EAST_WEST_DIR.length; ++i) {
-                for (int z = 1; z < CarpetSettings.railPowerLimit; z++) {
-                    BlockPos newPos = pos.offset(EAST_WEST_DIR[i],z);
-                    BlockState state = world.getBlockState(newPos);
-                    if (!state.isOf(this) || !state.get(POWERED) || world.isReceivingRedstonePower(newPos) || this.isPoweredByOtherRails(world, newPos, state, true, 0) || this.isPoweredByOtherRails(world, newPos, state, false, 0)) break;
-                    world.setBlockState(newPos, state.with(POWERED, false), FORCE_PLACE);
-                    xcount[i]++;
-                }
-            }
-            for(int i = 0; i < EAST_WEST_DIR.length; ++i) {
-                int x11 = xcount[i];
-                if (x11 != 0) {
-                    Direction direction = EAST_WEST_DIR[i];
-                    Block block = mainstate.getBlock();
-                    for (int xu1 = x11; xu1 >= 0; xu1--) {
-                        BlockPos pos1 = pos.offset(direction,xu1);
-                        if (i == 0 && xu1 == 0 && xcount[1] == 0) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos1.offset(direction.getOpposite()), block, pos, direction.getOpposite());
-                        }
-                        if (xu1 == x11) {
-                            BlockPos newPos = pos.offset(direction,xu1+1);
-                            Utils.updateNeighborWithShape(world, mainstate, newPos, block, pos, direction);
-                            BlockState state = world.getBlockState(pos1);
-                            if (state.isOf(this) && state.get(SHAPE).isAscending()) {
-                                world.updateNeighbor(newPos.up(), block, pos1);
-                            }
-                        }
-                        if (i == 1 && xu1 == 0 && xcount[0] == 0) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos1.offset(direction.getOpposite()), block, pos, direction.getOpposite());
-                        }
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.down(), block, pos, Direction.DOWN);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.up(), block, pos, Direction.UP);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.north(), block, pos, Direction.NORTH);
-                        Utils.updateNeighborWithShape(world, mainstate, pos1.south(), block, pos, Direction.SOUTH);
-                        BlockPos pos2 = pos.offset(direction,xu1).down();
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.down(), block, pos, Direction.DOWN);
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.north(), block, pos, Direction.NORTH);
-                        Utils.updateNeighborWithShape(world, mainstate, pos2.south(), block, pos, Direction.SOUTH);
-                        if (xu1 == x11) {
-                            Utils.updateNeighborWithShape(world, mainstate, pos.offset(direction,xu1+1).down(), block, pos, Direction.DOWN);
-                        }
-                    }
+                for (int c = countAmt; c >= i; c--) {
+                    BlockPos pos1 = pos.offset(direction,c);
+                    Utils.giveShapeUpdate(world, mainState, pos1.west(), pos, Direction.WEST);
+                    Utils.giveShapeUpdate(world, mainState, pos1.east(), pos, Direction.EAST);
+                    Utils.giveShapeUpdate(world, mainState, pos1.down(), pos, Direction.DOWN);
+                    Utils.giveShapeUpdate(world, mainState, pos1.up(), pos, Direction.UP);
+                    shapeUpdateEnd(world, pos, mainState, countAmt, direction, c, pos1);
+                    if (c == 0 && count[1] == 0) Utils.giveShapeUpdate(world, mainState, pos1.offset(direction.getOpposite()), pos, direction.getOpposite());
+                    BlockPos pos2 = pos.offset(direction,c).down();
+                    Utils.giveShapeUpdate(world, mainState, pos2.west(), pos, Direction.WEST);
+                    Utils.giveShapeUpdate(world, mainState, pos2.east(), pos, Direction.EAST);
+                    Utils.giveShapeUpdate(world, mainState, pos2.down(), pos, Direction.DOWN);
+                    if (c == countAmt) Utils.giveShapeUpdate(world, mainState, pos.offset(direction,c + 1).down(), pos, Direction.DOWN);
+                    if (c == 0 && count[1] == 0) Utils.giveShapeUpdate(world, mainState, pos1.offset(direction.getOpposite()).down(), pos, direction.getOpposite());
                 }
             }
         }

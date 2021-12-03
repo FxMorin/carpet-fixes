@@ -90,9 +90,8 @@ public class Utils {
         }
     }
 
-
-    public static void updateNeighborWithShape(World world, BlockState state, BlockPos pos, Block block, BlockPos fromPos, Direction direction) {
-        world.updateNeighbor(pos, block, fromPos);
-        world.getBlockState(pos).getStateForNeighborUpdate(direction.getOpposite(), state, world, pos, fromPos);
+    public static void giveShapeUpdate(World world, BlockState state, BlockPos pos, BlockPos fromPos, Direction direction) {
+        BlockState oldState = world.getBlockState(pos);
+        Block.replace(oldState, oldState.getStateForNeighborUpdate(direction.getOpposite(), state, world, pos, fromPos), world, pos, Block.NOTIFY_LISTENERS & -34, 0);
     }
 }
