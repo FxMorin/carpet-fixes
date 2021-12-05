@@ -707,6 +707,14 @@ public class CarpetFixesSettings {
     )
     public static boolean arrowEffectsBypassTotemsFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes mobs continuing to convert oce the conversion process has started even if the block is no longer there",
+            extra = "Fixes [MC-227250](https://bugs.mojang.com/browse/MC-227250)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean mobsConvertingWithoutBlocksFix = false;
+
     /*
 
     RE-INTRODUCE
