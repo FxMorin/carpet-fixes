@@ -36,10 +36,8 @@ public abstract class ServerWorld_zeroTickMixin extends World {
             )
     )
     private void zeroTickBlock(BlockPos pos, Block block, CallbackInfo ci, BlockState state) {
-        if (CarpetFixesSettings.reIntroduceZeroTickFarms && !this.isAir(pos)) {
-            if (state.hasRandomTicks()) {
-                state.randomTick(self,pos,this.random);
-            }
+        if (CarpetFixesSettings.reIntroduceZeroTickFarms && !this.isAir(pos) && state.hasRandomTicks()) {
+            state.randomTick(self,pos,this.random);
         }
     }
 }

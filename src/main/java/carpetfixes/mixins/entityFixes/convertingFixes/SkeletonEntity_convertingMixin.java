@@ -22,7 +22,7 @@ public abstract class SkeletonEntity_convertingMixin extends AbstractSkeletonEnt
     )
     public void isConverting(CallbackInfoReturnable<Boolean> cir) {
         if (CarpetFixesSettings.mobsConvertingWithoutBlocksFix) {
-            cir.setReturnValue(cir.getReturnValue()&&this.inPowderSnow);
+            cir.setReturnValue(cir.getReturnValue() && this.inPowderSnow);
         }
     }
 }
