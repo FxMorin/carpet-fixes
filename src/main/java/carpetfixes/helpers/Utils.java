@@ -1,5 +1,6 @@
 package carpetfixes.helpers;
 
+import carpetfixes.CarpetFixesInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.hit.BlockHitResult;
@@ -10,10 +11,30 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockStateRaycastContext;
 import net.minecraft.world.World;
 
+import java.util.SplittableRandom;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Utils {
+
+    public static Direction[] randomDirectionArray(BlockPos pos) {
+        return shuffle(pos.asLong());
+    }
+
+    public static Direction[] shuffle(long seed) {
+        SplittableRandom random = new SplittableRandom(seed);
+        Direction[] array = CarpetFixesInit.directions.clone();
+        for (int i = array.length; i > 1; i--) {
+            swap(array, i - 1, random.nextInt(i));
+        }
+        return array;
+    }
+
+    private static void swap(Direction[] array, int i, int j) {
+        Direction temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
 
     //Raycast from BlockView
     public static BlockHitResult raycast(World world, BlockStateRaycastContext context) {

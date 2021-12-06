@@ -715,6 +715,14 @@ public class CarpetFixesSettings {
     )
     public static boolean mobsConvertingWithoutBlocksFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes zero ticking",
+            extra = "Fixes [MC-227250](https://bugs.mojang.com/browse/MC-227250)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean zeroTickFix = false;
+
     /*
 
     RE-INTRODUCE
@@ -846,6 +854,22 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean pistonDupingFix = false;
+
+
+    /*
+
+    PARITY
+    Parity bugs between java & bedrock edition. This category is basically a meme,
+    we probably don't want these to actually be added to java!
+
+     */
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Makes block update order random",
+            category = {CARPETFIXES,PARITY}
+    )
+    public static boolean parityRandomBlockUpdates = false;
 
 
     /*
