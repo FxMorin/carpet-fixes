@@ -102,6 +102,7 @@
     "itemFixes.ItemStack_nbtSuffixMixin",
     "itemFixes.ItemStack_repairCostMixin",
     "itemFixes.PickaxeItem_blackstoneButtonMixin",
+    "parity.ComparatorBlock_terribleMixin",
     "parity.PistonBlock_movableLightMixin",
     "parity.World_randomUpdateOrderMixin",
     "playerFixes.Entity_blockCollisionMixin",

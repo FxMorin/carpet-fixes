@@ -878,6 +878,14 @@ public class CarpetFixesSettings {
     )
     public static boolean parityMovableLightBlocks = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Comparators no longer output level 15 if the full block its reading from is powered if there is a container behind it",
+            extra = "related to java bug report [MC-64394](https://bugs.mojang.com/browse/MC-64394) which is Works As Intended",
+            category = {CARPETFIXES,PARITY}
+    )
+    public static boolean parityTerribleComparators = false;
+
 
     /*
 
