@@ -26,7 +26,7 @@ public abstract class ZombieEntity_convertingMixin extends HostileEntity {
     )
     public void isConverting(CallbackInfoReturnable<Boolean> cir) {
         if (CarpetFixesSettings.mobsConvertingWithoutBlocksFix) {
-            cir.setReturnValue(cir.getReturnValue()&&this.canConvertInWater()&&this.isSubmergedIn(FluidTags.WATER));
+            cir.setReturnValue(cir.getReturnValue() && this.canConvertInWater() && this.isSubmergedIn(FluidTags.WATER));
         }
     }
 }

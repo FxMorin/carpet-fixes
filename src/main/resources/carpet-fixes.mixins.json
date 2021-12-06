@@ -116,6 +116,7 @@
     "reIntroduced.MobEntity_portalGeneralItemMixin",
     "reIntroduced.PlayerManager_LlamaRidingDupeMixin",
     "reIntroduced.ScreenHandler_itemShadowingMixin",
+    "reIntroduced.ServerWorld_zeroTickMixin",
     "reIntroduced.TargetBlock_PermanentlyPoweredMixin",
     "screenHandlerFixes.EnchantmentScreenHandler_transparentBlocksMixin"
   ],

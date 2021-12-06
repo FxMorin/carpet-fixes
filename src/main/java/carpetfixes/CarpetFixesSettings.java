@@ -190,7 +190,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes the bug which causes there to be void rings (empty chunks) in the end",
             extra = "Fixes [MC-159283](https://bugs.mojang.com/browse/MC-159283)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX,OPTIMIZATION}
     )
     public static boolean endVoidRingsFix = false;
 
@@ -639,7 +639,7 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Makes rails faster by removing most updates on themselves, duplicate updates, and doing rail search internally",
-            extra = "This probobly changes some rail behavior although so far does not seem to do so. Does change amount of block updates tho",
+            extra = "This probably changes some rail behavior although so far does not seem to do so. Does change amount of block updates tho",
             category = {CARPETFIXES,OPTIMIZATION}
     )
     public static boolean optimizedPoweredRails = false;
@@ -728,7 +728,7 @@ public class CarpetFixesSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Re-introduces target blocks being permanently powered when moved by pistons",
-            extra = "Backports [MC-173244](https://bugs.mojang.com/browse/MC-173244)",
+            extra = "Reverts [MC-173244](https://bugs.mojang.com/browse/MC-173244)",
             category = {CARPETFIXES,REINTRODUCE}
     )
     public static boolean reIntroduceTargetBlockPermanentlyPowered = false;
@@ -736,7 +736,7 @@ public class CarpetFixesSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Re-introduces lightning rods being permanently powered when moved by pistons",
-            extra = "Backports [MC-203718](https://bugs.mojang.com/browse/MC-203718)",
+            extra = "Reverts [MC-203718](https://bugs.mojang.com/browse/MC-203718)",
             category = {CARPETFIXES,REINTRODUCE}
     )
     public static boolean reIntroduceLightningRodPermanentlyPowered = false;
@@ -751,7 +751,7 @@ public class CarpetFixesSettings {
     //By whoImT from carpet-addons
     @Rule(
             desc = "Re-introduces 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds",
-            extra = "Backports [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a",
+            extra = "Reverts [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a",
             category = {CARPETFIXES,BUGFIX,REINTRODUCE}
     )
     public static boolean reIntroduceFlintAndSteelBehavior = false;
@@ -759,7 +759,7 @@ public class CarpetFixesSettings {
     //By whoImT from carpet-addons
     @Rule(
             desc = "Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while riding donkey/llama",
-            extra = {"Backports [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a","This has not been tested in 1.17 and may not work!"},
+            extra = {"Reverts [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a","This has not been tested in 1.18 and may not work!"},
             category = {CARPETFIXES,BUGFIX,REINTRODUCE,EXPERIMENTAL}
     )
     public static boolean reIntroduceDonkeyRidingDupe = false;
@@ -770,6 +770,14 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,REINTRODUCE}
     )
     public static boolean reIntroduceItemShadowing = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces zero tick farms",
+            extra = "Reverts [MC-113809](https://bugs.mojang.com/browse/MC-113809) from 20w12a",
+            category = {CARPETFIXES,REINTRODUCE}
+    )
+    public static boolean reIntroduceZeroTickFarms = false;
 
     /*
 
