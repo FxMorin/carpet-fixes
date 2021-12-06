@@ -18,11 +18,7 @@ import java.util.function.Function;
 public class Utils {
 
     public static Direction[] randomDirectionArray(BlockPos pos) {
-        return shuffle(pos.asLong());
-    }
-
-    public static Direction[] shuffle(long seed) {
-        SplittableRandom random = new SplittableRandom(seed);
+        SplittableRandom random = new SplittableRandom(pos.asLong());
         Direction[] array = CarpetFixesInit.directions.clone();
         for (int i = array.length; i > 1; i--) {
             swap(array, i - 1, random.nextInt(i));

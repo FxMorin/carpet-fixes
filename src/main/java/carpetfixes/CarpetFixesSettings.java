@@ -871,6 +871,13 @@ public class CarpetFixesSettings {
     )
     public static boolean parityRandomBlockUpdates = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows pistons to push and pull light blocks",
+            category = {CARPETFIXES,PARITY}
+    )
+    public static boolean parityMovableLightBlocks = false;
+
 
     /*
 
