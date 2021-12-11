@@ -1,6 +1,5 @@
 package carpetfixes.mixins.parity;
 
-import carpetfixes.CarpetFixesInit;
 import carpetfixes.CarpetFixesSettings;
 import carpetfixes.helpers.Utils;
 import net.minecraft.block.Block;

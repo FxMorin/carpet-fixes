@@ -12,10 +12,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.function.BooleanSupplier;
 
 @Mixin(ServerWorld.class)
-public class ServerWorld_updateSuppressionMixin {
+public class ServerWorld_updateSchedulerMixin {
 
     /**
-     * This ticks the updateScheduler. A system used for the updateSuppressionFix
+     * This ticks the updateScheduler
      */
 
 
@@ -27,6 +27,6 @@ public class ServerWorld_updateSuppressionMixin {
             at = @At("HEAD")
     )
     public void tick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-        if(CarpetFixesSettings.updateSuppressionFix) CarpetFixesInit.updateScheduler.get(self).tick();
+        CarpetFixesInit.updateScheduler.get(self).tick();
     }
 }
