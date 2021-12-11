@@ -717,11 +717,11 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes zero ticking",
-            extra = "Fixes [MC-227250](https://bugs.mojang.com/browse/MC-227250)",
+            desc = "Fixes Mobs ignoring 'Owner' when picking up loot",
+            extra = "Fixes [MC-120578](https://bugs.mojang.com/browse/MC-120578)",
             category = {CARPETFIXES,BUGFIX}
     )
-    public static boolean zeroTickFix = false;
+    public static boolean mobsIgnoreOwnerOnPickupFix = false;
 
     /*
 
