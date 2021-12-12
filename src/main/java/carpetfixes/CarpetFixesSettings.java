@@ -730,6 +730,14 @@ public class CarpetFixesSettings {
     )
     public static boolean incorrectBlockPosDistanceFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes redstone torch order when being broken",
+            extra = "Fixes [MC-157644](https://bugs.mojang.com/browse/MC-157644)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean redstoneTorchOrderOnBreakFix = false;
+
     /*
 
     RE-INTRODUCE
