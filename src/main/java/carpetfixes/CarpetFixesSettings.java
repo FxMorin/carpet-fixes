@@ -723,6 +723,13 @@ public class CarpetFixesSettings {
     )
     public static boolean mobsIgnoreOwnerOnPickupFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes BlockPos distance calculations being offset, resulting in them being directional & incorrect",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean incorrectBlockPosDistanceFix = false;
+
     /*
 
     RE-INTRODUCE

@@ -39,6 +39,7 @@
     "conversionFixes.MooshroomEntity_conversionMixin",
     "conversionFixes.SlimeEntity_conversionMixin",
     "conversionFixes.VillagerEntity_conversionMixin",
+    "coreSystemFixes.BlockPos_incorrectDistanceMixin",
     "coreSystemFixes.ChunkSerializer_missingStructureMixin",
     "coreSystemFixes.ChunkTicketManager_optimizationMixin",
     "coreSystemFixes.EnderDragonFight_twoCrystalMixin",
