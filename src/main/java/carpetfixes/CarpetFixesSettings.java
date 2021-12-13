@@ -126,7 +126,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes movement slowdown being calculated based on last block in search. Uses the slowest value instead",
             extra = "Fixes [MC-202654](https://bugs.mojang.com/browse/MC-202654)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
+            category = {CARPETFIXES,BUGFIX}
     )
     public static boolean directionalBlockSlowdownFix = false;
 
@@ -391,7 +391,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes some redstone components send duplicated block updates",
             extra = "Fixes [MC-231071](https://bugs.mojang.com/browse/MC-231071)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL,RECOMMENDED,VANILLA}
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL,RECOMMENDED,VANILLA,OPTIMIZATION}
     )
     public static boolean duplicateBlockUpdatesFix = false;
 
@@ -484,14 +484,14 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes blocks using updateNeighbors() on blocks next to them, making itself get a block update even though it does not accept block updates",
-            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA,OPTIMIZATION}
     )
     public static boolean uselessSelfBlockUpdateFix = false;
 
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes Tnt Minecarts being able to explode twice, killing their own drops",
-            category = {CARPETFIXES,BUGFIX,VANILLA}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean tntMinecartExplodesTwiceFix = false;
 
@@ -681,7 +681,7 @@ public class CarpetFixesSettings {
             extra = "Fixes [MC-125755](https://bugs.mojang.com/browse/MC-125755)",
             category = {CARPETFIXES,BUGFIX,INTENDED}
     )
-    public static boolean voidKillsloyaltyTridentsFix = false;
+    public static boolean voidKillsLoyaltyTridentsFix = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -726,7 +726,7 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes BlockPos distance calculations being offset, resulting in them being directional & incorrect",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean incorrectBlockPosDistanceFix = false;
 

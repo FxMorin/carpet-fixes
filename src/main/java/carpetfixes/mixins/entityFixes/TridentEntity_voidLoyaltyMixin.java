@@ -21,7 +21,7 @@ public abstract class TridentEntity_voidLoyaltyMixin extends Entity {
     @Override
     public void attemptTickInVoid() {
         if (this.getY() < (double) (this.world.getBottomY() - 64)) {
-            if (CarpetFixesSettings.voidKillsloyaltyTridentsFix && this.dataTracker.get(LOYALTY) > 0) {
+            if (CarpetFixesSettings.voidKillsLoyaltyTridentsFix && this.dataTracker.get(LOYALTY) > 0) {
                 this.dealtDamage = true;
                 if (this.getY() < (double) (this.world.getBottomY() - 128)) {
                     this.tickInVoid();
