@@ -738,6 +738,14 @@ public class CarpetFixesSettings {
     )
     public static boolean redstoneTorchOrderOnBreakFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes falling blocks not behaving as expected when being teleported",
+            extra = "Fixes [MC-151488](https://bugs.mojang.com/browse/MC-151488)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean fallingBlockTeleportingFix = false;
+
     /*
 
     RE-INTRODUCE

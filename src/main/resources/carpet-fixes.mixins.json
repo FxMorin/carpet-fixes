@@ -81,6 +81,7 @@
     "entityFixes.Entity_incorrectLogicMixin",
     "entityFixes.ExperienceOrbEntity_lavaCollisionMixin",
     "entityFixes.FallingBlockEntity_netherPortalMixin",
+    "entityFixes.FallingBlockEntity_teleportRefreshMixin",
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
     "entityFixes.FoxEntity_lootDropMixin",
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
