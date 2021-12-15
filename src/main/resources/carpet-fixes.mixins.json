@@ -27,6 +27,7 @@
     "blockUpdates.ObserverBlock_missingUpdateMixin",
     "blockUpdates.PistonBlockEntity_missingUpdateMixin",
     "blockUpdates.RedstoneTorchBlock_updateOrderOnBreakMixin",
+    "blockUpdates.RedstoneWireBlock_missingUpdateMixin",
     "blockUpdates.SpongeBlock_missingUpdateMixin",
     "blockUpdates.TrapdoorBlock_missingUpdateMixin",
     "blockUpdates.World_blockUpdateOrderMixin",

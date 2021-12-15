@@ -785,6 +785,14 @@ public class CarpetFixesSettings {
     )
     public static boolean endermanTeleportWithoutAIFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes redstone redirection missing updates on redirecting",
+            extra = "Fixes [MC-3703](https://bugs.mojang.com/browse/MC-3703)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean redstoneRedirectionMissingUpdateFix = false;
+
     /*
 
     RE-INTRODUCE
