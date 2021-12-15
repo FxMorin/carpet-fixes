@@ -1,7 +1,6 @@
 package carpetfixes.helpers;
 
 public class RuleCategory {
-    public static final String CARPETFIXES = "carpet-fixes";
     public static final String VANILLA = "vanilla"; //Does not change any game behaviours
     public static final String RECOMMENDED = "recommended"; //Game fixes which do not fix much although are recommended. Most recommended just fix stupid bugs that are annoying
     public static final String CRASHFIX = "crashfix"; // For bugs that fix possible server crashes
