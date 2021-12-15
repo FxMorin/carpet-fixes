@@ -865,6 +865,15 @@ public class CarpetFixesSettings {
     )
     public static boolean reIntroduceZeroTickFarms = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces only saving during autosaves instead of any time",
+            extra = {"Reverts 'saving chunks whenever there is time spare to reduce autosave spikes' from 20w12a",
+            "This makes your hard drive work overtime, so people with slow drives might suffer from this. This fixes that!"},
+            category = {CARPETFIXES,REINTRODUCE}
+    )
+    public static boolean reIntroduceOnlyAutoSaveSaving = false;
+
     /*
 
     FABRIC-CARPET OVERRIDES

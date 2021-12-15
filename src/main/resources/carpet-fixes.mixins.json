@@ -132,6 +132,7 @@
     "reIntroduced.ScreenHandler_itemShadowingMixin",
     "reIntroduced.ServerWorld_zeroTickMixin",
     "reIntroduced.TargetBlock_PermanentlyPoweredMixin",
+    "reIntroduced.ThreadedAnvilChunkStorage_oldSavingMixin",
     "screenHandlerFixes.EnchantmentScreenHandler_transparentBlocksMixin"
   ],
   "injectors": {
