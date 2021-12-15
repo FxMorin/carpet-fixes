@@ -793,6 +793,14 @@ public class CarpetFixesSettings {
     )
     public static boolean redstoneRedirectionMissingUpdateFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to push waterlogged blocks while retaining the waterlogged state using a short pulse",
+            extra = "Fixes [MC-130183](https://bugs.mojang.com/browse/MC-130183)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean pistonsPushWaterloggedBlocksFix = false;
+
     /*
 
     RE-INTRODUCE
