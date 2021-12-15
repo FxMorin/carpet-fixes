@@ -7,6 +7,7 @@ repositories {
 	maven {
 		url 'https://masa.dy.fi/maven'
 	}
+    mavenCentral()
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -21,7 +22,9 @@ loom {
 }
 
 dependencies {
-	//to change the versions see the gradle.properties file
+    implementation 'com.github.bbottema:jetbrains-runtime-annotations:1.0.0'
+
+    //to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"

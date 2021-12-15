@@ -86,6 +86,7 @@
     "entityFixes.FoxEntity_lootDropMixin",
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
     "entityFixes.ItemFrameEntity_soundMixin",
+    "entityFixes.LivingEntity_momentumCancelledMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.LivingEntity_totemMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",

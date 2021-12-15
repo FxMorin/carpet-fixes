@@ -746,6 +746,14 @@ public class CarpetFixesSettings {
     )
     public static boolean fallingBlockTeleportingFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes player velocity on X and Z axis being cancelled separately at low values",
+            extra = "Fixes [MC-241951](https://bugs.mojang.com/browse/MC-241951)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean velocitySeparateAxisCancellingFix = false;
+
     /*
 
     RE-INTRODUCE
