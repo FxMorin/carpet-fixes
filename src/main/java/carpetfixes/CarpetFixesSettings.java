@@ -1086,45 +1086,35 @@ public class CarpetFixesSettings {
 
     private static class onlineModeValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
-                source.getServer().setOnlineMode(newValue);
-            }
+            if (source != null) source.getServer().setOnlineMode(newValue);
             return newValue;
         }
     }
 
     private static class preventProxyConnectionsValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
-                source.getServer().setPreventProxyConnections(newValue);
-            }
+            if (source != null) source.getServer().setPreventProxyConnections(newValue);
             return newValue;
         }
     }
 
     private static class pvpEnabledValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
-                source.getServer().setPvpEnabled(newValue);
-            }
+            if (source != null) source.getServer().setPvpEnabled(newValue);
             return newValue;
         }
     }
 
     private static class flightEnabledValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
-                source.getServer().setFlightEnabled(newValue);
-            }
+            if (source != null) source.getServer().setFlightEnabled(newValue);
             return newValue;
         }
     }
 
     private static class enforceWhitelistValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
-                source.getServer().setEnforceWhitelist(newValue);
-            }
+            if (source != null) source.getServer().setEnforceWhitelist(newValue);
             return newValue;
         }
     }
