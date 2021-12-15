@@ -15,13 +15,13 @@ import static net.minecraft.block.TripwireHookBlock.*;
 
 
 @Mixin(TripwireHookBlock.class)
-public abstract class TripwireHookBlock_stringDupeMixin extends Block {
+public abstract class TripwireHookBlock_hookDupeMixin extends Block {
 
     @Shadow protected abstract void playSound(World world, BlockPos pos, boolean attached, boolean on, boolean detached, boolean off);
 
     @Shadow protected abstract void updateNeighborsOnAxis(World world, BlockPos pos, Direction direction);
 
-    public TripwireHookBlock_stringDupeMixin(Settings settings) {super(settings);}
+    public TripwireHookBlock_hookDupeMixin(Settings settings) {super(settings);}
 
 
     /**
