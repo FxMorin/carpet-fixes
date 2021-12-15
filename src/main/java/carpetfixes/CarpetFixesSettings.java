@@ -59,10 +59,11 @@ public class CarpetFixesSettings {
     public static boolean pistonPullingUpdateFix = false;*/
 
     //By FX - PR0CESS
+    //Not putting it in the dupe fix category since technically there is no way to dupe with it anymore. Although there probably will be
     @Rule(
             desc = "Fixes StringTag Exploits due to StringTag writeUTF() not respecting readUTF() Limits causing crashes internally",
             extra = "Fixes ChunkRegen & [MC-134892](https://bugs.mojang.com/browse/MC-134892)",
-            category = {CARPETFIXES,BUGFIX,CRASHFIX,RECOMMENDED,VANILLA}
+            category = {CARPETFIXES,BUGFIX,CRASHFIX,RECOMMENDED,VANILLA,DUPE}
     )
     public static boolean stringTagExploitFix = false;
 
@@ -73,13 +74,6 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean blockCollisionCheckFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes falling blocks duping using the end portal",
-            category = {CARPETFIXES,BUGFIX}
-    )
-    public static boolean fallingBlockDuplicationFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -99,10 +93,10 @@ public class CarpetFixesSettings {
     public static boolean comparatorUpdateFix = false;
 
     //by FX - PR0CESS
-    //Recommended since it not only negates a crash but also tried to keep behaviour after it
+    //Recommended since it not only negates a crash but also tried to keep behaviour after it. Technically it's a dupe fix, although its a lot more than that
     @Rule(
             desc = "Prevents update suppression from working. When the stack is reached, the following updates are moved to the next tick",
-            category = {CARPETFIXES,BUGFIX,CRASHFIX,RECOMMENDED}
+            category = {CARPETFIXES,BUGFIX,CRASHFIX,RECOMMENDED,DUPE}
     )
     public static boolean updateSuppressionFix = false;
 
@@ -287,14 +281,6 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes being able to dupe items using the /give command",
-            extra = "Fixes [MC-120507](https://bugs.mojang.com/browse/MC-120507)",
-            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
-    )
-    public static boolean giveCommandDupeFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes experience orbs acting as if flowing lava is a full block",
             extra = "Fixes [MC-226961](https://bugs.mojang.com/browse/MC-226961)",
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
@@ -378,14 +364,6 @@ public class CarpetFixesSettings {
     public static boolean incorrectExplosionExposureFix = false;
 
     //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes /data duping inventories when modifying entity data",
-            extra = "Fixes [MC-112826](https://bugs.mojang.com/browse/MC-112826) & [MC-191011](https://bugs.mojang.com/browse/MC-191011)",
-            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA}
-    )
-    public static boolean nbtDataDupeFix = false;
-
-    //by FX - PR0CESS
     //Recommended even thought its experimental since it does save a ton of performance
     //Marked as Vanilla since its very very hard to run into a situation where it affects vanilla
     @Rule(
@@ -418,14 +396,6 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean beeStuckInVoidFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes bees duplicating while trying to load a beehive/beenest in unloaded chunks",
-            extra = "Fixes [MC-234471](https://bugs.mojang.com/browse/MC-234471)",
-            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL}
-    )
-    public static boolean beeDupeFix = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -583,9 +553,10 @@ public class CarpetFixesSettings {
     public static boolean instantFluidFlowingFix = false;
 
     //by FX - PR0CESS
+    //Not a dupe fix, although it was written to prevent dupes in the future
     @Rule(
             desc = "Changes the code to use less copy calls, and instead pass references when possible",
-            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,DUPE}
     )
     public static boolean saferItemTransfers = false;
 
@@ -596,13 +567,6 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX,RECOMMENDED}
     )
     public static boolean sculkSensorBiasFix = false;
-
-    // by apple502j
-    @Rule(
-            desc = "Fixes general item dupe using <leak>",
-            category = {CARPETFIXES,BUGFIX,RECOMMENDED}
-    )
-    public static boolean breakSwapGeneralItemDupeFix = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -763,25 +727,11 @@ public class CarpetFixesSettings {
     )
     public static boolean armorStandMissingFunctionalityFix = false;
 
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes the string dupe using water and tripwire hooks",
-            category = {CARPETFIXES,BUGFIX}
-    )
-    public static boolean stringDupeFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes the tripwire hook dupe",
-            category = {CARPETFIXES,BUGFIX}
-    )
-    public static boolean tripwireHookDupeFix = false;
-
     //by Adryd
     @Rule(
             desc = "Fixes enderman teleporting when they have the NoAI tag",
             extra = "Fixes [MC-65668](https://bugs.mojang.com/browse/MC-65668)",
-            category = {CARPETFIXES,BUGFIX}
+            category = {CARPETFIXES,BUGFIX,WONTFIX}
     )
     public static boolean endermanTeleportWithoutAIFix = false;
 
@@ -800,6 +750,82 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES,BUGFIX}
     )
     public static boolean pistonsPushWaterloggedBlocksFix = false;
+
+    /*
+
+    DUPE BUGS
+    Bugs that dupe stuff. This is the cool bug category. They are just like all the
+    other bugs, except they deserve a category of their own (for sorting purposes...)
+
+     */
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes falling blocks duping using the end portal",
+            category = {CARPETFIXES,BUGFIX,DUPE}
+    )
+    public static boolean fallingBlockDuplicationFix = false;
+
+    //by Fallen-Breath from Carpet-TIS-Addition
+    @Rule(
+            desc = "Fixes rails duplicating",
+            category = {CARPETFIXES,BUGFIX,DUPE}
+    )
+    public static boolean railDuplicationFix = false;
+
+    //by Fallen-Breath from Carpet-TIS-Addition
+    @Rule(
+            desc = "Disable TNT, carpet and part of rail dupers",
+            extra = {"Attachment block update based dupers will do nothing and redstone component update based dupers can no longer keep their duped block",
+                    "Implementation by Carpet-TIS-Addition - Dupe bad dig good"},
+            category = {CARPETFIXES,BUGFIX,DUPE}
+    )
+    public static boolean pistonDupingFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to dupe items using the /give command",
+            extra = "Fixes [MC-120507](https://bugs.mojang.com/browse/MC-120507)",
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,DUPE}
+    )
+    public static boolean giveCommandDupeFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes /data duping inventories when modifying entity data",
+            extra = "Fixes [MC-112826](https://bugs.mojang.com/browse/MC-112826) & [MC-191011](https://bugs.mojang.com/browse/MC-191011)",
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,VANILLA,DUPE}
+    )
+    public static boolean nbtDataDupeFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes bees duplicating while trying to load a beehive/beenest in unloaded chunks",
+            extra = "Fixes [MC-234471](https://bugs.mojang.com/browse/MC-234471)",
+            category = {CARPETFIXES,BUGFIX,EXPERIMENTAL,DUPE}
+    )
+    public static boolean beeDupeFix = false;
+
+    // by apple502j
+    @Rule(
+            desc = "Fixes a general item dupe using shulker boxes",
+            category = {CARPETFIXES,BUGFIX,RECOMMENDED,DUPE}
+    )
+    public static boolean breakSwapGeneralItemDupeFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes a string dupe using water & tripwire hooks",
+            category = {CARPETFIXES,BUGFIX,DUPE}
+    )
+    public static boolean stringDupeFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes a tripwire hook dupe using doors & trapdoors",
+            category = {CARPETFIXES,BUGFIX,DUPE}
+    )
+    public static boolean tripwireHookDupeFix = false;
 
     /*
 
@@ -830,7 +856,7 @@ public class CarpetFixesSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Re-introduces general item dupe using dolphins, and some other dimension change dupes",
-            category = {CARPETFIXES,REINTRODUCE}
+            category = {CARPETFIXES,REINTRODUCE,DUPE}
     )
     public static boolean reIntroducePortalGeneralItemDupe = false;
 
@@ -838,7 +864,7 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Re-introduces 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds",
             extra = "Reverts [MC-4923](https://bugs.mojang.com/browse/MC-4923) from 18w05a",
-            category = {CARPETFIXES,BUGFIX,REINTRODUCE}
+            category = {CARPETFIXES,REINTRODUCE}
     )
     public static boolean reIntroduceFlintAndSteelBehavior = false;
 
@@ -846,14 +872,14 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Re-introduces multiplayer donkey/llama dupe bug based on disconnecting while riding donkey/llama",
             extra = {"Reverts [MC-181241](https://bugs.mojang.com/browse/MC-181241) from 18w05a","This has not been tested in 1.18 and may not work!"},
-            category = {CARPETFIXES,BUGFIX,REINTRODUCE,EXPERIMENTAL}
+            category = {CARPETFIXES,REINTRODUCE,EXPERIMENTAL,DUPE}
     )
     public static boolean reIntroduceDonkeyRidingDupe = false;
 
     //By FX - PR0CESS
     @Rule(
             desc = "Re-introduces item shadowing! [Video](https://www.youtube.com/watch?v=i8_FPyn20ns)",
-            category = {CARPETFIXES,REINTRODUCE}
+            category = {CARPETFIXES,REINTRODUCE,DUPE}
     )
     public static boolean reIntroduceItemShadowing = false;
 
@@ -876,12 +902,12 @@ public class CarpetFixesSettings {
 
     /*
 
-    FABRIC-CARPET OVERRIDES
+    FABRIC-CARPET & CARPET-EXTRA OVERRIDES
     I want to move these rules over to carpet-fixes
 
      */
 
-    //By FX - PR0CESS
+    //By FX - PR0CESS from fabric-carpet
     @Rule(
             desc = "Lightning kills the items that drop when lightning kills an entity",
             extra = {"Setting to true will prevent lightning from killing drops",
@@ -890,15 +916,7 @@ public class CarpetFixesSettings {
     )
     public static boolean lightningKillsDropsFix = false;
 
-
-    /*
-
-    CARPET-EXTRA OVERRIDES
-    I want to move these rules over to carpet-fixes
-
-     */
-
-    //By DeadlyMC
+    //By DeadlyMC from carpet-extra
     @Rule(
             desc = "Re-adds 1.8 double retraction to pistons",
             category = {CARPETFIXES, BUGFIX, EXPERIMENTAL},
@@ -907,7 +925,7 @@ public class CarpetFixesSettings {
     )
     public static boolean doubleRetraction = false;
 
-    //Original By DeadlyMC, Tweak By FX - PR0CESS
+    //Original By DeadlyMC (from carpet-extra), Fixed By FX - PR0CESS
     //Fixed bug in carpet-extra implementation
     @Rule(
             desc = "Quick pulses won't get lost in repeater setups",
@@ -916,32 +934,6 @@ public class CarpetFixesSettings {
             category = {CARPETFIXES, BUGFIX}
     )
     public static boolean repeaterPriorityFix = false;
-
-
-    /*
-
-    FROM OTHER CARPET EXTENSIONS
-
-    */
-
-    //by Fallen-Breath from Carpet-TIS-Addition
-    @Rule(
-            desc = "Fixes rails duplicating",
-            category = {CARPETFIXES,BUGFIX}
-    )
-    public static boolean railDuplicationFix = false;
-
-    //by Fallen-Breath from Carpet-TIS-Addition
-    @Rule(
-            desc = "Disable TNT, carpet and part of rail dupers",
-            extra = {
-                    "Attachment block update based dupers will do nothing and redstone component update based dupers can no longer keep their duped block",
-                    "Implementation by Carpet-TIS-Addition - Dupe bad dig good"
-            },
-            category = {CARPETFIXES,BUGFIX}
-    )
-    public static boolean pistonDupingFix = false;
-
 
     /*
 

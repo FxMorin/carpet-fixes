@@ -8,6 +8,7 @@ public class RuleCategory {
     public static final String REINTRODUCE = "reintroduce"; //A bug that got fixed which we don't want fixed or a "feature" from a snapshot that was removed
     public static final String WONTFIX = "wontfix"; //Marked as `won't fix` on the bug tracker
 
+    public static final String DUPE = "dupe"; //These are dupe bugs, normal bugs except there duping related.
     public static final String PARITY = "parity"; //These are parity bugs, this is a meme category.
 
     // Marked as `Works as Intended` on the bug tracker. I don't like these, usually will only implement for backports
