@@ -64,6 +64,7 @@
     "dupeFixes.SimpleInventory_dataDupeMixin",
     "dupeFixes.saferItemTransfer.DropperBlock_dontCopyMixin",
     "entityFixes.AbstractDecorationEntity_triggersTrapsMixin",
+    "entityFixes.ArmorStandEntity_aggroMechanicsMixin",
     "entityFixes.ArrowEntity_totemMixin",
     "entityFixes.BeeEntity_chunkLoadingMixin",
     "entityFixes.BeeEntity_voidMixin",

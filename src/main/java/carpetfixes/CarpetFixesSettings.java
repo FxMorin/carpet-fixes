@@ -754,6 +754,15 @@ public class CarpetFixesSettings {
     )
     public static boolean velocitySeparateAxisCancellingFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes ArmorStands losing functionality due to 'optimizations'",
+            extra = {"The marker tag while still prevent interaction though",
+                    "Fixes [MC-244956](https://bugs.mojang.com/browse/MC-244956)"},
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean armorStandMissingFunctionalityFix = false;
+
     /*
 
     RE-INTRODUCE
