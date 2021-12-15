@@ -751,6 +751,14 @@ public class CarpetFixesSettings {
     )
     public static boolean pistonsPushWaterloggedBlocksFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes tile drops at the world border (past floating point precision) spawning at the wrong location",
+            extra = "Relates to [MC-4](https://bugs.mojang.com/browse/MC-4)",
+            category = BUGFIX
+    )
+    public static boolean tileDropsAffectedByFloatingPointFix = false;
+
     /*
 
     DUPE BUGS
