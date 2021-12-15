@@ -60,4 +60,49 @@ public class ScreenHandler_itemShadowingMixin {
             player.getInventory().setStack(button, ItemStack.EMPTY);
         }
     }
+
+
+    @Redirect(
+            method= "internalOnSlotClick(IILnet/minecraft/screen/slot/SlotActionType;Lnet/minecraft/entity/player/PlayerEntity;)V",
+            slice=@Slice(
+                    from=@At(
+                            value="FIELD",
+                            target="Lnet/minecraft/screen/slot/SlotActionType;SWAP:Lnet/minecraft/screen/slot/SlotActionType;"
+                    )
+            ),
+            at=@At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/entity/player/PlayerInventory;setStack(ILnet/minecraft/item/ItemStack;)V",
+                    ordinal = 2
+            ),
+            require = 0
+    )
+    private void dontRunBeforeSecondInventoryUpdate(PlayerInventory instance, int slot, ItemStack stack) {
+        if (!CarpetFixesSettings.reIntroduceItemShadowing) {
+            instance.setStack(slot, ItemStack.EMPTY);
+        }
+    }
+
+
+    @Inject(
+            method= "internalOnSlotClick(IILnet/minecraft/screen/slot/SlotActionType;Lnet/minecraft/entity/player/PlayerEntity;)V",
+            slice=@Slice(
+                    from=@At(
+                            value="FIELD",
+                            target="Lnet/minecraft/screen/slot/SlotActionType;SWAP:Lnet/minecraft/screen/slot/SlotActionType;"
+                    )
+            ),
+            at=@At(
+                    value="INVOKE",
+                    target="Lnet/minecraft/screen/slot/Slot;setStack(Lnet/minecraft/item/ItemStack;)V",
+                    ordinal = 4,
+                    shift = At.Shift.AFTER
+            ),
+            require = 0
+    )
+    private void RunAfterSecondInventoryUpdate(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci) {
+        if (CarpetFixesSettings.reIntroduceItemShadowing) {
+            player.getInventory().setStack(button, ItemStack.EMPTY);
+        }
+    }
 }
