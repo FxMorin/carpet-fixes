@@ -770,6 +770,13 @@ public class CarpetFixesSettings {
     )
     public static boolean stringDupeFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the tripwire hook dupe",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean tripwireHookDupeFix = false;
+
     /*
 
     RE-INTRODUCE
