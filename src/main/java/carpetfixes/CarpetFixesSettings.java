@@ -1,5 +1,6 @@
 package carpetfixes;
 
+import carpet.CarpetServer;
 import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
 import carpet.settings.Validator;
@@ -937,6 +938,110 @@ public class CarpetFixesSettings {
 
     /*
 
+    ADVANCED CONFIGURATIONS
+    Simple options that you can turn on and off are great, its one of the things I try to
+    do. Since it makes it much easier for the end user to use the mod. These options are
+    for more advanced users who want some more flexibility!
+
+     */
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to change the max amount of chunks that can save per autosave",
+            extra = "If your server has large lag spikes due to chunk saving, you can lower this number.",
+            options = {"300","200","100","50"},
+            category = {CARPETFIXES,ADVANCED,OPTIMIZATION}
+    )
+    public static int maxChunksSavedPerAutoSave = 200;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to change the max amount of chunks that can save per tick for the 1.18 chunk saving system",
+            extra = "This is for the system which just attempt to save chunks every tick. Max chunks saved per tick",
+            options = {"100","50","20","10"},
+            category = {CARPETFIXES,ADVANCED,OPTIMIZATION}
+    )
+    public static int maxChunksSavedPerTick = 20;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to change the delay between autosaves in ticks",
+            extra = "Shortening this number will make your server save more often which will also spread the load on the server",
+            options = {"12000","6000","3600","1200"},
+            category = {CARPETFIXES,ADVANCED,OPTIMIZATION}
+    )
+    public static int delayBetweenAutoSaves = 6000;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to change max tick delay before a task is cancelled",
+            extra = "Lower value raises the task leniency. Basically lower number means higher chance of success",
+            options = {"12","6","3","1"},
+            category = {CARPETFIXES,ADVANCED,EXPERIMENTAL}
+    )
+    public static int maxTickLatency = 3;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to change how long the server player list wait before updating",
+            extra = {"delay is in nanoseconds. Default is 5 seconds (5000000000) [1m,10s,5s,1s]"},
+            options = {"60000000000","10000000000","5000000000","1000000000"},
+            category = {CARPETFIXES,ADVANCED}
+    )
+    public static long statusUpdateDelay = 5000000000L;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle onlineMode without needing to restart the server",
+            validate = onlineModeValidator.class,
+            category = {CARPETFIXES,ADVANCED,EXPERIMENTAL}
+    )
+    public static boolean toggleOnlineMode = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isOnlineMode();
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle preventing proxy connections without needing to restart the server",
+            validate = preventProxyConnectionsValidator.class,
+            category = {CARPETFIXES,ADVANCED,EXPERIMENTAL}
+    )
+    public static boolean togglePreventProxyConnections = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.shouldPreventProxyConnections();
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle pvpEnabled without needing to restart the server",
+            validate = pvpEnabledValidator.class,
+            category = {CARPETFIXES,ADVANCED}
+    )
+    public static boolean togglePvpEnabled = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isPvpEnabled();
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle flightEnabled without needing to restart the server",
+            validate = flightEnabledValidator.class,
+            category = {CARPETFIXES,ADVANCED}
+    )
+    public static boolean toggleFlightEnabled = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isFlightEnabled();
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle enforcing the whitelist without needing to restart the server",
+            validate = enforceWhitelistValidator.class,
+            category = {CARPETFIXES,ADVANCED}
+    )
+    public static boolean toggleEnforceWhitelist = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isEnforceWhitelist();
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to set the playerIdleTimeout without needing to restart the server",
+            extra = "Setting the value to 0 will disable the idle timeout. Time in minutes",
+            options = {"0","15","30","60"},
+            validate = playerIdleTimeoutValidator.class,
+            category = {CARPETFIXES,ADVANCED,EXPERIMENTAL}
+    )
+    public static int setPlayerIdleTimeout = CarpetServer.minecraft_server == null ? 0 : CarpetServer.minecraft_server.getPlayerIdleTimeout();
+
+    /*
+
     PARITY
     Parity bugs between java & bedrock edition. This category is basically a meme,
     we probably don't want these to actually be added to java!
@@ -976,6 +1081,61 @@ public class CarpetFixesSettings {
             ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemPattern = null;
             ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemDispenserPattern = null;
             return newValue;
+        }
+    }
+
+    private static class onlineModeValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (source != null) {
+                source.getServer().setOnlineMode(newValue);
+            }
+            return newValue;
+        }
+    }
+
+    private static class preventProxyConnectionsValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (source != null) {
+                source.getServer().setPreventProxyConnections(newValue);
+            }
+            return newValue;
+        }
+    }
+
+    private static class pvpEnabledValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (source != null) {
+                source.getServer().setPvpEnabled(newValue);
+            }
+            return newValue;
+        }
+    }
+
+    private static class flightEnabledValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (source != null) {
+                source.getServer().setFlightEnabled(newValue);
+            }
+            return newValue;
+        }
+    }
+
+    private static class enforceWhitelistValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (source != null) {
+                source.getServer().setEnforceWhitelist(newValue);
+            }
+            return newValue;
+        }
+    }
+
+    private static class playerIdleTimeoutValidator extends Validator<Integer> {
+        @Override public Integer validate(ServerCommandSource source, ParsedRule<Integer> currentRule, Integer newValue, String string) {
+            if (source != null && newValue >= 0) {
+                source.getServer().setPlayerIdleTimeout(newValue);
+                return newValue;
+            }
+            return currentRule.get();
         }
     }
 }

@@ -3,6 +3,8 @@
   "package": "carpetfixes.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "advanced.MinecraftServer_autosaveDelayMixin",
+    "advanced.ThreadedAnvilChunkStorage_chunkTimingsMixin",
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
     "blockEntityFixes.BeehiveBlockEntity_stuckMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
