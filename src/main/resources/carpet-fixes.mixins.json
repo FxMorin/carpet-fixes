@@ -77,6 +77,7 @@
     "entityFixes.EndCrystalEntity_ExplosionChainingMixin",
     "entityFixes.EndCrystalEntity_InvulnerableMixin",
     "entityFixes.EnderDragonFight_respawnMixin",
+    "entityFixes.EndermanEntity_noAiTeleportMixin",
     "entityFixes.EndermanEntity_teleportingMixin",
     "entityFixes.Entity_centerCollisionMixin",
     "entityFixes.Entity_directionalBlockSlowdownMixin",

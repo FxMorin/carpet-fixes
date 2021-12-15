@@ -777,6 +777,14 @@ public class CarpetFixesSettings {
     )
     public static boolean tripwireHookDupeFix = false;
 
+    //by Adryd
+    @Rule(
+            desc = "Fixes enderman teleporting when they have the NoAI tag",
+            extra = "Fixes [MC-65668](https://bugs.mojang.com/browse/MC-65668)",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean endermanTeleportWithoutAIFix = false;
+
     /*
 
     RE-INTRODUCE
