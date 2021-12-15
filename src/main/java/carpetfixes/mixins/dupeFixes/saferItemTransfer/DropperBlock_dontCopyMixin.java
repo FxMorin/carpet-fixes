@@ -19,6 +19,14 @@ public class DropperBlock_dontCopyMixin {
 
     @Redirect(
             method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V",
+            slice = @Slice(
+                    from = @At("HEAD"),
+                    to = @At(
+                            value = "INVOKE",
+                            target = "Lnet/minecraft/item/ItemStack;isEmpty()Z",
+                            ordinal = 1
+                    )
+            ),
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/item/ItemStack;copy()Lnet/minecraft/item/ItemStack;",
@@ -35,7 +43,8 @@ public class DropperBlock_dontCopyMixin {
             slice = @Slice(
                     from = @At(
                             value = "INVOKE",
-                            target = "Lnet/minecraft/item/ItemStack;isEmpty()Z"
+                            target = "Lnet/minecraft/item/ItemStack;isEmpty()Z",
+                            ordinal = 1
                     )
             ),
             at = @At(

@@ -12,8 +12,8 @@ public class RuleCategory {
 
     public static final String PARITY = "parity"; //These are parity bugs, this is a meme category.
 
-    // Marked as `Works as Intended` on the bug tracker. I don't like these, usually will only implement for backports
+    // Marked as `Works as Intended` on the bug tracker. I don't like these, usually will only implement for reIntroduce or backport
     // It's not Vanilla if you aren't playing the game as the developers intended it to be played :thonk:
-    // Although sometimes, its just stupid that its not fixed. So we fix it anyways, hence why its here.
+    // Although sometimes, it's just stupid that it's not fixed. So we fix it anyway, hence why it's here.
     public static final String INTENDED = "intended";
 }
