@@ -763,6 +763,13 @@ public class CarpetFixesSettings {
     )
     public static boolean armorStandMissingFunctionalityFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the string dupe using water and tripwire hooks",
+            category = {CARPETFIXES,BUGFIX}
+    )
+    public static boolean stringDupeFix = false;
+
     /*
 
     RE-INTRODUCE

@@ -62,6 +62,7 @@
     "dupeFixes.PistonBlock_tntDupingFixMixin",
     "dupeFixes.ShulkerBoxBlock_breakSwapDupeMixin",
     "dupeFixes.SimpleInventory_dataDupeMixin",
+    "dupeFixes.TripwireBlock_stringDupeMixin",
     "dupeFixes.saferItemTransfer.DropperBlock_dontCopyMixin",
     "entityFixes.AbstractDecorationEntity_triggersTrapsMixin",
     "entityFixes.ArmorStandEntity_aggroMechanicsMixin",
