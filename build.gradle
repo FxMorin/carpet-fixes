@@ -7,6 +7,10 @@ repositories {
 	maven {
 		url 'https://masa.dy.fi/maven'
 	}
+	maven {
+		name = "Gegy's Maven"
+		url = "https://maven.gegy.dev/"
+	}
     mavenCentral()
 }
 
@@ -22,6 +26,9 @@ loom {
 }
 
 dependencies {
+	modRuntime ("supercoder79:databreaker:0.2.8") {
+		exclude module: "fabric-loader"
+	}
     implementation 'com.github.bbottema:jetbrains-runtime-annotations:1.0.0'
 
     //to change the versions see the gradle.properties file
