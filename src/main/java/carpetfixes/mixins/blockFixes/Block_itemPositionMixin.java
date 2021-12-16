@@ -25,7 +25,8 @@ public abstract class Block_itemPositionMixin extends AbstractBlock {
 
 
     /**
-     * @author FX
+     * @author FX - PR0CESS
+     * @reason Fixes floating point errors
      */
     @Overwrite
     public static void dropStack(World world, BlockPos pos, ItemStack stack) {
@@ -45,7 +46,8 @@ public abstract class Block_itemPositionMixin extends AbstractBlock {
     }
 
     /**
-     * @author FX
+     * @author FX - PR0CESS
+     * @reason Fixes floating point errors
      */
     @Overwrite
     public static void dropStack(World world, BlockPos pos, Direction direction, ItemStack stack) {
