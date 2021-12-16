@@ -1037,16 +1037,6 @@ public class CarpetFixesSettings {
     )
     public static boolean toggleEnforceWhitelist = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isEnforceWhitelist();
 
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Allows you to set the playerIdleTimeout without needing to restart the server",
-            extra = "Setting the value to 0 will disable the idle timeout. Time in minutes",
-            options = {"0","15","30","60"},
-            validate = playerIdleTimeoutValidator.class,
-            category = {ADVANCED,EXPERIMENTAL}
-    )
-    public static int setPlayerIdleTimeout = CarpetServer.minecraft_server == null ? 0 : CarpetServer.minecraft_server.getPlayerIdleTimeout();
-
     /*
 
     PARITY
@@ -1123,16 +1113,6 @@ public class CarpetFixesSettings {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null) source.getServer().setEnforceWhitelist(newValue);
             return newValue;
-        }
-    }
-
-    private static class playerIdleTimeoutValidator extends Validator<Integer> {
-        @Override public Integer validate(ServerCommandSource source, ParsedRule<Integer> currentRule, Integer newValue, String string) {
-            if (source != null && newValue >= 0) {
-                source.getServer().setPlayerIdleTimeout(newValue);
-                return newValue;
-            }
-            return currentRule.get();
         }
     }
 }
