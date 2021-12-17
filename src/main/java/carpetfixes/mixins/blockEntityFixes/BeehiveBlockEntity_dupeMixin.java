@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkSectionPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BeehiveBlockEntity.class)
 public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
-
 
     public BeehiveBlockEntity_dupeMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {super(type, pos, state);}
 
@@ -25,6 +25,6 @@ public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
             cancellable = true
     )
     public void tryEnterHiveIfLoaded(Entity entity, boolean hasNectar, int ticksInHive, CallbackInfo ci) {
-        if (CarpetFixesSettings.beeDupeFix && !entity.world.isChunkLoaded(this.pos)) ci.cancel();
+        if (CarpetFixesSettings.beeDupeFix && !entity.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.pos.getX()),ChunkSectionPos.getSectionCoord(this.pos.getY()))) ci.cancel();
     }
 }
