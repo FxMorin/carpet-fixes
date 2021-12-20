@@ -1,4 +1,4 @@
-package carpetfixes.mixins.coreSystemFixes;
+package carpetfixes.mixins.optimizations;
 
 import carpetfixes.CarpetFixesSettings;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;

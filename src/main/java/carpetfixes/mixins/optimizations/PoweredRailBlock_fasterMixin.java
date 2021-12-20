@@ -1,4 +1,4 @@
-package carpetfixes.mixins.blockFixes;
+package carpetfixes.mixins.optimizations;
 
 import carpet.CarpetSettings;
 import carpetfixes.CarpetFixesSettings;
