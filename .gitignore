@@ -28,3 +28,7 @@ run/
 # Development
 
 src/main/java/carpetfixes/mixins/development/
+
+# Testing Classes
+
+src/main/java/carpetfixes/testing/
