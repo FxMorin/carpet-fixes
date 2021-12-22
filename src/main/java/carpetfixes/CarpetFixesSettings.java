@@ -759,6 +759,14 @@ public class CarpetFixesSettings {
     )
     public static boolean tileDropsAffectedByFloatingPointFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Changes Math.round to a faster implementation. Although it does not give the exact same results",
+            extra = "This does not affect many things and will most likely be unnoticeable. It is ~1.28x faster",
+            category = OPTIMIZATION
+    )
+    public static boolean optimizedRounding = false;
+
     /*
 
     DUPE BUGS
