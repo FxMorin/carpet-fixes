@@ -767,6 +767,24 @@ public class CarpetFixesSettings {
     )
     public static boolean optimizedRounding = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Changes many of the main Random() calls to use XoroShiro128++ instead",
+            extra = {"This will break anything related to random, technically still possible to crack",
+                    "recommended that you set this on permanently, and restart the server for best results"},
+            category = OPTIMIZATION
+    )
+    public static boolean optimizedRandom = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes players being able to crack there player seed",
+            extra = {"This makes it so random is shared between all entities. Which is a good performance boost",
+                    "recommended that you set this on permanently, and restart the server for best results"},
+            category = {BUGFIX,OPTIMIZATION}
+    )
+    public static boolean entityRandomCrackingFix = false;
+
     /*
 
     DUPE BUGS
