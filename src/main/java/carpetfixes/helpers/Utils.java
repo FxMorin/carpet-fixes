@@ -10,15 +10,17 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockStateRaycastContext;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.random.Xoroshiro128PlusPlusRandom;
 
-import java.util.SplittableRandom;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Utils {
 
+    private static final Xoroshiro128PlusPlusRandom random = new Xoroshiro128PlusPlusRandom(0);
+
     public static Direction[] randomDirectionArray(BlockPos pos) {
-        SplittableRandom random = new SplittableRandom(pos.asLong());
+        random.setSeed(pos.asLong());
         Direction[] array = CarpetFixesInit.directions.clone();
         for (int i = array.length; i > 1; i--) {
             swap(array, i - 1, random.nextInt(i));
