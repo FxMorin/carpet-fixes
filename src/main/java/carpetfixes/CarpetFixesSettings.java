@@ -769,6 +769,15 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
+            desc = "Changes MathHelper.hypot to a faster implementation. It gives nearly perfectly accurate results",
+            extra = {"This does not affect many things and will most likely be unnoticeable. It is ~1.6x faster",
+                    "recommended that you set this on permanently, and restart the server for best results"},
+            category = OPTIMIZATION
+    )
+    public static boolean optimizedHypot = false;
+
+    //by FX - PR0CESS
+    @Rule(
             desc = "Changes many of the main Random() calls to use XoroShiro128++ instead",
             extra = {"This will break anything related to random, technically still possible to crack",
                     "recommended that you set this on permanently, and restart the server for best results"},
