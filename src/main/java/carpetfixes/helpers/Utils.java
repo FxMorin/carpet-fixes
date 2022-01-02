@@ -22,6 +22,10 @@ public class Utils {
 
     private static final Xoroshiro128PlusPlusRandom random = new Xoroshiro128PlusPlusRandom(0);
 
+    public static boolean isInModifiableLimit(World world, BlockPos pos) {
+        return !world.isOutOfHeightLimit(pos) && world.getWorldBorder().contains(pos);
+    }
+
     public static void updateComparatorsRespectFacing(World world, BlockPos fromPos, Block block) {
         for (Direction dir : Direction.Type.HORIZONTAL) {
             BlockPos pos = fromPos.offset(dir);

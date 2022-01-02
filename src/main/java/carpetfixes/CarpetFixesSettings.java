@@ -828,6 +828,14 @@ public class CarpetFixesSettings {
     )
     public static boolean incorrectPistonWorldBorderCheckFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes explosions being able to destroy blocks outside of the world border",
+            extra = "Fixes [MC-54606](https://bugs.mojang.com/browse/MC-54606)",
+            category = BUGFIX
+    )
+    public static boolean explosionsBypassWorldBorderFix = false;
+
     /*
 
     DUPE BUGS
