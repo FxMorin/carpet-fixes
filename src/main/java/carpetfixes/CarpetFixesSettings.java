@@ -803,6 +803,14 @@ public class CarpetFixesSettings {
     )
     public static boolean worldBorderCollisionRoundingFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes comparator signal ending prematurely due to offset block updates",
+            extra = "Fixes [MC-247420](https://bugs.mojang.com/browse/MC-247420)",
+            category = BUGFIX
+    )
+    public static boolean detectorRailOffsetUpdateFix = false;
+
     /*
 
     DUPE BUGS

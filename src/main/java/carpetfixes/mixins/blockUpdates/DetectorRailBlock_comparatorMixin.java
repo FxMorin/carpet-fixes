@@ -1,6 +1,7 @@
 package carpetfixes.mixins.blockUpdates;
 
 import carpetfixes.CarpetFixesSettings;
+import carpetfixes.helpers.Utils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DetectorRailBlock;
 import net.minecraft.state.property.BooleanProperty;
@@ -16,9 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DetectorRailBlock.class)
 public class DetectorRailBlock_comparatorMixin {
 
-
     @Shadow @Final public static BooleanProperty POWERED;
-
 
     DetectorRailBlock self = (DetectorRailBlock)(Object)this;
 
@@ -36,8 +35,15 @@ public class DetectorRailBlock_comparatorMixin {
     public void updateComparatorsSpecial(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
         if (CarpetFixesSettings.uselessDetectorRailUpdateFix) {
             if (state.get(POWERED)) {
-                world.updateComparators(pos, self);
+                if (CarpetFixesSettings.detectorRailOffsetUpdateFix) {
+                    Utils.updateComparatorsRespectFacing(world,pos,self);
+                } else {
+                    world.updateComparators(pos, self);
+                }
             }
+            ci.cancel();
+        } else if (CarpetFixesSettings.detectorRailOffsetUpdateFix) {
+            Utils.updateComparatorsRespectFacing(world,pos,self);
             ci.cancel();
         }
     }

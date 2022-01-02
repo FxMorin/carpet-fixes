@@ -3,6 +3,7 @@ package carpetfixes.helpers;
 import carpetfixes.CarpetFixesInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -15,9 +16,27 @@ import net.minecraft.world.gen.random.Xoroshiro128PlusPlusRandom;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import static net.minecraft.block.HorizontalFacingBlock.FACING;
+
 public class Utils {
 
     private static final Xoroshiro128PlusPlusRandom random = new Xoroshiro128PlusPlusRandom(0);
+
+    public static void updateComparatorsRespectFacing(World world, BlockPos fromPos, Block block) {
+        for (Direction dir : Direction.Type.HORIZONTAL) {
+            BlockPos pos = fromPos.offset(dir);
+            if (!world.isChunkLoaded(pos)) continue;
+            BlockState state = world.getBlockState(pos);
+            if (state.isOf(Blocks.COMPARATOR)) {
+                if (state.get(FACING) == dir.getOpposite()) state.neighborUpdate(world, pos, block, fromPos, false);
+            } else if (state.isSolidBlock(world, pos)) {
+                pos = pos.offset(dir);
+                state = world.getBlockState(pos);
+                if (!state.isOf(Blocks.COMPARATOR)) continue;
+                if (state.get(FACING) == dir.getOpposite()) state.neighborUpdate(world, pos, block, fromPos, false);
+            }
+        }
+    }
 
     public static Direction[] randomDirectionArray(BlockPos pos) {
         random.setSeed(pos.asLong());
