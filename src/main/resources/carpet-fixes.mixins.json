@@ -17,6 +17,7 @@
     "blockFixes.FlowableFluid_chainedTickMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PistonBlock_illegalBreakingMixin",
+    "blockFixes.PistonBlock_worldBorderMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.PressurePlateBlock_collisionOnPlaceMixin",
     "blockFixes.RedstoneTorchBlock_inconsistentMixin",

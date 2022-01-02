@@ -820,6 +820,14 @@ public class CarpetFixesSettings {
     )
     public static boolean placeBlocksOutsideWorldBorderFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes pistons being able to push blocks outside of the world border",
+            extra = "Fixes [MC-82010](https://bugs.mojang.com/browse/MC-82010)",
+            category = BUGFIX
+    )
+    public static boolean incorrectPistonWorldBorderCheckFix = false;
+
     /*
 
     DUPE BUGS
