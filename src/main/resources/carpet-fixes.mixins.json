@@ -112,6 +112,7 @@
     "goalFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
     "goalFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "itemFixes.ItemEntity_lightningKillsDropsMixin",
+    "itemFixes.ItemPlacementContext_worldBorderMixin",
     "itemFixes.ItemStack_nbtSuffixMixin",
     "itemFixes.ItemStack_repairCostMixin",
     "itemFixes.PickaxeItem_blackstoneButtonMixin",

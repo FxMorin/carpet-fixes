@@ -811,6 +811,15 @@ public class CarpetFixesSettings {
     )
     public static boolean detectorRailOffsetUpdateFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to place blocks outside of the world border",
+            extra = {"Fixes [MC-63578](https://bugs.mojang.com/browse/MC-63578)",
+                    "Fixes [MC-223613](https://bugs.mojang.com/browse/MC-223613)"},
+            category = BUGFIX
+    )
+    public static boolean placeBlocksOutsideWorldBorderFix = false;
+
     /*
 
     DUPE BUGS
