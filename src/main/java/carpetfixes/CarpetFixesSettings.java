@@ -794,6 +794,15 @@ public class CarpetFixesSettings {
     )
     public static boolean entityRandomCrackingFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes world border collision rounding to block positions for entity collisions",
+            extra = "Fixes [MC-247422](https://bugs.mojang.com/browse/MC-247422)",
+            validate = WorldBorderCollisionRoundingFixValidator.class,
+            category = BUGFIX
+    )
+    public static boolean worldBorderCollisionRoundingFix = false;
+
     /*
 
     DUPE BUGS
@@ -1112,6 +1121,13 @@ public class CarpetFixesSettings {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
             ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemPattern = null;
             ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemDispenserPattern = null;
+            return newValue;
+        }
+    }
+
+    private static class WorldBorderCollisionRoundingFixValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            CarpetFixesInit.scheduleWorldBorderReset = true;
             return newValue;
         }
     }

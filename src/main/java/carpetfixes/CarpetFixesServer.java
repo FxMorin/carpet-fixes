@@ -10,6 +10,7 @@ import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.border.WorldBorder;
 
 public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
@@ -58,7 +59,13 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     }
 
     @Override
-    public void onTick(MinecraftServer server) {}
+    public void onTick(MinecraftServer server) {
+        if (CarpetFixesInit.scheduleWorldBorderReset) {
+            CarpetFixesInit.scheduleWorldBorderReset = false;
+            WorldBorder worldBorder = server.getOverworld().getWorldBorder();
+            worldBorder.setSize(worldBorder.getSize()); //This will force the worldborder to update its voxelShape cache
+        }
+    }
 
     @Override
     public SettingsManager customSettingsManager() {

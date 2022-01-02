@@ -57,6 +57,7 @@
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",
     "coreSystemFixes.World_seaLevelMixin",
     "coreSystemFixes.World_updateSuppressionMixin",
+    "coreSystemFixes.WorldBorder$StaticArea_collisionMixin",
     "coreSystemFixes.TreeLogic.TreeFeature_removeDirtMixin",
     "coreSystemFixes.TreeLogic.TrunkPlacer_logMixin",
     "dupeFixes.AbstractRailBlock_duplicationMixin",

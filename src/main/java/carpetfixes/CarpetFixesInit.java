@@ -16,6 +16,8 @@ import java.util.function.Predicate;
 
 public class CarpetFixesInit {
 
+    public static boolean scheduleWorldBorderReset = false;
+
     public static final ThreadLocal<Set<BlockPos>> lastDirt = ThreadLocal.withInitial(HashSet::new);
 
     public static HashMap<World,UpdateScheduler> updateScheduler = new HashMap<>();
