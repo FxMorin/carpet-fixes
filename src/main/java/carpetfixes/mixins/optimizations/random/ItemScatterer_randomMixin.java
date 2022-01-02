@@ -14,7 +14,7 @@ public class ItemScatterer_randomMixin {
 
 
     @Redirect(
-            method = "<clinit>()V",
+            method = "<clinit>",
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

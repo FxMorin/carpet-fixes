@@ -2,13 +2,14 @@ package carpetfixes.mixins.optimizations.random;
 
 import carpetfixes.CarpetFixesSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
+import net.minecraft.loot.context.LootContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(targets = "net.minecraft.loot.context.LootContext$Builder")
+@Mixin(LootContext.Builder.class)
 public class LootContext$Builder_randomMixin {
 
 
