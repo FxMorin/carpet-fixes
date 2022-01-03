@@ -844,6 +844,14 @@ public class CarpetFixesSettings {
     )
     public static boolean playerStepEventFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes projectiles sending the PROJECTILE_LAND event when landing on a vibration occluding block",
+            extra = "Fixes [MC-208771](https://bugs.mojang.com/browse/MC-208771)",
+            category = BUGFIX
+    )
+    public static boolean projectileMissingOcclusionFix = false;
+
     /*
 
     DUPE BUGS
