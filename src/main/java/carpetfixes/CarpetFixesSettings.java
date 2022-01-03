@@ -852,6 +852,14 @@ public class CarpetFixesSettings {
     )
     public static boolean projectileMissingOcclusionFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes boats sending the SPLASH event when ridden over a vibration occluding block",
+            extra = "Fixes [MC-208597](https://bugs.mojang.com/browse/MC-208597)",
+            category = BUGFIX
+    )
+    public static boolean boatMissingOcclusionFix = false;
+
     /*
 
     DUPE BUGS
