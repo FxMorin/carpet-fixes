@@ -836,6 +836,14 @@ public class CarpetFixesSettings {
     )
     public static boolean explosionsBypassWorldBorderFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes players sending the STEP event before the HIT_GROUND event",
+            extra = "Fixes [MC-247417](https://bugs.mojang.com/browse/MC-247417)",
+            category = BUGFIX
+    )
+    public static boolean playerStepEventFix = false;
+
     /*
 
     DUPE BUGS
