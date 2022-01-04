@@ -860,6 +860,22 @@ public class CarpetFixesSettings {
     )
     public static boolean boatMissingOcclusionFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes spawn eggs having an offset game event when spawning an entity",
+            extra = "Fixes [MC-247643](https://bugs.mojang.com/browse/MC-247643)",
+            category = BUGFIX
+    )
+    public static boolean spawnEggOffsetEventFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes Spawning entities using spawn eggs on vibration occluding blocks not occluding",
+            extra = "Fixes [MC-247645](https://bugs.mojang.com/browse/MC-247645)",
+            category = BUGFIX
+    )
+    public static boolean spawnEggMissingOcclusionFix = false;
+
     /*
 
     DUPE BUGS
