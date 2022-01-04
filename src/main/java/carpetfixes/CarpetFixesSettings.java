@@ -876,6 +876,14 @@ public class CarpetFixesSettings {
     )
     public static boolean spawnEggMissingOcclusionFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes minecarts sending the ENTITY_PLACE event when placed on a vibration occluding block",
+            extra = "Fixes [MC-213823](https://bugs.mojang.com/browse/MC-213823)",
+            category = BUGFIX
+    )
+    public static boolean minecartMissingOcclusionFix = false;
+
     /*
 
     DUPE BUGS
