@@ -884,6 +884,14 @@ public class CarpetFixesSettings {
     )
     public static boolean minecartMissingOcclusionFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes villagers not giving a discount if you log out while they are being cured",
+            extra = "Fixes [MC-247647](https://bugs.mojang.com/browse/MC-247647)",
+            category = BUGFIX
+    )
+    public static boolean villagerDiscountIgnoresOfflinePlayersFix = false;
+
     /*
 
     DUPE BUGS
