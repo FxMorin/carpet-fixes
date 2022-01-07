@@ -26,7 +26,7 @@ See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wik
 This mod works for both Singleplayer & Multiplayer.
 This mod now supports fixing some client-side bugs!
 Run `/carpet-fixes list client` to see a list of all available client-side fixes.
-These fixes may not be client-side only
+Any fix marked as Client, means it affects the client-side, although it might also affect the server-side!
 
 
 ---

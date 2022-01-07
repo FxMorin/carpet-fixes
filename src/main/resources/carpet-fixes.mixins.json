@@ -172,6 +172,11 @@
     "reIntroduced.ThreadedAnvilChunkStorage_oldSavingMixin",
     "screenHandlerFixes.EnchantmentScreenHandler_transparentBlocksMixin"
   ],
+  "client": [
+    "coreSystemFixes.YggdrasilUserApiService_syncBlockListMixin",
+    "entityFixes.Entity_clientDamageMixin",
+    "entityFixes.Entity_lavaDamageMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
