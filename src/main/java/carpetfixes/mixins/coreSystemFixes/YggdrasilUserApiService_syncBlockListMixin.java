@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 @Environment(EnvType.CLIENT)
-@Mixin(YggdrasilUserApiService.class)
+@Mixin(value = YggdrasilUserApiService.class, remap = false)
 public abstract class YggdrasilUserApiService_syncBlockListMixin {
 
     @Shadow protected abstract Set<UUID> fetchBlockList();
