@@ -892,6 +892,14 @@ public class CarpetFixesSettings {
     )
     public static boolean villagerDiscountIgnoresOfflinePlayersFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Optimized the getBiome call to be 25% - 75% faster",
+            extra = "This is a fully vanilla optimization. Works on both client & server",
+            category = {OPTIMIZATION,VANILLA,RECOMMENDED,CLIENT}
+    )
+    public static boolean optimizedBiomeAccess = false;
+
     /*
 
     DUPE BUGS

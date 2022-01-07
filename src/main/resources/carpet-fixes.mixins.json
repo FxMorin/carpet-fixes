@@ -124,6 +124,7 @@
     "itemFixes.MinecartItem_missingOcclusionMixin",
     "itemFixes.PickaxeItem_blackstoneButtonMixin",
     "itemFixes.SpawnEggItem_offsetAndOcclusionMixin",
+    "optimizations.BiomeAccess_predictionMixin",
     "optimizations.ChunkTicketManager_optimizationMixin",
     "optimizations.MathHelper_hypotMixin",
     "optimizations.PoweredRailBlock_fasterMixin",

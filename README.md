@@ -1,9 +1,11 @@
 # Carpet-Fixes
 
-[![FX's Discord](https://img.shields.io/discord/636633673524969483?logo=discord)](https://discord.gg/vurv5pdFpa)
+[![FX's Discord](https://img.shields.io/discord/636633673524969483?logo=discord&style=flat-square)](https://discord.gg/vurv5pdFpa)
 
+[![Mod Environment](https://img.shields.io/badge/Enviroment-Server%2FClient-blue?style=flat-square)](https://github.com/fxmorin/carpet-fixes)
+[![GitHub all releases](https://img.shields.io/github/downloads/fxmorin/carpet-fixes/total?style=flat-square)]()
+![Latest Minecraft Version](https://img.shields.io/badge/Latest%20MC%20Support-1.18-green?style=flat-square)
 [![Mod License](https://img.shields.io/github/license/fxmorin/carpet-fixes?style=flat-square)](https://github.com/fxmorin/carpet-fixes/blob/master/LICENSE)
-[![Mod Environment](https://img.shields.io/badge/Environment-server-blue?style=flat-square)](https://github.com/samolego/carpet-fixes)
 
 [Fabric Carpet](https://github.com/gnembon/fabric-carpet) extension mod which attempts to fix as many vanilla minecraft bugs as possible!
 
@@ -12,6 +14,7 @@ If you enjoy the mod, help me out by giving this project a star, thanks.
 ## Settings
 
 See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings)
+*(W.I.P. - Missing lots of rules)*
 
 ## How to Use
 *coming soon*
@@ -20,8 +23,11 @@ See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wik
 *coming soon*
 
 ## More detail
-This mod works for both Singleplayer & Multiplayer, although it only modifies server-side functionality!
-The mod does **not** fix any client-side bugs!
+This mod works for both Singleplayer & Multiplayer.
+This mod now supports fixing some client-side bugs!
+Run `/carpet-fixes list client` to see a list of all available client-side fixes.
+These fixes may not be client-side only
+
 
 ---
 
