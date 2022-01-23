@@ -35,8 +35,7 @@
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.discord": "https://discord.gg/mezndgtD83",
-        "SciCraft": "https://discord.gg/scicraft"
+        "modmenu.discord": "https://discord.gg/mezndgtD83"
       },
       "parent": "carpet"
     }

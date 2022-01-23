@@ -886,39 +886,10 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Optimized the getBiome call to be 25% - 75% faster",
-            extra = "This is a fully vanilla optimization. Works on both client & server",
-            category = {OPTIMIZATION,VANILLA,RECOMMENDED,CLIENT}
+            extra = "This is a fully vanilla optimization. This should optimize the client also, go check Blanket-client-tweaks for that",
+            category = {OPTIMIZATION,VANILLA,RECOMMENDED}
     )
     public static boolean optimizedBiomeAccess = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes lava being able to damage entity client-side leading to de-sync",
-            extra = {"Fixes [MC-246465](https://bugs.mojang.com/browse/MC-246465)",
-                    "This is client-side only"},
-            category = {BUGFIX,EXPERIMENTAL,CLIENT}
-    )
-    public static boolean lavaDamageDesyncFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes the client-side being able to apply damage to item entities & experience orbs, causing de-sync",
-            extra = {"Fixes [MC-53850](https://bugs.mojang.com/browse/MC-53850)",
-                    "This is client-side only"},
-            category = {BUGFIX,EXPERIMENTAL,CLIENT}
-    )
-    public static boolean clientSideDamageDesyncFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes chat causing subtle freezing after no activity in chat",
-            extra = {"Fixes [MC-247973](https://bugs.mojang.com/browse/MC-247973)",
-                    "unlike other fixes, we dont just put it in a thread since that might change the order of the messages",
-                    "Instead we allow the first message to go through, then async load the blockList",
-                    "Although this should never happen since the list will not continuously be updated due to them setting it to null"},
-            category = {BUGFIX,OPTIMIZATION,CLIENT}
-    )
-    public static boolean chatLagFix = false;
 
     /*
 
