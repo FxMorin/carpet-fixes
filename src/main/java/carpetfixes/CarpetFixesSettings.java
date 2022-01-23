@@ -189,15 +189,6 @@ public class CarpetFixesSettings {
     public static boolean endVoidRingsFix = false;
 
     //by FX - PR0CESS
-    //Recommended since it just prevents the server from kicking you for not hacking
-    @Rule(
-            desc = "Fixes getting kicked for flying too long when jumping and riding an entity",
-            extra = "Fixes [MC-98727](https://bugs.mojang.com/browse/MC-98727)",
-            category = {BUGFIX,RECOMMENDED,VANILLA}
-    )
-    public static boolean mountingFlyingTooLongFix = false;
-
-    //by FX - PR0CESS
     @Rule(
             desc = "Fixes fall damage being delayed by sleeping, fall damage will be removed instead",
             extra = "Fixes [MC-19830](https://bugs.mojang.com/browse/MC-19830)",

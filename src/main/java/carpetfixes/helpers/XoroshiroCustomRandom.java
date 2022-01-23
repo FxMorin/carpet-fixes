@@ -127,8 +127,6 @@ public class XoroshiroCustomRandom extends Random implements AbstractRandom {
         return this.implementation.next() >>> 64 - bits;
     }
 
-    private static long initialScramble(long seed) {return 0L;}
-
     @Override
     public void nextBytes(byte[] bytes) {
         for (int i = 0, len = bytes.length; i < len; )
