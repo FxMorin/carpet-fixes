@@ -1,6 +1,7 @@
 package carpetfixes.mixins.reIntroduced;
 
 import carpetfixes.CarpetFixesSettings;
+import com.mojang.logging.LogUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -8,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import java.util.Iterator;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 
 @Mixin(PlayerManager.class)
 public abstract class PlayerManager_LlamaRidingDupeMixin {
@@ -20,7 +21,7 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
      */
 
 
-    @Final @Shadow private static final Logger LOGGER = LogManager.getLogger();
+    @Final @Shadow private static final Logger LOGGER = LogUtils.getLogger();
 
 
     @Redirect(

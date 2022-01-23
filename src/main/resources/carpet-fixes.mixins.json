@@ -155,7 +155,6 @@
     "playerFixes.PlayerManager_endPortalEffectsMixin",
     "playerFixes.ServerPlayerEntity_endPortalEffectsMixin",
     "playerFixes.ServerPlayerEntity_spectatorMixin",
-    "playerFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
     "playerFixes.stepEvent.Entity_stepEventMixin",
     "playerFixes.stepEvent.ServerPlayerEntity_stepEventMixin",
     "playerFixes.stepEvent.ServerPlayNetworkHandler_stepEventMixin",
