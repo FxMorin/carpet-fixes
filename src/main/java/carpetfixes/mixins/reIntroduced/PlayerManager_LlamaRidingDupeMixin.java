@@ -3,13 +3,21 @@ package carpetfixes.mixins.reIntroduced;
 import carpetfixes.CarpetFixesSettings;
 import com.mojang.logging.LogUtils;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
-import org.apache.logging.log4j.LogManager;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
-import java.util.Iterator;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
+
+import java.util.function.Function;
 
 @Mixin(PlayerManager.class)
 public abstract class PlayerManager_LlamaRidingDupeMixin {
@@ -25,25 +33,43 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
 
 
     @Redirect(
+            method = "onPlayerConnect",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/EntityType;loadEntityWithPassengers(Lnet/minecraft/nbt/NbtCompound;Lnet/minecraft/world/World;Ljava/util/function/Function;)Lnet/minecraft/entity/Entity;"
+            )
+    )
+    private @Nullable Entity llamaReplaceOnConnect(NbtCompound nbt, World world, Function<Entity, Entity> entityProcessor){
+        if (CarpetFixesSettings.reIntroduceDonkeyRidingDupe) {
+            EntityType.loadEntityWithPassengers(nbt, world, (vehicle) -> {
+                Entity before = ((ServerWorld)world).getEntity(vehicle.getUuid());
+                if (before != null) {
+                    before.readNbt(vehicle.writeNbt(new NbtCompound()));
+                    return before;
+                }
+                return !((ServerWorld)world).tryLoadEntity(vehicle) ? null : vehicle;
+            });
+        }
+        return EntityType.loadEntityWithPassengers(nbt, world, entityProcessor);
+    }
+
+
+    @Redirect(
             method = "remove",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/server/network/ServerPlayerEntity;hasVehicle()Z"
             ))
-    private boolean llamaDupe(ServerPlayerEntity serverPlayerEntity){
+    private boolean llamaDupeOnRemove(ServerPlayerEntity serverPlayerEntity){
         if (serverPlayerEntity.hasVehicle()) {
-            if(!CarpetFixesSettings.reIntroduceDonkeyRidingDupe)
-                return true;
             Entity entity = serverPlayerEntity.getRootVehicle();
+            if(!CarpetFixesSettings.reIntroduceDonkeyRidingDupe) return true;
             if (entity.hasPlayerRider()) {
                 LOGGER.debug("Removing player mount");
                 serverPlayerEntity.stopRiding();
-                Entity entity2;
-                for(Iterator var4 = entity.getPassengersDeep().iterator(); var4.hasNext();) {
-                    entity2 = (Entity)var4.next();
-                    entity2.discard();
-                }
-                serverPlayerEntity.getWorld().getChunk(serverPlayerEntity.getChunkPos().x, serverPlayerEntity.getChunkPos().z).setShouldSave(true);
+                entity.streamPassengersAndSelf().forEach((entityx) -> {
+                    entityx.setRemoved(Entity.RemovalReason.UNLOADED_WITH_PLAYER);
+                });
             }
         }
         return false;
