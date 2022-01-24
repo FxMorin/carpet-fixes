@@ -62,8 +62,8 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             ))
     private boolean llamaDupeOnRemove(ServerPlayerEntity serverPlayerEntity){
         if (serverPlayerEntity.hasVehicle()) {
-            Entity entity = serverPlayerEntity.getRootVehicle();
             if(!CarpetFixesSettings.reIntroduceDonkeyRidingDupe) return true;
+            Entity entity = serverPlayerEntity.getRootVehicle();
             if (entity.hasPlayerRider()) {
                 LOGGER.debug("Removing player mount");
                 serverPlayerEntity.stopRiding();

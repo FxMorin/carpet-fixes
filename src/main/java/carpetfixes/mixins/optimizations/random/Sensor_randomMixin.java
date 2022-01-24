@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(Sensor.class)
+@Mixin(value = Sensor.class, priority = 1010)
 public class Sensor_randomMixin {
 
 
     @Redirect(
             method = "<clinit>",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

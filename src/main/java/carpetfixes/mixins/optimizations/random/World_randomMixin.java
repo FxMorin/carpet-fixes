@@ -20,16 +20,14 @@ import java.util.function.Supplier;
 @Mixin(World.class)
 public class World_randomMixin {
 
-
     @Mutable @Shadow @Final public Random random;
+
 
     @Inject(
             method = "<init>",
             at = @At("TAIL")
     )
     private void CustomRandom(MutableWorldProperties properties, RegistryKey registryRef, DimensionType dimensionType, Supplier profiler, boolean isClient, boolean debugWorld, long seed, CallbackInfo ci) {
-        if (CarpetFixesSettings.optimizedRandom) {
-            this.random = new XoroshiroCustomRandom();
-        }
+        if (CarpetFixesSettings.optimizedRandom) this.random = new XoroshiroCustomRandom();
     }
 }

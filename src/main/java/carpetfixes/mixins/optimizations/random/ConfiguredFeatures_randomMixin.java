@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(ConfiguredFeatures.class)
+@Mixin(value = ConfiguredFeatures.class, priority = 1010)
 public class ConfiguredFeatures_randomMixin {
 
 
     @Redirect(
             method = "getDefaultConfiguredFeature()Lnet/minecraft/world/gen/feature/ConfiguredFeature;",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

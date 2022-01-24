@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(EndGatewayBlockEntity.class)
+@Mixin(value = EndGatewayBlockEntity.class, priority = 1010)
 public class EndGatewayBlockEntity_randomMixin {
 
 
     @Redirect(
             method = "createPortal(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/EndGatewayFeatureConfig;)V",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

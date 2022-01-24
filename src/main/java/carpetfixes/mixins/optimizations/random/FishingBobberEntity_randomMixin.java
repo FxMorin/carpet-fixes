@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(FishingBobberEntity.class)
+@Mixin(value = FishingBobberEntity.class, priority = 1010)
 public class FishingBobberEntity_randomMixin {
 
 
     @Redirect(
             method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;II)V",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

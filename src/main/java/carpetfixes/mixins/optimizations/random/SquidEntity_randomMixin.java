@@ -8,20 +8,19 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(SquidEntity.class)
+@Mixin(value = SquidEntity.class, priority = 1010)
 public class SquidEntity_randomMixin {
 
 
     @Redirect(
             method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V",
+            require = 0,
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/Random;setSeed(J)V"
             )
     )
     private void customRandom(Random instance, long seed) {
-        if (!CarpetFixesSettings.entityRandomCrackingFix) {
-            instance.setSeed(seed);
-        }
+        if (!CarpetFixesSettings.entityRandomCrackingFix) instance.setSeed(seed);
     }
 }

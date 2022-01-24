@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(GeneratorOptions.class)
+@Mixin(value = GeneratorOptions.class, priority = 1010)
 public class GeneratorOptions_randomMixin {
 
 
     @Redirect(
             method = "getDefaultOptions(Lnet/minecraft/util/registry/DynamicRegistryManager;)Lnet/minecraft/world/gen/GeneratorOptions;",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"
@@ -27,6 +28,7 @@ public class GeneratorOptions_randomMixin {
 
     @Redirect(
             method = "fromProperties(Lnet/minecraft/util/registry/DynamicRegistryManager;Ljava/util/Properties;)Lnet/minecraft/world/gen/GeneratorOptions;",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

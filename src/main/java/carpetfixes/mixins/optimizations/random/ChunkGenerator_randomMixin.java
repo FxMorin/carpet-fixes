@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(ChunkGenerator.class)
+@Mixin(value = ChunkGenerator.class, priority = 1010)
 public class ChunkGenerator_randomMixin {
 
     private static final XoroshiroCustomRandom random = new XoroshiroCustomRandom();
@@ -17,6 +17,7 @@ public class ChunkGenerator_randomMixin {
 
     @Redirect(
             method = "generateStrongholdPositions()V",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

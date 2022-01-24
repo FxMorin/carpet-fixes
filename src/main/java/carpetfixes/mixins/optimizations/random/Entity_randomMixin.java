@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(Entity.class)
+@Mixin(value = Entity.class, priority = 1010)
 public class Entity_randomMixin {
 
     private static Random rand = null; //Shared random instance for all entities
@@ -17,6 +17,7 @@ public class Entity_randomMixin {
 
     @Redirect(
             method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

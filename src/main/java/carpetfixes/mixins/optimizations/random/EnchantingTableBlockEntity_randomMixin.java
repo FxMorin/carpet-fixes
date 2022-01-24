@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(EnchantingTableBlockEntity.class)
+@Mixin(value = EnchantingTableBlockEntity.class, priority = 1010)
 public class EnchantingTableBlockEntity_randomMixin {
 
 
     @Redirect(
             method = "<clinit>",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

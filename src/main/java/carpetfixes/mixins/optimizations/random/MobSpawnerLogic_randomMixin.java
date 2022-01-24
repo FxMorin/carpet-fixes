@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(MobSpawnerLogic.class)
+@Mixin(value = MobSpawnerLogic.class, priority = 1010)
 public abstract class MobSpawnerLogic_randomMixin {
 
 
     @Redirect(
             method = "*",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"

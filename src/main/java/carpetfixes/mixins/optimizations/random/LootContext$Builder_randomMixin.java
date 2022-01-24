@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Random;
 
-@Mixin(LootContext.Builder.class)
+@Mixin(value = LootContext.Builder.class, priority = 1010)
 public class LootContext$Builder_randomMixin {
 
 
     @Redirect(
             method = "random(J)Lnet/minecraft/loot/context/LootContext$Builder;",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"
@@ -27,6 +28,7 @@ public class LootContext$Builder_randomMixin {
 
     @Redirect(
             method = "random(JLjava/util/Random;)Lnet/minecraft/loot/context/LootContext$Builder;",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"
@@ -39,6 +41,7 @@ public class LootContext$Builder_randomMixin {
 
     @Redirect(
             method = "build(Lnet/minecraft/loot/context/LootContextType;)Lnet/minecraft/loot/context/LootContext;",
+            require = 0,
             at = @At(
                     value = "NEW",
                     target = "java/util/Random"
