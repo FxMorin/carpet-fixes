@@ -1,4 +1,4 @@
-package carpetfixes.mixins.playerFixes.stepEvent;
+package carpetfixes.mixins.gameEventFixes.stepEvent;
 
 import carpetfixes.patches.ServerPlayerEntityEmitStep;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;

@@ -1,4 +1,4 @@
-package carpetfixes.mixins.playerFixes.stepEvent;
+package carpetfixes.mixins.gameEventFixes.stepEvent;
 
 import carpetfixes.CarpetFixesSettings;
 import carpetfixes.patches.ServerPlayerEntityEmitStep;

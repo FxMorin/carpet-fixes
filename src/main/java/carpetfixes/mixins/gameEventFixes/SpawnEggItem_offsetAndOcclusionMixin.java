@@ -1,4 +1,4 @@
-package carpetfixes.mixins.itemFixes;
+package carpetfixes.mixins.gameEventFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.BlockState;

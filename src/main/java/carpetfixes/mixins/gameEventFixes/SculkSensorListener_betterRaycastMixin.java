@@ -1,4 +1,4 @@
-package carpetfixes.mixins.coreSystemFixes;
+package carpetfixes.mixins.gameEventFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import carpetfixes.helpers.Utils;
