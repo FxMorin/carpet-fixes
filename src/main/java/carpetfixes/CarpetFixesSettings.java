@@ -891,6 +891,15 @@ public class CarpetFixesSettings {
     )
     public static boolean optimizedBiomeAccess = false;
 
+    //by FX - PR0CESS
+    //I may end up converting all the other functions in recipe manager to be faster. Although I don't need them right now
+    @Rule(
+            desc = "Optimized the RecipeManager getFirstMatch call to be up to 3x faster",
+            extra = "This is a fully vanilla optimization. You wont really notice it unless you use a mod such as auto crafting table",
+            category = {OPTIMIZATION,VANILLA,RECOMMENDED}
+    )
+    public static boolean optimizedRecipeManager = false;
+
     /*
 
     DUPE BUGS
