@@ -895,7 +895,8 @@ public class CarpetFixesSettings {
     //I may end up converting all the other functions in recipe manager to be faster. Although I don't need them right now
     @Rule(
             desc = "Optimized the RecipeManager getFirstMatch call to be up to 3x faster",
-            extra = "This is a fully vanilla optimization. You wont really notice it unless you use a mod such as auto crafting table",
+            extra = {"This is a fully vanilla optimization. Improves: [Blast] Furnace/Campfire/Smoker/Stonecutter/Crafting/Sheep Color Choosing, ",
+                    "This was mostly made for the auto crafting table, since the performance boost is much more visible while using the mod"},
             category = {OPTIMIZATION,VANILLA,RECOMMENDED}
     )
     public static boolean optimizedRecipeManager = false;
