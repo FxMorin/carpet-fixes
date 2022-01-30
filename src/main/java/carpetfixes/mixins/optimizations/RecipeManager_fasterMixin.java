@@ -33,14 +33,15 @@ public abstract class RecipeManager_fasterMixin {
             for (int slot = 0;slot < inventory.size(); slot++) {
                 if (!inventory.getStack(slot).isEmpty()) slots++;
             }
+            Optional<T> optional = Optional.empty();
             //compare size to quickly remove recipes that are not even close. Plus remove streams
             for (Recipe<C> recipe : this.getAllOfType(type).values()) {
                 if (recipe.getIngredients().size() == slots && recipe.matches(inventory,world)) {
-                    cir.setReturnValue((Optional<T>)Optional.of(recipe));
+                    optional = (Optional<T>)Optional.of(recipe);
                     break;
                 }
             }
-            cir.setReturnValue(Optional.empty());
+            cir.setReturnValue(optional);
         }
     }
 }
