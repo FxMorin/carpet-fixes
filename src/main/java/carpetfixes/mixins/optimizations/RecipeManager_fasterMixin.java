@@ -40,6 +40,7 @@ public abstract class RecipeManager_fasterMixin {
                     break;
                 }
             }
+            cir.setReturnValue(Optional.empty());
         }
     }
 }
