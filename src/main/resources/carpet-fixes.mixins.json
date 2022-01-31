@@ -132,6 +132,7 @@
     "optimizations.MathHelper_hypotMixin",
     "optimizations.PoweredRailBlock_fasterMixin",
     "optimizations.RecipeManager_fasterMixin",
+    "optimizations.SheepEntity_childColorMixin",
     "optimizations.random.ChunkGenerator_randomMixin",
     "optimizations.random.ConfiguredFeatures_randomMixin",
     "optimizations.random.DispenserBlockEntity_randomMixin",

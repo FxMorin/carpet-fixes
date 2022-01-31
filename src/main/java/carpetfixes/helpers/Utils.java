@@ -4,6 +4,7 @@ import carpetfixes.CarpetFixesInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -24,6 +25,49 @@ public class Utils {
 
     public static boolean isInModifiableLimit(World world, BlockPos pos) {
         return !world.isOutOfHeightLimit(pos) && world.getWorldBorder().contains(pos);
+    }
+
+    //If I was actually implementing this, the color values would have been binary in order for fast calculations.
+    //Never do this in a production build xD - Although this is better than using the RecipeManager xD
+    public static DyeColor properDyeMixin(DyeColor col1, DyeColor col2) {
+        if (col1.equals(col2)) return col1;
+        switch(col1) {
+            case WHITE -> {
+                switch(col2) {
+                    case BLUE -> {return DyeColor.LIGHT_BLUE;}
+                    case GRAY -> {return DyeColor.LIGHT_GRAY;}
+                    case BLACK -> {return DyeColor.GRAY;}
+                    case GREEN -> {return DyeColor.LIME;}
+                    case RED -> {return DyeColor.PINK;}
+                }
+            }
+            case BLUE -> {
+                switch(col2) {
+                    case WHITE -> {return DyeColor.LIGHT_BLUE;}
+                    case GREEN -> {return DyeColor.CYAN;}
+                    case RED -> {return DyeColor.PURPLE;}
+                }
+            }
+            case RED -> {
+                switch(col2) {
+                    case YELLOW -> {return DyeColor.ORANGE;}
+                    case WHITE -> {return DyeColor.PINK;}
+                    case BLUE -> {return DyeColor.PURPLE;}
+                }
+            }
+            case GREEN -> {
+                switch(col2) {
+                    case BLUE -> {return DyeColor.CYAN;}
+                    case WHITE -> {return DyeColor.LIME;}
+                }
+            }
+            case YELLOW -> {if (col2.equals(DyeColor.RED)) return DyeColor.ORANGE;}
+            case PURPLE -> {if (col2.equals(DyeColor.PINK)) return DyeColor.MAGENTA;}
+            case PINK -> {if (col2.equals(DyeColor.PURPLE)) return DyeColor.MAGENTA;}
+            case GRAY -> {if (col2.equals(DyeColor.WHITE)) return DyeColor.LIGHT_GRAY;}
+            case BLACK -> {if (col2.equals(DyeColor.WHITE)) return DyeColor.GRAY;}
+        }
+        return null;
     }
 
     public static void updateComparatorsRespectFacing(World world, BlockPos fromPos, Block block) {
