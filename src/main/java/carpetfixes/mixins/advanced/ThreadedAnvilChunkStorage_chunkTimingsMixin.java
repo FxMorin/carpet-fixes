@@ -25,4 +25,12 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
     private static int modifyMaxChunksUnloadedPerAutoSave(int original) {
         return CarpetFixesSettings.maxChunksSavedPerAutoSave;
     }
+
+    @ModifyConstant(
+            method = "save(Lnet/minecraft/server/world/ChunkHolder;)Z",
+            constant = @Constant(longValue = 10000L)
+    )
+    private static long modifyChunkSavingCooldown(long original) {
+        return CarpetFixesSettings.chunkSaveCooldownDelay;
+    }
 }

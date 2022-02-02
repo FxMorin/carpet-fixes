@@ -1172,6 +1172,16 @@ public class CarpetFixesSettings {
     )
     public static boolean toggleEnforceWhitelist = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isEnforceWhitelist();
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to change the chunk save cooldown added in 22w05a",
+            extra = {"Set to 10s by default, this is the delay between chunks aggressively saving",
+                    "If your server has large lag spikes due to chunk saving, you can raise this number."},
+            options = {"120000","60000","10000","1000","0"},
+            category = {ADVANCED,OPTIMIZATION}
+    )
+    public static long chunkSaveCooldownDelay = 10000L;
+
     /*
 
     PARITY
