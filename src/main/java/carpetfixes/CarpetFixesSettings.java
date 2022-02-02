@@ -1043,6 +1043,14 @@ public class CarpetFixesSettings {
     )
     public static boolean reIntroduceOnlyAutoSaveSaving = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces very aggressive saving by removing the chunk save cooldown that was added in 22w05a",
+            extra = {"For obvious reasons, this does not work when `reIntroduceOnlyAutoSaveSaving` is enabled"},
+            category = REINTRODUCE
+    )
+    public static boolean reIntroduceVeryAggressiveSaving = false;
+
     /*
 
     FABRIC-CARPET & CARPET-EXTRA OVERRIDES
