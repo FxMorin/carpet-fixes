@@ -1184,7 +1184,8 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Allows you to change the chunk save cooldown added in 22w05a",
             extra = {"Set to 10s by default, this is the delay between chunks aggressively saving",
-                    "If your server has large lag spikes due to chunk saving, you can raise this number."},
+                    "If your server has large lag spikes due to chunk saving, you can raise this number.",
+                    "For obvious reasons, this rule is disabled when `reIntroduceVeryAggressiveSaving` is enabled"},
             options = {"120000","60000","10000","1000","0"},
             category = {ADVANCED,OPTIMIZATION}
     )

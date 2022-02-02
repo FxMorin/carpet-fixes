@@ -33,7 +33,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             constant = @Constant(longValue = 10000L)
     )
     private static long modifyChunkSavingCooldown(long original) {
-        return CarpetFixesSettings.chunkSaveCooldownDelay;
+        return CarpetFixesSettings.reIntroduceVeryAggressiveSaving ? -1L : CarpetFixesSettings.chunkSaveCooldownDelay;
     }
 
     @Redirect(
