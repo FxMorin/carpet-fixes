@@ -862,6 +862,14 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
+            desc = "Fixes Spawning entities using spawn eggs on entities not creating ENTITY_PLACE game event",
+            extra = "Fixes [MC-214472](https://bugs.mojang.com/browse/MC-214472)",
+            category = BUGFIX
+    )
+    public static boolean spawnEggMissingEventFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
             desc = "Fixes minecarts sending the ENTITY_PLACE event when placed on a vibration occluding block",
             extra = "Fixes [MC-213823](https://bugs.mojang.com/browse/MC-213823)",
             category = BUGFIX
