@@ -902,6 +902,14 @@ public class CarpetFixesSettings {
     )
     public static boolean foxesGoToOriginDuringThunderFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes villagers converting to witches while sleeping, not changing the bed occupancy",
+            extra = "Fixes [MC-167242](https://bugs.mojang.com/browse/MC-167242)",
+            category = BUGFIX
+    )
+    public static boolean villagerToWitchBedOccupiedFix = false;
+
     /*
 
     DUPE BUGS
