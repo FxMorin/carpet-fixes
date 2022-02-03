@@ -894,6 +894,14 @@ public class CarpetFixesSettings {
     )
     public static boolean optimizedRecipeManager = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes foxes pathfinding to origin (0,0) during a thunderstorm",
+            extra = "Fixes [MC-179916](https://bugs.mojang.com/browse/MC-179916)",
+            category = BUGFIX
+    )
+    public static boolean foxesGoToOriginDuringThunderFix = false;
+
     /*
 
     DUPE BUGS
