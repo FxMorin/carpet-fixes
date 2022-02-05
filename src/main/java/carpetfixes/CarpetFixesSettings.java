@@ -565,7 +565,7 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes the sculk sensor having a directional bias with wool occlusion",
-            extra = "[MC-207289](https://bugs.mojang.com/browse/MC-207289)",
+            extra = "[MC-207289](https://bugs.mojang.com/browse/MC-207289) & [MC-207635](https://bugs.mojang.com/browse/MC-207635)",
             category = {BUGFIX,RECOMMENDED}
     )
     public static boolean sculkSensorBiasFix = false;

@@ -127,7 +127,12 @@ public class Utils {
             int j = MathHelper.floor(g);
             int k = MathHelper.floor(h);
             int l = MathHelper.floor(i);
-            boolean isPerfectDiagonal = Math.abs(j) == Math.abs(l); //This is a 45 degree angle
+            int x1 = Math.abs(j);
+            int y1 = Math.abs(k);
+            int z1 = Math.abs(l);
+            boolean isPerfectHorizontalDiagonal = x1 == z1; //This is a 45 degree angle
+            boolean isPerfectVerticalDiagonalX = x1 == y1;
+            boolean isPerfectVerticalDiagonalZ = y1 == z1;
             BlockPos.Mutable mutable = new BlockPos.Mutable(j, k, l);
             T object = blockHitFactory.apply(context, mutable);
             if (object != null) {
@@ -166,8 +171,12 @@ public class Utils {
                         x += u;
                     }
                     object2 = blockHitFactory.apply(context, mutable.set(j, k, l));
-                    if (isPerfectDiagonal && object2 == null) {
+                    if (isPerfectHorizontalDiagonal && object2 == null) {
                         object2 = blockHitFactory.apply(context, mutable.set(l, k, j));
+                    } else if (isPerfectVerticalDiagonalX && object2 == null) {
+                        object2 = blockHitFactory.apply(context, mutable.set(k, j, l));
+                    } else if (isPerfectVerticalDiagonalZ && object2 == null) {
+                        object2 = blockHitFactory.apply(context, mutable.set(j, l, k));
                     }
                 } while(object2 == null);
 
