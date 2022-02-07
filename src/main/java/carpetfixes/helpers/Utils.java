@@ -28,7 +28,7 @@ public class Utils {
     }
 
     //If I was actually implementing this, the color values would have been binary in order for fast calculations.
-    //Never do this in a production build xD - Although this is better than using the RecipeManager xD
+    //Never do this in a production build, although this is better than using the RecipeManager xD
     public static DyeColor properDyeMixin(DyeColor col1, DyeColor col2) {
         if (col1.equals(col2)) return col1;
         switch(col1) {
@@ -89,9 +89,7 @@ public class Utils {
     public static Direction[] randomDirectionArray(BlockPos pos) {
         random.setSeed(pos.asLong());
         Direction[] array = CarpetFixesInit.directions.clone();
-        for (int i = array.length; i > 1; i--) {
-            swap(array, i - 1, random.nextInt(i));
-        }
+        for (int i = array.length; i > 1; i--) swap(array, i - 1, random.nextInt(i));
         return array;
     }
 
@@ -173,13 +171,15 @@ public class Utils {
                     object2 = blockHitFactory.apply(context, mutable.set(j, k, l));
                     if (isPerfectHorizontalDiagonal && object2 == null) {
                         object2 = blockHitFactory.apply(context, mutable.set(l, k, j));
-                    } else if (isPerfectVerticalDiagonalX && object2 == null) {
-                        object2 = blockHitFactory.apply(context, mutable.set(k, j, l));
-                    } else if (isPerfectVerticalDiagonalZ && object2 == null) {
-                        object2 = blockHitFactory.apply(context, mutable.set(j, l, k));
+                    } else {
+                        if (isPerfectVerticalDiagonalX && object2 == null) {
+                            object2 = blockHitFactory.apply(context, mutable.set(k, j, l));
+                        }
+                        if (isPerfectVerticalDiagonalZ && object2 == null) {
+                            object2 = blockHitFactory.apply(context, mutable.set(j, l, k));
+                        }
                     }
                 } while(object2 == null);
-
                 return (T) object2;
             }
         }
