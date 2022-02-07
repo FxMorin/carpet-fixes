@@ -34,6 +34,10 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
         carpetFixesSettingsManager = new SettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
     }
 
+    public static SettingsManager getCarpetFixesSettingsManager() {
+        return carpetFixesSettingsManager;
+    }
+
     @Override
     public String version()
     {
