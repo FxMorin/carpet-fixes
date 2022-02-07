@@ -1,17 +1,17 @@
 package carpetfixes.mixins.conversionFixes;
 
 import carpetfixes.CarpetFixesSettings;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.network.packet.s2c.play.EntityPositionS2CPacket;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(SlimeEntity.class)
 public abstract class SlimeEntity_conversionMixin extends MobEntity implements Monster {
@@ -31,26 +31,22 @@ public abstract class SlimeEntity_conversionMixin extends MobEntity implements M
     protected SlimeEntity_conversionMixin(EntityType<? extends MobEntity> entityType, World world) {super(entityType, world);}
 
 
-    @Redirect(
+    @Inject(
             method = "remove",
+            locals = LocalCapture.CAPTURE_FAILSOFT,
             at = @At(
                 value = "INVOKE",
-                target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z",
-                ordinal = 0
-            ))
-    public boolean ConversionFixSlime(World world, Entity slimeEntity) {
+                target = "Lnet/minecraft/entity/mob/SlimeEntity;refreshPositionAndAngles(DDDFF)V",
+                shift = At.Shift.AFTER
+            )
+    )
+    public void ConversionFixSlime(RemovalReason reason, CallbackInfo ci, int i, Text text, boolean bl, float f, int j, int k, int l, float g, float h, SlimeEntity slimeEntity) {
         if (CarpetFixesSettings.conversionFix) {
             slimeEntity.setFireTicks(this.getFireTicks()); //Fire
             slimeEntity.setVelocity(this.getVelocity()); //Motion
             slimeEntity.setNoGravity(this.hasNoGravity()); //noGravity
             slimeEntity.setSilent(this.isSilent()); //Silent
-            ((MobEntity)slimeEntity).setLeftHanded(this.isLeftHanded()); //Left Handed
-            boolean didWork = this.world.spawnEntity(slimeEntity);
-            slimeEntity.resetPosition();
-            slimeEntity.tick();
-            if (!world.isClient) ((ServerWorld) slimeEntity.getEntityWorld()).getChunkManager().sendToNearbyPlayers(slimeEntity, new EntityPositionS2CPacket(slimeEntity));
-            return didWork;
+            slimeEntity.setLeftHanded(this.isLeftHanded()); //Left Handed
         }
-        return this.world.spawnEntity(slimeEntity);
     }
 }
