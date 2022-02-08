@@ -870,6 +870,15 @@ public class CarpetFixesSettings {
     )
     public static boolean villagerToWitchBedOccupiedFix = false;
 
+    //by FX - PR0CESS, ported from carpetmod112
+    @Rule(
+            desc = "Fixes reload update order for tile entities",
+            category = BUGFIX,
+            extra = {"Fixes instant wires randomly breaking.",
+            "Effective after chunk reload."}
+    )
+    public static boolean reloadUpdateOrderFix = false;
+
 
     /*
 
