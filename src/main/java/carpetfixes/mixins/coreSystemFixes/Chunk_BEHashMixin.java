@@ -2,6 +2,7 @@ package carpetfixes.mixins.coreSystemFixes;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
@@ -17,9 +18,11 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Mixin(Chunk.class)
 public class Chunk_BEHashMixin {
@@ -29,12 +32,34 @@ public class Chunk_BEHashMixin {
     @Shadow
     protected Map<BlockPos, BlockEntity> blockEntities;
 
+    @Mutable
+    @Shadow
+    @Final
+    protected Map<BlockPos, NbtCompound> blockEntityNbts;
+
 
     @Inject(
             method = "<init>",
             at = @At("RETURN")
     )
     private void reloadNewHashMap(ChunkPos pos, UpgradeData upgradeData, HeightLimitView heightLimitView, Registry biome, long inhabitedTime, ChunkSection[] sectionArrayInitializer, BlendingData blendingData, CallbackInfo ci) {
-        if (CarpetFixesSettings.reloadUpdateOrderFix) blockEntities = new LinkedHashMap<>();
+        if (CarpetFixesSettings.reloadUpdateOrderFix) {
+            blockEntityNbts = new LinkedHashMap<>();
+            blockEntities = new LinkedHashMap<>();
+        }
+    }
+
+
+    @Inject(
+            method = "getBlockEntityPositions()Ljava/util/Set;",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void getBlockEntityPositions(CallbackInfoReturnable<Set<BlockPos>> cir) {
+        if (CarpetFixesSettings.reloadUpdateOrderFix) { //Use a Linked Hash Set instead of just a HashSet
+            Set<BlockPos> set = this.blockEntities.keySet();
+            set.addAll(this.blockEntityNbts.keySet());
+            cir.setReturnValue(set);
+        }
     }
 }
