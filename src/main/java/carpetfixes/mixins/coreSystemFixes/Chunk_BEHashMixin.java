@@ -21,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -57,8 +58,8 @@ public class Chunk_BEHashMixin {
     )
     public void getBlockEntityPositions(CallbackInfoReturnable<Set<BlockPos>> cir) {
         if (CarpetFixesSettings.reloadUpdateOrderFix) { //Use a Linked Hash Set instead of just a HashSet
-            Set<BlockPos> set = this.blockEntities.keySet();
-            set.addAll(this.blockEntityNbts.keySet());
+            Set<BlockPos> set = new LinkedHashSet<>(this.blockEntityNbts.keySet());
+            set.addAll(this.blockEntities.keySet());
             cir.setReturnValue(set);
         }
     }
