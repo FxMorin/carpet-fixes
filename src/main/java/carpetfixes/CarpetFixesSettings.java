@@ -1207,7 +1207,7 @@ public class CarpetFixesSettings {
             validate = onlineModeValidator.class,
             category = {ADVANCED,EXPERIMENTAL}
     )
-    public static boolean toggleOnlineMode = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isOnlineMode();
+    public static boolean toggleOnlineMode = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isOnlineMode();
 
     //By FX - PR0CESS
     @Rule(
@@ -1215,7 +1215,7 @@ public class CarpetFixesSettings {
             validate = preventProxyConnectionsValidator.class,
             category = {ADVANCED,EXPERIMENTAL}
     )
-    public static boolean togglePreventProxyConnections = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.shouldPreventProxyConnections();
+    public static boolean togglePreventProxyConnections = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.shouldPreventProxyConnections();
 
     //By FX - PR0CESS
     @Rule(
@@ -1223,7 +1223,7 @@ public class CarpetFixesSettings {
             validate = pvpEnabledValidator.class,
             category = ADVANCED
     )
-    public static boolean togglePvpEnabled = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isPvpEnabled();
+    public static boolean togglePvpEnabled = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isPvpEnabled();
 
     //By FX - PR0CESS
     @Rule(
@@ -1231,7 +1231,7 @@ public class CarpetFixesSettings {
             validate = flightEnabledValidator.class,
             category = ADVANCED
     )
-    public static boolean toggleFlightEnabled = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isFlightEnabled();
+    public static boolean toggleFlightEnabled = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isFlightEnabled();
 
     //By FX - PR0CESS
     @Rule(
@@ -1239,7 +1239,7 @@ public class CarpetFixesSettings {
             validate = enforceWhitelistValidator.class,
             category = ADVANCED
     )
-    public static boolean toggleEnforceWhitelist = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isEnforceWhitelist();
+    public static boolean toggleEnforceWhitelist = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isEnforceWhitelist();
 
     //By FX - PR0CESS
     @Rule(
