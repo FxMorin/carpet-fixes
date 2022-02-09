@@ -4,6 +4,8 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
 import carpetfixes.helpers.UpdateScheduler;
+import carpetfixes.settings.BugManager;
+import carpetfixes.settings.CustomSettingsManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
@@ -14,16 +16,18 @@ import net.minecraft.world.border.WorldBorder;
 
 public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
-    private static final SettingsManager carpetFixesSettingsManager;
+    private static final CustomSettingsManager carpetFixesSettingsManager;
+    private static final BugManager carpetFixesBugManager;
 
     private static final String MOD_ID = "carpet-fixes";
     private static final String MOD_NAME;
     private static final Version MOD_VERSION;
 
-    public static String modId() {return MOD_ID;}
+    public static String modId() {
+        return MOD_ID;
+    }
 
-    public static String modName()
-    {
+    public static String modName() {
         return MOD_NAME;
     }
 
@@ -31,11 +35,16 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
         ModMetadata metadata = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata();
         MOD_NAME = metadata.getName();
         MOD_VERSION = metadata.getVersion();
-        carpetFixesSettingsManager = new SettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
+        carpetFixesBugManager = new BugManager();
+        carpetFixesSettingsManager = new CustomSettingsManager(carpetFixesBugManager,MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
     }
 
-    public static SettingsManager getCarpetFixesSettingsManager() {
+    public static CustomSettingsManager getCarpetFixesSettingsManager() {
         return carpetFixesSettingsManager;
+    }
+
+    public static BugManager getCarpetFixesBugManager() {
+        return carpetFixesBugManager;
     }
 
     @Override
@@ -52,6 +61,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     @Override
     public void onGameStarted() {
         carpetFixesSettingsManager.parseSettingsClass(CarpetFixesSettings.class);
+        carpetFixesBugManager.parseSettingsClass(carpetFixesSettingsManager,CarpetFixesSettings.class,false);
     }
 
     @Override

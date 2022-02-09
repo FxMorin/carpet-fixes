@@ -56,8 +56,8 @@ jobs:
             "id": "carpet-fixes",
             "version": "${version}",
             "entrypoints": {
-              "server": ["carpetfixes.helpers.CarpetRulePrinter"],
-              "preLaunch": ["carpetfixes.helpers.CarpetRulePrinter"]
+              "server": ["carpetfixes.settings.RulePrinter"],
+              "preLaunch": ["carpetfixes.settings.RulePrinter"]
             }
            }' > fabric.mod.json
           cd ../../../
