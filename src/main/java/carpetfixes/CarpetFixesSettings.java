@@ -1207,7 +1207,7 @@ public class CarpetFixesSettings {
             validate = onlineModeValidator.class,
             category = {ADVANCED,EXPERIMENTAL}
     )
-    public static boolean toggleOnlineMode = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isOnlineMode();
+    public static boolean toggleOnlineMode = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isOnlineMode();
 
     //By FX - PR0CESS
     @Rule(
@@ -1223,7 +1223,7 @@ public class CarpetFixesSettings {
             validate = pvpEnabledValidator.class,
             category = ADVANCED
     )
-    public static boolean togglePvpEnabled = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isPvpEnabled();
+    public static boolean togglePvpEnabled = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isPvpEnabled();
 
     //By FX - PR0CESS
     @Rule(
