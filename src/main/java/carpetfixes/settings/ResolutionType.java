@@ -1,4 +1,4 @@
-package carpetfixes.helpers;
+package carpetfixes.settings;
 
 /**
  * You usually won't put a resolution, and if you do its prob cause it's not unresolved

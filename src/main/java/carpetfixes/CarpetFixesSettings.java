@@ -10,10 +10,10 @@ import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.server.command.ServerCommandSource;
 
 import static carpet.settings.RuleCategory.*;
-import static carpetfixes.helpers.CategoryType.*;
-import static carpetfixes.helpers.ResolutionType.*;
-import static carpetfixes.helpers.RuleCategory.PARITY;
-import static carpetfixes.helpers.RuleCategory.*;
+import static carpetfixes.settings.CategoryType.*;
+import static carpetfixes.settings.ResolutionType.*;
+import static carpetfixes.settings.RuleCategory.PARITY;
+import static carpetfixes.settings.RuleCategory.*;
 
 public class CarpetFixesSettings {
 

@@ -1,4 +1,4 @@
-package carpetfixes.helpers;
+package carpetfixes.settings;
 
 public class RuleCategory {
     public static final String VANILLA = "vanilla"; //Does not change any game behaviours

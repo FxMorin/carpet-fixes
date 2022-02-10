@@ -1,4 +1,4 @@
-package carpetfixes.helpers;
+package carpetfixes.settings;
 
 /**
  * You usually won't put a category.
