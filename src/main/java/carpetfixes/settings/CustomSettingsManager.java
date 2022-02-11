@@ -49,12 +49,21 @@ public class CustomSettingsManager extends SettingsManager {
             for (String extra : rule.extraInfo) ps.println(extra + "  ");
             ParsedBug bug = this.bugManager.getBug(rule.name);
             if (bug != null) {
-                ps.println("Fixes: " + bug.reports.stream()
-                        .map(ss -> {
-                            String s = ss.toUpperCase(Locale.ROOT);
-                            return "[" + s + "](https://bugs.mojang.com/browse/" + s + ")";
-                        }).collect(Collectors.joining(", ")) + "  "
-                );
+                if (bug.reIntroduce) {
+                    ps.println("Relates to: " + bug.reports.stream()
+                            .map(ss -> {
+                                String s = ss.toUpperCase(Locale.ROOT);
+                                return "[" + s + "](https://bugs.mojang.com/browse/" + s + ")";
+                            }).collect(Collectors.joining(", ")) + "  "
+                    );
+                } else {
+                    ps.println("Fixes: " + bug.reports.stream()
+                            .map(ss -> {
+                                String s = ss.toUpperCase(Locale.ROOT);
+                                return "[" + s + "](https://bugs.mojang.com/browse/" + s + ")";
+                            }).collect(Collectors.joining(", ")) + "  "
+                    );
+                }
                 ps.println("Related to: " + bug.related.stream()
                         .map(ss -> {
                             String s = ss.toUpperCase(Locale.ROOT);
