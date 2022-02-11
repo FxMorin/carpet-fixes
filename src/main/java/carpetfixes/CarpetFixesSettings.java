@@ -1022,6 +1022,7 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes a string dupe using water & tripwire hooks",
+            extra = "[MC-248567](https://bugs.mojang.com/browse/MC-248567)",
             category = {BUGFIX,DUPE}
     )
     public static boolean stringDupeFix = false;
