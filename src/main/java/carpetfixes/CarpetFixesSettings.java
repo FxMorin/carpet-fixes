@@ -894,6 +894,14 @@ public class CarpetFixesSettings {
     )
     public static boolean tripwireNotDisarmingFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes powder snow letting light pass through it",
+            extra = "[MC-205044](https://bugs.mojang.com/browse/MC-205044)",
+            category = {BUGFIX,INTENDED}
+    )
+    public static boolean powderedSnowOpacityFix = false;
+
 
     /*
 
