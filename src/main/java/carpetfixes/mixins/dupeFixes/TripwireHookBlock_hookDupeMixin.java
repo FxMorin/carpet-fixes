@@ -64,12 +64,10 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
         BlockState newState = this.getDefaultState().with(ATTACHED, notRemoving).with(POWERED, on);
         if (index > 0) {
             blockPos = pos.offset(direction, index);
-            if (!CarpetFixesSettings.tripwireHookDupeFix || world.getBlockState(blockPos).isOf(this)) {
-                Direction blockState2 = direction.getOpposite();
-                world.setBlockState(blockPos, newState.with(FACING, blockState2), Block.NOTIFY_ALL);
-                this.updateNeighborsOnAxis(world, blockPos, blockState2);
-                this.playSound(world, blockPos, notRemoving, on, attached, powered);
-            }
+            Direction blockState2 = direction.getOpposite();
+            world.setBlockState(blockPos, newState.with(FACING, blockState2), Block.NOTIFY_ALL);
+            this.updateNeighborsOnAxis(world, blockPos, blockState2);
+            this.playSound(world, blockPos, notRemoving, on, attached, powered);
         }
         this.playSound(world, pos, notRemoving, on, attached, powered);
         if (!beingRemoved && (!CarpetFixesSettings.tripwireHookDupeFix || world.getBlockState(pos).isOf(this))) {
@@ -82,7 +80,7 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
             for(int x = 1; x < index; ++x) {
                 BlockPos blockPos2 = pos.offset(direction, x);
                 BlockState blockState2 = blockStates[x];
-                if (blockState2 != null && (!CarpetFixesSettings.tripwireHookDupeFix || world.getBlockState(blockPos2).isOf(this))) {
+                if (blockState2 != null && (!CarpetFixesSettings.tripwireNotDisarmingFix || world.getBlockState(blockPos2).isOf(this))) {
                     world.setBlockState(blockPos2, blockState2.with(ATTACHED, notRemoving), Block.NOTIFY_ALL);
                 }
             }
