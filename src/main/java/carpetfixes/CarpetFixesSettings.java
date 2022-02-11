@@ -886,6 +886,14 @@ public class CarpetFixesSettings {
     )
     public static boolean armorStandNegateLavaDamageFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes tripwires not being disarmed correctly",
+            extra = "[MC-129055](https://bugs.mojang.com/browse/MC-129055)",
+            category = BUGFIX
+    )
+    public static boolean tripwireNotDisarmingFix = false;
+
 
     /*
 
@@ -1022,7 +1030,7 @@ public class CarpetFixesSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes a string dupe using water & tripwire hooks",
-            extra = "[MC-248567](https://bugs.mojang.com/browse/MC-248567)",
+            extra = "[MC-59471](https://bugs.mojang.com/browse/MC-59471)",
             category = {BUGFIX,DUPE}
     )
     public static boolean stringDupeFix = false;

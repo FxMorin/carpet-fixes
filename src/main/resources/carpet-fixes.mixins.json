@@ -22,6 +22,7 @@
     "blockFixes.PressurePlateBlock_collisionOnPlaceMixin",
     "blockFixes.RedstoneTorchBlock_inconsistentMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
+    "blockFixes.TripwireHookBlock_disarmMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateAfterPushMixin",
