@@ -878,6 +878,14 @@ public class CarpetFixesSettings {
     )
     public static boolean reloadUpdateOrderFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes armor stands not taking damage in lava",
+            extra = "[MC-199210](https://bugs.mojang.com/browse/MC-199210)",
+            category = {BUGFIX,RECOMMENDED}
+    )
+    public static boolean armorStandNegateLavaDamageFix = false;
+
 
     /*
 

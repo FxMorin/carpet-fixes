@@ -72,6 +72,7 @@
     "dupeFixes.saferItemTransfer.DropperBlock_dontCopyMixin",
     "entityFixes.AbstractDecorationEntity_triggersTrapsMixin",
     "entityFixes.ArmorStandEntity_aggroMechanicsMixin",
+    "entityFixes.ArmorStandEntity_lavaDamageMixin",
     "entityFixes.ArrowEntity_totemMixin",
     "entityFixes.BeeEntity_chunkLoadingMixin",
     "entityFixes.BeeEntity_voidMixin",
