@@ -10,7 +10,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -30,9 +29,6 @@ public class CarpetFixesSettings {
     public static HashMap<World, UpdateScheduler> updateScheduler = new HashMap<>();
     public static final ThreadLocal<Set<BlockPos>> lastDirt = ThreadLocal.withInitial(HashSet::new);
     public static final Predicate<BlockState> IS_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
-    public static Direction[] directions = new Direction[]{
-            Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.DOWN, Direction.UP
-    };
 
     //By FX - PR0CESS
     @Rule(

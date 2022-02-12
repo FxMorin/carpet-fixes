@@ -1,7 +1,7 @@
 package carpetfixes.mixins.parity;
 
 import carpetfixes.CarpetFixesSettings;
-import carpetfixes.helpers.Utils;
+import carpetfixes.helpers.DirectionUtils;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -25,7 +25,7 @@ public class World_randomUpdateOrderMixin {
     )
     private void updateNeighborsAlwaysWithRandomDirection(BlockPos pos, Block block, CallbackInfo ci) {
         if (CarpetFixesSettings.parityRandomBlockUpdates) {
-            for(Direction direction : Utils.randomDirectionArray(pos)) {
+            for(Direction direction : DirectionUtils.randomDirectionArray(pos)) {
                 this.updateNeighbor(pos.offset(direction), block, pos);
             }
             ci.cancel();
@@ -40,7 +40,7 @@ public class World_randomUpdateOrderMixin {
     )
     private void updateNeighborsExceptWithRandomDirection(BlockPos pos, Block sourceBlock, Direction direction, CallbackInfo ci) {
         if (CarpetFixesSettings.parityRandomBlockUpdates) {
-            for(Direction dir : Utils.randomDirectionArray(pos)) {
+            for(Direction dir : DirectionUtils.randomDirectionArray(pos)) {
                 if (direction != dir) this.updateNeighbor(pos.offset(dir), sourceBlock, pos);
             }
             ci.cancel();
