@@ -1,9 +1,11 @@
 package carpetfixes.mixins.blockUpdates;
 
-import net.minecraft.block.*;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
 import carpetfixes.CarpetFixesSettings;
+import net.minecraft.block.Block;
+import net.minecraft.block.SpongeBlock;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(SpongeBlock.class)
 public class SpongeBlock_missingUpdateMixin extends Block {
@@ -11,8 +13,8 @@ public class SpongeBlock_missingUpdateMixin extends Block {
     /**
      * The sponge when placed next to a water source does not give a block update, causing
      * some unintended behaviour where you can update suppress on place. We make sure to give
-     * that correct update here by adding binary 1 to the update value. This will add a block
-     * update, fixing all the issues.
+     * that correct update here by adding binary 1 (NOTIFY_NEIGHBORS) to the update value.
+     * This will add a block updates, fixing all the issues.
      */
 
 
@@ -25,6 +27,6 @@ public class SpongeBlock_missingUpdateMixin extends Block {
             constant = @Constant(intValue = 2)
     )
     protected int spongeUpdate(int value) {
-        return CarpetFixesSettings.spongeUpdateFix && value%2 == 0 ? ++value : value;
+        return CarpetFixesSettings.spongeUpdateFix ? value | Block.NOTIFY_NEIGHBORS : value;
     }
 }

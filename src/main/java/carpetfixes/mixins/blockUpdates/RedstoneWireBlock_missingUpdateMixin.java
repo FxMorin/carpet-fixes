@@ -45,8 +45,8 @@ public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
             Set<BlockPos> set = Sets.newHashSet();
             set.add(pos);
             Direction[] var6 = Direction.values();
-            for (Direction direction : var6) {set.add(pos.offset(direction));}
-            for (BlockPos blockPos : set) {((World) world).updateNeighborsAlways(blockPos, this);}
+            for (Direction direction : var6) set.add(pos.offset(direction));
+            for (BlockPos blockPos : set) ((World) world).updateNeighborsAlways(blockPos, this);
         }
         needsUpdate.set(false);
     }

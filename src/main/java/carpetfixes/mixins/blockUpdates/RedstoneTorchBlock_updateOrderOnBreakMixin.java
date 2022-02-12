@@ -21,7 +21,7 @@ public class RedstoneTorchBlock_updateOrderOnBreakMixin {
     )
     public void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
         if (CarpetFixesSettings.redstoneTorchOrderOnBreakFix && !moved) {
-            world.updateNeighbors(pos,self);
+            world.updateNeighbors(pos,self); //TODO: Remake the entire redstone torch updates
         }
     }
 }

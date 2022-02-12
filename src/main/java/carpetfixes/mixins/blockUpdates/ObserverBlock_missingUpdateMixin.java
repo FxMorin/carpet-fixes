@@ -1,6 +1,7 @@
 package carpetfixes.mixins.blockUpdates;
 
 import carpetfixes.CarpetFixesSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.ObserverBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,6 +19,6 @@ public class ObserverBlock_missingUpdateMixin {
             index = 2
     )
     public int observerUpdate(int value) {
-        return CarpetFixesSettings.observerUpdateFix && value%2 == 0 ? ++value : value;
+        return CarpetFixesSettings.observerUpdateFix ? value | Block.NOTIFY_NEIGHBORS : value;
     }
 }

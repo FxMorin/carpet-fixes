@@ -35,7 +35,7 @@ public class CarpetFixesSettings {
     //Recommended since it allows illegal blocks to be made. Suppresses Multiple Updates
     @Rule(
             desc = "Fixes hoppers not giving block updates when placed while powered",
-            extra = {"As a side-effect, it fixes clients not being able to see the hopper",
+            extra = {"invisibleHopperFix is automatically enabled when used",
                     "(Youtube Video)[https://www.youtube.com/watch?v=QVOONJ1OY44]"},
             category = {BUGFIX,RECOMMENDED}
     )
@@ -901,6 +901,14 @@ public class CarpetFixesSettings {
             category = {BUGFIX,INTENDED}
     )
     public static boolean powderedSnowOpacityFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes hoppers being invisible when placed next to a powered block",
+            extra = "It fixes clients not being able to see the hopper, by redrawing them if powered",
+            category = {BUGFIX,RECOMMENDED}
+    )
+    public static boolean invisibleHopperFix = false;
 
 
     /*

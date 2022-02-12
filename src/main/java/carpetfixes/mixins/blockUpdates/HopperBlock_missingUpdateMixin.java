@@ -13,8 +13,10 @@ public class HopperBlock_missingUpdateMixin extends Block {
     /**
      * The hopper when placed next to a power source does not give a block update, causing
      * some unintended behaviour where you can update suppress on place. We make sure to give
-     * that correct update here by adding binary 1 to the update value. This will add a block
-     * update, fixing all the issues.
+     * that correct update here by adding binary 1 (NOTIFY_NEIGHBORS) to the update value.
+     * This will add a block updates, fixing all the issues.
+     * For the invisible hopper, we remove 4 (NO_REDRAW) & add 2 (NOTIFY_LISTENERS) in order
+     * for the client to get an update for visuals, without changing block updates
      */
 
 
@@ -29,5 +31,13 @@ public class HopperBlock_missingUpdateMixin extends Block {
             ),
             index = 2
     )
-    protected int hopperUpdate(int value) { return CarpetFixesSettings.hopperUpdateFix && value%2 == 0 ? ++value : value; }
+    protected int hopperUpdate(int value) {
+        if (CarpetFixesSettings.hopperUpdateFix) {
+            return value | Block.NOTIFY_NEIGHBORS;
+        }
+        if (CarpetFixesSettings.invisibleHopperFix) {
+            return (value & ~Block.NO_REDRAW) | Block.NOTIFY_LISTENERS;
+        }
+        return value;
+    }
 }
