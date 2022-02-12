@@ -1,6 +1,5 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesInit;
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +32,7 @@ public class World_blockUpdateOrderMixin {
     private void updateNeighborsAlwaysWithBetterDirection(BlockPos pos, Block block, CallbackInfo ci) {
         if (CarpetFixesSettings.blockUpdateOrderFix) {
             for(int dirNum = 0; dirNum < 6; ++dirNum) {
-                this.updateNeighbor(pos.offset(CarpetFixesInit.directions[dirNum]), block, pos);
+                this.updateNeighbor(pos.offset(CarpetFixesSettings.directions[dirNum]), block, pos);
             }
             ci.cancel();
         }
@@ -48,7 +47,8 @@ public class World_blockUpdateOrderMixin {
     private void updateNeighborsExceptWithBetterDirection(BlockPos pos, Block sourceBlock, Direction direction, CallbackInfo ci) {
         if (CarpetFixesSettings.blockUpdateOrderFix) {
             for(int dirNum = 0; dirNum < 6; ++dirNum) {
-                if (direction != CarpetFixesInit.directions[dirNum]) this.updateNeighbor(pos.offset(CarpetFixesInit.directions[dirNum]), sourceBlock, pos);
+                if (direction != CarpetFixesSettings.directions[dirNum])
+                    this.updateNeighbor(pos.offset(CarpetFixesSettings.directions[dirNum]), sourceBlock, pos);
             }
             ci.cancel();
         }

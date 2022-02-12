@@ -1,6 +1,6 @@
 package carpetfixes.helpers;
 
-import carpetfixes.CarpetFixesInit;
+import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -88,7 +88,7 @@ public class Utils {
 
     public static Direction[] randomDirectionArray(BlockPos pos) {
         random.setSeed(pos.asLong());
-        Direction[] array = CarpetFixesInit.directions.clone();
+        Direction[] array = CarpetFixesSettings.directions.clone();
         for (int i = array.length; i > 1; i--) swap(array, i - 1, random.nextInt(i));
         return array;
     }

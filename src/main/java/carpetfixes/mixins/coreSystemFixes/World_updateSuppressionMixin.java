@@ -1,6 +1,5 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesInit;
 import carpetfixes.CarpetFixesSettings;
 import carpetfixes.helpers.UpdateScheduler;
 import net.minecraft.block.Block;
@@ -25,7 +24,7 @@ public class World_updateSuppressionMixin {
      * This will prevent using an update suppressor to crash the server, while also
      * preventing blocks from being in illegal states. Although a suppressor will still
      * cause crashes in the block code, which could be used for some exploits
-     * E.x. Soulbound chests
+     * E.x. Soulbound chests & Item Shadowing
      */
 
 
@@ -62,7 +61,7 @@ public class World_updateSuppressionMixin {
     )
     public void checkUpdateSuppression(BlockPos sourcePos, Block sourceBlock, BlockPos neighborPos, CallbackInfo ci) {
         if(CarpetFixesSettings.updateSuppressionFix) {
-            CarpetFixesInit.updateScheduler.get(self).addScheduledUpdate(new UpdateScheduler.ScheduledUpdate(sourcePos, sourceBlock));
+            CarpetFixesSettings.updateScheduler.get(self).addScheduledUpdate(new UpdateScheduler.ScheduledUpdate(sourcePos, sourceBlock));
             ci.cancel();
         }
     }

@@ -1,6 +1,5 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesInit;
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WitherSkullBlock;
@@ -28,7 +27,7 @@ public class WitherSkullBlock_spawningMixin {
                     ordinal=1
             ))
     private static Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state){
-        if (CarpetFixesSettings.witherGolemSpawningFix) state = CarpetFixesInit.IS_REPLACEABLE;
+        if (CarpetFixesSettings.witherGolemSpawningFix) state = CarpetFixesSettings.IS_REPLACEABLE;
         return CachedBlockPosition.matchesBlockState(state);
     }
 
@@ -40,7 +39,7 @@ public class WitherSkullBlock_spawningMixin {
                     target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;"
             ))
     private static Predicate<CachedBlockPosition> replaceableMaterialPredicateDispenser(Predicate<BlockState> state){
-        if (CarpetFixesSettings.witherGolemSpawningFix) state = CarpetFixesInit.IS_REPLACEABLE;
+        if (CarpetFixesSettings.witherGolemSpawningFix) state = CarpetFixesSettings.IS_REPLACEABLE;
         return CachedBlockPosition.matchesBlockState(state);
     }
 }

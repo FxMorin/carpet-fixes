@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes.TreeLogic;
 
-import carpetfixes.CarpetFixesInit;
+import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.TestableWorld;
@@ -23,6 +23,6 @@ public class TrunkPlacer_logMixin {
             at=@At("HEAD")
     )
     private static void setToDirtNotTrunk(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, BlockPos pos, TreeFeatureConfig config, CallbackInfo ci) {
-        CarpetFixesInit.lastDirt.get().add(pos);
+        CarpetFixesSettings.lastDirt.get().add(pos);
     }
 }
