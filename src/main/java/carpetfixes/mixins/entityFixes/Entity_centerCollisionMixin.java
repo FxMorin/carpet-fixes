@@ -1,7 +1,7 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesInit;
 import carpetfixes.CarpetFixesSettings;
+import carpetfixes.helpers.CenterUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -42,7 +42,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             ))
     public void onSteppingCollisionCheck(Block block, World world, BlockPos pos, BlockState state, Entity entity) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
-            CarpetFixesInit.checkStepOnCollision(entity);
+            CenterUtils.checkStepOnCollision(entity);
         } else {
             block.onSteppedOn(world, pos, state, entity);
         }
@@ -57,7 +57,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             ))
     public void onEntityLandCollisionCheck(Block block, BlockView world, Entity entity) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
-            CarpetFixesInit.checkEntityLandOnCollision(entity);
+            CenterUtils.checkEntityLandOnCollision(entity);
         } else {
             block.onEntityLand(world, entity);
         }
@@ -72,7 +72,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             ))
     public void onFallCollisionCheck(Block block, World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
-            CarpetFixesInit.checkFallCollision(entity,fallDistance);
+            CenterUtils.checkFallCollision(entity,fallDistance);
         } else {
             block.onLandedUpon(world, state, pos, entity, fallDistance);
         }
@@ -97,7 +97,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     )
     public void onJumpVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
-            cir.setReturnValue(CarpetFixesInit.checkJumpVelocityOnCollision(this.getBoundingBox(),this.world));
+            cir.setReturnValue(CenterUtils.checkJumpVelocityOnCollision(this.getBoundingBox(),this.world));
         }
     }
 
@@ -109,7 +109,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     )
     public void onVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
         if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
-            cir.setReturnValue(CarpetFixesInit.checkVelocityOnCollision(this.getBoundingBox(),this.world));
+            cir.setReturnValue(CenterUtils.checkVelocityOnCollision(this.getBoundingBox(),this.world));
         }
     }
 }
