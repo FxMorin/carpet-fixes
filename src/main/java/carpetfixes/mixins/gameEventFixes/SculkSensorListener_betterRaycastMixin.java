@@ -1,7 +1,7 @@
 package carpetfixes.mixins.gameEventFixes;
 
 import carpetfixes.CarpetFixesSettings;
-import carpetfixes.helpers.Utils;
+import carpetfixes.helpers.RaycastUtils;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.BlockStateRaycastContext;
 import net.minecraft.world.World;
@@ -33,6 +33,6 @@ public class SculkSensorListener_betterRaycastMixin {
             )
     )
     private BlockHitResult isOccluded(World world, BlockStateRaycastContext context) {
-        return CarpetFixesSettings.sculkSensorBiasFix ? Utils.raycast(world, context) : world.raycast(context);
+        return CarpetFixesSettings.sculkSensorBiasFix ? RaycastUtils.raycast(world, context) : world.raycast(context);
     }
 }
