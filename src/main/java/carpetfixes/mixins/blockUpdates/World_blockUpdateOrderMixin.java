@@ -1,13 +1,11 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
-import carpetfixes.helpers.DirectionUtils;
+import carpetfixes.helpers.BlockUpdateUtils;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -21,8 +19,7 @@ public class World_blockUpdateOrderMixin {
      * which fixes all directional problems based on block updates.
      */
 
-
-    @Shadow public void updateNeighbor(BlockPos sourcePos, Block sourceBlock, BlockPos neighborPos){}
+    private final World self = (World)(Object)this;
 
 
     @Inject(
@@ -31,12 +28,7 @@ public class World_blockUpdateOrderMixin {
             cancellable = true
     )
     private void updateNeighborsAlwaysWithBetterDirection(BlockPos pos, Block block, CallbackInfo ci) {
-        if (CarpetFixesSettings.blockUpdateOrderFix) {
-            for(int dirNum = 0; dirNum < 6; ++dirNum) {
-                this.updateNeighbor(pos.offset(DirectionUtils.directions[dirNum]), block, pos);
-            }
-            ci.cancel();
-        }
+        if (BlockUpdateUtils.canUpdateNeighborsAlwaysWithOrder(self,pos,block)) ci.cancel();
     }
 
 
@@ -45,13 +37,7 @@ public class World_blockUpdateOrderMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void updateNeighborsExceptWithBetterDirection(BlockPos pos, Block sourceBlock, Direction direction, CallbackInfo ci) {
-        if (CarpetFixesSettings.blockUpdateOrderFix) {
-            for(int dirNum = 0; dirNum < 6; ++dirNum) {
-                if (direction != DirectionUtils.directions[dirNum])
-                    this.updateNeighbor(pos.offset(DirectionUtils.directions[dirNum]), sourceBlock, pos);
-            }
-            ci.cancel();
-        }
+    private void updateNeighborsExceptWithBetterDirection(BlockPos pos, Block block, Direction direction, CallbackInfo ci) {
+        if (BlockUpdateUtils.canUpdateNeighborsExceptWithOrder(self,pos,block,direction)) ci.cancel();
     }
 }

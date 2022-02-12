@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.helpers.BlockUpdateUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneTorchBlock;
 import net.minecraft.util.math.BlockPos;
@@ -15,13 +15,17 @@ public class RedstoneTorchBlock_updateOrderOnBreakMixin {
 
     private final RedstoneTorchBlock self = (RedstoneTorchBlock)(Object)this;
 
+
     @Inject(
             method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
-            at = @At("HEAD")
+            at = @At("HEAD"),
+            cancellable = true
     )
     public void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
-        if (CarpetFixesSettings.redstoneTorchOrderOnBreakFix && !moved) {
-            world.updateNeighbors(pos,self); //TODO: Remake the entire redstone torch updates
+        if (!moved) {
+            boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.equals(state);
+            BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,doExtraEarlyUpdate,true);
+            ci.cancel();
         }
     }
 }

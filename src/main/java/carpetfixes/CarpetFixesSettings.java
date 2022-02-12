@@ -104,6 +104,15 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
+            desc = "Changes block updates that go 2 blocks out, so they have the same block update order",
+            extra = {"Changes extended block update order from YZX to XZY",
+                    "Warning! This changes how some block updates are done and could effect some contraptions"},
+            category = BUGFIX
+    )
+    public static boolean extendedBlockUpdateOrderFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
             desc = "Fixes the issue where comparators don't always get updated correctly",
             extra = "[MC-120986](https://bugs.mojang.com/browse/MC-120986)",
             category = BUGFIX
