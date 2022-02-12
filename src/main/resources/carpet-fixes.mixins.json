@@ -160,7 +160,6 @@
     "optimizations.rounding.VoxelShapesMixin",
     "parity.ComparatorBlock_terribleMixin",
     "parity.PistonBlock_movableLightMixin",
-    "parity.World_randomUpdateOrderMixin",
     "playerFixes.Entity_blockCollisionMixin",
     "playerFixes.LivingEntity_sleepingKillsMixin",
     "playerFixes.PlayerManager_endPortalEffectsMixin",
