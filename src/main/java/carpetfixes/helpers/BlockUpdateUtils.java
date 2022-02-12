@@ -36,7 +36,7 @@ public class BlockUpdateUtils {
         Direction[] directions = CarpetFixesSettings.blockUpdateOrderFix ? DirectionUtils.directions :
                 (CarpetFixesSettings.parityRandomBlockUpdates ? DirectionUtils.randomDirectionArray(pos) :
                         DirectionUtils.updateDirections);
-        if (CarpetFixesSettings.redstoneTorchOrderOnBreakFix && removedAndEmitsPower) {
+        if (CarpetFixesSettings.redstoneComponentUpdateOrderOnBreakFix && removedAndEmitsPower) {
             for(int dirNum = 0; dirNum < 6; ++dirNum) { //Do Updates around block torch first. Preventing wrong order
                 world.updateNeighbor(pos.offset(directions[dirNum]), block, pos);
             }

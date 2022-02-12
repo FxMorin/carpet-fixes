@@ -701,11 +701,11 @@ public class CarpetFixesSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes redstone torch update order when being broken, causing unnatural updates",
+            desc = "Fixes redstone torch/repeater/comparator update order when being broken, causing incorrect update order",
             extra = "[MC-157644](https://bugs.mojang.com/browse/MC-157644)",
             category = BUGFIX
     )
-    public static boolean redstoneTorchOrderOnBreakFix = false;
+    public static boolean redstoneComponentUpdateOrderOnBreakFix = false;
 
     //by FX - PR0CESS
     @Rule(
