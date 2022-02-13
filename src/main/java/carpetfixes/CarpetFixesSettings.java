@@ -934,6 +934,14 @@ public class CarpetFixesSettings {
     )
     public static boolean invisibleHopperFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes jumping always favors x axis, and having z collision restoring x velocity",
+            extra = "[MC-146854](https://bugs.mojang.com/browse/MC-146854) & [MC-156309](https://bugs.mojang.com/browse/MC-156309)",
+            category = BUGFIX
+    )
+    public static boolean velocityNotCancelledFix = false;
+
 
     /*
 
