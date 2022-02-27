@@ -5,6 +5,7 @@ import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
 import carpet.settings.Validator;
 import carpetfixes.helpers.UpdateScheduler;
+import carpetfixes.settings.conditions.LT_1_18_2_pre1_VersionCondition;
 import carpetfixes.settings.conditions.LT_22w05a_VersionCondition;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -939,7 +940,8 @@ public class CarpetFixesSettings {
     @Rule(
             desc = "Fixes jumping always favors x axis, and having z collision restoring x velocity",
             extra = "[MC-146854](https://bugs.mojang.com/browse/MC-146854) & [MC-156309](https://bugs.mojang.com/browse/MC-156309)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = LT_1_18_2_pre1_VersionCondition.class
     )
     public static boolean velocityNotCancelledFix = false;
 
