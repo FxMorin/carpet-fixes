@@ -5,6 +5,7 @@ import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
 import carpet.settings.Validator;
 import carpetfixes.helpers.UpdateScheduler;
+import carpetfixes.settings.conditions.LT_22w05a_VersionCondition;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
@@ -944,11 +945,20 @@ public class CarpetFixesSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Wither skull projectile does not save if its charged/blue in nbt",
+            desc = "Fixes Wither skull projectiles not saving if its charged/blue in there nbt",
             extra = "[MC-81656](https://bugs.mojang.com/browse/MC-81656)",
             category = {BUGFIX,NBT}
     )
     public static boolean blueWitherSkullNotSavedFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes BlockPos distance calculations being offset, resulting in them being directional & incorrect",
+            extra = "[MC-248225](https://bugs.mojang.com/browse/MC-248225)",
+            category = {BUGFIX,RECOMMENDED},
+            condition = LT_22w05a_VersionCondition.class
+    )
+    public static boolean incorrectBlockPosDistanceFix = false;
 
 
     /*
