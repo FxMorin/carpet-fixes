@@ -1,4 +1,4 @@
-package carpetfixes.mixins.blockUpdates.duplicateUpdates;
+package carpetfixes.mixins.blockUpdates;
 
 import carpetfixes.CarpetFixesSettings;
 import net.minecraft.block.AbstractPressurePlateBlock;
