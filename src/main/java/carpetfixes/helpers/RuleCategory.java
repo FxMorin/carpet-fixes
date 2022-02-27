@@ -16,4 +16,7 @@ public class RuleCategory {
     // It's not Vanilla if you aren't playing the game as the developers intended it to be played :thonk:
     // Although sometimes, it's just stupid that it's not fixed. So we fix it anyway, hence why it's here.
     public static final String INTENDED = "intended";
+
+    //This means that the fix might modify some nbt. Such as adding/removing changing some nbt
+    public static final String NBT = "nbt";
 }
