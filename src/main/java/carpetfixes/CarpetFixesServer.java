@@ -11,10 +11,14 @@ import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.border.WorldBorder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
     private static final SettingsManager carpetFixesSettingsManager;
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(CarpetFixesServer.class);
 
     private static final String MOD_ID = "carpet-fixes";
     private static final String MOD_NAME;
