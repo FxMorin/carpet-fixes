@@ -942,6 +942,14 @@ public class CarpetFixesSettings {
     )
     public static boolean velocityNotCancelledFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Wither skull projectile does not save if its charged/blue in nbt",
+            extra = "[MC-81656](https://bugs.mojang.com/browse/MC-81656)",
+            category = {BUGFIX,NBT}
+    )
+    public static boolean blueWitherSkullNotSavedFix = false;
+
 
     /*
 

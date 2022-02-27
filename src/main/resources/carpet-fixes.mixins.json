@@ -112,6 +112,7 @@
     "entityFixes.TridentEntity_voidLoyaltyMixin",
     "entityFixes.VillagerEntity_offlinePlayersMixin",
     "entityFixes.VillagerEntity_witchBedMixin",
+    "entityFixes.WitherSkullEntity_chargedMixin",
     "entityFixes.ZombieEntity_reinforcementMixin",
     "entityFixes.ZombieVillagerEntity_offlinePlayerMixin",
     "entityFixes.convertingFixes.SkeletonEntity_convertingMixin",
