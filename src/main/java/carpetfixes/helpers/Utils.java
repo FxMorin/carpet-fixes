@@ -1,5 +1,9 @@
 package carpetfixes.helpers;
 
+import carpetfixes.CarpetFixesServer;
+import carpetfixes.settings.CarpetFixesMixinConfigPlugin;
+import net.fabricmc.loader.api.Version;
+import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -8,9 +12,30 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.lang.reflect.Method;
+
 import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
 public class Utils {
+
+    //Thanks to Fallen Breath for writing this in https://github.com/Fallen-Breath/conditional-mixin
+    public static boolean isMCVersionCompat(String versionPredicate) {
+        try { // fabric loader >=0.12
+            return VersionPredicate.parse(versionPredicate).test(CarpetFixesMixinConfigPlugin.MINECRAFT_VERSION);
+        } catch (NoClassDefFoundError e) { // fabric loader >=0.11.3 <0.12
+            try {
+                Class<?> clazz = Class.forName("net.fabricmc.loader.util.version.VersionPredicateParser");
+                Method matches = clazz.getMethod("matches", Version.class, String.class);
+                return (boolean)matches.invoke(null, CarpetFixesMixinConfigPlugin.MINECRAFT_VERSION, versionPredicate);
+            } catch (Exception ex) {
+                CarpetFixesServer.LOGGER.error("Failed to invoke VersionPredicateParser#matches", ex);
+            }
+        } catch (Exception e) {
+            CarpetFixesServer.LOGGER.error("Failed to parse version or version predicate {} {}: {}",
+                    CarpetFixesMixinConfigPlugin.MINECRAFT_VERSION.getFriendlyString(), versionPredicate, e);
+        }
+        return false;
+    }
 
     public static boolean isInModifiableLimit(World world, BlockPos pos) {
         return !world.isOutOfHeightLimit(pos) && world.getWorldBorder().contains(pos);

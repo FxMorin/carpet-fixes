@@ -2,6 +2,7 @@
   "required": true,
   "package": "carpetfixes.mixins",
   "compatibilityLevel": "JAVA_16",
+  "plugin": "carpetfixes.settings.CarpetFixesMixinConfigPlugin",
   "mixins": [
     "advanced.MinecraftServer_autosaveDelayMixin",
     "advanced.ThreadedAnvilChunkStorage_chunkTimingsMixin",
@@ -48,6 +49,7 @@
     "conversionFixes.MooshroomEntity_conversionMixin",
     "conversionFixes.SlimeEntity_conversionMixin",
     "conversionFixes.VillagerEntity_conversionMixin",
+    "coreSystemFixes.BlockPos_incorrectDistanceMixin",
     "coreSystemFixes.Chunk_BEHashMixin",
     "coreSystemFixes.ChunkSerializer_missingStructureMixin",
     "coreSystemFixes.EnderDragonFight_twoCrystalMixin",
