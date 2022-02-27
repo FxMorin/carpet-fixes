@@ -28,6 +28,7 @@ public class CustomSettingsManager extends SettingsManager {
      * TODO: ADD REINTRODUCE category if bug reintroduce is true
      * TODO: ADD BUGFIX category automatically if @Bug is present and reintroduce is false
      * TODO: Stop faking to print the text over in BugManager, and actually print it for rules
+     * TODO: Make sure to check for the conditional-mixins once we merge. We want to display them separately at the bottom
      */
 
     /**
