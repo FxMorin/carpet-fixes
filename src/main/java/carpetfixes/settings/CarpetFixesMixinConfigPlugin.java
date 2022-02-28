@@ -3,9 +3,9 @@ package carpetfixes.settings;
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.tree.ClassNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class CarpetFixesMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LoggerFactory.getLogger(CarpetFixesMixinConfigPlugin.class);
 
     public static final Version MINECRAFT_VERSION = FabricLoader.getInstance()
             .getModContainer("minecraft").orElseThrow().getMetadata().getVersion();
