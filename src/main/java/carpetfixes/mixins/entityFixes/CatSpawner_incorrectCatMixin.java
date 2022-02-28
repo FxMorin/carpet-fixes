@@ -6,7 +6,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.CatSpawner;
+import net.minecraft.world.spawner.CatSpawner;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
