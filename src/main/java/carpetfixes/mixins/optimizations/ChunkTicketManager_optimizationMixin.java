@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
@@ -66,7 +66,7 @@ public abstract class ChunkTicketManager_optimizationMixin {
             locals = LocalCapture.CAPTURE_FAILHARD
     )
     private void registerExpiringTicket(long position, ChunkTicket<?> ticket, CallbackInfo ci, SortedArraySet<ChunkTicket<?>> ticketsAtPos, int i, ChunkTicket<?> chunkTicket) {
-        if (CarpetFixesSettings.optimizedTicketManager && canExpire(ticket)) {
+        if (CFSettings.optimizedTicketManager && canExpire(ticket)) {
             this.positionWithExpiringTicket.put(position, ticketsAtPos);
         }
     }
@@ -76,7 +76,7 @@ public abstract class ChunkTicketManager_optimizationMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ChunkTicketManager$TicketDistanceLevelPropagator;updateLevel(JIZ)V")
     )
     private void unregisterExpiringTicket(long pos, ChunkTicket<?> ticket, CallbackInfo ci) {
-        if (CarpetFixesSettings.optimizedTicketManager && canExpire(ticket)) {
+        if (CFSettings.optimizedTicketManager && canExpire(ticket)) {
             SortedArraySet<ChunkTicket<?>> ticketsAtPos = this.positionWithExpiringTicket.get(pos);
             if (!canAnyExpire(ticketsAtPos)) {
                 this.positionWithExpiringTicket.remove(pos);
@@ -94,7 +94,7 @@ public abstract class ChunkTicketManager_optimizationMixin {
             cancellable = true
     )
     public void purge(CallbackInfo ci) {
-        if (CarpetFixesSettings.optimizedTicketManager) {
+        if (CFSettings.optimizedTicketManager) {
             ++this.age;
 
             ObjectIterator<Long2ObjectMap.Entry<SortedArraySet<ChunkTicket<?>>>> iterator =

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.settings.ModIds;
 import carpetfixes.settings.VersionPredicates;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
@@ -37,6 +37,6 @@ public abstract class Entity_velocityFailMixin {
             )
     )
     private void dontResetX(Entity instance, double x, double y, double z) {
-        if (CarpetFixesSettings.velocityNotCancelledFix) this.setVelocity(this.getVelocity().x, y, z);
+        if (CFSettings.velocityNotCancelledFix) this.setVelocity(this.getVelocity().x, y, z);
     }
 }

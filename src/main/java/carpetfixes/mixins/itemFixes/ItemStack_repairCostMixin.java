@@ -1,6 +1,6 @@
 package carpetfixes.mixins.itemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,7 +36,7 @@ public class ItemStack_repairCostMixin {
             cancellable = true
     )
     public void setRepairCost(int repairCost, CallbackInfo ci) {
-        if (CarpetFixesSettings.repairCostItemNotStackingFix && (this.getHideFlags() & ItemStack.TooltipSection.CAN_PLACE.getFlag()) == 0) {
+        if (CFSettings.repairCostItemNotStackingFix && (this.getHideFlags() & ItemStack.TooltipSection.CAN_PLACE.getFlag()) == 0) {
             ci.cancel();
         }
     }

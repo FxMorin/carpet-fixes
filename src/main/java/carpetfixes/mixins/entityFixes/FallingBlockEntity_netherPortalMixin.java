@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FallingBlockEntity;
@@ -27,6 +27,6 @@ public abstract class FallingBlockEntity_netherPortalMixin extends Entity {
             at=@At("HEAD")
     )
     public void tickNetherPortal(CallbackInfo ci) {
-        if (CarpetFixesSettings.fallingBlocksCantUseNetherPortalsFix) this.tickNetherPortal();
+        if (CFSettings.fallingBlocksCantUseNetherPortalsFix) this.tickNetherPortal();
     }
 }

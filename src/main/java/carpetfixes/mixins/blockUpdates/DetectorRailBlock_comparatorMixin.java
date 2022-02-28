@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.Utils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DetectorRailBlock;
@@ -33,16 +33,16 @@ public class DetectorRailBlock_comparatorMixin {
             cancellable = true
     )
     public void updateComparatorsSpecial(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (CarpetFixesSettings.uselessDetectorRailUpdateFix) {
+        if (CFSettings.uselessDetectorRailUpdateFix) {
             if (state.get(POWERED)) {
-                if (CarpetFixesSettings.detectorRailOffsetUpdateFix) {
+                if (CFSettings.detectorRailOffsetUpdateFix) {
                     Utils.updateComparatorsRespectFacing(world,pos,self);
                 } else {
                     world.updateComparators(pos, self);
                 }
             }
             ci.cancel();
-        } else if (CarpetFixesSettings.detectorRailOffsetUpdateFix) {
+        } else if (CFSettings.detectorRailOffsetUpdateFix) {
             Utils.updateComparatorsRespectFacing(world,pos,self);
             ci.cancel();
         }

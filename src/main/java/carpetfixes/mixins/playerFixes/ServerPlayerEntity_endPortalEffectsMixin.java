@@ -1,6 +1,6 @@
 package carpetfixes.mixins.playerFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,7 +27,7 @@ public abstract class ServerPlayerEntity_endPortalEffectsMixin extends PlayerEnt
                     shift= At.Shift.AFTER
             ))
     public void copyFrom(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
-        if (CarpetFixesSettings.endPortalRemovesEffectsFix) {
+        if (CFSettings.endPortalRemovesEffectsFix) {
             self.activeStatusEffects.putAll(oldPlayer.activeStatusEffects);
         }
     }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.gameEventFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -38,17 +38,17 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
             )
     )
     public void newEventCall(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, World world, ItemStack itemStack, BlockPos pos) {
-        if (CarpetFixesSettings.spawnEggOffsetEventFix) {
+        if (CFSettings.spawnEggOffsetEventFix) {
             BlockState state = world.getBlockState(pos);
             BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ? pos : pos.offset(context.getSide());
-            if (CarpetFixesSettings.spawnEggMissingOcclusionFix) {
+            if (CFSettings.spawnEggMissingOcclusionFix) {
                 if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
                     return;
                 }
             }
             world.emitGameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, spawnPos);
         } else {
-            if (CarpetFixesSettings.spawnEggMissingOcclusionFix) {
+            if (CFSettings.spawnEggMissingOcclusionFix) {
                 BlockState state = world.getBlockState(pos);
                 BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ? pos : pos.offset(context.getSide());
                 if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
@@ -69,7 +69,7 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
             )
     )
     public void spawnBaby(PlayerEntity user, MobEntity entity, EntityType<? extends MobEntity> entityType, ServerWorld world, Vec3d pos, ItemStack stack, CallbackInfoReturnable<Optional<MobEntity>> cir) {
-        if (CarpetFixesSettings.spawnEggMissingEventFix) world.emitGameEvent(GameEvent.ENTITY_PLACE, user);
+        if (CFSettings.spawnEggMissingEventFix) world.emitGameEvent(GameEvent.ENTITY_PLACE, user);
     }
 
 

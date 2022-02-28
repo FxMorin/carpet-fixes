@@ -1,6 +1,6 @@
 package carpetfixes.mixins.reIntroduced;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import net.minecraft.server.world.ChunkHolder;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
@@ -30,7 +30,7 @@ public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
             cancellable = true
     )
     protected void reIntroduceOldMechanics(boolean flush, CallbackInfo ci) {
-        if (CarpetFixesSettings.reIntroduceOnlyAutoSaveSaving && !flush) {
+        if (CFSettings.reIntroduceOnlyAutoSaveSaving && !flush) {
             this.chunkHolders.values().stream().filter(ChunkHolder::isAccessible).forEach(holder -> {
                 Chunk chunk = holder.getSavingFuture().getNow(null);
                 if (chunk instanceof ReadOnlyChunk || chunk instanceof WorldChunk) {
@@ -51,7 +51,7 @@ public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
             )
     )
     protected boolean dontUnloadRandomly(BooleanSupplier instance) {
-        if (CarpetFixesSettings.reIntroduceOnlyAutoSaveSaving) return false;
+        if (CFSettings.reIntroduceOnlyAutoSaveSaving) return false;
         return instance.getAsBoolean();
     }
 }

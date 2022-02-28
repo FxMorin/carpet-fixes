@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PoweredRailBlock;
@@ -38,7 +38,7 @@ public abstract class PoweredRailBlock_updateMixin {
             index = 2
     )
     private int modifyUpdate(int val) {
-        return CarpetFixesSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
     }
 
 
@@ -48,7 +48,7 @@ public abstract class PoweredRailBlock_updateMixin {
             cancellable = true
     )
     protected void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
-        if (!CarpetFixesSettings.optimizedPoweredRails && CarpetFixesSettings.uselessSelfBlockUpdateFix) {
+        if (!CFSettings.optimizedPoweredRails && CFSettings.uselessSelfBlockUpdateFix) {
             boolean bl2 = world.isReceivingRedstonePower(pos) || this.isPoweredByOtherRails(world, pos, state, true, 0) || this.isPoweredByOtherRails(world, pos, state, false, 0);
             if (bl2 != state.get(POWERED)) {
                 world.setBlockState(pos, state.with(POWERED, bl2), 3);

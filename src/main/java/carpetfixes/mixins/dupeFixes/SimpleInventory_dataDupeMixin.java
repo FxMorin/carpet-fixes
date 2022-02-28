@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtList;
@@ -20,7 +20,7 @@ public class SimpleInventory_dataDupeMixin {
 
     @Inject(method= "readNbtList(Lnet/minecraft/nbt/NbtList;)V",at=@At("HEAD"))
     public void readNbtListWithoutDupe(NbtList nbtList, CallbackInfo ci) {
-        if (CarpetFixesSettings.nbtDataDupeFix) {
+        if (CFSettings.nbtDataDupeFix) {
             for(int j = 0; j < this.size(); ++j) {
                 this.setStack(j, ItemStack.EMPTY);
             }

@@ -1,7 +1,7 @@
 package carpetfixes.mixins.coreSystemFixes;
 
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
@@ -35,7 +35,7 @@ public class ChunkSerializer_missingStructureMixin {
             at = @At("TAIL")
     )
     private static void readInvalidStructures(ChunkPos pos, NbtCompound nbt, CallbackInfoReturnable<Map<StructureFeature<?>, LongSet>> cir) {
-        if (CarpetFixesSettings.missingStructureCorruptionFix && cir.getReturnValue().remove(null) != null) {
+        if (CFSettings.missingStructureCorruptionFix && cir.getReturnValue().remove(null) != null) {
             ChunkSerializer_missingStructureMixin.preSaveList.set(true);
         }
     }

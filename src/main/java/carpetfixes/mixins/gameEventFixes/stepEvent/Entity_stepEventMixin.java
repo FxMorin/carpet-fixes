@@ -1,6 +1,6 @@
 package carpetfixes.mixins.gameEventFixes.stepEvent;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.patches.ServerPlayerEntityEmitStep;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -29,7 +29,7 @@ public abstract class Entity_stepEventMixin {
             )
     )
     public void cancelEmitGameEvent(Entity instance, GameEvent event) {
-        if (CarpetFixesSettings.playerStepEventFix && instance instanceof ServerPlayerEntity) {
+        if (CFSettings.playerStepEventFix && instance instanceof ServerPlayerEntity) {
             ((ServerPlayerEntityEmitStep) instance).setShouldStep();
             return;
         }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.Utils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -26,7 +26,7 @@ public abstract class SheepEntity_childColorMixin extends AnimalEntity {
             cancellable = true
     )
     private void getChildColor(AnimalEntity firstParent, AnimalEntity secondParent, CallbackInfoReturnable<DyeColor> cir) {
-        if (CarpetFixesSettings.optimizedRecipeManager) {
+        if (CFSettings.optimizedRecipeManager) {
             DyeColor firstColor = ((SheepEntity)firstParent).getColor();
             DyeColor secondColor = ((SheepEntity)secondParent).getColor();
             DyeColor col = Utils.properDyeMixin(firstColor,secondColor);

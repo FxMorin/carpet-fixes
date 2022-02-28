@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.Utils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,7 +21,7 @@ public class Explosion_worldBorderMixin {
             )
     )
     public boolean collectBlocksAndDamageEntities(World instance, BlockPos pos) {
-        if (CarpetFixesSettings.explosionsBypassWorldBorderFix) return Utils.isInModifiableLimit(instance,pos);
+        if (CFSettings.explosionsBypassWorldBorderFix) return Utils.isInModifiableLimit(instance,pos);
         return instance.isInBuildLimit(pos);
     }
 }

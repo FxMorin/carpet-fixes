@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.tag.FluidTags;
@@ -35,7 +35,7 @@ public abstract class FishingBobberEntity_outsideWaterMixin {
             ))
     private FluidState checkAfterBeingSet(World instance, BlockPos pos) {
         FluidState state = instance.getFluidState(pos);
-        if (CarpetFixesSettings.fishingOutsideWaterFix && !state.isIn(FluidTags.WATER)) {
+        if (CFSettings.fishingOutsideWaterFix && !state.isIn(FluidTags.WATER)) {
             this.state = FishingBobberEntity.State.FLYING;
             this.inOpenWater = false;
             this.hookCountdown = 0;

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import static carpetfixes.CarpetFixesSettings.breakAnythingDoorGoalFix;
+import static carpetfixes.CFSettings.breakAnythingDoorGoalFix;
 
 @Mixin(BreakDoorGoal.class)
 public abstract class BreakDoorGoal_breakAnythingMixin extends DoorInteractGoal {

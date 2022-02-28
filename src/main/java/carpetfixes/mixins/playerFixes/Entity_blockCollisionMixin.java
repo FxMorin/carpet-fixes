@@ -1,6 +1,6 @@
 package carpetfixes.mixins.playerFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -58,7 +58,7 @@ public abstract class Entity_blockCollisionMixin {
                     target = "Lnet/minecraft/entity/Entity;adjustMovementForCollisions(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;"
             ))
     protected void InjectOnEntityCollisionHere(MovementType type, Vec3d movement, CallbackInfo ci) {
-        if (CarpetFixesSettings.blockCollisionCheckFix) {
+        if (CFSettings.blockCollisionCheckFix) {
             first = false;
             this.checkBlockCollision();
         }
@@ -73,7 +73,7 @@ public abstract class Entity_blockCollisionMixin {
             ))
     public void checkBlockCollisionBetter(BlockState blockState, World world, BlockPos pos, Entity entity) {
         boolean pass = shouldCheckCollision(blockState.getBlock());
-        if (!CarpetFixesSettings.blockCollisionCheckFix || !(entity instanceof PlayerEntity) || (first && pass) || (!first && !pass)) {
+        if (!CFSettings.blockCollisionCheckFix || !(entity instanceof PlayerEntity) || (first && pass) || (!first && !pass)) {
             blockState.onEntityCollision(world, pos, entity);
         }
     }

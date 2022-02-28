@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.entity.projectile.WitherSkullEntity;
@@ -24,12 +24,12 @@ public abstract class WitherSkullEntity_chargedMixin extends ExplosiveProjectile
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        if (CarpetFixesSettings.blueWitherSkullNotSavedFix && this.isCharged()) nbt.putBoolean("charged", true);
+        if (CFSettings.blueWitherSkullNotSavedFix && this.isCharged()) nbt.putBoolean("charged", true);
     }
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        if (CarpetFixesSettings.blueWitherSkullNotSavedFix) this.setCharged(nbt.getBoolean("charged"));
+        if (CFSettings.blueWitherSkullNotSavedFix) this.setCharged(nbt.getBoolean("charged"));
     }
 }

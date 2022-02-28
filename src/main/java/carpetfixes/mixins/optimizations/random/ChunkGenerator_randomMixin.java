@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.random;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,6 +24,6 @@ public class ChunkGenerator_randomMixin {
             )
     )
     private static Random customRandom() {
-        return CarpetFixesSettings.optimizedRandom ? random : new Random();
+        return CFSettings.optimizedRandom ? random : new Random();
     }
 }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.mob.MobEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +18,6 @@ public class MobEntity_pickupOwnerMixin {
             )
     )
     public boolean doesItemHaveOwnerTag(ItemEntity instance) {
-        return instance.isRemoved() || CarpetFixesSettings.mobsIgnoreOwnerOnPickupFix && instance.getOwner() != null;
+        return instance.isRemoved() || CFSettings.mobsIgnoreOwnerOnPickupFix && instance.getOwner() != null;
     }
 }

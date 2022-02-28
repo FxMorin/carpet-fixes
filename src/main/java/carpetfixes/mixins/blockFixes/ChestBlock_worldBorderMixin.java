@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.enums.ChestType;
@@ -31,7 +31,7 @@ public class ChestBlock_worldBorderMixin {
             cancellable = true
     )
     private void getNeighborChestDirection(ItemPlacementContext ctx, Direction dir, CallbackInfoReturnable<Direction> cir) {
-        if (CarpetFixesSettings.chestUsablePastWorldBorderFix) {
+        if (CFSettings.chestUsablePastWorldBorderFix) {
             BlockPos blockPos = ctx.getBlockPos().offset(dir);
             if (!ctx.getWorld().getWorldBorder().contains(blockPos)) {
                 BlockState blockState = ctx.getWorld().getBlockState(blockPos);

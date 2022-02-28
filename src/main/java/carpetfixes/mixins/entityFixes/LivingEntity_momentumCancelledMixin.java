@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -29,7 +29,7 @@ public abstract class LivingEntity_momentumCancelledMixin extends Entity {
             )
     )
     public void customVelocityCheck(CallbackInfo ci, Vec3d d, double h, double i, double j) {
-        if (CarpetFixesSettings.velocitySeparateAxisCancellingFix) {
+        if (CFSettings.velocitySeparateAxisCancellingFix) {
             double x = d.x, y = d.y, z = d.z;
             if (Math.abs(x) + Math.abs(z) < 0.003D) {
                 x = 0.0D;

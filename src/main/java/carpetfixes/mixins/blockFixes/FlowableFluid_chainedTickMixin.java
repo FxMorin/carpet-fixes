@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
@@ -28,7 +28,7 @@ public abstract class FlowableFluid_chainedTickMixin {
             )
     )
     private boolean delayNextScheduleTick(FlowableFluid flowableFluid, BlockView world, BlockPos fluidPos, BlockState fluidBlockState, Direction flowDirection, BlockPos flowTo, BlockState flowToBlockState, FluidState fluidState, Fluid fluid) {
-        if (CarpetFixesSettings.instantFluidFlowingFix && ((WorldAccess)world).getFluidTickScheduler().isTicking(flowTo,fluid)) {
+        if (CFSettings.instantFluidFlowingFix && ((WorldAccess)world).getFluidTickScheduler().isTicking(flowTo,fluid)) {
             return false;
         }
         return this.canFlow(world,fluidPos,fluidBlockState,flowDirection,flowTo,flowToBlockState,fluidState,fluid);

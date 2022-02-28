@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.CreeperEntity;
@@ -28,7 +28,7 @@ public abstract class CreeperEntity_fuseMixin extends HostileEntity {
         this.readNbt(nbtCompound);
         this.netherPortalCooldown = original.netherPortalCooldown;
         this.lastNetherPortalPosition = original.lastNetherPortalPosition;
-        if (CarpetFixesSettings.creeperPortalFuseResetsFix) {
+        if (CFSettings.creeperPortalFuseResetsFix) {
             CreeperEntity self = (CreeperEntity) original;
             this.lastFuseTime = self.lastFuseTime;
             this.currentFuseTime = self.currentFuseTime;

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.redstoneFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +33,7 @@ public class World_ComparatorNotUpdatingMixin {
                     target = "Lnet/minecraft/block/BlockState;hasComparatorOutput()Z"
             ))
     private boolean updateNeighborsAlwaysWithBetterDirection(BlockState blockState) {
-        return !CarpetFixesSettings.comparatorUpdateFix && blockState.hasComparatorOutput();
+        return !CFSettings.comparatorUpdateFix && blockState.hasComparatorOutput();
     }
 
 
@@ -44,7 +44,7 @@ public class World_ComparatorNotUpdatingMixin {
                     target = "Lnet/minecraft/block/BlockState;neighborUpdate(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;Z)V"
             ))
     private void updateNeighborsAlwaysWithBetterDirection(BlockPos sourcePos, Block sourceBlock, BlockPos neighborPos, CallbackInfo ci) {
-        if (CarpetFixesSettings.comparatorUpdateFix) {
+        if (CFSettings.comparatorUpdateFix) {
             BlockState newState = this.getBlockState(sourcePos);
             if(sourceBlock.getDefaultState().hasComparatorOutput() || newState.hasComparatorOutput()) this.updateComparators(sourcePos, sourceBlock);
         }

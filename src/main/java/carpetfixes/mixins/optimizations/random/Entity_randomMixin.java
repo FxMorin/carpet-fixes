@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.random;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,11 +24,11 @@ public class Entity_randomMixin {
             )
     )
     private Random CustomRandom() {
-        if (!CarpetFixesSettings.optimizedRandom) {
-            if (CarpetFixesSettings.entityRandomCrackingFix) return rand==null ? rand = new Random() : rand;
+        if (!CFSettings.optimizedRandom) {
+            if (CFSettings.entityRandomCrackingFix) return rand==null ? rand = new Random() : rand;
             return new Random();
         }
-        if (CarpetFixesSettings.entityRandomCrackingFix) return rand==null ? rand = new XoroshiroCustomRandom() : rand;
+        if (CFSettings.entityRandomCrackingFix) return rand==null ? rand = new XoroshiroCustomRandom() : rand;
         return new XoroshiroCustomRandom();
     }
 }

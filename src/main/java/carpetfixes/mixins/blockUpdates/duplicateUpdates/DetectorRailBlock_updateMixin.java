@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.DetectorRailBlock;
 import net.minecraft.util.math.BlockPos;
@@ -22,7 +22,7 @@ public class DetectorRailBlock_updateMixin {
             index = 2
     )
     private int modifyUpdate(int val) {
-        return CarpetFixesSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
     }
 
 
@@ -33,7 +33,7 @@ public class DetectorRailBlock_updateMixin {
                     target="Lnet/minecraft/world/World;updateNeighborsAlways(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V"
             ))
     private void removeUpdate(World world, BlockPos pos, Block block) {
-        if (!CarpetFixesSettings.duplicateBlockUpdatesFix) {
+        if (!CFSettings.duplicateBlockUpdatesFix) {
             world.updateNeighborsAlways(pos,block);
         }
     }

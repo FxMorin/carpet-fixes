@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FacingBlock;
@@ -46,7 +46,7 @@ public abstract class PistonBlock_headlessMixin extends FacingBlock {
             cancellable = true
     )
     private void stopHeadlessPiston(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (CarpetFixesSettings.headlessPistonFix && state.get(EXTENDED)) {
+        if (CFSettings.headlessPistonFix && state.get(EXTENDED)) {
             Direction direction = state.get(FACING);
             BlockState blockState = world.getBlockState(pos.offset(direction));
             if (this.shouldExtend(world, pos, direction) && !blockState.isOf(Blocks.MOVING_PISTON) && !blockState.isOf(Blocks.PISTON_HEAD)) {

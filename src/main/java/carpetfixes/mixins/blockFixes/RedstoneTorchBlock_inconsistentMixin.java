@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneTorchBlock;
 import net.minecraft.server.world.ServerWorld;
@@ -33,7 +33,7 @@ public class RedstoneTorchBlock_inconsistentMixin {
                     ordinal=0
             ))
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (CarpetFixesSettings.inconsistentRedstoneTorchFix) {
+        if (CFSettings.inconsistentRedstoneTorchFix) {
             if (isBurnedOut(world, pos, true)) {
                 world.syncWorldEvent(1502, pos, 0);
                 world.createAndScheduleBlockTick(pos, world.getBlockState(pos).getBlock(), 160);

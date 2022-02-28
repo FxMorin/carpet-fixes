@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.TntEntity;
@@ -27,6 +27,6 @@ public abstract class TntEntity_netherPortalMixin extends Entity  {
             at=@At("HEAD")
     )
     public void tickNetherPortal(CallbackInfo ci) {
-        if (CarpetFixesSettings.tntCantUseNetherPortalsFix) this.tickNetherPortal();
+        if (CFSettings.tntCantUseNetherPortalsFix) this.tickNetherPortal();
     }
 }

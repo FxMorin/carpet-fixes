@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,7 +25,7 @@ public abstract class ArmorStandEntity_lavaDamageMixin {
             cancellable = true
     )
     private void beforeProjectileCheck(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.armorStandNegateLavaDamageFix && DamageSource.LAVA.equals(source)) {
+        if (CFSettings.armorStandNegateLavaDamageFix && DamageSource.LAVA.equals(source)) {
             this.updateHealth(source, 4.0F);
             cir.setReturnValue(false);
         }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PistonBlock;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +23,7 @@ public class PistonBlock_worldBorderMixin {
             cancellable = true
     )
     private static void customWorldBorderCheck(BlockState state, World world, BlockPos pos, Direction dir, boolean canBreak, Direction pistonDir, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.incorrectPistonWorldBorderCheckFix && !world.getWorldBorder().contains(pos.offset(dir))) {
+        if (CFSettings.incorrectPistonWorldBorderCheckFix && !world.getWorldBorder().contains(pos.offset(dir))) {
             cir.setReturnValue(false);
         }
     }
@@ -37,6 +37,6 @@ public class PistonBlock_worldBorderMixin {
             )
     )
     private static boolean customWorldBorderCheck(WorldBorder instance, BlockPos pos) {
-        return CarpetFixesSettings.incorrectPistonWorldBorderCheckFix || instance.contains(pos);
+        return CFSettings.incorrectPistonWorldBorderCheckFix || instance.contains(pos);
     }
 }

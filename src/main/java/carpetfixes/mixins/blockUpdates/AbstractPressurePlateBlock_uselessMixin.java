@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractPressurePlateBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -23,7 +23,7 @@ public class AbstractPressurePlateBlock_uselessMixin {
             cancellable = true
     )
     protected void updateNeighbors(World world, BlockPos pos, CallbackInfo ci) {
-        if (CarpetFixesSettings.uselessSelfBlockUpdateFix) {
+        if (CFSettings.uselessSelfBlockUpdateFix) {
             world.updateNeighborsAlways(pos, self);
             world.updateNeighborsExcept(pos.down(),self, Direction.UP);
             ci.cancel();

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.itemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemUsageContext;
@@ -30,7 +30,7 @@ public abstract class ItemPlacementContext_worldBorderMixin extends ItemUsageCon
             cancellable = true
     )
     public void canPlace(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.placeBlocksOutsideWorldBorderFix) {
+        if (CFSettings.placeBlocksOutsideWorldBorderFix) {
             cir.setReturnValue(this.getWorld().getWorldBorder().contains(this.getBlockPos()) && (this.canReplaceExisting || this.getWorld().getBlockState(this.getBlockPos()).canReplace(self)));
         }
     }

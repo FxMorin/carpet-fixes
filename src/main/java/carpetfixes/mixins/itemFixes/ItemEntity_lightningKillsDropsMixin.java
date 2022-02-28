@@ -1,6 +1,6 @@
 package carpetfixes.mixins.itemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -29,7 +29,7 @@ public abstract class ItemEntity_lightningKillsDropsMixin extends Entity {
 
     @Override
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
-        if (CarpetFixesSettings.lightningKillsDropsFix) {
+        if (CFSettings.lightningKillsDropsFix) {
             if (this.itemAge > 8) {
                 super.onStruckByLightning(world, lightning);
             }

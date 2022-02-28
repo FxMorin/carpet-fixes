@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.fluid.Fluids;
@@ -28,7 +28,7 @@ public abstract class ItemFrameEntity_explosionWaterMixin {
             cancellable = true
     )
     public void isInvulnerableOrWater(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.explosionBreaksItemFrameInWaterFix && source.isExplosive() && self.world.getFluidState(self.getBlockPos()).getFluid().matchesType(Fluids.WATER)) {
+        if (CFSettings.explosionBreaksItemFrameInWaterFix && source.isExplosive() && self.world.getFluidState(self.getBlockPos()).getFluid().matchesType(Fluids.WATER)) {
             cir.setReturnValue(true);
         }
     }

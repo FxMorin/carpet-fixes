@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
@@ -28,7 +28,7 @@ public abstract class RecipeManager_fasterMixin {
             cancellable = true
     )
     public <C extends Inventory, T extends Recipe<C>> void getFirstMatch(RecipeType<T> type, C inventory, World world, CallbackInfoReturnable<Optional<T>> cir) {
-        if (CarpetFixesSettings.optimizedRecipeManager) {
+        if (CFSettings.optimizedRecipeManager) {
             int slots = 0;
             for (int slot = 0;slot < inventory.size(); slot++) {
                 if (!inventory.getStack(slot).isEmpty()) slots++;

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -30,7 +30,7 @@ public class CatSpawner_incorrectCatMixin {
             cancellable = true
     )
     private void spawn(BlockPos pos, ServerWorld world, CallbackInfoReturnable<Integer> cir) {
-        if (CarpetFixesSettings.witchHutsSpawnIncorrectCatFix) {
+        if (CFSettings.witchHutsSpawnIncorrectCatFix) {
             CatEntity catEntity = EntityType.CAT.create(world);
             if (catEntity != null) {
                 catEntity.refreshPositionAndAngles(pos, 0.0F, 0.0F);

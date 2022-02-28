@@ -1,6 +1,6 @@
 package carpetfixes.mixins.advanced;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +17,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             constant = @Constant(intValue = 20)
     )
     private static int modifyMaxChunksUnloadedPerTick(int original) {
-        return CarpetFixesSettings.maxChunksSavedPerTick;
+        return CFSettings.maxChunksSavedPerTick;
     }
 
     @ModifyConstant(
@@ -25,7 +25,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             constant = @Constant(intValue = 200)
     )
     private static int modifyMaxChunksUnloadedPerAutoSave(int original) {
-        return CarpetFixesSettings.maxChunksSavedPerAutoSave;
+        return CFSettings.maxChunksSavedPerAutoSave;
     }
 
     @ModifyConstant(
@@ -33,7 +33,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             constant = @Constant(longValue = 10000L)
     )
     private static long modifyChunkSavingCooldown(long original) {
-        return CarpetFixesSettings.reIntroduceVeryAggressiveSaving ? -1L : CarpetFixesSettings.chunkSaveCooldownDelay;
+        return CFSettings.reIntroduceVeryAggressiveSaving ? -1L : CFSettings.chunkSaveCooldownDelay;
     }
 
     @Redirect(
@@ -44,6 +44,6 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             )
     )
     private long shouldRespectCooldown() {
-        return CarpetFixesSettings.reIntroduceVeryAggressiveSaving ? Long.MAX_VALUE : System.currentTimeMillis();
+        return CFSettings.reIntroduceVeryAggressiveSaving ? Long.MAX_VALUE : System.currentTimeMillis();
     }
 }

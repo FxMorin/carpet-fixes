@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
@@ -48,7 +48,7 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
             cancellable = true
     )
     private void updateOnUseCorrectly(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        if (CarpetFixesSettings.trapdoorMissingUpdateFix) {
+        if (CFSettings.trapdoorMissingUpdateFix) {
             world.updateNeighbor(pos.offset(directionToUpdate(state)),state.getBlock(),pos);
         }
     }
@@ -63,7 +63,7 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
             )
     )
     private void updateCorrectly(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify, CallbackInfo ci) {
-        if (CarpetFixesSettings.trapdoorMissingUpdateFix) {
+        if (CFSettings.trapdoorMissingUpdateFix) {
             world.updateNeighbor(pos.offset(directionToUpdate(state)),state.getBlock(),pos);
         }
     }

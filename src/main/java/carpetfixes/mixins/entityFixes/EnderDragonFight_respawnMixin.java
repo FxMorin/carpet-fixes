@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,6 +25,6 @@ public abstract class EnderDragonFight_respawnMixin {
             )
     )
     public void dragonKilled(EnderDragonEntity dragon, CallbackInfo ci) {
-        if (CarpetFixesSettings.endCrystalPlacingTooEarlyFix) this.respawnDragon();
+        if (CFSettings.endCrystalPlacingTooEarlyFix) this.respawnDragon();
     }
 }

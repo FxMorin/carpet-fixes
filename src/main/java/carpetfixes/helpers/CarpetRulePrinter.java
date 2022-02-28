@@ -1,12 +1,11 @@
 package carpetfixes.helpers;
 
+import carpetfixes.CFSettings;
 import carpetfixes.CarpetFixesServer;
-import carpetfixes.CarpetFixesSettings;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
 
 import java.io.PrintStream;
-import java.lang.System;
 
 /**
  * From Fabric-Carpet
@@ -22,7 +21,7 @@ public class CarpetRulePrinter implements DedicatedServerModInitializer, PreLaun
         // Minecraft (or whatever) changes the System.out to have prefixes,
         // our simple parser doesn't like that. So we change it back
         System.setOut(OLD_OUT);
-        CarpetFixesServer.getCarpetFixesSettingsManager().parseSettingsClass(CarpetFixesSettings.class);
+        CarpetFixesServer.getCarpetFixesSettingsManager().parseSettingsClass(CFSettings.class);
         CarpetFixesServer.getCarpetFixesSettingsManager().printAllRulesToLog(null);
         System.exit(0);
     }

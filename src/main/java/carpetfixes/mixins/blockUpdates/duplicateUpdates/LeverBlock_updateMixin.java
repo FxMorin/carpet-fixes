@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeverBlock;
 import net.minecraft.block.WallMountedBlock;
@@ -31,7 +31,7 @@ public abstract class LeverBlock_updateMixin extends WallMountedBlock {
             index = 2
     )
     private int modifyUpdate(int val) {
-        return CarpetFixesSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
     }
 
 
@@ -41,10 +41,10 @@ public abstract class LeverBlock_updateMixin extends WallMountedBlock {
             cancellable = true
     )
     private void updateNeighborsBetter(BlockState state, World world, BlockPos pos, CallbackInfo ci) {
-        if (CarpetFixesSettings.duplicateBlockUpdatesFix) {
+        if (CFSettings.duplicateBlockUpdatesFix) {
             world.updateNeighborsAlways(pos, self);
             Direction dir = getDirection(state);
-            if (CarpetFixesSettings.uselessSelfBlockUpdateFix) {
+            if (CFSettings.uselessSelfBlockUpdateFix) {
                 world.updateNeighborsExcept(pos.offset(dir.getOpposite()), self, dir);
             } else {
                 world.updateNeighborsAlways(pos.offset(dir.getOpposite()), self);

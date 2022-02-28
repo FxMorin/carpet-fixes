@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes.convertingFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZombieEntity;
@@ -25,7 +25,7 @@ public abstract class ZombieEntity_convertingMixin extends HostileEntity {
             cancellable = true
     )
     public void isConverting(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.mobsConvertingWithoutBlocksFix) {
+        if (CFSettings.mobsConvertingWithoutBlocksFix) {
             cir.setReturnValue(cir.getReturnValue() && this.canConvertInWater() && this.isSubmergedIn(FluidTags.WATER));
         }
     }

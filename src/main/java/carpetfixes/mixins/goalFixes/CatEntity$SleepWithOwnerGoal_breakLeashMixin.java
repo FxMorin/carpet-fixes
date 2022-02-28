@@ -1,6 +1,6 @@
 package carpetfixes.mixins.goalFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
@@ -32,7 +32,7 @@ public class CatEntity$SleepWithOwnerGoal_breakLeashMixin {
                     ordinal=0
             ))
     public BlockPos.Mutable SetCorrectly(BlockPos.Mutable mutable, Vec3i pos) {
-        if (CarpetFixesSettings.catsBreakLeadsDuringGiftFix && this.cat.isLeashed()) {
+        if (CFSettings.catsBreakLeadsDuringGiftFix && this.cat.isLeashed()) {
             pos = this.cat.getHoldingEntity().getBlockPos();
         }
         return mutable.set(pos);

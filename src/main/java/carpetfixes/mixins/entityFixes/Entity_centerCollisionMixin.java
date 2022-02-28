@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.CenterUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -41,7 +41,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
                     target="Lnet/minecraft/block/Block;onSteppedOn(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/Entity;)V"
             ))
     public void onSteppingCollisionCheck(Block block, World world, BlockPos pos, BlockState state, Entity entity) {
-        if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.playerBlockCollisionUsingCenterFix) {
             CenterUtils.checkStepOnCollision(entity);
         } else {
             block.onSteppedOn(world, pos, state, entity);
@@ -56,7 +56,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
                     target="Lnet/minecraft/block/Block;onEntityLand(Lnet/minecraft/world/BlockView;Lnet/minecraft/entity/Entity;)V"
             ))
     public void onEntityLandCollisionCheck(Block block, BlockView world, Entity entity) {
-        if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.playerBlockCollisionUsingCenterFix) {
             CenterUtils.checkEntityLandOnCollision(entity);
         } else {
             block.onEntityLand(world, entity);
@@ -71,7 +71,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
                     target="Lnet/minecraft/block/Block;onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"
             ))
     public void onFallCollisionCheck(Block block, World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.playerBlockCollisionUsingCenterFix) {
             CenterUtils.checkFallCollision(entity,fallDistance);
         } else {
             block.onLandedUpon(world, state, pos, entity, fallDistance);
@@ -86,7 +86,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
                     target="Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/tag/Tag;)Z"
             ))
     public boolean onFallStopVibration(BlockState blockState, Tag<Block> tag) {
-        return CarpetFixesSettings.playerBlockCollisionUsingCenterFix || blockState.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS);
+        return CFSettings.playerBlockCollisionUsingCenterFix || blockState.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS);
     }
 
 
@@ -96,7 +96,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             cancellable = true
     )
     public void onJumpVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
-        if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.playerBlockCollisionUsingCenterFix) {
             cir.setReturnValue(CenterUtils.checkJumpVelocityOnCollision(this.getBoundingBox(),this.world));
         }
     }
@@ -108,7 +108,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             cancellable = true
     )
     public void onVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
-        if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.playerBlockCollisionUsingCenterFix) {
             cir.setReturnValue(CenterUtils.checkVelocityOnCollision(this.getBoundingBox(),this.world));
         }
     }

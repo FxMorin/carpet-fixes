@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.rounding;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.FastMath;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +20,6 @@ public class SurfaceBuilderMixin {
             )
     )
     private long fasterRound(double value) {
-        return CarpetFixesSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
+        return CFSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
     }
 }

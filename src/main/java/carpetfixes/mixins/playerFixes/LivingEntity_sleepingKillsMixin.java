@@ -1,6 +1,6 @@
 package carpetfixes.mixins.playerFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -29,6 +29,6 @@ public abstract class LivingEntity_sleepingKillsMixin extends Entity {
             at=@At("HEAD")
     )
     private void saferSleep(BlockPos pos, CallbackInfo ci) {
-        if (CarpetFixesSettings.sleepingDelaysFallDamageFix) this.fallDistance = 0.0F;
+        if (CFSettings.sleepingDelaysFallDamageFix) this.fallDistance = 0.0F;
     }
 }

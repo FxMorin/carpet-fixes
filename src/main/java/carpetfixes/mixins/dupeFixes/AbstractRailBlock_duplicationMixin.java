@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -30,7 +30,7 @@ public class AbstractRailBlock_duplicationMixin {
             cancellable = true
     )
     private void IfRailIsSetCorrectly(BlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos, boolean moved, CallbackInfo ci) {
-        if (CarpetFixesSettings.railDuplicationFix && !(world.getBlockState(pos).getBlock() instanceof AbstractRailBlock)) {
+        if (CFSettings.railDuplicationFix && !(world.getBlockState(pos).getBlock() instanceof AbstractRailBlock)) {
             ci.cancel();
         }
     }

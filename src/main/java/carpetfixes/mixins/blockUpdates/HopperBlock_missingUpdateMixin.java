@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.HopperBlock;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,10 +32,10 @@ public class HopperBlock_missingUpdateMixin extends Block {
             index = 2
     )
     protected int hopperUpdate(int value) {
-        if (CarpetFixesSettings.hopperUpdateFix) {
+        if (CFSettings.hopperUpdateFix) {
             return value | Block.NOTIFY_NEIGHBORS;
         }
-        if (CarpetFixesSettings.invisibleHopperFix) {
+        if (CFSettings.invisibleHopperFix) {
             return (value & ~Block.NO_REDRAW) | Block.NOTIFY_LISTENERS;
         }
         return value;

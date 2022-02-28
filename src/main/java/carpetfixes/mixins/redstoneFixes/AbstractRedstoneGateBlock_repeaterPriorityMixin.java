@@ -1,6 +1,6 @@
 package carpetfixes.mixins.redstoneFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
@@ -29,6 +29,6 @@ public class AbstractRedstoneGateBlock_repeaterPriorityMixin extends HorizontalF
                     ordinal = 1
             ))
     private <T extends Comparable<T>> T onIsTargetNotAligned(BlockState blockState, Property<T> property) {
-        return (CarpetFixesSettings.repeaterPriorityFix) ? (T) blockState.get(FACING).getOpposite() : (T) blockState.get(FACING);
+        return (CFSettings.repeaterPriorityFix) ? (T) blockState.get(FACING).getOpposite() : (T) blockState.get(FACING);
     }
 }

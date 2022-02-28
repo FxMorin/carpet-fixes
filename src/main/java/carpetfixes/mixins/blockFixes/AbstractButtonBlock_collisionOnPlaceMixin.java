@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.BlockState;
@@ -18,7 +18,7 @@ public abstract class AbstractButtonBlock_collisionOnPlaceMixin extends Abstract
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (CarpetFixesSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock())) {
+        if (CFSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock())) {
             this.tryPowerWithProjectiles(state,world,pos);
         }
     }

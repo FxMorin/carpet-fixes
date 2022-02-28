@@ -1,6 +1,6 @@
 package carpetfixes.mixins.gameEventFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.tag.BlockTags;
@@ -23,7 +23,7 @@ public class BoatEntity_missingOcclusionMixin {
             )
     )
     private void checkOcclusion(World instance, Entity entity, GameEvent gameEvent, BlockPos blockPos) {
-        if (CarpetFixesSettings.boatMissingOcclusionFix) {
+        if (CFSettings.boatMissingOcclusionFix) {
             if (instance.getBlockState(blockPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return;
         }
         instance.emitGameEvent(entity, gameEvent, blockPos);

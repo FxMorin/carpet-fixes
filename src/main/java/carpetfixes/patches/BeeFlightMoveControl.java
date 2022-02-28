@@ -1,6 +1,6 @@
 package carpetfixes.patches;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.mob.MobEntity;
 
@@ -12,7 +12,7 @@ public class BeeFlightMoveControl extends FlightMoveControl {
 
     @Override
     public void tick() {
-        if (CarpetFixesSettings.beeStuckInVoidFix && this.entity.getY() <= this.entity.world.getBottomY()) this.entity.setNoGravity(false);
+        if (CFSettings.beeStuckInVoidFix && this.entity.getY() <= this.entity.world.getBottomY()) this.entity.setNoGravity(false);
         super.tick();
     }
 }

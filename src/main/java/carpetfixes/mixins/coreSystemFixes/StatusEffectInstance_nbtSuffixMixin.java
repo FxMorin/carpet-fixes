@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,7 +20,7 @@ public class StatusEffectInstance_nbtSuffixMixin {
     )
     private static int incorrectNbtCheck(int value) {
         if (value == 1) {
-            return CarpetFixesSettings.incorrectNbtChecks ? 99 : 1;
+            return CFSettings.incorrectNbtChecks ? 99 : 1;
         }
         return value;
     }

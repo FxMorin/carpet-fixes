@@ -1,6 +1,6 @@
 package carpetfixes.mixins.reIntroduced;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -36,7 +36,7 @@ public class ScreenHandler_itemShadowingMixin {
             require = 0
     )
     private void dontRunBeforeInventoryUpdate(PlayerInventory instance, int slot, ItemStack stack) {
-        if (!CarpetFixesSettings.reIntroduceItemShadowing) {
+        if (!CFSettings.reIntroduceItemShadowing) {
             instance.setStack(slot, stack);
         }
     }
@@ -59,7 +59,7 @@ public class ScreenHandler_itemShadowingMixin {
             require = 0
     )
     private void RunAfterInventoryUpdate(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci) {
-        if (CarpetFixesSettings.reIntroduceItemShadowing) {
+        if (CFSettings.reIntroduceItemShadowing) {
             player.getInventory().setStack(button, ItemStack.EMPTY);
         }
     }
@@ -81,7 +81,7 @@ public class ScreenHandler_itemShadowingMixin {
             require = 0
     )
     private void dontRunBeforeSecondInventoryUpdate(PlayerInventory instance, int slot, ItemStack stack) {
-        if (!CarpetFixesSettings.reIntroduceItemShadowing) {
+        if (!CFSettings.reIntroduceItemShadowing) {
             instance.setStack(slot, stack);
         } else {
             lastButton = slot;
@@ -105,7 +105,7 @@ public class ScreenHandler_itemShadowingMixin {
             require = 0
     )
     private void RunAfterSecondInventoryUpdate(Slot instance, PlayerEntity player, ItemStack stack) {
-        if (CarpetFixesSettings.reIntroduceItemShadowing) {
+        if (CFSettings.reIntroduceItemShadowing) {
             player.getInventory().setStack(lastButton, stack);
         }
         instance.onTakeItem(player,stack);

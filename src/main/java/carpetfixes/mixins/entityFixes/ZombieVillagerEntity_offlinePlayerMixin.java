@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.patches.VillagerEntityInteraction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityInteraction;
@@ -37,7 +37,7 @@ public class ZombieVillagerEntity_offlinePlayerMixin {
             )
     )
     private void allowHandlingWithoutPlayer(ServerWorld world, CallbackInfo ci, VillagerEntity villagerEntity, EquipmentSlot var3[], int var4, int var5) {
-        if (CarpetFixesSettings.villagerDiscountIgnoresOfflinePlayersFix) {
+        if (CFSettings.villagerDiscountIgnoresOfflinePlayersFix) {
             ((VillagerEntityInteraction)villagerEntity).onInteractionWith(EntityInteraction.ZOMBIE_VILLAGER_CURED, this.converter);
         }
     }
@@ -51,6 +51,6 @@ public class ZombieVillagerEntity_offlinePlayerMixin {
             )
     )
     private void dontHandleInteraction(ServerWorld instance, EntityInteraction interaction, Entity entity, InteractionObserver observer) {
-        if (!CarpetFixesSettings.villagerDiscountIgnoresOfflinePlayersFix) instance.handleInteraction(interaction, entity, observer);
+        if (!CFSettings.villagerDiscountIgnoresOfflinePlayersFix) instance.handleInteraction(interaction, entity, observer);
     }
 }

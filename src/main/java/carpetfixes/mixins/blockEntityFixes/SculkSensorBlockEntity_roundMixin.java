@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockEntityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.entity.SculkSensorBlockEntity;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,6 +17,6 @@ public class SculkSensorBlockEntity_roundMixin {
     @Overwrite
     public static int getPower(int distance, int range) {
         double d = (double)distance / (double)range;
-        return CarpetFixesSettings.sculkSensorPrecisionLossFix ? MathHelper.floor(d*-14.99d+15.99d) : Math.max(1,15-MathHelper.floor(((double)distance / (double)range)*15.0D));
+        return CFSettings.sculkSensorPrecisionLossFix ? MathHelper.floor(d*-14.99d+15.99d) : Math.max(1,15-MathHelper.floor(((double)distance / (double)range)*15.0D));
     }
 }

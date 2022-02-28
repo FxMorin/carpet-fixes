@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractPressurePlateBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PressurePlateBlock;
@@ -24,7 +24,7 @@ public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractP
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (CarpetFixesSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock())) {
+        if (CFSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock())) {
             this.tryPowerOnPlace(state,world,pos);
         }
     }

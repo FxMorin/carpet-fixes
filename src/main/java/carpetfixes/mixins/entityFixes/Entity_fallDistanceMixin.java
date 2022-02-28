@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.tag.BlockTags;
@@ -27,7 +27,7 @@ public abstract class Entity_fallDistanceMixin {
             cancellable = true
     )
     protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
-        if (CarpetFixesSettings.incorrectFallDamageFix) {
+        if (CFSettings.incorrectFallDamageFix) {
             if (onGround) {
                 if (this.fallDistance > 0.0F) {
                     landedState.getBlock().onLandedUpon(this.world, landedState, landedPosition, (Entity) (Object) this, this.fallDistance);

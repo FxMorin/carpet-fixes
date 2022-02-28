@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes.convertingFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
@@ -21,7 +21,7 @@ public abstract class SkeletonEntity_convertingMixin extends AbstractSkeletonEnt
             cancellable = true
     )
     public void isConverting(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.mobsConvertingWithoutBlocksFix) {
+        if (CFSettings.mobsConvertingWithoutBlocksFix) {
             cir.setReturnValue(cir.getReturnValue() && this.inPowderSnow);
         }
     }

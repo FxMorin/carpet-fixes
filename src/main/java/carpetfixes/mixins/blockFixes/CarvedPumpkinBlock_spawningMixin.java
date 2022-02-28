@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.block.pattern.CachedBlockPosition;
@@ -27,8 +27,8 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
                     ordinal=2
             ))
     private Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state){
-        if (CarpetFixesSettings.witherGolemSpawningFix) {
-            state = CarpetFixesSettings.IS_REPLACEABLE;
+        if (CFSettings.witherGolemSpawningFix) {
+            state = CFSettings.IS_REPLACEABLE;
         }
         return CachedBlockPosition.matchesBlockState(state);
     }
@@ -42,8 +42,8 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
                     ordinal=1
             ))
     private Predicate<CachedBlockPosition> replaceableMaterialPredicateDispenser(Predicate<BlockState> state){
-        if (CarpetFixesSettings.witherGolemSpawningFix) {
-            state = CarpetFixesSettings.IS_REPLACEABLE;
+        if (CFSettings.witherGolemSpawningFix) {
+            state = CFSettings.IS_REPLACEABLE;
         }
         return CachedBlockPosition.matchesBlockState(state);
     }

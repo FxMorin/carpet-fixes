@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockEntityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
@@ -25,6 +25,6 @@ public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
             cancellable = true
     )
     public void tryEnterHiveIfLoaded(Entity entity, boolean hasNectar, int ticksInHive, CallbackInfo ci) {
-        if (CarpetFixesSettings.beeDupeFix && !entity.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.pos.getX()),ChunkSectionPos.getSectionCoord(this.pos.getY()))) ci.cancel();
+        if (CFSettings.beeDupeFix && !entity.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.pos.getX()),ChunkSectionPos.getSectionCoord(this.pos.getY()))) ci.cancel();
     }
 }

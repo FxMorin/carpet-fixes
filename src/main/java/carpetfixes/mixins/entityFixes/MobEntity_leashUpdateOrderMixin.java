@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -33,7 +33,7 @@ public abstract class MobEntity_leashUpdateOrderMixin extends LivingEntity {
             at=@At("HEAD")
     )
     public void dontTickEarly(CallbackInfo ci) {
-        if (CarpetFixesSettings.petsBreakLeadsDuringReloadFix && !this.world.isClient) this.updateLeash();
+        if (CFSettings.petsBreakLeadsDuringReloadFix && !this.world.isClient) this.updateLeash();
     }
 
 
@@ -44,6 +44,6 @@ public abstract class MobEntity_leashUpdateOrderMixin extends LivingEntity {
                     target="Lnet/minecraft/entity/mob/MobEntity;updateLeash()V"
             ))
     public void weAlreadyUpdatedLeash(MobEntity mobEntity) {
-        if (!CarpetFixesSettings.petsBreakLeadsDuringReloadFix) this.updateLeash();
+        if (!CFSettings.petsBreakLeadsDuringReloadFix) this.updateLeash();
     }
 }

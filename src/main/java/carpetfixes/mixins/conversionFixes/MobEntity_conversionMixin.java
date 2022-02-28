@@ -1,6 +1,6 @@
 package carpetfixes.mixins.conversionFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -33,7 +33,7 @@ public abstract class MobEntity_conversionMixin extends LivingEntity  {
                 ordinal = 0
             ))
     public boolean ConversionFix(World world, Entity entity) {
-        if (CarpetFixesSettings.conversionFix) {
+        if (CFSettings.conversionFix) {
             entity.setFireTicks(this.getFireTicks()); //Fire
             entity.setVelocity(this.getVelocity()); //Motion
             entity.copyPositionAndRotation(this); //Rotation

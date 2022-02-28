@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.SlimeBlock;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,6 +26,6 @@ public class SlimeBlock_incorrectLogicMixin {
                     target="Lnet/minecraft/entity/Entity;setVelocity(DDD)V"
             ))
     public void entityHittingSlimeBlockBeLike(Entity entity, CallbackInfo ci){
-        if (CarpetFixesSettings.incorrectBounceLogicFix) entity.setOnGround(entity.getVelocity().y > -0.15);
+        if (CFSettings.incorrectBounceLogicFix) entity.setOnGround(entity.getVelocity().y > -0.15);
     }
 }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirtPathBlock;
 import net.minecraft.block.FenceGateBlock;
@@ -26,7 +26,7 @@ public class DirtPathBlock_movingBlockMixin {
             cancellable = true
     )
     public void canPlaceAt(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.movingBlocksDestroyPathFix) {
+        if (CFSettings.movingBlocksDestroyPathFix) {
             BlockState blockState = world.getBlockState(pos.up());
             cir.setReturnValue(!blockState.getMaterial().isSolid() || blockState.getBlock() instanceof FenceGateBlock || blockState.getBlock() instanceof PistonExtensionBlock);
         }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
@@ -37,6 +37,6 @@ public abstract class World_seaLevelMixin implements WorldAccess  {
             cancellable = true
     )
     public void getSeaLevel(CallbackInfoReturnable<Integer> cir) {
-        if (CarpetFixesSettings.hardcodedSeaLevelFix) cir.setReturnValue(this.getServer().getWorld(this.registryKey).getChunkManager().getChunkGenerator().getSeaLevel());
+        if (CFSettings.hardcodedSeaLevelFix) cir.setReturnValue(this.getServer().getWorld(this.registryKey).getChunkManager().getChunkGenerator().getSeaLevel());
     }
 }

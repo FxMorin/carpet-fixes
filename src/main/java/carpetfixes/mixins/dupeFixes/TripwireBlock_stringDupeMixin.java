@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.TripwireBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,6 +19,6 @@ public class TripwireBlock_stringDupeMixin {
             index = 5
     )
     private int alwaysNegativeOne(int i) {
-        return CarpetFixesSettings.stringDupeFix ? -1 : i;
+        return CFSettings.stringDupeFix ? -1 : i;
     }
 }

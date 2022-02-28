@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -24,6 +24,6 @@ public abstract class FoxEntity_lootDropMixin extends AnimalEntity {
             cancellable = true
     )
     private void drop(DamageSource source, CallbackInfo ci) {
-        if (CarpetFixesSettings.foxesDropItemsWithLootOffFix && !this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) ci.cancel();
+        if (CFSettings.foxesDropItemsWithLootOffFix && !this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) ci.cancel();
     }
 }

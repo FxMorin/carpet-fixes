@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SpongeBlock;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,6 +27,6 @@ public class SpongeBlock_missingUpdateMixin extends Block {
             constant = @Constant(intValue = 2)
     )
     protected int spongeUpdate(int value) {
-        return CarpetFixesSettings.spongeUpdateFix ? value | Block.NOTIFY_NEIGHBORS : value;
+        return CFSettings.spongeUpdateFix ? value | Block.NOTIFY_NEIGHBORS : value;
     }
 }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes.TreeLogic;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelSet;
@@ -22,9 +22,9 @@ public class TreeFeature_removeDirtMixin {
             at=@At("HEAD")
     )
     private static void placeLogsAndLeaves(WorldAccess world, BlockBox box, Set<BlockPos> trunkPositions, Set<BlockPos> decorationPositions, CallbackInfoReturnable<VoxelSet> cir) {
-        if (CarpetFixesSettings.treeTrunkLogicFix) {
-            trunkPositions.removeAll(CarpetFixesSettings.lastDirt.get());
+        if (CFSettings.treeTrunkLogicFix) {
+            trunkPositions.removeAll(CFSettings.lastDirt.get());
         }
-        CarpetFixesSettings.lastDirt.get().clear();
+        CFSettings.lastDirt.get().clear();
     }
 }

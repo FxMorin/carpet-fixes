@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -27,6 +27,6 @@ public abstract class LivingEntity_soulSpeedMixin extends Entity {
             cancellable = true
     )
     protected void dontDamageIfRidingEntity(CallbackInfo ci) {
-        if (CarpetFixesSettings.soulSpeedIncorrectDamageFix && this.hasVehicle()) ci.cancel();
+        if (CFSettings.soulSpeedIncorrectDamageFix && this.hasVehicle()) ci.cancel();
     }
 }

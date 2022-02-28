@@ -1,6 +1,6 @@
 package carpetfixes.mixins.parity;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PistonBlock;
@@ -21,7 +21,7 @@ public class PistonBlock_movableLightMixin {
             )
     )
     private static float movableLight(BlockState instance, BlockView blockView, BlockPos blockPos) {
-        if (CarpetFixesSettings.parityMovableLightBlocks && instance.getBlock() == Blocks.LIGHT) return 0;
+        if (CFSettings.parityMovableLightBlocks && instance.getBlock() == Blocks.LIGHT) return 0;
         return instance.getHardness(blockView, blockPos);
     }
 }

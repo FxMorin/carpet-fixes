@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -30,7 +30,7 @@ public abstract class Block_itemPositionMixin extends AbstractBlock {
      */
     @Overwrite
     public static void dropStack(World world, BlockPos pos, ItemStack stack) {
-        if (CarpetFixesSettings.tileDropsAffectedByFloatingPointFix) {
+        if (CFSettings.tileDropsAffectedByFloatingPointFix) {
             double f = EntityType.ITEM.getHeight() / 2.0D;
             double d = ((double) pos.getX() + 0.5D) + MathHelper.nextDouble(world.random, -0.25D, 0.25D);
             double e = ((double) pos.getY() + 0.5D) + MathHelper.nextDouble(world.random, -0.25D, 0.25D) - f;
@@ -51,7 +51,7 @@ public abstract class Block_itemPositionMixin extends AbstractBlock {
      */
     @Overwrite
     public static void dropStack(World world, BlockPos pos, Direction direction, ItemStack stack) {
-        if (CarpetFixesSettings.tileDropsAffectedByFloatingPointFix) {
+        if (CFSettings.tileDropsAffectedByFloatingPointFix) {
             int i = direction.getOffsetX();
             int j = direction.getOffsetY();
             int k = direction.getOffsetZ();

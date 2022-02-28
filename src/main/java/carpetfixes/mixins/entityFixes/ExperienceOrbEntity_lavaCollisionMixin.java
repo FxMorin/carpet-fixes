@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -38,6 +38,6 @@ public abstract class ExperienceOrbEntity_lavaCollisionMixin extends Entity {
                     target="Lnet/minecraft/world/World;getFluidState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/fluid/FluidState;"
             ))
     public FluidState betterCollision(World world, BlockPos pos) {
-        return (!CarpetFixesSettings.xpOrbCollisionFix || this.isSubmergedIn(FluidTags.LAVA)) ? this.world.getFluidState(this.getBlockPos()) : Fluids.EMPTY.getDefaultState();
+        return (!CFSettings.xpOrbCollisionFix || this.isSubmergedIn(FluidTags.LAVA)) ? this.world.getFluidState(this.getBlockPos()) : Fluids.EMPTY.getDefaultState();
     }
 }

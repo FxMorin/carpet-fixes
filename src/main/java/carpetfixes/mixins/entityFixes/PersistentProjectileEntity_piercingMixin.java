@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -41,6 +41,6 @@ public class PersistentProjectileEntity_piercingMixin {
             )
     )
     protected byte skipForEnderman(PersistentProjectileEntity instance) {
-        return CarpetFixesSettings.endermanLowerPiercingFix ? lastEntity.get().getType() == EntityType.ENDERMAN ? 0 : instance.getPierceLevel() : instance.getPierceLevel();
+        return CFSettings.endermanLowerPiercingFix ? lastEntity.get().getType() == EntityType.ENDERMAN ? 0 : instance.getPierceLevel() : instance.getPierceLevel();
     }
 }

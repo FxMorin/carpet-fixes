@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -41,7 +41,7 @@ public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
             at = @At("TAIL")
     )
     public void doUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int maxUpdateDepth, CallbackInfo ci) {
-        if (CarpetFixesSettings.redstoneRedirectionMissingUpdateFix && needsUpdate.get()) {
+        if (CFSettings.redstoneRedirectionMissingUpdateFix && needsUpdate.get()) {
             Set<BlockPos> set = Sets.newHashSet();
             set.add(pos);
             Direction[] var6 = Direction.values();

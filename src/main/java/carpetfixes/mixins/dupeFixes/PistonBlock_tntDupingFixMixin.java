@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PistonBlock;
@@ -53,7 +53,7 @@ public abstract class PistonBlock_tntDupingFixMixin {
     )
     private void setAllToBeMovedBlockToAirFirst(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map<BlockPos, BlockState> map, List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3, BlockState blockStates[], Direction direction, int j) {
         // just in case the rule gets changed halfway
-        this.isDupeFixed.set(CarpetFixesSettings.pistonDupingFix);
+        this.isDupeFixed.set(CFSettings.pistonDupingFix);
 
         if (this.isDupeFixed.get()) {
             // vanilla iterating order

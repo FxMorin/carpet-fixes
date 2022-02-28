@@ -1,9 +1,12 @@
 package carpetfixes.mixins.optimizations;
 
 import carpet.CarpetSettings;
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.Utils;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractRailBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.PoweredRailBlock;
 import net.minecraft.block.enums.RailShape;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -122,7 +125,7 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
             cancellable = true
     )
     protected void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
-        if (CarpetFixesSettings.optimizedPoweredRails) {
+        if (CFSettings.optimizedPoweredRails) {
             boolean shouldBePowered = world.isReceivingRedstonePower(pos) || this.isPoweredByOtherRails(world, pos, state, true, 0) || this.isPoweredByOtherRails(world, pos, state, false, 0);
             if (shouldBePowered != state.get(POWERED)) {
                 RailShape railShape = state.get(SHAPE);

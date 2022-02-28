@@ -1,6 +1,6 @@
 package carpetfixes.mixins.goalFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.ai.goal.EscapeSunlightGoal;
 import net.minecraft.entity.mob.PathAwareEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,6 +23,6 @@ public abstract class FoxEntity$AvoidDaylightGoal_originMixin extends EscapeSunl
             )
     )
     public int canModifyBoolean(int value) {
-        return CarpetFixesSettings.foxesGoToOriginDuringThunderFix ? (this.targetShadedPos() ? 1 : 0) : value;
+        return CFSettings.foxesGoToOriginDuringThunderFix ? (this.targetShadedPos() ? 1 : 0) : value;
     }
 }

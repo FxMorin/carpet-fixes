@@ -1,7 +1,7 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
-import net.minecraft.entity.*;
+import carpetfixes.CFSettings;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.world.World;
@@ -24,6 +24,6 @@ public class ZombieEntity_reinforcementMixin extends HostileEntity {
             )
     )
     public ZombieEntity modifyType(World instance) {
-        return CarpetFixesSettings.reinforcementsOnlySpawnZombiesFix ? (ZombieEntity)this.getType().create(this.world) : new ZombieEntity(this.world);
+        return CFSettings.reinforcementsOnlySpawnZombiesFix ? (ZombieEntity)this.getType().create(this.world) : new ZombieEntity(this.world);
     }
 }

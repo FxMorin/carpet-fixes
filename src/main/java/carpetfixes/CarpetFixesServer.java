@@ -51,7 +51,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
     @Override
     public void onGameStarted() {
-        carpetFixesSettingsManager.parseSettingsClass(CarpetFixesSettings.class);
+        carpetFixesSettingsManager.parseSettingsClass(CFSettings.class);
     }
 
     @Override
@@ -59,13 +59,13 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer minecraftServer) {
-        for (ServerWorld world : minecraftServer.getWorlds()) { CarpetFixesSettings.updateScheduler.put(world,new UpdateScheduler(world));}
+        for (ServerWorld world : minecraftServer.getWorlds()) { CFSettings.updateScheduler.put(world,new UpdateScheduler(world));}
     }
 
     @Override
     public void onTick(MinecraftServer server) {
-        if (CarpetFixesSettings.scheduleWorldBorderReset) {
-            CarpetFixesSettings.scheduleWorldBorderReset = false;
+        if (CFSettings.scheduleWorldBorderReset) {
+            CFSettings.scheduleWorldBorderReset = false;
             WorldBorder worldBorder = server.getOverworld().getWorldBorder();
             worldBorder.setSize(worldBorder.getSize()); //This will force the worldborder to update its voxelShape cache
         }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.decoration.ArmorStandEntity;
@@ -21,11 +21,11 @@ public abstract class ArmorStandEntity_aggroMechanicsMixin extends LivingEntity 
 
     @Override
     public boolean canTarget(LivingEntity target) {
-        return CarpetFixesSettings.armorStandMissingFunctionalityFix || super.canTarget(target);
+        return CFSettings.armorStandMissingFunctionalityFix || super.canTarget(target);
     }
 
     @Override
     public boolean isPartOfGame() {
-        return (CarpetFixesSettings.armorStandMissingFunctionalityFix && !this.isMarker()) || (!this.isInvisible()) && !this.isMarker();
+        return (CFSettings.armorStandMissingFunctionalityFix && !this.isMarker()) || (!this.isInvisible()) && !this.isMarker();
     }
 }

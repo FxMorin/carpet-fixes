@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -39,7 +39,7 @@ public abstract class AbstractRailBlock_invalidUpdateMixin extends Block {
             cancellable = true
     )
     private void updateNeighborsExceptWithBetterDirection(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CarpetFixesSettings.railInvalidUpdateOnPushFix) {
+        if (CFSettings.railInvalidUpdateOnPushFix) {
             RailShape railShape = state.get(this.getShapeProperty());
             if (shouldDropRail(pos, world, railShape)) {
                 dropStacks(state, world, pos);

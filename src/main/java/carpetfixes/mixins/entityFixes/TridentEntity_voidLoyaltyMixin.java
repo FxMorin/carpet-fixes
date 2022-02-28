@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.TrackedData;
@@ -21,7 +21,7 @@ public abstract class TridentEntity_voidLoyaltyMixin extends Entity {
     @Override
     public void attemptTickInVoid() {
         if (this.getY() < (double) (this.world.getBottomY() - 64)) {
-            if (CarpetFixesSettings.voidKillsLoyaltyTridentsFix && this.dataTracker.get(LOYALTY) > 0) {
+            if (CFSettings.voidKillsLoyaltyTridentsFix && this.dataTracker.get(LOYALTY) > 0) {
                 this.dealtDamage = true;
                 if (this.getY() < (double) (this.world.getBottomY() - 128)) {
                     this.tickInVoid();

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PowderSnowBlock;
@@ -17,6 +17,6 @@ public abstract class PowderSnowBlock_lightMixin extends Block {
 
     @Override
     public int getOpacity(BlockState state, BlockView world, BlockPos p) {
-        return CarpetFixesSettings.powderedSnowOpacityFix ? world.getMaxLightLevel() : super.getOpacity(state,world,p);
+        return CFSettings.powderedSnowOpacityFix ? world.getMaxLightLevel() : super.getOpacity(state,world,p);
     }
 }

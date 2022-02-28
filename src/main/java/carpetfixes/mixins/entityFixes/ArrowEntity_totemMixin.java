@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.patches.EntityUsedTotem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -23,7 +23,7 @@ public abstract class ArrowEntity_totemMixin {
             )
     )
     protected boolean onHit(LivingEntity instance, StatusEffectInstance effect, Entity source) {
-        if (CarpetFixesSettings.arrowEffectsBypassTotemsFix && effect.getEffectType() == StatusEffects.INSTANT_DAMAGE && ((EntityUsedTotem)instance).usedTotem()) return false;
+        if (CFSettings.arrowEffectsBypassTotemsFix && effect.getEffectType() == StatusEffects.INSTANT_DAMAGE && ((EntityUsedTotem)instance).usedTotem()) return false;
         return instance.addStatusEffect(effect,source);
     }
 }

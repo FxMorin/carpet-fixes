@@ -1,6 +1,6 @@
 package carpetfixes.mixins.goalFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +31,7 @@ public class EndermanEntity$PlaceBlockGoal_updatePlaceMixin {
                     target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ))
     public boolean placeCorrectly(World world, BlockPos pos, BlockState state, int flags){
-        if (CarpetFixesSettings.endermanDontUpdateOnPlaceFix) {
+        if (CFSettings.endermanDontUpdateOnPlaceFix) {
             if (world.setBlockState(pos, state, 3)) {
                 state.getBlock().onPlaced(world, pos, state, this.enderman, state.getBlock().asItem().getDefaultStack());
                 return true;

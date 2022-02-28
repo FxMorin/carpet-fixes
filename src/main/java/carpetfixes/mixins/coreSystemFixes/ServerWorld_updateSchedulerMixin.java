@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,6 +26,6 @@ public class ServerWorld_updateSchedulerMixin {
             at = @At("HEAD")
     )
     public void tick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-        CarpetFixesSettings.updateScheduler.get(self).tick();
+        CFSettings.updateScheduler.get(self).tick();
     }
 }

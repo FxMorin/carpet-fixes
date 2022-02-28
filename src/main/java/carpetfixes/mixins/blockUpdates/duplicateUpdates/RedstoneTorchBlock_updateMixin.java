@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.BlockUpdateUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneTorchBlock;
@@ -28,7 +28,7 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
     )
     public void onStateReplacedBetter(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
         if (!moved) {
-            if (CarpetFixesSettings.duplicateBlockUpdatesFix) {
+            if (CFSettings.duplicateBlockUpdatesFix) {
                 if (!state.isOf(newState.getBlock())) { //Added missing: !state.isOf(newState.getBlock())
                     if (state.get(RedstoneTorchBlock.LIT)) { //Added missing: state.get(LIT)
                         boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.equals(state);

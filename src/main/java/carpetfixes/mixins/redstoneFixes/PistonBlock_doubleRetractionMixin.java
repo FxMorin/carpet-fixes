@@ -1,6 +1,6 @@
 package carpetfixes.mixins.redstoneFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PistonBlock;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +29,6 @@ public abstract class PistonBlock_doubleRetractionMixin {
                     target = "Lnet/minecraft/world/World;addSyncedBlockEvent(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;II)V"
             ))
     private void onTryMove(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (CarpetFixesSettings.doubleRetraction) world.setBlockState(pos, state.with(PistonBlock.EXTENDED, false), 2);
+        if (CFSettings.doubleRetraction) world.setBlockState(pos, state.with(PistonBlock.EXTENDED, false), 2);
     }
 }

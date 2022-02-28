@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.random;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,6 +22,6 @@ public class Sensor_randomMixin {
             )
     )
     private static Random customRandom() {
-        return CarpetFixesSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
+        return CFSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
     }
 }

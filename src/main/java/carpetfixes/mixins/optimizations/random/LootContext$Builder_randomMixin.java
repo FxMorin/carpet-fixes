@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.random;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
 import net.minecraft.loot.context.LootContext;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +22,7 @@ public class LootContext$Builder_randomMixin {
             )
     )
     private static Random customRandom1(long seed) {
-        return CarpetFixesSettings.optimizedRandom ? new XoroshiroCustomRandom(seed) : new Random(seed);
+        return CFSettings.optimizedRandom ? new XoroshiroCustomRandom(seed) : new Random(seed);
     }
 
 
@@ -35,7 +35,7 @@ public class LootContext$Builder_randomMixin {
             )
     )
     private static Random customRandom2(long seed) {
-        return CarpetFixesSettings.optimizedRandom ? new XoroshiroCustomRandom(seed) : new Random(seed);
+        return CFSettings.optimizedRandom ? new XoroshiroCustomRandom(seed) : new Random(seed);
     }
 
 
@@ -48,6 +48,6 @@ public class LootContext$Builder_randomMixin {
             )
     )
     private static Random customRandom3() {
-        return CarpetFixesSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
+        return CFSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
     }
 }

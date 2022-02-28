@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventory;
@@ -31,6 +31,6 @@ public class HopperBlockEntity_giveMixin {
             cancellable = true
     )
     private static void extract(Inventory inventory, ItemEntity itemEntity, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.giveCommandDupeFix && itemEntity.pickupDelay == 32767) cir.setReturnValue(true);
+        if (CFSettings.giveCommandDupeFix && itemEntity.pickupDelay == 32767) cir.setReturnValue(true);
     }
 }

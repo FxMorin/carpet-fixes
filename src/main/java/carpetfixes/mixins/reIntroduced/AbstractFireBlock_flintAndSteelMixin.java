@@ -1,6 +1,6 @@
 package carpetfixes.mixins.reIntroduced;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -30,6 +30,6 @@ public class AbstractFireBlock_flintAndSteelMixin {
             cancellable = true
     )
     private static void canPlaceAt(World world, BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
-        if(CarpetFixesSettings.reIntroduceFlintAndSteelBehavior && world.getBlockState(blockPos.down()).getBlock() != Blocks.FIRE) cir.setReturnValue(true);
+        if(CFSettings.reIntroduceFlintAndSteelBehavior && world.getBlockState(blockPos.down()).getBlock() != Blocks.FIRE) cir.setReturnValue(true);
     }
 }

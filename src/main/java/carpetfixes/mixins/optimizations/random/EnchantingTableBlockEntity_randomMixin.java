@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.random;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
 import net.minecraft.block.entity.EnchantingTableBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,6 +22,6 @@ public class EnchantingTableBlockEntity_randomMixin {
             )
     )
     private static Random customRandom() {
-        return CarpetFixesSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
+        return CFSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
     }
 }

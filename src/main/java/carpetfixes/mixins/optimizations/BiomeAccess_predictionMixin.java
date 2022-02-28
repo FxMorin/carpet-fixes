@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
@@ -42,7 +42,7 @@ public class BiomeAccess_predictionMixin {
             cancellable = true
     )
     public void optimizedGetBiome(BlockPos pos, CallbackInfoReturnable<Biome> cir) {
-        if (CarpetFixesSettings.optimizedBiomeAccess) {
+        if (CFSettings.optimizedBiomeAccess) {
             int xMinus2 = pos.getX() - 2;
             int yMinus2 = pos.getY() - 2;
             int zMinus2 = pos.getZ() - 2;

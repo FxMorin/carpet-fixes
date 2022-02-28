@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.mob.EndermanEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +16,7 @@ public class EndermanEntity_noAiTeleportMixin {
             cancellable = true
     )
     private void cancelTeleportNoAI(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.endermanTeleportWithoutAIFix && ((EndermanEntity)(Object)this).isAiDisabled()) {
+        if (CFSettings.endermanTeleportWithoutAIFix && ((EndermanEntity)(Object)this).isAiDisabled()) {
             cir.setReturnValue(false);
         }
     }

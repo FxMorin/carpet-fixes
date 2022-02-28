@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.random;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
 import net.minecraft.world.gen.GeneratorOptions;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +22,7 @@ public class GeneratorOptions_randomMixin {
             )
     )
     private static Random customRandomDefault() {
-        return CarpetFixesSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
+        return CFSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
     }
 
 
@@ -35,6 +35,6 @@ public class GeneratorOptions_randomMixin {
             )
     )
     private static Random customRandom() {
-        return CarpetFixesSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
+        return CFSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
     }
 }

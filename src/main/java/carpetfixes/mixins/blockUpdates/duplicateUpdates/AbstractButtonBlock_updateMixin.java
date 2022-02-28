@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WallMountedBlock;
@@ -31,7 +31,7 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             index = 2
     )
     private int modifyProjectileUpdate(int val) {
-        return CarpetFixesSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
     }
 
 
@@ -43,7 +43,7 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             index = 2
     )
     private int modifyPowerUpdate(int val) {
-        return CarpetFixesSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
     }
 
 
@@ -55,7 +55,7 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             index = 2
     )
     private int modifyScheduledUpdate(int val) {
-        return CarpetFixesSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
     }
 
 
@@ -65,7 +65,7 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             cancellable = true
     )
     private void updateNeighborsBetter(BlockState state, World world, BlockPos pos, CallbackInfo ci) {
-        if (CarpetFixesSettings.duplicateBlockUpdatesFix) {
+        if (CFSettings.duplicateBlockUpdatesFix) {
             world.updateNeighborsAlways(pos, self);
             Direction dir = getDirection(state);
             world.updateNeighborsExcept(pos.offset(dir.getOpposite()), self, dir);

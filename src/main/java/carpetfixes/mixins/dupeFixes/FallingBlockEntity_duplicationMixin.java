@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FallingBlockEntity;
@@ -33,6 +33,6 @@ public abstract class FallingBlockEntity_duplicationMixin extends Entity {
             cancellable = true
     )
     public void cancelDupe(CallbackInfo ci) {
-        if(CarpetFixesSettings.fallingBlockDuplicationFix && this.isRemoved()) ci.cancel();
+        if(CFSettings.fallingBlockDuplicationFix && this.isRemoved()) ci.cancel();
     }
 }

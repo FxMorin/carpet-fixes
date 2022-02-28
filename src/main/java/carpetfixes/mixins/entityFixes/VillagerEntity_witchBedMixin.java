@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.passive.MerchantEntity;
@@ -32,7 +32,7 @@ public abstract class VillagerEntity_witchBedMixin extends MerchantEntity {
             )
     )
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
-        if (CarpetFixesSettings.villagerToWitchBedOccupiedFix && this.isSleeping()) {
+        if (CFSettings.villagerToWitchBedOccupiedFix && this.isSleeping()) {
             this.wakeUp(); //Sets bed occupied to false
             //As a side note, this also places the villager in a valid spot, right before the witch gets created
             //with the villagers position. So the witch will be placed correctly, which is an unreported bug!

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.AbstractDecorationEntity;
@@ -15,6 +15,6 @@ public abstract class AbstractDecorationEntity_triggersTrapsMixin extends Entity
 
     @Override
     public boolean canAvoidTraps() {
-        return CarpetFixesSettings.hangingEntityTriggersTrapsFix;
+        return CFSettings.hangingEntityTriggersTrapsFix;
     }
 }

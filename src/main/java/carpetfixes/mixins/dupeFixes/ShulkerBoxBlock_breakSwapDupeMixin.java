@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.item.ItemStack;
@@ -23,7 +23,7 @@ public class ShulkerBoxBlock_breakSwapDupeMixin {
 
     @Inject(method = "method_10524", at = @At("TAIL"), remap = false)
     private static void clearAfterGetDroppedStack(ShulkerBoxBlockEntity shulkerBox, LootContext lootContext, Consumer<ItemStack> consumer, CallbackInfo ci) {
-        if (CarpetFixesSettings.breakSwapGeneralItemDupeFix) {
+        if (CFSettings.breakSwapGeneralItemDupeFix) {
             shulkerBox.clear();
         }
     }

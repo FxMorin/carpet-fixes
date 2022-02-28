@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,6 +19,6 @@ public class EnderDragonFight_twoCrystalMixin {
             index=1
     )
     private int modifyDist(int dist) {
-        return CarpetFixesSettings.respawnDragonWithoutAllEndCrystalsFix ? 3 : 2;
+        return CFSettings.respawnDragonWithoutAllEndCrystalsFix ? 3 : 2;
     }
 }

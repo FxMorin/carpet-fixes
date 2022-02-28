@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
@@ -30,7 +30,7 @@ public class Entity_directionalBlockSlowdownMixin {
             cancellable = true
     )
     public void slowMovement(BlockState state, Vec3d m, CallbackInfo ci) {
-        if (CarpetFixesSettings.directionalBlockSlowdownFix) {
+        if (CFSettings.directionalBlockSlowdownFix) {
             this.fallDistance = 0.0F;
             if (this.movementMultiplier.length() > 0.0) {
                 this.movementMultiplier = new Vec3d(

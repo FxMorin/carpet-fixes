@@ -1,6 +1,6 @@
 package carpetfixes.mixins.conversionFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.CowEntity;
@@ -31,7 +31,7 @@ public abstract class MooshroomEntity_conversionMixin {
                 ordinal = 0
             ))
     public boolean ConversionFix(World world, Entity cowEntity) {
-        if (CarpetFixesSettings.conversionFix && cowEntity instanceof CowEntity) {
+        if (CFSettings.conversionFix && cowEntity instanceof CowEntity) {
             cowEntity.setVelocity(self.getVelocity()); //Motion
             cowEntity.setNoGravity(self.hasNoGravity()); //noGravity
             cowEntity.setFireTicks(self.getFireTicks()); //Fire

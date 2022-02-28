@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.vehicle.TntMinecartEntity;
@@ -27,6 +27,6 @@ public abstract class TntMinecartEntity_doubleExplodeMixin extends Entity {
             cancellable = true
     )
     private void cancelOnceDoneExplode(CallbackInfo ci) {
-        if (CarpetFixesSettings.tntMinecartExplodesTwiceFix && this.isRemoved()) ci.cancel();
+        if (CFSettings.tntMinecartExplodesTwiceFix && this.isRemoved()) ci.cancel();
     }
 }

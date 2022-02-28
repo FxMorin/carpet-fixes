@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PowderSnowBlock;
 import net.minecraft.entity.Entity;
@@ -29,7 +29,7 @@ public class PowderSnowBlock_centerCollisionMixin {
                     target="Lnet/minecraft/entity/Entity;slowMovement(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Vec3d;)V"
             ))
     public void slowMovementAtNewLocation(Entity entity, BlockState state, Vec3d multiplier) {
-        if (!CarpetFixesSettings.playerBlockCollisionUsingCenterFix) entity.slowMovement(state,multiplier);
+        if (!CFSettings.playerBlockCollisionUsingCenterFix) entity.slowMovement(state,multiplier);
     }
 
 
@@ -38,6 +38,6 @@ public class PowderSnowBlock_centerCollisionMixin {
             at=@At("HEAD")
     )
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
-        if (CarpetFixesSettings.playerBlockCollisionUsingCenterFix) entity.slowMovement(state,new Vec3d(0.8999999761581421D, 1.5D, 0.8999999761581421D));
+        if (CFSettings.playerBlockCollisionUsingCenterFix) entity.slowMovement(state,new Vec3d(0.8999999761581421D, 1.5D, 0.8999999761581421D));
     }
 }

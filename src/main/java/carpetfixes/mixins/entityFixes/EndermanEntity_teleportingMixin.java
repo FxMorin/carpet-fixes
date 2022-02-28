@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.mob.EndermanEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,6 +23,6 @@ public class EndermanEntity_teleportingMixin {
                     target="Lnet/minecraft/entity/mob/EndermanEntity;getBrightnessAtEyes()F"
             ))
     public float brightnessAndMinecart(EndermanEntity entity) {
-        return (CarpetFixesSettings.endermanUselessMinecartTeleportingFix && entity.hasVehicle()) ? 0.0f : entity.getBrightnessAtEyes();
+        return (CFSettings.endermanUselessMinecartTeleportingFix && entity.hasVehicle()) ? 0.0f : entity.getBrightnessAtEyes();
     }
 }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.UpdateScheduler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -38,7 +38,7 @@ public class World_updateSuppressionMixin {
                     target = "Lnet/minecraft/block/BlockState;neighborUpdate(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;Z)V"
             ))
     public void betterUpdateNeighbour(BlockState blockState, World world, BlockPos pos, Block block, BlockPos posFrom, boolean notify){
-        if (CarpetFixesSettings.updateSuppressionFix) {
+        if (CFSettings.updateSuppressionFix) {
             try {
                 blockState.neighborUpdate(world, pos, block, posFrom, notify);
             } catch (Throwable var7) {
@@ -60,8 +60,8 @@ public class World_updateSuppressionMixin {
             cancellable = true
     )
     public void checkUpdateSuppression(BlockPos sourcePos, Block sourceBlock, BlockPos neighborPos, CallbackInfo ci) {
-        if(CarpetFixesSettings.updateSuppressionFix) {
-            CarpetFixesSettings.updateScheduler.get(self).addScheduledUpdate(new UpdateScheduler.ScheduledUpdate(sourcePos, sourceBlock));
+        if(CFSettings.updateSuppressionFix) {
+            CFSettings.updateScheduler.get(self).addScheduledUpdate(new UpdateScheduler.ScheduledUpdate(sourcePos, sourceBlock));
             ci.cancel();
         }
     }

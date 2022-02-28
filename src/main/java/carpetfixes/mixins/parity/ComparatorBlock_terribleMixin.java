@@ -1,6 +1,6 @@
 package carpetfixes.mixins.parity;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.ComparatorBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -17,7 +17,7 @@ public class ComparatorBlock_terribleMixin {
             )
     )
     protected int modifyPower(int constant) {
-        if (CarpetFixesSettings.parityTerribleComparators) return 16;
+        if (CFSettings.parityTerribleComparators) return 16;
         return constant;
     }
 }

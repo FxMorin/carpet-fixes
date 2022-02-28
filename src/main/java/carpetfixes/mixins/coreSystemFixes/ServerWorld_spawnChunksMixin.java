@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,6 +26,6 @@ public class ServerWorld_spawnChunksMixin {
                     target="Ljava/util/List;isEmpty()Z"
             ))
     public boolean spawnChunksStayLoaded(List list) {
-        return !CarpetFixesSettings.spawnChunkEntitiesUnloadingFix && list.isEmpty();
+        return !CFSettings.spawnChunkEntitiesUnloadingFix && list.isEmpty();
     }
 }

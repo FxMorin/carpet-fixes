@@ -1,8 +1,11 @@
 package carpetfixes.mixins.featureFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import com.mojang.serialization.Codec;
-import net.minecraft.structure.*;
+import net.minecraft.structure.BuriedTreasureGenerator;
+import net.minecraft.structure.StructureGeneratorFactory;
+import net.minecraft.structure.StructurePiecesCollector;
+import net.minecraft.structure.StructurePiecesGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.gen.ProbabilityConfig;
@@ -27,7 +30,7 @@ public abstract class BuriedTreasureFeature_centerMixin extends StructureFeature
             cancellable = true
     )
     private static void customPiecePosition(StructurePiecesCollector collector, StructurePiecesGenerator.Context<ProbabilityConfig> context, CallbackInfo ci) {
-        if (CarpetFixesSettings.buriedTreasureAlwaysCenterFix) {
+        if (CFSettings.buriedTreasureAlwaysCenterFix) {
             ChunkPos chunkPos = context.chunkPos();
             Random rand = new Random(chunkPos.toLong());
             BlockPos blockPos = new BlockPos(chunkPos.getOffsetX(rand.nextInt(16)), 90, chunkPos.getOffsetZ(rand.nextInt(16)));
@@ -42,7 +45,7 @@ public abstract class BuriedTreasureFeature_centerMixin extends StructureFeature
             cancellable = true
     )
     public void getLocatedPos(ChunkPos chunkPos, CallbackInfoReturnable<BlockPos> cir) {
-        if (CarpetFixesSettings.buriedTreasureAlwaysCenterFix) {
+        if (CFSettings.buriedTreasureAlwaysCenterFix) {
             Random rand = new Random(chunkPos.toLong());
             cir.setReturnValue(new BlockPos(chunkPos.getOffsetX(rand.nextInt(16)), 0, chunkPos.getOffsetZ(rand.nextInt(16))));
         }

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.FastMath;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +18,6 @@ public class MathHelper_hypotMixin {
             cancellable = true
     )
     private static void hypot(double a, double b, CallbackInfoReturnable<Double> cir) {
-        if (CarpetFixesSettings.optimizedHypot) cir.setReturnValue(FastMath.hypot(a,b));
+        if (CFSettings.optimizedHypot) cir.setReturnValue(FastMath.hypot(a,b));
     }
 }

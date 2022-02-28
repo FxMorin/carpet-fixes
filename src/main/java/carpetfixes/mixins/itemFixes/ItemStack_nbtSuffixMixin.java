@@ -1,6 +1,6 @@
 package carpetfixes.mixins.itemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,5 +18,5 @@ public class ItemStack_nbtSuffixMixin {
             ),
             index = 1
     )
-    private int incorrectNbtCheck(int value) {return CarpetFixesSettings.incorrectNbtChecks ? 99 : 3;}
+    private int incorrectNbtCheck(int value) {return CFSettings.incorrectNbtChecks ? 99 : 3;}
 }

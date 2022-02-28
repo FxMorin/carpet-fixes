@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.BeeEntity;
@@ -34,7 +34,7 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
             cancellable = true
     )
     public void isHiveNearFireAndLoaded(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.beeDupeFix && !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.hivePos.getX()),ChunkSectionPos.getSectionCoord(this.hivePos.getY()))) cir.setReturnValue(true);
+        if (CFSettings.beeDupeFix && !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.hivePos.getX()),ChunkSectionPos.getSectionCoord(this.hivePos.getY()))) cir.setReturnValue(true);
     }
 
 
@@ -44,7 +44,7 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
             cancellable = true
     )
     public void doesHiveHaveSpaceAndLoaded(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.beeDupeFix && (this.hivePos == null || !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(pos.getX()),ChunkSectionPos.getSectionCoord(pos.getY())))) cir.setReturnValue(false);
+        if (CFSettings.beeDupeFix && (this.hivePos == null || !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(pos.getX()),ChunkSectionPos.getSectionCoord(pos.getY())))) cir.setReturnValue(false);
     }
 
 
@@ -58,6 +58,6 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
             cancellable = true
     )
     public void isHiveValidAndLoaded(CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetFixesSettings.beeDupeFix && !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.hivePos.getX()),ChunkSectionPos.getSectionCoord(this.hivePos.getY()))) cir.setReturnValue(false);
+        if (CFSettings.beeDupeFix && !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.hivePos.getX()),ChunkSectionPos.getSectionCoord(this.hivePos.getY()))) cir.setReturnValue(false);
     }
 }

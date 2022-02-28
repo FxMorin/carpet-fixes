@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -17,7 +17,7 @@ public class WorldBorder$StaticArea_collisionMixin {
             )
     )
     private double dontFloor(double a) {
-        return CarpetFixesSettings.worldBorderCollisionRoundingFix ? a : Math.floor(a);
+        return CFSettings.worldBorderCollisionRoundingFix ? a : Math.floor(a);
     }
 
 
@@ -29,6 +29,6 @@ public class WorldBorder$StaticArea_collisionMixin {
             )
     )
     private double dontCeil(double a) {
-        return CarpetFixesSettings.worldBorderCollisionRoundingFix ? a : Math.ceil(a);
+        return CFSettings.worldBorderCollisionRoundingFix ? a : Math.ceil(a);
     }
 }

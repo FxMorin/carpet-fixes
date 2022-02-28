@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.settings.ModIds;
 import carpetfixes.settings.VersionPredicates;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
@@ -17,7 +17,7 @@ public abstract class BlockPos_incorrectDistanceMixin extends Vec3i {
 
     @Override
     public double getSquaredDistance(Vec3i vec) {
-        double add = CarpetFixesSettings.incorrectBlockPosDistanceFix ? 0.5 : 0;
+        double add = CFSettings.incorrectBlockPosDistanceFix ? 0.5 : 0;
         double d = (double)this.getX() + add - (double)vec.getX();
         double e = (double)this.getY() + add - (double)vec.getY();
         double f = (double)this.getZ() + add - (double)vec.getZ();

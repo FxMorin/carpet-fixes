@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FallingBlockEntity;
@@ -17,7 +17,7 @@ public abstract class FallingBlockEntity_teleportRefreshMixin extends Entity {
 
     @Override
     public void refreshPositionAndAngles(double x, double y, double z, float yaw, float pitch) {
-        if (CarpetFixesSettings.fallingBlockTeleportingFix && this.timeFalling == 0) {
+        if (CFSettings.fallingBlockTeleportingFix && this.timeFalling == 0) {
             this.world.removeBlock(this.getBlockPos(), false);
             this.timeFalling = 1;
         }

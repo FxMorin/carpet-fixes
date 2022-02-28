@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,7 +26,7 @@ public abstract class Entity_incorrectLogicMixin {
             at = @At("HEAD")
     )
     public void onBubbleColumnCollision(boolean drag, CallbackInfo ci) {
-        if (CarpetFixesSettings.incorrectBubbleColumnLogicFix) this.setOnGround(false);
+        if (CFSettings.incorrectBubbleColumnLogicFix) this.setOnGround(false);
     }
 
 
@@ -35,6 +35,6 @@ public abstract class Entity_incorrectLogicMixin {
             at = @At("HEAD")
     )
     public void onBubbleColumnSurfaceCollision(boolean drag, CallbackInfo ci) {
-        if (CarpetFixesSettings.incorrectBubbleColumnLogicFix) this.setOnGround(false);
+        if (CFSettings.incorrectBubbleColumnLogicFix) this.setOnGround(false);
     }
 }

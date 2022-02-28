@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.rounding;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.FastMath;
 import net.minecraft.util.shape.VoxelShapes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public class VoxelShapesMixin {
             )
     )
     private static long fasterRoundCuboid(double value) {
-        return CarpetFixesSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
+        return CFSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
     }
 
 
@@ -33,6 +33,6 @@ public class VoxelShapesMixin {
             )
     )
     private static long fasterRoundResolution(double value) {
-        return CarpetFixesSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
+        return CFSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
     }
 }

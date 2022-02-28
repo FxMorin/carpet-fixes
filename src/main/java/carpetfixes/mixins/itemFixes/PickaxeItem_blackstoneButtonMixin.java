@@ -1,7 +1,7 @@
 package carpetfixes.mixins.itemFixes;
 
 import carpet.CarpetSettings;
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -20,6 +20,6 @@ public class PickaxeItem_blackstoneButtonMixin extends MiningToolItem {
 
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
-        return ((CarpetFixesSettings.blackstoneButtonBreakSpeedFix && state.isOf(Blocks.POLISHED_BLACKSTONE_BUTTON)) || (CarpetSettings.missingTools && state.getMaterial() == Material.GLASS)) ? miningSpeed : super.getMiningSpeedMultiplier(stack, state);
+        return ((CFSettings.blackstoneButtonBreakSpeedFix && state.isOf(Blocks.POLISHED_BLACKSTONE_BUTTON)) || (CarpetSettings.missingTools && state.getMaterial() == Material.GLASS)) ? miningSpeed : super.getMiningSpeedMultiplier(stack, state);
     }
 }

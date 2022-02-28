@@ -1,6 +1,6 @@
 package carpetfixes.mixins.gameEventFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.MinecartItem;
 import net.minecraft.tag.BlockTags;
@@ -23,7 +23,7 @@ public class MinecartItem_missingOcclusionMixin {
             )
     )
     private void addOcclusionCheck(World world, Entity entity, GameEvent gameEvent, BlockPos blockPos) {
-        if (CarpetFixesSettings.minecartMissingOcclusionFix) {
+        if (CFSettings.minecartMissingOcclusionFix) {
             if (world.getBlockState(blockPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
                 return;
             }

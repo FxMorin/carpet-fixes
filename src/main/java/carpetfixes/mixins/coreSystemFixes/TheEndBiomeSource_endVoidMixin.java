@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.SimplexNoiseSampler;
 import net.minecraft.world.biome.source.TheEndBiomeSource;
@@ -27,7 +27,7 @@ public class TheEndBiomeSource_endVoidMixin {
             cancellable = true
     )
     private static void getNoiseAt(SimplexNoiseSampler simplexNoiseSampler, int x, int z, CallbackInfoReturnable<Float> cir) {
-        if (CarpetFixesSettings.endVoidRingsFix) {
+        if (CFSettings.endVoidRingsFix) {
             int chunkX = x/2, chunkZ = z/2, chunkSectionX = x%2, chunkSectionZ = z%2;
             float noiseShift = (MathHelper.abs(x) < 400 && MathHelper.abs(z) < 400) ? MathHelper.clamp(400 - MathHelper.sqrt(x * x + z * z) * 8, -100, 80) : -100;
             for (int islandX = -12; islandX <= 12; ++islandX) {

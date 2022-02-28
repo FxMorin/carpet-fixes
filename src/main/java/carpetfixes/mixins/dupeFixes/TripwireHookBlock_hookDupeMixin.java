@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import com.google.common.base.MoreObjects;
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
@@ -70,7 +70,7 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
             this.playSound(world, blockPos, notRemoving, on, attached, powered);
         }
         this.playSound(world, pos, notRemoving, on, attached, powered);
-        if (!beingRemoved && (!CarpetFixesSettings.tripwireHookDupeFix || world.getBlockState(pos).isOf(this))) {
+        if (!beingRemoved && (!CFSettings.tripwireHookDupeFix || world.getBlockState(pos).isOf(this))) {
             world.setBlockState(pos, newState.with(FACING, direction), Block.NOTIFY_ALL);
             if (bl) {
                 this.updateNeighborsOnAxis(world, pos, direction);
@@ -80,7 +80,7 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
             for(int x = 1; x < index; ++x) {
                 BlockPos blockPos2 = pos.offset(direction, x);
                 BlockState blockState2 = blockStates[x];
-                if (blockState2 != null && (!CarpetFixesSettings.tripwireNotDisarmingFix || world.getBlockState(blockPos2).isOf(this))) {
+                if (blockState2 != null && (!CFSettings.tripwireNotDisarmingFix || world.getBlockState(blockPos2).isOf(this))) {
                     world.setBlockState(blockPos2, blockState2.with(ATTACHED, notRemoving), Block.NOTIFY_ALL);
                 }
             }

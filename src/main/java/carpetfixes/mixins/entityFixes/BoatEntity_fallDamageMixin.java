@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -32,7 +32,7 @@ public abstract class BoatEntity_fallDamageMixin extends Entity {
             cancellable = true
     )
     protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
-        if (CarpetFixesSettings.boatsTakeFallDamageFix) {
+        if (CFSettings.boatsTakeFallDamageFix) {
             this.fallDistance = 0.0F;
             ci.cancel();
         }
@@ -47,6 +47,6 @@ public abstract class BoatEntity_fallDamageMixin extends Entity {
             )
     )
     protected BoatEntity.Location fall(BoatEntity instance) {
-        return CarpetFixesSettings.boatsDontTakeFallDamageFix ? BoatEntity.Location.ON_LAND : this.location;
+        return CFSettings.boatsDontTakeFallDamageFix ? BoatEntity.Location.ON_LAND : this.location;
     }
 }

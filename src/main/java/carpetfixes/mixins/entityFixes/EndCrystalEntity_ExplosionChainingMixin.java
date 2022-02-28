@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,6 +25,6 @@ public class EndCrystalEntity_ExplosionChainingMixin {
                     target = "Lnet/minecraft/entity/damage/DamageSource;isExplosive()Z"
             ))
     public boolean isExplosiveBypass(DamageSource fakeSource, DamageSource source, float amount) {
-        return !CarpetFixesSettings.crystalExplodeOnExplodedFix && source.isExplosive();
+        return !CFSettings.crystalExplodeOnExplodedFix && source.isExplosive();
     }
 }

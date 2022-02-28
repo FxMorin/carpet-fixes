@@ -1,6 +1,6 @@
 package carpetfixes.mixins.advanced;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -15,7 +15,7 @@ public class MinecraftServer_autosaveDelayMixin {
             constant = @Constant(intValue = 6000)
     )
     public int tickAutoSave(int autoSaveDelay) {
-        return CarpetFixesSettings.delayBetweenAutoSaves;
+        return CFSettings.delayBetweenAutoSaves;
     }
 
     @ModifyConstant(
@@ -23,7 +23,7 @@ public class MinecraftServer_autosaveDelayMixin {
             constant = @Constant(intValue = 3) //statusUpdateDelay
     )
     public int shouldRunWithLatency(int maxTickLatency) {
-        return CarpetFixesSettings.maxTickLatency;
+        return CFSettings.maxTickLatency;
     }
 
     @ModifyConstant(
@@ -31,6 +31,6 @@ public class MinecraftServer_autosaveDelayMixin {
             constant = @Constant(longValue = 5000000000L)
     )
     public long customStatusUpdateDelay(long maxTickLatency) {
-        return CarpetFixesSettings.statusUpdateDelay;
+        return CFSettings.statusUpdateDelay;
     }
 }

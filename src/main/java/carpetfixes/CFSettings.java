@@ -22,7 +22,7 @@ import java.util.function.Predicate;
 import static carpet.settings.RuleCategory.*;
 import static carpetfixes.helpers.RuleCategory.*;
 
-public class CarpetFixesSettings {
+public class CFSettings {
 
     //Add your name above the rules so people know who to contact about changing the code. E.x. By FX - PR0CESS
 

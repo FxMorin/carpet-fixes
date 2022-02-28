@@ -1,6 +1,6 @@
 package carpetfixes.mixins.reIntroduced;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import com.mojang.logging.LogUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -40,7 +40,7 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             )
     )
     private @Nullable Entity llamaReplaceOnConnect(NbtCompound nbt, World world, Function<Entity, Entity> entityProcessor){
-        if (CarpetFixesSettings.reIntroduceDonkeyRidingDupe) {
+        if (CFSettings.reIntroduceDonkeyRidingDupe) {
             EntityType.loadEntityWithPassengers(nbt, world, (vehicle) -> {
                 Entity before = ((ServerWorld)world).getEntity(vehicle.getUuid());
                 if (before != null) {
@@ -62,7 +62,7 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             ))
     private boolean llamaDupeOnRemove(ServerPlayerEntity serverPlayerEntity){
         if (serverPlayerEntity.hasVehicle()) {
-            if(!CarpetFixesSettings.reIntroduceDonkeyRidingDupe) return true;
+            if(!CFSettings.reIntroduceDonkeyRidingDupe) return true;
             Entity entity = serverPlayerEntity.getRootVehicle();
             if (entity.hasPlayerRider()) {
                 LOGGER.debug("Removing player mount");

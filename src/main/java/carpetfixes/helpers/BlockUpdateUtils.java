@@ -1,6 +1,6 @@
 package carpetfixes.helpers;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -29,14 +29,14 @@ public class BlockUpdateUtils {
     //TODO: Severely needs optimization xD
     public static void doExtendedBlockUpdates(World world, BlockPos pos, Block block, boolean removedAndEmitsPower, boolean requiresASelfBlockUpdate) {
         Set<BlockPos> blockPosList = null;
-        if (CarpetFixesSettings.duplicateBlockUpdatesFix) blockPosList = new HashSet<>();
-        Direction[] extendedDirections = CarpetFixesSettings.extendedBlockUpdateOrderFix ? DirectionUtils.directions :
-                (CarpetFixesSettings.parityRandomBlockUpdates ? DirectionUtils.randomDirectionArray(pos) :
+        if (CFSettings.duplicateBlockUpdatesFix) blockPosList = new HashSet<>();
+        Direction[] extendedDirections = CFSettings.extendedBlockUpdateOrderFix ? DirectionUtils.directions :
+                (CFSettings.parityRandomBlockUpdates ? DirectionUtils.randomDirectionArray(pos) :
                         Direction.values());
-        Direction[] directions = CarpetFixesSettings.blockUpdateOrderFix ? DirectionUtils.directions :
-                (CarpetFixesSettings.parityRandomBlockUpdates ? DirectionUtils.randomDirectionArray(pos) :
+        Direction[] directions = CFSettings.blockUpdateOrderFix ? DirectionUtils.directions :
+                (CFSettings.parityRandomBlockUpdates ? DirectionUtils.randomDirectionArray(pos) :
                         DirectionUtils.updateDirections);
-        if (CarpetFixesSettings.redstoneComponentUpdateOrderOnBreakFix && removedAndEmitsPower) {
+        if (CFSettings.redstoneComponentUpdateOrderOnBreakFix && removedAndEmitsPower) {
             for(int dirNum = 0; dirNum < 6; ++dirNum) { //Do Updates around block torch first. Preventing wrong order
                 world.updateNeighbor(pos.offset(directions[dirNum]), block, pos);
             }
@@ -45,11 +45,11 @@ public class BlockUpdateUtils {
             BlockPos p = pos.offset(dir);
             for(int dirNum = 0; dirNum < 6; ++dirNum) {
                 BlockPos nextPos = p.offset(directions[dirNum]);
-                if (!CarpetFixesSettings.uselessSelfBlockUpdateFix || requiresASelfBlockUpdate || !nextPos.equals(pos)) {
-                    if (!CarpetFixesSettings.duplicateBlockUpdatesFix || !blockPosList.contains(nextPos)) {
+                if (!CFSettings.uselessSelfBlockUpdateFix || requiresASelfBlockUpdate || !nextPos.equals(pos)) {
+                    if (!CFSettings.duplicateBlockUpdatesFix || !blockPosList.contains(nextPos)) {
                         requiresASelfBlockUpdate = false;
                         world.updateNeighbor(nextPos, block, p);
-                        if (CarpetFixesSettings.duplicateBlockUpdatesFix) blockPosList.add(nextPos);
+                        if (CFSettings.duplicateBlockUpdatesFix) blockPosList.add(nextPos);
                     }
                 }
             }
@@ -57,10 +57,10 @@ public class BlockUpdateUtils {
     }
 
     public static boolean canUpdateNeighborsAlwaysWithOrder(World world, BlockPos p, Block block) {
-        if (CarpetFixesSettings.blockUpdateOrderFix) {
+        if (CFSettings.blockUpdateOrderFix) {
             for(Direction d : DirectionUtils.directions) world.updateNeighbor(p.offset(d), block, p);
             return true;
-        } else if (CarpetFixesSettings.parityRandomBlockUpdates) {
+        } else if (CFSettings.parityRandomBlockUpdates) {
             for(Direction d : DirectionUtils.randomDirectionArray(p)) world.updateNeighbor(p.offset(d), block, p);
             return true;
         }
@@ -68,12 +68,12 @@ public class BlockUpdateUtils {
     }
 
     public static boolean canUpdateNeighborsExceptWithOrder(World world, BlockPos pos, Block block, Direction direction) {
-        if (CarpetFixesSettings.blockUpdateOrderFix) {
+        if (CFSettings.blockUpdateOrderFix) {
             for (Direction d : DirectionUtils.directions) {
                 if (direction != d) world.updateNeighbor(pos.offset(d), block, pos);
             }
             return true;
-        } else if (CarpetFixesSettings.parityRandomBlockUpdates) {
+        } else if (CFSettings.parityRandomBlockUpdates) {
             for (Direction d : DirectionUtils.randomDirectionArray(pos)) {
                 if (direction != d) world.updateNeighbor(pos.offset(d), block, pos);
             }

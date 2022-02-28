@@ -1,6 +1,6 @@
 package carpetfixes.mixins.screenHandlerFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.screen.EnchantmentScreenHandler;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,6 +20,6 @@ public class EnchantmentScreenHandler_transparentBlocksMixin {
                     target="Lnet/minecraft/world/World;isAir(Lnet/minecraft/util/math/BlockPos;)Z"
             ))
     public boolean isTranslucent(World world, BlockPos pos) {
-        return CarpetFixesSettings.transparentBlocksNegateEnchantingFix ? !world.getBlockState(pos).isFullCube(world,pos) : world.isAir(pos);
+        return CFSettings.transparentBlocksNegateEnchantingFix ? !world.getBlockState(pos).isFullCube(world,pos) : world.isAir(pos);
     }
 }

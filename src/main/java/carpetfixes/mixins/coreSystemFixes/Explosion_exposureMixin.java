@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
@@ -28,7 +28,7 @@ public class Explosion_exposureMixin {
             cancellable = true
     )
     private static void getExposure(Vec3d source, Entity entity, CallbackInfoReturnable<Float> cir) {
-        if (CarpetFixesSettings.incorrectExplosionExposureFix) {
+        if (CFSettings.incorrectExplosionExposureFix) {
             Box box = entity.getBoundingBox();
             double d = 1.0D / ((box.maxX - box.minX) * 2.0D + 1.0D);
             double e = 1.0D / ((box.maxY - box.minY) * 2.0D + 1.0D);

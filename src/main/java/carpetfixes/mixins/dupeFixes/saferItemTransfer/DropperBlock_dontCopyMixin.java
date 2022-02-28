@@ -1,6 +1,6 @@
 package carpetfixes.mixins.dupeFixes.saferItemTransfer;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.DropperBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -34,7 +34,7 @@ public class DropperBlock_dontCopyMixin {
             ))
     protected ItemStack shouldCopyFirst(ItemStack itemStack) {
         stack = itemStack.copy();
-        return CarpetFixesSettings.saferItemTransfers ? itemStack : stack;
+        return CFSettings.saferItemTransfers ? itemStack : stack;
     }
 
 
@@ -52,7 +52,7 @@ public class DropperBlock_dontCopyMixin {
                     target = "Lnet/minecraft/item/ItemStack;copy()Lnet/minecraft/item/ItemStack;"
             ))
     protected ItemStack shouldCopy(ItemStack itemStack) {
-        return CarpetFixesSettings.saferItemTransfers ? stack : itemStack.copy();
+        return CFSettings.saferItemTransfers ? stack : itemStack.copy();
     }
 
 

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.conversionFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
@@ -41,7 +41,7 @@ public abstract class SlimeEntity_conversionMixin extends MobEntity implements M
             )
     )
     public void ConversionFixSlime(RemovalReason reason, CallbackInfo ci, int i, Text text, boolean bl, float f, int j, int k, int l, float g, float h, SlimeEntity slimeEntity) {
-        if (CarpetFixesSettings.conversionFix) {
+        if (CFSettings.conversionFix) {
             slimeEntity.setFireTicks(this.getFireTicks()); //Fire
             slimeEntity.setVelocity(this.getVelocity()); //Motion
             slimeEntity.setNoGravity(this.hasNoGravity()); //noGravity

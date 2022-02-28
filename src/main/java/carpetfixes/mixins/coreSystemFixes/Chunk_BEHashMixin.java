@@ -1,6 +1,6 @@
 package carpetfixes.mixins.coreSystemFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -44,7 +44,7 @@ public class Chunk_BEHashMixin {
             at = @At("RETURN")
     )
     private void reloadNewHashMap(ChunkPos pos, UpgradeData upgradeData, HeightLimitView heightLimitView, Registry biome, long inhabitedTime, ChunkSection[] sectionArrayInitializer, BlendingData blendingData, CallbackInfo ci) {
-        if (CarpetFixesSettings.reloadUpdateOrderFix) {
+        if (CFSettings.reloadUpdateOrderFix) {
             blockEntityNbts = new LinkedHashMap<>();
             blockEntities = new LinkedHashMap<>();
         }
@@ -57,7 +57,7 @@ public class Chunk_BEHashMixin {
             cancellable = true
     )
     public void getBlockEntityPositions(CallbackInfoReturnable<Set<BlockPos>> cir) {
-        if (CarpetFixesSettings.reloadUpdateOrderFix) { //Use a Linked Hash Set instead of just a HashSet
+        if (CFSettings.reloadUpdateOrderFix) { //Use a Linked Hash Set instead of just a HashSet
             Set<BlockPos> set = new LinkedHashSet<>(this.blockEntityNbts.keySet());
             set.addAll(this.blockEntities.keySet());
             cir.setReturnValue(set);

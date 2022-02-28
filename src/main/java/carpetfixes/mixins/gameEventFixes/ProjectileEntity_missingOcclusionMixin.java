@@ -1,6 +1,6 @@
 package carpetfixes.mixins.gameEventFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -35,7 +35,7 @@ public abstract class ProjectileEntity_missingOcclusionMixin extends Entity {
             )
     )
     protected void onEmittingGaveEvent(HitResult hitResult, CallbackInfo ci) {
-        if (CarpetFixesSettings.projectileMissingOcclusionFix && hitResult.getType() == HitResult.Type.BLOCK) {
+        if (CFSettings.projectileMissingOcclusionFix && hitResult.getType() == HitResult.Type.BLOCK) {
             if (this.world.getBlockState(new BlockPos(hitResult.getPos())).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
                 return;
             }

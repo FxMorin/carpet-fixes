@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockEntityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,6 +19,6 @@ public class BeehiveBlockEntity_stuckMixin {
             )
     )
     private static boolean isRainingBetter(World world) {
-        return CarpetFixesSettings.beeNotLeavingHiveFix ? (!world.getDimension().hasFixedTime() && world.getDimension().hasSkyLight() && world.isRaining()) : world.isRaining();
+        return CFSettings.beeNotLeavingHiveFix ? (!world.getDimension().hasFixedTime() && world.getDimension().hasSkyLight() && world.isRaining()) : world.isRaining();
     }
 }

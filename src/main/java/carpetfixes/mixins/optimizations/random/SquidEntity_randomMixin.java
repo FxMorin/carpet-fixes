@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.random;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.passive.SquidEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,6 +21,6 @@ public class SquidEntity_randomMixin {
             )
     )
     private void customRandom(Random instance, long seed) {
-        if (!CarpetFixesSettings.entityRandomCrackingFix) instance.setSeed(seed);
+        if (!CFSettings.entityRandomCrackingFix) instance.setSeed(seed);
     }
 }

@@ -1,7 +1,7 @@
 package carpetfixes.mixins.blockFixes;
 
-import carpetfixes.CarpetFixesSettings;
-import net.minecraft.block.*;
+import carpetfixes.CFSettings;
+import net.minecraft.block.PistonBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +24,7 @@ public class PistonBlock_illegalBreakingMixin {
                     target="Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"
             ))
     public boolean removeBlock(World world, BlockPos pos, boolean move) {
-        if (CarpetFixesSettings.illegalBreakingFix && world.getBlockState(pos).getHardness(world,pos) == -1.0F) return false;
+        if (CFSettings.illegalBreakingFix && world.getBlockState(pos).getHardness(world,pos) == -1.0F) return false;
         return world.removeBlock(pos, move);
     }
 }

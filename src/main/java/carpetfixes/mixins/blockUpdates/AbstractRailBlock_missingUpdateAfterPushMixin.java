@@ -1,6 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -39,7 +39,7 @@ public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Bloc
             cancellable = true
     )
     protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CarpetFixesSettings.railMissingUpdateAfterPushFix) {
+        if (CFSettings.railMissingUpdateAfterPushFix) {
             if (!oldState.isOf(state.getBlock())) {
                 if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);
                 if (this.allowCurves) {

@@ -1,6 +1,6 @@
 package carpetfixes.mixins.reIntroduced;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
@@ -36,7 +36,7 @@ public abstract class ServerWorld_zeroTickMixin extends World {
             )
     )
     private void zeroTickBlock(BlockPos pos, Block block, CallbackInfo ci, BlockState state) {
-        if (CarpetFixesSettings.reIntroduceZeroTickFarms && !this.isAir(pos) && state.hasRandomTicks()) {
+        if (CFSettings.reIntroduceZeroTickFarms && !this.isAir(pos) && state.hasRandomTicks()) {
             state.randomTick(self,pos,this.random);
         }
     }

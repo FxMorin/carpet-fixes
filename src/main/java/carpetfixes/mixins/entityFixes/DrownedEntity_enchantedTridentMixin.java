@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -38,7 +38,7 @@ public class DrownedEntity_enchantedTridentMixin extends ZombieEntity {
             ))
     private ItemStack createItemStack(ItemConvertible item) {
         ItemStack trident = new ItemStack(item);
-        if (CarpetFixesSettings.drownedEnchantedTridentsFix) {
+        if (CFSettings.drownedEnchantedTridentsFix) {
             ItemStack holding = this.getActiveItem();
             if (holding.getItem() == Items.TRIDENT) {
                 Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(holding);

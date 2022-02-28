@@ -1,6 +1,6 @@
 package carpetfixes.mixins.reIntroduced;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -32,6 +32,6 @@ public abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
             cancellable = true
     )
     protected void reEnableGeneralItemDupe(CallbackInfo ci) {
-        if (CarpetFixesSettings.reIntroducePortalGeneralItemDupe) ci.cancel();
+        if (CFSettings.reIntroducePortalGeneralItemDupe) ci.cancel();
     }
 }

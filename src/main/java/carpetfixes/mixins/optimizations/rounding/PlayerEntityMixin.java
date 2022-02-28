@@ -1,6 +1,6 @@
 package carpetfixes.mixins.optimizations.rounding;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.FastMath;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public class PlayerEntityMixin {
             )
     )
     private long fasterRound(double value) {
-        return CarpetFixesSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
+        return CFSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
     }
 
 
@@ -33,6 +33,6 @@ public class PlayerEntityMixin {
             )
     )
     private long fasterRoundFall(double value) {
-        return CarpetFixesSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
+        return CFSettings.optimizedRounding ? FastMath.round(value) : Math.round(value);
     }
 }

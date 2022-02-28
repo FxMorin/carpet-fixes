@@ -1,6 +1,6 @@
 package carpetfixes.mixins.entityFixes;
 
-import carpetfixes.CarpetFixesSettings;
+import carpetfixes.CFSettings;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public class ItemFrameEntity_soundMixin {
                     shift= At.Shift.AFTER
             ))
     public void setHeldItemStackBefore(ItemStack value, boolean update, CallbackInfo ci) {
-        if (CarpetFixesSettings.itemFramePlaysSoundOnReadFix && !update) {
+        if (CFSettings.itemFramePlaysSoundOnReadFix && !update) {
             value.setCount(0);
         }
     }
@@ -31,7 +31,7 @@ public class ItemFrameEntity_soundMixin {
             at=@At("RETURN")
     )
     public void setHeldItemStackAfter(ItemStack value, boolean update, CallbackInfo ci) {
-        if (CarpetFixesSettings.itemFramePlaysSoundOnReadFix && !update) {
+        if (CFSettings.itemFramePlaysSoundOnReadFix && !update) {
             value.setCount(1);
         }
     }
