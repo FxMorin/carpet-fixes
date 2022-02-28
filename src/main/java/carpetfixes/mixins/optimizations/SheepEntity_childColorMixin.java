@@ -21,11 +21,13 @@ public abstract class SheepEntity_childColorMixin extends AnimalEntity {
 
 
     @Inject(
-            method = "getChildColor(Lnet/minecraft/entity/passive/AnimalEntity;Lnet/minecraft/entity/passive/AnimalEntity;)Lnet/minecraft/util/DyeColor;",
+            method = "getChildColor(Lnet/minecraft/entity/passive/AnimalEntity;" +
+                    "Lnet/minecraft/entity/passive/AnimalEntity;)Lnet/minecraft/util/DyeColor;",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void getChildColor(AnimalEntity firstParent, AnimalEntity secondParent, CallbackInfoReturnable<DyeColor> cir) {
+    private void getChildColor(AnimalEntity firstParent, AnimalEntity secondParent,
+                               CallbackInfoReturnable<DyeColor> cir) {
         if (CFSettings.optimizedRecipeManager) {
             DyeColor firstColor = ((SheepEntity)firstParent).getColor();
             DyeColor secondColor = ((SheepEntity)secondParent).getColor();

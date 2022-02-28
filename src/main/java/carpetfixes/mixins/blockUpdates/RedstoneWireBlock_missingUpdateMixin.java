@@ -21,26 +21,34 @@ public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
 
     ThreadLocal<Boolean> needsUpdate = ThreadLocal.withInitial(() -> false);
 
-    public RedstoneWireBlock_missingUpdateMixin(Settings settings) {super(settings);}
+    public RedstoneWireBlock_missingUpdateMixin(Settings settings) {
+        super(settings);
+    }
 
 
     @Inject(
-            method = "prepare(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;II)V",
+            method = "prepare(Lnet/minecraft/block/BlockState;" +
+                    "Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;II)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;getStateForNeighborUpdate(Lnet/minecraft/util/math/Direction;Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"
+                    target = "Lnet/minecraft/block/BlockState;getStateForNeighborUpdate(" +
+                            "Lnet/minecraft/util/math/Direction;Lnet/minecraft/block/BlockState;" +
+                            "Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;" +
+                            "Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"
             )
     )
-    public void shouldUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int maxUpdateDepth, CallbackInfo ci) {
+    public void shouldUpdate(BlockState state, WorldAccess world, BlockPos pos,
+                             int flags, int maxUpdateDepth, CallbackInfo ci) {
         needsUpdate.set(true);
     }
 
 
     @Inject(
-            method = "prepare(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;II)V",
+            method = "prepare(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldAccess;" +
+                    "Lnet/minecraft/util/math/BlockPos;II)V",
             at = @At("TAIL")
     )
-    public void doUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int maxUpdateDepth, CallbackInfo ci) {
+    public void doUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int d, CallbackInfo ci) {
         if (CFSettings.redstoneRedirectionMissingUpdateFix && needsUpdate.get()) {
             Set<BlockPos> set = Sets.newHashSet();
             set.add(pos);

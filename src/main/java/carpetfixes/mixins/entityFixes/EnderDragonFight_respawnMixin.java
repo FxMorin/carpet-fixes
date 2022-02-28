@@ -12,16 +12,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EnderDragonFight.class)
 public abstract class EnderDragonFight_respawnMixin {
 
-
-    @Shadow public abstract void respawnDragon();
+    @Shadow
+    public abstract void respawnDragon();
 
 
     @Inject(
-            method= "dragonKilled(Lnet/minecraft/entity/boss/dragon/EnderDragonEntity;)V",
-            at=@At(
-                    shift= At.Shift.AFTER,
-                    value="FIELD",
-                    target="Lnet/minecraft/entity/boss/dragon/EnderDragonFight;dragonKilled:Z"
+            method = "dragonKilled(Lnet/minecraft/entity/boss/dragon/EnderDragonEntity;)V",
+            at = @At(
+                    shift = At.Shift.AFTER,
+                    value = "FIELD",
+                    target = "Lnet/minecraft/entity/boss/dragon/EnderDragonFight;dragonKilled:Z"
             )
     )
     public void dragonKilled(EnderDragonEntity dragon, CallbackInfo ci) {

@@ -14,21 +14,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntity_endPortalEffectsMixin extends PlayerEntity {
 
-    public ServerPlayerEntity_endPortalEffectsMixin(World world, BlockPos pos, float yaw, GameProfile profile) {super(world, pos, yaw, profile);}
-
     ServerPlayerEntity self = (ServerPlayerEntity)(Object)this;
+
+    public ServerPlayerEntity_endPortalEffectsMixin(World world, BlockPos pos, float yaw, GameProfile profile) {
+        super(world, pos, yaw, profile);
+    }
 
 
     @Inject(
-            method= "copyFrom(Lnet/minecraft/server/network/ServerPlayerEntity;Z)V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/server/network/ServerPlayerEntity;setHealth(F)V",
-                    shift= At.Shift.AFTER
-            ))
+            method = "copyFrom(Lnet/minecraft/server/network/ServerPlayerEntity;Z)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;setHealth(F)V",
+                    shift = At.Shift.AFTER
+            )
+    )
     public void copyFrom(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
-        if (CFSettings.endPortalRemovesEffectsFix) {
-            self.activeStatusEffects.putAll(oldPlayer.activeStatusEffects);
-        }
+        if (CFSettings.endPortalRemovesEffectsFix) self.activeStatusEffects.putAll(oldPlayer.activeStatusEffects);
     }
 }

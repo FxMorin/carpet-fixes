@@ -25,11 +25,14 @@ public class AbstractRailBlock_duplicationMixin {
             require = 1,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/AbstractRailBlock;updateBlockState(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V"
+                    target = "Lnet/minecraft/block/AbstractRailBlock;updateBlockState(" +
+                            "Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V"
             ),
             cancellable = true
     )
-    private void IfRailIsSetCorrectly(BlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos, boolean moved, CallbackInfo ci) {
+    private void IfRailIsSetCorrectly(BlockState state, World world, BlockPos pos, Block block,
+                                      BlockPos neighborPos, boolean moved, CallbackInfo ci) {
         if (CFSettings.railDuplicationFix && !(world.getBlockState(pos).getBlock() instanceof AbstractRailBlock)) {
             ci.cancel();
         }

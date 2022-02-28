@@ -21,7 +21,7 @@ public class Explosion_worldBorderMixin {
             )
     )
     public boolean collectBlocksAndDamageEntities(World instance, BlockPos pos) {
-        if (CFSettings.explosionsBypassWorldBorderFix) return Utils.isInModifiableLimit(instance,pos);
+        if (CFSettings.explosionsBypassWorldBorderFix) return Utils.isInModifiableLimit(instance, pos);
         return instance.isInBuildLimit(pos);
     }
 }

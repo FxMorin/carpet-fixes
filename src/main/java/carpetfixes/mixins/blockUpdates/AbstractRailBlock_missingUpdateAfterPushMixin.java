@@ -25,20 +25,26 @@ public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Bloc
      */
 
 
+    @Shadow
+    public abstract Property<RailShape> getShapeProperty();
+
+    @Shadow
+    @Final
+    private boolean allowCurves;
+
     public AbstractRailBlock_missingUpdateAfterPushMixin(Settings settings) {
         super(settings);
     }
 
-    @Shadow public abstract Property<RailShape> getShapeProperty();
-    @Shadow @Final private boolean allowCurves;
-
 
     @Inject(
-            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
+    protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
+                                    BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CFSettings.railMissingUpdateAfterPushFix) {
             if (!oldState.isOf(state.getBlock())) {
                 if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);

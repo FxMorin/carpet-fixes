@@ -14,14 +14,16 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class PistonBlock_movableLightMixin {
 
     @Redirect(
-            method = "isMovable(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;ZLnet/minecraft/util/math/Direction;)Z",
+            method = "isMovable(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;" +
+                    "ZLnet/minecraft/util/math/Direction;)Z",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;getHardness(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)F"
+                    target = "Lnet/minecraft/block/BlockState;" +
+                            "getHardness(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)F"
             )
     )
-    private static float movableLight(BlockState instance, BlockView blockView, BlockPos blockPos) {
-        if (CFSettings.parityMovableLightBlocks && instance.getBlock() == Blocks.LIGHT) return 0;
-        return instance.getHardness(blockView, blockPos);
+    private static float movableLight(BlockState state, BlockView view, BlockPos pos) {
+        return CFSettings.parityMovableLightBlocks && state.isOf(Blocks.LIGHT) ? 0 : state.getHardness(view, pos);
     }
 }

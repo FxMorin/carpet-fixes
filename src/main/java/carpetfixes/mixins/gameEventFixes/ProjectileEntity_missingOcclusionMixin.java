@@ -20,25 +20,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ProjectileEntity.class)
 public abstract class ProjectileEntity_missingOcclusionMixin extends Entity {
 
-    @Shadow public abstract @Nullable Entity getOwner();
-
     public ProjectileEntity_missingOcclusionMixin(EntityType<?> type, World world) {
         super(type, world);
     }
+
+    @Shadow
+    public abstract @Nullable Entity getOwner();
 
 
     @Inject(
             method = "onCollision(Lnet/minecraft/util/hit/HitResult;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/projectile/ProjectileEntity;emitGameEvent(Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/entity/Entity;)V"
+                    target = "Lnet/minecraft/entity/projectile/ProjectileEntity;" +
+                            "emitGameEvent(Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/entity/Entity;)V"
             )
     )
     protected void onEmittingGaveEvent(HitResult hitResult, CallbackInfo ci) {
         if (CFSettings.projectileMissingOcclusionFix && hitResult.getType() == HitResult.Type.BLOCK) {
-            if (this.world.getBlockState(new BlockPos(hitResult.getPos())).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
+            if (this.world.getBlockState(new BlockPos(hitResult.getPos())).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS))
                 return;
-            }
         }
         this.emitGameEvent(GameEvent.PROJECTILE_LAND, this.getOwner());
     }
@@ -48,7 +49,8 @@ public abstract class ProjectileEntity_missingOcclusionMixin extends Entity {
             method = "onCollision(Lnet/minecraft/util/hit/HitResult;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/projectile/ProjectileEntity;emitGameEvent(Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/entity/Entity;)V"
+                    target = "Lnet/minecraft/entity/projectile/ProjectileEntity;" +
+                            "emitGameEvent(Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/entity/Entity;)V"
             )
     )
     protected void cancelEmitGameEvent(ProjectileEntity instance, GameEvent gameEvent, Entity entity) {}

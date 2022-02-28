@@ -19,23 +19,31 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ChestBlock.class)
 public class ChestBlock_worldBorderMixin {
 
-    @Shadow @Final public static DirectionProperty FACING;
-    @Shadow @Final public static EnumProperty<ChestType> CHEST_TYPE;
+    @Shadow
+    @Final
+    public static DirectionProperty FACING;
+
+    @Shadow
+    @Final
+    public static EnumProperty<ChestType> CHEST_TYPE;
 
     ChestBlock self = (ChestBlock)(Object)this;
 
 
     @Inject(
-            method= "getNeighborChestDirection(Lnet/minecraft/item/ItemPlacementContext;Lnet/minecraft/util/math/Direction;)Lnet/minecraft/util/math/Direction;",
+            method= "getNeighborChestDirection(Lnet/minecraft/item/ItemPlacementContext;" +
+                    "Lnet/minecraft/util/math/Direction;)Lnet/minecraft/util/math/Direction;",
             at=@At("HEAD"),
             cancellable = true
     )
-    private void getNeighborChestDirection(ItemPlacementContext ctx, Direction dir, CallbackInfoReturnable<Direction> cir) {
+    private void getNeighborChestDirection(ItemPlacementContext ctx, Direction dir,
+                                           CallbackInfoReturnable<Direction> cir) {
         if (CFSettings.chestUsablePastWorldBorderFix) {
             BlockPos blockPos = ctx.getBlockPos().offset(dir);
             if (!ctx.getWorld().getWorldBorder().contains(blockPos)) {
                 BlockState blockState = ctx.getWorld().getBlockState(blockPos);
-                cir.setReturnValue(blockState.isOf(self) && blockState.get(CHEST_TYPE) == ChestType.SINGLE ? blockState.get(FACING) : null);
+                if (blockState.isOf(self) && blockState.get(CHEST_TYPE) == ChestType.SINGLE)
+                    cir.setReturnValue(blockState.get(FACING));
             }
             cir.setReturnValue(null);
         }

@@ -14,7 +14,9 @@ public class TripwireBlock_stringDupeMixin {
             method = "update",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/TripwireHookBlock;update(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;ZZILnet/minecraft/block/BlockState;)V"
+                    target = "Lnet/minecraft/block/TripwireHookBlock;update(Lnet/minecraft/world/World;" +
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;" +
+                            "ZZILnet/minecraft/block/BlockState;)V"
             ),
             index = 5
     )

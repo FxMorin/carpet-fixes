@@ -20,8 +20,11 @@ public class Entity_directionalBlockSlowdownMixin {
      */
 
 
-    @Shadow public float fallDistance;
-    @Shadow protected Vec3d movementMultiplier;
+    @Shadow
+    public float fallDistance;
+
+    @Shadow
+    protected Vec3d movementMultiplier;
 
 
     @Inject(

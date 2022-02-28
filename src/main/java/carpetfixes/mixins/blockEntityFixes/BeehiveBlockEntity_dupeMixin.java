@@ -16,7 +16,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BeehiveBlockEntity.class)
 public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
 
-    public BeehiveBlockEntity_dupeMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {super(type, pos, state);}
+    public BeehiveBlockEntity_dupeMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
+    }
 
 
     @Inject(
@@ -25,6 +27,9 @@ public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
             cancellable = true
     )
     public void tryEnterHiveIfLoaded(Entity entity, boolean hasNectar, int ticksInHive, CallbackInfo ci) {
-        if (CFSettings.beeDupeFix && !entity.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.pos.getX()),ChunkSectionPos.getSectionCoord(this.pos.getY()))) ci.cancel();
+        if (CFSettings.beeDupeFix && !entity.world.isChunkLoaded(
+                ChunkSectionPos.getSectionCoord(this.pos.getX()),
+                ChunkSectionPos.getSectionCoord(this.pos.getY())
+        )) ci.cancel();
     }
 }

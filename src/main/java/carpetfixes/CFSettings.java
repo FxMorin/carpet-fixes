@@ -565,15 +565,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes saved worlds corrupting due to missing structures",
-            extra = {"Make sure to always make a backup before using this, since its not been tested in the recent versions",
-                    "[MC-194811](https://bugs.mojang.com/browse/MC-194811)"},
-            category = {BUGFIX,CRASHFIX,EXPERIMENTAL,VANILLA}
-    )
-    public static boolean missingStructureCorruptionFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes fluids being able to instantly flow!",
             extra = "[MC-215636](https://bugs.mojang.com/browse/MC-215636)",
             category = BUGFIX

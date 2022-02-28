@@ -15,25 +15,28 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class EndermanEntity$PlaceBlockGoal_updatePlaceMixin {
 
     /**
-     * Add the onPlaced() condition after the placeBlock which will make sure
-     * that blocks placed by the enderman will be able to trigger special events
-     * such as summoning a wither
+     * Add the onPlaced() condition after the placeBlock which will make sure that blocks placed by the enderman
+     * will be able to trigger special events such as summoning a wither
      */
 
 
-    @Shadow @Final private EndermanEntity enderman;
+    @Shadow
+    @Final
+    private EndermanEntity enderman;
 
 
     @Redirect(
-            method= "tick()V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
-            ))
+            method = "tick()V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;" +
+                            "Lnet/minecraft/block/BlockState;I)Z"
+            )
+    )
     public boolean placeCorrectly(World world, BlockPos pos, BlockState state, int flags){
         if (CFSettings.endermanDontUpdateOnPlaceFix) {
             if (world.setBlockState(pos, state, 3)) {
-                state.getBlock().onPlaced(world, pos, state, this.enderman, state.getBlock().asItem().getDefaultStack());
+                state.getBlock().onPlaced(world, pos, state, enderman, state.getBlock().asItem().getDefaultStack());
                 return true;
             }
             return false;

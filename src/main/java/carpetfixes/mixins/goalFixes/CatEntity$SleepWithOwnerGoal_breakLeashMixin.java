@@ -14,27 +14,29 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class CatEntity$SleepWithOwnerGoal_breakLeashMixin {
 
     /**
-     * Basically cats can break there leads since they teleport within 10 blocks around
-     * the player when gifting. The fix is pretty easy, if the cat is on a lead then
-     * teleport it around the lead so that we don't accidentally break the lead and risk
-     * someone's pet cat escaping.
+     * Basically cats can break there leads since they teleport within 10 blocks around the player when gifting.
+     * The fix is pretty easy, if the cat is on a lead than teleport it around the lead so that we don't accidentally
+     * break the lead and risk someone's pet cat escaping.
      */
 
 
-    @Shadow @Final private CatEntity cat;
+    @Shadow
+    @Final
+    private CatEntity cat;
 
 
     @Redirect(
             method = "dropMorningGifts()V",
             at = @At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/util/math/BlockPos$Mutable;set(Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/BlockPos$Mutable;",
-                    ordinal=0
-            ))
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/util/math/BlockPos$Mutable;set(Lnet/minecraft/util/math/Vec3i;)" +
+                            "Lnet/minecraft/util/math/BlockPos$Mutable;",
+                    ordinal = 0
+            )
+    )
     public BlockPos.Mutable SetCorrectly(BlockPos.Mutable mutable, Vec3i pos) {
-        if (CFSettings.catsBreakLeadsDuringGiftFix && this.cat.isLeashed()) {
+        if (CFSettings.catsBreakLeadsDuringGiftFix && this.cat.isLeashed() && this.cat.getHoldingEntity() != null)
             pos = this.cat.getHoldingEntity().getBlockPos();
-        }
         return mutable.set(pos);
     }
 }

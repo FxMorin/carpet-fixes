@@ -13,19 +13,23 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(TridentEntity.class)
 public abstract class TridentEntity_voidLoyaltyMixin extends Entity {
 
-    @Shadow private boolean dealtDamage;
-    @Shadow @Final private static TrackedData<Byte> LOYALTY;
+    @Shadow
+    private boolean dealtDamage;
 
-    public TridentEntity_voidLoyaltyMixin(EntityType<?> type, World world) {super(type, world);}
+    @Shadow
+    @Final
+    private static TrackedData<Byte> LOYALTY;
+
+    public TridentEntity_voidLoyaltyMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
     @Override
     public void attemptTickInVoid() {
         if (this.getY() < (double) (this.world.getBottomY() - 64)) {
             if (CFSettings.voidKillsLoyaltyTridentsFix && this.dataTracker.get(LOYALTY) > 0) {
                 this.dealtDamage = true;
-                if (this.getY() < (double) (this.world.getBottomY() - 128)) {
-                    this.tickInVoid();
-                }
+                if (this.getY() < (double) (this.world.getBottomY() - 128)) this.tickInVoid();
             } else {
                 this.tickInVoid();
             }

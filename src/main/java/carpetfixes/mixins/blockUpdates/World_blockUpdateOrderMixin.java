@@ -14,10 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class World_blockUpdateOrderMixin {
 
     /**
-     * This fix is based on the block update order. Vanilla block update order is XYZ,
-     * resulting in directional behaviour. In this fix we change the block update order to XZY,
-     * which fixes all directional problems based on block updates.
+     * This fix is based on the block update order. Vanilla block update order is XYZ, resulting in directional
+     * behaviour. In this fix we change the block update order to XZY, which fixes all directional problems based
+     * on block updates.
      */
+
 
     private final World self = (World)(Object)this;
 
@@ -28,16 +29,17 @@ public class World_blockUpdateOrderMixin {
             cancellable = true
     )
     private void updateNeighborsAlwaysWithBetterDirection(BlockPos pos, Block block, CallbackInfo ci) {
-        if (BlockUpdateUtils.canUpdateNeighborsAlwaysWithOrder(self,pos,block)) ci.cancel();
+        if (BlockUpdateUtils.canUpdateNeighborsAlwaysWithOrder(self, pos, block)) ci.cancel();
     }
 
 
     @Inject(
-            method = "updateNeighborsExcept(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/Direction;)V",
+            method = "updateNeighborsExcept(Lnet/minecraft/util/math/BlockPos;" +
+                    "Lnet/minecraft/block/Block;Lnet/minecraft/util/math/Direction;)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void updateNeighborsExceptWithBetterDirection(BlockPos pos, Block block, Direction direction, CallbackInfo ci) {
-        if (BlockUpdateUtils.canUpdateNeighborsExceptWithOrder(self,pos,block,direction)) ci.cancel();
+    private void updateNeighborsExceptWithBetterDirection(BlockPos pos, Block block, Direction dir, CallbackInfo ci) {
+        if (BlockUpdateUtils.canUpdateNeighborsExceptWithOrder(self, pos, block, dir)) ci.cancel();
     }
 }

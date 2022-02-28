@@ -1,6 +1,7 @@
 package carpetfixes.mixins.dupeFixes;
 
 import carpetfixes.CFSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PistonBlock;
@@ -27,14 +28,19 @@ import java.util.Map;
 
 @Mixin(PistonBlock.class)
 public abstract class PistonBlock_tntDupingFixMixin {
-    private final ThreadLocal<Boolean> isDupeFixed = ThreadLocal.withInitial(() -> false);
 
     /**
-     * Set all blocks to be moved to air without any kind of update first (yeeted attached block updater like dead coral),
+     * Set all blocks to be moved to air without any kind of update first (yeeted block updaters like dead coral),
      * then let vanilla codes to set the air blocks into b36
      * Before setting a block to air, store the block state right before setting it to air to make sure no block desync
      * will happen (yeeted onRemoved block updater like lit observer).
      */
+
+
+    private final ThreadLocal<Boolean> isDupeFixed = ThreadLocal.withInitial(() -> false);
+
+
+    @SuppressWarnings("all")
     @Inject(
         method = "move",
         slice = @Slice(
@@ -46,12 +52,16 @@ public abstract class PistonBlock_tntDupingFixMixin {
         at = @At(
             value = "INVOKE",
             target = "Ljava/util/List;size()I",
-            shift = At.Shift.AFTER,  // to make sure this will be injected after onMove in PistonBlock_movableTEMixin in fabric-carpet
+            shift = At.Shift.AFTER,  // To make sure this will be injected after onMove in movableBEMixin in carpet
             ordinal = 0
         ),
         locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void setAllToBeMovedBlockToAirFirst(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map<BlockPos, BlockState> map, List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3, BlockState blockStates[], Direction direction, int j) {
+    private void setAllToBeMovedBlockToAirFirst(World world, BlockPos pos, Direction dir, boolean retract,
+                                                CallbackInfoReturnable<Boolean> cir, BlockPos blockPos,
+                                                PistonHandler pistonHandler, Map<BlockPos, BlockState> map,
+                                                List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3,
+                                                BlockState blockStates[], Direction direction, int j) {
         // just in case the rule gets changed halfway
         this.isDupeFixed.set(CFSettings.pistonDupingFix);
 
@@ -63,10 +73,14 @@ public abstract class PistonBlock_tntDupingFixMixin {
                 BlockState toBeMovedBlockState = world.getBlockState(toBeMovedBlockPos);
                 // 68 is vanilla flag, 68 = 4 | 64
                 // Added 16 to the vanilla flag, resulting in no block update or state update
-                // Added 2 to the vanilla flag, so at those pos where will be air the listeners can be updated correctly
+                // Added 2 to the vanilla flag, so at those pos that will be air the listeners can be updated correctly
                 // Although this cannot yeet onRemoved updaters, but it can prevent attached blocks from breaking,
                 // which is nicer than just let them break imo
-                world.setBlockState(toBeMovedBlockPos, Blocks.AIR.getDefaultState(), 2 | 4 | 16 | 64);
+                world.setBlockState(
+                        toBeMovedBlockPos,
+                        Blocks.AIR.getDefaultState(),
+                        Block.NOTIFY_LISTENERS | Block.NO_REDRAW | Block.FORCE_STATE | Block.MOVED
+                );
                 // Update containers which contain the old state
                 list2.set(l, toBeMovedBlockState);
                 // map stores block pos and block state of moved blocks which changed into air due to block being moved
@@ -77,18 +91,21 @@ public abstract class PistonBlock_tntDupingFixMixin {
 
     /**
      * Just to make sure blockStates array contains the correct values
-     * But ..., when reading states from it, mojang itself inverts the order and reads the wrong state releative to the blockpos
+     * But ..., when reading states from it, mojang itself inverts the order and reads the wrong state
+     * relative to the blockpos
      * When assigning:
      *   blockStates = (list concat with list3 in order).map(world::getBlockState)
      * When reading:
      *   match list3[list3.size()-1] with blockStates[0]
      *   match list3[list3.size()-2] with blockStates[1]
      *   ...
-     * The block pos matches wrongly with block state, so mojang uses the wrong block as the source block to emit block updates :thonk:
+     * The block pos matches wrongly with block state, so mojang uses the wrong block as the source block to
+     * emit block updates :thonk:
      * EDITED in 1.16.4: mojang has fixed it now
      *
      * Whatever, just make it behave like vanilla
      */
+    @SuppressWarnings("all")
     @Inject(
         method = "move",
         slice = @Slice(
@@ -104,7 +121,12 @@ public abstract class PistonBlock_tntDupingFixMixin {
         ),
         locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void makeSureStatesInBlockStatesIsCorrect(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map<BlockPos, BlockState> map, List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3, BlockState[] blockStates, BlockState blockState6) {
+    private void makeSureStatesInBlockStatesIsCorrect(World world, BlockPos pos, Direction dir, boolean retract,
+                                                      CallbackInfoReturnable<Boolean> cir, BlockPos blockPos,
+                                                      PistonHandler pistonHandler, Map<BlockPos, BlockState> map,
+                                                      List<BlockPos> list, List<BlockState> list2,
+                                                      List<BlockPos> list3, BlockState[] blockStates,
+                                                      BlockState blockState6) {
         if (this.isDupeFixed.get()) {
             // since blockState8 = world.getBlockState(blockPos4) always return AIR due to the changes above
             // some states value in blockStates array need to be corrected

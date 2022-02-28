@@ -11,7 +11,8 @@ public class StatusEffectInstance_nbtSuffixMixin {
 
 
     @ModifyArg(
-            method = "fromNbt(Lnet/minecraft/entity/effect/StatusEffect;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/entity/effect/StatusEffectInstance;",
+            method = "fromNbt(Lnet/minecraft/entity/effect/StatusEffect;Lnet/minecraft/nbt/NbtCompound;)" +
+                    "Lnet/minecraft/entity/effect/StatusEffectInstance;",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/nbt/NbtCompound;contains(Ljava/lang/String;I)Z"
@@ -19,9 +20,7 @@ public class StatusEffectInstance_nbtSuffixMixin {
             index = 1
     )
     private static int incorrectNbtCheck(int value) {
-        if (value == 1) {
-            return CFSettings.incorrectNbtChecks ? 99 : 1;
-        }
+        if (value == 1) return CFSettings.incorrectNbtChecks ? 99 : 1;
         return value;
     }
 }

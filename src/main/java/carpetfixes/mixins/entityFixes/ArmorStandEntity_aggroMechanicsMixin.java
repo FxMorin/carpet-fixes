@@ -11,9 +11,12 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(ArmorStandEntity.class)
 public abstract class ArmorStandEntity_aggroMechanicsMixin extends LivingEntity {
 
-    @Shadow public abstract boolean isMarker();
+    @Shadow
+    public abstract boolean isMarker();
 
-    protected ArmorStandEntity_aggroMechanicsMixin(EntityType<? extends LivingEntity> entityType, World world) {super(entityType, world);}
+    protected ArmorStandEntity_aggroMechanicsMixin(EntityType<? extends LivingEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
     //Use the marker entity if you want something which acts exactly like an armor stand set to isMarker or isInvisible
     //Also, please stop making "optimizations" which removed behaviour or limit what's possible
@@ -26,6 +29,7 @@ public abstract class ArmorStandEntity_aggroMechanicsMixin extends LivingEntity 
 
     @Override
     public boolean isPartOfGame() {
-        return (CFSettings.armorStandMissingFunctionalityFix && !this.isMarker()) || (!this.isInvisible()) && !this.isMarker();
+        return (CFSettings.armorStandMissingFunctionalityFix && !this.isMarker()) ||
+                (!this.isInvisible()) && !this.isMarker();
     }
 }

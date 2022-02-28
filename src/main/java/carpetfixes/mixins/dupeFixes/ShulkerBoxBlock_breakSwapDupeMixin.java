@@ -17,14 +17,17 @@ public class ShulkerBoxBlock_breakSwapDupeMixin {
 
     /**
      * Clear the shulker box inventory after its stacks are dropped
-     * This might break custom loot tables that intentionally duplicate items
-     * but fixes other dupes in vanilla
+     * This might break custom loot tables that intentionally duplicate items but fixes other dupes in vanilla
      */
 
-    @Inject(method = "method_10524", at = @At("TAIL"), remap = false)
-    private static void clearAfterGetDroppedStack(ShulkerBoxBlockEntity shulkerBox, LootContext lootContext, Consumer<ItemStack> consumer, CallbackInfo ci) {
-        if (CFSettings.breakSwapGeneralItemDupeFix) {
-            shulkerBox.clear();
-        }
+
+    @Inject(
+            method = "method_10524",
+            at = @At("TAIL"),
+            remap = false
+    )
+    private static void clearAfterGetDroppedStack(ShulkerBoxBlockEntity shulkerBox, LootContext lootContext,
+                                                  Consumer<ItemStack> consumer, CallbackInfo ci) {
+        if (CFSettings.breakSwapGeneralItemDupeFix) shulkerBox.clear();
     }
 }

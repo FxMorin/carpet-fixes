@@ -17,16 +17,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DetectorRailBlock.class)
 public class DetectorRailBlock_comparatorMixin {
 
-    @Shadow @Final public static BooleanProperty POWERED;
+    @Shadow
+    @Final
+    public static BooleanProperty POWERED;
 
     DetectorRailBlock self = (DetectorRailBlock)(Object)this;
 
 
     @Inject(
-            method= "updatePoweredStatus(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",
+            method= "updatePoweredStatus(Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",
             at = @At(
                     value="INVOKE",
-                    target="Lnet/minecraft/world/World;updateComparators(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
+                    target="Lnet/minecraft/world/World;" +
+                            "updateComparators(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
                     shift= At.Shift.BEFORE,
                     ordinal = 0
             ),
@@ -36,14 +40,14 @@ public class DetectorRailBlock_comparatorMixin {
         if (CFSettings.uselessDetectorRailUpdateFix) {
             if (state.get(POWERED)) {
                 if (CFSettings.detectorRailOffsetUpdateFix) {
-                    Utils.updateComparatorsRespectFacing(world,pos,self);
+                    Utils.updateComparatorsRespectFacing(world, pos, self);
                 } else {
                     world.updateComparators(pos, self);
                 }
             }
             ci.cancel();
         } else if (CFSettings.detectorRailOffsetUpdateFix) {
-            Utils.updateComparatorsRespectFacing(world,pos,self);
+            Utils.updateComparatorsRespectFacing(world, pos, self);
             ci.cancel();
         }
     }

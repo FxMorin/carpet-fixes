@@ -12,9 +12,11 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(WitherSkullEntity.class)
 public abstract class WitherSkullEntity_chargedMixin extends ExplosiveProjectileEntity {
 
-    @Shadow public abstract boolean isCharged();
+    @Shadow
+    public abstract boolean isCharged();
 
-    @Shadow public abstract void setCharged(boolean charged);
+    @Shadow
+    public abstract void setCharged(boolean charged);
 
     protected WitherSkullEntity_chargedMixin(EntityType<? extends ExplosiveProjectileEntity> entityType, World world) {
         super(entityType, world);

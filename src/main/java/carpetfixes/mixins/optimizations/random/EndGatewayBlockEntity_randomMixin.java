@@ -14,7 +14,8 @@ public class EndGatewayBlockEntity_randomMixin {
 
 
     @Redirect(
-            method = "createPortal(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/EndGatewayFeatureConfig;)V",
+            method = "createPortal(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;" +
+                    "Lnet/minecraft/world/gen/feature/EndGatewayFeatureConfig;)V",
             require = 0,
             at = @At(
                     value = "NEW",

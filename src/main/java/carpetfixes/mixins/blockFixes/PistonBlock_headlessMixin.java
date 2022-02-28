@@ -23,24 +23,37 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PistonBlock_headlessMixin extends FacingBlock {
 
     /**
-     * Prevents Headless pistons from existing, since headless pistons are able to break any
-     * block in the game. This fix prevents should prevent being able to break most blocks such as bedrock!
+     * Prevents Headless pistons from existing, since headless pistons are able to break any block in the game.
+     * This fix prevents should prevent being able to break most blocks such as bedrock!
      */
 
 
-    @Shadow @Final public static BooleanProperty EXTENDED;
-    @Shadow @Final private boolean sticky;
+    @Shadow
+    @Final
+    public static BooleanProperty EXTENDED;
 
-    protected PistonBlock_headlessMixin(Settings settings) { super(settings); }
+    @Shadow
+    @Final
+    private boolean sticky;
 
-    @Shadow @Final private boolean shouldExtend(World world, BlockPos pos, Direction pistonFace) { return true; };
+    protected PistonBlock_headlessMixin(Settings settings) {
+        super(settings);
+    }
+
+    @Shadow
+    @Final
+    private boolean shouldExtend(World world, BlockPos pos, Direction pistonFace) {
+        return true;
+    }
 
 
     @Inject(
-            method= "tryMove(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",
+            method= "tryMove(Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",
             at=@At(
                     value="INVOKE_ASSIGN",
-                    target="Lnet/minecraft/block/PistonBlock;shouldExtend(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;)Z",
+                    target="Lnet/minecraft/block/PistonBlock;shouldExtend(Lnet/minecraft/world/World;" +
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;)Z",
                     shift= At.Shift.AFTER
             ),
             cancellable = true
@@ -49,9 +62,15 @@ public abstract class PistonBlock_headlessMixin extends FacingBlock {
         if (CFSettings.headlessPistonFix && state.get(EXTENDED)) {
             Direction direction = state.get(FACING);
             BlockState blockState = world.getBlockState(pos.offset(direction));
-            if (this.shouldExtend(world, pos, direction) && !blockState.isOf(Blocks.MOVING_PISTON) && !blockState.isOf(Blocks.PISTON_HEAD)) {
+            if (this.shouldExtend(world, pos, direction) &&
+                    !blockState.isOf(Blocks.MOVING_PISTON) &&
+                    !blockState.isOf(Blocks.PISTON_HEAD)) {
                 world.removeBlock(pos, false);
-                ItemEntity itemEntity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.sticky ? Items.STICKY_PISTON : Items.PISTON));
+                ItemEntity itemEntity = new ItemEntity(
+                        world,
+                        pos.getX(), pos.getY(), pos.getZ(),
+                        new ItemStack(this.sticky ? Items.STICKY_PISTON : Items.PISTON)
+                );
                 itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);
                 ci.cancel();

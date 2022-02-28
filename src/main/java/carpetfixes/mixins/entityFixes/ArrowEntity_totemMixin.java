@@ -19,11 +19,15 @@ public abstract class ArrowEntity_totemMixin {
             method = "onHit",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/LivingEntity;addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z"
+                    target = "Lnet/minecraft/entity/LivingEntity;addStatusEffect(" +
+                            "Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z"
             )
     )
     protected boolean onHit(LivingEntity instance, StatusEffectInstance effect, Entity source) {
-        if (CFSettings.arrowEffectsBypassTotemsFix && effect.getEffectType() == StatusEffects.INSTANT_DAMAGE && ((EntityUsedTotem)instance).usedTotem()) return false;
+        if (CFSettings.arrowEffectsBypassTotemsFix &&
+                effect.getEffectType() == StatusEffects.INSTANT_DAMAGE &&
+                ((EntityUsedTotem)instance).hasUsedTotem()
+        ) return false;
         return instance.addStatusEffect(effect,source);
     }
 }

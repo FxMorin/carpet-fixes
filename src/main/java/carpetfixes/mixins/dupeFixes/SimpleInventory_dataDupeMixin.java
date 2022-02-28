@@ -13,17 +13,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(SimpleInventory.class)
 public class SimpleInventory_dataDupeMixin {
 
-    @Shadow public void setStack(int slot, ItemStack stack) {}
-    @Shadow public int size() {
+    @Shadow
+    public void setStack(int slot, ItemStack stack) {}
+
+    @Shadow
+    public int size() {
         return 0;
     }
 
-    @Inject(method= "readNbtList(Lnet/minecraft/nbt/NbtList;)V",at=@At("HEAD"))
+
+    @Inject(
+            method = "readNbtList(Lnet/minecraft/nbt/NbtList;)V",
+            at = @At("HEAD")
+    )
     public void readNbtListWithoutDupe(NbtList nbtList, CallbackInfo ci) {
-        if (CFSettings.nbtDataDupeFix) {
-            for(int j = 0; j < this.size(); ++j) {
-                this.setStack(j, ItemStack.EMPTY);
-            }
-        }
+        if (CFSettings.nbtDataDupeFix)
+            for(int j = 0; j < this.size(); ++j) this.setStack(j, ItemStack.EMPTY);
     }
 }

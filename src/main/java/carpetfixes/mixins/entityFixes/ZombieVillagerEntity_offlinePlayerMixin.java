@@ -23,22 +23,28 @@ import java.util.UUID;
 @Mixin(ZombieVillagerEntity.class)
 public class ZombieVillagerEntity_offlinePlayerMixin {
 
+    @Shadow
+    private @Nullable UUID converter;
 
-    @Shadow private @Nullable UUID converter;
 
-
+    @SuppressWarnings("all")
     @Inject(
             method = "finishConversion(Lnet/minecraft/server/world/ServerWorld;)V",
             locals = LocalCapture.CAPTURE_FAILHARD,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/world/ServerWorld;getPlayerByUuid(Ljava/util/UUID;)Lnet/minecraft/entity/player/PlayerEntity;",
+                    target = "Lnet/minecraft/server/world/ServerWorld;" +
+                            "getPlayerByUuid(Ljava/util/UUID;)Lnet/minecraft/entity/player/PlayerEntity;",
                     shift = At.Shift.AFTER
             )
     )
-    private void allowHandlingWithoutPlayer(ServerWorld world, CallbackInfo ci, VillagerEntity villagerEntity, EquipmentSlot var3[], int var4, int var5) {
+    private void allowHandlingWithoutPlayer(ServerWorld world, CallbackInfo ci, VillagerEntity villagerEntity,
+                                            EquipmentSlot var3[], int var4, int var5) {
         if (CFSettings.villagerDiscountIgnoresOfflinePlayersFix) {
-            ((VillagerEntityInteraction)villagerEntity).onInteractionWith(EntityInteraction.ZOMBIE_VILLAGER_CURED, this.converter);
+            ((VillagerEntityInteraction)villagerEntity).onInteractionWith(
+                    EntityInteraction.ZOMBIE_VILLAGER_CURED,
+                    this.converter
+            );
         }
     }
 
@@ -47,10 +53,14 @@ public class ZombieVillagerEntity_offlinePlayerMixin {
             method = "finishConversion(Lnet/minecraft/server/world/ServerWorld;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/world/ServerWorld;handleInteraction(Lnet/minecraft/entity/EntityInteraction;Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/InteractionObserver;)V"
+                    target = "Lnet/minecraft/server/world/ServerWorld;" +
+                            "handleInteraction(Lnet/minecraft/entity/EntityInteraction;Lnet/minecraft/entity/Entity;" +
+                            "Lnet/minecraft/entity/InteractionObserver;)V"
             )
     )
-    private void dontHandleInteraction(ServerWorld instance, EntityInteraction interaction, Entity entity, InteractionObserver observer) {
-        if (!CFSettings.villagerDiscountIgnoresOfflinePlayersFix) instance.handleInteraction(interaction, entity, observer);
+    private void dontHandleInteraction(ServerWorld instance, EntityInteraction interaction,
+                                       Entity entity, InteractionObserver observer) {
+        if (!CFSettings.villagerDiscountIgnoresOfflinePlayersFix)
+            instance.handleInteraction(interaction, entity, observer);
     }
 }

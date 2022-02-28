@@ -14,7 +14,8 @@ public class GeneratorOptions_randomMixin {
 
 
     @Redirect(
-            method = "getDefaultOptions(Lnet/minecraft/util/registry/DynamicRegistryManager;)Lnet/minecraft/world/gen/GeneratorOptions;",
+            method = "getDefaultOptions(Lnet/minecraft/util/registry/DynamicRegistryManager;)" +
+                    "Lnet/minecraft/world/gen/GeneratorOptions;",
             require = 0,
             at = @At(
                     value = "NEW",
@@ -27,7 +28,8 @@ public class GeneratorOptions_randomMixin {
 
 
     @Redirect(
-            method = "fromProperties(Lnet/minecraft/util/registry/DynamicRegistryManager;Ljava/util/Properties;)Lnet/minecraft/world/gen/GeneratorOptions;",
+            method = "fromProperties(Lnet/minecraft/util/registry/DynamicRegistryManager;Ljava/util/Properties;)" +
+                    "Lnet/minecraft/world/gen/GeneratorOptions;",
             require = 0,
             at = @At(
                     value = "NEW",

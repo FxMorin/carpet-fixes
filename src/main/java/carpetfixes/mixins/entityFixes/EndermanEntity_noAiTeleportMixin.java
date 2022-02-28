@@ -16,8 +16,7 @@ public class EndermanEntity_noAiTeleportMixin {
             cancellable = true
     )
     private void cancelTeleportNoAI(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.endermanTeleportWithoutAIFix && ((EndermanEntity)(Object)this).isAiDisabled()) {
+        if (CFSettings.endermanTeleportWithoutAIFix && ((EndermanEntity)(Object)this).isAiDisabled())
             cir.setReturnValue(false);
-        }
     }
 }

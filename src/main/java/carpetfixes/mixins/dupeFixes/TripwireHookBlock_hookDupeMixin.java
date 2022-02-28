@@ -17,11 +17,15 @@ import static net.minecraft.block.TripwireHookBlock.*;
 @Mixin(TripwireHookBlock.class)
 public abstract class TripwireHookBlock_hookDupeMixin extends Block {
 
-    @Shadow protected abstract void playSound(World world, BlockPos pos, boolean attached, boolean on, boolean detached, boolean off);
+    public TripwireHookBlock_hookDupeMixin(Settings settings) {
+        super(settings);
+    }
 
-    @Shadow protected abstract void updateNeighborsOnAxis(World world, BlockPos pos, Direction direction);
+    @Shadow
+    protected abstract void playSound(World w, BlockPos pos, boolean a, boolean on, boolean detached, boolean off);
 
-    public TripwireHookBlock_hookDupeMixin(Settings settings) {super(settings);}
+    @Shadow
+    protected abstract void updateNeighborsOnAxis(World world, BlockPos pos, Direction direction);
 
 
     /**
@@ -29,7 +33,8 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
      * @reason Fix for the tripwire hook duplication bug
      */
     @Overwrite
-    public void update(World world, BlockPos pos, BlockState state, boolean beingRemoved, boolean bl, int i, @Nullable BlockState blockState) {
+    public void update(World world, BlockPos pos, BlockState state, boolean beingRemoved,
+                       boolean bl, int i, @Nullable BlockState blockState) {
         Direction direction = state.get(FACING);
         boolean attached = state.get(ATTACHED);
         boolean powered = state.get(POWERED);
@@ -78,10 +83,12 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
         }
         if (attached != notRemoving) {
             for(int x = 1; x < index; ++x) {
-                BlockPos blockPos2 = pos.offset(direction, x);
-                BlockState blockState2 = blockStates[x];
-                if (blockState2 != null && (!CFSettings.tripwireNotDisarmingFix || world.getBlockState(blockPos2).isOf(this))) {
-                    world.setBlockState(blockPos2, blockState2.with(ATTACHED, notRemoving), Block.NOTIFY_ALL);
+                BlockPos pos2 = pos.offset(direction, x);
+                BlockState state2 = blockStates[x];
+                if (state2 != null) {
+                    if (!CFSettings.tripwireNotDisarmingFix || world.getBlockState(pos2).isOf(this)) {
+                        world.setBlockState(pos2, state2.with(ATTACHED, notRemoving), Block.NOTIFY_ALL);
+                    }
                 }
             }
         }

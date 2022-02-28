@@ -18,6 +18,7 @@ public class MinecraftServer_autosaveDelayMixin {
         return CFSettings.delayBetweenAutoSaves;
     }
 
+    
     @ModifyConstant(
             method = "canExecute(Lnet/minecraft/server/ServerTask;)Z",
             constant = @Constant(intValue = 3) //statusUpdateDelay
@@ -26,6 +27,7 @@ public class MinecraftServer_autosaveDelayMixin {
         return CFSettings.maxTickLatency;
     }
 
+    
     @ModifyConstant(
             method = "tick(Ljava/util/function/BooleanSupplier;)V",
             constant = @Constant(longValue = 5000000000L)

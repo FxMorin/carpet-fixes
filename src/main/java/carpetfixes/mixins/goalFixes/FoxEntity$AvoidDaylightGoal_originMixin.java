@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-@Mixin(targets="net/minecraft/entity/passive/FoxEntity$AvoidDaylightGoal")
+@Mixin(targets = "net/minecraft/entity/passive/FoxEntity$AvoidDaylightGoal")
 public abstract class FoxEntity$AvoidDaylightGoal_originMixin extends EscapeSunlightGoal {
 
     public FoxEntity$AvoidDaylightGoal_originMixin(PathAwareEntity mob, double speed) {

@@ -25,10 +25,10 @@ public class Entity_randomMixin {
     )
     private Random CustomRandom() {
         if (!CFSettings.optimizedRandom) {
-            if (CFSettings.entityRandomCrackingFix) return rand==null ? rand = new Random() : rand;
+            if (CFSettings.entityRandomCrackingFix) return rand == null ? rand = new Random() : rand;
             return new Random();
         }
-        if (CFSettings.entityRandomCrackingFix) return rand==null ? rand = new XoroshiroCustomRandom() : rand;
+        if (CFSettings.entityRandomCrackingFix) return rand == null ? rand = new XoroshiroCustomRandom() : rand;
         return new XoroshiroCustomRandom();
     }
 }

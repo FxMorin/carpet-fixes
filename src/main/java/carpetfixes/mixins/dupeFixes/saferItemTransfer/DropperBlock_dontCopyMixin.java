@@ -17,6 +17,7 @@ public class DropperBlock_dontCopyMixin {
 
     private static ItemStack stack = ItemStack.EMPTY;
 
+
     @Redirect(
             method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V",
             slice = @Slice(
@@ -31,7 +32,8 @@ public class DropperBlock_dontCopyMixin {
                     value = "INVOKE",
                     target = "Lnet/minecraft/item/ItemStack;copy()Lnet/minecraft/item/ItemStack;",
                     ordinal = 0
-            ))
+            )
+    )
     protected ItemStack shouldCopyFirst(ItemStack itemStack) {
         stack = itemStack.copy();
         return CFSettings.saferItemTransfers ? itemStack : stack;
@@ -50,7 +52,8 @@ public class DropperBlock_dontCopyMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/item/ItemStack;copy()Lnet/minecraft/item/ItemStack;"
-            ))
+            )
+    )
     protected ItemStack shouldCopy(ItemStack itemStack) {
         return CFSettings.saferItemTransfers ? stack : itemStack.copy();
     }

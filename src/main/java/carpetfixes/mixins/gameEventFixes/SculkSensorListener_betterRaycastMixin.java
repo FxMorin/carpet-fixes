@@ -26,10 +26,12 @@ public class SculkSensorListener_betterRaycastMixin {
 
 
     @Redirect(
-            method = "isOccluded(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)Z",
+            method = "isOccluded(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
+                    "Lnet/minecraft/util/math/BlockPos;)Z",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;raycast(Lnet/minecraft/world/BlockStateRaycastContext;)Lnet/minecraft/util/hit/BlockHitResult;"
+                    target = "Lnet/minecraft/world/World;raycast(Lnet/minecraft/world/BlockStateRaycastContext;)" +
+                            "Lnet/minecraft/util/hit/BlockHitResult;"
             )
     )
     private BlockHitResult isOccluded(World world, BlockStateRaycastContext context) {

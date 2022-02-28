@@ -2,6 +2,7 @@ package carpetfixes.mixins.optimizations.random;
 
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
+import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
@@ -20,14 +21,19 @@ import java.util.function.Supplier;
 @Mixin(World.class)
 public class World_randomMixin {
 
-    @Mutable @Shadow @Final public Random random;
+    @Mutable
+    @Shadow
+    @Final
+    public Random random;
 
 
     @Inject(
             method = "<init>",
             at = @At("TAIL")
     )
-    private void CustomRandom(MutableWorldProperties properties, RegistryKey registryRef, DimensionType dimensionType, Supplier profiler, boolean isClient, boolean debugWorld, long seed, CallbackInfo ci) {
+    private void CustomRandom(MutableWorldProperties properties, RegistryKey<World> registryRef,
+                              DimensionType dimensionType, Supplier<Profiler> profiler, boolean isClient,
+                              boolean debugWorld, long seed, CallbackInfo ci) {
         if (CFSettings.optimizedRandom) this.random = new XoroshiroCustomRandom();
     }
 }

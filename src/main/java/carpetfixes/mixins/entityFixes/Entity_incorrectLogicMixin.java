@@ -12,13 +12,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class Entity_incorrectLogicMixin {
 
     /**
-     * Bubble columns do some incorrect logic calculations based on the Y velocity being
-     * multiplied by -1 for being onGround. The fix is to not set the entity to be onGround
-     * when in a bubble column.
+     * Bubble columns do some incorrect logic calculations based on the Y velocity being multiplied by -1 for being
+     * onGround. The fix is to not set the entity to be onGround when in a bubble column.
      */
 
 
-    @Shadow public abstract void setOnGround(boolean onGround);
+    @Shadow
+    public abstract void setOnGround(boolean onGround);
 
 
     @Inject(

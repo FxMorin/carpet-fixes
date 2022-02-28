@@ -26,7 +26,11 @@ public class Utils {
             try {
                 Class<?> clazz = Class.forName("net.fabricmc.loader.util.version.VersionPredicateParser");
                 Method matches = clazz.getMethod("matches", Version.class, String.class);
-                return (boolean)matches.invoke(null, CarpetFixesMixinConfigPlugin.MINECRAFT_VERSION, versionPredicate);
+                return (boolean)matches.invoke(
+                        null,
+                        CarpetFixesMixinConfigPlugin.MINECRAFT_VERSION,
+                        versionPredicate
+                );
             } catch (Exception ex) {
                 CarpetFixesServer.LOGGER.error("Failed to invoke VersionPredicateParser#matches", ex);
             }
@@ -59,7 +63,14 @@ public class Utils {
 
     public static void giveShapeUpdate(World world, BlockState state, BlockPos pos, BlockPos fromPos, Direction direction) {
         BlockState oldState = world.getBlockState(pos);
-        Block.replace(oldState, oldState.getStateForNeighborUpdate(direction.getOpposite(), state, world, pos, fromPos), world, pos, Block.NOTIFY_LISTENERS & -34, 0);
+        Block.replace(
+                oldState,
+                oldState.getStateForNeighborUpdate(direction.getOpposite(), state, world, pos, fromPos),
+                world,
+                pos,
+                Block.NOTIFY_LISTENERS & -34,
+                0
+        );
     }
 
     //If I was actually implementing this, the color values would have been binary in order for fast calculations.

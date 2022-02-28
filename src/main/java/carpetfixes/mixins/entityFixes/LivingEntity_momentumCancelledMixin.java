@@ -16,7 +16,9 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_momentumCancelledMixin extends Entity {
 
-    public LivingEntity_momentumCancelledMixin(EntityType<?> type, World world) {super(type, world);}
+    public LivingEntity_momentumCancelledMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
 
     @Inject(

@@ -19,15 +19,19 @@ import java.util.Optional;
 @Mixin(RecipeManager.class)
 public abstract class RecipeManager_fasterMixin {
 
-    @Shadow protected abstract <C extends Inventory, T extends Recipe<C>> Map<Identifier, Recipe<C>> getAllOfType(RecipeType<T> type);
+    @Shadow
+    protected abstract <C extends Inventory, T extends Recipe<C>> Map<Identifier, Recipe<C>>
+    getAllOfType(RecipeType<T> type);
 
 
     @Inject(
-            method = "getFirstMatch(Lnet/minecraft/recipe/RecipeType;Lnet/minecraft/inventory/Inventory;Lnet/minecraft/world/World;)Ljava/util/Optional;",
+            method = "getFirstMatch(Lnet/minecraft/recipe/RecipeType;Lnet/minecraft/inventory/Inventory;" +
+                    "Lnet/minecraft/world/World;)Ljava/util/Optional;",
             at = @At("HEAD"),
             cancellable = true
     )
-    public <C extends Inventory, T extends Recipe<C>> void getFirstMatch(RecipeType<T> type, C inventory, World world, CallbackInfoReturnable<Optional<T>> cir) {
+    public <C extends Inventory, T extends Recipe<C>> void getFirstMatch(RecipeType<T> type, C inventory, World world,
+                                                                         CallbackInfoReturnable<Optional<T>> cir) {
         if (CFSettings.optimizedRecipeManager) {
             int slots = 0;
             for (int slot = 0;slot < inventory.size(); slot++) {

@@ -31,8 +31,8 @@ public abstract class Entity_stepEventMixin {
     public void cancelEmitGameEvent(Entity instance, GameEvent event) {
         if (CFSettings.playerStepEventFix && instance instanceof ServerPlayerEntity) {
             ((ServerPlayerEntityEmitStep) instance).setShouldStep();
-            return;
+        } else {
+            instance.emitGameEvent(event);
         }
-        instance.emitGameEvent(event);
     }
 }

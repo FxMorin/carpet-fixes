@@ -14,13 +14,16 @@ public class PlayerManager_endPortalEffectsMixin {
 
 
     @Inject(
-            method= "respawnPlayer",
-            at=@At("RETURN")
+            method = "respawnPlayer",
+            at = @At("RETURN")
     )
-    public void respawnPlayer(ServerPlayerEntity player, boolean alive, CallbackInfoReturnable<ServerPlayerEntity> cir) {
+    public void respawnPlayer(ServerPlayerEntity player, boolean alive,
+                              CallbackInfoReturnable<ServerPlayerEntity> cir) {
         if (alive && CFSettings.endPortalRemovesEffectsFix) {
             ServerPlayerEntity newPlayer = cir.getReturnValue();
-            newPlayer.activeStatusEffects.forEach((key,effect) -> newPlayer.networkHandler.sendPacket(new EntityStatusEffectS2CPacket(newPlayer.getId(), effect)));
+            newPlayer.activeStatusEffects.forEach((key,effect) ->
+                    newPlayer.networkHandler.sendPacket(new EntityStatusEffectS2CPacket(newPlayer.getId(), effect))
+            );
         }
     }
 }

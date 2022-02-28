@@ -13,26 +13,24 @@ public class ItemFrameEntity_soundMixin {
 
 
     @Inject(
-            method= "setHeldItemStack(Lnet/minecraft/item/ItemStack;Z)V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/entity/data/DataTracker;set(Lnet/minecraft/entity/data/TrackedData;Ljava/lang/Object;)V",
-                    shift= At.Shift.AFTER
-            ))
+            method = "setHeldItemStack(Lnet/minecraft/item/ItemStack;Z)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/data/DataTracker;" +
+                            "set(Lnet/minecraft/entity/data/TrackedData;Ljava/lang/Object;)V",
+                    shift = At.Shift.AFTER
+            )
+    )
     public void setHeldItemStackBefore(ItemStack value, boolean update, CallbackInfo ci) {
-        if (CFSettings.itemFramePlaysSoundOnReadFix && !update) {
-            value.setCount(0);
-        }
+        if (CFSettings.itemFramePlaysSoundOnReadFix && !update) value.setCount(0);
     }
 
 
     @Inject(
-            method= "setHeldItemStack(Lnet/minecraft/item/ItemStack;Z)V",
-            at=@At("RETURN")
+            method = "setHeldItemStack(Lnet/minecraft/item/ItemStack;Z)V",
+            at = @At("RETURN")
     )
     public void setHeldItemStackAfter(ItemStack value, boolean update, CallbackInfo ci) {
-        if (CFSettings.itemFramePlaysSoundOnReadFix && !update) {
-            value.setCount(1);
-        }
+        if (CFSettings.itemFramePlaysSoundOnReadFix && !update) value.setCount(1);
     }
 }

@@ -1,6 +1,7 @@
 package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
 import carpetfixes.CFSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeverBlock;
 import net.minecraft.block.WallMountedBlock;
@@ -16,9 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LeverBlock.class)
 public abstract class LeverBlock_updateMixin extends WallMountedBlock {
 
-
     LeverBlock self = (LeverBlock)(Object)this;
-
 
     protected LeverBlock_updateMixin(Settings settings) {super(settings);}
 
@@ -27,16 +26,19 @@ public abstract class LeverBlock_updateMixin extends WallMountedBlock {
             method = "togglePower",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"),
+                    target="Lnet/minecraft/world/World;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+            ),
             index = 2
     )
     private int modifyUpdate(int val) {
-        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
 
     @Inject(
-            method= "updateNeighbors(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
+            method= "updateNeighbors(Lnet/minecraft/block/BlockState;" +
+                    "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
             at=@At("HEAD"),
             cancellable = true
     )

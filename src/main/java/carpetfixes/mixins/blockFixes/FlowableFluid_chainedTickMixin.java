@@ -17,20 +17,29 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(FlowableFluid.class)
 public abstract class FlowableFluid_chainedTickMixin {
 
+    @Shadow
+    protected abstract boolean canFlow(BlockView world, BlockPos fluidPos, BlockState fluidBlockState,
+                                       Direction flowDirection, BlockPos flowTo, BlockState flowToBlockState,
+                                       FluidState fluidState, Fluid fluid);
 
-    @Shadow protected abstract boolean canFlow(BlockView world, BlockPos fluidPos, BlockState fluidBlockState, Direction flowDirection, BlockPos flowTo, BlockState flowToBlockState, FluidState fluidState, Fluid fluid);
 
     @Redirect(
-            method= "method_15744(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/fluid/FluidState;Lnet/minecraft/block/BlockState;)V",
+            method= "method_15744(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;" +
+                    "Lnet/minecraft/fluid/FluidState;Lnet/minecraft/block/BlockState;)V",
             at=@At(
                     value="INVOKE",
-                    target="Lnet/minecraft/fluid/FlowableFluid;canFlow(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Direction;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/fluid/FluidState;Lnet/minecraft/fluid/Fluid;)Z"
+                    target="Lnet/minecraft/fluid/FlowableFluid;canFlow(Lnet/minecraft/world/BlockView;" +
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;" +
+                            "Lnet/minecraft/util/math/Direction;Lnet/minecraft/util/math/BlockPos;" +
+                            "Lnet/minecraft/block/BlockState;Lnet/minecraft/fluid/FluidState;" +
+                            "Lnet/minecraft/fluid/Fluid;)Z"
             )
     )
-    private boolean delayNextScheduleTick(FlowableFluid flowableFluid, BlockView world, BlockPos fluidPos, BlockState fluidBlockState, Direction flowDirection, BlockPos flowTo, BlockState flowToBlockState, FluidState fluidState, Fluid fluid) {
-        if (CFSettings.instantFluidFlowingFix && ((WorldAccess)world).getFluidTickScheduler().isTicking(flowTo,fluid)) {
+    private boolean delayNextScheduleTick(FlowableFluid flowableFluid, BlockView w, BlockPos fluidPos,
+                                          BlockState fluidBlockState, Direction flowDir, BlockPos flowTo,
+                                          BlockState flowToBlockState, FluidState fluidState, Fluid fluid) {
+        if (CFSettings.instantFluidFlowingFix && ((WorldAccess)w).getFluidTickScheduler().isTicking(flowTo,fluid))
             return false;
-        }
-        return this.canFlow(world,fluidPos,fluidBlockState,flowDirection,flowTo,flowToBlockState,fluidState,fluid);
+        return this.canFlow(w, fluidPos, fluidBlockState, flowDir, flowTo, flowToBlockState, fluidState, fluid);
     }
 }

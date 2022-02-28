@@ -12,7 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ArmorStandEntity.class)
 public abstract class ArmorStandEntity_lavaDamageMixin {
 
-    @Shadow protected abstract void updateHealth(DamageSource damageSource, float amount);
+    @Shadow
+    protected abstract void updateHealth(DamageSource damageSource, float amount);
+
 
     @Inject(
             method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",

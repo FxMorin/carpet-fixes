@@ -12,10 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SlimeBlock_incorrectLogicMixin {
 
     /**
-     * Fixes incorrect logic in the slimeblock bounce code which prevents some entities from
-     * bouncing. This bug in the slime code is due to onGround reversing the velocity, the best
-     * way to fix this issue is by setting onGround to true, only once the Y velocity is smaller
-     * than -0.15
+     * Fixes incorrect logic in the slimeblock bounce code which prevents some entities from bouncing.
+     * This bug in the slime code is due to onGround reversing the velocity, the best way to fix this issue is by
+     * setting onGround to true, only once the Y velocity is smaller than -0.15
      */
 
 
@@ -24,7 +23,8 @@ public class SlimeBlock_incorrectLogicMixin {
             at = @At(
                     value="INVOKE",
                     target="Lnet/minecraft/entity/Entity;setVelocity(DDD)V"
-            ))
+            )
+    )
     public void entityHittingSlimeBlockBeLike(Entity entity, CallbackInfo ci){
         if (CFSettings.incorrectBounceLogicFix) entity.setOnGround(entity.getVelocity().y > -0.15);
     }

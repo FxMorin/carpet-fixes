@@ -19,5 +19,7 @@ public class MobEntity_nbtSuffixMixin {
             ),
             index = 1
     )
-    private int incorrectNbtCheck(int value) {return CFSettings.incorrectNbtChecks ? 99 : 1;}
+    private int incorrectNbtCheck(int value) {
+        return CFSettings.incorrectNbtChecks ? 99 : 1;
+    }
 }

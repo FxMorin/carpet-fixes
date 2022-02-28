@@ -16,9 +16,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 public abstract class Entity_fallDistanceMixin {
 
-    @Shadow public float fallDistance;
-    @Shadow public World world;
-    @Shadow public abstract void emitGameEvent(GameEvent event);
+    @Shadow
+    public float fallDistance;
+
+    @Shadow
+    public World world;
+
+    @Shadow
+    public abstract void emitGameEvent(GameEvent event);
 
 
     @Inject(
@@ -26,11 +31,18 @@ public abstract class Entity_fallDistanceMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
+    protected void fall(double heightDifference, boolean onGround,
+                        BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
         if (CFSettings.incorrectFallDamageFix) {
             if (onGround) {
                 if (this.fallDistance > 0.0F) {
-                    landedState.getBlock().onLandedUpon(this.world, landedState, landedPosition, (Entity) (Object) this, this.fallDistance);
+                    landedState.getBlock().onLandedUpon(
+                            this.world,
+                            landedState,
+                            landedPosition,
+                            (Entity)(Object)this,
+                            this.fallDistance
+                    );
                     if (!landedState.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
                         this.emitGameEvent(GameEvent.HIT_GROUND);
                     }

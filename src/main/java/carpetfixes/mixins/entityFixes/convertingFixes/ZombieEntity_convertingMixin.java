@@ -15,9 +15,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ZombieEntity.class)
 public abstract class ZombieEntity_convertingMixin extends HostileEntity {
 
-    protected ZombieEntity_convertingMixin(EntityType<? extends HostileEntity> entityType, World world) {super(entityType, world);}
+    @Shadow
+    protected abstract boolean canConvertInWater();
 
-    @Shadow protected abstract boolean canConvertInWater();
+    protected ZombieEntity_convertingMixin(EntityType<? extends HostileEntity> entityType, World world) {
+        super(entityType, world);
+    }
+
 
     @Inject(
             method = "isConvertingInWater()Z",
@@ -26,7 +30,9 @@ public abstract class ZombieEntity_convertingMixin extends HostileEntity {
     )
     public void isConverting(CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.mobsConvertingWithoutBlocksFix) {
-            cir.setReturnValue(cir.getReturnValue() && this.canConvertInWater() && this.isSubmergedIn(FluidTags.WATER));
+            cir.setReturnValue(
+                    cir.getReturnValue() && this.canConvertInWater() && this.isSubmergedIn(FluidTags.WATER)
+            );
         }
     }
 }

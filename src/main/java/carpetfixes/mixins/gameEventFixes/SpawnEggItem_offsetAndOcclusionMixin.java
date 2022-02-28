@@ -34,10 +34,12 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
             locals = LocalCapture.CAPTURE_FAILSOFT,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;emitGameEvent(Lnet/minecraft/entity/Entity;Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
+                    target = "Lnet/minecraft/world/World;emitGameEvent(Lnet/minecraft/entity/Entity;" +
+                            "Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
             )
     )
-    public void newEventCall(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir, World world, ItemStack itemStack, BlockPos pos) {
+    public void newEventCall(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir,
+                             World world, ItemStack itemStack, BlockPos pos) {
         if (CFSettings.spawnEggOffsetEventFix) {
             BlockState state = world.getBlockState(pos);
             BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ? pos : pos.offset(context.getSide());
@@ -50,10 +52,10 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
         } else {
             if (CFSettings.spawnEggMissingOcclusionFix) {
                 BlockState state = world.getBlockState(pos);
-                BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ? pos : pos.offset(context.getSide());
-                if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
-                    return;
-                }
+                BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ?
+                        pos :
+                        pos.offset(context.getSide());
+                if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return;
             }
             world.emitGameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, pos);
         }
@@ -61,14 +63,18 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
 
 
     @Inject(
-            method = "spawnBaby(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/entity/mob/MobEntity;Lnet/minecraft/entity/EntityType;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/item/ItemStack;)Ljava/util/Optional;",
+            method = "spawnBaby(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/entity/mob/MobEntity;" +
+                    "Lnet/minecraft/entity/EntityType;Lnet/minecraft/server/world/ServerWorld;" +
+                    "Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/item/ItemStack;)Ljava/util/Optional;",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/Optional;of(Ljava/lang/Object;)Ljava/util/Optional;",
                     shift = At.Shift.BEFORE
             )
     )
-    public void spawnBaby(PlayerEntity user, MobEntity entity, EntityType<? extends MobEntity> entityType, ServerWorld world, Vec3d pos, ItemStack stack, CallbackInfoReturnable<Optional<MobEntity>> cir) {
+    public void spawnBaby(PlayerEntity user, MobEntity entity, EntityType<? extends MobEntity> entityType,
+                          ServerWorld world, Vec3d pos, ItemStack stack,
+                          CallbackInfoReturnable<Optional<MobEntity>> cir) {
         if (CFSettings.spawnEggMissingEventFix) world.emitGameEvent(GameEvent.ENTITY_PLACE, user);
     }
 
@@ -77,7 +83,8 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
             method = "useOnBlock",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;emitGameEvent(Lnet/minecraft/entity/Entity;Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
+                    target = "Lnet/minecraft/world/World;emitGameEvent(Lnet/minecraft/entity/Entity;" +
+                            "Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
             )
     )
     public void cancelEvent(World instance, Entity entity, GameEvent gameEvent, BlockPos blockPos) {}

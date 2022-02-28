@@ -16,19 +16,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class DirtPathBlock_movingBlockMixin {
 
     /**
-     * Makes it so that path blocks do not get destroyed if a moving piston is above them
+     * Makes it so that path blocks do not get destroyed if a moving piston is above them.
+     * Might want to mixin into the instanceof instead next time
      */
 
 
     @Inject(
-            method= "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z",
+            method= "canPlaceAt(Lnet/minecraft/block/BlockState;" +
+                    "Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z",
             at=@At("HEAD"),
             cancellable = true
     )
     public void canPlaceAt(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.movingBlocksDestroyPathFix) {
             BlockState blockState = world.getBlockState(pos.up());
-            cir.setReturnValue(!blockState.getMaterial().isSolid() || blockState.getBlock() instanceof FenceGateBlock || blockState.getBlock() instanceof PistonExtensionBlock);
+            cir.setReturnValue(
+                    !blockState.getMaterial().isSolid() ||
+                    blockState.getBlock() instanceof FenceGateBlock ||
+                    blockState.getBlock() instanceof PistonExtensionBlock
+            );
         }
     }
 }

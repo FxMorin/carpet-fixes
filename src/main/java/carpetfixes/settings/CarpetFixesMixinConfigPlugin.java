@@ -16,7 +16,7 @@ public class CarpetFixesMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static final Version MINECRAFT_VERSION = FabricLoader.getInstance()
-            .getModContainer("minecraft").get().getMetadata().getVersion();
+            .getModContainer("minecraft").orElseThrow().getMetadata().getVersion();
 
 
     @Override
@@ -41,8 +41,8 @@ public class CarpetFixesMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
     }
 
     @Override
-    public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {}
+    public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mi) {}
 
     @Override
-    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {}
+    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mi) {}
 }

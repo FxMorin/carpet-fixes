@@ -10,7 +10,9 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(AbstractDecorationEntity.class)
 public abstract class AbstractDecorationEntity_triggersTrapsMixin extends Entity {
 
-    public AbstractDecorationEntity_triggersTrapsMixin(EntityType<?> type, World world) {super(type, world);}
+    public AbstractDecorationEntity_triggersTrapsMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
 
     @Override

@@ -11,14 +11,15 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public class SpongeBlock_missingUpdateMixin extends Block {
 
     /**
-     * The sponge when placed next to a water source does not give a block update, causing
-     * some unintended behaviour where you can update suppress on place. We make sure to give
-     * that correct update here by adding binary 1 (NOTIFY_NEIGHBORS) to the update value.
-     * This will add a block updates, fixing all the issues.
+     * The sponge when placed next to a water source does not give a block update, causing some unintended behaviour
+     * where you can update suppress on place. We make sure to give that correct update here by adding binary
+     * 1 (NOTIFY_NEIGHBORS) to the update value. This will add a block updates, fixing all the issues.
      */
 
 
-    public SpongeBlock_missingUpdateMixin(Settings settings) {super(settings);}
+    public SpongeBlock_missingUpdateMixin(Settings settings) {
+        super(settings);
+    }
 
 
     @ModifyConstant(
@@ -26,7 +27,7 @@ public class SpongeBlock_missingUpdateMixin extends Block {
             require = 0,
             constant = @Constant(intValue = 2)
     )
-    protected int spongeUpdate(int value) {
-        return CFSettings.spongeUpdateFix ? value | Block.NOTIFY_NEIGHBORS : value;
+    protected int spongeUpdate(int val) {
+        return CFSettings.spongeUpdateFix ? val | Block.NOTIFY_NEIGHBORS : val;
     }
 }

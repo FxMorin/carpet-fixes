@@ -15,19 +15,24 @@ import static carpetfixes.CFSettings.breakAnythingDoorGoalFix;
 @Mixin(BreakDoorGoal.class)
 public abstract class BreakDoorGoal_breakAnythingMixin extends DoorInteractGoal {
 
+    public BreakDoorGoal_breakAnythingMixin(MobEntity mob) {
+        super(mob);
+    }
 
-    public BreakDoorGoal_breakAnythingMixin(MobEntity mob) {super(mob);}
-
-    @Shadow protected abstract boolean isDifficultySufficient(Difficulty difficulty);
+    @Shadow
+    protected abstract boolean isDifficultySufficient(Difficulty difficulty);
 
 
     @Redirect(
-            method="tick",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/entity/ai/goal/BreakDoorGoal;isDifficultySufficient(Lnet/minecraft/world/Difficulty;)Z"
-            ))
-    public boolean mightAlsoWannaCheckTheDoor_ComeOnMojangItsNotThatHard(BreakDoorGoal breakDoorGoal, Difficulty difficulty) {
-        return (!breakAnythingDoorGoalFix || DoorBlock.isWoodenDoor(this.mob.world, this.doorPos)) && isDifficultySufficient(difficulty);
+            method = "tick",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/ai/goal/BreakDoorGoal;" +
+                            "isDifficultySufficient(Lnet/minecraft/world/Difficulty;)Z"
+            )
+    )
+    public boolean mightAlsoWannaCheckTheDoor_ItsNotThatHard(BreakDoorGoal breakDoorGoal, Difficulty difficulty) {
+        return (!breakAnythingDoorGoalFix || DoorBlock.isWoodenDoor(this.mob.world, this.doorPos)) &&
+                isDifficultySufficient(difficulty);
     }
 }

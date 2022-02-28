@@ -12,7 +12,8 @@ public class BeeFlightMoveControl extends FlightMoveControl {
 
     @Override
     public void tick() {
-        if (CFSettings.beeStuckInVoidFix && this.entity.getY() <= this.entity.world.getBottomY()) this.entity.setNoGravity(false);
+        if (CFSettings.beeStuckInVoidFix && this.entity.getY() <= this.entity.world.getBottomY())
+            this.entity.setNoGravity(false);
         super.tick();
     }
 }

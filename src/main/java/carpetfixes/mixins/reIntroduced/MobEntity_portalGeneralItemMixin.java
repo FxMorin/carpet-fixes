@@ -14,19 +14,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
 
     /**
-     * Remove the part where it sets all stack counts to 0, allows for some
-     * interesting general item dupes to work. (Mostly just the dolphin one)
+     * Remove the part where it sets all stack counts to 0, allows for some interesting general item dupes to work.
+     * (Mostly just the dolphin one)
      */
 
 
-    protected MobEntity_portalGeneralItemMixin(EntityType<? extends LivingEntity> entityType, World world) { super(entityType, world); }
+    protected MobEntity_portalGeneralItemMixin(EntityType<? extends LivingEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
 
     @Inject(
-            method="removeFromDimension",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/entity/mob/MobEntity;getItemsEquipped()Ljava/lang/Iterable;",
+            method = "removeFromDimension",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/mob/MobEntity;getItemsEquipped()Ljava/lang/Iterable;",
                     shift = At.Shift.BEFORE
             ),
             cancellable = true

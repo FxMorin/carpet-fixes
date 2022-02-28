@@ -12,14 +12,17 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(AbstractButtonBlock.class)
 public abstract class AbstractButtonBlock_collisionOnPlaceMixin extends AbstractBlock {
 
-    public AbstractButtonBlock_collisionOnPlaceMixin(Settings settings) {super(settings);}
+    public AbstractButtonBlock_collisionOnPlaceMixin(Settings settings) {
+        super(settings);
+    }
 
-    @Shadow protected abstract void tryPowerWithProjectiles(BlockState state, World world, BlockPos pos);
+    @Shadow
+    protected abstract void tryPowerWithProjectiles(BlockState state, World world, BlockPos pos);
+
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (CFSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock())) {
+        if (CFSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock()))
             this.tryPowerWithProjectiles(state,world,pos);
-        }
     }
 }

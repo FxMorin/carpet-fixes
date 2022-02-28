@@ -20,6 +20,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
         return CFSettings.maxChunksSavedPerTick;
     }
 
+    
     @ModifyConstant(
             method = "unloadChunks(Ljava/util/function/BooleanSupplier;)V",
             constant = @Constant(intValue = 200)
@@ -28,6 +29,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
         return CFSettings.maxChunksSavedPerAutoSave;
     }
 
+    
     @ModifyConstant(
             method = "save(Lnet/minecraft/server/world/ChunkHolder;)Z",
             constant = @Constant(longValue = 10000L)
@@ -36,6 +38,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
         return CFSettings.reIntroduceVeryAggressiveSaving ? -1L : CFSettings.chunkSaveCooldownDelay;
     }
 
+    
     @Redirect(
             method = "save(Lnet/minecraft/server/world/ChunkHolder;)Z",
             at = @At(

@@ -2,6 +2,7 @@ package carpetfixes.mixins.blockUpdates.duplicateUpdates;
 
 import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractButtonBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WallMountedBlock;
 import net.minecraft.util.math.BlockPos;
@@ -16,22 +17,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractButtonBlock.class)
 public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
 
-
-    protected AbstractButtonBlock_updateMixin(Settings settings) {super(settings);}
-
-
     AbstractButtonBlock self = (AbstractButtonBlock)(Object)this;
+
+    protected AbstractButtonBlock_updateMixin(Settings settings) {
+        super(settings);
+    }
 
 
     @ModifyArg(
             method = "tryPowerWithProjectiles",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"),
+                    target="Lnet/minecraft/world/World;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+            ),
             index = 2
     )
     private int modifyProjectileUpdate(int val) {
-        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
 
@@ -39,11 +42,13 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             method = "powerOn",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"),
+                    target="Lnet/minecraft/world/World;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+            ),
             index = 2
     )
     private int modifyPowerUpdate(int val) {
-        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
 
@@ -51,16 +56,19 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             method = "scheduledTick",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/server/world/ServerWorld;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"),
+                    target="Lnet/minecraft/server/world/ServerWorld;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+            ),
             index = 2
     )
     private int modifyScheduledUpdate(int val) {
-        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
 
     @Inject(
-            method= "updateNeighbors(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
+            method= "updateNeighbors(Lnet/minecraft/block/BlockState;" +
+                    "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
             at=@At("HEAD"),
             cancellable = true
     )

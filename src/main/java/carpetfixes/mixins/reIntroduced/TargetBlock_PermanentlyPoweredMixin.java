@@ -14,18 +14,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class TargetBlock_PermanentlyPoweredMixin {
 
     /**
-     * Make it so that the targetBlock does not do any checks when placed. Just like it used to do
-     * during the snapshot that its ability to redirect redstone was added, so its movable while
-     * keeping its power level permanently.
+     * Make it so that the targetBlock does not do any checks when placed. Just like it used to do during the snapshot
+     * that its ability to redirect redstone was added, so its movable while keeping its power level permanently.
      */
 
 
     @Inject(
-            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
+    public void onBlockAdded(BlockState state, World world, BlockPos pos,
+                             BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CFSettings.reIntroduceTargetBlockPermanentlyPowered) ci.cancel();
     }
 }

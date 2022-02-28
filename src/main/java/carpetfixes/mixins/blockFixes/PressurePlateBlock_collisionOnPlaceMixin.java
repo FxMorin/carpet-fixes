@@ -18,19 +18,25 @@ import java.util.List;
 @Mixin(PressurePlateBlock.class)
 public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractPressurePlateBlock {
 
-    public PressurePlateBlock_collisionOnPlaceMixin(Settings settings) {super(settings);}
+    @Shadow
+    @Final
+    public static BooleanProperty POWERED;
 
-    @Shadow @Final public static BooleanProperty POWERED;
+    public PressurePlateBlock_collisionOnPlaceMixin(Settings settings) {
+        super(settings);
+    }
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (CFSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock())) {
+        if (CFSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock()))
             this.tryPowerOnPlace(state,world,pos);
-        }
     }
 
     private void tryPowerOnPlace(BlockState state, World world, BlockPos pos) {
-        List<? extends Entity> list = world.getNonSpectatingEntities(Entity.class, state.getOutlineShape(world, pos).getBoundingBox().offset(pos));
+        List<? extends Entity> list = world.getNonSpectatingEntities(
+                Entity.class,
+                state.getOutlineShape(world, pos).getBoundingBox().offset(pos)
+        );
         boolean bl = !list.isEmpty();
         boolean bl2 = state.get(POWERED);
         if (bl != bl2) {
@@ -44,8 +50,6 @@ public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractP
                 world.emitGameEvent(list.stream().findFirst().orElse(null), GameEvent.BLOCK_UNPRESS, pos);
             }
         }
-        if (bl) {
-            world.createAndScheduleBlockTick(new BlockPos(pos), this, this.getTickRate());
-        }
+        if (bl) world.createAndScheduleBlockTick(new BlockPos(pos), this, this.getTickRate());
     }
 }

@@ -24,7 +24,8 @@ public class PistonBlockEntity_waterloggedMixin {
     )
     public BlockState removeWaterlogged(BlockState state, WorldAccess world, BlockPos pos) {
         BlockState newState = Block.postProcessState(state, world, pos);
-        if (CFSettings.pistonsPushWaterloggedBlocksFix && newState.contains(Properties.WATERLOGGED) && newState.get(Properties.WATERLOGGED)) {
+        if (CFSettings.pistonsPushWaterloggedBlocksFix &&
+                newState.contains(Properties.WATERLOGGED) && newState.get(Properties.WATERLOGGED)) {
             newState = newState.with(Properties.WATERLOGGED, false);
         }
         return newState;

@@ -21,35 +21,47 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PoweredRailBlock.class)
 public abstract class PoweredRailBlock_updateMixin {
 
+    @Shadow
+    @Final
+    public static EnumProperty<RailShape> SHAPE;
+
+    @Shadow
+    @Final
+    public static BooleanProperty POWERED;
 
     PoweredRailBlock self = (PoweredRailBlock)(Object)this;
 
-
-    @Shadow @Final public static EnumProperty<RailShape> SHAPE;
-    @Shadow @Final public static BooleanProperty POWERED;
-    @Shadow protected boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) { return true; }
+    @Shadow
+    protected boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) {
+        return true;
+    }
 
 
     @ModifyArg(
             method = "updateBlockState",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"),
+                    target="Lnet/minecraft/world/World;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+            ),
             index = 2
     )
     private int modifyUpdate(int val) {
-        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
 
     @Inject(
-            method= "updateBlockState(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
+            method= "updateBlockState(Lnet/minecraft/block/BlockState;" +
+                    "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
             at=@At("HEAD"),
             cancellable = true
     )
     protected void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
         if (!CFSettings.optimizedPoweredRails && CFSettings.uselessSelfBlockUpdateFix) {
-            boolean bl2 = world.isReceivingRedstonePower(pos) || this.isPoweredByOtherRails(world, pos, state, true, 0) || this.isPoweredByOtherRails(world, pos, state, false, 0);
+            boolean bl2 = world.isReceivingRedstonePower(pos) ||
+                    this.isPoweredByOtherRails(world, pos, state, true, 0) ||
+                    this.isPoweredByOtherRails(world, pos, state, false, 0);
             if (bl2 != state.get(POWERED)) {
                 world.setBlockState(pos, state.with(POWERED, bl2), 3);
                 world.updateNeighborsExcept(pos.down(),self, Direction.UP);

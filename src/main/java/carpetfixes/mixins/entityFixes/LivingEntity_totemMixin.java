@@ -15,9 +15,10 @@ public class LivingEntity_totemMixin implements EntityUsedTotem {
     public boolean usedTotem = false;
 
     @Override
-    public boolean usedTotem() {
+    public boolean hasUsedTotem() {
         return usedTotem;
     }
+
 
     @Inject(
             method = "tick()V",

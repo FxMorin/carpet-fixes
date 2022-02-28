@@ -16,10 +16,18 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(value=PickaxeItem.class,priority=1010)
 public class PickaxeItem_blackstoneButtonMixin extends MiningToolItem {
 
-    protected PickaxeItem_blackstoneButtonMixin(float attackDamage, float attackSpeed, ToolMaterial material, Tag<Block> effectiveBlocks, Settings settings) {super(attackDamage, attackSpeed, material, effectiveBlocks, settings);}
+    //TODO: Might be broken by carpet now
+
+    protected PickaxeItem_blackstoneButtonMixin(float attackDamage, float attackSpeed, ToolMaterial material,
+                                                Tag<Block> effectiveBlocks, Settings settings) {
+        super(attackDamage, attackSpeed, material, effectiveBlocks, settings);
+    }
 
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
-        return ((CFSettings.blackstoneButtonBreakSpeedFix && state.isOf(Blocks.POLISHED_BLACKSTONE_BUTTON)) || (CarpetSettings.missingTools && state.getMaterial() == Material.GLASS)) ? miningSpeed : super.getMiningSpeedMultiplier(stack, state);
+        return ((CFSettings.blackstoneButtonBreakSpeedFix && state.isOf(Blocks.POLISHED_BLACKSTONE_BUTTON)) ||
+                (CarpetSettings.missingTools && state.getMaterial() == Material.GLASS)) ?
+                miningSpeed :
+                super.getMiningSpeedMultiplier(stack, state);
     }
 }

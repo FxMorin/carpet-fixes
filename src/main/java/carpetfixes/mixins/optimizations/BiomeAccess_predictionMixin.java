@@ -27,11 +27,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BiomeAccess.class)
 public class BiomeAccess_predictionMixin {
 
-    @Shadow @Final private BiomeAccess.Storage storage;
+    @Shadow
+    @Final
+    private BiomeAccess.Storage storage;
 
-    @Shadow @Final private long seed;
+    @Shadow
+    @Final
+    private long seed;
 
-    @Shadow private static double method_38108(long l) {return 0;}
+    @Shadow
+    private static double method_38108(long l) {
+        return 0;
+    }
 
     private static final double maxOffset = 0.4500000001D;
 
@@ -58,7 +65,7 @@ public class BiomeAccess_predictionMixin {
                 boolean everyOtherQuad = (biomeX & 4) == 0; // 1 1 1 1 0 0 0 0
                 boolean everyOtherPair = (biomeX & 2) == 0; // 1 1 0 0 1 1 0 0
                 boolean everyOther = (biomeX & 1) == 0; // 1 0 1 0 1 0 1 0
-                double quartXX = everyOtherQuad ? quartX : quartX - 1.0D; //[-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75]
+                double quartXX = everyOtherQuad ? quartX : quartX - 1.0D; //[-1.0,-0.75,-0.5,-0.25,0.0,0.25,0.5,0.75]
                 double quartYY = everyOtherPair ? quartY : quartY - 1.0D;
                 double quartZZ = everyOther ? quartZ : quartZ - 1.0D;
 
@@ -67,10 +74,8 @@ public class BiomeAccess_predictionMixin {
                 if (biomeX != 0) {
                     maxQuartYY = MathHelper.square(Math.max(quartYY + maxOffset, Math.abs(quartYY - maxOffset)));
                     maxQuartZZ = MathHelper.square(Math.max(quartZZ + maxOffset, Math.abs(quartZZ - maxOffset)));
-                    double maxQuartXX = MathHelper.square(Math.max(quartXX + maxOffset, Math.abs(quartXX - maxOffset)));
-                    if (smallestDist < maxQuartXX + maxQuartYY + maxQuartZZ) {
-                        continue;
-                    }
+                    double maxQuartXX = MathHelper.square(Math.max(quartXX + maxOffset,Math.abs(quartXX - maxOffset)));
+                    if (smallestDist < maxQuartXX + maxQuartYY + maxQuartZZ) continue;
                 }
 
                 int xx = everyOtherQuad ? x : x + 1;
@@ -86,7 +91,7 @@ public class BiomeAccess_predictionMixin {
                 seed = SeedMixer.mixSeed(seed, zz);
                 double offsetX = method_38108(seed);
                 double sqrX = MathHelper.square(quartXX + offsetX);
-                if (biomeX != 0 && smallestDist < sqrX + maxQuartYY + maxQuartZZ) continue; // skip the rest of the loop
+                if (biomeX != 0 && smallestDist < sqrX + maxQuartYY + maxQuartZZ) continue; //skip the rest of the loop
                 seed = SeedMixer.mixSeed(seed, this.seed);
                 double offsetY = method_38108(seed);
                 double sqrY = MathHelper.square(quartYY + offsetY);
@@ -100,12 +105,11 @@ public class BiomeAccess_predictionMixin {
                     smallestDist = biomeDist;
                 }
             }
-
-            //Back to the orignal code
-            int biomeX = (smallestX & 4) == 0 ? x : x + 1;
-            int biomeY = (smallestX & 2) == 0 ? y : y + 1;
-            int biomeZ = (smallestX & 1) == 0 ? z : z + 1;
-            cir.setReturnValue(this.storage.getBiomeForNoiseGen(biomeX, biomeY, biomeZ));
+            cir.setReturnValue(this.storage.getBiomeForNoiseGen(
+                    (smallestX & 4) == 0 ? x : x + 1,
+                    (smallestX & 2) == 0 ? y : y + 1,
+                    (smallestX & 1) == 0 ? z : z + 1
+            ));
         }
     }
 }

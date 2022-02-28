@@ -10,15 +10,18 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(ObserverBlock.class)
 public class ObserverBlock_missingUpdateMixin {
 
+
     @ModifyArg(
-            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+                    target = "Lnet/minecraft/world/World;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             index = 2
     )
-    public int observerUpdate(int value) {
-        return CFSettings.observerUpdateFix ? value | Block.NOTIFY_NEIGHBORS : value;
+    public int observerUpdate(int val) {
+        return CFSettings.observerUpdateFix ? val | Block.NOTIFY_NEIGHBORS : val;
     }
 }

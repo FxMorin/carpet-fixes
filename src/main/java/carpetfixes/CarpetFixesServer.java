@@ -24,23 +24,24 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     private static final String MOD_NAME;
     private static final Version MOD_VERSION;
 
-    public static String modId() {return MOD_ID;}
+    public static String modId() {
+        return MOD_ID;
+    }
 
-    public static String modName()
-    {
+    public static String modName() {
         return MOD_NAME;
     }
 
     static {
-        ModMetadata metadata = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata();
+        ModMetadata metadata = FabricLoader.getInstance().getModContainer(MOD_ID)
+                .orElseThrow(RuntimeException::new).getMetadata();
         MOD_NAME = metadata.getName();
         MOD_VERSION = metadata.getVersion();
         carpetFixesSettingsManager = new SettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
     }
 
     @Override
-    public String version()
-    {
+    public String version() {
         return MOD_VERSION.getFriendlyString();
     }
 
@@ -59,7 +60,9 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer minecraftServer) {
-        for (ServerWorld world : minecraftServer.getWorlds()) { CFSettings.updateScheduler.put(world,new UpdateScheduler(world));}
+        for (ServerWorld world : minecraftServer.getWorlds()) {
+            CFSettings.updateScheduler.put(world,new UpdateScheduler(world));
+        }
     }
 
     @Override
@@ -67,7 +70,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
         if (CFSettings.scheduleWorldBorderReset) {
             CFSettings.scheduleWorldBorderReset = false;
             WorldBorder worldBorder = server.getOverworld().getWorldBorder();
-            worldBorder.setSize(worldBorder.getSize()); //This will force the worldborder to update its voxelShape cache
+            worldBorder.setSize(worldBorder.getSize()); //Forces the worldborder to update its voxelShape cache
         }
     }
 

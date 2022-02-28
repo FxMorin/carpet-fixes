@@ -20,6 +20,7 @@ import java.util.function.Predicate;
 
 @Mixin(ChunkTicketManager.class)
 public abstract class ChunkTicketManager_optimizationMixin {
+
     @Shadow
     private long age;
 
@@ -36,13 +37,12 @@ public abstract class ChunkTicketManager_optimizationMixin {
         throw new UnsupportedOperationException();
     }
 
-    private final Long2ObjectOpenHashMap<SortedArraySet<ChunkTicket<?>>> positionWithExpiringTicket = new Long2ObjectOpenHashMap<>();
+    private final Long2ObjectOpenHashMap<SortedArraySet<ChunkTicket<?>>> positionWithExpiringTicket =
+            new Long2ObjectOpenHashMap<>();
 
     private static boolean canAnyExpire(SortedArraySet<ChunkTicket<?>> tickets) {
         for (ChunkTicket<?> ticket : tickets) {
-            if (canExpire(ticket)) {
-                return true;
-            }
+            if (canExpire(ticket)) return true;
         }
         return false;
     }
@@ -62,10 +62,15 @@ public abstract class ChunkTicketManager_optimizationMixin {
      */
     @Inject(
             method = "addTicket(JLnet/minecraft/server/world/ChunkTicket;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ChunkTicket;setTickCreated(J)V"),
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/server/world/ChunkTicket;setTickCreated(J)V"
+            ),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void registerExpiringTicket(long position, ChunkTicket<?> ticket, CallbackInfo ci, SortedArraySet<ChunkTicket<?>> ticketsAtPos, int i, ChunkTicket<?> chunkTicket) {
+    private void registerExpiringTicket(long position, ChunkTicket<?> ticket, CallbackInfo ci,
+                                        SortedArraySet<ChunkTicket<?>> ticketsAtPos, int i,
+                                        ChunkTicket<?> chunkTicket) {
         if (CFSettings.optimizedTicketManager && canExpire(ticket)) {
             this.positionWithExpiringTicket.put(position, ticketsAtPos);
         }
@@ -73,14 +78,16 @@ public abstract class ChunkTicketManager_optimizationMixin {
 
     @Inject(
             method = "removeTicket(JLnet/minecraft/server/world/ChunkTicket;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ChunkTicketManager$TicketDistanceLevelPropagator;updateLevel(JIZ)V")
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/server/world/ChunkTicketManager$TicketDistanceLevelPropagator;" +
+                            "updateLevel(JIZ)V"
+            )
     )
     private void unregisterExpiringTicket(long pos, ChunkTicket<?> ticket, CallbackInfo ci) {
         if (CFSettings.optimizedTicketManager && canExpire(ticket)) {
             SortedArraySet<ChunkTicket<?>> ticketsAtPos = this.positionWithExpiringTicket.get(pos);
-            if (!canAnyExpire(ticketsAtPos)) {
-                this.positionWithExpiringTicket.remove(pos);
-            }
+            if (!canAnyExpire(ticketsAtPos)) this.positionWithExpiringTicket.remove(pos);
         }
     }
 
@@ -118,13 +125,8 @@ public abstract class ChunkTicketManager_optimizationMixin {
 
                     if (value.isEmpty()) {
                         iterator.remove();
-                        if (!canAnyExpire(ticketsAtPos)) {
-                            iterator.remove();
-                        }
-
-                        if (ticketsAtPos.isEmpty()) {
-                            this.ticketsByPosition.remove(pos, ticketsAtPos);
-                        }
+                        if (!canAnyExpire(ticketsAtPos)) iterator.remove();
+                        if (ticketsAtPos.isEmpty()) this.ticketsByPosition.remove(pos, ticketsAtPos);
                     }
                 }
             }

@@ -25,26 +25,32 @@ public class BlockUpdateUtils {
      *   ~ [-x, +x, -z, +z, -y, +y]
      */
 
-    //TODO: rename redstone torch rule to be more generalized (if any other locations are found)
-    //TODO: Severely needs optimization xD
-    public static void doExtendedBlockUpdates(World world, BlockPos pos, Block block, boolean removedAndEmitsPower, boolean requiresASelfBlockUpdate) {
-        Set<BlockPos> blockPosList = null;
-        if (CFSettings.duplicateBlockUpdatesFix) blockPosList = new HashSet<>();
-        Direction[] extendedDirections = CFSettings.extendedBlockUpdateOrderFix ? DirectionUtils.directions :
-                (CFSettings.parityRandomBlockUpdates ? DirectionUtils.randomDirectionArray(pos) :
-                        Direction.values());
-        Direction[] directions = CFSettings.blockUpdateOrderFix ? DirectionUtils.directions :
-                (CFSettings.parityRandomBlockUpdates ? DirectionUtils.randomDirectionArray(pos) :
-                        DirectionUtils.updateDirections);
+    //TODO: Needs optimization
+    public static void doExtendedBlockUpdates(World world, BlockPos pos, Block block,
+                                              boolean removedAndEmitsPower, boolean requiresASelfBlockUpdate) {
+        Set<BlockPos> blockPosList = CFSettings.duplicateBlockUpdatesFix ? new HashSet<>() : null;
+        //Set the extended direction update order
+        Direction[] extendedDirections = CFSettings.extendedBlockUpdateOrderFix ?
+                DirectionUtils.directions :
+                CFSettings.parityRandomBlockUpdates ?
+                        DirectionUtils.randomDirectionArray(pos) :
+                        Direction.values();
+        //Set the direction update order
+        Direction[] directions = CFSettings.blockUpdateOrderFix ?
+                DirectionUtils.directions :
+                CFSettings.parityRandomBlockUpdates ?
+                        DirectionUtils.randomDirectionArray(pos) :
+                        DirectionUtils.updateDirections;
+        //If redstone component should update blocks closer to itself before giving extended block updates
         if (CFSettings.redstoneComponentUpdateOrderOnBreakFix && removedAndEmitsPower) {
-            for(int dirNum = 0; dirNum < 6; ++dirNum) { //Do Updates around block torch first. Preventing wrong order
-                world.updateNeighbor(pos.offset(directions[dirNum]), block, pos);
+            for(Direction dir : directions) { //Do block updates around block first. Preventing wrong order
+                world.updateNeighbor(pos.offset(dir), block, pos);
             }
         }
-        for(Direction dir : extendedDirections) {
-            BlockPos p = pos.offset(dir);
-            for(int dirNum = 0; dirNum < 6; ++dirNum) {
-                BlockPos nextPos = p.offset(directions[dirNum]);
+        for(Direction extendedDir : extendedDirections) { //For each extended block update direction
+            BlockPos p = pos.offset(extendedDir);
+            for(Direction dir : directions) { //For each block update direction
+                BlockPos nextPos = p.offset(dir);
                 if (!CFSettings.uselessSelfBlockUpdateFix || requiresASelfBlockUpdate || !nextPos.equals(pos)) {
                     if (!CFSettings.duplicateBlockUpdatesFix || !blockPosList.contains(nextPos)) {
                         requiresASelfBlockUpdate = false;
@@ -67,16 +73,14 @@ public class BlockUpdateUtils {
         return false;
     }
 
-    public static boolean canUpdateNeighborsExceptWithOrder(World world, BlockPos pos, Block block, Direction direction) {
+    public static boolean canUpdateNeighborsExceptWithOrder(World world, BlockPos pos,Block block, Direction dir) {
         if (CFSettings.blockUpdateOrderFix) {
-            for (Direction d : DirectionUtils.directions) {
-                if (direction != d) world.updateNeighbor(pos.offset(d), block, pos);
-            }
+            for (Direction d : DirectionUtils.directions)
+                if (dir != d) world.updateNeighbor(pos.offset(d), block, pos);
             return true;
         } else if (CFSettings.parityRandomBlockUpdates) {
-            for (Direction d : DirectionUtils.randomDirectionArray(pos)) {
-                if (direction != d) world.updateNeighbor(pos.offset(d), block, pos);
-            }
+            for (Direction d : DirectionUtils.randomDirectionArray(pos))
+                if (dir != d) world.updateNeighbor(pos.offset(d), block, pos);
             return true;
         }
         return false;

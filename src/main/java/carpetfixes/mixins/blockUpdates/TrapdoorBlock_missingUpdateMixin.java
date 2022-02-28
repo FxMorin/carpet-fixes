@@ -26,15 +26,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(TrapdoorBlock.class)
 public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingBlock {
 
-    @Shadow @Final public static BooleanProperty OPEN;
-    @Shadow @Final public static EnumProperty<BlockHalf> HALF;
+    @Shadow
+    @Final
+    public static BooleanProperty OPEN;
 
+    @Shadow
+    @Final
+    public static EnumProperty<BlockHalf> HALF;
 
-    protected TrapdoorBlock_missingUpdateMixin(Settings settings) {super(settings);}
-
+    protected TrapdoorBlock_missingUpdateMixin(Settings settings) {
+        super(settings);
+    }
 
     private Direction directionToUpdate(BlockState state) {
-        return (state.get(OPEN)) ? ((state.get(HALF) == BlockHalf.TOP) ? Direction.UP : Direction.DOWN) : state.get(FACING).getOpposite();
+        return state.get(OPEN) ?
+                ((state.get(HALF) == BlockHalf.TOP) ? Direction.UP : Direction.DOWN) :
+                state.get(FACING).getOpposite();
     }
 
 
@@ -43,14 +50,15 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
             at = @At(
                     shift = At.Shift.AFTER,
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+                    target="Lnet/minecraft/world/World;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             cancellable = true
     )
-    private void updateOnUseCorrectly(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        if (CFSettings.trapdoorMissingUpdateFix) {
+    private void updateOnUseCorrectly(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                                      Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+        if (CFSettings.trapdoorMissingUpdateFix)
             world.updateNeighbor(pos.offset(directionToUpdate(state)),state.getBlock(),pos);
-        }
     }
 
 
@@ -59,12 +67,13 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
             at = @At(
                     shift = At.Shift.AFTER,
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+                    target="Lnet/minecraft/world/World;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             )
     )
-    private void updateCorrectly(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify, CallbackInfo ci) {
-        if (CFSettings.trapdoorMissingUpdateFix) {
+    private void updateCorrectly(BlockState state, World world, BlockPos pos, Block block,
+                                 BlockPos fromPos, boolean notify, CallbackInfo ci) {
+        if (CFSettings.trapdoorMissingUpdateFix)
             world.updateNeighbor(pos.offset(directionToUpdate(state)),state.getBlock(),pos);
-        }
     }
 }

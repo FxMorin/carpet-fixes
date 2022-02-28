@@ -17,11 +17,13 @@ public class RedstoneTorchBlock_updateOrderOnBreakMixin {
 
 
     @Inject(
-            method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            method = "onStateReplaced(Lnet/minecraft/block/BlockState;" +
+                    "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved, CallbackInfo ci) {
+    public void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos,
+                                               BlockState newState, boolean moved, CallbackInfo ci) {
         if (!moved) {
             boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.equals(state);
             BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,doExtraEarlyUpdate,true);

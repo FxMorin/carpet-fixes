@@ -1,4 +1,4 @@
-package carpetfixes.mixins.coreSystemFixes;
+package carpetfixes.mixins.other;
 
 import carpetfixes.CFSettings;
 import net.minecraft.server.world.ServerWorld;

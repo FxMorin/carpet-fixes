@@ -17,7 +17,8 @@ public class BeeEntity_voidMixin {
             at = @At(
                     value = "NEW",
                     target = "net/minecraft/entity/ai/control/FlightMoveControl"
-            ))
+            )
+    )
     public FlightMoveControl ModifiedFlightController(MobEntity entity, int maxPitchChange, boolean noGravity) {
         return new BeeFlightMoveControl(entity,maxPitchChange,noGravity);
     }

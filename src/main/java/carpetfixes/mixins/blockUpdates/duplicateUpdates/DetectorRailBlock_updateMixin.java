@@ -18,11 +18,13 @@ public class DetectorRailBlock_updateMixin {
             method = "updatePoweredStatus",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"),
+                    target="Lnet/minecraft/world/World;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
+            ),
             index = 2
     )
     private int modifyUpdate(int val) {
-        return CFSettings.duplicateBlockUpdatesFix ? 2 : 3;
+        return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
 
@@ -30,11 +32,11 @@ public class DetectorRailBlock_updateMixin {
             method = "updatePoweredStatus",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;updateNeighborsAlways(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V"
-            ))
+                    target="Lnet/minecraft/world/World;" +
+                            "updateNeighborsAlways(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V"
+            )
+    )
     private void removeUpdate(World world, BlockPos pos, Block block) {
-        if (!CFSettings.duplicateBlockUpdatesFix) {
-            world.updateNeighborsAlways(pos,block);
-        }
+        if (!CFSettings.duplicateBlockUpdatesFix) world.updateNeighborsAlways(pos,block);
     }
 }

@@ -18,11 +18,14 @@ public class PistonBlock_worldBorderMixin {
 
 
     @Inject(
-            method = "isMovable(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;ZLnet/minecraft/util/math/Direction;)Z",
+            method = "isMovable(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;" +
+                    "ZLnet/minecraft/util/math/Direction;)Z",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void customWorldBorderCheck(BlockState state, World world, BlockPos pos, Direction dir, boolean canBreak, Direction pistonDir, CallbackInfoReturnable<Boolean> cir) {
+    private static void customWorldBorderCheck(BlockState state, World world, BlockPos pos, Direction dir, boolean b,
+                                               Direction pistonDir, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.incorrectPistonWorldBorderCheckFix && !world.getWorldBorder().contains(pos.offset(dir))) {
             cir.setReturnValue(false);
         }
@@ -30,7 +33,9 @@ public class PistonBlock_worldBorderMixin {
 
 
     @Redirect(
-            method = "isMovable(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;ZLnet/minecraft/util/math/Direction;)Z",
+            method = "isMovable(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;" +
+                    "ZLnet/minecraft/util/math/Direction;)Z",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/border/WorldBorder;contains(Lnet/minecraft/util/math/BlockPos;)Z"

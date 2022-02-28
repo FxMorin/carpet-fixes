@@ -14,9 +14,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class MooshroomEntity_conversionMixin {
 
     /**
-     * Mooshroom convert into cows when sheared. When they convert, they do not transfer
-     * all the correct data to the new entity. The fix is simply to transfer the missing
-     * information over to the new entity.
+     * Mooshroom convert into cows when sheared. When they convert, they do not transfer all the correct data to the
+     * new entity. The fix is simply to transfer the missing information over to the new entity.
      */
 
 
@@ -29,7 +28,8 @@ public abstract class MooshroomEntity_conversionMixin {
                 value = "INVOKE",
                 target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z",
                 ordinal = 0
-            ))
+            )
+    )
     public boolean ConversionFix(World world, Entity cowEntity) {
         if (CFSettings.conversionFix && cowEntity instanceof CowEntity) {
             cowEntity.setVelocity(self.getVelocity()); //Motion
@@ -37,7 +37,7 @@ public abstract class MooshroomEntity_conversionMixin {
             cowEntity.setFireTicks(self.getFireTicks()); //Fire
             cowEntity.setSilent(self.isSilent()); //Silent
             ((MobEntity)cowEntity).setLeftHanded(self.isLeftHanded()); //Left Handed
-            //slimeEntity.setAir(this.getAir()); //Air
+            //cowEntity.setAir(this.getAir()); //Air
         }
         return world.spawnEntity(cowEntity);
     }

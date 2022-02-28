@@ -14,28 +14,31 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class LightningRodBlock_PermanentlyPoweredMixin {
 
     /**
-     * Make it so that the targetBlock does not do any check when added. Just
-     * like it used to be, so its movable while keeping its power level. We also
-     * need to prevent it from giving updates when removed.
+     * Make it so that the targetBlock does not do any check when added. Just like it used to be, so its movable while
+     * keeping its power level. We also need to prevent it from giving updates when removed.
      */
 
 
     @Inject(
-            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
+    public void onBlockAdded(BlockState state, World world, BlockPos pos,
+                             BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CFSettings.reIntroduceLightningRodPermanentlyPowered) ci.cancel();
     }
 
 
     @Inject(
-            method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+            method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
+    public void onStateReplaced(BlockState state, World world, BlockPos pos,
+                                BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CFSettings.reIntroduceLightningRodPermanentlyPowered) ci.cancel();
     }
 }

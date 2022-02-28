@@ -13,7 +13,9 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(BlockPos.class)
 public abstract class BlockPos_incorrectDistanceMixin extends Vec3i {
 
-    public BlockPos_incorrectDistanceMixin(int x, int y, int z) {super(x, y, z);}
+    public BlockPos_incorrectDistanceMixin(int x, int y, int z) {
+        super(x, y, z);
+    }
 
     @Override
     public double getSquaredDistance(Vec3i vec) {

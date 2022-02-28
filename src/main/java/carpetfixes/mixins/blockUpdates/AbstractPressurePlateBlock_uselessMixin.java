@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractPressurePlateBlock.class)
 public class AbstractPressurePlateBlock_uselessMixin {
 
-
     AbstractPressurePlateBlock self = (AbstractPressurePlateBlock)(Object)this;
 
 

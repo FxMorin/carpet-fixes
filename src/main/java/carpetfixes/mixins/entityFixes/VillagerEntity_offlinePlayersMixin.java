@@ -14,7 +14,9 @@ import java.util.UUID;
 @Mixin(VillagerEntity.class)
 public class VillagerEntity_offlinePlayersMixin implements VillagerEntityInteraction {
 
-    @Shadow @Final private VillagerGossips gossip;
+    @Shadow
+    @Final
+    private VillagerGossips gossip;
 
     //Rewriting the method the way it should have been written to begin with
 

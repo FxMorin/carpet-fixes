@@ -13,7 +13,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(SkeletonEntity.class)
 public abstract class SkeletonEntity_convertingMixin extends AbstractSkeletonEntity {
 
-    protected SkeletonEntity_convertingMixin(EntityType<? extends AbstractSkeletonEntity> entityType, World world) {super(entityType, world);}
+    protected SkeletonEntity_convertingMixin(EntityType<? extends AbstractSkeletonEntity> entityType, World world) {
+        super(entityType, world);
+    }
+
 
     @Inject(
             method = "isConverting()Z",
@@ -21,8 +24,6 @@ public abstract class SkeletonEntity_convertingMixin extends AbstractSkeletonEnt
             cancellable = true
     )
     public void isConverting(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.mobsConvertingWithoutBlocksFix) {
-            cir.setReturnValue(cir.getReturnValue() && this.inPowderSnow);
-        }
+        if (CFSettings.mobsConvertingWithoutBlocksFix) cir.setReturnValue(cir.getReturnValue() && this.inPowderSnow);
     }
 }

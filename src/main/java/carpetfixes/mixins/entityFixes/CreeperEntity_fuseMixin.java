@@ -13,12 +13,16 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(CreeperEntity.class)
 public abstract class CreeperEntity_fuseMixin extends HostileEntity {
 
+    @Shadow
+    public int currentFuseTime;
 
-    @Shadow private int currentFuseTime;
-    @Shadow private int lastFuseTime;
+    @Shadow
+    public int lastFuseTime;
 
 
-    protected CreeperEntity_fuseMixin(EntityType<? extends HostileEntity> entityType, World world) {super(entityType, world);}
+    protected CreeperEntity_fuseMixin(EntityType<? extends HostileEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
 
     @Override

@@ -11,14 +11,15 @@ public class EnderDragonFight_twoCrystalMixin {
 
 
     @ModifyArg(
-            method="respawnDragon()V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/util/math/BlockPos;offset(Lnet/minecraft/util/math/Direction;I)Lnet/minecraft/util/math/BlockPos;"
+            method = "respawnDragon()V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/util/math/BlockPos;offset(Lnet/minecraft/util/math/Direction;I)" +
+                            "Lnet/minecraft/util/math/BlockPos;"
             ),
-            index=1
+            index = 1
     )
     private int modifyDist(int dist) {
-        return CFSettings.respawnDragonWithoutAllEndCrystalsFix ? 3 : 2;
+        return CFSettings.respawnDragonWithoutAllEndCrystalsFix ? 3 : dist;
     }
 }

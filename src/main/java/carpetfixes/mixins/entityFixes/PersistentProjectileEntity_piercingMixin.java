@@ -17,6 +17,7 @@ public class PersistentProjectileEntity_piercingMixin {
 
     private final ThreadLocal<Entity> lastEntity = new ThreadLocal<>();
 
+
     @Inject(
             method = "onEntityHit(Lnet/minecraft/util/hit/EntityHitResult;)V",
             locals = LocalCapture.CAPTURE_FAILSOFT,
@@ -41,6 +42,8 @@ public class PersistentProjectileEntity_piercingMixin {
             )
     )
     protected byte skipForEnderman(PersistentProjectileEntity instance) {
-        return CFSettings.endermanLowerPiercingFix ? lastEntity.get().getType() == EntityType.ENDERMAN ? 0 : instance.getPierceLevel() : instance.getPierceLevel();
+        return CFSettings.endermanLowerPiercingFix ? lastEntity.get().getType() == EntityType.ENDERMAN ?
+                0 :
+                instance.getPierceLevel() : instance.getPierceLevel();
     }
 }

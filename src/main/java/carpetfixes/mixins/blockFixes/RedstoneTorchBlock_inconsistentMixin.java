@@ -19,19 +19,27 @@ import java.util.Random;
 @Mixin(RedstoneTorchBlock.class)
 public class RedstoneTorchBlock_inconsistentMixin {
 
-    @Shadow @Final public static BooleanProperty LIT;
+    @Shadow
+    @Final
+    public static BooleanProperty LIT;
 
-    @Shadow private static boolean isBurnedOut(World world, BlockPos pos, boolean addNew) {return true;}
+    @Shadow
+    private static boolean isBurnedOut(World world, BlockPos pos, boolean addNew) {
+        return true;
+    }
 
 
     @Inject(
-            method= "scheduledTick(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
+            method= "scheduledTick(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;" +
+                    "Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
             cancellable = true,
             at=@At(
                     value="INVOKE",
-                    target="Lnet/minecraft/server/world/ServerWorld;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z",
+                    target="Lnet/minecraft/server/world/ServerWorld;" +
+                            "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z",
                     ordinal=0
-            ))
+            )
+    )
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         if (CFSettings.inconsistentRedstoneTorchFix) {
             if (isBurnedOut(world, pos, true)) {

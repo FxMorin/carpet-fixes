@@ -18,23 +18,31 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
 
 
-    @Shadow @Nullable BlockPos hivePos;
+    @Shadow
+    @Nullable
+    BlockPos hivePos;
 
 
-    protected BeeEntity_chunkLoadingMixin(EntityType<? extends AnimalEntity> entityType, World world) {super(entityType, world);}
+    protected BeeEntity_chunkLoadingMixin(EntityType<? extends AnimalEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
 
     @Inject(
             method= "isHiveNearFire",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;getBlockEntity(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/entity/BlockEntity;",
+                    target = "Lnet/minecraft/world/World;getBlockEntity(Lnet/minecraft/util/math/BlockPos;)" +
+                            "Lnet/minecraft/block/entity/BlockEntity;",
                     shift = At.Shift.BEFORE
             ),
             cancellable = true
     )
     public void isHiveNearFireAndLoaded(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.beeDupeFix && !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.hivePos.getX()),ChunkSectionPos.getSectionCoord(this.hivePos.getY()))) cir.setReturnValue(true);
+        if (CFSettings.beeDupeFix && !this.world.isChunkLoaded(
+                ChunkSectionPos.getSectionCoord(this.hivePos.getX()),
+                ChunkSectionPos.getSectionCoord(this.hivePos.getY())
+        )) cir.setReturnValue(true);
     }
 
 
@@ -44,7 +52,10 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
             cancellable = true
     )
     public void doesHiveHaveSpaceAndLoaded(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.beeDupeFix && (this.hivePos == null || !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(pos.getX()),ChunkSectionPos.getSectionCoord(pos.getY())))) cir.setReturnValue(false);
+        if (CFSettings.beeDupeFix && (this.hivePos == null || !this.world.isChunkLoaded(
+                ChunkSectionPos.getSectionCoord(pos.getX()),
+                ChunkSectionPos.getSectionCoord(pos.getY())
+        ))) cir.setReturnValue(false);
     }
 
 
@@ -52,12 +63,16 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
             method= "isHiveValid",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;getBlockEntity(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/entity/BlockEntity;",
+                    target = "Lnet/minecraft/world/World;getBlockEntity(Lnet/minecraft/util/math/BlockPos;)" +
+                            "Lnet/minecraft/block/entity/BlockEntity;",
                     shift = At.Shift.BEFORE
             ),
             cancellable = true
     )
     public void isHiveValidAndLoaded(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.beeDupeFix && !this.world.isChunkLoaded(ChunkSectionPos.getSectionCoord(this.hivePos.getX()),ChunkSectionPos.getSectionCoord(this.hivePos.getY()))) cir.setReturnValue(false);
+        if (CFSettings.beeDupeFix && !this.world.isChunkLoaded(
+                ChunkSectionPos.getSectionCoord(this.hivePos.getX()),
+                ChunkSectionPos.getSectionCoord(this.hivePos.getY())
+        )) cir.setReturnValue(false);
     }
 }

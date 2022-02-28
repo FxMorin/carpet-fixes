@@ -16,7 +16,9 @@ public class AbstractRedstoneGateBlock_updatesMixin {
 
 
     @Inject(
-            method = "neighborUpdate(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;Z)V",
+            method = "neighborUpdate(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;" +
+                    "Lnet/minecraft/util/math/BlockPos;Z)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z",
@@ -24,7 +26,8 @@ public class AbstractRedstoneGateBlock_updatesMixin {
             ),
             cancellable = true
     )
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify, CallbackInfo ci) {
+    public void neighborUpdate(BlockState state, World world, BlockPos pos,
+                               Block block,BlockPos fromPos, boolean notify, CallbackInfo ci) {
         BlockUpdateUtils.doExtendedBlockUpdates(world,pos,block,state.get(AbstractRedstoneGateBlock.POWERED),false);
         ci.cancel();
     }

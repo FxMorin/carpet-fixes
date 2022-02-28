@@ -46,7 +46,8 @@ public class RaycastUtils {
     }
 
     //Raycast from net.minecraft.world.BlockView //TODO: Fix possible issue in 45 degree calculation
-    private static <T, C> T raycast(Vec3d start, Vec3d end, C context, BiFunction<C, BlockPos, T> blockHitFactory, Function<C, T> missFactory) {
+    private static <T, C> T raycast(Vec3d start, Vec3d end, C context,
+                                    BiFunction<C, BlockPos, T> blockHitFactory, Function<C, T> missFactory) {
         if (start.equals(end)) return missFactory.apply(context);
         double d = MathHelper.lerp(RAY_STEP_START, end.x, start.x);
         double e = MathHelper.lerp(RAY_STEP_START, end.y, start.y);

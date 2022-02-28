@@ -13,16 +13,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ItemStack_repairCostMixin {
 
     /**
-     * I use a very interesting way of getting around the problem here. I look for
-     * the hidden tag called CAN_PLACE and if I find it, then it means that the
-     * block can be placed, so the repairCost tag can be removed from it by just
-     * placing it on the ground, so don't add a repairCost nbt tag to it,
-     * since it's useless.
+     * I use a very interesting way of getting around the problem here. I look for the hidden tag called CAN_PLACE
+     * and if I find it, then it means that the block can be placed, so the repairCost tag can be removed from it
+     * by just placing it on the ground, so don't add a repairCost nbt tag to it, since it's useless.
      */
 
 
-    @Shadow public boolean hasNbt() { return false; }
-    @Shadow private NbtCompound nbt;
+    @Shadow
+    private NbtCompound nbt;
+
+    @Shadow
+    public boolean hasNbt() {
+        return false;
+    }
 
 
     private int getHideFlags() {
@@ -36,8 +39,8 @@ public class ItemStack_repairCostMixin {
             cancellable = true
     )
     public void setRepairCost(int repairCost, CallbackInfo ci) {
-        if (CFSettings.repairCostItemNotStackingFix && (this.getHideFlags() & ItemStack.TooltipSection.CAN_PLACE.getFlag()) == 0) {
+        if (CFSettings.repairCostItemNotStackingFix &&
+                (this.getHideFlags() & ItemStack.TooltipSection.CAN_PLACE.getFlag()) == 0)
             ci.cancel();
-        }
     }
 }

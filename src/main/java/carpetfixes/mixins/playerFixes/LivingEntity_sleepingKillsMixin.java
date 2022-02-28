@@ -16,17 +16,19 @@ public abstract class LivingEntity_sleepingKillsMixin extends Entity {
 
     /**
      * If you fall from a high place into you bed, once you wake up you die from fall damage.
-     * When velocity gets set to ZERO when you sleep, we should also be setting the fallDistance
-     * to 0, to ensure that no weird behaviour happens.
+     * When velocity gets set to ZERO when you sleep, we should also be setting the fallDistance to 0,
+     * to ensure that no weird behaviour happens.
      */
 
 
-    public LivingEntity_sleepingKillsMixin(EntityType<?> type, World world) { super(type, world); }
+    public LivingEntity_sleepingKillsMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
 
     @Inject(
-            method= "setPositionInBed(Lnet/minecraft/util/math/BlockPos;)V",
-            at=@At("HEAD")
+            method = "setPositionInBed(Lnet/minecraft/util/math/BlockPos;)V",
+            at = @At("HEAD")
     )
     private void saferSleep(BlockPos pos, CallbackInfo ci) {
         if (CFSettings.sleepingDelaysFallDamageFix) this.fallDistance = 0.0F;

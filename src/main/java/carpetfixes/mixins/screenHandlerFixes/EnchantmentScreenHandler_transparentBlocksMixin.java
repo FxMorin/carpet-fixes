@@ -14,12 +14,16 @@ public class EnchantmentScreenHandler_transparentBlocksMixin {
 
     @SuppressWarnings("target")
     @Redirect(
-            method="method_17411(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/world/World;isAir(Lnet/minecraft/util/math/BlockPos;)Z"
-            ))
+            method = "method_17411(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;isAir(Lnet/minecraft/util/math/BlockPos;)Z"
+            )
+    )
     public boolean isTranslucent(World world, BlockPos pos) {
-        return CFSettings.transparentBlocksNegateEnchantingFix ? !world.getBlockState(pos).isFullCube(world,pos) : world.isAir(pos);
+        return CFSettings.transparentBlocksNegateEnchantingFix ?
+                !world.getBlockState(pos).isFullCube(world,pos) :
+                world.isAir(pos);
     }
 }

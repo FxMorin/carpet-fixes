@@ -17,13 +17,18 @@ public class World_ComparatorNotUpdatingMixin {
 
     /**
      * Move comparator updates over to neighbor updates like everything else.
-     * To do this we first prevent the other updates from working, then add the
-     * comparator update if they have a comparator output into updateNeighbor()
+     * To do this we first prevent the other updates from working, then add the comparator update if they have a
+     * comparator output into updateNeighbor()
      */
 
 
-    @Shadow public void updateComparators(BlockPos pos, Block block) {}
-    @Shadow public BlockState getBlockState(BlockPos pos) { return null;}
+    @Shadow
+    public void updateComparators(BlockPos pos, Block block) {}
+
+    @Shadow
+    public BlockState getBlockState(BlockPos pos) {
+        return null;
+    }
 
 
     @Redirect(
@@ -31,22 +36,29 @@ public class World_ComparatorNotUpdatingMixin {
             at = @At(
                     value ="INVOKE",
                     target = "Lnet/minecraft/block/BlockState;hasComparatorOutput()Z"
-            ))
+            )
+    )
     private boolean updateNeighborsAlwaysWithBetterDirection(BlockState blockState) {
         return !CFSettings.comparatorUpdateFix && blockState.hasComparatorOutput();
     }
 
 
     @Inject(
-            method = "updateNeighbor(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;)V",
+            method = "updateNeighbor(Lnet/minecraft/util/math/BlockPos;" +
+                    "Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At(
-                    value ="INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;neighborUpdate(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;Z)V"
-            ))
-    private void updateNeighborsAlwaysWithBetterDirection(BlockPos sourcePos, Block sourceBlock, BlockPos neighborPos, CallbackInfo ci) {
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/BlockState;neighborUpdate(Lnet/minecraft/world/World;" +
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;" +
+                            "Lnet/minecraft/util/math/BlockPos;Z)V"
+            )
+    )
+    private void updateNeighborsAlwaysWithBetterDirection(BlockPos sourcePos, Block sourceBlock,
+                                                          BlockPos neighborPos, CallbackInfo ci) {
         if (CFSettings.comparatorUpdateFix) {
-            BlockState newState = this.getBlockState(sourcePos);
-            if(sourceBlock.getDefaultState().hasComparatorOutput() || newState.hasComparatorOutput()) this.updateComparators(sourcePos, sourceBlock);
+            if(sourceBlock.getDefaultState().hasComparatorOutput() ||
+                    this.getBlockState(sourcePos).hasComparatorOutput())
+                this.updateComparators(sourcePos, sourceBlock);
         }
     }
 }

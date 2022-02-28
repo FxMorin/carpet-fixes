@@ -12,7 +12,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(ZombieEntity.class)
 public class ZombieEntity_reinforcementMixin extends HostileEntity {
 
-    protected ZombieEntity_reinforcementMixin(EntityType<? extends HostileEntity> entityType, World world) {super(entityType, world);}
+    protected ZombieEntity_reinforcementMixin(EntityType<? extends HostileEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
 
     @Redirect(
@@ -24,6 +26,8 @@ public class ZombieEntity_reinforcementMixin extends HostileEntity {
             )
     )
     public ZombieEntity modifyType(World instance) {
-        return CFSettings.reinforcementsOnlySpawnZombiesFix ? (ZombieEntity)this.getType().create(this.world) : new ZombieEntity(this.world);
+        return CFSettings.reinforcementsOnlySpawnZombiesFix ?
+                (ZombieEntity)this.getType().create(this.world) :
+                new ZombieEntity(this.world);
     }
 }

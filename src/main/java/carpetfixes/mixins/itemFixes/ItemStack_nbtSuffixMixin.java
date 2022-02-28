@@ -18,5 +18,7 @@ public class ItemStack_nbtSuffixMixin {
             ),
             index = 1
     )
-    private int incorrectNbtCheck(int value) {return CFSettings.incorrectNbtChecks ? 99 : 3;}
+    private int incorrectNbtCheck(int value) {
+        return CFSettings.incorrectNbtChecks ? 99 : 3;
+    }
 }

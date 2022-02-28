@@ -16,13 +16,15 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class MobEntity_conversionMixin extends LivingEntity  {
 
     /**
-     * Some mobs can convert into other mobs. Most of them use the converTo() method.
-     * When mobs convert, they do not transfer all the correct data to the new entity.
-     * The fix is simply to transfer the missing information over to the new entity.
+     * Some mobs can convert into other mobs. Most of them use the convertTo() method. When mobs convert, they do not
+     * transfer all the correct data to the new entity. The fix is simply to transfer the missing information over to
+     * the new entity.
     */
 
 
-    protected MobEntity_conversionMixin(EntityType<? extends LivingEntity> entityType, World world) { super(entityType, world); }
+    protected MobEntity_conversionMixin(EntityType<? extends LivingEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
 
     @Redirect(
@@ -31,7 +33,8 @@ public abstract class MobEntity_conversionMixin extends LivingEntity  {
                 value = "INVOKE",
                 target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z",
                 ordinal = 0
-            ))
+            )
+    )
     public boolean ConversionFix(World world, Entity entity) {
         if (CFSettings.conversionFix) {
             entity.setFireTicks(this.getFireTicks()); //Fire
@@ -43,7 +46,11 @@ public abstract class MobEntity_conversionMixin extends LivingEntity  {
             boolean didWork = world.spawnEntity(entity);
             entity.resetPosition();
             entity.tick();
-            if (!world.isClient) ((ServerWorld) entity.getEntityWorld()).getChunkManager().sendToNearbyPlayers(entity, new EntityPositionS2CPacket(entity));
+            if (!world.isClient)
+                ((ServerWorld) entity.getEntityWorld()).getChunkManager().sendToNearbyPlayers(
+                        entity,
+                        new EntityPositionS2CPacket(entity)
+                );
             return didWork;
         }
         return world.spawnEntity(entity);

@@ -19,6 +19,8 @@ public class BeehiveBlockEntity_stuckMixin {
             )
     )
     private static boolean isRainingBetter(World world) {
-        return CFSettings.beeNotLeavingHiveFix ? (!world.getDimension().hasFixedTime() && world.getDimension().hasSkyLight() && world.isRaining()) : world.isRaining();
+        return CFSettings.beeNotLeavingHiveFix ?
+                !world.getDimension().hasFixedTime() && world.getDimension().hasSkyLight() && world.isRaining() :
+                world.isRaining();
     }
 }

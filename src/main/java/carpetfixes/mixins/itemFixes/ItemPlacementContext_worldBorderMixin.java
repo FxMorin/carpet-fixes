@@ -15,7 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ItemPlacementContext.class)
 public abstract class ItemPlacementContext_worldBorderMixin extends ItemUsageContext {
 
-    @Shadow protected boolean canReplaceExisting;
+    @Shadow
+    protected boolean canReplaceExisting;
 
     private final ItemPlacementContext self = (ItemPlacementContext) (Object) this;
 
@@ -31,7 +32,11 @@ public abstract class ItemPlacementContext_worldBorderMixin extends ItemUsageCon
     )
     public void canPlace(CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.placeBlocksOutsideWorldBorderFix) {
-            cir.setReturnValue(this.getWorld().getWorldBorder().contains(this.getBlockPos()) && (this.canReplaceExisting || this.getWorld().getBlockState(this.getBlockPos()).canReplace(self)));
+            cir.setReturnValue(
+                    this.getWorld().getWorldBorder().contains(this.getBlockPos()) && (
+                                    this.canReplaceExisting ||
+                                    this.getWorld().getBlockState(this.getBlockPos()).canReplace(self)
+                    ));
         }
     }
 }

@@ -19,9 +19,11 @@ import java.util.function.BooleanSupplier;
 @Mixin(ThreadedAnvilChunkStorage.class)
 public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
 
-    @Shadow private volatile Long2ObjectLinkedOpenHashMap<ChunkHolder> chunkHolders;
+    @Shadow
+    private volatile Long2ObjectLinkedOpenHashMap<ChunkHolder> chunkHolders;
 
-    @Shadow protected abstract boolean save(Chunk chunk);
+    @Shadow
+    protected abstract boolean save(Chunk chunk);
 
 
     @Inject(

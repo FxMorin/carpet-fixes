@@ -10,19 +10,21 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class EndermanEntity_teleportingMixin {
 
     /**
-     * Enderman will sometimes attempt to teleport while they are in a minecart. There
-     * is no reason for them to do this. So we prevent them from doing so by changing
-     * the brightness that they see.
+     * Enderman will sometimes attempt to teleport while they are in a minecart. There is no reason for them to do this
+     * So we prevent them from doing so by changing the brightness that they see.
      */
 
 
     @Redirect(
-            method= "mobTick()V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/entity/mob/EndermanEntity;getBrightnessAtEyes()F"
-            ))
+            method = "mobTick()V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/mob/EndermanEntity;getBrightnessAtEyes()F"
+            )
+    )
     public float brightnessAndMinecart(EndermanEntity entity) {
-        return (CFSettings.endermanUselessMinecartTeleportingFix && entity.hasVehicle()) ? 0.0f : entity.getBrightnessAtEyes();
+        return (CFSettings.endermanUselessMinecartTeleportingFix && entity.hasVehicle()) ?
+                0.0f :
+                entity.getBrightnessAtEyes();
     }
 }

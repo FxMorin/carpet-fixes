@@ -15,7 +15,7 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
 
     /**
      * Allows replaceable materials to be within the iron golem structure
-     * when the iron golem is spawning.
+     * when the iron golem attempts to spawn.
      */
 
 
@@ -23,13 +23,13 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
             method = "getIronGolemPattern()Lnet/minecraft/block/pattern/BlockPattern;",
             at = @At(
                     value="INVOKE",
-                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
+                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;" +
+                            "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
                     ordinal=2
-            ))
+            )
+    )
     private Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state){
-        if (CFSettings.witherGolemSpawningFix) {
-            state = CFSettings.IS_REPLACEABLE;
-        }
+        if (CFSettings.witherGolemSpawningFix) state = CFSettings.IS_REPLACEABLE;
         return CachedBlockPosition.matchesBlockState(state);
     }
 
@@ -38,13 +38,13 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
             method = "getIronGolemDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;",
             at = @At(
                     value="INVOKE",
-                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
+                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;" +
+                            "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
                     ordinal=1
-            ))
+            )
+    )
     private Predicate<CachedBlockPosition> replaceableMaterialPredicateDispenser(Predicate<BlockState> state){
-        if (CFSettings.witherGolemSpawningFix) {
-            state = CFSettings.IS_REPLACEABLE;
-        }
+        if (CFSettings.witherGolemSpawningFix) state = CFSettings.IS_REPLACEABLE;
         return CachedBlockPosition.matchesBlockState(state);
     }
 }

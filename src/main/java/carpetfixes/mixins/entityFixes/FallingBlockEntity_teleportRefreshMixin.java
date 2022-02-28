@@ -11,9 +11,13 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntity_teleportRefreshMixin extends Entity {
 
-    @Shadow public int timeFalling;
+    @Shadow
+    public int timeFalling;
 
-    public FallingBlockEntity_teleportRefreshMixin(EntityType<?> type, World world) {super(type, world);}
+    public FallingBlockEntity_teleportRefreshMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
+
 
     @Override
     public void refreshPositionAndAngles(double x, double y, double z, float yaw, float pitch) {

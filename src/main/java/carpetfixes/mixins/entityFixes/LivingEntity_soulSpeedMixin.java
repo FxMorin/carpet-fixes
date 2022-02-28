@@ -14,15 +14,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class LivingEntity_soulSpeedMixin extends Entity {
 
 
-    public LivingEntity_soulSpeedMixin(EntityType<?> type, World world) {super(type, world);}
+    public LivingEntity_soulSpeedMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
 
     @Inject(
-            method= "addSoulSpeedBoostIfNeeded()V",
-            at=@At(
+            method = "addSoulSpeedBoostIfNeeded()V",
+            at = @At(
                     shift = At.Shift.AFTER,
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/attribute/EntityAttributeInstance;addTemporaryModifier(Lnet/minecraft/entity/attribute/EntityAttributeModifier;)V"
+                    target = "Lnet/minecraft/entity/attribute/EntityAttributeInstance;" +
+                            "addTemporaryModifier(Lnet/minecraft/entity/attribute/EntityAttributeModifier;)V"
             ),
             cancellable = true
     )

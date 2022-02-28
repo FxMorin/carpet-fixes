@@ -21,9 +21,14 @@ import java.util.function.Supplier;
 @Mixin(ServerWorld.class)
 public abstract class ServerWorld_zeroTickMixin extends World {
 
-    protected ServerWorld_zeroTickMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, DimensionType dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed);}
+    protected ServerWorld_zeroTickMixin(MutableWorldProperties properties, RegistryKey<World> registryRef,
+                                        DimensionType dimensionType, Supplier<Profiler> profiler,
+                                        boolean isClient, boolean debugWorld, long seed) {
+        super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed);
+    }
 
     private final ServerWorld self = (ServerWorld)(Object)this;
+
 
     @Inject(
             method = "tickBlock(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
@@ -31,13 +36,13 @@ public abstract class ServerWorld_zeroTickMixin extends World {
             require = 0,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;scheduledTick(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
+                    target = "Lnet/minecraft/block/BlockState;scheduledTick(Lnet/minecraft/server/world/ServerWorld;" +
+                            "Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
                     shift = At.Shift.AFTER
             )
     )
     private void zeroTickBlock(BlockPos pos, Block block, CallbackInfo ci, BlockState state) {
-        if (CFSettings.reIntroduceZeroTickFarms && !this.isAir(pos) && state.hasRandomTicks()) {
+        if (CFSettings.reIntroduceZeroTickFarms && !this.isAir(pos) && state.hasRandomTicks())
             state.randomTick(self,pos,this.random);
-        }
     }
 }

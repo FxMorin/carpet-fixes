@@ -19,10 +19,12 @@ public class TrunkPlacer_logMixin {
 
 
     @Inject(
-            method= "setToDirt(Lnet/minecraft/world/TestableWorld;Ljava/util/function/BiConsumer;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/TreeFeatureConfig;)V",
+            method= "setToDirt(Lnet/minecraft/world/TestableWorld;Ljava/util/function/BiConsumer;Ljava/util/Random;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/TreeFeatureConfig;)V",
             at=@At("HEAD")
     )
-    private static void setToDirtNotTrunk(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, BlockPos pos, TreeFeatureConfig config, CallbackInfo ci) {
+    private static void setToDirtNotTrunk(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer,
+                                          Random random, BlockPos pos, TreeFeatureConfig config, CallbackInfo ci) {
         CFSettings.lastDirt.get().add(pos);
     }
 }

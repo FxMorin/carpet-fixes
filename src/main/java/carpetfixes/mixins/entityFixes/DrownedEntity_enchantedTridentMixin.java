@@ -21,13 +21,14 @@ import java.util.Map;
 public class DrownedEntity_enchantedTridentMixin extends ZombieEntity {
 
     /**
-     * The trident wielding Drowned, do not actually use the enchantments
-     * that are on the tridents. So here we check if they are holding an
-     * enchanted trident, and if so apply the enchantments.
+     * The trident wielding Drowned, do not actually use the enchantments that are on the tridents.
+     * So here we check if they are holding an enchanted trident, and if so apply the enchantments.
      */
 
 
-    public DrownedEntity_enchantedTridentMixin(EntityType<? extends ZombieEntity> entityType, World world) { super(entityType, world); }
+    public DrownedEntity_enchantedTridentMixin(EntityType<? extends ZombieEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
 
     @Redirect(
@@ -35,7 +36,8 @@ public class DrownedEntity_enchantedTridentMixin extends ZombieEntity {
             at = @At(
                     value = "NEW",
                     target = "net/minecraft/item/ItemStack"
-            ))
+            )
+    )
     private ItemStack createItemStack(ItemConvertible item) {
         ItemStack trident = new ItemStack(item);
         if (CFSettings.drownedEnchantedTridentsFix) {

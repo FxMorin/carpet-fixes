@@ -19,14 +19,13 @@ public class MinecartItem_missingOcclusionMixin {
             method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;emitGameEvent(Lnet/minecraft/entity/Entity;Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
+                    target = "Lnet/minecraft/world/World;emitGameEvent(Lnet/minecraft/entity/Entity;" +
+                            "Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
             )
     )
     private void addOcclusionCheck(World world, Entity entity, GameEvent gameEvent, BlockPos blockPos) {
         if (CFSettings.minecartMissingOcclusionFix) {
-            if (world.getBlockState(blockPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
-                return;
-            }
+            if (world.getBlockState(blockPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return;
         }
         world.emitGameEvent(gameEvent,blockPos);
     }

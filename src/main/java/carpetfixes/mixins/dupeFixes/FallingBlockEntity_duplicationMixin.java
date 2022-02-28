@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class FallingBlockEntity_duplicationMixin extends Entity {
 
     /**
-     * Cancel the entity removal if the entity is already considered dead. This
-     * prevents duplication of the falling block entity using portals.
+     * Cancel the entity removal if the entity is already considered dead. This prevents duplication of the
+     * falling block entity using portals.
      */
 
 
@@ -28,7 +28,8 @@ public abstract class FallingBlockEntity_duplicationMixin extends Entity {
             method = "tick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/FallingBlockEntity;move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V"
+                    target = "Lnet/minecraft/entity/FallingBlockEntity;move(Lnet/minecraft/entity/MovementType;" +
+                            "Lnet/minecraft/util/math/Vec3d;)V"
             ),
             cancellable = true
     )

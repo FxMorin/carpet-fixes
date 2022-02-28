@@ -6,13 +6,14 @@ import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
 import com.google.common.primitives.Longs;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.gen.random.*;
+import net.minecraft.world.gen.random.AbstractRandom;
+import net.minecraft.world.gen.random.GaussianGenerator;
+import net.minecraft.world.gen.random.RandomSeed;
+import net.minecraft.world.gen.random.Xoroshiro128PlusPlusRandomImpl;
 
 import java.util.Random;
 
 public class XoroshiroCustomRandom extends Random implements AbstractRandom {
-
-    public static final XoroshiroCustomRandom globalRand = new XoroshiroCustomRandom();
 
     /**
      * A custom Xoroshiro128++ PRNG class that extends from Random & implements AbstractRandom in order to
@@ -130,9 +131,7 @@ public class XoroshiroCustomRandom extends Random implements AbstractRandom {
     @Override
     public void nextBytes(byte[] bytes) {
         for (int i = 0, len = bytes.length; i < len; )
-            for (int rnd = nextInt(),
-                 n = Math.min(len - i, Integer.SIZE/Byte.SIZE);
-                 n-- > 0; rnd >>= Byte.SIZE)
+            for (int rnd = nextInt(), n = Math.min(len - i, Integer.SIZE/Byte.SIZE); n-- > 0; rnd >>= Byte.SIZE)
                 bytes[i++] = (byte)rnd;
     }
 

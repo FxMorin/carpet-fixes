@@ -24,7 +24,7 @@ public class UpdateScheduler {
         while((nextBlockUpdate = tempUpdates.poll()) != null) {
             try {
                 world.updateNeighbor(nextBlockUpdate.pos, nextBlockUpdate.block, nextBlockUpdate.pos);
-            } catch (Throwable var7) {}
+            } catch (Throwable ignored) {}
         }
     }
 

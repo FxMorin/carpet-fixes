@@ -17,9 +17,11 @@ import org.spongepowered.asm.mixin.injection.Slice;
 @Mixin(Entity.class)
 public abstract class Entity_velocityFailMixin {
 
-    @Shadow public abstract Vec3d getVelocity();
+    @Shadow
+    public abstract Vec3d getVelocity();
 
-    @Shadow public abstract void setVelocity(double x, double y, double z);
+    @Shadow
+    public abstract void setVelocity(double x, double y, double z);
 
 
     @Redirect(
@@ -27,7 +29,8 @@ public abstract class Entity_velocityFailMixin {
             slice = @Slice(
                     from = @At(
                             value = "INVOKE",
-                            target = "Lnet/minecraft/entity/Entity;fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V"
+                            target = "Lnet/minecraft/entity/Entity;" +
+                                    "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V"
                     )
             ),
             at = @At(

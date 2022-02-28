@@ -22,18 +22,30 @@ import java.util.Random;
 @Mixin(BuriedTreasureFeature.class)
 public abstract class BuriedTreasureFeature_centerMixin extends StructureFeature<ProbabilityConfig> {
 
-    public BuriedTreasureFeature_centerMixin(Codec<ProbabilityConfig> configCodec, StructureGeneratorFactory<ProbabilityConfig> piecesGenerator) {super(configCodec, piecesGenerator);}
+    public BuriedTreasureFeature_centerMixin(
+            Codec<ProbabilityConfig> configCodec,
+            StructureGeneratorFactory<ProbabilityConfig> piecesGenerator
+    ) {
+        super(configCodec, piecesGenerator);
+    }
 
     @Inject(
-            method = "addPieces(Lnet/minecraft/structure/StructurePiecesCollector;Lnet/minecraft/structure/StructurePiecesGenerator$Context;)V",
+            method = "addPieces(Lnet/minecraft/structure/StructurePiecesCollector;" +
+                    "Lnet/minecraft/structure/StructurePiecesGenerator$Context;)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void customPiecePosition(StructurePiecesCollector collector, StructurePiecesGenerator.Context<ProbabilityConfig> context, CallbackInfo ci) {
+    private static void customPiecePosition(StructurePiecesCollector collector,
+                                            StructurePiecesGenerator.Context<ProbabilityConfig> context,
+                                            CallbackInfo ci) {
         if (CFSettings.buriedTreasureAlwaysCenterFix) {
             ChunkPos chunkPos = context.chunkPos();
             Random rand = new Random(chunkPos.toLong());
-            BlockPos blockPos = new BlockPos(chunkPos.getOffsetX(rand.nextInt(16)), 90, chunkPos.getOffsetZ(rand.nextInt(16)));
+            BlockPos blockPos = new BlockPos(
+                    chunkPos.getOffsetX(rand.nextInt(16)),
+                    90,
+                    chunkPos.getOffsetZ(rand.nextInt(16))
+            );
             collector.addPiece(new BuriedTreasureGenerator.Piece(blockPos));
             ci.cancel();
         }
@@ -47,7 +59,11 @@ public abstract class BuriedTreasureFeature_centerMixin extends StructureFeature
     public void getLocatedPos(ChunkPos chunkPos, CallbackInfoReturnable<BlockPos> cir) {
         if (CFSettings.buriedTreasureAlwaysCenterFix) {
             Random rand = new Random(chunkPos.toLong());
-            cir.setReturnValue(new BlockPos(chunkPos.getOffsetX(rand.nextInt(16)), 0, chunkPos.getOffsetZ(rand.nextInt(16))));
+            cir.setReturnValue(new BlockPos(
+                    chunkPos.getOffsetX(rand.nextInt(16)),
+                    0,
+                    chunkPos.getOffsetZ(rand.nextInt(16)))
+            );
         }
     }
 }

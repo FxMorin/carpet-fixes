@@ -13,16 +13,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(TntMinecartEntity.class)
 public abstract class TntMinecartEntity_doubleExplodeMixin extends Entity {
 
-
-    public TntMinecartEntity_doubleExplodeMixin(EntityType<?> type, World world) {super(type, world);}
+    public TntMinecartEntity_doubleExplodeMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
 
     @Inject(
-            method= "tick()V",
-            at= @At(
-                    shift= At.Shift.AFTER,
-                    value= "INVOKE",
-                    target="Lnet/minecraft/entity/vehicle/TntMinecartEntity;explode(D)V"
+            method = "tick()V",
+            at = @At(
+                    shift = At.Shift.AFTER,
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/vehicle/TntMinecartEntity;explode(D)V"
             ),
             cancellable = true
     )

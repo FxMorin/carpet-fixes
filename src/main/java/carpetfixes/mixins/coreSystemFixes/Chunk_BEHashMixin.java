@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.HeightLimitView;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.chunk.UpgradeData;
@@ -43,7 +44,9 @@ public class Chunk_BEHashMixin {
             method = "<init>",
             at = @At("RETURN")
     )
-    private void reloadNewHashMap(ChunkPos pos, UpgradeData upgradeData, HeightLimitView heightLimitView, Registry biome, long inhabitedTime, ChunkSection[] sectionArrayInitializer, BlendingData blendingData, CallbackInfo ci) {
+    private void reloadNewHashMap(ChunkPos pos, UpgradeData upgradeData, HeightLimitView heightLimitView,
+                                  Registry<Biome> biome, long inhabitedTime, ChunkSection[] sectionArrayInitializer,
+                                  BlendingData blendingData, CallbackInfo ci) {
         if (CFSettings.reloadUpdateOrderFix) {
             blockEntityNbts = new LinkedHashMap<>();
             blockEntities = new LinkedHashMap<>();

@@ -44,7 +44,15 @@ public class Explosion_exposureMixin {
                             double o = MathHelper.lerp(l, box.minY, box.maxY);
                             double p = MathHelper.lerp((double)m + h, box.minZ, box.maxZ);
                             Vec3d vec3d = new Vec3d(n, o, p);
-                            if (entity.world.raycast(new RaycastContext(vec3d, source, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getType() == HitResult.Type.MISS) ++i;
+                            if (entity.world.raycast(
+                                    new RaycastContext(
+                                            vec3d,
+                                            source,
+                                            RaycastContext.ShapeType.COLLIDER,
+                                            RaycastContext.FluidHandling.NONE,
+                                            entity
+                                    )
+                            ).getType() == HitResult.Type.MISS) ++i;
                             ++j;
                         }
                     }
