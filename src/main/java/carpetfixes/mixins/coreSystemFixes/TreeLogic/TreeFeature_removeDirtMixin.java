@@ -24,7 +24,7 @@ public class TreeFeature_removeDirtMixin {
     )
     private static void placeLogsAndLeaves(WorldAccess world, BlockBox box, Set<BlockPos> trunkPositions,
                                            Set<BlockPos> decorationPositions, CallbackInfoReturnable<VoxelSet> cir) {
-        if (CFSettings.treeTrunkLogicFix) trunkPositions.removeAll(CFSettings.lastDirt.get());
-        CFSettings.lastDirt.get().clear();
+        if (CFSettings.treeTrunkLogicFix) trunkPositions.removeAll(CFSettings.LAST_DIRT.get());
+        CFSettings.LAST_DIRT.get().clear();
     }
 }

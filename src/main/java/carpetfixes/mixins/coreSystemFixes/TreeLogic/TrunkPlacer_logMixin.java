@@ -25,6 +25,6 @@ public class TrunkPlacer_logMixin {
     )
     private static void setToDirtNotTrunk(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer,
                                           Random random, BlockPos pos, TreeFeatureConfig config, CallbackInfo ci) {
-        CFSettings.lastDirt.get().add(pos);
+        CFSettings.LAST_DIRT.get().add(pos);
     }
 }

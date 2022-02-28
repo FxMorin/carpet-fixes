@@ -29,7 +29,7 @@ public class CFSettings {
     // Global Variables
     public static boolean scheduleWorldBorderReset = false;
     public static HashMap<World, UpdateScheduler> updateScheduler = new HashMap<>();
-    public static final ThreadLocal<Set<BlockPos>> lastDirt = ThreadLocal.withInitial(HashSet::new);
+    public static final ThreadLocal<Set<BlockPos>> LAST_DIRT = ThreadLocal.withInitial(HashSet::new);
     public static final Predicate<BlockState> IS_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
 
     //By FX - PR0CESS
