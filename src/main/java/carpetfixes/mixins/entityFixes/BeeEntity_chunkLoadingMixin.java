@@ -47,7 +47,7 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
 
 
     @Inject(
-            method= "doesHiveHaveSpace",
+            method = "doesHiveHaveSpace",
             at = @At("HEAD"),
             cancellable = true
     )
@@ -60,7 +60,7 @@ public abstract class BeeEntity_chunkLoadingMixin extends AnimalEntity {
 
 
     @Inject(
-            method= "isHiveValid",
+            method = "isHiveValid",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/World;getBlockEntity(Lnet/minecraft/util/math/BlockPos;)" +

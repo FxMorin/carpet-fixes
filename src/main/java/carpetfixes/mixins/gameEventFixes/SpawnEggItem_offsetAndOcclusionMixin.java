@@ -44,9 +44,7 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
             BlockState state = world.getBlockState(pos);
             BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ? pos : pos.offset(context.getSide());
             if (CFSettings.spawnEggMissingOcclusionFix) {
-                if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
-                    return;
-                }
+                if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return;
             }
             world.emitGameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, spawnPos);
         } else {

@@ -30,6 +30,7 @@ public abstract class PistonBlock_doubleRetractionMixin {
             )
     )
     private void onTryMove(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (CFSettings.doubleRetraction) world.setBlockState(pos, state.with(PistonBlock.EXTENDED, false), 2);
+        if (CFSettings.doubleRetraction)
+            world.setBlockState(pos, state.with(PistonBlock.EXTENDED, false), 2);
     }
 }

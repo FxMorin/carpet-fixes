@@ -135,6 +135,7 @@ public class XoroshiroCustomRandom extends Random implements AbstractRandom {
                 bytes[i++] = (byte)rnd;
     }
 
+    @SuppressWarnings("all")
     public static class RandomDeriver implements net.minecraft.world.gen.random.RandomDeriver {
         private static final HashFunction MD5_HASHER = Hashing.md5();
         private final long seedLo;

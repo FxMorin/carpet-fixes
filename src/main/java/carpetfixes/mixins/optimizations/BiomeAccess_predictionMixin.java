@@ -3,6 +3,7 @@ package carpetfixes.mixins.optimizations;
 import carpetfixes.CFSettings;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.SeedMixer;
@@ -48,7 +49,7 @@ public class BiomeAccess_predictionMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void optimizedGetBiome(BlockPos pos, CallbackInfoReturnable<Biome> cir) {
+    public void optimizedGetBiome(BlockPos pos, CallbackInfoReturnable<RegistryEntry<Biome>> cir) {
         if (CFSettings.optimizedBiomeAccess) {
             int xMinus2 = pos.getX() - 2;
             int yMinus2 = pos.getY() - 2;

@@ -18,11 +18,11 @@ public class PistonBlock_illegalBreakingMixin {
 
 
     @Redirect(
-            method= "onSyncedBlockEvent(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+            method = "onSyncedBlockEvent(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
                     "Lnet/minecraft/util/math/BlockPos;II)Z",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"
             )
     )
     public boolean removeBlock(World world, BlockPos pos, boolean move) {

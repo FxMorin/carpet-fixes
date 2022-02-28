@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(value=PickaxeItem.class,priority=1010)
@@ -19,7 +19,7 @@ public class PickaxeItem_blackstoneButtonMixin extends MiningToolItem {
     //TODO: Might be broken by carpet now
 
     protected PickaxeItem_blackstoneButtonMixin(float attackDamage, float attackSpeed, ToolMaterial material,
-                                                Tag<Block> effectiveBlocks, Settings settings) {
+                                                TagKey<Block> effectiveBlocks, Settings settings) {
         super(attackDamage, attackSpeed, material, effectiveBlocks, settings);
     }
 

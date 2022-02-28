@@ -16,7 +16,7 @@ public class ChunkGenerator_randomMixin {
 
 
     @Redirect(
-            method = "generateStrongholdPositions()V",
+            method = "*",
             require = 0,
             at = @At(
                     value = "NEW",

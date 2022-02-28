@@ -14,8 +14,7 @@ public class GeneratorOptions_randomMixin {
 
 
     @Redirect(
-            method = "getDefaultOptions(Lnet/minecraft/util/registry/DynamicRegistryManager;)" +
-                    "Lnet/minecraft/world/gen/GeneratorOptions;",
+            method = "*",
             require = 0,
             at = @At(
                     value = "NEW",
@@ -23,20 +22,6 @@ public class GeneratorOptions_randomMixin {
             )
     )
     private static Random customRandomDefault() {
-        return CFSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
-    }
-
-
-    @Redirect(
-            method = "fromProperties(Lnet/minecraft/util/registry/DynamicRegistryManager;Ljava/util/Properties;)" +
-                    "Lnet/minecraft/world/gen/GeneratorOptions;",
-            require = 0,
-            at = @At(
-                    value = "NEW",
-                    target = "java/util/Random"
-            )
-    )
-    private static Random customRandom() {
         return CFSettings.optimizedRandom ? new XoroshiroCustomRandom() : new Random();
     }
 }

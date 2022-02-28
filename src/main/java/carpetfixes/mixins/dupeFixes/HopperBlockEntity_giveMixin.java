@@ -25,8 +25,8 @@ public class HopperBlockEntity_giveMixin {
 
 
     @Inject(
-            method="extract(Lnet/minecraft/inventory/Inventory;Lnet/minecraft/entity/ItemEntity;)Z",
-            at=@At("HEAD"),
+            method = "extract(Lnet/minecraft/inventory/Inventory;Lnet/minecraft/entity/ItemEntity;)Z",
+            at = @At("HEAD"),
             cancellable = true
     )
     private static void extract(Inventory inventory, ItemEntity itemEntity, CallbackInfoReturnable<Boolean> cir) {

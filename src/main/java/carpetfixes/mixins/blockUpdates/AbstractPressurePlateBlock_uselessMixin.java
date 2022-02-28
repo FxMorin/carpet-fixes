@@ -17,8 +17,8 @@ public class AbstractPressurePlateBlock_uselessMixin {
 
 
     @Inject(
-            method= "updateNeighbors(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
-            at=@At("HEAD"),
+            method = "updateNeighbors(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
+            at = @At("HEAD"),
             cancellable = true
     )
     protected void updateNeighbors(World world, BlockPos pos, CallbackInfo ci) {

@@ -33,8 +33,8 @@ public abstract class World_seaLevelMixin implements WorldAccess  {
 
 
     @Inject(
-            method= "getSeaLevel()I",
-            at=@At("HEAD"),
+            method = "getSeaLevel()I",
+            at = @At("HEAD"),
             cancellable = true
     )
     public void getSeaLevel(CallbackInfoReturnable<Integer> cir) {

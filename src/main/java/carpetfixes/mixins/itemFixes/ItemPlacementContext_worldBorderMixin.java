@@ -36,7 +36,8 @@ public abstract class ItemPlacementContext_worldBorderMixin extends ItemUsageCon
                     this.getWorld().getWorldBorder().contains(this.getBlockPos()) && (
                                     this.canReplaceExisting ||
                                     this.getWorld().getBlockState(this.getBlockPos()).canReplace(self)
-                    ));
+                    )
+            );
         }
     }
 }

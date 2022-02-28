@@ -25,10 +25,10 @@ public abstract class ServerWorld_rainTimerMixin {
 
 
     @Redirect(
-            method= "tick(Ljava/util/function/BooleanSupplier;)V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/server/world/ServerWorld;resetWeather()V"
+            method = "tick(Ljava/util/function/BooleanSupplier;)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/server/world/ServerWorld;resetWeather()V"
             )
     )
     public void onResetWeather(ServerWorld serverWorld) {

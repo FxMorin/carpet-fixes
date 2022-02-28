@@ -13,7 +13,7 @@ public class BeeEntity_voidMixin {
 
 
     @Redirect(
-            method="<init>",
+            method = "<init>",
             at = @At(
                     value = "NEW",
                     target = "net/minecraft/entity/ai/control/FlightMoveControl"

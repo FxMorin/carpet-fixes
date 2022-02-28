@@ -14,7 +14,7 @@ public class PlacedFeatures_randomMixin {
 
 
     @Redirect(
-            method = "getDefaultPlacedFeature()Lnet/minecraft/world/gen/feature/PlacedFeature;",
+            method = "*",
             require = 0,
             at = @At(
                     value = "NEW",

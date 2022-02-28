@@ -14,7 +14,7 @@ public class ConfiguredFeatures_randomMixin {
 
 
     @Redirect(
-            method = "getDefaultConfiguredFeature()Lnet/minecraft/world/gen/feature/ConfiguredFeature;",
+            method = "*",
             require = 0,
             at = @At(
                     value = "NEW",

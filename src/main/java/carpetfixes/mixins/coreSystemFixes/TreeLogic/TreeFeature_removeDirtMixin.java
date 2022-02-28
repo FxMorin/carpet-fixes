@@ -18,9 +18,9 @@ public class TreeFeature_removeDirtMixin {
 
 
     @Inject(
-            method= "placeLogsAndLeaves(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockBox;" +
+            method = "placeLogsAndLeaves(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockBox;" +
                     "Ljava/util/Set;Ljava/util/Set;)Lnet/minecraft/util/shape/VoxelSet;",
-            at=@At("HEAD")
+            at = @At("HEAD")
     )
     private static void placeLogsAndLeaves(WorldAccess world, BlockBox box, Set<BlockPos> trunkPositions,
                                            Set<BlockPos> decorationPositions, CallbackInfoReturnable<VoxelSet> cir) {

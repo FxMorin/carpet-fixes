@@ -12,7 +12,7 @@ public class ChunkGeneratorMixin {
 
 
     @Redirect(
-            method = "generateStrongholdPositions()V",
+            method = "*",
             require = 0,
             at = @At(
                     value = "INVOKE",

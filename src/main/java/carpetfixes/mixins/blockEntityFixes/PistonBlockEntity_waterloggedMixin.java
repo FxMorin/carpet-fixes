@@ -19,15 +19,16 @@ public class PistonBlockEntity_waterloggedMixin {
             method = "finish",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/Block;postProcessState(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"
+                    target = "Lnet/minecraft/block/Block;postProcessState(Lnet/minecraft/block/BlockState;" +
+                            "Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;)" +
+                            "Lnet/minecraft/block/BlockState;"
             )
     )
     public BlockState removeWaterlogged(BlockState state, WorldAccess world, BlockPos pos) {
         BlockState newState = Block.postProcessState(state, world, pos);
         if (CFSettings.pistonsPushWaterloggedBlocksFix &&
-                newState.contains(Properties.WATERLOGGED) && newState.get(Properties.WATERLOGGED)) {
+                newState.contains(Properties.WATERLOGGED) && newState.get(Properties.WATERLOGGED))
             newState = newState.with(Properties.WATERLOGGED, false);
-        }
         return newState;
     }
 }

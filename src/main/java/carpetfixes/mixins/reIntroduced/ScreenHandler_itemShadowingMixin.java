@@ -67,7 +67,8 @@ public class ScreenHandler_itemShadowingMixin {
 
 
     @Redirect(
-            method = "internalOnSlotClick(IILnet/minecraft/screen/slot/SlotActionType;Lnet/minecraft/entity/player/PlayerEntity;)V",
+            method = "internalOnSlotClick(IILnet/minecraft/screen/slot/SlotActionType;" +
+                    "Lnet/minecraft/entity/player/PlayerEntity;)V",
             slice = @Slice(
                     from = @At(
                             value = "FIELD",

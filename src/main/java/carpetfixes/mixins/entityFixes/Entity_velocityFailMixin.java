@@ -24,6 +24,7 @@ public abstract class Entity_velocityFailMixin {
     public abstract void setVelocity(double x, double y, double z);
 
 
+    @SuppressWarnings("all") //Location no longer exists, although this mixin does not get loaded in 1.18.2 anyways
     @Redirect(
             method = "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",
             slice = @Slice(

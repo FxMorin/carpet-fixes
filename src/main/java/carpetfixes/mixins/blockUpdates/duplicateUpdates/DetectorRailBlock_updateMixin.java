@@ -18,7 +18,7 @@ public class DetectorRailBlock_updateMixin {
             method = "updatePoweredStatus",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    target = "Lnet/minecraft/world/World;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             index = 2
@@ -32,7 +32,7 @@ public class DetectorRailBlock_updateMixin {
             method = "updatePoweredStatus",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    target = "Lnet/minecraft/world/World;" +
                             "updateNeighborsAlways(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V"
             )
     )

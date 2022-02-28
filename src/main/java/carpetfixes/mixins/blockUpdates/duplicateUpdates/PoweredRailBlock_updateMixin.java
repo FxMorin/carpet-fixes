@@ -41,7 +41,7 @@ public abstract class PoweredRailBlock_updateMixin {
             method = "updateBlockState",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    target = "Lnet/minecraft/world/World;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             index = 2
@@ -52,9 +52,9 @@ public abstract class PoweredRailBlock_updateMixin {
 
 
     @Inject(
-            method= "updateBlockState(Lnet/minecraft/block/BlockState;" +
+            method = "updateBlockState(Lnet/minecraft/block/BlockState;" +
                     "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
-            at=@At("HEAD"),
+            at = @At("HEAD"),
             cancellable = true
     )
     protected void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
@@ -65,9 +65,7 @@ public abstract class PoweredRailBlock_updateMixin {
             if (bl2 != state.get(POWERED)) {
                 world.setBlockState(pos, state.with(POWERED, bl2), 3);
                 world.updateNeighborsExcept(pos.down(),self, Direction.UP);
-                if ((state.get(SHAPE)).isAscending()) {
-                    world.updateNeighborsExcept(pos.down(),self, Direction.DOWN);
-                }
+                if ((state.get(SHAPE)).isAscending()) world.updateNeighborsExcept(pos.down(),self, Direction.DOWN);
             }
             ci.cancel();
         }

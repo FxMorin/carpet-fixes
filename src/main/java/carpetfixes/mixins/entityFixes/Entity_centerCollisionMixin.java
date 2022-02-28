@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.BlockView;
@@ -94,10 +94,10 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             method = "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/tag/Tag;)Z"
+                    target = "Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/tag/TagKey;)Z"
             )
     )
-    public boolean onFallStopVibration(BlockState blockState, Tag<Block> tag) {
+    public boolean onFallStopVibration(BlockState blockState, TagKey<Block> tagKey) {
         return CFSettings.playerBlockCollisionUsingCenterFix || blockState.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS);
     }
 

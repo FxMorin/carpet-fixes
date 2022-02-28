@@ -21,10 +21,10 @@ public class WitherSkullBlock_spawningMixin {
     @Redirect(
             method = "getWitherBossPattern()Lnet/minecraft/block/pattern/BlockPattern;",
             at = @At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;" +
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/pattern/CachedBlockPosition;" +
                             "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
-                    ordinal=1
+                    ordinal = 1
             )
     )
     private static Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state) {
@@ -36,8 +36,8 @@ public class WitherSkullBlock_spawningMixin {
     @Redirect(
             method = "getWitherDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;",
             at = @At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;" +
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/pattern/CachedBlockPosition;" +
                             "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;"
             )
     )

@@ -60,17 +60,18 @@ public abstract class ChunkTicketManager_optimizationMixin {
      * Mark all locations that have tickets that can expire as such. Allows iterating only over locations with
      * tickets that can expire when purging expired tickets.
      */
+    @SuppressWarnings("all")
     @Inject(
             method = "addTicket(JLnet/minecraft/server/world/ChunkTicket;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/world/ChunkTicket;setTickCreated(J)V"
+                    target = "Lnet/minecraft/util/collection/SortedArraySet;" +
+                            "addAndGet(Ljava/lang/Object;)Ljava/lang/Object;"
             ),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
     private void registerExpiringTicket(long position, ChunkTicket<?> ticket, CallbackInfo ci,
-                                        SortedArraySet<ChunkTicket<?>> ticketsAtPos, int i,
-                                        ChunkTicket<?> chunkTicket) {
+                                        SortedArraySet<ChunkTicket<?>> ticketsAtPos, int i) {
         if (CFSettings.optimizedTicketManager && canExpire(ticket)) {
             this.positionWithExpiringTicket.put(position, ticketsAtPos);
         }

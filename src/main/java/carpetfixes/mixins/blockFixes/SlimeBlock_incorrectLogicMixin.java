@@ -21,8 +21,8 @@ public class SlimeBlock_incorrectLogicMixin {
     @Inject(
             method = "bounce(Lnet/minecraft/entity/Entity;)V",
             at = @At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/entity/Entity;setVelocity(DDD)V"
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/Entity;setVelocity(DDD)V"
             )
     )
     public void entityHittingSlimeBlockBeLike(Entity entity, CallbackInfo ci){

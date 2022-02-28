@@ -77,9 +77,7 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
         this.playSound(world, pos, notRemoving, on, attached, powered);
         if (!beingRemoved && (!CFSettings.tripwireHookDupeFix || world.getBlockState(pos).isOf(this))) {
             world.setBlockState(pos, newState.with(FACING, direction), Block.NOTIFY_ALL);
-            if (bl) {
-                this.updateNeighborsOnAxis(world, pos, direction);
-            }
+            if (bl) this.updateNeighborsOnAxis(world, pos, direction);
         }
         if (attached != notRemoving) {
             for(int x = 1; x < index; ++x) {

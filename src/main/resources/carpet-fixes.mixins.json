@@ -15,6 +15,7 @@
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.ChestBlock_worldBorderMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
+    "blockFixes.EnchantingTableBlock_transparentMixin",
     "blockFixes.FlowableFluid_chainedTickMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PistonBlock_illegalBreakingMixin",
@@ -175,8 +176,7 @@
     "reIntroduced.ScreenHandler_itemShadowingMixin",
     "reIntroduced.ServerWorld_zeroTickMixin",
     "reIntroduced.TargetBlock_PermanentlyPoweredMixin",
-    "reIntroduced.ThreadedAnvilChunkStorage_oldSavingMixin",
-    "screenHandlerFixes.EnchantmentScreenHandler_transparentBlocksMixin"
+    "reIntroduced.ThreadedAnvilChunkStorage_oldSavingMixin"
   ],
   "injectors": {
     "defaultRequire": 1

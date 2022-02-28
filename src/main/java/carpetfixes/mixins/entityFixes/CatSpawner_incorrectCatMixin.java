@@ -22,8 +22,8 @@ public class CatSpawner_incorrectCatMixin {
 
 
     @Inject(
-            method= "spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",
-            at=@At("HEAD"),
+            method = "spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",
+            at = @At("HEAD"),
             cancellable = true
     )
     private void spawn(BlockPos pos, ServerWorld world, CallbackInfoReturnable<Integer> cir) {

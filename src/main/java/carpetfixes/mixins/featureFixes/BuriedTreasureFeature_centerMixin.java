@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
@@ -48,22 +47,6 @@ public abstract class BuriedTreasureFeature_centerMixin extends StructureFeature
             );
             collector.addPiece(new BuriedTreasureGenerator.Piece(blockPos));
             ci.cancel();
-        }
-    }
-
-    @Inject(
-            method = "getLocatedPos(Lnet/minecraft/util/math/ChunkPos;)Lnet/minecraft/util/math/BlockPos;",
-            at = @At("HEAD"),
-            cancellable = true
-    )
-    public void getLocatedPos(ChunkPos chunkPos, CallbackInfoReturnable<BlockPos> cir) {
-        if (CFSettings.buriedTreasureAlwaysCenterFix) {
-            Random rand = new Random(chunkPos.toLong());
-            cir.setReturnValue(new BlockPos(
-                    chunkPos.getOffsetX(rand.nextInt(16)),
-                    0,
-                    chunkPos.getOffsetZ(rand.nextInt(16)))
-            );
         }
     }
 }

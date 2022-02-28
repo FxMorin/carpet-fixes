@@ -3,6 +3,7 @@ package carpetfixes.mixins.optimizations.random;
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
@@ -32,8 +33,8 @@ public class World_randomMixin {
             at = @At("TAIL")
     )
     private void CustomRandom(MutableWorldProperties properties, RegistryKey<World> registryRef,
-                              DimensionType dimensionType, Supplier<Profiler> profiler, boolean isClient,
-                              boolean debugWorld, long seed, CallbackInfo ci) {
+                              RegistryEntry<DimensionType> registryEntry, Supplier<Profiler> profiler,
+                              boolean isClient, boolean debugWorld, long seed, CallbackInfo ci) {
         if (CFSettings.optimizedRandom) this.random = new XoroshiroCustomRandom();
     }
 }

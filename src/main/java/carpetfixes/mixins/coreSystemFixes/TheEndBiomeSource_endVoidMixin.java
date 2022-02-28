@@ -20,8 +20,8 @@ public class TheEndBiomeSource_endVoidMixin {
 
 
     @Inject(
-            method= "getNoiseAt(Lnet/minecraft/util/math/noise/SimplexNoiseSampler;II)F",
-            at=@At("HEAD"),
+            method = "getNoiseAt(Lnet/minecraft/util/math/noise/SimplexNoiseSampler;II)F",
+            at = @At("HEAD"),
             cancellable = true
     )
     private static void getNoiseAt(SimplexNoiseSampler simplexNoise, int x, int z, CallbackInfoReturnable<Float> cir) {

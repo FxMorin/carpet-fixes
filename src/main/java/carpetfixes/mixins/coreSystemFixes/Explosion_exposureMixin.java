@@ -23,8 +23,8 @@ public class Explosion_exposureMixin {
 
 
     @Inject(
-            method= "getExposure(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/entity/Entity;)F",
-            at=@At("HEAD"),
+            method = "getExposure(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/entity/Entity;)F",
+            at = @At("HEAD"),
             cancellable = true
     )
     private static void getExposure(Vec3d source, Entity entity, CallbackInfoReturnable<Float> cir) {

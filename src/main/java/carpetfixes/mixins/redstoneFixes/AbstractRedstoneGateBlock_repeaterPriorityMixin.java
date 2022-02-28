@@ -23,6 +23,7 @@ public class AbstractRedstoneGateBlock_repeaterPriorityMixin extends HorizontalF
     }
 
 
+    @SuppressWarnings("unchecked")
     @Redirect(
             method = "isTargetNotAligned",
             at = @At(

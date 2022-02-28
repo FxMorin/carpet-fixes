@@ -24,11 +24,11 @@ public abstract class FlowableFluid_chainedTickMixin {
 
 
     @Redirect(
-            method= "method_15744(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;" +
+            method = "method_15744(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;" +
                     "Lnet/minecraft/fluid/FluidState;Lnet/minecraft/block/BlockState;)V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/fluid/FlowableFluid;canFlow(Lnet/minecraft/world/BlockView;" +
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/fluid/FlowableFluid;canFlow(Lnet/minecraft/world/BlockView;" +
                             "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;" +
                             "Lnet/minecraft/util/math/Direction;Lnet/minecraft/util/math/BlockPos;" +
                             "Lnet/minecraft/block/BlockState;Lnet/minecraft/fluid/FluidState;" +

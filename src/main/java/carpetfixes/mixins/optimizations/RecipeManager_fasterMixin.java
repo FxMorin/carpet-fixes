@@ -24,6 +24,7 @@ public abstract class RecipeManager_fasterMixin {
     getAllOfType(RecipeType<T> type);
 
 
+    @SuppressWarnings("unchecked")
     @Inject(
             method = "getFirstMatch(Lnet/minecraft/recipe/RecipeType;Lnet/minecraft/inventory/Inventory;" +
                     "Lnet/minecraft/world/World;)Ljava/util/Optional;",

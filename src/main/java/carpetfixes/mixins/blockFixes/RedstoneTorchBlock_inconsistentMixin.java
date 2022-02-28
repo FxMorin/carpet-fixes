@@ -30,14 +30,14 @@ public class RedstoneTorchBlock_inconsistentMixin {
 
 
     @Inject(
-            method= "scheduledTick(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;" +
+            method = "scheduledTick(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;" +
                     "Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
             cancellable = true,
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/server/world/ServerWorld;" +
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/server/world/ServerWorld;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z",
-                    ordinal=0
+                    ordinal = 0
             )
     )
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {

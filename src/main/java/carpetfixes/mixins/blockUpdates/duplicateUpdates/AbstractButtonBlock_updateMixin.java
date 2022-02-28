@@ -28,7 +28,7 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             method = "tryPowerWithProjectiles",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    target = "Lnet/minecraft/world/World;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             index = 2
@@ -42,7 +42,7 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             method = "powerOn",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    target = "Lnet/minecraft/world/World;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             index = 2
@@ -56,7 +56,7 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
             method = "scheduledTick",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/server/world/ServerWorld;" +
+                    target = "Lnet/minecraft/server/world/ServerWorld;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             index = 2
@@ -67,9 +67,9 @@ public abstract class AbstractButtonBlock_updateMixin extends WallMountedBlock {
 
 
     @Inject(
-            method= "updateNeighbors(Lnet/minecraft/block/BlockState;" +
+            method = "updateNeighbors(Lnet/minecraft/block/BlockState;" +
                     "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
-            at=@At("HEAD"),
+            at = @At("HEAD"),
             cancellable = true
     )
     private void updateNeighborsBetter(BlockState state, World world, BlockPos pos, CallbackInfo ci) {

@@ -24,8 +24,8 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
 
 
     @Inject(
-            method="onStateReplaced",
-            at=@At("HEAD"),
+            method = "onStateReplaced",
+            at = @At("HEAD"),
             cancellable = true
     )
     public void onStateReplacedBetter(BlockState state, World world, BlockPos pos,
@@ -51,8 +51,8 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
 
 
     @Inject(
-            method="onBlockAdded",
-            at=@At("HEAD"),
+            method = "onBlockAdded",
+            at = @At("HEAD"),
             cancellable = true
     )
     public void onBlockAddedBetter(BlockState state, World world, BlockPos pos,

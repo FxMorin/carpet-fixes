@@ -26,7 +26,7 @@ public abstract class LeverBlock_updateMixin extends WallMountedBlock {
             method = "togglePower",
             at = @At(
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    target = "Lnet/minecraft/world/World;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             index = 2
@@ -37,9 +37,9 @@ public abstract class LeverBlock_updateMixin extends WallMountedBlock {
 
 
     @Inject(
-            method= "updateNeighbors(Lnet/minecraft/block/BlockState;" +
+            method = "updateNeighbors(Lnet/minecraft/block/BlockState;" +
                     "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
-            at=@At("HEAD"),
+            at = @At("HEAD"),
             cancellable = true
     )
     private void updateNeighborsBetter(BlockState state, World world, BlockPos pos, CallbackInfo ci) {

@@ -56,10 +56,10 @@ public class World_updateSuppressionMixin {
     @Inject(
             method = "updateNeighbor",
             at = @At(
-                    value="INVOKE",
+                    value = "INVOKE",
                     target = "Lnet/minecraft/util/crash/CrashReport;create(Ljava/lang/Throwable;Ljava/lang/String;)" +
                             "Lnet/minecraft/util/crash/CrashReport;",
-                    shift= At.Shift.BEFORE
+                    shift = At.Shift.BEFORE
             ),
             cancellable = true
     )

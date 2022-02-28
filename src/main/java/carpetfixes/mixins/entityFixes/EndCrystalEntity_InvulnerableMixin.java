@@ -31,8 +31,8 @@ public abstract class EndCrystalEntity_InvulnerableMixin extends Entity {
 
 
     @Inject(
-            method="tick",
-            at=@At("RETURN")
+            method = "tick",
+            at = @At("RETURN")
     )
     public void tick(CallbackInfo ci) {
         if (CFSettings.invulnerableEndCrystalFix && this.isInvulnerable() && this.getBeamTarget() != null) {

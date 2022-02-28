@@ -25,13 +25,13 @@ public class DetectorRailBlock_comparatorMixin {
 
 
     @Inject(
-            method= "updatePoweredStatus(Lnet/minecraft/world/World;" +
+            method = "updatePoweredStatus(Lnet/minecraft/world/World;" +
                     "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",
             at = @At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;" +
                             "updateComparators(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
-                    shift= At.Shift.BEFORE,
+                    shift = At.Shift.BEFORE,
                     ordinal = 0
             ),
             cancellable = true

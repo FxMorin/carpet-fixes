@@ -22,10 +22,10 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
     @Redirect(
             method = "getIronGolemPattern()Lnet/minecraft/block/pattern/BlockPattern;",
             at = @At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;" +
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/pattern/CachedBlockPosition;" +
                             "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
-                    ordinal=2
+                    ordinal = 2
             )
     )
     private Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state){
@@ -37,10 +37,10 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
     @Redirect(
             method = "getIronGolemDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;",
             at = @At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/block/pattern/CachedBlockPosition;" +
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/pattern/CachedBlockPosition;" +
                             "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
-                    ordinal=1
+                    ordinal = 1
             )
     )
     private Predicate<CachedBlockPosition> replaceableMaterialPredicateDispenser(Predicate<BlockState> state){

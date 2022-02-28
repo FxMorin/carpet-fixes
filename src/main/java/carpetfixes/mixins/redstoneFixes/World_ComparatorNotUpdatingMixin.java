@@ -34,7 +34,7 @@ public class World_ComparatorNotUpdatingMixin {
     @Redirect(
             method = "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;II)Z",
             at = @At(
-                    value ="INVOKE",
+                    value = "INVOKE",
                     target = "Lnet/minecraft/block/BlockState;hasComparatorOutput()Z"
             )
     )

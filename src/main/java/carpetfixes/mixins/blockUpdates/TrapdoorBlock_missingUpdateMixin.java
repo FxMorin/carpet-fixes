@@ -50,7 +50,7 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
             at = @At(
                     shift = At.Shift.AFTER,
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    target = "Lnet/minecraft/world/World;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             ),
             cancellable = true
@@ -67,7 +67,7 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
             at = @At(
                     shift = At.Shift.AFTER,
                     value = "INVOKE",
-                    target="Lnet/minecraft/world/World;" +
+                    target = "Lnet/minecraft/world/World;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
             )
     )
