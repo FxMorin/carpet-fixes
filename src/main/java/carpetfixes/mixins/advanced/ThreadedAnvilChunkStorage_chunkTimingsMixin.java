@@ -1,6 +1,10 @@
 package carpetfixes.mixins.advanced;
 
 import carpetfixes.CFSettings;
+import carpetfixes.settings.ModIds;
+import carpetfixes.settings.VersionPredicates;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -8,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w04a))
 @Mixin(ThreadedAnvilChunkStorage.class)
 public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
 

@@ -49,7 +49,7 @@ class old_World_randomMixin {
 
 @Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.LT_22w06a))
 @Mixin(ServerWorld.class)
-class ServerWorld_zeroTickMixin {
+class old_ServerWorld_zeroTickMixin {
 
     private final ServerWorld self = (ServerWorld)(Object)this;
 

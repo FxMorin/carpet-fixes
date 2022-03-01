@@ -1024,7 +1024,8 @@ public class CFSettings {
     @Rule(
             desc = "Optimized the getBiome call to be 25% - 75% faster",
             extra = "This is a fully vanilla optimization. This can optimize the client also, go check Blanket-client-tweaks for that",
-            category = {OPTIMIZATION,VANILLA,RECOMMENDED}
+            category = {OPTIMIZATION,VANILLA,RECOMMENDED},
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean optimizedBiomeAccess = false;
 
@@ -1258,7 +1259,8 @@ public class CFSettings {
             desc = "Allows you to change the max amount of chunks that can save per autosave",
             extra = "If your server has large lag spikes due to chunk saving, you can lower this number.",
             options = {"300","200","100","50"},
-            category = {ADVANCED,OPTIMIZATION}
+            category = {ADVANCED,OPTIMIZATION},
+            condition = VersionConditions.GT_22w04a.class
     )
     public static int maxChunksSavedPerAutoSave = 200;
 
@@ -1267,7 +1269,8 @@ public class CFSettings {
             desc = "Allows you to change the max amount of chunks that can save per tick for the 1.18 chunk saving system",
             extra = "This is for the system which just attempt to save chunks every tick. Max chunks saved per tick",
             options = {"100","50","20","10"},
-            category = {ADVANCED,OPTIMIZATION}
+            category = {ADVANCED,OPTIMIZATION},
+            condition = VersionConditions.GT_22w04a.class
     )
     public static int maxChunksSavedPerTick = 20;
 
@@ -1297,6 +1300,8 @@ public class CFSettings {
             category = ADVANCED
     )
     public static long statusUpdateDelay = 5000000000L;
+
+    //TODO: load these advanced options correctly
 
     //By FX - PR0CESS
     @Rule(
@@ -1345,7 +1350,8 @@ public class CFSettings {
                     "If your server has large lag spikes due to chunk saving, you can raise this number.",
                     "For obvious reasons, this rule is disabled when `reIntroduceVeryAggressiveSaving` is enabled"},
             options = {"120000","60000","10000","1000","0"},
-            category = {ADVANCED,OPTIMIZATION}
+            category = {ADVANCED,OPTIMIZATION},
+            condition = VersionConditions.GT_22w04a.class
     )
     public static long chunkSaveCooldownDelay = 10000L;
 

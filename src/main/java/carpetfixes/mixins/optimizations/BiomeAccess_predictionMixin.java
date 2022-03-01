@@ -1,6 +1,10 @@
 package carpetfixes.mixins.optimizations;
 
 import carpetfixes.CFSettings;
+import carpetfixes.settings.ModIds;
+import carpetfixes.settings.VersionPredicates;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.RegistryEntry;
@@ -25,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * @author FX - PR0CESS
  */
 
+@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
 @Mixin(BiomeAccess.class)
 public class BiomeAccess_predictionMixin {
 
