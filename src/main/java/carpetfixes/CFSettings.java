@@ -48,7 +48,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes hoppers not giving block updates when placed while powered",
             extra = {"invisibleHopperFix is automatically enabled when used",
-                    "(Youtube Video)[https://www.youtube.com/watch?v=QVOONJ1OY44]"},
+                    "[Youtube Video](https://www.youtube.com/watch?v=QVOONJ1OY44)"},
             category = {BUGFIX,RECOMMENDED}
     )
     public static boolean hopperUpdateFix = false;
