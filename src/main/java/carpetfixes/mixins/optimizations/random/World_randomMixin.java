@@ -2,6 +2,10 @@ package carpetfixes.mixins.optimizations.random;
 
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
+import carpetfixes.settings.ModIds;
+import carpetfixes.settings.VersionPredicates;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
@@ -19,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 import java.util.function.Supplier;
 
+@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
 @Mixin(World.class)
 public class World_randomMixin {
 
@@ -30,6 +35,7 @@ public class World_randomMixin {
 
     @Inject(
             method = "<init>",
+            require = 0,
             at = @At("TAIL")
     )
     private void CustomRandom(MutableWorldProperties properties, RegistryKey<World> registryRef,

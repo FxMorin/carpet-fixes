@@ -1,18 +1,11 @@
 package carpetfixes;
 
 import carpet.CarpetServer;
-import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
-import carpet.settings.Validator;
 import carpetfixes.helpers.UpdateScheduler;
-import carpetfixes.mixins.accessors.TagKeyAccessor;
-import carpetfixes.settings.conditions.LT_1_18_2_pre1_VersionCondition;
-import carpetfixes.settings.conditions.LT_22w05a_VersionCondition;
-import com.google.common.collect.Interners;
+import carpetfixes.settings.Validators;
+import carpetfixes.settings.VersionConditions;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CarvedPumpkinBlock;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -300,7 +293,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes being able to fish outside of water",
             extra = "[MC-175544](https://bugs.mojang.com/browse/MC-175544)",
-            category = {BUGFIX,RECOMMENDED}
+            category = {BUGFIX,RECOMMENDED},
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean fishingOutsideWaterFix = false;
 
@@ -308,7 +302,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes experience orbs treating flowing lava as a full block",
             extra = "[MC-226961](https://bugs.mojang.com/browse/MC-226961)",
-            category = {BUGFIX,RECOMMENDED}
+            category = {BUGFIX,RECOMMENDED},
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean xpOrbCollisionFix = false;
 
@@ -342,7 +337,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes Withers and Golems not spawning due to replaceable blocks being in the way",
             extra = "[MC-60792](https://bugs.mojang.com/browse/MC-60792)",
-            validate = WitherGolemSpawningFixValidator.class,
+            validate = Validators.WitherGolemSpawningFixValidator.class,
             category = {BUGFIX,INTENDED,RECOMMENDED}
     )
     public static boolean witherGolemSpawningFix = false;
@@ -504,7 +499,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes Blackstone Buttons taking longer then other buttons to break",
             extra = "[MC-199752](https://bugs.mojang.com/browse/MC-199752)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean blackstoneButtonBreakSpeedFix = false;
 
@@ -772,7 +768,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes world border collision rounding to blocks for entity collisions",
             extra = "[MC-88482](https://bugs.mojang.com/browse/MC-88482) & [MC-247422](https://bugs.mojang.com/browse/MC-247422)",
-            validate = WorldBorderCollisionRoundingFixValidator.class,
+            validate = Validators.WorldBorderCollisionRoundingFixValidator.class,
             category = {BUGFIX,INTENDED}
     )
     public static boolean worldBorderCollisionRoundingFix = false;
@@ -821,7 +817,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes projectiles sending the PROJECTILE_LAND event when landing on a vibration occluding block",
             extra = "[MC-208771](https://bugs.mojang.com/browse/MC-208771)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean projectileMissingOcclusionFix = false;
 
@@ -829,7 +826,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes boats sending the SPLASH event when ridden over a vibration occluding block",
             extra = "[MC-208597](https://bugs.mojang.com/browse/MC-208597)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean boatMissingOcclusionFix = false;
 
@@ -837,7 +835,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes spawn eggs having an offset game event when spawning an entity",
             extra = "[MC-247643](https://bugs.mojang.com/browse/MC-247643)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean spawnEggOffsetEventFix = false;
 
@@ -845,7 +844,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes Spawning entities using spawn eggs on vibration occluding blocks not occluding",
             extra = "[MC-247645](https://bugs.mojang.com/browse/MC-247645)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean spawnEggMissingOcclusionFix = false;
 
@@ -853,7 +853,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes Spawning entities using spawn eggs on entities not creating ENTITY_PLACE game event",
             extra = "[MC-214472](https://bugs.mojang.com/browse/MC-214472)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean spawnEggMissingEventFix = false;
 
@@ -861,7 +862,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes minecarts sending the ENTITY_PLACE event when placed on a vibration occluding block",
             extra = "[MC-213823](https://bugs.mojang.com/browse/MC-213823)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean minecartMissingOcclusionFix = false;
 
@@ -934,7 +936,7 @@ public class CFSettings {
             desc = "Fixes jumping always favors x axis, and having z collision restoring x velocity",
             extra = "[MC-146854](https://bugs.mojang.com/browse/MC-146854) & [MC-156309](https://bugs.mojang.com/browse/MC-156309)",
             category = BUGFIX,
-            condition = LT_1_18_2_pre1_VersionCondition.class
+            condition = VersionConditions.LT_1_18_2_pre1.class
     )
     public static boolean velocityNotCancelledFix = false;
 
@@ -951,7 +953,7 @@ public class CFSettings {
             desc = "Fixes BlockPos distance calculations being offset, resulting in them being directional & incorrect",
             extra = "[MC-248225](https://bugs.mojang.com/browse/MC-248225)",
             category = {BUGFIX,RECOMMENDED},
-            condition = LT_22w05a_VersionCondition.class
+            condition = VersionConditions.LT_22w05a.class
     )
     public static boolean incorrectBlockPosDistanceFix = false;
 
@@ -960,7 +962,8 @@ public class CFSettings {
             desc = "Fixes a memory leak within the new TagKey system",
             extra = "[MC-248621](https://bugs.mojang.com/browse/MC-248621)",
             category = {BUGFIX,CRASHFIX,RECOMMENDED},
-            validate = TagKeyMemoryLeakFixValidator.class
+            validate = Validators.TagKeyMemoryLeakFixValidator.class,
+            condition = VersionConditions.GT_22w05a.class
     )
     public static boolean tagKeyMemoryLeakFix = false;
 
@@ -1290,7 +1293,7 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Allows you to toggle onlineMode without needing to restart the server",
-            validate = onlineModeValidator.class,
+            validate = Validators.onlineModeValidator.class,
             category = {ADVANCED,EXPERIMENTAL}
     )
     public static boolean toggleOnlineMode = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isOnlineMode();
@@ -1298,7 +1301,7 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Allows you to toggle preventing proxy connections without needing to restart the server",
-            validate = preventProxyConnectionsValidator.class,
+            validate = Validators.preventProxyConnectionsValidator.class,
             category = {ADVANCED,EXPERIMENTAL}
     )
     public static boolean togglePreventProxyConnections = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.shouldPreventProxyConnections();
@@ -1306,7 +1309,7 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Allows you to toggle pvpEnabled without needing to restart the server",
-            validate = pvpEnabledValidator.class,
+            validate = Validators.pvpEnabledValidator.class,
             category = ADVANCED
     )
     public static boolean togglePvpEnabled = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isPvpEnabled();
@@ -1314,7 +1317,7 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Allows you to toggle flightEnabled without needing to restart the server",
-            validate = flightEnabledValidator.class,
+            validate = Validators.flightEnabledValidator.class,
             category = ADVANCED
     )
     public static boolean toggleFlightEnabled = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isFlightEnabled();
@@ -1322,7 +1325,7 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Allows you to toggle enforcing the whitelist without needing to restart the server",
-            validate = enforceWhitelistValidator.class,
+            validate = Validators.enforceWhitelistValidator.class,
             category = ADVANCED
     )
     public static boolean toggleEnforceWhitelist = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isEnforceWhitelist();
@@ -1368,69 +1371,4 @@ public class CFSettings {
             category = PARITY
     )
     public static boolean parityTerribleComparators = false;
-
-
-    /*
-
-    VALIDATORS
-
-    */
-    private static class WitherGolemSpawningFixValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemPattern = null;
-            ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemDispenserPattern = null;
-            return newValue;
-        }
-    }
-
-    private static class WorldBorderCollisionRoundingFixValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            scheduleWorldBorderReset = true;
-            return newValue;
-        }
-    }
-
-    private static class TagKeyMemoryLeakFixValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (currentRule.get() != newValue) {
-                TagKeyAccessor.setInterner(newValue ? Interners.newWeakInterner() : Interners.newStrongInterner());
-            }
-            return newValue;
-        }
-    }
-
-    private static class onlineModeValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setOnlineMode(newValue);
-            return newValue;
-        }
-    }
-
-    private static class preventProxyConnectionsValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setPreventProxyConnections(newValue);
-            return newValue;
-        }
-    }
-
-    private static class pvpEnabledValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setPvpEnabled(newValue);
-            return newValue;
-        }
-    }
-
-    private static class flightEnabledValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setFlightEnabled(newValue);
-            return newValue;
-        }
-    }
-
-    private static class enforceWhitelistValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setEnforceWhitelist(newValue);
-            return newValue;
-        }
-    }
 }

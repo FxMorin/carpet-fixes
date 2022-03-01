@@ -1,6 +1,10 @@
 package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CFSettings;
+import carpetfixes.settings.ModIds;
+import carpetfixes.settings.VersionPredicates;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.tag.FluidTags;
@@ -11,6 +15,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
 @Mixin(FishingBobberEntity.class)
 public abstract class FishingBobberEntity_outsideWaterMixin {
 

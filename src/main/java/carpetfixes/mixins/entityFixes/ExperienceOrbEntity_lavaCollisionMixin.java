@@ -1,6 +1,10 @@
 package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CFSettings;
+import carpetfixes.settings.ModIds;
+import carpetfixes.settings.VersionPredicates;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -13,6 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
 @Mixin(ExperienceOrbEntity.class)
 public abstract class ExperienceOrbEntity_lavaCollisionMixin extends Entity {
 

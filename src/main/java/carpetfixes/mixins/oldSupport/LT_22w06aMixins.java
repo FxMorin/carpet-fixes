@@ -1,49 +1,60 @@
-package carpetfixes.mixins.reIntroduced;
+package carpetfixes.mixins.oldSupport;
 
 import carpetfixes.CFSettings;
+import carpetfixes.helpers.XoroshiroCustomRandom;
 import carpetfixes.settings.ModIds;
 import carpetfixes.settings.VersionPredicates;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.WorldGenerationProgressListener;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.level.ServerWorldProperties;
-import net.minecraft.world.level.storage.LevelStorage;
-import net.minecraft.world.spawner.Spawner;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import java.util.List;
-import java.util.concurrent.Executor;
+import java.util.Random;
+import java.util.function.Supplier;
 
-@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
-@Mixin(ServerWorld.class)
-public abstract class ServerWorld_zeroTickMixin extends World {
+@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.LT_22w06a))
+@Mixin(World.class)
+class old_World_randomMixin {
 
-    protected ServerWorld_zeroTickMixin(MinecraftServer server, Executor workerExecutor, LevelStorage.Session session,
-                                        ServerWorldProperties properties, RegistryKey<World> worldKey,
-                                        RegistryEntry<DimensionType> registryEntry,
-                                        WorldGenerationProgressListener worldGenerationProgressListener,
-                                        ChunkGenerator chunkGenerator, boolean debugWorld, long seed,
-                                        List<Spawner> spawners, boolean shouldTickTime) {
-        super(properties, worldKey, registryEntry, server::getProfiler, false, debugWorld, seed);
+    @Mutable
+    @Shadow
+    @Final
+    public Random random;
+
+
+    @SuppressWarnings("all")
+    @Inject(
+            method = "<init>",
+            at = @At("TAIL")
+    )
+    private void CustomRandom(MutableWorldProperties properties, RegistryKey registryRef, DimensionType dimensionType,
+                              Supplier profiler, boolean isClient, boolean debugWorld, long seed, CallbackInfo ci) {
+        if (CFSettings.optimizedRandom) this.random = new XoroshiroCustomRandom();
     }
+}
+
+@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.LT_22w06a))
+@Mixin(ServerWorld.class)
+class ServerWorld_zeroTickMixin {
 
     private final ServerWorld self = (ServerWorld)(Object)this;
 
 
+    @SuppressWarnings("all")
     @Inject(
             method = "tickBlock(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
             locals = LocalCapture.CAPTURE_FAILSOFT,
@@ -56,7 +67,8 @@ public abstract class ServerWorld_zeroTickMixin extends World {
             )
     )
     private void zeroTickBlock(BlockPos pos, Block block, CallbackInfo ci, BlockState state) {
-        if (CFSettings.reIntroduceZeroTickFarms && !this.isAir(pos) && state.hasRandomTicks())
-            state.randomTick(self,pos,this.random);
+        if (CFSettings.reIntroduceZeroTickFarms && !self.isAir(pos) && state.hasRandomTicks()) {
+            state.randomTick(self,pos,self.random);
+        }
     }
 }

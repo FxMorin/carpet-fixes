@@ -5,8 +5,6 @@ import carpetfixes.helpers.CenterUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.BlockView;
@@ -17,6 +15,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
@@ -34,6 +33,9 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
 
     @Shadow
     public World world;
+
+    @Shadow
+    public abstract void onLanding();
 
 
     @Redirect(
@@ -90,15 +92,23 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     }
 
 
-    @Redirect(
+    @Inject(
             method = "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/tag/TagKey;)Z"
-            )
+                    target = "Lnet/minecraft/block/Block;onLandedUpon(Lnet/minecraft/world/World;" +
+                            "Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;" +
+                            "Lnet/minecraft/entity/Entity;F)V",
+                    shift = At.Shift.AFTER
+            ),
+            cancellable = true
     )
-    public boolean onFallStopVibration(BlockState blockState, TagKey<Block> tagKey) {
-        return CFSettings.playerBlockCollisionUsingCenterFix || blockState.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS);
+    public void onFallStopVibration(double heightDifference, boolean onGround,
+                                    BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
+        if (CFSettings.playerBlockCollisionUsingCenterFix) {
+            this.onLanding();
+            ci.cancel();
+        }
     }
 
 
