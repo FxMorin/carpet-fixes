@@ -44,9 +44,9 @@ public class CustomSettingsManager extends SettingsManager {
             ps.println(rule.desc()+"  ");
             for (String extra : List.of(rule.extra())) {
                 if (extra != null) {
+                    if (extra.startsWith("[MC-")) extra = "Fixes: "+extra;
                     ps.println(
-                            extra.replace("^(\\[MC-)", "Fixes: $1")
-                                 .replace("Warning!", "**Warning!**")
+                            extra.replace("Warning!", "**Warning!**")
                             + "  "
                     );
                 }
