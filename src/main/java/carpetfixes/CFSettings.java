@@ -702,7 +702,8 @@ public class CFSettings {
     @Rule(
             desc = "Fixes falling blocks not behaving as expected when being teleported",
             extra = "[MC-151488](https://bugs.mojang.com/browse/MC-151488)",
-            category = BUGFIX
+            category = BUGFIX,
+            condition = VersionConditions.LT_22w03a.class
     )
     public static boolean fallingBlockTeleportingFix = false;
 
