@@ -54,13 +54,13 @@ public class CustomSettingsManager extends SettingsManager {
             } else if(type == String.class && categories.contains(RuleCategory.COMMAND)) {
                 options = List.of("true", "false", "ops");
             } else if (type.isEnum()) {
-                options = Arrays.stream(type.getEnumConstants()).map(e -> ((Enum) e).name().toLowerCase(Locale.ROOT))
-                        .collect(Collectors.toUnmodifiableList());
+                options = Arrays.stream(type.getEnumConstants()).map(e ->
+                        ((Enum<?>) e).name().toLowerCase(Locale.ROOT)).toList();
             } else {
                 options = List.of();
             }
             List<Validator<?>> validators = new ArrayList<>();
-            for (Class v : rule.validate())
+            for (Class<?> v : rule.validate())
                 validators.add((Validator<?>) callConstructor(v));
             if (categories.contains(RuleCategory.COMMAND)) {
                 validators.add(callConstructor(Validator._COMMAND.class));
@@ -133,7 +133,7 @@ public class CustomSettingsManager extends SettingsManager {
     }
 
     private static String convertToString(Object value) {
-        if (value instanceof Enum) return ((Enum) value).name().toLowerCase(Locale.ROOT);
+        if (value instanceof Enum) return ((Enum<?>) value).name().toLowerCase(Locale.ROOT);
         return value.toString();
     }
 }
