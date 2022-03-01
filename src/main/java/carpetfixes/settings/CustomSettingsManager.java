@@ -42,7 +42,15 @@ public class CustomSettingsManager extends SettingsManager {
             if (category != null && !categories.contains(category)) continue;
             ps.println("## " + (rule.name().isEmpty() ? f.getName() : rule.name()));
             ps.println(rule.desc()+"  ");
-            for (String extra : List.of(rule.extra())) ps.println(extra + "  ");
+            for (String extra : List.of(rule.extra())) {
+                if (extra != null) {
+                    ps.println(
+                            extra.replace("^(\\[MC-)", "Fixes: $1")
+                                 .replace("Warning!", "**Warning!**")
+                            + "  "
+                    );
+                }
+            }
             Class<?> type = f.getType();
             ps.println("* Type: `" + type.getSimpleName() + "`  ");
             ps.println("* Default value: `" + defaultAsString + "`  ");
@@ -101,7 +109,7 @@ public class CustomSettingsManager extends SettingsManager {
             if (conditions.size() > 0) {
                 StringBuilder builder = new StringBuilder();
                 int c = 0;
-                builder.append("Limited to: ");
+                builder.append("* Limited to: ");
                 for (String cond : conditions) {
                     if (c++ != 0) builder.append(",");
                     builder.append("`").append(cond).append("`");
