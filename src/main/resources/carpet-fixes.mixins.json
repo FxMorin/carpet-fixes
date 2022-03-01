@@ -58,7 +58,6 @@
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
     "coreSystemFixes.StatusEffectInstance_nbtSuffixMixin",
     "coreSystemFixes.StringTag_stringTagExploitMixin",
-    "coreSystemFixes.TagKey_memoryLeakMixin",
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",
     "coreSystemFixes.World_seaLevelMixin",
     "coreSystemFixes.World_updateSuppressionMixin",
