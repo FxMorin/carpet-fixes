@@ -4,8 +4,6 @@ import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
 import org.objectweb.asm.tree.ClassNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Set;
 
 public class CarpetFixesMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CarpetFixesMixinConfigPlugin.class);
+    //private static final Logger LOGGER = LoggerFactory.getLogger(CarpetFixesMixinConfigPlugin.class);
 
     public static final Version MINECRAFT_VERSION = FabricLoader.getInstance()
             .getModContainer("minecraft").orElseThrow().getMetadata().getVersion();
@@ -21,7 +19,8 @@ public class CarpetFixesMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
 
     @Override
     protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
-        LOGGER.info("[Carpet-Fixes] Disabled mixin {} due to {}", mixinClassName, reason);
+        //Don't log this since we have a lot of them and its just version checks
+        //LOGGER.info("[Carpet-Fixes] Disabled mixin {} due to {}", mixinClassName, reason);
     }
 
     @Override
