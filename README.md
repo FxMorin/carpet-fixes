@@ -14,7 +14,6 @@ If you enjoy the mod, help me out by giving this project a star, thanks.
 ## Settings
 
 See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings)
-*(W.I.P. - Missing lots of rules)*
 
 ## How to Use
 *coming soon*
