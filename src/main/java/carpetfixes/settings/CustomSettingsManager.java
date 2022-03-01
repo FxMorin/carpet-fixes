@@ -38,8 +38,8 @@ public class CustomSettingsManager extends SettingsManager {
                 throw new IllegalStateException(e);
             }
             boolean isStrict = rule.strict();
-            List<String> categories = rule.category() != null ? List.of(rule.category()) : List.of();
-            if (!categories.contains(category)) continue;
+            List<String> categories = List.of(rule.category());
+            if (category != null && !categories.contains(category)) continue;
             ps.println("## " + (rule.name().isEmpty() ? f.getName() : rule.name()));
             ps.println(rule.desc()+"  ");
             for (String extra : List.of(rule.extra())) ps.println(extra + "  ");
