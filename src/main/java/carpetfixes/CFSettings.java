@@ -217,6 +217,15 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
+            desc = "Fixes getting kicked for flying too long when jumping and riding an entity",
+            extra = "Fixes [MC-98727](https://bugs.mojang.com/browse/MC-98727)",
+            category = {BUGFIX,RECOMMENDED,VANILLA},
+            condition = VersionConditions.LT_22w03a.class
+    )
+    public static boolean mountingFlyingTooLongFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
             desc = "Fixes fall damage being delayed by sleeping, fall damage will be removed instead",
             extra = "[MC-19830](https://bugs.mojang.com/browse/MC-19830)",
             category = {BUGFIX,RECOMMENDED}

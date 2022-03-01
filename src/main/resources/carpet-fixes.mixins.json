@@ -170,6 +170,7 @@
     "playerFixes.LivingEntity_sleepingKillsMixin",
     "playerFixes.PlayerManager_endPortalEffectsMixin",
     "playerFixes.ServerPlayerEntity_endPortalEffectsMixin",
+    "playerFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
     "redstoneFixes.World_ComparatorNotUpdatingMixin",
