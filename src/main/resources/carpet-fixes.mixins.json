@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_16",
   "plugin": "carpetfixes.settings.CarpetFixesMixinConfigPlugin",
   "mixins": [
+    "accessors.TagKeyAccessor",
     "advanced.MinecraftServer_autosaveDelayMixin",
     "advanced.ThreadedAnvilChunkStorage_chunkTimingsMixin",
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
@@ -57,6 +58,7 @@
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
     "coreSystemFixes.StatusEffectInstance_nbtSuffixMixin",
     "coreSystemFixes.StringTag_stringTagExploitMixin",
+    "coreSystemFixes.TagKey_memoryLeakMixin",
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",
     "coreSystemFixes.World_seaLevelMixin",
     "coreSystemFixes.World_updateSuppressionMixin",

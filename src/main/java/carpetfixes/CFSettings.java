@@ -5,8 +5,10 @@ import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
 import carpet.settings.Validator;
 import carpetfixes.helpers.UpdateScheduler;
+import carpetfixes.mixins.accessors.TagKeyAccessor;
 import carpetfixes.settings.conditions.LT_1_18_2_pre1_VersionCondition;
 import carpetfixes.settings.conditions.LT_22w05a_VersionCondition;
+import com.google.common.collect.Interners;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
@@ -953,6 +955,15 @@ public class CFSettings {
     )
     public static boolean incorrectBlockPosDistanceFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes a memory leak within the new TagKey system",
+            extra = "[MC-248621](https://bugs.mojang.com/browse/MC-248621)",
+            category = {BUGFIX,CRASHFIX,RECOMMENDED},
+            validate = TagKeyMemoryLeakFixValidator.class
+    )
+    public static boolean tagKeyMemoryLeakFix = false;
+
 
     /*
 
@@ -1375,6 +1386,15 @@ public class CFSettings {
     private static class WorldBorderCollisionRoundingFixValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
             scheduleWorldBorderReset = true;
+            return newValue;
+        }
+    }
+
+    private static class TagKeyMemoryLeakFixValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (currentRule.get() != newValue) {
+                TagKeyAccessor.setInterner(newValue ? Interners.newWeakInterner() : Interners.newStrongInterner());
+            }
             return newValue;
         }
     }
