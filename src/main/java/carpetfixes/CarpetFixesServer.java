@@ -4,6 +4,7 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
 import carpetfixes.helpers.UpdateScheduler;
+import carpetfixes.settings.CustomSettingsManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
@@ -37,7 +38,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
                 .orElseThrow(RuntimeException::new).getMetadata();
         MOD_NAME = metadata.getName();
         MOD_VERSION = metadata.getVersion();
-        carpetFixesSettingsManager = new SettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
+        carpetFixesSettingsManager = new CustomSettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
     }
 
     @Override
