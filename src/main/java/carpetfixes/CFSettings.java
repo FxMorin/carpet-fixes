@@ -1201,6 +1201,13 @@ public class CFSettings {
     )
     public static boolean reIntroduceVeryAggressiveSaving = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces falling blocks giving block updates during the entity phase changed in 22w03a",
+            category = REINTRODUCE
+    )
+    public static boolean reIntroduceFallingBlockEntityPhase = false;
+
 
     /*
 
