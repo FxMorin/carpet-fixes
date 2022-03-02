@@ -1126,6 +1126,13 @@ public class CFSettings {
     )
     public static boolean tripwireHookDupeFix = false;
 
+    //by Captain_S0L0
+    @Rule(
+            desc = "Fixes a donkey/llama/horse dupe that is possible by using a client-side mod",
+            category = {BUGFIX,DUPE}
+    )
+    public static boolean horseDupeFix = false;
+
 
     /*
 
