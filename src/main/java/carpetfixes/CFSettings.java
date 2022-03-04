@@ -985,6 +985,15 @@ public class CFSettings {
     )
     public static boolean nocomExploitFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the structure manager not being able to load snbt versions of nbt files",
+            extra = {"This makes it possible for structure blocks to load snbt files also.",
+                    "Should not be used in survival or for datapacks, since its slower than nbt"},
+            category = {BUGFIX,CREATIVE}
+    )
+    public static boolean structureManagerCantLoadSnbtFix = false;
+
 
     /*
 
