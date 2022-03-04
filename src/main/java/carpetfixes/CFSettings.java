@@ -977,6 +977,14 @@ public class CFSettings {
     )
     public static boolean tagKeyMemoryLeakFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Prevents the NoCom Exploit from being able to crash the server",
+            extra = "There is a fabric mod that is able to do this in vanilla!",
+            category = {BUGFIX,CRASHFIX,RECOMMENDED}
+    )
+    public static boolean nocomExploitFix = false;
+
 
     /*
 
@@ -1132,6 +1140,13 @@ public class CFSettings {
             category = {BUGFIX,DUPE}
     )
     public static boolean horseDupeFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Prevent the nocom exploit from working",
+            category = {BUGFIX,CRASHFIX,RECOMMENDED}
+    )
+    public static boolean nocomFix = false;
 
 
     /*
