@@ -994,6 +994,13 @@ public class CFSettings {
     )
     public static boolean structureManagerCantLoadSnbtFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes the stepAndDestroyBlockGoal using the origin without first checking if its valid",
+            category = BUGFIX
+    )
+    public static boolean stepAndDestroyBlockGoalUsesOriginFix = false;
+
 
     /*
 
