@@ -31,4 +31,4 @@ src/main/java/carpetfixes/mixins/development/
 
 # Testing Classes
 testserver/
-src/main/java/carpetfixes/testing/
+src/main/java/carpetfixes/testing/testing.java
