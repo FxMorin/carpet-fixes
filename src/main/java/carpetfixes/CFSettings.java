@@ -1001,6 +1001,13 @@ public class CFSettings {
     )
     public static boolean stepAndDestroyBlockGoalUsesOriginFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes hopper minecarts being 4x slower at [0,0,0]",
+            category = BUGFIX
+    )
+    public static boolean hopperMinecartSlowerAtOriginFix = false;
+
 
     /*
 
