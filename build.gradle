@@ -23,8 +23,30 @@ archivesBaseName = project.archives_base_name
 version = project.display_minecraft_version+'-'+project.mod_version+'+v'+new Date().format('yyMMdd')
 group = project.maven_group
 
+sourceSets {
+	main {
+		java {
+			compileClasspath += main.compileClasspath
+			runtimeClasspath += main.compileClasspath
+		}
+	}
+}
+
 loom {
 	accessWidenerPath = file("src/main/resources/carpet-fixes.accesswidener")
+	runs {
+		testmodServer {
+			runDir("testserver");
+			server()
+			ideConfigGenerated project.rootProject == project
+			source sourceSets.main
+		}
+		autoTestServer {
+			runDir("testserver");
+			inherit testmodServer
+			vmArg "-Dfabric.autoTest"
+		}
+	}
 }
 
 dependencies {
@@ -36,6 +58,7 @@ dependencies {
 	modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditionalmixin_version}"
 	include "com.github.Fallen-Breath:conditional-mixin:${project.conditionalmixin_version}"
 
+	modImplementation "com.github.2No2Name:McTester:${project.mctester_version}"
 	modRuntimeOnly "com.github.astei:lazydfu:0.1.2"
 }
 
