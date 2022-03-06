@@ -5,10 +5,13 @@ import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
 import carpetfixes.helpers.UpdateScheduler;
 import carpetfixes.settings.CustomSettingsManager;
+import carpetfixes.testing.tests.TestRuleTemplate;
+import mctester.annotation.TestRegistryHelper;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.metadata.ModMetadata;
+import net.minecraft.SharedConstants;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.border.WorldBorder;
@@ -49,6 +52,9 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     @Override
     public void onInitialize() {
         CarpetServer.manageExtension(new CarpetFixesServer());
+        if (SharedConstants.isDevelopment) {
+            TestRegistryHelper.createTestTemplateFromClass(TestRuleTemplate.class);
+        }
     }
 
     @Override
