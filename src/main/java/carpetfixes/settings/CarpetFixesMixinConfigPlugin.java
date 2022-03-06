@@ -1,5 +1,6 @@
 package carpetfixes.settings;
 
+import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
@@ -24,7 +25,9 @@ public class CarpetFixesMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
     }
 
     @Override
-    public void onLoad(String mixinPackage) {}
+    public void onLoad(String mixinPackage) {
+        MixinExtrasBootstrap.init();
+    }
 
     @Override
     public String getRefMapperConfig() {
