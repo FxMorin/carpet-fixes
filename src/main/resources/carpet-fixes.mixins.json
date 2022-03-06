@@ -167,6 +167,7 @@
     "optimizations.rounding.PlayerEntityMixin",
     "optimizations.rounding.SurfaceBuilderMixin",
     "optimizations.rounding.VoxelShapesMixin",
+    "other.Bootstrap_developmentMixin",
     "other.ServerWorld_updateSchedulerMixin",
     "parity.ComparatorBlock_terribleMixin",
     "parity.PistonBlock_movableLightMixin",
