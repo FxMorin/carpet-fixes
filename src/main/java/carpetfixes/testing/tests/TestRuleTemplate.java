@@ -65,8 +65,8 @@ public class TestRuleTemplate {
 
         GameTestUtil.streamPositions(helper.gameTest).forEach(blockPos -> {
             BlockState blockState = helper.gameTest.getWorld().getBlockState(blockPos);
-            if (blockState.isOf(Blocks.LIME_WOOL)) successBlocks.add(blockPos.toImmutable());
-            if (blockState.isOf(Blocks.RED_WOOL)) failureBlocks.add(blockPos.toImmutable());
+            if (isSuccessBlock(blockState)) successBlocks.add(blockPos.toImmutable());
+            if (isFailureBlock(blockState)) failureBlocks.add(blockPos.toImmutable());
         });
         if (successBlocks.isEmpty()) {
             throw new GameTestAssertException("Expected success condition blocks anywhere inside the test. " +
