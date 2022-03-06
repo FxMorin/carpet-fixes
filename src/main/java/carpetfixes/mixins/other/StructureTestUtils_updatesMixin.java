@@ -1,7 +1,6 @@
 package carpetfixes.mixins.other;
 
 import carpet.CarpetSettings;
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.SharedConstants;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.structure.Structure;
@@ -9,12 +8,13 @@ import net.minecraft.structure.StructureManager;
 import net.minecraft.test.StructureTestUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(StructureTestUtil.class)
 public class StructureTestUtils_updatesMixin {
 
 
-    @ModifyExpressionValue(
+    @Redirect(
             method = "createStructure(Ljava/lang/String;Lnet/minecraft/server/world/ServerWorld;)" +
                     "Lnet/minecraft/structure/Structure;",
             at = @At(
@@ -23,7 +23,7 @@ public class StructureTestUtils_updatesMixin {
                             "Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/structure/Structure;"
             )
     )
-    private static Structure wrapCreateStructure(StructureManager structureManager, NbtCompound nbt) {
+    private static Structure redirectCreateStructure(StructureManager structureManager, NbtCompound nbt) {
         if (SharedConstants.isDevelopment) {
             CarpetSettings.impendingFillSkipUpdates.set(true);
             try {
@@ -31,8 +31,7 @@ public class StructureTestUtils_updatesMixin {
             } finally {
                 CarpetSettings.impendingFillSkipUpdates.set(false);
             }
-        } else {
-            return structureManager.createStructure(nbt);
         }
+        return structureManager.createStructure(nbt);
     }
 }
