@@ -1008,6 +1008,14 @@ public class CFSettings {
     )
     public static boolean hopperMinecartSlowerAtOriginFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes cactus breaking when moving a non-solid block next to them with a piston",
+            extra = "[MC-160095](https://bugs.mojang.com/browse/MC-160095)",
+            category = BUGFIX
+    )
+    public static boolean nonSolidBlocksBreakCactusIfPushedFix = false;
+
 
     /*
 
