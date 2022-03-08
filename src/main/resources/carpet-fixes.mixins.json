@@ -13,6 +13,7 @@
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
     "blockFixes.AbstractButtonBlock_collisionOnPlaceMixin",
     "blockFixes.Block_itemPositionMixin",
+    "blockFixes.CactusBlock_movingBlockMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.ChestBlock_worldBorderMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
