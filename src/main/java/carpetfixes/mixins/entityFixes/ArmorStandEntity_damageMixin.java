@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ArmorStandEntity.class)
-public abstract class ArmorStandEntity_lavaDamageMixin {
+public abstract class ArmorStandEntity_damageMixin {
 
     @Shadow
     protected abstract void updateHealth(DamageSource damageSource, float amount);
@@ -29,6 +29,10 @@ public abstract class ArmorStandEntity_lavaDamageMixin {
     private void beforeProjectileCheck(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.armorStandNegateLavaDamageFix && DamageSource.LAVA.equals(source)) {
             this.updateHealth(source, 4.0F);
+            cir.setReturnValue(false);
+        }
+        if (CFSettings.armorStandNegateCactusDamageFix && DamageSource.CACTUS.equals(source)) {
+            this.updateHealth(source, amount);
             cir.setReturnValue(false);
         }
     }

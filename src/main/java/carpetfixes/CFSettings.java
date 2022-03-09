@@ -919,6 +919,14 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
+            desc = "Fixes armor stands not being damaged by cactus",
+            extra = "[MC-224420](https://bugs.mojang.com/browse/MC-224420)",
+            category = {BUGFIX,RECOMMENDED}
+    )
+    public static boolean armorStandNegateCactusDamageFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
             desc = "Fixes tripwires not being disarmed correctly",
             extra = "[MC-129055](https://bugs.mojang.com/browse/MC-129055)",
             category = BUGFIX
