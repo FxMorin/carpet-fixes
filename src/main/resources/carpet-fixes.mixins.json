@@ -169,7 +169,7 @@
     "optimizations.rounding.SurfaceBuilderMixin",
     "optimizations.rounding.VoxelShapesMixin",
     "other.Bootstrap_developmentMixin",
-    "other.CommandManager_resetChunksMixin",
+    "other.CommandManager_devMixin",
     "other.ServerWorld_updateSchedulerMixin",
     "other.StructureTestUtils_updatesMixin",
     "parity.ComparatorBlock_terribleMixin",
