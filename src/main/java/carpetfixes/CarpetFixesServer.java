@@ -54,6 +54,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
         CarpetServer.manageExtension(new CarpetFixesServer());
         if (SharedConstants.isDevelopment) {
             TestRegistryHelper.createTestTemplateFromClass(TestRuleTemplate.class);
+            TestRegistryHelper.createTemplatedTestsFromFiles();
         }
     }
 
