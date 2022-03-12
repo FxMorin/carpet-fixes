@@ -1187,6 +1187,13 @@ public class CFSettings {
     )
     public static boolean nocomFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes mobs being able to spawn on moving pistons",
+            category = BUGFIX
+    )
+    public static boolean mobsSpawnOnMovingPistonsFix = false;
+
 
     /*
 
