@@ -1194,6 +1194,13 @@ public class CFSettings {
     )
     public static boolean mobsSpawnOnMovingPistonsFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes an edge case within geodes where it will waterlog a block next to lava, due to missing fluid check",
+            category = BUGFIX
+    )
+    public static boolean geodeLavalogFix = false;
+
 
     /*
 
