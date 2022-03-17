@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 public class TestRuleTemplate {
 
-    @GameTestTemplate(name = "test_rule")
+    @GameTestTemplate(name = "default")
     public static Stream<TestConfig> testFromStructure(String structureName) {
         TestConfig testConfig = new TestConfig(TestRuleTemplate::test_rule)
                 .structureName(structureName)
@@ -57,7 +57,7 @@ public class TestRuleTemplate {
     /**
      * A test function that can be used to create tests with a simple redstone interface.
      */
-    @GameTest
+    @GameTest()
     public static void test_rule(GameTestHelper helper) {
         ArrayList<BlockPos> successBlocks = new ArrayList<>();
         ArrayList<BlockPos> failureBlocks = new ArrayList<>();
@@ -70,7 +70,7 @@ public class TestRuleTemplate {
         });
         if (successBlocks.isEmpty()) {
             throw new GameTestAssertException("Expected success condition blocks anywhere inside the test. " +
-                            "test_rule require at least a lime wool block for the success condition");
+                    "test_rule requires at least 1");
         }
 
         //Turn Lime Glazed Terracotta to redstone block. This is the early trigger, happens before anything else
@@ -79,28 +79,25 @@ public class TestRuleTemplate {
             if (isEarlyTriggerBlock(blockState))
                 helper.gameTest.getWorld().setBlockState(blockPos, Blocks.REDSTONE_BLOCK.getDefaultState());
         });
-
         //Replace all red terracotta with redstone block on the first tick
-        helper.addAction(1, (h) -> {
-            GameTestUtil.streamPositions(h.gameTest).forEach(blockPos -> {
-                BlockState blockState = h.gameTest.getWorld().getBlockState(blockPos);
-                if (blockState.isOf(Blocks.RED_TERRACOTTA))
-                    h.gameTest.getWorld().setBlockState(blockPos, Blocks.REDSTONE_BLOCK.getDefaultState());
-            });
+        GameTestUtil.streamPositions(helper.gameTest).forEach(blockPos -> {
+            BlockState blockState = helper.gameTest.getWorld().getBlockState(blockPos);
+            if (blockState.isOf(Blocks.RED_TERRACOTTA))
+                helper.gameTest.getWorld().setBlockState(blockPos, Blocks.REDSTONE_BLOCK.getDefaultState());
         });
 
         // Succeed when any powered note block is on top of a success condition block.
         // Assume the success condition block doesn't move etc.
         helper.succeedWhen(
                 helper1 -> {
+                    if (helper1.gameTest.isCompleted()) return helper1.gameTest.isPassed();
                     // Always check the failure condition blocks before the success conditions.
-                    // Failed tests throw exceptions.
-                    if (
-                            failureBlocks.stream().anyMatch(blockPos -> {
-                                BlockState blockState = helper1.gameTest.getWorld().getBlockState(blockPos.up());
-                                return blockState.isOf(Blocks.NOTE_BLOCK) && blockState.get(NoteBlock.POWERED) &&
-                                        isFailureBlock(helper1.gameTest.getWorld().getBlockState(blockPos));
-                            })) {
+                    if (failureBlocks.stream().anyMatch(blockPos -> {
+                        BlockState blockState = helper1.gameTest.getWorld().getBlockState(blockPos.up());
+                        return blockState.isOf(Blocks.NOTE_BLOCK) && blockState.get(NoteBlock.POWERED) &&
+                                isFailureBlock(helper1.gameTest.getWorld().getBlockState(blockPos));
+                    })) {
+                        onFinish(helper);
                         BlockPos blockPos = helper1.gameTest.getPos();
                         BlockPos absolutePos = successBlocks.get(0);
                         BlockPos relativePos = Structure.transformAround(
@@ -109,14 +106,17 @@ public class TestRuleTemplate {
                                 GameTestUtil.getInverse(helper1.gameTest.getRotation()),
                                 blockPos
                         ).add(-blockPos.getX(), -blockPos.getY(), -blockPos.getZ());
-                        onFinish(helper);
-                        throw new PositionedException(
+                        //System.out.println("Failure condition was met with powered noteblock on top of a failure condition block");
+                        //throw new GameTestException("Failure condition was met with powered noteblock on top of a failure condition block");
+                        return false;
+                        /*throw new PositionedException(
                                 "Failure condition was met with powered noteblock on top of a failure condition block",
                                 absolutePos,
                                 relativePos,
                                 helper1.currTick
-                        );
+                        );*/
                     }
+                    onFinish(helper);
                     return successBlocks.stream().anyMatch(blockPos -> {
                         BlockState blockState = helper1.gameTest.getWorld().getBlockState(blockPos.up());
                         return blockState.isOf(Blocks.NOTE_BLOCK) && blockState.get(NoteBlock.POWERED) &&
@@ -134,7 +134,7 @@ public class TestRuleTemplate {
                     ).add(-blockPos.getX(), -blockPos.getY(), -blockPos.getZ());
                     onFinish(helper);
                     return new PositionedException(
-                            "Expected powered noteblock on top of an success condition block. For example",
+                            "Expected powered noteblock on top of a success condition block",
                             absolutePos,
                             relativePos,
                             helper1.currTick
