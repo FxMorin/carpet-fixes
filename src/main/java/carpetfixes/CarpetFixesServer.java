@@ -5,8 +5,7 @@ import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
 import carpetfixes.helpers.UpdateScheduler;
 import carpetfixes.settings.CustomSettingsManager;
-import carpetfixes.testing.tests.TestRuleTemplate;
-import mctester.annotation.TestRegistryHelper;
+import carpetfixes.testing.tests.TestManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
@@ -52,10 +51,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     @Override
     public void onInitialize() {
         CarpetServer.manageExtension(new CarpetFixesServer());
-        if (SharedConstants.isDevelopment) {
-            TestRegistryHelper.createTestTemplateFromClass(TestRuleTemplate.class);
-            TestRegistryHelper.createTemplatedTestsFromFiles();
-        }
+        if (SharedConstants.isDevelopment) TestManager.initializeTests();
     }
 
     @Override
