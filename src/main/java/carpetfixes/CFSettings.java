@@ -4,7 +4,6 @@ import carpet.CarpetServer;
 import carpet.settings.Rule;
 import carpetfixes.helpers.UpdateScheduler;
 import carpetfixes.settings.Validators;
-import carpetfixes.settings.VersionConditions;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -217,15 +216,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes getting kicked for flying too long when jumping and riding an entity",
-            extra = "Fixes [MC-98727](https://bugs.mojang.com/browse/MC-98727)",
-            category = {BUGFIX,RECOMMENDED,VANILLA},
-            condition = VersionConditions.LT_22w03a.class
-    )
-    public static boolean mountingFlyingTooLongFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes fall damage being delayed by sleeping, fall damage will be removed instead",
             extra = "[MC-19830](https://bugs.mojang.com/browse/MC-19830)",
             category = {BUGFIX,RECOMMENDED}
@@ -302,8 +292,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes being able to fish outside of water",
             extra = "[MC-175544](https://bugs.mojang.com/browse/MC-175544)",
-            category = {BUGFIX,RECOMMENDED},
-            condition = VersionConditions.GT_22w05a.class
+            category = {BUGFIX,RECOMMENDED}
     )
     public static boolean fishingOutsideWaterFix = false;
 
@@ -311,8 +300,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes experience orbs treating flowing lava as a full block",
             extra = "[MC-226961](https://bugs.mojang.com/browse/MC-226961)",
-            category = {BUGFIX,RECOMMENDED},
-            condition = VersionConditions.GT_22w05a.class
+            category = {BUGFIX,RECOMMENDED}
     )
     public static boolean xpOrbCollisionFix = false;
 
@@ -508,8 +496,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes Blackstone Buttons taking longer then other buttons to break",
             extra = "[MC-199752](https://bugs.mojang.com/browse/MC-199752)",
-            category = BUGFIX,
-            condition = VersionConditions.GT_22w05a.class
+            category = BUGFIX
     )
     public static boolean blackstoneButtonBreakSpeedFix = false;
 
@@ -709,15 +696,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes falling blocks not behaving as expected when being teleported",
-            extra = "[MC-151488](https://bugs.mojang.com/browse/MC-151488)",
-            category = BUGFIX,
-            condition = VersionConditions.LT_22w03a.class
-    )
-    public static boolean fallingBlockTeleportingFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes player velocity on X and Z axis being cancelled separately at low values",
             extra = "[MC-241951](https://bugs.mojang.com/browse/MC-241951)",
             category = BUGFIX
@@ -827,8 +805,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes projectiles sending the PROJECTILE_LAND event when landing on a vibration occluding block",
             extra = "[MC-208771](https://bugs.mojang.com/browse/MC-208771)",
-            category = BUGFIX,
-            condition = VersionConditions.GT_22w05a.class
+            category = BUGFIX
     )
     public static boolean projectileMissingOcclusionFix = false;
 
@@ -836,8 +813,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes boats sending the SPLASH event when ridden over a vibration occluding block",
             extra = "[MC-208597](https://bugs.mojang.com/browse/MC-208597)",
-            category = BUGFIX,
-            condition = VersionConditions.GT_22w05a.class
+            category = BUGFIX
     )
     public static boolean boatMissingOcclusionFix = false;
 
@@ -845,8 +821,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes spawn eggs having an offset game event when spawning an entity",
             extra = "[MC-247643](https://bugs.mojang.com/browse/MC-247643)",
-            category = BUGFIX,
-            condition = VersionConditions.GT_22w05a.class
+            category = BUGFIX
     )
     public static boolean spawnEggOffsetEventFix = false;
 
@@ -854,8 +829,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes Spawning entities using spawn eggs on vibration occluding blocks not occluding",
             extra = "[MC-247645](https://bugs.mojang.com/browse/MC-247645)",
-            category = BUGFIX,
-            condition = VersionConditions.GT_22w05a.class
+            category = BUGFIX
     )
     public static boolean spawnEggMissingOcclusionFix = false;
 
@@ -863,8 +837,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes Spawning entities using spawn eggs on entities not creating ENTITY_PLACE game event",
             extra = "[MC-214472](https://bugs.mojang.com/browse/MC-214472)",
-            category = BUGFIX,
-            condition = VersionConditions.GT_22w05a.class
+            category = BUGFIX
     )
     public static boolean spawnEggMissingEventFix = false;
 
@@ -872,8 +845,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes minecarts sending the ENTITY_PLACE event when placed on a vibration occluding block",
             extra = "[MC-213823](https://bugs.mojang.com/browse/MC-213823)",
-            category = BUGFIX,
-            condition = VersionConditions.GT_22w05a.class
+            category = BUGFIX
     )
     public static boolean minecartMissingOcclusionFix = false;
 
@@ -951,15 +923,6 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes jumping always favors x axis, and having z collision restoring x velocity",
-            extra = "[MC-146854](https://bugs.mojang.com/browse/MC-146854) & [MC-156309](https://bugs.mojang.com/browse/MC-156309)",
-            category = BUGFIX,
-            condition = VersionConditions.LT_1_18_2_pre1.class
-    )
-    public static boolean velocityNotCancelledFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
             desc = "Fixes Wither skull projectiles not saving if its charged/blue in there nbt",
             extra = "[MC-81656](https://bugs.mojang.com/browse/MC-81656)",
             category = {BUGFIX,NBT}
@@ -968,20 +931,10 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes BlockPos distance calculations being offset, resulting in them being directional & incorrect",
-            extra = "[MC-248225](https://bugs.mojang.com/browse/MC-248225)",
-            category = {BUGFIX,RECOMMENDED},
-            condition = VersionConditions.LT_22w05a.class
-    )
-    public static boolean incorrectBlockPosDistanceFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes a memory leak within the new TagKey system",
             extra = "[MC-248621](https://bugs.mojang.com/browse/MC-248621)",
             category = {BUGFIX,CRASHFIX,RECOMMENDED},
-            validate = Validators.TagKeyMemoryLeakFixValidator.class,
-            condition = VersionConditions.GT_22w05a.class
+            validate = Validators.TagKeyMemoryLeakFixValidator.class
     )
     public static boolean tagKeyMemoryLeakFix = false;
 
@@ -1080,8 +1033,7 @@ public class CFSettings {
     @Rule(
             desc = "Optimized the getBiome call to be 25% - 75% faster",
             extra = "This is a fully vanilla optimization. This can optimize the client also, go check Blanket-client-tweaks for that",
-            category = {OPTIMIZATION,VANILLA,RECOMMENDED},
-            condition = VersionConditions.GT_22w05a.class
+            category = {OPTIMIZATION,VANILLA,RECOMMENDED}
     )
     public static boolean optimizedBiomeAccess = false;
 
@@ -1343,8 +1295,7 @@ public class CFSettings {
             desc = "Allows you to change the max amount of chunks that can save per autosave",
             extra = "If your server has large lag spikes due to chunk saving, you can lower this number.",
             options = {"300","200","100","50"},
-            category = {ADVANCED,OPTIMIZATION},
-            condition = VersionConditions.GT_22w04a.class
+            category = {ADVANCED,OPTIMIZATION}
     )
     public static int maxChunksSavedPerAutoSave = 200;
 
@@ -1353,8 +1304,7 @@ public class CFSettings {
             desc = "Allows you to change the max amount of chunks that can save per tick for the 1.18 chunk saving system",
             extra = "This is for the system which just attempt to save chunks every tick. Max chunks saved per tick",
             options = {"100","50","20","10"},
-            category = {ADVANCED,OPTIMIZATION},
-            condition = VersionConditions.GT_22w04a.class
+            category = {ADVANCED,OPTIMIZATION}
     )
     public static int maxChunksSavedPerTick = 20;
 
@@ -1434,8 +1384,7 @@ public class CFSettings {
                     "If your server has large lag spikes due to chunk saving, you can raise this number.",
                     "For obvious reasons, this rule is disabled when `reIntroduceVeryAggressiveSaving` is enabled"},
             options = {"120000","60000","10000","1000","0"},
-            category = {ADVANCED,OPTIMIZATION},
-            condition = VersionConditions.GT_22w04a.class
+            category = {ADVANCED,OPTIMIZATION}
     )
     public static long chunkSaveCooldownDelay = 10000L;
 

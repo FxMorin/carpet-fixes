@@ -1,10 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
 import carpetfixes.CFSettings;
-import carpetfixes.settings.ModIds;
-import carpetfixes.settings.VersionPredicates;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -12,7 +8,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w06a))
 @Mixin(EnchantingTableBlock.class)
 public class EnchantingTableBlock_transparentMixin {
 

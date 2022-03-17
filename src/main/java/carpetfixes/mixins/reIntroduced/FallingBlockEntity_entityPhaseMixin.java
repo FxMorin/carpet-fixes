@@ -1,10 +1,6 @@
 package carpetfixes.mixins.reIntroduced;
 
 import carpetfixes.CFSettings;
-import carpetfixes.settings.ModIds;
-import carpetfixes.settings.VersionPredicates;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -19,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_1_18_1))
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntity_entityPhaseMixin extends Entity {
 

@@ -1,10 +1,6 @@
 package carpetfixes.mixins.reIntroduced;
 
 import carpetfixes.CFSettings;
-import carpetfixes.settings.ModIds;
-import carpetfixes.settings.VersionPredicates;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.MinecraftServer;
@@ -28,7 +24,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
 @Mixin(ServerWorld.class)
 public abstract class ServerWorld_zeroTickMixin extends World {
 

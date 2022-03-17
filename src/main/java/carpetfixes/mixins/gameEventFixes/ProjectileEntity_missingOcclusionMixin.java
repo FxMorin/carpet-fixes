@@ -1,10 +1,6 @@
 package carpetfixes.mixins.gameEventFixes;
 
 import carpetfixes.CFSettings;
-import carpetfixes.settings.ModIds;
-import carpetfixes.settings.VersionPredicates;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -21,7 +17,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
 @Mixin(ProjectileEntity.class)
 public abstract class ProjectileEntity_missingOcclusionMixin extends Entity {
 

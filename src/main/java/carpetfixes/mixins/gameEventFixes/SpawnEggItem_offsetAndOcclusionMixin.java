@@ -1,10 +1,6 @@
 package carpetfixes.mixins.gameEventFixes;
 
 import carpetfixes.CFSettings;
-import carpetfixes.settings.ModIds;
-import carpetfixes.settings.VersionPredicates;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -29,7 +25,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Optional;
 
-@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
 @Mixin(SpawnEggItem.class)
 public class SpawnEggItem_offsetAndOcclusionMixin {
 

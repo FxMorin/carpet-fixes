@@ -2,10 +2,6 @@ package carpetfixes.mixins.itemFixes;
 
 import carpet.CarpetSettings;
 import carpetfixes.CFSettings;
-import carpetfixes.settings.ModIds;
-import carpetfixes.settings.VersionPredicates;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -17,7 +13,6 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.tag.TagKey;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
 @Mixin(value=PickaxeItem.class,priority=1010)
 public class PickaxeItem_blackstoneButtonMixin extends MiningToolItem {
 
