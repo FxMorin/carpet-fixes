@@ -1245,6 +1245,14 @@ public class CFSettings {
     )
     public static boolean reIntroduceFallingBlockEntityPhase = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces instant block updates which changed in 22w11a",
+            validate = Validators.reIntroduceInstantBlockUpdatesValidator.class,
+            category = REINTRODUCE
+    )
+    public static boolean reIntroduceInstantBlockUpdates = false;
+
 
     /*
 
