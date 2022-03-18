@@ -3,6 +3,7 @@ package carpetfixes.mixins.other;
 import carpetfixes.testing.commands.PoiCommand;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.class_7157;
 import net.minecraft.server.command.*;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,13 +22,9 @@ public class CommandManager_devMixin {
 
     @Inject(
             method = "<init>",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/command/ReloadCommand;" +
-                            "register(Lcom/mojang/brigadier/CommandDispatcher;)V"
-            )
+            at = @At("RETURN")
     )
-    private void onInit(CommandManager.RegistrationEnvironment environment, CallbackInfo ci) {
+    private void onInit(CommandManager.RegistrationEnvironment environment, class_7157 arg, CallbackInfo ci) {
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
             ResetChunksCommand.register(this.dispatcher);
             ChaseCommand.register(this.dispatcher);

@@ -62,27 +62,32 @@ public class BlockUpdateUtils {
         }
     }
 
-    public static boolean canUpdateNeighborsAlwaysWithOrder(World world, BlockPos p, Block block) {
+    public static boolean canUpdateNeighborsAlwaysWithOrder(World world, BlockPos pos, Block block) {
         if (CFSettings.blockUpdateOrderFix) {
-            for(Direction d : DirectionUtils.directions) world.updateNeighbor(p.offset(d), block, p);
-            return true;
-        } else if (CFSettings.parityRandomBlockUpdates) {
-            for(Direction d : DirectionUtils.randomDirectionArray(p)) world.updateNeighbor(p.offset(d), block, p);
+            world.method_41249().method_41705(pos, block, null);
             return true;
         }
+        /*
+        if (CFSettings.parityRandomBlockUpdates) {
+                for(Direction d : DirectionUtils.randomDirectionArray(p)) world.updateNeighbor(p.offset(d), block, p);
+                return true;
+            }
+         */
         return false;
     }
 
     public static boolean canUpdateNeighborsExceptWithOrder(World world, BlockPos pos,Block block, Direction dir) {
         if (CFSettings.blockUpdateOrderFix) {
-            for (Direction d : DirectionUtils.directions)
-                if (dir != d) world.updateNeighbor(pos.offset(d), block, pos);
+            world.method_41249().method_41705(pos, block, dir);
             return true;
-        } else if (CFSettings.parityRandomBlockUpdates) {
+        }
+        /*
+        if (CFSettings.parityRandomBlockUpdates) {
             for (Direction d : DirectionUtils.randomDirectionArray(pos))
                 if (dir != d) world.updateNeighbor(pos.offset(d), block, pos);
             return true;
         }
+         */
         return false;
     }
 }

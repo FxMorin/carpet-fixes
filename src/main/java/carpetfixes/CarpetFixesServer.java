@@ -3,7 +3,6 @@ package carpetfixes;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
-import carpetfixes.helpers.UpdateScheduler;
 import carpetfixes.settings.CustomSettingsManager;
 import carpetfixes.testing.tests.TestManager;
 import net.fabricmc.api.ModInitializer;
@@ -12,7 +11,6 @@ import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.SharedConstants;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.border.WorldBorder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,11 +61,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     public void onServerLoaded(MinecraftServer server) {}
 
     @Override
-    public void onServerLoadedWorlds(MinecraftServer minecraftServer) {
-        for (ServerWorld world : minecraftServer.getWorlds()) {
-            CFSettings.updateScheduler.put(world,new UpdateScheduler(world));
-        }
-    }
+    public void onServerLoadedWorlds(MinecraftServer minecraftServer) {}
 
     @Override
     public void onTick(MinecraftServer server) {

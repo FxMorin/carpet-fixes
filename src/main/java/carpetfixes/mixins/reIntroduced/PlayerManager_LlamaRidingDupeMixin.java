@@ -65,9 +65,9 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             if (entity.hasPlayerRider()) {
                 CarpetFixesServer.LOGGER.debug("[reIntroduceDonkeyRidingDupe] Removing player mount");
                 serverPlayerEntity.stopRiding();
-                entity.streamPassengersAndSelf().forEach((entityx) -> {
-                    entityx.setRemoved(Entity.RemovalReason.UNLOADED_WITH_PLAYER);
-                });
+                entity.streamPassengersAndSelf().forEach((entityx) ->
+                    entityx.setRemoved(Entity.RemovalReason.UNLOADED_WITH_PLAYER)
+                );
             }
         }
         return false;

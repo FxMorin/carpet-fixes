@@ -1,5 +1,6 @@
 package carpetfixes.testing.tests;
 
+/*
 import mctester.annotation.GameTest;
 import mctester.annotation.GameTestTemplate;
 import mctester.common.test.creation.GameTestHelper;
@@ -16,10 +17,11 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
+ */
 
 public class TestRuleTemplate {
 
-    @GameTestTemplate(name = "default")
+    /*@GameTestTemplate(name = "default")
     public static Stream<TestConfig> testFromStructure(String structureName) {
         TestConfig testConfig = new TestConfig(TestRuleTemplate::test_rule)
                 .structureName(structureName)
@@ -52,12 +54,12 @@ public class TestRuleTemplate {
             if (isFinishedTriggerBlock(blockState))
                 helper.gameTest.getWorld().setBlockState(pos, Blocks.REDSTONE_BLOCK.getDefaultState());
         });
-    }
+    }*/
 
     /**
      * A test function that can be used to create tests with a simple redstone interface.
      */
-    @GameTest()
+    /*@GameTest()
     public static void test_rule(GameTestHelper helper) {
         ArrayList<BlockPos> successBlocks = new ArrayList<>();
         ArrayList<BlockPos> failureBlocks = new ArrayList<>();
@@ -108,14 +110,14 @@ public class TestRuleTemplate {
                         ).add(-blockPos.getX(), -blockPos.getY(), -blockPos.getZ());
                         //System.out.println("Failure condition was met with powered noteblock on top of a failure condition block");
                         //throw new GameTestException("Failure condition was met with powered noteblock on top of a failure condition block");
-                        return false;
+                        return false;*/
                         /*throw new PositionedException(
                                 "Failure condition was met with powered noteblock on top of a failure condition block",
                                 absolutePos,
                                 relativePos,
                                 helper1.currTick
                         );*/
-                    }
+                    /*}
                     onFinish(helper);
                     return successBlocks.stream().anyMatch(blockPos -> {
                         BlockState blockState = helper1.gameTest.getWorld().getBlockState(blockPos.up());
@@ -141,5 +143,5 @@ public class TestRuleTemplate {
                     );
                 }
         );
-    }
+    }*/
 }

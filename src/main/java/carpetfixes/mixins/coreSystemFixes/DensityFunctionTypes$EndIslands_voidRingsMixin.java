@@ -3,14 +3,13 @@ package carpetfixes.mixins.coreSystemFixes;
 import carpetfixes.CFSettings;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.SimplexNoiseSampler;
-import net.minecraft.world.biome.source.TheEndBiomeSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(TheEndBiomeSource.class)
-public class TheEndBiomeSource_endVoidMixin {
+@Mixin(targets = "net/minecraft/world/gen/densityfunction/DensityFunctionTypes$EndIslands")
+public class DensityFunctionTypes$EndIslands_voidRingsMixin {
 
     /**
      * In the end, there are large rings where terrain does not generate. This is due to a floating-point calculation.
@@ -20,11 +19,12 @@ public class TheEndBiomeSource_endVoidMixin {
 
 
     @Inject(
-            method = "getNoiseAt(Lnet/minecraft/util/math/noise/SimplexNoiseSampler;II)F",
+            method = "method_41529(Lnet/minecraft/util/math/noise/SimplexNoiseSampler;II)F",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void getNoiseAt(SimplexNoiseSampler simplexNoise, int x, int z, CallbackInfoReturnable<Float> cir) {
+    private static void getModifiedNoiseAt(SimplexNoiseSampler simplexNoiseSampler,
+                                           int x, int z, CallbackInfoReturnable<Float> cir) {
         if (CFSettings.endVoidRingsFix) {
             int chunkX = x / 2, chunkZ = z / 2, chunkSectionX = x % 2, chunkSectionZ = z % 2;
             float noiseShift = (MathHelper.abs(x) < 400 && MathHelper.abs(z) < 400) ?
@@ -35,7 +35,7 @@ public class TheEndBiomeSource_endVoidMixin {
                 float seedX = (chunkSectionX-islandX*2);
                 for (int islandZ = -12; islandZ <= 12; ++islandZ) {
                     long areaZ = (chunkZ + islandZ);
-                    if (areaX * areaX + areaZ * areaZ > 4096L && simplexNoise.sample(areaX, areaZ) < -0.9F) {
+                    if (areaX * areaX + areaZ * areaZ > 4096L && simplexNoiseSampler.sample(areaX, areaZ) < -0.9F) {
                         float seedZ = (chunkSectionZ-islandZ*2);
                         float shiftPiece = MathHelper.abs(areaX) * 3439.0F + MathHelper.abs(areaZ) * 147.0F;
                         float offset = shiftPiece % 13.0F + 9.0F;

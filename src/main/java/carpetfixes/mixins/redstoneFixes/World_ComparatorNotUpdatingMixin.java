@@ -46,12 +46,7 @@ public class World_ComparatorNotUpdatingMixin {
     @Inject(
             method = "updateNeighbor(Lnet/minecraft/util/math/BlockPos;" +
                     "Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;)V",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;neighborUpdate(Lnet/minecraft/world/World;" +
-                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;" +
-                            "Lnet/minecraft/util/math/BlockPos;Z)V"
-            )
+            at = @At("HEAD")
     )
     private void updateNeighborsAlwaysWithBetterDirection(BlockPos sourcePos, Block sourceBlock,
                                                           BlockPos neighborPos, CallbackInfo ci) {

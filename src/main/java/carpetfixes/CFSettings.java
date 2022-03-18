@@ -2,13 +2,10 @@ package carpetfixes;
 
 import carpet.CarpetServer;
 import carpet.settings.Rule;
-import carpetfixes.helpers.UpdateScheduler;
 import carpetfixes.settings.Validators;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -22,7 +19,6 @@ public class CFSettings {
 
     // Global Variables
     public static boolean scheduleWorldBorderReset = false;
-    public static HashMap<World, UpdateScheduler> updateScheduler = new HashMap<>();
     public static final ThreadLocal<Set<BlockPos>> LAST_DIRT = ThreadLocal.withInitial(HashSet::new);
     public static final Predicate<BlockState> IS_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
 

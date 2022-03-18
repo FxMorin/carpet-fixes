@@ -60,7 +60,7 @@ dependencies {
 	modImplementation "carpet:fabric-carpet:${project.carpet_minecraft_version}-${project.carpet_core_version}"
 
 	//modImplementation "com.github.2No2Name:McTester:${project.mctester_version}"
-	modImplementation files('libs/mc-tester-0.2.4.jar') //Custom Build of McTester until 2No releases the new version
+	//modImplementation files('libs/mc-tester-0.2.4.jar') //Custom Build of McTester until 2No releases the new version
 
 	include "com.github.Fallen-Breath:conditional-mixin:${project.conditionalmixin_version}"
 	modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditionalmixin_version}"
