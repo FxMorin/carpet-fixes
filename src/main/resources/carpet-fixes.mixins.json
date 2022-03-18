@@ -37,6 +37,7 @@
     "blockUpdates.class_7159$class_7161_updateOrderMixin",
     "blockUpdates.class_7164_updateOrderMixin",
     "blockUpdates.DetectorRailBlock_comparatorMixin",
+    "blockUpdates.DetectorRailBlock_invalidUpdateMixin",
     "blockUpdates.HopperBlock_missingUpdateMixin",
     "blockUpdates.ObserverBlock_missingUpdateMixin",
     "blockUpdates.RedstoneTorchBlock_updateOrderOnBreakMixin",
