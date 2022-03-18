@@ -3,6 +3,8 @@ package carpetfixes.settings;
 import carpet.settings.ParsedRule;
 import carpet.settings.Validator;
 import carpetfixes.CFSettings;
+import carpetfixes.helpers.BlockUpdateUtils;
+import carpetfixes.helpers.DirectionUtils;
 import carpetfixes.mixins.accessors.ServerWorldAccessor;
 import carpetfixes.mixins.accessors.TagKeyAccessor;
 import com.google.common.collect.Interners;
@@ -12,6 +14,8 @@ import net.minecraft.class_7159;
 import net.minecraft.class_7164;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
+
+import static net.minecraft.class_7165.field_37839;
 
 public class Validators {
     public static class WitherGolemSpawningFixValidator extends Validator<Boolean> {
@@ -82,6 +86,34 @@ public class Validators {
                             new class_7159(world)
                     );
                 }
+            }
+            return newValue;
+        }
+    }
+
+    public static class blockUpdateOrderValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (newValue) {
+                BlockUpdateUtils.blockUpdateDirections = (b) -> DirectionUtils.directions;
+            } else {
+                if (CFSettings.parityRandomBlockUpdates) {
+                    BlockUpdateUtils.blockUpdateDirections = DirectionUtils::randomDirectionArray;
+                } else {
+                    BlockUpdateUtils.blockUpdateDirections = (b) -> field_37839;
+                }
+            }
+            return newValue;
+        }
+    }
+
+    public static class parityRandomBlockUpdatesValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (newValue) {
+                if (!CFSettings.blockUpdateOrderFix) {
+                    BlockUpdateUtils.blockUpdateDirections = DirectionUtils::randomDirectionArray;
+                }
+            } else if (!CFSettings.blockUpdateOrderFix) {
+                BlockUpdateUtils.blockUpdateDirections = (b) -> field_37839;
             }
             return newValue;
         }
