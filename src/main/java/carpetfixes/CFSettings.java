@@ -50,11 +50,18 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes observers not giving block updates when retracted and immediately repowered",
+            desc = "Fixes observers not giving shape updates when retracted and immediately repowered",
             extra = "[MC-136566](https://bugs.mojang.com/browse/MC-136566)",
             category = BUGFIX
     )
     public static boolean observerUpdateFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes target blocks not giving shape updates when retracted and immediately repowered",
+            category = BUGFIX
+    )
+    public static boolean targetBlockUpdateFix = false;
 
     //By FX - PR0CESS
     //Not putting it in the dupe fix category since technically there is no way to dupe with it anymore. Although there probably will be

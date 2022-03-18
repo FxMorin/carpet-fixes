@@ -29,6 +29,7 @@
     "blockFixes.PressurePlateBlock_collisionOnPlaceMixin",
     "blockFixes.RedstoneTorchBlock_inconsistentMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
+    "blockFixes.TargetBlock_missingShapeUpdateMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
     "blockUpdates.AbstractPressurePlateBlock_uselessMixin",
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
