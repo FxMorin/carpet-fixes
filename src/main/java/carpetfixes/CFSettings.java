@@ -1437,7 +1437,7 @@ public class CFSettings {
             category = {ADVANCED,OPTIMIZATION},
             condition = VersionConditions.GT_22w04a.class
     )
-    public static long chunkSaveCooldownDelay = 10000L;
+    public static int chunkSaveCooldownDelay = 10000;
 
 
     /*
