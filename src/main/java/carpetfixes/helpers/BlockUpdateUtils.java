@@ -8,8 +8,13 @@ import net.minecraft.world.World;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Function;
+
+import static net.minecraft.class_7165.field_37839;
 
 public class BlockUpdateUtils {
+
+    public static Function<BlockPos,Direction[]> blockUpdateDirections = (b) -> field_37839;
 
     /**
      *  Default Block Update Order:
@@ -40,16 +45,16 @@ public class BlockUpdateUtils {
                 DirectionUtils.directions :
                 CFSettings.parityRandomBlockUpdates ?
                         DirectionUtils.randomDirectionArray(pos) :
-                        DirectionUtils.updateDirections;
+                        field_37839;
         //If redstone component should update blocks closer to itself before giving extended block updates
         if (CFSettings.redstoneComponentUpdateOrderOnBreakFix && removedAndEmitsPower) {
-            for(Direction dir : directions) { //Do block updates around block first. Preventing wrong order
+            //Do block updates around block first. Preventing wrong order
+            for(Direction dir : BlockUpdateUtils.blockUpdateDirections.apply(pos))
                 world.updateNeighbor(pos.offset(dir), block, pos);
-            }
         }
         for(Direction extendedDir : extendedDirections) { //For each extended block update direction
             BlockPos p = pos.offset(extendedDir);
-            for(Direction dir : directions) { //For each block update direction
+            for(Direction dir : BlockUpdateUtils.blockUpdateDirections.apply(p)) { //For each block update direction
                 BlockPos nextPos = p.offset(dir);
                 if (!CFSettings.uselessSelfBlockUpdateFix || requiresASelfBlockUpdate || !nextPos.equals(pos)) {
                     if (!CFSettings.duplicateBlockUpdatesFix || !blockPosList.contains(nextPos)) {
@@ -60,34 +65,5 @@ public class BlockUpdateUtils {
                 }
             }
         }
-    }
-
-    public static boolean canUpdateNeighborsAlwaysWithOrder(World world, BlockPos pos, Block block) {
-        if (CFSettings.blockUpdateOrderFix) {
-            world.method_41249().method_41705(pos, block, null);
-            return true;
-        }
-        /*
-        if (CFSettings.parityRandomBlockUpdates) {
-                for(Direction d : DirectionUtils.randomDirectionArray(p)) world.updateNeighbor(p.offset(d), block, p);
-                return true;
-            }
-         */
-        return false;
-    }
-
-    public static boolean canUpdateNeighborsExceptWithOrder(World world, BlockPos pos,Block block, Direction dir) {
-        if (CFSettings.blockUpdateOrderFix) {
-            world.method_41249().method_41705(pos, block, dir);
-            return true;
-        }
-        /*
-        if (CFSettings.parityRandomBlockUpdates) {
-            for (Direction d : DirectionUtils.randomDirectionArray(pos))
-                if (dir != d) world.updateNeighbor(pos.offset(d), block, pos);
-            return true;
-        }
-         */
-        return false;
     }
 }

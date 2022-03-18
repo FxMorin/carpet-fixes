@@ -14,10 +14,6 @@ public class DirectionUtils {
             Direction.DOWN, Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST
     };
 
-    public static Direction[] updateDirections = new Direction[]{
-            Direction.WEST, Direction.EAST, Direction.DOWN, Direction.UP, Direction.NORTH, Direction.SOUTH
-    };
-
     private static final Xoroshiro128PlusPlusRandom random = new Xoroshiro128PlusPlusRandom(0);
 
     public static Direction[] randomDirectionArray(BlockPos pos) {

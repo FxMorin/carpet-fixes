@@ -90,6 +90,7 @@ public class CFSettings {
             desc = "Fixes issues where block updates are directional. Changes block update order from XYZ to XZY",
             extra = {"Warning! This changes how block updates are done and could effect some contraptions",
                     "[MC-161402](https://bugs.mojang.com/browse/MC-161402)"},
+            validate = Validators.blockUpdateOrderValidator.class,
             category = BUGFIX
     )
     public static boolean blockUpdateOrderFix = false;
@@ -110,15 +111,6 @@ public class CFSettings {
             category = BUGFIX
     )
     public static boolean comparatorUpdateFix = false;
-
-    //by FX - PR0CESS
-    //Recommended since it not only negates a crash but also tried to keep behaviour after it. Technically it's a dupe fix, although its a lot more than that
-    @Rule(
-            desc = "Prevents update suppression from working. When the stack is reached, the following updates are moved to the next tick",
-            extra = "This does not prevent stack overflow exploits, it simple makes sure to update block after",
-            category = {BUGFIX,CRASHFIX,RECOMMENDED,DUPE}
-    )
-    public static boolean updateSuppressionFix = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -1404,6 +1396,7 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Makes block update order random",
+            validate = Validators.parityRandomBlockUpdatesValidator.class,
             category = PARITY
     )
     public static boolean parityRandomBlockUpdates = false;
