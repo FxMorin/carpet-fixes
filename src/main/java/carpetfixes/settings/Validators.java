@@ -82,8 +82,8 @@ public class Validators {
             if (source != null) {
                 for (ServerWorld world : source.getServer().getWorlds()) {
                     ((ServerWorldAccessor)world).setNeighborUpdater(newValue ?
-                            new class_7164(world) :
-                            new class_7159(world)
+                            new class_7164(world) : // InstantNeighborUpdater
+                            new class_7159(world)   // CollectingNeighborUpdater
                     );
                 }
             }
