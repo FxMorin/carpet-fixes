@@ -1382,7 +1382,7 @@ public class CFSettings {
             options = {"120000","60000","10000","1000","0"},
             category = {ADVANCED,OPTIMIZATION}
     )
-    public static long chunkSaveCooldownDelay = 10000L;
+    public static int chunkSaveCooldownDelay = 10000;
 
 
     /*

@@ -35,7 +35,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             constant = @Constant(longValue = 10000L)
     )
     private static long modifyChunkSavingCooldown(long original) {
-        return CFSettings.reIntroduceVeryAggressiveSaving ? -1L : CFSettings.chunkSaveCooldownDelay;
+        return CFSettings.reIntroduceVeryAggressiveSaving ? -1L : (long)CFSettings.chunkSaveCooldownDelay;
     }
 
     
