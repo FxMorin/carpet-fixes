@@ -1,4 +1,4 @@
-package carpetfixes.mixins.blockUpdates;
+package carpetfixes.mixins.blockFixes;
 
 import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ObserverBlock.class)
-public class ObserverBlock_missingUpdateMixin {
+public class ObserverBlock_missingShapeUpdateMixin {
 
 
     @Inject(
