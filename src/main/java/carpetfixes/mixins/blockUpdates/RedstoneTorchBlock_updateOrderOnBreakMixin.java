@@ -25,9 +25,9 @@ public class RedstoneTorchBlock_updateOrderOnBreakMixin {
     public void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos,
                                                BlockState newState, boolean moved, CallbackInfo ci) {
         if (!moved) {
-            boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.equals(state);
+            boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.isOf(self);
             BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,doExtraEarlyUpdate,true);
-            ci.cancel();
         }
+        ci.cancel();
     }
 }

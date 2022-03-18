@@ -1,48 +1,65 @@
 package carpetfixes.mixins.blockUpdates;
 
+import carpetfixes.helpers.BlockUpdateUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneWireBlock;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RedstoneWireBlock.class)
 public class RedstoneWireBlock_extendedUpdatesMixin {
 
-    //@Shadow private void updateOffsetNeighbors(World world, BlockPos pos){}
-    //@Shadow private void update(World world, BlockPos pos, BlockState state){}
+    @Shadow
+    private void updateOffsetNeighbors(World world, BlockPos pos) {}
 
-    //private final RedstoneWireBlock self = (RedstoneWireBlock)(Object)this;
+    @Shadow
+    private void update(World world, BlockPos pos, BlockState state) {}
+
+    private final RedstoneWireBlock self = (RedstoneWireBlock)(Object)this;
 
 
-    //TODO: Requires More Testing before releasing!
-    /*@Inject(
+    @Inject(
             method = "updateNeighbors(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;updateNeighborsAlways(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
+                    target = "Lnet/minecraft/world/World;updateNeighborsAlways(Lnet/minecraft/util/math/BlockPos;" +
+                            "Lnet/minecraft/block/Block;)V",
                     ordinal = 0,
                     shift = At.Shift.AFTER
             ),
             cancellable = true
     )
-    private void updateNeighbors(World world, BlockPos pos, CallbackInfo ci) {
+    private void onUpdateExtendedNeighbors(World world, BlockPos pos, CallbackInfo ci) {
         BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,false,false);
         ci.cancel();
-    }*/
+    }
 
-    //TODO: Requires More Testing before releasing!
-    /*@Inject(
-            method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+
+    @Inject(
+            method = "onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
+                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/Block;onStateReplaced(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
+                    target = "Lnet/minecraft/block/Block;onStateReplaced(Lnet/minecraft/block/BlockState;" +
+                            "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
+                            "Lnet/minecraft/block/BlockState;Z)V",
                     shift = At.Shift.AFTER
             ),
             cancellable = true
     )
-    private void updateNeighbors(World world, BlockPos pos, CallbackInfo ci) {
+    private void onStateReplacedExtendedUpdates(BlockState state, World world, BlockPos pos,
+                                                BlockState newState, boolean moved, CallbackInfo ci) {
         if (!world.isClient) {
-		    BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,false,false);
+            boolean doExtraEarlyUpdate = state.get(RedstoneWireBlock.POWER) > 0 && !newState.isOf(self);
+		    BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, doExtraEarlyUpdate,false);
 			this.update(world, pos, state);
 			this.updateOffsetNeighbors(world, pos);
 		}
-    }*/
+        ci.cancel();
+    }
 }
