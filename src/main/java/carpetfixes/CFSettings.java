@@ -1238,6 +1238,13 @@ public class CFSettings {
     )
     public static boolean reIntroduceInstantBlockUpdates = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces reverse rail update order which changed in 22w11a. Requires optimizedPoweredRails",
+            category = REINTRODUCE
+    )
+    public static boolean reIntroduceReverseRailUpdateOrder = false;
+
 
     /*
 

@@ -356,18 +356,21 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 if (i == 1 && countAmt == 0) continue;
                 Direction dir = EAST_WEST_DIR[i];
                 Block block = mainState.getBlock();
-                for (int c = i; c <= countAmt; c++) {
-                    updateRailsSectionEastWestNeighbor(world, pos, c, block, dir, count, countAmt);
+                if (CFSettings.reIntroduceReverseRailUpdateOrder) {
+                    for (int c = countAmt; c >= i; c--) {
+                        updateRailsSectionEastWestNeighbor(world, pos, c, block, dir, count, countAmt);
+                    }
+                    for (int c = countAmt; c >= i; c--) {
+                        updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
+                    }
+                } else {
+                    for (int c = i; c <= countAmt; c++) {
+                        updateRailsSectionEastWestNeighbor(world, pos, c, block, dir, count, countAmt);
+                    }
+                    for (int c = i; c <= countAmt; c++) {
+                        updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
+                    }
                 }
-                for (int c = i; c <= countAmt; c++) {
-                    updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
-                }
-                /*for (int c = countAmt; c >= i; c--) {
-                    updateRailsSectionEastWestNeighbor(world, pos, c, block, dir, count, countAmt);
-                }
-                for (int c = countAmt; c >= i; c--) {
-                    updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
-                }*/
             }
         } else {
             for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
@@ -375,18 +378,21 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 if (i == 1 && countAmt == 0) continue;
                 Direction dir = NORTH_SOUTH_DIR[i];
                 Block block = mainState.getBlock();
-                for (int c = i; c <= countAmt; c++) {
-                    updateRailsSectionNorthSouthNeighbor(world, pos, c, block, dir, count, countAmt);
+                if (CFSettings.reIntroduceReverseRailUpdateOrder) {
+                    for (int c = countAmt; c >= i; c--) {
+                        updateRailsSectionNorthSouthNeighbor(world, pos, c, block, dir, count, countAmt);
+                    }
+                    for (int c = countAmt; c >= i; c--) {
+                        updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
+                    }
+                } else {
+                    for (int c = i; c <= countAmt; c++) {
+                        updateRailsSectionNorthSouthNeighbor(world, pos, c, block, dir, count, countAmt);
+                    }
+                    for (int c = i; c <= countAmt; c++) {
+                        updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
+                    }
                 }
-                for (int c = i; c <= countAmt; c++) {
-                    updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
-                }
-                /*for (int c = countAmt; c >= i; c--) {
-                    updateRailsSectionNorthSouthNeighbor(world, pos, c, block, dir, count, countAmt);
-                }
-                for (int c = countAmt; c >= i; c--) {
-                    updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
-                }*/
             }
         }
     }
