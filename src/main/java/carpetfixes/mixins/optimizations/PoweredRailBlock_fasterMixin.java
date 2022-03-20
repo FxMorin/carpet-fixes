@@ -265,6 +265,90 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
         }
     }
 
+    private void updateRailsSectionEastWestNeighbor(World world, BlockPos pos, int c, Block block,
+                                             Direction dir, int[] count, int countAmt) {
+        BlockPos pos1 = pos.offset(dir, c);
+        if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(dir.getOpposite()), block, pos);
+        neighborUpdateEnd(world, pos, countAmt, dir, block, c, pos1);
+        world.updateNeighbor(pos1.down(), block, pos);
+        world.updateNeighbor(pos1.up(), block, pos);
+        world.updateNeighbor(pos1.north(), block, pos);
+        world.updateNeighbor(pos1.south(), block, pos);
+        BlockPos pos2 = pos.offset(dir, c).down();
+        world.updateNeighbor(pos2.down(), block, pos);
+        world.updateNeighbor(pos2.north(), block, pos);
+        world.updateNeighbor(pos2.south(), block, pos);
+        if (c == countAmt) world.updateNeighbor(pos.offset(dir, c + 1).down(), block, pos);
+        if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(dir.getOpposite()).down(), block, pos);
+    }
+
+    private void updateRailsSectionEastWestShape(World world, BlockPos pos, int c, BlockState mainState,
+                                             Direction dir, int[] count, int countAmt) {
+        BlockPos pos1 = pos.offset(dir, c);
+        if (c == 0 && count[1] == 0)
+            Utils.giveShapeUpdate(world, mainState, pos1.offset(dir.getOpposite()), pos, dir.getOpposite());
+        shapeUpdateEnd(world, pos, mainState, countAmt, dir, c, pos1);
+        Utils.giveShapeUpdate(world, mainState, pos1.down(), pos, Direction.DOWN);
+        Utils.giveShapeUpdate(world, mainState, pos1.up(), pos, Direction.UP);
+        Utils.giveShapeUpdate(world, mainState, pos1.north(), pos, Direction.NORTH);
+        Utils.giveShapeUpdate(world, mainState, pos1.south(), pos, Direction.SOUTH);
+        BlockPos pos2 = pos.offset(dir, c).down();
+        Utils.giveShapeUpdate(world, mainState, pos2.down(), pos, Direction.DOWN);
+        Utils.giveShapeUpdate(world, mainState, pos2.north(), pos, Direction.NORTH);
+        Utils.giveShapeUpdate(world, mainState, pos2.south(), pos, Direction.SOUTH);
+        if (c == countAmt)
+            Utils.giveShapeUpdate(world, mainState, pos.offset(dir, c + 1).down(), pos, Direction.DOWN);
+        if (c == 0 && count[1] == 0)
+            Utils.giveShapeUpdate(world, mainState, pos1.offset(dir.getOpposite()).down(), pos, dir.getOpposite());
+    }
+
+    private void updateRailsSectionNorthSouthNeighbor(World world, BlockPos pos, int c, Block block,
+                                                    Direction dir, int[] count, int countAmt) {
+        BlockPos pos1 = pos.offset(dir,c);
+        world.updateNeighbor(pos1.west(), block, pos);
+        world.updateNeighbor(pos1.east(), block, pos);
+        world.updateNeighbor(pos1.down(), block, pos);
+        world.updateNeighbor(pos1.up(), block, pos);
+        neighborUpdateEnd(world, pos, countAmt, dir, block, c, pos1);
+        if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(dir.getOpposite()), block, pos);
+        BlockPos pos2 = pos.offset(dir,c).down();
+        world.updateNeighbor(pos2.west(), block, pos);
+        world.updateNeighbor(pos2.east(), block, pos);
+        world.updateNeighbor(pos2.down(), block, pos);
+        if (c == countAmt) world.updateNeighbor(pos.offset(dir,c + 1).down(), block, pos);
+        if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(dir.getOpposite()).down(), block, pos);
+    }
+
+    private void updateRailsSectionNorthSouthShape(World world, BlockPos pos, int c, BlockState mainState,
+                                                 Direction dir, int[] count, int countAmt) {
+        BlockPos pos1 = pos.offset(dir, c);
+        Utils.giveShapeUpdate(world, mainState, pos1.west(), pos, Direction.WEST);
+        Utils.giveShapeUpdate(world, mainState, pos1.east(), pos, Direction.EAST);
+        Utils.giveShapeUpdate(world, mainState, pos1.down(), pos, Direction.DOWN);
+        Utils.giveShapeUpdate(world, mainState, pos1.up(), pos, Direction.UP);
+        shapeUpdateEnd(world, pos, mainState, countAmt, dir, c, pos1);
+        if (c == 0 && count[1] == 0)
+            Utils.giveShapeUpdate(
+                    world, mainState, pos1.offset(dir.getOpposite()), pos, dir.getOpposite()
+            );
+        BlockPos pos2 = pos.offset(dir, c).down();
+        Utils.giveShapeUpdate(world, mainState, pos2.west(), pos, Direction.WEST);
+        Utils.giveShapeUpdate(world, mainState, pos2.east(), pos, Direction.EAST);
+        Utils.giveShapeUpdate(world, mainState, pos2.down(), pos, Direction.DOWN);
+        if (c == countAmt)
+            Utils.giveShapeUpdate(
+                    world, mainState, pos.offset(dir, c + 1).down(), pos, Direction.DOWN
+            );
+        if (c == 0 && count[1] == 0)
+            Utils.giveShapeUpdate(
+                    world,
+                    mainState,
+                    pos1.offset(dir.getOpposite()).down(),
+                    pos,
+                    dir.getOpposite()
+            );
+    }
+
     private void updateRails(boolean eastWest, World world, BlockPos pos, BlockState mainState, int[] count) {
         if (eastWest) {
             for (int i = 0; i < EAST_WEST_DIR.length; ++i) {
@@ -272,97 +356,37 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 if (i == 1 && countAmt == 0) continue;
                 Direction dir = EAST_WEST_DIR[i];
                 Block block = mainState.getBlock();
-                for (int c = countAmt; c >= i; c--) {
-                    BlockPos pos1 = pos.offset(dir, c);
-                    if (c == 0 && count[1] == 0)
-                        world.updateNeighbor(pos1.offset(dir.getOpposite()), block, pos);
-                    neighborUpdateEnd(world, pos, countAmt, dir, block, c, pos1);
-                    world.updateNeighbor(pos1.down(), block, pos);
-                    world.updateNeighbor(pos1.up(), block, pos);
-                    world.updateNeighbor(pos1.north(), block, pos);
-                    world.updateNeighbor(pos1.south(), block, pos);
-                    BlockPos pos2 = pos.offset(dir, c).down();
-                    world.updateNeighbor(pos2.down(), block, pos);
-                    world.updateNeighbor(pos2.north(), block, pos);
-                    world.updateNeighbor(pos2.south(), block, pos);
-                    if (c == countAmt)
-                        world.updateNeighbor(pos.offset(dir, c + 1).down(), block, pos);
-                    if (c == 0 && count[1] == 0)
-                        world.updateNeighbor(pos1.offset(dir.getOpposite()).down(), block, pos);
+                for (int c = i; c <= countAmt; c++) {
+                    updateRailsSectionEastWestNeighbor(world, pos, c, block, dir, count, countAmt);
+                }
+                for (int c = i; c <= countAmt; c++) {
+                    updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
+                }
+                /*for (int c = countAmt; c >= i; c--) {
+                    updateRailsSectionEastWestNeighbor(world, pos, c, block, dir, count, countAmt);
                 }
                 for (int c = countAmt; c >= i; c--) {
-                    BlockPos pos1 = pos.offset(dir, c);
-                    if (c == 0 && count[1] == 0)
-                        Utils.giveShapeUpdate(world,mainState, pos1.offset(dir.getOpposite()), pos, dir.getOpposite());
-                    shapeUpdateEnd(world, pos, mainState, countAmt, dir, c, pos1);
-                    Utils.giveShapeUpdate(world, mainState, pos1.down(), pos, Direction.DOWN);
-                    Utils.giveShapeUpdate(world, mainState, pos1.up(), pos, Direction.UP);
-                    Utils.giveShapeUpdate(world, mainState, pos1.north(), pos, Direction.NORTH);
-                    Utils.giveShapeUpdate(world, mainState, pos1.south(), pos, Direction.SOUTH);
-                    BlockPos pos2 = pos.offset(dir, c).down();
-                    Utils.giveShapeUpdate(world, mainState, pos2.down(), pos, Direction.DOWN);
-                    Utils.giveShapeUpdate(world, mainState, pos2.north(), pos, Direction.NORTH);
-                    Utils.giveShapeUpdate(world, mainState, pos2.south(), pos, Direction.SOUTH);
-                    if (c == countAmt)
-                        Utils.giveShapeUpdate(world, mainState, pos.offset(dir, c + 1).down(), pos, Direction.DOWN);
-                    if (c == 0 && count[1] == 0)
-                        Utils.giveShapeUpdate(
-                                world, mainState, pos1.offset(dir.getOpposite()).down(), pos, dir.getOpposite()
-                        );
-                }
+                    updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
+                }*/
             }
         } else {
             for(int i = 0; i < NORTH_SOUTH_DIR.length; ++i) {
                 int countAmt = count[i];
                 if (i == 1 && countAmt == 0) continue;
-                Direction direction = NORTH_SOUTH_DIR[i];
+                Direction dir = NORTH_SOUTH_DIR[i];
                 Block block = mainState.getBlock();
-                for (int c = countAmt; c >= i; c--) {
-                    BlockPos pos1 = pos.offset(direction,c);
-                    world.updateNeighbor(pos1.west(), block, pos);
-                    world.updateNeighbor(pos1.east(), block, pos);
-                    world.updateNeighbor(pos1.down(), block, pos);
-                    world.updateNeighbor(pos1.up(), block, pos);
-                    neighborUpdateEnd(world, pos, countAmt, direction, block, c, pos1);
-                    if (c == 0 && count[1] == 0)
-                        world.updateNeighbor(pos1.offset(direction.getOpposite()), block, pos);
-                    BlockPos pos2 = pos.offset(direction,c).down();
-                    world.updateNeighbor(pos2.west(), block, pos);
-                    world.updateNeighbor(pos2.east(), block, pos);
-                    world.updateNeighbor(pos2.down(), block, pos);
-                    if (c == countAmt)
-                        world.updateNeighbor(pos.offset(direction,c + 1).down(), block, pos);
-                    if (c == 0 && count[1] == 0)
-                        world.updateNeighbor(pos1.offset(direction.getOpposite()).down(), block, pos);
+                for (int c = i; c <= countAmt; c++) {
+                    updateRailsSectionNorthSouthNeighbor(world, pos, c, block, dir, count, countAmt);
+                }
+                for (int c = i; c <= countAmt; c++) {
+                    updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
+                }
+                /*for (int c = countAmt; c >= i; c--) {
+                    updateRailsSectionNorthSouthNeighbor(world, pos, c, block, dir, count, countAmt);
                 }
                 for (int c = countAmt; c >= i; c--) {
-                    BlockPos pos1 = pos.offset(direction,c);
-                    Utils.giveShapeUpdate(world, mainState, pos1.west(), pos, Direction.WEST);
-                    Utils.giveShapeUpdate(world, mainState, pos1.east(), pos, Direction.EAST);
-                    Utils.giveShapeUpdate(world, mainState, pos1.down(), pos, Direction.DOWN);
-                    Utils.giveShapeUpdate(world, mainState, pos1.up(), pos, Direction.UP);
-                    shapeUpdateEnd(world, pos, mainState, countAmt, direction, c, pos1);
-                    if (c == 0 && count[1] == 0)
-                        Utils.giveShapeUpdate(
-                                world, mainState, pos1.offset(direction.getOpposite()), pos, direction.getOpposite()
-                        );
-                    BlockPos pos2 = pos.offset(direction,c).down();
-                    Utils.giveShapeUpdate(world, mainState, pos2.west(), pos, Direction.WEST);
-                    Utils.giveShapeUpdate(world, mainState, pos2.east(), pos, Direction.EAST);
-                    Utils.giveShapeUpdate(world, mainState, pos2.down(), pos, Direction.DOWN);
-                    if (c == countAmt)
-                        Utils.giveShapeUpdate(
-                                world, mainState, pos.offset(direction,c + 1).down(), pos, Direction.DOWN
-                        );
-                    if (c == 0 && count[1] == 0)
-                        Utils.giveShapeUpdate(
-                                world,
-                                mainState,
-                                pos1.offset(direction.getOpposite()).down(),
-                                pos,
-                                direction.getOpposite()
-                        );
-                }
+                    updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
+                }*/
             }
         }
     }
