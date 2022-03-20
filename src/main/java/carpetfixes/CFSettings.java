@@ -1276,6 +1276,22 @@ public class CFSettings {
 
     /*
 
+    DEBUG CONFIGURATIONS
+    Debugging tools to help you find issues & bugs, but also to have fun ;)
+
+     */
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Placing a sculk shrieker on a barrier block will make it output the current stack depth on shape updates",
+            category = DEBUG,
+            extra = "Checking a stack depth can be expensive, do not abuse!"
+    )
+    public static boolean debugStackDepth = false;
+
+
+    /*
+
     ADVANCED CONFIGURATIONS
     Simple options that you can turn on and off are great, its one of the things I try to
     do. Since it makes it much easier for the end user to use the mod. These options are

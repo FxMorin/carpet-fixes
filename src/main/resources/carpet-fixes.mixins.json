@@ -68,6 +68,7 @@
     "coreSystemFixes.WorldBorder$StaticArea_collisionMixin",
     "coreSystemFixes.TreeLogic.TreeFeature_removeDirtMixin",
     "coreSystemFixes.TreeLogic.TrunkPlacer_logMixin",
+    "debugging.SculkShriekerBlock_stackMixin",
     "dupeFixes.AbstractRailBlock_duplicationMixin",
     "dupeFixes.FallingBlockEntity_duplicationMixin",
     "dupeFixes.HopperBlockEntity_giveMixin",
