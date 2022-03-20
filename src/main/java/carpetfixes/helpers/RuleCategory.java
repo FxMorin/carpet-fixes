@@ -8,6 +8,7 @@ public class RuleCategory {
     public static final String WONTFIX = "wontfix"; //Marked as `won't fix` on the bug tracker
     public static final String DUPE = "dupe"; //These are dupe bugs, normal bugs except there duping related.
 
+    public static final String DEBUG = "debug"; //These options are for more debugging
     public static final String ADVANCED = "advanced"; //These options are for more advanced users. Allowing more flexibility!
 
     public static final String PARITY = "parity"; //These are parity bugs, this is a meme category.
