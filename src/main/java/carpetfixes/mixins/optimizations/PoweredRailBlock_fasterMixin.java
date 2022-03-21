@@ -265,23 +265,6 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
         }
     }
 
-    private void updateRailsSectionEastWestNeighbor(World world, BlockPos pos, int c, Block block,
-                                             Direction dir, int[] count, int countAmt) {
-        BlockPos pos1 = pos.offset(dir, c);
-        if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(dir.getOpposite()), block, pos);
-        neighborUpdateEnd(world, pos, countAmt, dir, block, c, pos1);
-        world.updateNeighbor(pos1.down(), block, pos);
-        world.updateNeighbor(pos1.up(), block, pos);
-        world.updateNeighbor(pos1.north(), block, pos);
-        world.updateNeighbor(pos1.south(), block, pos);
-        BlockPos pos2 = pos.offset(dir, c).down();
-        world.updateNeighbor(pos2.down(), block, pos);
-        world.updateNeighbor(pos2.north(), block, pos);
-        world.updateNeighbor(pos2.south(), block, pos);
-        if (c == countAmt) world.updateNeighbor(pos.offset(dir, c + 1).down(), block, pos);
-        if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(dir.getOpposite()).down(), block, pos);
-    }
-
     private void updateRailsSectionEastWestShape(World world, BlockPos pos, int c, BlockState mainState,
                                              Direction dir, int[] count, int countAmt) {
         BlockPos pos1 = pos.offset(dir, c);
@@ -300,23 +283,6 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
             Utils.giveShapeUpdate(world, mainState, pos.offset(dir, c + 1).down(), pos, Direction.DOWN);
         if (c == 0 && count[1] == 0)
             Utils.giveShapeUpdate(world, mainState, pos1.offset(dir.getOpposite()).down(), pos, dir.getOpposite());
-    }
-
-    private void updateRailsSectionNorthSouthNeighbor(World world, BlockPos pos, int c, Block block,
-                                                    Direction dir, int[] count, int countAmt) {
-        BlockPos pos1 = pos.offset(dir,c);
-        world.updateNeighbor(pos1.west(), block, pos);
-        world.updateNeighbor(pos1.east(), block, pos);
-        world.updateNeighbor(pos1.down(), block, pos);
-        world.updateNeighbor(pos1.up(), block, pos);
-        neighborUpdateEnd(world, pos, countAmt, dir, block, c, pos1);
-        if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(dir.getOpposite()), block, pos);
-        BlockPos pos2 = pos.offset(dir,c).down();
-        world.updateNeighbor(pos2.west(), block, pos);
-        world.updateNeighbor(pos2.east(), block, pos);
-        world.updateNeighbor(pos2.down(), block, pos);
-        if (c == countAmt) world.updateNeighbor(pos.offset(dir,c + 1).down(), block, pos);
-        if (c == 0 && count[1] == 0) world.updateNeighbor(pos1.offset(dir.getOpposite()).down(), block, pos);
     }
 
     private void updateRailsSectionNorthSouthShape(World world, BlockPos pos, int c, BlockState mainState,
@@ -356,20 +322,27 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 if (i == 1 && countAmt == 0) continue;
                 Direction dir = EAST_WEST_DIR[i];
                 Block block = mainState.getBlock();
+                for (int c = countAmt; c >= i; c--) {
+                    BlockPos p = pos.offset(dir, c);
+                    if (c == 0 && count[1] == 0) world.updateNeighbor(p.offset(dir.getOpposite()), block, pos);
+                    neighborUpdateEnd(world, pos, countAmt, dir, block, c, p);
+                    world.updateNeighbor(p.down(), block, pos);
+                    world.updateNeighbor(p.up(), block, pos);
+                    world.updateNeighbor(p.north(), block, pos);
+                    world.updateNeighbor(p.south(), block, pos);
+                    BlockPos pos2 = pos.offset(dir, c).down();
+                    world.updateNeighbor(pos2.down(), block, pos);
+                    world.updateNeighbor(pos2.north(), block, pos);
+                    world.updateNeighbor(pos2.south(), block, pos);
+                    if (c == countAmt) world.updateNeighbor(pos.offset(dir, c + 1).down(), block, pos);
+                    if (c == 0 && count[1] == 0) world.updateNeighbor(p.offset(dir.getOpposite()).down(), block, pos);
+                }
                 if (CFSettings.reIntroduceReverseRailUpdateOrder) {
-                    for (int c = countAmt; c >= i; c--) {
-                        updateRailsSectionEastWestNeighbor(world, pos, c, block, dir, count, countAmt);
-                    }
-                    for (int c = countAmt; c >= i; c--) {
+                    for (int c = countAmt; c >= i; c--)
                         updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
-                    }
                 } else {
-                    for (int c = i; c <= countAmt; c++) {
-                        updateRailsSectionEastWestNeighbor(world, pos, c, block, dir, count, countAmt);
-                    }
-                    for (int c = i; c <= countAmt; c++) {
+                    for (int c = i; c <= countAmt; c++)
                         updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
-                    }
                 }
             }
         } else {
@@ -378,20 +351,27 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                 if (i == 1 && countAmt == 0) continue;
                 Direction dir = NORTH_SOUTH_DIR[i];
                 Block block = mainState.getBlock();
+                for (int c = countAmt; c >= i; c--) {
+                    BlockPos p = pos.offset(dir,c);
+                    world.updateNeighbor(p.west(), block, pos);
+                    world.updateNeighbor(p.east(), block, pos);
+                    world.updateNeighbor(p.down(), block, pos);
+                    world.updateNeighbor(p.up(), block, pos);
+                    neighborUpdateEnd(world, pos, countAmt, dir, block, c, p);
+                    if (c == 0 && count[1] == 0) world.updateNeighbor(p.offset(dir.getOpposite()), block, pos);
+                    BlockPos pos2 = pos.offset(dir,c).down();
+                    world.updateNeighbor(pos2.west(), block, pos);
+                    world.updateNeighbor(pos2.east(), block, pos);
+                    world.updateNeighbor(pos2.down(), block, pos);
+                    if (c == countAmt) world.updateNeighbor(pos.offset(dir,c + 1).down(), block, pos);
+                    if (c == 0 && count[1] == 0) world.updateNeighbor(p.offset(dir.getOpposite()).down(), block, pos);
+                }
                 if (CFSettings.reIntroduceReverseRailUpdateOrder) {
-                    for (int c = countAmt; c >= i; c--) {
-                        updateRailsSectionNorthSouthNeighbor(world, pos, c, block, dir, count, countAmt);
-                    }
-                    for (int c = countAmt; c >= i; c--) {
+                    for (int c = countAmt; c >= i; c--)
                         updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
-                    }
                 } else {
-                    for (int c = i; c <= countAmt; c++) {
-                        updateRailsSectionNorthSouthNeighbor(world, pos, c, block, dir, count, countAmt);
-                    }
-                    for (int c = i; c <= countAmt; c++) {
+                    for (int c = i; c <= countAmt; c++)
                         updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
-                    }
                 }
             }
         }
