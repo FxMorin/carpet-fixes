@@ -1023,7 +1023,6 @@ public class CFSettings {
     public static boolean optimizedBiomeAccess = false;
 
     //by FX - PR0CESS
-    //I may end up converting all the other functions in recipe manager to be faster. Although I don't need them right now
     @Rule(
             desc = "Optimized the RecipeManager getFirstMatch call to be up to 3x faster",
             extra = {"This is a fully vanilla optimization. Improves: [Blast]Furnace/Campfire/Smoker/Stonecutter/Crafting/Sheep Color Choosing",
@@ -1031,6 +1030,15 @@ public class CFSettings {
             category = {OPTIMIZATION,VANILLA,RECOMMENDED}
     )
     public static boolean optimizedRecipeManager = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Optimized the Furnace code drastically. Improving expensive checks, and expensive recipe lookups",
+            extra = {"This is a fully vanilla optimization. Improves: Furnace, Blast Furnace, Smoker, & any furnace extension",
+                    "This is incredibly visible in modded scenarios"},
+            category = {OPTIMIZATION,VANILLA,RECOMMENDED}
+    )
+    public static boolean optimizedFurnaces = false;
 
 
     /*
