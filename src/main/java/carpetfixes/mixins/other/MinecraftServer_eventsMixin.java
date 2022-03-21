@@ -13,11 +13,15 @@ import java.util.concurrent.CompletableFuture;
 @Mixin(MinecraftServer.class)
 public class MinecraftServer_eventsMixin {
 
+
     @Inject(
-            method = "reloadResources(Ljava/util/Collection;)Ljava/util/concurrent/CompletableFuture;",
-            at = @At("RETURN")
+            method = "reloadResources",
+            at = @At("TAIL")
     )
     private void onReloadResources(Collection<String> dataPacks, CallbackInfoReturnable<CompletableFuture<Void>> cir) {
-        EventManager.onEvent(EventManager.CF_Event.DATAPACK_RELOAD);
+        cir.getReturnValue().handleAsync((value, throwable) -> {
+            EventManager.onEvent(EventManager.CF_Event.DATAPACK_RELOAD);
+            return value;
+        }, (MinecraftServer) (Object) this);
     }
 }

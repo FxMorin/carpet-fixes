@@ -30,7 +30,9 @@ public class AbstractFurnaceBlockEntity_fastMixin {
      * who smelts one item at a time, and if you are than it's not enough to lag a server.
      * Secondly this optimization also caches the fuelTimeMap, a map that can only change on a datapack reload...
      * so I cache it, and refresh it on a datapack reload. Before the game would create a LinkedHashMap every single
-     * time that it
+     * time that it was called.
+     * Turns out fabric-api does the second part exactly the same way xD - So you only get the lastRecipe Cache if
+     * you are using fabric-api since it's enabled by default on there.
      */
 
     private static Optional<Recipe<Inventory>> lastRecipe = Optional.empty();
@@ -104,8 +106,7 @@ public class AbstractFurnaceBlockEntity_fastMixin {
             at = @At("RETURN")
     )
     private static void cacheFuelTimeMap(CallbackInfoReturnable<Map<Item, Integer>> cir) {
-        if (CFSettings.optimizedFurnaces && cachedFuelTimeMap == null) {
+        if (CFSettings.optimizedFurnaces && cachedFuelTimeMap == null)
             cachedFuelTimeMap = cir.getReturnValue();
-        }
     }
 }
