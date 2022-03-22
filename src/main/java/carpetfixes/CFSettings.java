@@ -962,6 +962,21 @@ public class CFSettings {
     )
     public static boolean nonSolidBlocksBreakCactusIfPushedFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes mobs being able to spawn on moving pistons",
+            extra = "Requires a server-restart to change!",
+            category = BUGFIX
+    )
+    public static boolean mobsSpawnOnMovingPistonsFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes an edge case within geodes where it will waterlog a block next to lava, due to missing fluid check",
+            category = BUGFIX
+    )
+    public static boolean geodeLavalogFix = false;
+
 
     /*
 
@@ -1124,27 +1139,6 @@ public class CFSettings {
             category = {BUGFIX,DUPE}
     )
     public static boolean horseDupeFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Prevent the nocom exploit from working",
-            category = {BUGFIX,CRASHFIX,RECOMMENDED}
-    )
-    public static boolean nocomFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes mobs being able to spawn on moving pistons",
-            category = BUGFIX
-    )
-    public static boolean mobsSpawnOnMovingPistonsFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes an edge case within geodes where it will waterlog a block next to lava, due to missing fluid check",
-            category = BUGFIX
-    )
-    public static boolean geodeLavalogFix = false;
 
 
     /*
