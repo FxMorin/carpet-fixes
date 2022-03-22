@@ -10,12 +10,12 @@ import carpetfixes.mixins.accessors.TagKeyAccessor;
 import com.google.common.collect.Interners;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
-import net.minecraft.class_7159;
-import net.minecraft.class_7164;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.block.ChainRestrictedNeighborUpdater;
+import net.minecraft.world.block.SimpleNeighborUpdater;
 
-import static net.minecraft.class_7165.field_37839;
+import static net.minecraft.world.block.NeighborUpdater.UPDATE_ORDER;
 
 public class Validators {
     public static class WitherGolemSpawningFixValidator extends Validator<Boolean> {
@@ -82,8 +82,8 @@ public class Validators {
             if (source != null) {
                 for (ServerWorld world : source.getServer().getWorlds()) {
                     ((ServerWorldAccessor)world).setNeighborUpdater(newValue ?
-                            new class_7164(world) : // InstantNeighborUpdater
-                            new class_7159(world)   // CollectingNeighborUpdater
+                            new SimpleNeighborUpdater(world) : // Instant
+                            new ChainRestrictedNeighborUpdater(world)
                     );
                 }
             }
@@ -99,7 +99,7 @@ public class Validators {
                 if (CFSettings.parityRandomBlockUpdates) {
                     BlockUpdateUtils.blockUpdateDirections = DirectionUtils::randomDirectionArray;
                 } else {
-                    BlockUpdateUtils.blockUpdateDirections = (b) -> field_37839;
+                    BlockUpdateUtils.blockUpdateDirections = (b) -> UPDATE_ORDER;
                 }
             }
             return newValue;
@@ -113,7 +113,7 @@ public class Validators {
                     BlockUpdateUtils.blockUpdateDirections = DirectionUtils::randomDirectionArray;
                 }
             } else if (!CFSettings.blockUpdateOrderFix) {
-                BlockUpdateUtils.blockUpdateDirections = (b) -> field_37839;
+                BlockUpdateUtils.blockUpdateDirections = (b) -> UPDATE_ORDER;
             }
             return newValue;
         }

@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(targets = "net/minecraft/class_7159$class_7161") // CollectingNeighborUpdater$MultiNeighborUpdate
-public class class_7159$class_7161_updateOrderMixin {
+@Mixin(targets = "net/minecraft/world/block/ChainRestrictedNeighborUpdater$SixWayEntry")
+public class ChainRestrictedNeighborUpdater$SixWayEntry_updateOrderMixin {
 
     /**
      * This fix is based on the block update order. Vanilla block update order is XYZ, resulting in directional
@@ -27,32 +27,32 @@ public class class_7159$class_7161_updateOrderMixin {
 
     @Shadow
     @Final
-    private BlockPos field_37834;
+    private BlockPos pos;
 
     @Shadow
-    private int field_37837;
-
-    @Shadow
-    @Final
-    private Block field_37835;
+    private int currentDirectionIndex;
 
     @Shadow
     @Final
-    private @Nullable Direction field_37836;
+    private Block sourceBlock;
+
+    @Shadow
+    @Final
+    private @Nullable Direction except;
 
 
     @Inject(
-            method = "method_41707(Lnet/minecraft/server/world/ServerWorld;)Z",
+            method = "update(Lnet/minecraft/server/world/ServerWorld;)Z",
             at = @At("HEAD"),
             cancellable = true
     )
     private void customRunNext(ServerWorld serverWorld, CallbackInfoReturnable<Boolean> cir) {
-        Direction[] directions = BlockUpdateUtils.blockUpdateDirections.apply(this.field_37834);
-        BlockPos blockPos = this.field_37834.offset(directions[this.field_37837++]);
+        Direction[] directions = BlockUpdateUtils.blockUpdateDirections.apply(this.pos);
+        BlockPos blockPos = this.pos.offset(directions[this.currentDirectionIndex++]);
         BlockState blockState = serverWorld.getBlockState(blockPos);
-        blockState.neighborUpdate(serverWorld, blockPos, this.field_37835, this.field_37834, false);
-        if (this.field_37837 < directions.length && directions[this.field_37837] == this.field_37836)
-            ++this.field_37837;
-        cir.setReturnValue(this.field_37837 < directions.length);
+        blockState.neighborUpdate(serverWorld, blockPos, this.sourceBlock, this.pos, false);
+        if (this.currentDirectionIndex < directions.length && directions[this.currentDirectionIndex] == this.except)
+            ++this.currentDirectionIndex;
+        cir.setReturnValue(this.currentDirectionIndex < directions.length);
     }
 }
