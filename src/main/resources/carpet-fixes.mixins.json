@@ -104,7 +104,6 @@
     "entityFixes.FallingBlockEntity_netherPortalMixin",
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
     "entityFixes.FoxEntity_lootDropMixin",
-    "entityFixes.GoatBrain_frictionlessMixin",
     "entityFixes.HopperMinecartEntity_slowMixin",
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
     "entityFixes.ItemFrameEntity_soundMixin",
