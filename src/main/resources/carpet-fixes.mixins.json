@@ -21,6 +21,7 @@
     "blockFixes.EnchantingTableBlock_transparentMixin",
     "blockFixes.FlowableFluid_chainedTickMixin",
     "blockFixes.ObserverBlock_missingShapeUpdateMixin",
+    "blockFixes.OreBlock_explosionMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PistonBlock_illegalBreakingMixin",
     "blockFixes.PistonBlock_worldBorderMixin",

@@ -1001,6 +1001,14 @@ public class CFSettings {
     )
     public static boolean noAIStriderGetsColdFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes ore blocks not dropping experience when blown up - sculk use the same block as ores",
+            extra = "[MC-176840](https://bugs.mojang.com/browse/MC-176840) & [MC-249190](https://bugs.mojang.com/browse/MC-249190)",
+            category = BUGFIX
+    )
+    public static boolean oresDontDropXpWhenBlownUpFix = false;
+
 
     /*
 
