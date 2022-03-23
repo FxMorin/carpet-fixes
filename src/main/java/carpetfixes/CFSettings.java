@@ -993,6 +993,14 @@ public class CFSettings {
     )
     public static boolean mobsTargetDeadEntitiesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes striders with noAi still getting cold",
+            extra = "[MC-176081](https://bugs.mojang.com/browse/MC-176081)",
+            category = BUGFIX
+    )
+    public static boolean noAIStriderGetsColdFix = false;
+
 
     /*
 
