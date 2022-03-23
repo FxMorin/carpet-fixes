@@ -985,6 +985,14 @@ public class CFSettings {
     )
     public static boolean frictionlessEntitiesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes mobs that fight as a group targeting dead entities, leading to many bugs",
+            extra = "[MC-183990](https://bugs.mojang.com/browse/MC-183990)",
+            category = BUGFIX
+    )
+    public static boolean mobsTargetDeadEntitiesFix = false;
+
 
     /*
 

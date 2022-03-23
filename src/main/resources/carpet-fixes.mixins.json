@@ -110,6 +110,7 @@
     "entityFixes.LivingEntity_momentumCancelledMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.LivingEntity_totemMixin",
+    "entityFixes.MobEntity_deadTargetMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
     "entityFixes.MobEntity_nbtSuffixMixin",
     "entityFixes.MobEntity_pickupOwnerMixin",
