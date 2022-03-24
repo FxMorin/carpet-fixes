@@ -1009,6 +1009,14 @@ public class CFSettings {
     )
     public static boolean oresDontDropXpWhenBlownUpFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes Entities growing up still clipping through walls if they have a collision above them",
+            extra = "Suggested fix by __MethodZz__ from: https://www.youtube.com/watch?v=Tg5eQk6P-NQ",
+            category = BUGFIX
+    )
+    public static boolean entityGrowingUpCollisionClippingFix = false;
+
 
     /*
 
