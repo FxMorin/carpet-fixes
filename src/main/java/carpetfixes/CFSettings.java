@@ -1017,6 +1017,14 @@ public class CFSettings {
     )
     public static boolean entityGrowingUpCollisionClippingFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes an optimization in 1.18 changing the behaviour of many goals even though mojang said it would change nothing",
+            extra = "This bug results in many goals being slower, or happening less often. It also seems to cause other goals to be faster!",
+            category = BUGFIX
+    )
+    public static boolean slowedEntityGoalsFix = false;
+
 
     /*
 
