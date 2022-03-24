@@ -1355,7 +1355,7 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Placing a sculk shrieker on a barrier block will make it output the current stack depth on shape updates",
+            desc = "Placing turtle eggs on a barrier block will make it output the current stack depth on shape updates",
             category = DEBUG,
             extra = "Checking a stack depth can be expensive, do not abuse!"
     )
