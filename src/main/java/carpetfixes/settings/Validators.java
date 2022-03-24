@@ -5,8 +5,8 @@ import carpet.settings.Validator;
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.BlockUpdateUtils;
 import carpetfixes.helpers.DirectionUtils;
-import carpetfixes.mixins.accessors.ServerWorldAccessor;
 import carpetfixes.mixins.accessors.TagKeyAccessor;
+import carpetfixes.mixins.accessors.WorldAccessor;
 import com.google.common.collect.Interners;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
@@ -81,9 +81,9 @@ public class Validators {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null) {
                 for (ServerWorld world : source.getServer().getWorlds()) {
-                    ((ServerWorldAccessor)world).setNeighborUpdater(newValue ?
+                    ((WorldAccessor)world).setNeighborUpdater(newValue ?
                             new SimpleNeighborUpdater(world) : // Instant
-                            new ChainRestrictedNeighborUpdater(world)
+                            new ChainRestrictedNeighborUpdater(world,source.getServer().getMaxChainedNeighborUpdates())
                     );
                 }
             }

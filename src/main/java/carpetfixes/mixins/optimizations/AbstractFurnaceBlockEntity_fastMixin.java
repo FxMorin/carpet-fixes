@@ -2,6 +2,9 @@ package carpetfixes.mixins.optimizations;
 
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.EventManager;
+import carpetfixes.settings.VersionPredicates;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -19,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Map;
 import java.util.Optional;
 
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = VersionPredicates.LT_22w12a))
 @Mixin(AbstractFurnaceBlockEntity.class)
 public class AbstractFurnaceBlockEntity_fastMixin {
 
@@ -33,6 +37,7 @@ public class AbstractFurnaceBlockEntity_fastMixin {
      * time that it was called.
      * Turns out fabric-api does the second part exactly the same way xD - So you only get the lastRecipe Cache if
      * you are using fabric-api since it's enabled by default on there.
+     * Caching for the furnace was added in 22w12a
      */
 
     private static Optional<Recipe<Inventory>> lastRecipe = Optional.empty();
@@ -49,6 +54,7 @@ public class AbstractFurnaceBlockEntity_fastMixin {
     }
 
 
+    @SuppressWarnings("all")
     @Redirect(
             method = "tick",
             at = @At(
@@ -68,6 +74,7 @@ public class AbstractFurnaceBlockEntity_fastMixin {
     }
 
 
+    @SuppressWarnings("all")
     @Inject(
             method = "getCookTime",
             at = @At("HEAD"),

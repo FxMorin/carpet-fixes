@@ -27,6 +27,6 @@ public class MinecartItem_missingOcclusionMixin {
         if (CFSettings.minecartMissingOcclusionFix) {
             if (world.getBlockState(blockPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return;
         }
-        world.emitGameEvent(gameEvent,blockPos);
+        world.emitGameEvent(entity,gameEvent,blockPos);
     }
 }

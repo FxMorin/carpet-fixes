@@ -338,10 +338,10 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     if (c == 0 && count[1] == 0) world.updateNeighbor(p.offset(dir.getOpposite()).down(), block, pos);
                 }
                 if (CFSettings.reIntroduceReverseRailUpdateOrder) {
-                    for (int c = countAmt; c >= i; c--)
+                    for (int c = i; c <= countAmt; c++)
                         updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
                 } else {
-                    for (int c = i; c <= countAmt; c++)
+                    for (int c = countAmt; c >= i; c--)
                         updateRailsSectionEastWestShape(world, pos, c, mainState, dir, count, countAmt);
                 }
             }
@@ -367,10 +367,10 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     if (c == 0 && count[1] == 0) world.updateNeighbor(p.offset(dir.getOpposite()).down(), block, pos);
                 }
                 if (CFSettings.reIntroduceReverseRailUpdateOrder) {
-                    for (int c = countAmt; c >= i; c--)
+                    for (int c = i; c <= countAmt; c++)
                         updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
                 } else {
-                    for (int c = i; c <= countAmt; c++)
+                    for (int c = countAmt; c >= i; c--)
                         updateRailsSectionNorthSouthShape(world, pos, c, mainState, dir, count, countAmt);
                 }
             }

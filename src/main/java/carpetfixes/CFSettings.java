@@ -3,6 +3,7 @@ package carpetfixes;
 import carpet.CarpetServer;
 import carpet.settings.Rule;
 import carpetfixes.settings.Validators;
+import carpetfixes.settings.VersionConditions;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
@@ -846,6 +847,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes foxes pathfinding to origin (0,0) during a thunderstorm",
             extra = "[MC-179916](https://bugs.mojang.com/browse/MC-179916)",
+            condition = VersionConditions.LT_22w12a.class,
             category = BUGFIX
     )
     public static boolean foxesGoToOriginDuringThunderFix = false;
@@ -919,6 +921,7 @@ public class CFSettings {
             desc = "Fixes a memory leak within the new TagKey system",
             extra = "[MC-248621](https://bugs.mojang.com/browse/MC-248621)",
             category = {BUGFIX,CRASHFIX,RECOMMENDED},
+            condition = VersionConditions.LT_22w12a.class,
             validate = Validators.TagKeyMemoryLeakFixValidator.class
     )
     public static boolean tagKeyMemoryLeakFix = false;
@@ -997,6 +1000,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes striders with noAi still getting cold",
             extra = "[MC-176081](https://bugs.mojang.com/browse/MC-176081)",
+            condition = VersionConditions.LT_22w12a.class,
             category = BUGFIX
     )
     public static boolean noAIStriderGetsColdFix = false;
@@ -1099,6 +1103,7 @@ public class CFSettings {
             desc = "Optimized the Furnace code drastically. Improving expensive checks, and expensive recipe lookups",
             extra = {"This is a fully vanilla optimization. Improves: Furnace, Blast Furnace, Smoker, & any furnace extension",
                     "This is incredibly visible in modded scenarios"},
+            condition = VersionConditions.LT_22w12a.class,
             category = {OPTIMIZATION,VANILLA,RECOMMENDED}
     )
     public static boolean optimizedFurnaces = false;
@@ -1284,13 +1289,14 @@ public class CFSettings {
     @Rule(
             desc = "Re-introduces instant block updates which changed in 22w11a",
             validate = Validators.reIntroduceInstantBlockUpdatesValidator.class,
+            condition = VersionConditions.GT_22w11a.class,
             category = REINTRODUCE
     )
     public static boolean reIntroduceInstantBlockUpdates = false;
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Re-introduces reverse rail update order which changed in 22w11a. Requires optimizedPoweredRails",
+            desc = "Re-introduces reverse rail update order which only existed in 22w11a. Requires optimizedPoweredRails",
             category = REINTRODUCE
     )
     public static boolean reIntroduceReverseRailUpdateOrder = false;

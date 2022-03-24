@@ -2,6 +2,9 @@ package carpetfixes.mixins.optimizations.random;
 
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.XoroshiroCustomRandom;
+import carpetfixes.settings.VersionPredicates;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
@@ -19,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 import java.util.function.Supplier;
 
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = VersionPredicates.GT_22w11a))
 @Mixin(World.class)
 public class World_randomMixin {
 
@@ -28,6 +32,29 @@ public class World_randomMixin {
     public Random random;
 
 
+    @Inject(
+            method = "<init>",
+            require = 0,
+            at = @At("TAIL")
+    )
+    private void CustomRandom(MutableWorldProperties properties, RegistryKey registryRef,
+                              RegistryEntry registryEntry, Supplier profiler, boolean isClient,
+                              boolean debugWorld, long seed, int i, CallbackInfo ci) {
+        if (CFSettings.optimizedRandom) this.random = new XoroshiroCustomRandom();
+    }
+}
+
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = VersionPredicates.LT_22w12a))
+@Mixin(World.class)
+class World_oldRandomMixin {
+
+    @Mutable
+    @Shadow
+    @Final
+    public Random random;
+
+
+    @SuppressWarnings("all")
     @Inject(
             method = "<init>",
             require = 0,

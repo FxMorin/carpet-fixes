@@ -2,6 +2,9 @@ package carpetfixes.mixins.gameEventFixes;
 
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.RaycastUtils;
+import carpetfixes.settings.VersionPredicates;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.BlockStateRaycastContext;
 import net.minecraft.world.World;
@@ -10,6 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+@Restriction(require = {@Condition(value = "minecraft", versionPredicates = VersionPredicates.GT_22w11a)})
 @Mixin(SculkSensorListener.class)
 public class SculkSensorListener_betterRaycastMixin {
 
@@ -25,6 +29,25 @@ public class SculkSensorListener_betterRaycastMixin {
      */
 
 
+    @Redirect(
+            method = "isOccluded(Lnet/minecraft/world/World;Lnet/minecraft/util/math/Vec3d;" +
+                    "Lnet/minecraft/util/math/Vec3d;)Z",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;raycast(Lnet/minecraft/world/BlockStateRaycastContext;)" +
+                            "Lnet/minecraft/util/hit/BlockHitResult;"
+            )
+    )
+    private BlockHitResult isOccluded(World world, BlockStateRaycastContext context) {
+        return CFSettings.sculkSensorBiasFix ? RaycastUtils.raycast(world, context) : world.raycast(context);
+    }
+}
+
+@Restriction(require = {@Condition(value = "minecraft", versionPredicates = VersionPredicates.LT_22w12a)})
+@Mixin(SculkSensorListener.class)
+class SculkSensorListener_oldBetterRaycastMixin {
+
+    @SuppressWarnings("all")
     @Redirect(
             method = "isOccluded(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
                     "Lnet/minecraft/util/math/BlockPos;)Z",

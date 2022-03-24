@@ -3,7 +3,7 @@ package carpetfixes.mixins.other;
 import carpetfixes.testing.commands.PoiCommand;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.class_7157;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.*;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +24,8 @@ public class CommandManager_devMixin {
             method = "<init>",
             at = @At("RETURN")
     )
-    private void onInit(CommandManager.RegistrationEnvironment environment, class_7157 arg, CallbackInfo ci) {
+    private void onInit(CommandManager.RegistrationEnvironment environment,
+                        CommandRegistryAccess arg, CallbackInfo ci) {
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
             ResetChunksCommand.register(this.dispatcher);
             ChaseCommand.register(this.dispatcher);
