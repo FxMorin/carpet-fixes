@@ -196,6 +196,7 @@
     "redstoneFixes.World_ComparatorNotUpdatingMixin",
     "reIntroduced.AbstractFireBlock_flintAndSteelMixin",
     "reIntroduced.FallingBlockEntity_entityPhaseMixin",
+    "reIntroduced.Goal_timingsMixin",
     "reIntroduced.LightningRodBlock_PermanentlyPoweredMixin",
     "reIntroduced.MobEntity_portalGeneralItemMixin",
     "reIntroduced.PlayerManager_LlamaRidingDupeMixin",
