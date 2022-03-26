@@ -204,6 +204,7 @@
     "reIntroduced.Goal_timingsMixin",
     "reIntroduced.LightningRodBlock_PermanentlyPoweredMixin",
     "reIntroduced.MobEntity_portalGeneralItemMixin",
+    "reIntroduced.PistonBlockEntity_translocationMixin",
     "reIntroduced.PlayerManager_LlamaRidingDupeMixin",
     "reIntroduced.ScreenHandler_itemShadowingMixin",
     "reIntroduced.ServerWorld_zeroTickMixin",

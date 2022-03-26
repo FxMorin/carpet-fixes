@@ -1304,11 +1304,18 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Re-introduces or better said, reverts an optimization made in 21w39a that broken many entity goal" +
-                    "timings. The optimization made many tasks slower, and others faster. It was not done correctly!",
+                    " timings. The optimization made many tasks slower, and others faster. It was not done correctly!",
             extra = "Technically this was an optimization so enabling this rule will most likely come at a performance cost!",
             category = REINTRODUCE
     )
     public static boolean reIntroduceProperGoalTimings = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces Piston Translocation from 1.10",
+            category = REINTRODUCE
+    )
+    public static boolean reIntroducePistonTranslocation = false;
 
 
     /*
