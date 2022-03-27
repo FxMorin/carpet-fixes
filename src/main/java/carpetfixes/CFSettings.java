@@ -1116,6 +1116,15 @@ public class CFSettings {
     )
     public static boolean optimizedFurnaces = false;
 
+    //By Hilligans
+    @Rule(
+            desc = "A memory efficient implementation of the new NeighborUpdater",
+            validate = Validators.optimizedNeighborUpdaterValidator.class,
+            condition = VersionConditions.GT_22w11a.class,
+            category = {OPTIMIZATION,VANILLA,EXPERIMENTAL}
+    )
+    public static boolean optimizedNeighborUpdater = false;
+
 
     /*
 

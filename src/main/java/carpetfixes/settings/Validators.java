@@ -5,6 +5,7 @@ import carpet.settings.Validator;
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.BlockUpdateUtils;
 import carpetfixes.helpers.DirectionUtils;
+import carpetfixes.helpers.MemEfficientNeighborUpdater;
 import carpetfixes.mixins.accessors.TagKeyAccessor;
 import carpetfixes.mixins.accessors.WorldAccessor;
 import com.google.common.collect.Interners;
@@ -83,9 +84,13 @@ public class Validators {
                 for (ServerWorld world : source.getServer().getWorlds()) {
                     ((WorldAccessor)world).setNeighborUpdater(newValue ?
                             new SimpleNeighborUpdater(world) : // Instant
-                            new ChainRestrictedNeighborUpdater(world,source.getServer().getMaxChainedNeighborUpdates())
+                            CFSettings.optimizedNeighborUpdater ?
+                                    new MemEfficientNeighborUpdater(world,source.getServer().getMaxChainedNeighborUpdates()) :
+                                    new ChainRestrictedNeighborUpdater(world,source.getServer().getMaxChainedNeighborUpdates())
                     );
                 }
+            } else {
+                newValue = !newValue;
             }
             return newValue;
         }
@@ -114,6 +119,24 @@ public class Validators {
                 }
             } else if (!CFSettings.blockUpdateOrderFix) {
                 BlockUpdateUtils.blockUpdateDirections = (b) -> UPDATE_ORDER;
+            }
+            return newValue;
+        }
+    }
+
+    public static class optimizedNeighborUpdaterValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (source != null) {
+                if (!CFSettings.reIntroduceInstantBlockUpdates) {
+                    for (ServerWorld world : source.getServer().getWorlds()) {
+                        ((WorldAccessor) world).setNeighborUpdater(newValue ?
+                                new MemEfficientNeighborUpdater(world, source.getServer().getMaxChainedNeighborUpdates()) :
+                                new ChainRestrictedNeighborUpdater(world, source.getServer().getMaxChainedNeighborUpdates())
+                        );
+                    }
+                }
+            } else {
+                newValue = !newValue;
             }
             return newValue;
         }
