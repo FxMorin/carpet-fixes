@@ -1264,7 +1264,7 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Re-introduces item shadowing!",
+            desc = "Re-introduces item shadowing! - Requires the rule `reIntroduceInstantBlockUpdates` since 22w11a",
             extra = "[PR0CESS's Video](https://youtu.be/i8_FPyn20ns) & [Fallen_Breath's Video](https://youtu.be/mTeYwq7HaEA)",
             category = {REINTRODUCE,DUPE}
     )
