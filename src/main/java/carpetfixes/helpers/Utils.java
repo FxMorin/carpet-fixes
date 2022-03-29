@@ -73,6 +73,20 @@ public class Utils {
         );
     }
 
+    public static void giveObserverUpdate(World world, BlockPos pos, Direction dir) {
+        BlockPos blockPos = pos.offset(dir);
+        world.getBlockState(blockPos).getStateForNeighborUpdate(dir.getOpposite(), Blocks.AIR.getDefaultState(), world, blockPos, pos);
+    }
+
+    // Just shape updates but we don't do anything with the output, when only an observer needs to be triggers.
+    public static void giveObserverUpdates(World world, BlockPos pos) {
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        for(Direction direction : Direction.values()) {
+            mutable.set(pos, direction);
+            world.getBlockState(mutable).getStateForNeighborUpdate(direction.getOpposite(), Blocks.AIR.getDefaultState(), world, mutable, pos);
+        }
+    }
+
     //If I was actually implementing this, the color values would have been binary in order for fast calculations.
     //Never do this in a production build, although this is better than using the RecipeManager xD
     public static DyeColor properDyeMixin(DyeColor col1, DyeColor col2) {
