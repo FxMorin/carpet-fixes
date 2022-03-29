@@ -18,9 +18,11 @@ public class SkullBlockEntity_updateMixin {
 
     @Inject(
             method = "tick",
-            at = @At("HEAD")
+            at = @At("HEAD"),
+            cancellable = true
     )
-    private static void tick(World world, BlockPos pos, BlockState state, SkullBlockEntity blockEntity, CallbackInfo ci) {
+    private static void onTick(World world, BlockPos pos, BlockState state,
+                               SkullBlockEntity blockEntity, CallbackInfo ci) {
         if (CFSettings.missingObserverUpdatesFix) {
             SkullBlockEntityAccessor accessor = (SkullBlockEntityAccessor)blockEntity;
             if (world.isReceivingRedstonePower(pos)) {
@@ -31,6 +33,7 @@ public class SkullBlockEntity_updateMixin {
                 if (accessor.getPowered()) Utils.giveObserverUpdates(world,pos);
                 accessor.setPowered(false);
             }
+            ci.cancel();
         }
     }
 }
