@@ -1,6 +1,7 @@
 package carpetfixes.testing.commands;
 
 import carpetfixes.mixins.accessors.ThreadedAnvilChunkStorageAccessor;
+import carpetfixes.patches.RegionBasedStorageLeak;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -22,6 +23,8 @@ public class PoiCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
                 literal("poi").requires(source -> source.hasPermissionLevel(2))
+                        .then(literal("totalChunks")
+                                .executes(PoiCommand::executeTotalChunks))
                         .then(literal("get")
                                 .then(CommandManager.argument("blockpos", BlockPosArgumentType.blockPos()).executes(c -> executeGet(c,false))
                                         .then(literal("visualize").executes(c -> executeGet(c,true)))))
@@ -29,6 +32,15 @@ public class PoiCommand {
                                 .then(CommandManager.argument("blockpos", BlockPosArgumentType.blockPos()).executes(c -> executeGet(c,false))
                                         .then(literal("visualize").executes(c -> executeRemove(c,true)))))
         );
+    }
+
+    private static int executeTotalChunks(CommandContext<ServerCommandSource> context) {
+        ServerCommandSource source = context.getSource();
+        ServerWorld world = source.getWorld();
+        PointOfInterestStorage poiStorage = ((ThreadedAnvilChunkStorageAccessor) world.getChunkManager().threadedAnvilChunkStorage).getPoiStorage();
+        int totalChunks = ((RegionBasedStorageLeak<?>)poiStorage).getTotalElements();
+        source.sendFeedback(Text.of("There are currently "+totalChunks+" loaded poi chunks!"), false);
+        return 0;
     }
 
     private static int executeGet(CommandContext<ServerCommandSource> context, boolean visualize) throws CommandSyntaxException {
