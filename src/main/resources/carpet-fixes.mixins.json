@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_16",
   "plugin": "carpetfixes.settings.CarpetFixesMixinConfigPlugin",
   "mixins": [
+    "accessors.AbstractPressurePlateBlockAccessor",
     "accessors.SkullBlockEntityAccessor",
     "accessors.TagKeyAccessor",
     "accessors.WorldAccessor",

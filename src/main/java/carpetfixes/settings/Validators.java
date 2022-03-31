@@ -6,6 +6,7 @@ import carpetfixes.CFSettings;
 import carpetfixes.helpers.BlockUpdateUtils;
 import carpetfixes.helpers.DirectionUtils;
 import carpetfixes.helpers.MemEfficientNeighborUpdater;
+import carpetfixes.mixins.accessors.AbstractPressurePlateBlockAccessor;
 import carpetfixes.mixins.accessors.TagKeyAccessor;
 import carpetfixes.mixins.accessors.WorldAccessor;
 import com.google.common.collect.Interners;
@@ -13,6 +14,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.block.ChainRestrictedNeighborUpdater;
 import net.minecraft.world.block.SimpleNeighborUpdater;
 
@@ -138,6 +140,16 @@ public class Validators {
             } else {
                 newValue = !newValue;
             }
+            return newValue;
+        }
+    }
+
+    public static class wrongPressurePlateHitboxValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            AbstractPressurePlateBlockAccessor.setBox(newValue ?
+                    new Box(0.075, 0.0, 0.075, 0.925, 0.25, 0.925) :
+                    new Box(0.125, 0.0, 0.125, 0.875, 0.25, 0.875)
+            );
             return newValue;
         }
     }
