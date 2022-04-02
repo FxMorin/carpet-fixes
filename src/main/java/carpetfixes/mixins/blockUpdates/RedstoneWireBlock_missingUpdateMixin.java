@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Set;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = VersionPredicates.GT_22w11a))
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = VersionPredicates.GT_22w12a))
 @Mixin(RedstoneWireBlock.class)
 public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
 
@@ -30,6 +30,51 @@ public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
     }
 
 
+    @Inject(
+            method = "prepare(Lnet/minecraft/block/BlockState;" +
+                    "Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;II)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/WorldAccess;replaceWithStateForNeighborUpdate(" +
+                            "Lnet/minecraft/util/math/Direction;Lnet/minecraft/block/BlockState;" +
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;II)V"
+            )
+    )
+    public void shouldUpdate(BlockState state, WorldAccess world, BlockPos pos,
+                             int flags, int maxUpdateDepth, CallbackInfo ci) {
+        needsUpdate.set(true);
+    }
+
+
+    @Inject(
+            method = "prepare(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldAccess;" +
+                    "Lnet/minecraft/util/math/BlockPos;II)V",
+            at = @At("TAIL")
+    )
+    public void doUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int d, CallbackInfo ci) {
+        if (CFSettings.redstoneRedirectionMissingUpdateFix && needsUpdate.get()) {
+            Set<BlockPos> set = Sets.newHashSet();
+            set.add(pos);
+            Direction[] var6 = Direction.values();
+            for (Direction direction : var6) set.add(pos.offset(direction));
+            for (BlockPos blockPos : set) ((World) world).updateNeighborsAlways(blockPos, this);
+        }
+        needsUpdate.set(false);
+    }
+}
+
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = VersionPredicates.ONLY_22w12a))
+@Mixin(RedstoneWireBlock.class)
+abstract class RedstoneWireBlock_old2missingUpdateMixin extends Block {
+
+    ThreadLocal<Boolean> needsUpdate = ThreadLocal.withInitial(() -> false);
+
+    public RedstoneWireBlock_old2missingUpdateMixin(Settings settings) {
+        super(settings);
+    }
+
+
+    @SuppressWarnings("all")
     @Inject(
             method = "prepare(Lnet/minecraft/block/BlockState;" +
                     "Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;II)V",

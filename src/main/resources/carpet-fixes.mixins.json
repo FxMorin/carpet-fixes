@@ -49,6 +49,7 @@
     "blockUpdates.RedstoneTorchBlock_updateOrderOnBreakMixin",
     "blockUpdates.RedstoneWireBlock_extendedUpdatesMixin",
     "blockUpdates.RedstoneWireBlock_missingUpdateMixin",
+    "blockUpdates.RedstoneWireBlock_old2missingUpdateMixin",
     "blockUpdates.RedstoneWireBlock_oldMissingUpdateMixin",
     "blockUpdates.SimpleNeighborUpdater_updateOrderMixin",
     "blockUpdates.SpongeBlock_missingUpdateMixin",

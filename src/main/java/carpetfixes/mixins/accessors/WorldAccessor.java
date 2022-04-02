@@ -8,6 +8,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(World.class)
 public interface WorldAccessor {
-    @Accessor("field_38226") @Mutable
+    @Accessor("neighborUpdater") @Mutable
     void setNeighborUpdater(NeighborUpdater updater);
 }

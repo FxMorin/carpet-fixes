@@ -1,15 +1,10 @@
 package carpetfixes.mixins.featureFixes;
 
 import carpetfixes.CFSettings;
-import net.minecraft.entity.SpawnGroup;
 import net.minecraft.structure.BuriedTreasureGenerator;
 import net.minecraft.structure.StructurePiecesCollector;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.registry.RegistryEntryList;
-import net.minecraft.world.StructureSpawns;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.BuriedTreasureFeature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,15 +12,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Map;
 import java.util.Random;
 
 @Mixin(BuriedTreasureFeature.class)
 public abstract class BuriedTreasureFeature_centerMixin extends StructureFeature {
 
-    public BuriedTreasureFeature_centerMixin(RegistryEntryList<Biome> registryEntryList, Map<SpawnGroup,
-            StructureSpawns> map, GenerationStep.Feature feature, boolean bl) {
-        super(registryEntryList, map, feature, bl);
+    protected BuriedTreasureFeature_centerMixin(class_7302 arg) {
+        super(arg);
     }
 
     @Inject(

@@ -82,7 +82,8 @@ public class MemEfficientNeighborUpdater implements NeighborUpdater {
 
 
     @Override // Shape Updates
-    public void method_42392(Direction dir, BlockState state, BlockPos blockPos, BlockPos sourcePos, int i, int j) {
+    public void replaceWithStateForNeighborUpdate(Direction dir, BlockState state,
+                                                  BlockPos blockPos, BlockPos sourcePos, int i, int j) {
         enqueue(new int[] {
                 dir.getId() | (2 << 29),
                 blockPos.getX(),
@@ -216,7 +217,7 @@ public class MemEfficientNeighborUpdater implements NeighborUpdater {
                     queuedUpdates[getPointer() + 8] == 1       // Moved By Piston
             );
         } else if(type == 2) { // Shape Update
-            NeighborUpdater.method_42393(
+            NeighborUpdater.replaceWithStateForNeighborUpdate(
                     world,                                     // World
                     Direction.byId(header & 0b111),            // Direction
                     getState(queuedUpdates[getPointer() + 7]), // State

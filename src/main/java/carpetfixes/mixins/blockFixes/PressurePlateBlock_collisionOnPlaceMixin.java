@@ -44,10 +44,10 @@ public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractP
             this.updateNeighbors(world, pos);
             if (bl) {
                 this.playPressSound(world, pos);
-                world.emitGameEvent(list.stream().findFirst().orElse(null), GameEvent.BLOCK_PRESS, pos);
+                world.emitGameEvent(list.stream().findFirst().orElse(null), GameEvent.BLOCK_DEACTIVATE, pos);
             } else {
                 this.playDepressSound(world, pos);
-                world.emitGameEvent(list.stream().findFirst().orElse(null), GameEvent.BLOCK_UNPRESS, pos);
+                world.emitGameEvent(list.stream().findFirst().orElse(null), GameEvent.BLOCK_ACTIVATE, pos);
             }
         }
         if (bl) world.createAndScheduleBlockTick(new BlockPos(pos), this, this.getTickRate());
