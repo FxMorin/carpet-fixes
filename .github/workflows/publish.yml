@@ -15,21 +15,18 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: 17
-    - name: Cache Gradle packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-        restore-keys: ${{ runner.os }}-gradle
+        cache: 'gradle'
     - name: Grant execute permission to gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Upload assets to GitHub
-      uses: AButler/upload-release-assets@v2.0
+    - uses: Kir-Antipov/mc-publish@v2
       with:
-        files: 'build/libs/*.jar;!build/libs/*-dev.jar;!build/libs/*-sources.jar'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        curseforge-id: 529720
+        curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+        dependencies: |
+          carpet | depends
+        github-token: ${{ secrets.GITHUB_TOKEN }}
   Update-Rules-Wiki:
     runs-on: ubuntu-latest
     steps:
@@ -40,12 +37,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 17
-      - name: Cache Gradle packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
+          cache: 'gradle'
       - name: Replace fabric.mod.json
         run: |
           cd src/main/resources
