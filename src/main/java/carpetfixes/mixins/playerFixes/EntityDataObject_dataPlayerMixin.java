@@ -1,4 +1,4 @@
-package carpetfixes.mixins.coreSystemFixes;
+package carpetfixes.mixins.playerFixes;
 
 import carpetfixes.CFSettings;
 import net.minecraft.command.EntityDataObject;
@@ -22,6 +22,7 @@ public class EntityDataObject_dataPlayerMixin {
      * So this rule re-enables the ability to modify the player data.
      * I will make this rule experimental for now, if anyone finds any problems with it. Please inform me!
      */
+
 
     @Shadow
     @Final
