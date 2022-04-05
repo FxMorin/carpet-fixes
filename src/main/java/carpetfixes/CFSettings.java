@@ -1070,6 +1070,14 @@ public class CFSettings {
     )
     public static boolean wrongPressurePlateHitboxFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes not being able to use /data on players",
+            extra = "[MC-122102](https://bugs.mojang.com/browse/MC-122102)",
+            category = {BUGFIX,EXPERIMENTAL,INTENDED}
+    )
+    public static boolean unableToModifyPlayerDataFix = false;
+
 
     /*
 
