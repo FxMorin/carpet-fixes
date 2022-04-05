@@ -86,6 +86,7 @@
     "coreSystemFixes.StatusEffectInstance_nbtSuffixMixin",
     "coreSystemFixes.StringTag_stringTagExploitMixin",
     "coreSystemFixes.StructureManager_snbtMixin",
+    "coreSystemFixes.TradeOffer_demandUnderflowMixin",
     "coreSystemFixes.World_seaLevelMixin",
     "coreSystemFixes.WorldBorder$StaticArea_collisionMixin",
     "debugging.TurtleEggBlock_stackMixin",
