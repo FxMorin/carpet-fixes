@@ -1086,6 +1086,14 @@ public class CFSettings {
     )
     public static boolean tradeDemandDecreasesIndefinitelyFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes void trading",
+            extra = "The ability to trade with a villager in unloaded chunks allowing for infinite trading",
+            category = BUGFIX
+    )
+    public static boolean voidTradingFix = false;
+
 
     /*
 

@@ -226,7 +226,8 @@
     "reIntroduced.ScreenHandler_itemShadowingMixin",
     "reIntroduced.ServerWorld_zeroTickMixin",
     "reIntroduced.TargetBlock_PermanentlyPoweredMixin",
-    "reIntroduced.ThreadedAnvilChunkStorage_oldSavingMixin"
+    "reIntroduced.ThreadedAnvilChunkStorage_oldSavingMixin",
+    "screenHandlerFixes.MerchantScreenHandler_distanceMixin"
   ],
   "injectors": {
     "defaultRequire": 1
