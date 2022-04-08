@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 import java.util.function.Supplier;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = VersionPredicates.GT_22w11a))
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">1.19-alpha.22.11.a <1.19-alpha.22.14.a"))
 @Mixin(World.class)
 public class World_randomMixin {
 

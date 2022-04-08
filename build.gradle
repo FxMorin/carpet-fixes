@@ -4,6 +4,10 @@ plugins {
 	id 'maven-publish'
 }
 
+runClient.doFirst {
+	args = ['--username', "PR0CESS", '--uuid', UUID.randomUUID()]
+}
+
 repositories {
 	maven {
 		url 'https://masa.dy.fi/maven'

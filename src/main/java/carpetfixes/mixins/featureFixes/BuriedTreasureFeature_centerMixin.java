@@ -17,18 +17,18 @@ import java.util.Random;
 @Mixin(BuriedTreasureFeature.class)
 public abstract class BuriedTreasureFeature_centerMixin extends StructureFeature {
 
-    protected BuriedTreasureFeature_centerMixin(class_7302 arg) {
+    protected BuriedTreasureFeature_centerMixin(Config arg) {
         super(arg);
     }
 
     @Inject(
             method = "addPieces(Lnet/minecraft/structure/StructurePiecesCollector;" +
-                    "Lnet/minecraft/world/gen/feature/StructureFeature$class_7149;)V",
+                    "Lnet/minecraft/world/gen/feature/StructureFeature$Context;)V",
             at = @At("HEAD"),
             cancellable = true
     )
     private static void customPiecePosition(StructurePiecesCollector collector,
-                                            StructureFeature.class_7149 arg,
+                                            StructureFeature.Context arg,
                                             CallbackInfo ci) {
         if (CFSettings.buriedTreasureAlwaysCenterFix) {
             ChunkPos chunkPos = arg.chunkPos();

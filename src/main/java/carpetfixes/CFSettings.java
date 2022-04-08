@@ -734,7 +734,8 @@ public class CFSettings {
             desc = "Fixes players being able to crack there player seed",
             extra = {"This makes it so random is shared between all entities. Which is a good performance boost",
                     "recommended that you set this on permanently, and restart the server for best results"},
-            category = {BUGFIX,OPTIMIZATION}
+            category = {BUGFIX,OPTIMIZATION},
+            condition = VersionConditions.LT_22w14a.class
     )
     public static boolean entityRandomCrackingFix = false;
 
@@ -1142,7 +1143,8 @@ public class CFSettings {
             desc = "Changes many of the main Random() calls to use XoroShiro128++ instead",
             extra = {"This will break anything related to random, technically still possible to crack*",
                     "recommended that you set this on permanently, and restart the server for best results"},
-            category = OPTIMIZATION
+            category = OPTIMIZATION,
+            condition = VersionConditions.LT_22w14a.class
     )
     public static boolean optimizedRandom = false;
 

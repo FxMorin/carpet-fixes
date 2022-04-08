@@ -30,7 +30,7 @@ public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Bloc
 
     @Shadow
     @Final
-    private boolean allowCurves;
+    private boolean forbidCurves;
 
     public AbstractRailBlock_missingUpdateAfterPushMixin(Settings settings) {
         super(settings);
@@ -48,7 +48,7 @@ public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Bloc
         if (CFSettings.railMissingUpdateAfterPushFix) {
             if (!oldState.isOf(state.getBlock())) {
                 if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);
-                if (this.allowCurves) {
+                if (this.forbidCurves) {
                     world.updateNeighborsAlways(pos, this);
                     world.updateNeighborsAlways(pos.down(), this);
                 }

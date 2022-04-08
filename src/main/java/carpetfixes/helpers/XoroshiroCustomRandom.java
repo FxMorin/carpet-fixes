@@ -16,10 +16,9 @@ import java.util.Random;
 public class XoroshiroCustomRandom extends Random implements AbstractRandom {
 
     /**
-     * A custom Xoroshiro128++ PRNG class that extends from Random & implements AbstractRandom in order to
-     * replace the default random generators in the game. While still using Xoroshiro128++
+     * A custom Xoroshiro128++ PRNG class that replaces the default random generators in the game
      *
-     * This does however mean that it's not as fast as it could be, since Random adds a bunch of overhead
+     * Currently this class was replaced. This is only here for backwards compatibility
      */
 
     private static final float FLOAT_MULTIPLIER = 5.9604645E-8F;
@@ -82,7 +81,6 @@ public class XoroshiroCustomRandom extends Random implements AbstractRandom {
                     m = l * (long)i;
                 }
             }
-
             long j = m >> 32;
             return (int)j;
         }
