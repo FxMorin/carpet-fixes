@@ -27,7 +27,7 @@
   ],
   "accessWidener" : "carpet-fixes.accesswidener",
   "depends": {
-    "minecraft": ">=22w11a",
+    "minecraft": ">=1.19-alpha.22.11.a",
     "fabricloader": ">=0.11.3",
     "carpet": ">=1.4.56",
     "java": ">=16"
