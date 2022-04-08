@@ -1095,6 +1095,14 @@ public class CFSettings {
     )
     public static boolean voidTradingFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes allay going to the wrong noteblock in another dimension",
+            extra = "[MC-250027](https://bugs.mojang.com/browse/MC-250027)",
+            category = BUGFIX
+    )
+    public static boolean allayWrongNoteblockFix = false;
+
 
     /*
 

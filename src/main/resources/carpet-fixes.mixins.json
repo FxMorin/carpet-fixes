@@ -73,6 +73,7 @@
     "blockUpdates.TreeDirtMissingUpdates.TreeFeature_removeDirtMixin",
     "blockUpdates.TreeDirtMissingUpdates.TrunkPlacer_logMixin",
     "blockUpdates.TreeDirtMissingUpdates.TrunkPlacer_oldLogMixin",
+    "brainFixes.AllayBrain_noteblockMixin",
     "brainFixes.FrogBrain_frictionMixin",
     "brainFixes.GoatBrain_frictionMixin",
     "conversionFixes.MobEntity_conversionMixin",
