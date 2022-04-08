@@ -4,7 +4,9 @@ import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CactusBlock;
-import net.minecraft.block.Material;
+import net.minecraft.block.entity.PistonBlockEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -12,6 +14,11 @@ import org.spongepowered.asm.mixin.injection.Slice;
 
 @Mixin(CactusBlock.class)
 public class CactusBlock_movingBlockMixin {
+
+    /**
+     * When a cactus checks if it's in a valid spot, it does not do the correct check for pistons. So we make sure
+     * to get the correct blockState from within the piston block entity
+     */
 
 
     @Redirect(
@@ -26,11 +33,17 @@ public class CactusBlock_movingBlockMixin {
             ),
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;getMaterial()Lnet/minecraft/block/Material;"
+                    target = "Lnet/minecraft/world/WorldView;getBlockState(Lnet/minecraft/util/math/BlockPos;)" +
+                            "Lnet/minecraft/block/BlockState;"
             )
     )
-    private Material changeMaterialIfMovingPiston(BlockState state) {
-        return CFSettings.nonSolidBlocksBreakCactusIfPushedFix && state.isOf(Blocks.MOVING_PISTON) ?
-                Material.AIR : state.getMaterial();
+    private BlockState getCorrectBlockStateIfMovingPiston(WorldView world, BlockPos pos) {
+        if (CFSettings.nonSolidBlocksBreakCactusIfPushedFix) {
+            BlockState state = world.getBlockState(pos);
+            if (state.isOf(Blocks.MOVING_PISTON) && world.getBlockEntity(pos) instanceof PistonBlockEntity pbe)
+                return pbe.getPushedBlock();
+            return state;
+        }
+        return world.getBlockState(pos);
     }
 }

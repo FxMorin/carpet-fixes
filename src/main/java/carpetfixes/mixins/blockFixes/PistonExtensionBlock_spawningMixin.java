@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(PistonExtensionBlock.class)
 public class PistonExtensionBlock_spawningMixin extends Block {
 
+    // TODO: Work on an api to swap block settings during runtime. Shouldn't be that hard, he says...
+
     public PistonExtensionBlock_spawningMixin(Settings settings) {
         super(settings.allowsSpawning((_1,_2,_3,_4) -> !CFSettings.mobsSpawnOnMovingPistonsFix));
     }
