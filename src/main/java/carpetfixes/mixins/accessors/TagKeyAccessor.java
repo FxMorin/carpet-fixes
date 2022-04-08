@@ -7,6 +7,7 @@ import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.tag.TagKey;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Restriction(require = @Condition(value = ModIds.MINECRAFT, versionPredicates = VersionPredicates.GT_22w05a))
@@ -16,7 +17,7 @@ public interface TagKeyAccessor {
     static Interner<TagKey<?>> getInterner() {
         throw new AssertionError();
     }
-    @Accessor("INTERNER")
+    @Accessor("INTERNER") @Mutable
     static void setInterner(Interner<TagKey<?>> interner) {
         throw new AssertionError();
     }
