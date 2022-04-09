@@ -1111,6 +1111,14 @@ public class CFSettings {
     )
     public static boolean lavaCalculatesWrongFireStateFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes entities falling through clay that was generated from mud",
+            extra = "[MC-250034](https://bugs.mojang.com/browse/MC-250034)",
+            category = BUGFIX
+    )
+    public static boolean entitiesFallThroughClayFromMudFix = false;
+
 
     /*
 

@@ -31,6 +31,7 @@
     "blockFixes.PistonBlock_pushOrderMixin",
     "blockFixes.PistonBlock_worldBorderMixin",
     "blockFixes.PistonExtensionBlock_spawningMixin",
+    "blockFixes.PointedDripstoneBlock_mudEntityMixin",
     "blockFixes.PowderSnowBlock_centerCollisionMixin",
     "blockFixes.PowderSnowBlock_lightMixin",
     "blockFixes.PressurePlateBlock_collisionOnPlaceMixin",
