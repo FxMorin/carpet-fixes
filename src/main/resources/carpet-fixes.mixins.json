@@ -76,6 +76,7 @@
     "blockUpdates.TreeDirtMissingUpdates.TrunkPlacer_logMixin",
     "blockUpdates.TreeDirtMissingUpdates.TrunkPlacer_oldLogMixin",
     "brainFixes.AllayBrain_noteblockMixin",
+    "brainFixes.AllayBrain_spectatorMixin",
     "brainFixes.FrogBrain_frictionMixin",
     "brainFixes.GoatBrain_frictionMixin",
     "conversionFixes.MobEntity_conversionMixin",

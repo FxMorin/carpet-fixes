@@ -1119,6 +1119,14 @@ public class CFSettings {
     )
     public static boolean entitiesFallThroughClayFromMudFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes allays being able to see players in spectator mode",
+            extra = "[MC-249790](https://bugs.mojang.com/browse/MC-249790)",
+            category = BUGFIX
+    )
+    public static boolean allaySeesSpectatorsFix = false;
+
 
     /*
 
