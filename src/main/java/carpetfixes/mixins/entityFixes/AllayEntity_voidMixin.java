@@ -4,13 +4,13 @@ import carpetfixes.CFSettings;
 import carpetfixes.patches.VoidFlightMoveControl;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.passive.BeeEntity;
+import net.minecraft.entity.passive.AllayEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(BeeEntity.class)
-public class BeeEntity_voidMixin {
+@Mixin(AllayEntity.class)
+public class AllayEntity_voidMixin {
 
 
     @Redirect(
@@ -21,6 +21,6 @@ public class BeeEntity_voidMixin {
             )
     )
     public FlightMoveControl ModifiedFlightController(MobEntity entity, int maxPitchChange, boolean noGravity) {
-        return new VoidFlightMoveControl(entity, maxPitchChange, noGravity, () -> CFSettings.beeStuckInVoidFix);
+        return new VoidFlightMoveControl(entity, maxPitchChange, noGravity, () -> CFSettings.allayStuckInVoidFix);
     }
 }

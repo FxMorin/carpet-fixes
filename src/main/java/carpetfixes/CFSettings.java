@@ -403,6 +403,14 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
+            desc = "Fixes allays getting stuck in the void due to gravity being disabled",
+            extra = "[MC-249859](https://bugs.mojang.com/browse/MC-249859)",
+            category = {BUGFIX,RECOMMENDED}
+    )
+    public static boolean allayStuckInVoidFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
             desc = "Fixes being able to make permanent invulnerable end crystals",
             category = {BUGFIX,EXPERIMENTAL}
     )
