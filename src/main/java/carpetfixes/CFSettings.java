@@ -1135,6 +1135,15 @@ public class CFSettings {
     )
     public static boolean allaySeesSpectatorsFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes frogs being able to jump while tempted. Only applies to new frog entities, " +
+                    "restarting the server or unloading the entities will also work!",
+            extra = "[MC-249328](https://bugs.mojang.com/browse/MC-249328)",
+            category = BUGFIX
+    )
+    public static boolean frogJumpsIgnoreTemptedFix = false;
+
 
     /*
 

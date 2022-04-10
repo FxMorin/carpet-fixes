@@ -78,6 +78,7 @@
     "brainFixes.AllayBrain_noteblockMixin",
     "brainFixes.AllayBrain_spectatorMixin",
     "brainFixes.FrogBrain_frictionMixin",
+    "brainFixes.FrogBrain_temptJumpMixin",
     "brainFixes.GoatBrain_frictionMixin",
     "conversionFixes.MobEntity_conversionMixin",
     "conversionFixes.MooshroomEntity_conversionMixin",
