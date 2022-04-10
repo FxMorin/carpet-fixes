@@ -11,7 +11,7 @@ import net.minecraft.world.event.GameEvent;
 
 public class CenterUtils {
 
-    private static final double VELOCITY_AFFECTING_POS_Y_OFFSET = 0.5000001;
+    private static final double VELOCITY_AFFECTING_POS_Y_OFFSET = 0.5;
     private static final double OFFSET = 0.0001;
 
     //TODO: Change some of these to work with consumers, to minimize duplicate code
@@ -19,7 +19,7 @@ public class CenterUtils {
     public static void checkStepOnCollision(Entity entity) {
         Box box = entity.getBoundingBox();
         BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.maxY - OFFSET, box.maxZ - OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
         if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
@@ -35,14 +35,14 @@ public class CenterUtils {
     public static void checkEntityLandOnCollision(Entity entity) {
         Box box = entity.getBoundingBox();
         BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.maxY - OFFSET, box.maxZ - OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
         if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
                 for(int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k) {
                     mutable.set(i, blockPos.getY(), k);
                     BlockState blockState = entity.world.getBlockState(mutable);
-                    if (!blockState.isAir()) blockState.getBlock().onEntityLand(entity.world, entity);
+                    blockState.getBlock().onEntityLand(entity.world, entity);
                 }
             }
         }
@@ -51,7 +51,7 @@ public class CenterUtils {
     public static void checkFallCollision(Entity entity, float fallDistance) {
         Box box = entity.getBoundingBox();
         BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.maxY - OFFSET, box.maxZ - OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
         if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             boolean createdEvent = false;
@@ -70,8 +70,8 @@ public class CenterUtils {
     }
 
     public static float checkJumpVelocityOnCollision(Box box, World world) {
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.maxY, box.maxZ - OFFSET);
+        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
         if (world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             float fastestBlock = 1.0F; //Highest value
@@ -98,7 +98,7 @@ public class CenterUtils {
 
     public static float checkVelocityOnCollision(Box box, World world) {
         BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.maxY - OFFSET, box.maxZ - OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
         if (world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             float fastestBlock = 1.0F; //Highest value
