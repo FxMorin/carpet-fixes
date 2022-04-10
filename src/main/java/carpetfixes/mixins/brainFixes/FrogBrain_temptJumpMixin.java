@@ -34,7 +34,7 @@ public class FrogBrain_temptJumpMixin {
         if (CFSettings.frogJumpsIgnoreTemptedFix) {
             if (cachedList == null) {
                 Set<Pair<MemoryModuleType<?>, MemoryModuleState>> newMemories = new HashSet<>(requiredMemories);
-                newMemories.add(Pair.of(MemoryModuleType.IS_TEMPTED, MemoryModuleState.VALUE_ABSENT));
+                newMemories.add(Pair.of(MemoryModuleType.TEMPTING_PLAYER, MemoryModuleState.VALUE_ABSENT));
                 cachedList = newMemories;
             }
             return cachedList;
