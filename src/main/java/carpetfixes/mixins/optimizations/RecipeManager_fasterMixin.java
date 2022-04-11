@@ -2,6 +2,7 @@ package carpetfixes.mixins.optimizations;
 
 import carpetfixes.CFSettings;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -41,12 +42,15 @@ public abstract class RecipeManager_fasterMixin {
     ) {
         if (CFSettings.optimizedRecipeManager) {
             int slots = 0;
-            for (int slot = 0; slot < inventory.size(); slot++) {
-                if (!inventory.getStack(slot).isEmpty()) slots++;
-            }
+            int count;
             //compare size to quickly remove recipes that are not even close. Plus remove streams
+            for (int slot = 0; slot < inventory.size(); slot++)
+                if (!inventory.getStack(slot).isEmpty()) slots++;
             for (Recipe<C> recipe : this.getAllOfType(type).values()) {
-                if (recipe.getIngredients().size() == slots && recipe.matches(inventory,world)) {
+                count = 0;
+                for (Ingredient ingredient : recipe.getIngredients())
+                    if (ingredient != Ingredient.EMPTY) count++;
+                if (count == slots && recipe.matches(inventory,world)) {
                     cir.setReturnValue((Optional<T>)Optional.of(recipe));
                     return;
                 }
