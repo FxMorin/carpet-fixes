@@ -691,7 +691,7 @@ public class CFSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes player velocity on X and Z axis being cancelled separately at low values",
-            extra = "[MC-241951](https://bugs.mojang.com/browse/MC-241951)",
+            extra = "[MC-241951](https://bugs.mojang.com/browse/MC-241951) & [MC-160304](https://bugs.mojang.com/browse/MC-160304)",
             category = BUGFIX
     )
     public static boolean velocitySeparateAxisCancellingFix = false;
