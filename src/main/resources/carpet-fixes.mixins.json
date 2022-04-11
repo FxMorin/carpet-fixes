@@ -5,6 +5,7 @@
   "plugin": "carpetfixes.settings.CarpetFixesMixinConfigPlugin",
   "mixins": [
     "accessors.AbstractPressurePlateBlockAccessor",
+    "accessors.LivingEntityAccessor",
     "accessors.SkullBlockEntityAccessor",
     "accessors.TagKeyAccessor",
     "accessors.WorldAccessor",
@@ -92,6 +93,7 @@
     "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
     "coreSystemFixes.StatusEffectInstance_nbtSuffixMixin",
+    "coreSystemFixes.StatusEffectInstance_wrongEffectMixin",
     "coreSystemFixes.StringTag_stringTagExploitMixin",
     "coreSystemFixes.StructureManager_snbtMixin",
     "coreSystemFixes.TradeOffer_demandUnderflowMixin",

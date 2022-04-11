@@ -1152,6 +1152,15 @@ public class CFSettings {
     )
     public static boolean powderSnowOnlySlowIfFeetInBlockFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes broken status effect logic resulting in hidden status effects not running onRemove() or" +
+                    " onApplied() for the correct effect strength",
+            extra = "[MC-182497](https://bugs.mojang.com/browse/MC-182497)",
+            category = BUGFIX
+    )
+    public static boolean brokenHiddenStatusEffectFix = false;
+
 
     /*
 
