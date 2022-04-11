@@ -24,6 +24,10 @@ public abstract class StatusEffectInstance_wrongEffectMixin {
      * 2. Eat a normal golden apple (Adds hidden effect of strength 1 to absorption) - 2 hearts
      * When the absorption runs out, instead of losing 6 hearts, you lose 2.
      * Allows you to stack absorption infinitely!
+     *
+     * An easier for mojang to do would actually be to just move the `overwriteCallback.run();` before the
+     * `this.copyFrom(this.hiddenEffect);` call, and then it would work. Although if you ever have an effect which
+     * does different things during onRemove & onApplied, you will run into issues which is why I split them up!
      */
 
     @Shadow
