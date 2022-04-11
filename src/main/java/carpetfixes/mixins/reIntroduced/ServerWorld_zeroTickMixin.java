@@ -37,8 +37,9 @@ public abstract class ServerWorld_zeroTickMixin extends World {
             require = 0,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;scheduledTick(Lnet/minecraft/server/world/ServerWorld;" +
-                            "Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
+                    target = "Lnet/minecraft/block/BlockState;scheduledTick(" +
+                            "Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;" +
+                            "Lnet/minecraft/world/gen/random/AbstractRandom;)V",
                     shift = At.Shift.AFTER
             )
     )
