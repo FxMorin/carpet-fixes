@@ -2,6 +2,7 @@ package carpetfixes.mixins.optimizations;
 
 import carpetfixes.CFSettings;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -13,6 +14,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -31,21 +34,44 @@ public abstract class RecipeManager_fasterMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    public <C extends Inventory, T extends Recipe<C>> void getFirstMatch(RecipeType<T> type, C inventory, World world,
-                                                                         CallbackInfoReturnable<Optional<T>> cir) {
+    private <C extends Inventory, T extends Recipe<C>> void getOptimizedFirstMatch(
+            RecipeType<T> type,
+            C inventory,
+            World world,
+            CallbackInfoReturnable<Optional<T>> cir
+    ) {
         if (CFSettings.optimizedRecipeManager) {
             int slots = 0;
-            for (int slot = 0;slot < inventory.size(); slot++) {
-                if (!inventory.getStack(slot).isEmpty()) slots++;
-            }
+            int count;
             //compare size to quickly remove recipes that are not even close. Plus remove streams
+            for (int slot = 0; slot < inventory.size(); slot++)
+                if (!inventory.getStack(slot).isEmpty()) slots++;
             for (Recipe<C> recipe : this.getAllOfType(type).values()) {
-                if (recipe.getIngredients().size() == slots && recipe.matches(inventory,world)) {
+                count = 0;
+                for (Ingredient ingredient : recipe.getIngredients())
+                    if (ingredient != Ingredient.EMPTY) count++;
+                if (count == slots && recipe.matches(inventory,world)) {
                     cir.setReturnValue((Optional<T>)Optional.of(recipe));
                     return;
                 }
             }
             cir.setReturnValue(Optional.empty());
+        }
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Inject(
+            method = "listAllOfType(Lnet/minecraft/recipe/RecipeType;)Ljava/util/List;",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    private <C extends Inventory, T extends Recipe<C>> void getOptimizedListAllOfType(
+            RecipeType<T> type,
+            CallbackInfoReturnable<List<T>> cir
+    ) {
+        if (CFSettings.optimizedRecipeManager) { //Remove streams
+            cir.setReturnValue((List<T>)new ArrayList<>(this.getAllOfType(type).values()));
         }
     }
 }
