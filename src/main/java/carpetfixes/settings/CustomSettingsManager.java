@@ -28,9 +28,12 @@ public class CustomSettingsManager extends SettingsManager {
     public int printAllRulesToLog(String category) {
         PrintStream ps = System.out;
         ps.println("# "+ fancyName +" Settings");
+        int totalRules = 0;
+        int toBeRemoved = 0;
         for (Field f : CFSettings.class.getDeclaredFields()) {
             Rule rule = f.getAnnotation(Rule.class);
             if (rule == null) continue;
+            totalRules++;
             String defaultAsString = "";
             try {
                 defaultAsString = convertToString(f.get(null));
@@ -107,6 +110,7 @@ public class CustomSettingsManager extends SettingsManager {
                 }
             }
             if (conditions.size() > 0) {
+                toBeRemoved++;
                 StringBuilder builder = new StringBuilder();
                 int c = 0;
                 builder.append("* Limited to: ");
@@ -127,6 +131,9 @@ public class CustomSettingsManager extends SettingsManager {
                 }
             }
         }
+        ps.println("# Stats");
+        ps.println("Rule Count: "+totalRules);
+        ps.println("Rules to be removed next big release: "+toBeRemoved);
         return 1;
     }
 
