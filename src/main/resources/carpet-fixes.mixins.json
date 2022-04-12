@@ -164,6 +164,7 @@
     "featureFixes.BuriedTreasureFeature_centerMixin",
     "gameEventFixes.BoatEntity_missingOcclusionMixin",
     "gameEventFixes.BoatEntity_oldMissingOcclusionMixin",
+    "gameEventFixes.EndCrystalEntity_eventOrderMixin",
     "gameEventFixes.MinecartItem_missingOcclusionMixin",
     "gameEventFixes.ProjectileEntity_missingOcclusionMixin",
     "gameEventFixes.ProjectileEntity_oldMissingOcclusionMixin",

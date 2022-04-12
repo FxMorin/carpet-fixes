@@ -1169,6 +1169,14 @@ public class CFSettings {
     )
     public static boolean absorptionStaysWithoutHeartsFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes end crystal explosions giving the wrong game event",
+            extra = "[MC-249962](https://bugs.mojang.com/browse/MC-249962)",
+            category = BUGFIX
+    )
+    public static boolean crystalExplosionGivesWrongEventFix = false;
+
 
     /*
 
