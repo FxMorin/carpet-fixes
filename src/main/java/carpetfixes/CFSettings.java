@@ -1185,6 +1185,14 @@ public class CFSettings {
     )
     public static boolean allayCanBeEquippedWithArmorFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes allays losing picked up items on world restart",
+            extra = "[MC-249745](https://bugs.mojang.com/browse/MC-249745)",
+            category = BUGFIX
+    )
+    public static boolean allayLosesItemOnUnloadFix = false;
+
 
     /*
 
