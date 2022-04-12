@@ -1193,6 +1193,14 @@ public class CFSettings {
     )
     public static boolean allayLosesItemOnUnloadFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes shulkers in chests boats being lowered",
+            extra = "[MC-249463](https://bugs.mojang.com/browse/MC-249463)",
+            category = BUGFIX
+    )
+    public static boolean shulkersAreLowerInChestBoatFix = false;
+
 
     /*
 

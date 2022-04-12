@@ -147,6 +147,7 @@
     "entityFixes.MobEntity_nbtSuffixMixin",
     "entityFixes.MobEntity_pickupOwnerMixin",
     "entityFixes.PersistentProjectileEntity_piercingMixin",
+    "entityFixes.ShulkerEntity_vehicleOffsetMixin",
     "entityFixes.StriderEntity_coldMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
