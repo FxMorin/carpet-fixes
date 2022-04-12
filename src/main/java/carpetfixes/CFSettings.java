@@ -1177,6 +1177,14 @@ public class CFSettings {
     )
     public static boolean crystalExplosionGivesWrongEventFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to equip an allay with armor",
+            extra = "[MC-249745](https://bugs.mojang.com/browse/MC-249745)",
+            category = BUGFIX
+    )
+    public static boolean allayCanBeEquippedWithArmorFix = false;
+
 
     /*
 

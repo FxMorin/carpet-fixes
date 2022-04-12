@@ -111,6 +111,7 @@
     "dupeFixes.TripwireHookBlock_hookDupeMixin",
     "dupeFixes.saferItemTransfer.DropperBlock_dontCopyMixin",
     "entityFixes.AbstractDecorationEntity_triggersTrapsMixin",
+    "entityFixes.AllayEntity_itemPickupMixin",
     "entityFixes.AllayEntity_voidMixin",
     "entityFixes.ArmorStandEntity_aggroMechanicsMixin",
     "entityFixes.ArmorStandEntity_damageMixin",
