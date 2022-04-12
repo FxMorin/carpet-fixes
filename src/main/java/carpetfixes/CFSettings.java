@@ -1189,7 +1189,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes allays losing picked up items on world restart",
             extra = "[MC-249745](https://bugs.mojang.com/browse/MC-249745)",
-            category = BUGFIX
+            category = {BUGFIX,NBT}
     )
     public static boolean allayLosesItemOnUnloadFix = false;
 
