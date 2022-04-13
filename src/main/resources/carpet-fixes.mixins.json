@@ -185,6 +185,7 @@
     "goalFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
     "goalFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "goalFixes.FoxEntity$AvoidDaylightGoal_originMixin",
+    "goalFixes.MobEntity_stopGoalOnDeathMixin",
     "goalFixes.StepAndDestroyBlockGoal_originMixin",
     "goalFixes.slowedGoalFix.DolphinEntity$PlayWithItemsGoal_slowMixin",
     "goalFixes.slowedGoalFix.EatGrassGoal_slowMixin",
