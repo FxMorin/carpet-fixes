@@ -156,6 +156,7 @@
     "entityFixes.VillagerEntity_offlinePlayersMixin",
     "entityFixes.VillagerEntity_witchBedMixin",
     "entityFixes.WitherSkullEntity_chargedMixin",
+    "entityFixes.WolfEntity_snowballDamageMixin",
     "entityFixes.ZombieEntity_reinforcementMixin",
     "entityFixes.ZombieVillagerEntity_offlinePlayerMixin",
     "entityFixes.convertingFixes.SkeletonEntity_convertingMixin",
