@@ -1241,6 +1241,14 @@ public class CFSettings {
     )
     public static boolean doorBreakNotStoppedOnDeathFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes projectiles keeping there velocity",
+            extra = "[MC-198908](https://bugs.mojang.com/browse/MC-198908)",
+            category = BUGFIX
+    )
+    public static boolean projectileKeepsVelocityFix = false;
+
 
     /*
 
