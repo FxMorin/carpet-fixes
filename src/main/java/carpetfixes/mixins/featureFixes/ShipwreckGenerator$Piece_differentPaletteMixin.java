@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(targets = "net.minecraft.structure.ShipwreckGenerator$Piece")
+@Mixin(net.minecraft.structure.ShipwreckGenerator.Piece.class)
 public abstract class ShipwreckGenerator$Piece_differentPaletteMixin extends SimpleStructurePiece {
 
     /*
