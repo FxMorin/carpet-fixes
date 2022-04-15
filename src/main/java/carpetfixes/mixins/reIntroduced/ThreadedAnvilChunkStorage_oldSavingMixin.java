@@ -1,10 +1,18 @@
 package carpetfixes.mixins.reIntroduced;
 
 import carpetfixes.CFSettings;
+import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
+import net.minecraft.server.world.ChunkHolder;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ReadOnlyChunk;
+import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.BooleanSupplier;
 
@@ -12,7 +20,7 @@ import java.util.function.BooleanSupplier;
 public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
 
     // Does not seem to be required anymore
-    /*@Shadow
+    @Shadow
     private volatile Long2ObjectLinkedOpenHashMap<ChunkHolder> chunkHolders;
 
     @Shadow
@@ -35,14 +43,15 @@ public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
             });
             ci.cancel();
         }
-    }*/
+    }
 
 
     @Redirect(
             method = "unloadChunks(Ljava/util/function/BooleanSupplier;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Ljava/util/function/BooleanSupplier;getAsBoolean()Z"
+                    target = "Ljava/util/function/BooleanSupplier;getAsBoolean()Z",
+                    ordinal = 2
             )
     )
     protected boolean dontUnloadRandomly(BooleanSupplier instance) {
