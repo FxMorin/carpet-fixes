@@ -233,6 +233,7 @@
     "playerFixes.EntityDataObject_dataPlayerMixin",
     "playerFixes.LivingEntity_sleepingKillsMixin",
     "playerFixes.PlayerEntity_absorptionMixin",
+    "playerFixes.PlayerEntity_sneakMixin",
     "playerFixes.PlayerManager_endPortalEffectsMixin",
     "playerFixes.ServerPlayerEntity_endPortalEffectsMixin",
     "playerFixes.ServerPlayNetworkHandler_nocomMixin",
