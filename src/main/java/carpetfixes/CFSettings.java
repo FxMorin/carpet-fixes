@@ -130,7 +130,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes movement slowdown being calculated based on last block in search. Uses the slowest value instead",
             extra = "[MC-202654](https://bugs.mojang.com/browse/MC-202654)",
-            category = BUGFIX
+            category = {BUGFIX,CLIENT}
     )
     public static boolean directionalBlockSlowdownFix = false;
 
@@ -254,7 +254,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes multiple bugs related to effects happening only when player center in block instead of hitbox",
             extra = "[MC-1133](https://bugs.mojang.com/browse/MC-1133)",
-            category = BUGFIX
+            category = {BUGFIX,CLIENT}
     )
     public static boolean playerBlockCollisionUsingCenterFix = false;
 
@@ -353,7 +353,7 @@ public class CFSettings {
     /*@Rule(
             desc = "Fixes changing between spactator lowering your player",
             extra = "[MC-146582](https://bugs.mojang.com/browse/MC-146582)",
-            category = BUGFIX
+            category = {BUGFIX,CLIENT}
     )
     public static boolean spectatorLowersPlayerFix = false;*/
 
@@ -692,7 +692,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes player velocity on X and Z axis being cancelled separately at low values",
             extra = "[MC-241951](https://bugs.mojang.com/browse/MC-241951) & [MC-160304](https://bugs.mojang.com/browse/MC-160304)",
-            category = BUGFIX
+            category = {BUGFIX,CLIENT}
     )
     public static boolean velocitySeparateAxisCancellingFix = false;
 
@@ -922,7 +922,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes hoppers being invisible when placed next to a powered block",
             extra = "It fixes clients not being able to see the hopper, by redrawing them if powered",
-            category = {BUGFIX,RECOMMENDED}
+            category = {BUGFIX,CLIENT,RECOMMENDED}
     )
     public static boolean invisibleHopperFix = false;
 
@@ -1253,7 +1253,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes players unable to jump off the edge of blocks while sneaking and having a block above them",
             extra = "[MC-197647](https://bugs.mojang.com/browse/MC-197647)",
-            category = BUGFIX
+            category = {BUGFIX,CLIENT}
     )
     public static boolean cantJumpOffBlockWhenSneakingFix = false;
 
@@ -1287,7 +1287,7 @@ public class CFSettings {
     @Rule(
             desc = "Changes Math.round to a faster implementation. Although it does not give the exact same results",
             extra = "This does not affect many things and will most likely be unnoticeable. It is ~1.28x faster",
-            category = OPTIMIZATION
+            category = {OPTIMIZATION,CLIENT}
     )
     public static boolean optimizedRounding = false;
 
@@ -1314,7 +1314,7 @@ public class CFSettings {
     @Rule(
             desc = "Optimized the getBiome call to be 25% - 75% faster",
             extra = "This is a fully vanilla optimization. This can optimize the client also, go check Blanket-client-tweaks for that",
-            category = {OPTIMIZATION,VANILLA,RECOMMENDED}
+            category = {OPTIMIZATION,VANILLA,CLIENT,RECOMMENDED}
     )
     public static boolean optimizedBiomeAccess = false;
 
@@ -1323,7 +1323,7 @@ public class CFSettings {
             desc = "Optimized the RecipeManager getFirstMatch call to be up to 3x faster",
             extra = {"This is a fully vanilla optimization. Improves: [Blast]Furnace/Campfire/Smoker/Stonecutter/Crafting/Sheep Color Choosing",
                     "This was mostly made for the auto crafting table, since the performance boost is much more visible while using that mod"},
-            category = {OPTIMIZATION,VANILLA,RECOMMENDED}
+            category = {OPTIMIZATION,VANILLA,CLIENT,RECOMMENDED}
     )
     public static boolean optimizedRecipeManager = false;
 
@@ -1333,7 +1333,7 @@ public class CFSettings {
             extra = {"This is a fully vanilla optimization. Improves: Furnace, Blast Furnace, Smoker, & any furnace extension",
                     "This is incredibly visible in modded scenarios"},
             condition = VersionConditions.LT_22w12a.class,
-            category = {OPTIMIZATION,VANILLA,RECOMMENDED}
+            category = {OPTIMIZATION,VANILLA,CLIENT,RECOMMENDED}
     )
     public static boolean optimizedFurnaces = false;
 
