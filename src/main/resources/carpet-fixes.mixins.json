@@ -169,6 +169,7 @@
     "entityFixes.growUpCollisionFix.ZoglinEntity_dimensionsMixin",
     "entityFixes.growUpCollisionFix.ZombieEntity_dimensionsMixin",
     "featureFixes.BuriedTreasureFeature_centerMixin",
+    "featureFixes.GiantTrunkPlacer_extraWoodMixin",
     "featureFixes.ShipwreckGenerator$Piece_differentPaletteMixin",
     "gameEventFixes.BoatEntity_missingOcclusionMixin",
     "gameEventFixes.BoatEntity_oldMissingOcclusionMixin",
