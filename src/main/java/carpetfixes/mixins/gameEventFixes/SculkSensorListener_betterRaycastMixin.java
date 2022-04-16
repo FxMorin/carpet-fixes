@@ -38,7 +38,7 @@ public class SculkSensorListener_betterRaycastMixin {
                             "Lnet/minecraft/util/hit/BlockHitResult;"
             )
     )
-    private BlockHitResult isOccluded(World world, BlockStateRaycastContext context) {
+    private static BlockHitResult isOccluded(World world, BlockStateRaycastContext context) {
         return CFSettings.sculkSensorBiasFix ? RaycastUtils.raycast(world, context) : world.raycast(context);
     }
 }
