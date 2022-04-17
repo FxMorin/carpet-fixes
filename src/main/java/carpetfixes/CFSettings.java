@@ -1280,6 +1280,15 @@ public class CFSettings {
     )
     public static boolean iceWaterSkipsWaterloggedFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes witches & cats spawning inside of each other, by shifting the cat over by another block",
+            extra = "[MC-163503](https://bugs.mojang.com/browse/MC-163503)",
+            category = BUGFIX
+    )
+    public static boolean witchAndCatSpawnMergedFix = false;
+
+
     /*
 
     OPTIMIZATIONS

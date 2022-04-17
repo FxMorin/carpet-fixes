@@ -173,6 +173,7 @@
     "featureFixes.BuriedTreasureFeature_centerMixin",
     "featureFixes.GiantTrunkPlacer_extraWoodMixin",
     "featureFixes.ShipwreckGenerator$Piece_differentPaletteMixin",
+    "featureFixes.SwampHutGenerator_samePosMixin",
     "gameEventFixes.BoatEntity_missingOcclusionMixin",
     "gameEventFixes.BoatEntity_oldMissingOcclusionMixin",
     "gameEventFixes.EndCrystalEntity_eventOrderMixin",
