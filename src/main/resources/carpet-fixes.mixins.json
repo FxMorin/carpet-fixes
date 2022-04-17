@@ -25,6 +25,7 @@
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.EnchantingTableBlock_transparentMixin",
     "blockFixes.FlowableFluid_chainedTickMixin",
+    "blockFixes.IceBlock_breakMixin",
     "blockFixes.LavaFluid_wrongStateMixin",
     "blockFixes.NoteBlock_placedMixin",
     "blockFixes.ObserverBlock_missingShapeUpdateMixin",
