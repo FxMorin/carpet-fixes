@@ -1304,6 +1304,14 @@ public class CFSettings {
     )
     public static boolean jukeboxDiscItemOffsetOnBreakFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes",
+            extra = "[](https://bugs.mojang.com/browse/)",
+            category = BUGFIX
+    )
+    public static boolean hoppersSelectMinecartsRandomlyFix = false;
+
 
 
     /*

@@ -13,6 +13,7 @@
     "advanced.ThreadedAnvilChunkStorage_chunkTimingsMixin",
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
     "blockEntityFixes.BeehiveBlockEntity_stuckMixin",
+    "blockEntityFixes.HopperBlockEntity_randomMinecartMixin",
     "blockEntityFixes.PistonBlockEntity_lastProgressMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
