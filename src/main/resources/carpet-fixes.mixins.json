@@ -26,6 +26,7 @@
     "blockFixes.EnchantingTableBlock_transparentMixin",
     "blockFixes.FlowableFluid_chainedTickMixin",
     "blockFixes.IceBlock_breakMixin",
+    "blockFixes.JukeboxBlock_itemOffsetMixin",
     "blockFixes.LavaFluid_wrongStateMixin",
     "blockFixes.NoteBlock_placedMixin",
     "blockFixes.ObserverBlock_missingShapeUpdateMixin",
