@@ -1312,6 +1312,14 @@ public class CFSettings {
     )
     public static boolean hoppersSelectMinecartsRandomlyFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes bees trying to swim in water causing them to die",
+            extra = {"Bees must be reloaded for the fix to take place",
+                    "[MC-190261](https://bugs.mojang.com/browse/MC-190261)"},
+            category = BUGFIX
+    )
+    public static boolean beesSwimInWaterAndDieFix = false;
 
 
     /*

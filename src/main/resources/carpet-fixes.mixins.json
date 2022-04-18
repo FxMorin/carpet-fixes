@@ -124,6 +124,7 @@
     "entityFixes.ArmorStandEntity_damageMixin",
     "entityFixes.ArrowEntity_totemMixin",
     "entityFixes.BeeEntity_chunkLoadingMixin",
+    "entityFixes.BeeEntity_swimGoalMixin",
     "entityFixes.BeeEntity_voidMixin",
     "entityFixes.BoatEntity_fallDamageMixin",
     "entityFixes.CatSpawner_incorrectCatMixin",
