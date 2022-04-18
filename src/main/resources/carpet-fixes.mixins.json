@@ -143,6 +143,7 @@
     "entityFixes.HopperMinecartEntity_slowMixin",
     "entityFixes.ItemFrameEntity_explosionWaterMixin",
     "entityFixes.ItemFrameEntity_soundMixin",
+    "entityFixes.LivingEntity_deathTimeMixin",
     "entityFixes.LivingEntity_momentumCancelledMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.LivingEntity_totemMixin",

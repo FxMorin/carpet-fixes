@@ -1288,6 +1288,15 @@ public class CFSettings {
     )
     public static boolean witchAndCatSpawnMergedFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes mobs with a deathTime higher then 19 causing entities to never die",
+            extra = "[MC-84873](https://bugs.mojang.com/browse/MC-84873)",
+            category = BUGFIX
+    )
+    public static boolean deathTimeCorruptsMobsFix = false;
+
+
 
     /*
 
