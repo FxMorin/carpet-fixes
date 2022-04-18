@@ -1306,8 +1306,8 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes",
-            extra = "[](https://bugs.mojang.com/browse/)",
+            desc = "Fixes hoppers choosing a random minecart, resulting in slower item transfers",
+            extra = "[MC-124099](https://bugs.mojang.com/browse/MC-124099)",
             category = BUGFIX
     )
     public static boolean hoppersSelectMinecartsRandomlyFix = false;
