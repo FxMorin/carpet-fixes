@@ -1321,6 +1321,14 @@ public class CFSettings {
     )
     public static boolean beesSwimInWaterAndDieFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes hunger depleting in peaceful mode",
+            extra = "[MC-31819](https://bugs.mojang.com/browse/MC-31819)",
+            category = BUGFIX
+    )
+    public static boolean hungerGoesDownInPeacefulFix = false;
+
 
     /*
 
