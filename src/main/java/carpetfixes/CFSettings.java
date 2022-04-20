@@ -1210,6 +1210,14 @@ public class CFSettings {
     )
     public static boolean geodeLavalogFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes client stats being lost when teleporting between dimensions",
+            extra = "[MC-124177](https://bugs.mojang.com/browse/MC-124177)",
+            category = BUGFIX
+    )
+    public static boolean crossDimensionTeleportLosesStatsFix = false;
+
 
     /*
 
