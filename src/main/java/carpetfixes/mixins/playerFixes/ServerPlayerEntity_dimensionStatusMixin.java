@@ -46,8 +46,7 @@ public abstract class ServerPlayerEntity_dimensionStatusMixin extends PlayerEnti
                     target = "Lnet/minecraft/server/PlayerManager;" +
                             "sendPlayerStatus(Lnet/minecraft/server/network/ServerPlayerEntity;)V",
                     shift = At.Shift.AFTER
-            ),
-            cancellable = true
+            )
     )
     private void tpToWorld(ServerWorld world, double x, double y, double z, float yaw, float pitch, CallbackInfo ci) {
         if (CFSettings.crossDimensionTeleportLosesStatsFix) {
@@ -57,7 +56,6 @@ public abstract class ServerPlayerEntity_dimensionStatusMixin extends PlayerEnti
             this.syncedExperience = -1;
             this.syncedHealth = -1.0F;
             this.syncedFoodLevel = -1;
-            ci.cancel();
         }
     }
 }
