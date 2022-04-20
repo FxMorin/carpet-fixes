@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import static carpet.settings.RuleCategory.BUGFIX;
+import static carpet.settings.RuleCategory.OPTIMIZATION;
+import static carpetfixes.helpers.RuleCategory.*;
+
 public class CustomSettingsManager extends SettingsManager {
 
     private final String fancyName;
@@ -29,6 +33,13 @@ public class CustomSettingsManager extends SettingsManager {
         PrintStream ps = System.out;
         ps.println("# "+ fancyName +" Settings");
         int totalRules = 0;
+        int totalFixes = 0;
+        int totalOptimizations = 0;
+        int totalDupes = 0;
+        int totalReIntroduced = 0;
+        int totalParity = 0;
+        int totalCrash = 0;
+        int totalAdvanced = 0;
         int toBeRemoved = 0;
         for (Field f : CFSettings.class.getDeclaredFields()) {
             Rule rule = f.getAnnotation(Rule.class);
@@ -43,6 +54,15 @@ public class CustomSettingsManager extends SettingsManager {
             boolean isStrict = rule.strict();
             List<String> categories = List.of(rule.category());
             if (category != null && !categories.contains(category)) continue;
+            if (category == null) {
+                if (categories.contains(BUGFIX)) totalFixes++;
+                if (categories.contains(OPTIMIZATION)) totalOptimizations++;
+                if (categories.contains(DUPE)) totalDupes++;
+                if (categories.contains(REINTRODUCE)) totalReIntroduced++;
+                if (categories.contains(PARITY)) totalParity++;
+                if (categories.contains(CRASHFIX)) totalCrash++;
+                if (categories.contains(ADVANCED)) totalAdvanced++;
+            }
             ps.println("## " + (rule.name().isEmpty() ? f.getName() : rule.name()));
             ps.println(rule.desc()+"  ");
             for (String extra : List.of(rule.extra())) {
@@ -132,8 +152,15 @@ public class CustomSettingsManager extends SettingsManager {
             }
         }
         ps.println("# Stats");
-        ps.println("Rule Count: "+totalRules);
-        ps.println("Rules to be removed next big release: "+toBeRemoved);
+        ps.println("Rules: `"+totalRules+"`  ");
+        ps.println("Fixes: `"+totalFixes+"`  ");
+        ps.println("Crash Fixes: `"+totalCrash+"`  ");
+        ps.println("Dupe Fixes: `"+totalDupes+"`  ");
+        ps.println("ReIntroduced: `"+totalReIntroduced+"`  ");
+        ps.println("Optimizations: `"+totalOptimizations+"`  ");
+        ps.println("Advanced Rules: `"+totalAdvanced+"`  ");
+        ps.println("Parity Fixes: `"+totalParity+"`  ");
+        ps.println("Rules to be removed next big release: `"+toBeRemoved+"`");
         return 1;
     }
 
