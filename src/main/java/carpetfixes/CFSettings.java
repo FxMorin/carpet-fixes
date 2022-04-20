@@ -902,6 +902,14 @@ public class CFSettings {
     )
     public static boolean armorStandNegateCactusDamageFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes armor stands not being damaged by anvils",
+            extra = "[MC-203302](https://bugs.mojang.com/browse/MC-203302)",
+            category = {BUGFIX,RECOMMENDED}
+    )
+    public static boolean armorStandNegateAnvilDamageFix = false;
+
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes tripwires not being disarmed correctly",
