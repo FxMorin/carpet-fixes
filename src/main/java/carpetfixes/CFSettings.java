@@ -873,7 +873,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes reload update order for tile entities",
             extra = {"Fixes instant wires randomly breaking - Effective after chunk reload.",
-                    "Fixes [MC-89146](https://bugs.mojang.com/browse/MC-89146)"},
+                    "[MC-89146](https://bugs.mojang.com/browse/MC-89146)"},
             category = BUGFIX
     )
     public static boolean reloadUpdateOrderFix = false;
@@ -1672,7 +1672,7 @@ public class CFSettings {
             desc = "Re-adds 1.8 double retraction to pistons",
             category = {BUGFIX,EXPERIMENTAL},
             extra = { "Gives pistons the ability to double retract without side effects",
-                    "Fixes [MC-88959](https://bugs.mojang.com/browse/MC-88959)" }
+                    "[MC-88959](https://bugs.mojang.com/browse/MC-88959)" }
     )
     public static boolean doubleRetraction = false;
 
