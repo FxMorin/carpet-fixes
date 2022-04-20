@@ -1,6 +1,7 @@
 # Carpet-Fixes
 
 [![FX's Discord](https://img.shields.io/discord/636633673524969483?logo=discord&style=flat-square)](https://discord.gg/vurv5pdFpa)
+[![Hits Of Code](https://hitsofcode.com/github/fxmorin/carpet-fixes?branch=dev)](https://hitsofcode.com/github/fxmorin/carpet-fixes/view?branch=dev)
 
 [![Mod Environment](https://img.shields.io/badge/Enviroment-Server-blue?style=flat-square)](https://github.com/fxmorin/carpet-fixes)
 [![GitHub all releases](https://img.shields.io/github/downloads/fxmorin/carpet-fixes/total?style=flat-square)]()
