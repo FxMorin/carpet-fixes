@@ -1367,7 +1367,15 @@ public class CFSettings {
             extra = "[MC-135809](https://bugs.mojang.com/browse/MC-135809)",
             category = BUGFIX
     )
-    public static boolean markerArmorstandsTriggerBlocksFix = false;
+    public static boolean markerArmorStandsTriggerBlocksFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes marker armor stands creating bubbles in water",
+            extra = "[MC-78314](https://bugs.mojang.com/browse/MC-78314)",
+            category = BUGFIX
+    )
+    public static boolean markerArmorStandsCreateBubblesFix = false;
 
 
     /*
