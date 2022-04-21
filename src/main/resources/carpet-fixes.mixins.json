@@ -11,6 +11,7 @@
     "accessors.WorldAccessor",
     "advanced.MinecraftServer_autosaveDelayMixin",
     "advanced.ThreadedAnvilChunkStorage_chunkTimingsMixin",
+    "blockEntityFixes.BeaconBlockEntity_soundMixin",
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
     "blockEntityFixes.BeehiveBlockEntity_stuckMixin",
     "blockEntityFixes.HopperBlockEntity_randomMinecartMixin",

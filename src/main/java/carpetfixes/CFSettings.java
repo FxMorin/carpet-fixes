@@ -1353,6 +1353,14 @@ public class CFSettings {
     )
     public static boolean fallingBlockDamageIsOffsetFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes beacons always playing the depowering sound when broken even if it was not powered",
+            extra = "[MC-153086](https://bugs.mojang.com/browse/MC-153086)",
+            category = BUGFIX
+    )
+    public static boolean beaconsAlwaysPlaySoundOnBreakFix = false;
+
 
     /*
 
