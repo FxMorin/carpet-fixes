@@ -1361,6 +1361,14 @@ public class CFSettings {
     )
     public static boolean beaconsAlwaysPlaySoundOnBreakFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes marker armor stands being able to trigger traps such as pressure plates, and string",
+            extra = "[MC-135809](https://bugs.mojang.com/browse/MC-135809)",
+            category = BUGFIX
+    )
+    public static boolean markerArmorstandsTriggerBlocksFix = false;
+
 
     /*
 

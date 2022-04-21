@@ -123,6 +123,7 @@
     "entityFixes.AllayEntity_voidMixin",
     "entityFixes.ArmorStandEntity_aggroMechanicsMixin",
     "entityFixes.ArmorStandEntity_damageMixin",
+    "entityFixes.ArmorStandEntity_markerMixin",
     "entityFixes.ArrowEntity_totemMixin",
     "entityFixes.BeeEntity_chunkLoadingMixin",
     "entityFixes.BeeEntity_swimGoalMixin",
