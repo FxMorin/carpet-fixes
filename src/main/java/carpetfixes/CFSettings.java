@@ -1385,6 +1385,13 @@ public class CFSettings {
     )
     public static boolean armorStandsCantRideVehiclesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes boats created from dispensers spawning more then half a block higher then the water",
+            category = BUGFIX
+    )
+    public static boolean boatsCreatedTooHighFix = false;
+
 
     /*
 

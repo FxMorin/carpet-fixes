@@ -18,6 +18,7 @@
     "blockEntityFixes.PistonBlockEntity_lastProgressMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
+    "blockEntityFixes.dispenserBehavior.BoatDispenserBehavior_offsetMixin",
     "blockFixes.AbstractButtonBlock_collisionOnPlaceMixin",
     "blockFixes.Block_itemPositionMixin",
     "blockFixes.CactusBlock_movingBlockMixin",
