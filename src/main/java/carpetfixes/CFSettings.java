@@ -1392,6 +1392,14 @@ public class CFSettings {
     )
     public static boolean boatsCreatedTooHighFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes boats getting created within the dispenser that created them",
+            extra = "[MC-1310](https://bugs.mojang.com/browse/MC-1310)",
+            category = BUGFIX
+    )
+    public static boolean boatsStuckInDispensersFix = false;
+
 
     /*
 
