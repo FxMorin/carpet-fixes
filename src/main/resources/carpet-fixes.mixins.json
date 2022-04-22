@@ -247,6 +247,7 @@
     "playerFixes.EntityDataObject_dataPlayerMixin",
     "playerFixes.LivingEntity_sleepingKillsMixin",
     "playerFixes.PlayerEntity_absorptionMixin",
+    "playerFixes.PlayerEntity_enchantmentCostMixin",
     "playerFixes.PlayerEntity_hungerMixin",
     "playerFixes.PlayerEntity_sneakMixin",
     "playerFixes.PlayerManager_endPortalEffectsMixin",
