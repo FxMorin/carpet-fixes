@@ -1432,6 +1432,16 @@ public class CFSettings {
     )
     public static boolean snowmanCreateSnowWhileFloatingFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes leash not updating when mobs break there leashes",
+            extra = "[MC-16663](https://bugs.mojang.com/browse/MC-16663)," +
+                    " [MC-96347](https://bugs.mojang.com/browse/MC-96347)," +
+                    " [MC-102214](https://bugs.mojang.com/browse/MC-102214)",
+            category = BUGFIX
+    )
+    public static boolean leashKnotNotUpdatingOnBreakFix = false;
+
 
     /*
 
