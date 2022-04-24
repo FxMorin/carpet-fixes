@@ -134,6 +134,7 @@
     "entityFixes.BeeEntity_voidMixin",
     "entityFixes.BoatEntity_armorStandMixin",
     "entityFixes.BoatEntity_fallDamageMixin",
+    "entityFixes.Bucketable_leashDetachMixin",
     "entityFixes.CatSpawner_incorrectCatMixin",
     "entityFixes.CreeperEntity_fuseMixin",
     "entityFixes.DrownedEntity_enchantedTridentMixin",
