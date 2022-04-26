@@ -10,6 +10,10 @@ public class DirectionUtils {
             Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.DOWN, Direction.UP
     };
 
+    public static Direction[] horizontal = new Direction[]{
+            Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH
+    };
+
     public static Direction[] extendedUpdateDirections = new Direction[]{
             Direction.DOWN, Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST
     };
