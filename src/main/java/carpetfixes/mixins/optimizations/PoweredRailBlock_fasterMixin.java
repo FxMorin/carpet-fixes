@@ -299,16 +299,6 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     Utils.giveShapeUpdate(world, mainState, pos1.up(), pos, Direction.UP);
                     Utils.giveShapeUpdate(world, mainState, pos1.north(), pos, Direction.NORTH);
                     Utils.giveShapeUpdate(world, mainState, pos1.south(), pos, Direction.SOUTH);
-                    BlockPos pos2 = pos.offset(dir, c).down();
-                    Utils.giveShapeUpdate(world, mainState, pos2.down(), pos, Direction.DOWN);
-                    Utils.giveShapeUpdate(world, mainState, pos2.north(), pos, Direction.NORTH);
-                    Utils.giveShapeUpdate(world, mainState, pos2.south(), pos, Direction.SOUTH);
-                    if (c == countAmt)
-                        Utils.giveShapeUpdate(world, mainState, pos.offset(dir, c + 1).down(), pos, Direction.DOWN);
-                    if (c == 0 && count[1] == 0)
-                        Utils.giveShapeUpdate(
-                                world, mainState, pos1.offset(dir.getOpposite()).down(), pos, dir.getOpposite()
-                        );
                 }
             }
         } else {
@@ -345,22 +335,6 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     if (c == 0 && count[1] == 0)
                         Utils.giveShapeUpdate(
                                 world, mainState, pos1.offset(direction.getOpposite()), pos, direction.getOpposite()
-                        );
-                    BlockPos pos2 = pos.offset(direction,c).down();
-                    Utils.giveShapeUpdate(world, mainState, pos2.west(), pos, Direction.WEST);
-                    Utils.giveShapeUpdate(world, mainState, pos2.east(), pos, Direction.EAST);
-                    Utils.giveShapeUpdate(world, mainState, pos2.down(), pos, Direction.DOWN);
-                    if (c == countAmt)
-                        Utils.giveShapeUpdate(
-                                world, mainState, pos.offset(direction,c + 1).down(), pos, Direction.DOWN
-                        );
-                    if (c == 0 && count[1] == 0)
-                        Utils.giveShapeUpdate(
-                                world,
-                                mainState,
-                                pos1.offset(direction.getOpposite()).down(),
-                                pos,
-                                direction.getOpposite()
                         );
                 }
             }
