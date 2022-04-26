@@ -23,11 +23,11 @@ public class EnchantingTableBlock_transparentMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/World;isAir(Lnet/minecraft/util/math/BlockPos;)Z"
-            )
+            ),
+            require = 0
     )
     private static boolean isTranslucent(World world, BlockPos pos) {
         return CFSettings.transparentBlocksNegateEnchantingFix ?
-                !world.getBlockState(pos).isFullCube(world,pos) :
-                world.isAir(pos);
+                !world.getBlockState(pos).isFullCube(world,pos) : world.isAir(pos);
     }
 }
