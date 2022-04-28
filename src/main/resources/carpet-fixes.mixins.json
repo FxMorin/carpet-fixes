@@ -51,6 +51,8 @@
     "blockFixes.SlimeBlock_incorrectLogicMixin",
     "blockFixes.TargetBlock_missingShapeUpdateMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
+    "blockFixes.doubleBlocksSkipEntityChecks.BedBlock_entityChecksMixin",
+    "blockFixes.doubleBlocksSkipEntityChecks.DoorBlock_entityCheckMixin",
     "blockUpdates.AbstractPressurePlateBlock_uselessMixin",
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateAfterPushMixin",
