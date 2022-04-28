@@ -1858,10 +1858,17 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Placing turtle eggs on a barrier block will make it output the current stack depth on shape updates",
-            category = DEBUG,
-            extra = "Checking a stack depth can be expensive, do not abuse!"
+            extra = "Checking a stack depth can be expensive, do not abuse!",
+            category = DEBUG
     )
     public static boolean debugStackDepth = false;
+
+    @Rule(
+            desc = "Placing turtle eggs on a jigsaw block will make it output the current stack trace on shape updates",
+            extra = "The rule `reIntroduceInstantBlockUpdates` should be used for better traces!",
+            category = DEBUG
+    )
+    public static boolean debugStackTrace = false;
 
 
     /*

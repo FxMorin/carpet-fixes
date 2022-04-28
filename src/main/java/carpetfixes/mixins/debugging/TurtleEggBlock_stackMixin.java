@@ -12,6 +12,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 @Mixin(TurtleEggBlock.class)
@@ -30,6 +31,9 @@ public abstract class TurtleEggBlock_stackMixin extends Block {
             for (PlayerEntity player : world.getPlayers()) {
                 player.sendMessage(Text.of("Stack Depth: "+depth),false);
             }
+        }
+        if (CFSettings.debugStackTrace && world.getBlockState(pos.down()).isOf(Blocks.JIGSAW)) {
+            Arrays.asList(Thread.currentThread().getStackTrace()).forEach(System.out::println);
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
