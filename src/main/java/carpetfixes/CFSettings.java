@@ -1545,6 +1545,14 @@ public class CFSettings {
     )
     public static boolean viewerCountNegativesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes shulker box missing a block update",
+            extra = "[MC-190815](https://bugs.mojang.com/browse/MC-190815)",
+            category = BUGFIX
+    )
+    public static boolean shulkerBoxMissingUpdateFix = false;
+
 
     /*
 

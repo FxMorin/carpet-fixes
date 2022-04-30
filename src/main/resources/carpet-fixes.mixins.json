@@ -70,6 +70,7 @@
     "blockUpdates.RedstoneWireBlock_missingUpdateMixin",
     "blockUpdates.RedstoneWireBlock_old2missingUpdateMixin",
     "blockUpdates.RedstoneWireBlock_oldMissingUpdateMixin",
+    "blockUpdates.ShulkerBoxBlockEntity_missingUpdateMixin",
     "blockUpdates.SimpleNeighborUpdater_updateOrderMixin",
     "blockUpdates.SpongeBlock_missingUpdateMixin",
     "blockUpdates.TrapdoorBlock_missingUpdateMixin",
