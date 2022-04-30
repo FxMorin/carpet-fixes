@@ -21,6 +21,7 @@
     "blockEntityFixes.PistonBlockEntity_pushTooFarMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
+    "blockEntityFixes.ViewerCountManager_inventoryMixin",
     "blockEntityFixes.dispenserBehavior.BoatDispenserBehavior_offsetMixin",
     "blockFixes.AbstractButtonBlock_collisionOnPlaceMixin",
     "blockFixes.Block_itemPositionMixin",

@@ -1537,6 +1537,14 @@ public class CFSettings {
     )
     public static boolean bedTeleportExploitFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the viewer count for some inventories (chest, ender chest, barrel) being able to go into the negatives",
+            extra = "[MC-229680](https://bugs.mojang.com/browse/MC-229680) & [MC-208051](https://bugs.mojang.com/browse/MC-208051)",
+            category = BUGFIX
+    )
+    public static boolean viewerCountNegativesFix = false;
+
 
     /*
 
