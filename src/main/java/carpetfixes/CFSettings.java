@@ -1553,6 +1553,14 @@ public class CFSettings {
     )
     public static boolean shulkerBoxMissingUpdateFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes snow golem attacking creepers, resulting in there death",
+            extra = "[MC-73964](https://bugs.mojang.com/browse/MC-73964)",
+            category = BUGFIX
+    )
+    public static boolean snowGolemAttackCreepersFix = false;
+
 
     /*
 

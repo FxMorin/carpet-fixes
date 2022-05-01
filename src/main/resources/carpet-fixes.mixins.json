@@ -179,6 +179,7 @@
     "entityFixes.PersistentProjectileEntity_velocityMixin",
     "entityFixes.ServerPlayerEntity_bedTeleportMixin",
     "entityFixes.ShulkerEntity_vehicleOffsetMixin",
+    "entityFixes.SnowGolemEntity_creeperAwManMixin",
     "entityFixes.SnowGolemEntity_floatingMixin",
     "entityFixes.StriderEntity_coldMixin",
     "entityFixes.TntEntity_netherPortalMixin",
