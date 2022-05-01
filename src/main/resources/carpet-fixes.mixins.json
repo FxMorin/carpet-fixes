@@ -276,6 +276,7 @@
     "playerFixes.PlayerEntity_enchantmentCostMixin",
     "playerFixes.PlayerEntity_hungerMixin",
     "playerFixes.PlayerEntity_sneakMixin",
+    "playerFixes.PlayerEntity_sweepingFireMixin",
     "playerFixes.PlayerManager_endPortalEffectsMixin",
     "playerFixes.ServerPlayerEntity_dimensionStatusMixin",
     "playerFixes.ServerPlayerEntity_endPortalEffectsMixin",
