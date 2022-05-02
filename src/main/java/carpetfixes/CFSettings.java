@@ -1218,6 +1218,13 @@ public class CFSettings {
     )
     public static boolean crossDimensionTeleportLosesStatsFix = false;
 
+    //By Max Henkel
+    @Rule(
+            desc = "Fixes InhabitedTime not always updating in some chunks",
+            extra = "[MC-127407](https://bugs.mojang.com/browse/MC-127407)",
+            category = BUGFIX
+    )
+    public static boolean inhabitedTimeFix = false;
 
     /*
 
