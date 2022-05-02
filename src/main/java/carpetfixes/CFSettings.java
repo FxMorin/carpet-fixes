@@ -22,6 +22,7 @@ public class CFSettings {
     public static boolean scheduleWorldBorderReset = false;
     public static final ThreadLocal<Set<BlockPos>> LAST_DIRT = ThreadLocal.withInitial(HashSet::new);
     public static final Predicate<BlockState> IS_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
+    public static final ThreadLocal<Boolean> IS_TICK_SAVE = ThreadLocal.withInitial(() -> false);
 
     //By FX - PR0CESS
     @Rule(

@@ -114,6 +114,7 @@
     "coreSystemFixes.StatusEffectInstance_wrongEffectMixin",
     "coreSystemFixes.StringTag_stringTagExploitMixin",
     "coreSystemFixes.StructureManager_snbtMixin",
+    "coreSystemFixes.ThreadedAnvilChunkStorage_tickSaveMixin",
     "coreSystemFixes.TradeOffer_demandUnderflowMixin",
     "coreSystemFixes.World_seaLevelMixin",
     "coreSystemFixes.WorldBorder$StaticArea_collisionMixin",
