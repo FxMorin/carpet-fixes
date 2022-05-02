@@ -149,6 +149,7 @@
     "entityFixes.DrownedEntity_enchantedTridentMixin",
     "entityFixes.EndCrystalEntity_ExplosionChainingMixin",
     "entityFixes.EndCrystalEntity_InvulnerableMixin",
+    "entityFixes.EnderDragonEntity_blockDropsMixin",
     "entityFixes.EnderDragonFight_respawnMixin",
     "entityFixes.EndermanEntity_noAiTeleportMixin",
     "entityFixes.EndermanEntity_teleportingMixin",
