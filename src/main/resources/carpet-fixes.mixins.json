@@ -101,6 +101,7 @@
     "conversionFixes.MooshroomEntity_conversionMixin",
     "conversionFixes.SlimeEntity_conversionMixin",
     "coreSystemFixes.Chunk_BEHashMixin",
+    "coreSystemFixes.Chunk_InhabitedTimeMixin",
     "coreSystemFixes.DensityFunctionTypes$EndIslands_voidRingsMixin",
     "coreSystemFixes.EnderDragonFight_twoCrystalMixin",
     "coreSystemFixes.Explosion_exposureMixin",
