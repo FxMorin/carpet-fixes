@@ -226,6 +226,7 @@
     "goalFixes.FoxEntity$AvoidDaylightGoal_originMixin",
     "goalFixes.MobEntity_stopGoalOnDeathMixin",
     "goalFixes.OcelotEntity$FleeGoal_vehicleMixin",
+    "goalFixes.ProjectileAttackGoal_deadMixin",
     "goalFixes.RevengeGoal_selfHarmMixin",
     "goalFixes.StepAndDestroyBlockGoal_originMixin",
     "goalFixes.slowedGoalFix.DolphinEntity$PlayWithItemsGoal_slowMixin",
