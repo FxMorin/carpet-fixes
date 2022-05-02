@@ -53,6 +53,7 @@
     "conversionFixes.SlimeEntity_conversionMixin",
     "coreSystemFixes.BlockPos_incorrectDistanceMixin",
     "coreSystemFixes.Chunk_BEHashMixin",
+    "coreSystemFixes.Chunk_InhabitedTimeMixin",
     "coreSystemFixes.EnderDragonFight_twoCrystalMixin",
     "coreSystemFixes.Explosion_exposureMixin",
     "coreSystemFixes.Explosion_worldBorderMixin",
