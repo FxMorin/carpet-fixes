@@ -63,6 +63,7 @@
     "coreSystemFixes.StringTag_stringTagExploitMixin",
     "coreSystemFixes.StructureManager_snbtMixin",
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",
+    "coreSystemFixes.ThreadedAnvilChunkStorage_tickSaveMixin",
     "coreSystemFixes.World_seaLevelMixin",
     "coreSystemFixes.World_updateSuppressionMixin",
     "coreSystemFixes.WorldBorder$StaticArea_collisionMixin",

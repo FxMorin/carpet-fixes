@@ -26,6 +26,7 @@ public class CFSettings {
     public static HashMap<World, UpdateScheduler> updateScheduler = new HashMap<>();
     public static final ThreadLocal<Set<BlockPos>> LAST_DIRT = ThreadLocal.withInitial(HashSet::new);
     public static final Predicate<BlockState> IS_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
+    public static final ThreadLocal<Boolean> IS_TICK_SAVE = ThreadLocal.withInitial(() -> false);
 
     //By FX - PR0CESS
     @Rule(
@@ -1218,7 +1219,7 @@ public class CFSettings {
     )
     public static boolean crossDimensionTeleportLosesStatsFix = false;
 
-    //By Max Henkel
+    //By Max Henkel, and FX
     @Rule(
             desc = "Fixes InhabitedTime not always updating in some chunks",
             extra = "[MC-127407](https://bugs.mojang.com/browse/MC-127407)",
