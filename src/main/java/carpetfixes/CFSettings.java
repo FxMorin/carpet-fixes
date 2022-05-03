@@ -1610,6 +1610,14 @@ public class CFSettings {
     )
     public static boolean badVillagerPyrotechnicsFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes enderman teleporting away during damage, making other damage systems believe the enderman got hurt. Such as wither skulls applying wither",
+            extra = "[MC-186119](https://bugs.mojang.com/browse/MC-186119)",
+            category = BUGFIX
+    )
+    public static boolean endermanPainfulTeleportFix = false;
+
 
     /*
 
