@@ -1626,6 +1626,13 @@ public class CFSettings {
     )
     public static boolean endermanAvoidProjectilesInVehicleFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes comparators not being able to get containers through opaque full blocks like pistons & observers",
+            category = BUGFIX
+    )
+    public static boolean comparatorTransparencyFix = false;
+
 
     /*
 
