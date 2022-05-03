@@ -1629,7 +1629,7 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Fixes comparators not being able to get containers through opaque full blocks like pistons & observers",
-            category = BUGFIX
+            category = {BUGFIX,PARITY}
     )
     public static boolean comparatorTransparencyFix = false;
 
