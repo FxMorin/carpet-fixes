@@ -191,6 +191,7 @@
     "entityFixes.StriderEntity_coldMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
+    "entityFixes.TridentEntity_fallingMixin",
     "entityFixes.TridentEntity_voidLoyaltyMixin",
     "entityFixes.VillagerEntity_fireworkMixin",
     "entityFixes.VillagerEntity_offlinePlayersMixin",
