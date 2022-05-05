@@ -1,4 +1,4 @@
-package carpetfixes.mixins.entityFixes;
+package carpetfixes.mixins.playerFixes;
 
 import carpetfixes.CFSettings;
 import com.mojang.authlib.GameProfile;
