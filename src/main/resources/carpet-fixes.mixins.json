@@ -16,6 +16,7 @@
     "blockEntityFixes.BeaconBlockEntity_soundMixin",
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
     "blockEntityFixes.BeehiveBlockEntity_stuckMixin",
+    "blockEntityFixes.BrewingStandBlockEntity_brewingItemMixin",
     "blockEntityFixes.EndGatewayBlockEntity_insideMixin",
     "blockEntityFixes.HopperBlockEntity_randomMinecartMixin",
     "blockEntityFixes.PistonBlockEntity_lastProgressMixin",
