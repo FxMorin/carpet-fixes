@@ -54,6 +54,7 @@
     "blockFixes.RedstoneTorchBlock_oldInconsistentMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
     "blockFixes.TargetBlock_missingShapeUpdateMixin",
+    "blockFixes.TntBlock_extendedCollisionMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
     "blockFixes.doubleBlocksSkipEntityChecks.BedBlock_entityChecksMixin",
     "blockFixes.doubleBlocksSkipEntityChecks.DoorBlock_entityCheckMixin",
