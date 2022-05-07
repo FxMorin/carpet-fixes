@@ -1681,6 +1681,14 @@ public class CFSettings {
     )
     public static boolean comparatorSkipsBlockedChestFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes chorus fruits item not resetting fall damage on teleport",
+            extra = "[MC-112133](https://bugs.mojang.com/browse/MC-112133)",
+            category = BUGFIX
+    )
+    public static boolean chorusFruitFallDamageFix = false;
+
 
     /*
 
