@@ -30,6 +30,7 @@
     "blockFixes.CactusBlock_movingBlockMixin",
     "blockFixes.CakeBlock_eatSideMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
+    "blockFixes.ChestBlock_blockedComparatorMixin",
     "blockFixes.ChestBlock_worldBorderMixin",
     "blockFixes.DaylightDetectorBlock_placedMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
