@@ -104,6 +104,7 @@
     "entityFixes.BeeEntity_chunkLoadingMixin",
     "entityFixes.BeeEntity_flyMixin",
     "entityFixes.BeeEntity_rainMixin",
+    "entityFixes.BeeEntity_swimGoalMixin",
     "entityFixes.BeeEntity_voidMixin",
     "entityFixes.BoatEntity_armorStandMixin",
     "entityFixes.BoatEntity_fallDamageMixin",
