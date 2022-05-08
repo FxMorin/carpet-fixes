@@ -1599,6 +1599,15 @@ public class CFSettings {
     )
     public static boolean unableToModifyPlayerDataFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the pressure plate hitbox not matching the model",
+            extra = "[MC-248753](https://bugs.mojang.com/browse/MC-248753)",
+            validate = Validators.wrongPressurePlateHitboxValidator.class,
+            category = BUGFIX
+    )
+    public static boolean wrongPressurePlateHitboxFix = false;
+
 
     /*
 

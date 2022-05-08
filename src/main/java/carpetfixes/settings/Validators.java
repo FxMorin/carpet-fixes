@@ -3,11 +3,13 @@ package carpetfixes.settings;
 import carpet.settings.ParsedRule;
 import carpet.settings.Validator;
 import carpetfixes.CFSettings;
+import carpetfixes.mixins.accessors.AbstractPressurePlateBlockAccessor;
 import carpetfixes.mixins.accessors.TagKeyAccessor;
 import com.google.common.collect.Interners;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.util.math.Box;
 
 public class Validators {
     public static class WitherGolemSpawningFixValidator extends Validator<Boolean> {
@@ -65,6 +67,16 @@ public class Validators {
     public static class enforceWhitelistValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null) source.getServer().setEnforceWhitelist(newValue);
+            return newValue;
+        }
+    }
+
+    public static class wrongPressurePlateHitboxValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            AbstractPressurePlateBlockAccessor.setBox(newValue ?
+                    new Box(0.075, 0.0, 0.075, 0.925, 0.25, 0.925) :
+                    new Box(0.125, 0.0, 0.125, 0.875, 0.25, 0.875)
+            );
             return newValue;
         }
     }
