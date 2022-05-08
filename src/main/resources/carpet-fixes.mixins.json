@@ -60,6 +60,8 @@
     "blockFixes.WitherSkullBlock_spawningMixin",
     "blockFixes.doubleBlocksSkipEntityChecks.BedBlock_entityChecksMixin",
     "blockFixes.doubleBlocksSkipEntityChecks.DoorBlock_entityCheckMixin",
+    "blockFixes.movableCoral.DeadCoralFanBlock_movableMixin",
+    "blockFixes.movableCoral.DeadCoralWallFanBlock_movableMixin",
     "blockUpdates.AbstractPressurePlateBlock_uselessMixin",
     "blockUpdates.AbstractRailBlock_invalidUpdateMixin",
     "blockUpdates.AbstractRailBlock_missingUpdateAfterPushMixin",

@@ -1697,6 +1697,14 @@ public class CFSettings {
     )
     public static boolean potionEffectsAffectDeadEntitiesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes coral being movable. Controversial fix - If you don't like it, don't use it xD",
+            extra = "[MC-133541](https://bugs.mojang.com/browse/MC-133541)",
+            category = BUGFIX
+    )
+    public static boolean coralIsMovableFix = false;
+
 
     /*
 
