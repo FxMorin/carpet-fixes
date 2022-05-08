@@ -1335,6 +1335,14 @@ public class CFSettings {
     )
     public static boolean sheepEatGrassThroughBlocksFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes ocelots and cats trying to flee from the player while being stuck in a vehicle like a boat",
+            extra = "[MC-53721](https://bugs.mojang.com/browse/MC-53721)",
+            category = BUGFIX
+    )
+    public static boolean ocelotsAndCatsTryToFleeInVehicleFix = false;
+
 
     /*
 
