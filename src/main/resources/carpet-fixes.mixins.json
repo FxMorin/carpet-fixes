@@ -47,6 +47,7 @@
     "blockUpdates.RedstoneTorchBlock_updateOrderOnBreakMixin",
     "blockUpdates.RedstoneWireBlock_extendedUpdatesMixin",
     "blockUpdates.RedstoneWireBlock_missingUpdateMixin",
+    "blockUpdates.ShulkerBoxBlockEntity_missingUpdateMixin",
     "blockUpdates.SpongeBlock_missingUpdateMixin",
     "blockUpdates.TrapdoorBlock_missingUpdateMixin",
     "blockUpdates.World_blockUpdateOrderMixin",
