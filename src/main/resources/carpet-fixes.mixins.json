@@ -101,6 +101,7 @@
     "entityFixes.EndermanEntity_noAiTeleportMixin",
     "entityFixes.EndermanEntity_teleportingMixin",
     "entityFixes.EndermanEntity_vehicleMixin",
+    "entityFixes.EndermanEntity_witherMixin",
     "entityFixes.Entity_centerCollisionMixin",
     "entityFixes.Entity_directionalBlockSlowdownMixin",
     "entityFixes.Entity_fallDistanceMixin",
