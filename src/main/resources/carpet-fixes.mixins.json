@@ -127,6 +127,7 @@
     "entityFixes.LivingEntity_potionEffectsMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.LivingEntity_totemMixin",
+    "entityFixes.MobEntity_attackRangeMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
     "entityFixes.MobEntity_nbtSuffixMixin",
     "entityFixes.MobEntity_pickupOwnerMixin",

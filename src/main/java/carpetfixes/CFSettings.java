@@ -1253,6 +1253,15 @@ public class CFSettings {
     )
     public static boolean selfHarmFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes mobs being able to hit entities through blocks",
+            extra = {"This might have an impact on performance, although shouldn't be that bad",
+                    "[MC-2310](https://bugs.mojang.com/browse/MC-2310)"},
+            category = BUGFIX
+    )
+    public static boolean mobsAttackThroughBlocksFix = false;
+
 
     /*
 
