@@ -1366,6 +1366,14 @@ public class CFSettings {
     )
     public static boolean boatsStuckInDispensersFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes armor stands not being able to ride vehicles",
+            extra = "[MC-90923](https://bugs.mojang.com/browse/MC-90923)",
+            category = BUGFIX
+    )
+    public static boolean armorStandsCantRideVehiclesFix = false;
+
 
     /*
 
