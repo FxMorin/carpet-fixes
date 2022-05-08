@@ -1127,6 +1127,13 @@ public class CFSettings {
     )
     public static boolean daylightSensorPlacementFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes comparators not being able to get containers through opaque full blocks like pistons & observers",
+            category = {BUGFIX,PARITY}
+    )
+    public static boolean comparatorTransparencyFix = false;
+
 
     /*
 

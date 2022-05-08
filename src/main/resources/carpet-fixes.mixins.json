@@ -197,6 +197,7 @@
     "playerFixes.ServerPlayNetworkHandler_nocomMixin",
     "playerFixes.ServerPlayNetworkHandler_vehicleFloatingMixin",
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
+    "redstoneFixes.ComparatorBlock_opaqueFullMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
     "redstoneFixes.World_ComparatorNotUpdatingMixin",
     "reIntroduced.AbstractFireBlock_flintAndSteelMixin",
