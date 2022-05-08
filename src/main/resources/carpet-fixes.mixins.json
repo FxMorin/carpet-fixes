@@ -5,6 +5,7 @@
   "plugin": "carpetfixes.settings.CarpetFixesMixinConfigPlugin",
   "mixins": [
     "accessors.EntityAccessor",
+    "accessors.LivingEntityAccessor",
     "accessors.MobEntityAccessor",
     "accessors.TagKeyAccessor",
     "advanced.MinecraftServer_autosaveDelayMixin",
@@ -83,6 +84,7 @@
     "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
     "coreSystemFixes.StatusEffectInstance_nbtSuffixMixin",
+    "coreSystemFixes.StatusEffectInstance_wrongEffectMixin",
     "coreSystemFixes.StringTag_stringTagExploitMixin",
     "coreSystemFixes.StructureManager_snbtMixin",
     "coreSystemFixes.TheEndBiomeSource_endVoidMixin",
