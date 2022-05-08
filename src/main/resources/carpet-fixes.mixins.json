@@ -167,6 +167,7 @@
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.LivingEntity_totemMixin",
     "entityFixes.MobEntity_attackRangeMixin",
+    "entityFixes.MobEntity_deadTargetMixin",
     "entityFixes.MobEntity_leashDetachMixin",
     "entityFixes.MobEntity_leashUpdateOrderMixin",
     "entityFixes.MobEntity_nbtSuffixMixin",
