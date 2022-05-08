@@ -1025,6 +1025,44 @@ public class CFSettings {
     )
     public static boolean nonSolidBlocksBreakCactusIfPushedFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes mobs being able to spawn on moving pistons",
+            category = BUGFIX
+    )
+    public static boolean mobsSpawnOnMovingPistonsFix = false;
+
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes an edge case within geodes where it will waterlog a block next to lava, due to missing fluid check",
+            category = BUGFIX
+    )
+    public static boolean geodeLavalogFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes client stats being lost when teleporting between dimensions",
+            extra = "[MC-124177](https://bugs.mojang.com/browse/MC-124177)",
+            category = BUGFIX
+    )
+    public static boolean crossDimensionTeleportLosesStatsFix = false;
+
+    //By Max Henkel, and FX
+    @Rule(
+            desc = "Fixes InhabitedTime not always updating in some chunks",
+            extra = "[MC-127407](https://bugs.mojang.com/browse/MC-127407)",
+            category = BUGFIX
+    )
+    public static boolean inhabitedTimeFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes coral being movable. Controversial fix - If you don't like it, don't use it xD",
+            extra = "[MC-133541](https://bugs.mojang.com/browse/MC-133541)",
+            category = BUGFIX
+    )
+    public static boolean movableCoralFanFix = false;
+
 
     /*
 
@@ -1189,51 +1227,6 @@ public class CFSettings {
             category = {BUGFIX,DUPE}
     )
     public static boolean horseDupeFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Prevent the nocom exploit from working",
-            category = {BUGFIX,CRASHFIX,RECOMMENDED}
-    )
-    public static boolean nocomFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes mobs being able to spawn on moving pistons",
-            category = BUGFIX
-    )
-    public static boolean mobsSpawnOnMovingPistonsFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes an edge case within geodes where it will waterlog a block next to lava, due to missing fluid check",
-            category = BUGFIX
-    )
-    public static boolean geodeLavalogFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes client stats being lost when teleporting between dimensions",
-            extra = "[MC-124177](https://bugs.mojang.com/browse/MC-124177)",
-            category = BUGFIX
-    )
-    public static boolean crossDimensionTeleportLosesStatsFix = false;
-
-    //By Max Henkel, and FX
-    @Rule(
-            desc = "Fixes InhabitedTime not always updating in some chunks",
-            extra = "[MC-127407](https://bugs.mojang.com/browse/MC-127407)",
-            category = BUGFIX
-    )
-    public static boolean inhabitedTimeFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes coral being movable. Controversial fix - If you don't like it, don't use it xD",
-            extra = "[MC-133541](https://bugs.mojang.com/browse/MC-133541)",
-            category = BUGFIX
-    )
-    public static boolean movableCoralFanFix = false;
 
     /*
 
