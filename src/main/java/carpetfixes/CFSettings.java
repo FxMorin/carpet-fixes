@@ -1262,6 +1262,14 @@ public class CFSettings {
     )
     public static boolean mobsAttackThroughBlocksFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes bees being able to feel none-existing rain",
+            extra = "[MC-178119](https://bugs.mojang.com/browse/MC-178119)",
+            category = BUGFIX
+    )
+    public static boolean beesFearRainFix = false;
+
 
     /*
 
