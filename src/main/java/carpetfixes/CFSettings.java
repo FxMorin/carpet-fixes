@@ -1583,6 +1583,14 @@ public class CFSettings {
     )
     public static boolean voidTradingFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes villager trade demand decreases indefinitely",
+            extra = "[MC-163962](https://bugs.mojang.com/browse/MC-163962)",
+            category = BUGFIX
+    )
+    public static boolean tradeDemandDecreasesIndefinitelyFix = false;
+
 
     /*
 
