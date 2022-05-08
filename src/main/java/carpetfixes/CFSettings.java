@@ -1103,6 +1103,14 @@ public class CFSettings {
     )
     public static boolean tntExtendedHitboxClipFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes tnt minecarts blowing up when basically turning any rail while next to a block",
+            extra = "[MC-7464](https://bugs.mojang.com/browse/MC-7464)",
+            category = BUGFIX
+    )
+    public static boolean tntMinecartTerribleCollisionFix = false;
+
 
     /*
 

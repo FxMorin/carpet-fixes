@@ -122,6 +122,7 @@
     "entityFixes.PersistentProjectileEntity_piercingMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
+    "entityFixes.TntMinecartEntity_horizontalCollisionMixin",
     "entityFixes.TridentEntity_voidLoyaltyMixin",
     "entityFixes.VillagerEntity_offlinePlayersMixin",
     "entityFixes.VillagerEntity_witchBedMixin",
