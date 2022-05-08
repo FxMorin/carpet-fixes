@@ -177,6 +177,7 @@
     "entityFixes.LivingEntity_bedTeleportMixin",
     "entityFixes.LivingEntity_deathTimeMixin",
     "entityFixes.LivingEntity_momentumCancelledMixin",
+    "entityFixes.LivingEntity_potionEffectsMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.LivingEntity_totemMixin",
     "entityFixes.MobEntity_attackRangeMixin",
