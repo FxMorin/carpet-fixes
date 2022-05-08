@@ -1672,6 +1672,14 @@ public class CFSettings {
     )
     public static boolean mobsTargetDeadEntitiesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes frictionless goats, currently requires to be modified per mob",
+            extra = "[MC-228273](https://bugs.mojang.com/browse/MC-228273)",
+            category = BUGFIX
+    )
+    public static boolean frictionlessEntitiesFix = false;
+
 
     /*
 
