@@ -1608,6 +1608,14 @@ public class CFSettings {
     )
     public static boolean wrongPressurePlateHitboxFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes an ArrayIndexOutOfBoundsException error within the merchant trade packet",
+            extra = "[MC-200000](https://bugs.mojang.com/browse/MC-200000)", // Best bug id xD
+            category = BUGFIX
+    )
+    public static boolean merchantTradePacketExceptionFix = false;
+
 
     /*
 
