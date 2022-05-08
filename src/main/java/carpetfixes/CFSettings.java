@@ -1166,6 +1166,14 @@ public class CFSettings {
     )
     public static boolean projectileGoalTargetsDeadEntitiesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the enderdragon not dropping the blocks it breaks",
+            extra = "[MC-220519](https://bugs.mojang.com/browse/MC-220519)",
+            category = BUGFIX
+    )
+    public static boolean enderDragonDoesntDropBlocksFix = false;
+
 
     /*
 
