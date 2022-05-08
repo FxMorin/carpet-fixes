@@ -175,6 +175,7 @@
     "entityFixes.PersistentProjectileEntity_velocityMixin",
     "entityFixes.SnowGolemEntity_creeperAwManMixin",
     "entityFixes.SnowGolemEntity_floatingMixin",
+    "entityFixes.StriderEntity_coldMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
     "entityFixes.TntMinecartEntity_horizontalCollisionMixin",
