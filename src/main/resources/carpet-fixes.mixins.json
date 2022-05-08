@@ -30,6 +30,7 @@
     "blockFixes.PressurePlateBlock_collisionOnPlaceMixin",
     "blockFixes.RedstoneTorchBlock_inconsistentMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
+    "blockFixes.TntBlock_extendedCollisionMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
     "blockFixes.movableCoral.DeadCoralFanBlock_movableMixin",
     "blockFixes.movableCoral.DeadCoralWallFanBlock_movableMixin",

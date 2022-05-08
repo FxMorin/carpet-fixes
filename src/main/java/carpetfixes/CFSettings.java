@@ -1095,6 +1095,14 @@ public class CFSettings {
     )
     public static boolean brewingResetsOnUnloadFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes tnt being created in extended hitboxes causing tnt to clip through them",
+            extra = "[MC-12730](https://bugs.mojang.com/browse/MC-12730)",
+            category = BUGFIX
+    )
+    public static boolean tntExtendedHitboxClipFix = false;
+
 
     /*
 
