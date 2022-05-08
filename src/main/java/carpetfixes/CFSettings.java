@@ -1119,6 +1119,14 @@ public class CFSettings {
     )
     public static boolean tridentFallingDamageFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes daylight sensors not setting there power state when placed by a player",
+            extra = "[MC-156867](https://bugs.mojang.com/browse/MC-156867)",
+            category = BUGFIX
+    )
+    public static boolean daylightSensorPlacementFix = false;
+
 
     /*
 
