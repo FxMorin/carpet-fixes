@@ -244,6 +244,7 @@
     "parity.ComparatorBlock_terribleMixin",
     "parity.PistonBlock_movableLightMixin",
     "playerFixes.Entity_blockCollisionMixin",
+    "playerFixes.EntityDataObject_dataPlayerMixin",
     "playerFixes.LivingEntity_sleepingKillsMixin",
     "playerFixes.PlayerEntity_absorptionMixin",
     "playerFixes.PlayerEntity_enchantmentCostMixin",
