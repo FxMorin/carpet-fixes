@@ -1502,6 +1502,14 @@ public class CFSettings {
     )
     public static boolean projectileKeepsVelocityFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes BreakDoorGoal not stopping on entity death, leading to cracks that stay for a while",
+            extra = "[MC-185597](https://bugs.mojang.com/browse/MC-185597)",
+            category = BUGFIX
+    )
+    public static boolean doorBreakNotStoppedOnDeathFix = false;
+
 
     /*
 
