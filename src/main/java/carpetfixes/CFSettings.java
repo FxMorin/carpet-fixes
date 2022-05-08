@@ -1221,6 +1221,14 @@ public class CFSettings {
     )
     public static boolean bedTeleportExploitFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes record world events being sent at the wrong time, causing multiple disks to play at the same time",
+            extra = "[MC-112245](https://bugs.mojang.com/browse/MC-112245)",
+            category = BUGFIX
+    )
+    public static boolean recordWorldEventFix = false;
+
 
     /*
 
