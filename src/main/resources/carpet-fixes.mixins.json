@@ -125,6 +125,7 @@
     "entityFixes.MobEntity_nbtSuffixMixin",
     "entityFixes.MobEntity_pickupOwnerMixin",
     "entityFixes.PersistentProjectileEntity_piercingMixin",
+    "entityFixes.SnowGolemEntity_creeperAwManMixin",
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
     "entityFixes.TntMinecartEntity_horizontalCollisionMixin",
