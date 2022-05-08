@@ -18,9 +18,9 @@ public abstract class GiantTrunkPlacer_extraWoodMixin {
 
 
     @Redirect(
-            method = "generate(Lnet/minecraft/world/TestableWorld;Ljava/util/function/BiConsumer;Ljava/util/Random;" +
-                    "ILnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/TreeFeatureConfig;)" +
-                    "Ljava/util/List;",
+            method = "generate(Lnet/minecraft/world/TestableWorld;Ljava/util/function/BiConsumer;" +
+                    "Ljava/util/Random;ILnet/minecraft/util/math/BlockPos;" +
+                    "Lnet/minecraft/world/gen/feature/TreeFeatureConfig;)Ljava/util/List;",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/gen/trunk/GiantTrunkPlacer;" +
@@ -31,7 +31,7 @@ public abstract class GiantTrunkPlacer_extraWoodMixin {
                     ordinal = 1
             )
     )
-    private void addSetLog(GiantTrunkPlacer placer, TestableWorld world, BiConsumer<BlockPos, BlockState> biConsumer,
+    private void addSetLog(TestableWorld world, BiConsumer<BlockPos, BlockState> biConsumer,
                            Random random, BlockPos.Mutable mutable, TreeFeatureConfig config,
                            BlockPos blockPos, int i, int j, int k) {
         if (CFSettings.giantTreesHaveExtraLogFix)
@@ -54,7 +54,7 @@ public abstract class GiantTrunkPlacer_extraWoodMixin {
                     ordinal = 0
             )
     )
-    private void dontSetLog(GiantTrunkPlacer placer, TestableWorld world, BiConsumer<BlockPos, BlockState> replace,
+    private void dontSetLog(TestableWorld world, BiConsumer<BlockPos, BlockState> replace,
                             Random rand, BlockPos.Mutable mut, TreeFeatureConfig config,
                             BlockPos blockPos, int i, int j, int k) {
         if (!CFSettings.giantTreesHaveExtraLogFix)
