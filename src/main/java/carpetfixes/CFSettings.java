@@ -1305,11 +1305,19 @@ public class CFSettings {
     @Rule(
             desc = "Fixes leash not updating when mobs break there leashes",
             extra = "[MC-16663](https://bugs.mojang.com/browse/MC-16663)," +
-                    " [MC-96347](https://bugs.mojang.com/browse/MC-96347)," +
+                    " [MC-96347](https://bugs.mojang.com/browse/MC-96347), and" +
                     " [MC-102214](https://bugs.mojang.com/browse/MC-102214)",
             category = BUGFIX
     )
     public static boolean leashKnotNotUpdatingOnBreakFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes leashes not being detached on mobs being put in a bucket. So you don't get your leash back",
+            extra = "[MC-229057](https://bugs.mojang.com/browse/MC-229057)",
+            category = BUGFIX
+    )
+    public static boolean bucketableMobsNotDetachingLeashesFix = false;
 
 
     /*
