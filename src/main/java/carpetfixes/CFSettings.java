@@ -1270,6 +1270,14 @@ public class CFSettings {
     )
     public static boolean beesFearRainFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to start the conversion of zombie villagers while they are already converting",
+            extra = "[MC-166984](https://bugs.mojang.com/browse/MC-166984)",
+            category = BUGFIX
+    )
+    public static boolean convertConvertingZombieVillagersFix = false;
+
 
     /*
 

@@ -144,6 +144,7 @@
     "entityFixes.VillagerEntity_witchBedMixin",
     "entityFixes.WitherSkullEntity_chargedMixin",
     "entityFixes.ZombieEntity_reinforcementMixin",
+    "entityFixes.ZombieVillagerEntity_convertingMixin",
     "entityFixes.ZombieVillagerEntity_offlinePlayerMixin",
     "entityFixes.convertingFixes.SkeletonEntity_convertingMixin",
     "entityFixes.convertingFixes.ZombieEntity_convertingMixin",
