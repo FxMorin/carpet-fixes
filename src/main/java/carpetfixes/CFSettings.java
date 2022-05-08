@@ -1896,6 +1896,13 @@ public class CFSettings {
     )
     public static boolean reIntroduceFallingBlockEntityPhase = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Re-introduces Piston Translocation from 1.10",
+            category = REINTRODUCE
+    )
+    public static boolean reIntroducePistonTranslocation = false;
+
 
     /*
 
