@@ -41,6 +41,7 @@
     "blockFixes.NoteBlock_placedMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PistonBlock_illegalBreakingMixin",
+    "blockFixes.PistonBlock_pushOrderMixin",
     "blockFixes.PistonBlock_worldBorderMixin",
     "blockFixes.PistonExtensionBlock_spawningMixin",
     "blockFixes.PointedDripstoneBlock_entityChecksMixin",

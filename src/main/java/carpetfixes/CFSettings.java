@@ -1632,6 +1632,14 @@ public class CFSettings {
     )
     public static boolean missingObserverUpdatesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes pistons pulling/pushing blocks using a hashmap causing order to be locational",
+            extra = "[MC-233420](https://bugs.mojang.com/browse/MC-233420)",
+            category = BUGFIX
+    )
+    public static boolean pistonUpdateOrderIsLocationalFix = false;
+
 
     /*
 
