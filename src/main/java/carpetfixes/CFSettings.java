@@ -1079,6 +1079,14 @@ public class CFSettings {
     )
     public static boolean chorusFruitFallDamageFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes comparators being unable to get the signal strength from a blocked chest",
+            extra = "[MC-100302](https://bugs.mojang.com/browse/MC-100302)",
+            category = BUGFIX
+    )
+    public static boolean comparatorSkipsBlockedChestFix = false;
+
 
     /*
 
