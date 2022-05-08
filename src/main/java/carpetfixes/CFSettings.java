@@ -902,13 +902,22 @@ public class CFSettings {
     )
     public static boolean villagerToWitchBedOccupiedFix = false;
 
-    //by FX - PR0CESS, ported from carpetmod112
+    //by FX - PR0CESS, ported from carpetmod112 (By Xcom)
     @Rule(
             desc = "Fixes reload update order for tile entities",
-            extra = "Fixes instant wires randomly breaking - Effective after chunk reload.",
+            extra = {"Fixes instant wires randomly breaking - Effective after chunk reload.",
+                    "Fixes [MC-89146](https://bugs.mojang.com/browse/MC-89146)"},
             category = BUGFIX
     )
     public static boolean reloadUpdateOrderFix = false;
+
+    //by FX - PR0CESS, fix originally by Xcom
+    @Rule(
+            desc = "Fixes piston lastProgress not being set correctly",
+            extra = "Related to [MC-89146](https://bugs.mojang.com/browse/MC-89146)",
+            category = {BUGFIX,NBT}
+    )
+    public static boolean pistonReloadInconsistencyFix = false;
 
     //by FX - PR0CESS
     @Rule(
