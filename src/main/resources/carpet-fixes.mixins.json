@@ -138,6 +138,7 @@
     "entityFixes.ItemFrameEntity_soundMixin",
     "entityFixes.LeashKnotEntity_detachMixin",
     "entityFixes.LivingEntity_bedTeleportMixin",
+    "entityFixes.LivingEntity_deathTimeMixin",
     "entityFixes.LivingEntity_momentumCancelledMixin",
     "entityFixes.LivingEntity_potionEffectsMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
