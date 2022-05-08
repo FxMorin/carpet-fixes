@@ -1525,6 +1525,14 @@ public class CFSettings {
     )
     public static boolean noteBlockNotPoweredOnPlaceFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes wolves getting hurt from damage that should not hurt, such as snowballs",
+            extra = "[MC-72151](https://bugs.mojang.com/browse/MC-72151)",
+            category = BUGFIX
+    )
+    public static boolean zeroDamageHurtsWolvesFix = false;
+
 
     /*
 
