@@ -1703,7 +1703,7 @@ public class CFSettings {
             extra = "[MC-133541](https://bugs.mojang.com/browse/MC-133541)",
             category = BUGFIX
     )
-    public static boolean coralIsMovableFix = false;
+    public static boolean movableCoralFanFix = false;
 
 
     /*

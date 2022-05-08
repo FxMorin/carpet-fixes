@@ -17,7 +17,7 @@ public class DeadCoralWallFanBlock_movableMixin extends Block {
 
     @Override
     public PistonBehavior getPistonBehavior(BlockState state) {
-        if (CFSettings.coralIsMovableFix) return PistonBehavior.DESTROY;
+        if (CFSettings.movableCoralFanFix) return PistonBehavior.DESTROY;
         return super.getPistonBehavior(state);
     }
 }
