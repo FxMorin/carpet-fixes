@@ -1285,6 +1285,14 @@ public class CFSettings {
     )
     public static boolean pistonsPushTooFarFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes bees just not flying when spawning due to navigation not being set",
+            extra = "[MC-190042](https://bugs.mojang.com/browse/MC-190042)",
+            category = BUGFIX
+    )
+    public static boolean beesDropLikeBouldersFix = false;
+
 
     /*
 

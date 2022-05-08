@@ -97,6 +97,7 @@
     "entityFixes.ArmorStandEntity_damageMixin",
     "entityFixes.ArrowEntity_totemMixin",
     "entityFixes.BeeEntity_chunkLoadingMixin",
+    "entityFixes.BeeEntity_flyMixin",
     "entityFixes.BeeEntity_rainMixin",
     "entityFixes.BeeEntity_voidMixin",
     "entityFixes.BoatEntity_fallDamageMixin",
