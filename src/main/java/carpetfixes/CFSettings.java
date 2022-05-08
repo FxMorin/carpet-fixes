@@ -1063,6 +1063,14 @@ public class CFSettings {
     )
     public static boolean movableCoralFanFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes dying entities being affected by splash potion effects and area effect clouds",
+            extra = "[MC-114761](https://bugs.mojang.com/browse/MC-114761)",
+            category = BUGFIX
+    )
+    public static boolean potionEffectsAffectDeadEntitiesFix = false;
+
 
     /*
 
