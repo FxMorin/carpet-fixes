@@ -27,13 +27,17 @@
   ],
   "accessWidener" : "carpet-fixes.accesswidener",
   "depends": {
-    "minecraft": ">=1.18",
+    "minecraft": "1.18.x",
     "fabricloader": ">=0.11.3",
     "conditional-mixin": "*",
     "carpet": ">=1.4.56",
     "java": ">=16"
   },
   "custom": {
+    "mc-publish": {
+      "curseforge": 529720,
+      "modrinth": "7Jaxgqip"
+    },
     "modmenu": {
       "links": {
         "modmenu.discord": "https://discord.gg/mezndgtD83"
