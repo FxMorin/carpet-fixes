@@ -1293,6 +1293,14 @@ public class CFSettings {
     )
     public static boolean beesDropLikeBouldersFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the follow parent goal not setting the movement control, causing babies to move incorrectly",
+            extra = "[MC-149838](https://bugs.mojang.com/browse/MC-149838)",
+            category = BUGFIX
+    )
+    public static boolean followParentGoalBreaksMovementFix = false;
+
 
     /*
 

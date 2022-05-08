@@ -162,6 +162,7 @@
     "goalFixes.BreakDoorGoal_breakAnythingMixin",
     "goalFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
     "goalFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
+    "goalFixes.FollowParentGoal_movementMixin",
     "goalFixes.FoxEntity$AvoidDaylightGoal_originMixin",
     "goalFixes.ProjectileAttackGoal_deadMixin",
     "goalFixes.RevengeGoal_selfHarmMixin",
