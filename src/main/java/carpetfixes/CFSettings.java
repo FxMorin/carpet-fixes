@@ -63,14 +63,11 @@ public class CFSettings {
     public static boolean observerUpdateFix = false;
 
     //By FX - PR0CESS
-    //Recommended since it allows illegal blocks to be made. Suppresses Lots of Update
-    //Still requires more testing to perfect
-    /*@Rule(
-            desc = "Fixes sticky piston heads not giving a block update when failing to pull slime",
-            extra = "[MC-185572](https://bugs.mojang.com/browse/MC-185572)",
-            category = {BUGFIX,RECOMMENDED}
+    @Rule(
+            desc = "Fixes target blocks not giving shape updates when retracted and immediately repowered",
+            category = BUGFIX
     )
-    public static boolean pistonPullingUpdateFix = false;*/
+    public static boolean targetBlockUpdateFix = false;
 
     //By FX - PR0CESS
     //Not putting it in the dupe fix category since technically there is no way to dupe with it anymore. Although there probably will be
