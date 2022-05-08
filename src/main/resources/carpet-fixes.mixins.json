@@ -11,6 +11,7 @@
     "blockEntityFixes.BeehiveBlockEntity_stuckMixin",
     "blockEntityFixes.BrewingStandBlockEntity_brewingItemMixin",
     "blockEntityFixes.EndGatewayBlockEntity_insideMixin",
+    "blockEntityFixes.PistonBlockEntity_pushTooFarMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
     "blockEntityFixes.ViewerCountManager_inventoryMixin",

@@ -1278,6 +1278,13 @@ public class CFSettings {
     )
     public static boolean convertConvertingZombieVillagersFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes pistons pushing entities too far due to the offset",
+            category = BUGFIX
+    )
+    public static boolean pistonsPushTooFarFix = false;
+
 
     /*
 
