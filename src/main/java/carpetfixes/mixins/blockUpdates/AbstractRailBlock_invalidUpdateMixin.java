@@ -40,7 +40,13 @@ public abstract class AbstractRailBlock_invalidUpdateMixin extends Block {
     @Inject(
             method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
                     "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
-            at = @At("HEAD"),
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/AbstractRailBlock;updateCurves(Lnet/minecraft/block/BlockState;" +
+                            "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Z)" +
+                            "Lnet/minecraft/block/BlockState;",
+                    shift = At.Shift.BEFORE
+            ),
             cancellable = true
     )
     private void updateNeighborsExceptWithBetterDirection(BlockState state, World world, BlockPos pos,
