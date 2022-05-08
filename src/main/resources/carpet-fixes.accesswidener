@@ -12,3 +12,4 @@ accessible field net/minecraft/entity/LivingEntity activeStatusEffects Ljava/uti
 accessible class net/minecraft/server/world/ChunkTicketManager$TicketDistanceLevelPropagator
 accessible method net/minecraft/server/world/ChunkTicket isExpired (J)Z
 accessible method net/minecraft/world/ChunkPosDistanceLevelPropagator updateLevel (JIZ)V
+extendable method net/minecraft/entity/projectile/PersistentProjectileEntity fall ()V

@@ -1111,6 +1111,14 @@ public class CFSettings {
     )
     public static boolean tntMinecartTerribleCollisionFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes tridents not dealing damage after having been in a block",
+            extra = "[MC-130151](https://bugs.mojang.com/browse/MC-130151)",
+            category = BUGFIX
+    )
+    public static boolean tridentFallingDamageFix = false;
+
 
     /*
 

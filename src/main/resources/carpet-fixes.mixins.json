@@ -123,6 +123,7 @@
     "entityFixes.TntEntity_netherPortalMixin",
     "entityFixes.TntMinecartEntity_doubleExplodeMixin",
     "entityFixes.TntMinecartEntity_horizontalCollisionMixin",
+    "entityFixes.TridentEntity_fallingMixin",
     "entityFixes.TridentEntity_voidLoyaltyMixin",
     "entityFixes.VillagerEntity_offlinePlayersMixin",
     "entityFixes.VillagerEntity_witchBedMixin",
