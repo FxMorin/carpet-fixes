@@ -1518,6 +1518,13 @@ public class CFSettings {
     )
     public static boolean shipwreckChunkBorderIssuesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes note blocks not setting there powered state when placed by a player",
+            category = BUGFIX
+    )
+    public static boolean noteBlockNotPoweredOnPlaceFix = false;
+
 
     /*
 
