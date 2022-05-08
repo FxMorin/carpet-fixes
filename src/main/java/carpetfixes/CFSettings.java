@@ -1439,6 +1439,14 @@ public class CFSettings {
     )
     public static boolean hoppersSelectMinecartsRandomlyFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes jukebox not spawning disc in the center of the block when broken",
+            extra = "[MC-166032](https://bugs.mojang.com/browse/MC-166032)",
+            category = BUGFIX
+    )
+    public static boolean jukeboxDiscItemOffsetOnBreakFix = false;
+
 
     /*
 
