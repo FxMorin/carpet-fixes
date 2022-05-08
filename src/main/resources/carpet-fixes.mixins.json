@@ -13,6 +13,7 @@
     "blockEntityFixes.EndGatewayBlockEntity_insideMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
+    "blockEntityFixes.ViewerCountManager_inventoryMixin",
     "blockFixes.AbstractButtonBlock_collisionOnPlaceMixin",
     "blockFixes.Block_itemPositionMixin",
     "blockFixes.CactusBlock_movingBlockMixin",
