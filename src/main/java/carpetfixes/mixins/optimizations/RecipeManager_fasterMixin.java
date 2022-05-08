@@ -40,7 +40,7 @@ public abstract class RecipeManager_fasterMixin {
             World world,
             CallbackInfoReturnable<Optional<T>> cir
     ) {
-        if (CFSettings.optimizedRecipeManager) {
+        if (CFSettings.optimizedRecipeManager && type == RecipeType.CRAFTING) {
             int slots = 0;
             int count;
             //compare size to quickly remove recipes that are not even close. Plus remove streams
