@@ -1463,6 +1463,14 @@ public class CFSettings {
     )
     public static boolean witchAndCatSpawnMergedFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes ice not turning to water when broken by a player if the block below is waterlogged",
+            extra = "[MC-206185](https://bugs.mojang.com/browse/MC-206185)",
+            category = BUGFIX
+    )
+    public static boolean iceWaterSkipsWaterloggedFix = false;
+
 
     /*
 

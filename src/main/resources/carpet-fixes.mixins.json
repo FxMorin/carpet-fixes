@@ -29,6 +29,7 @@
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.EnchantingTableBlock_transparentMixin",
     "blockFixes.FlowableFluid_chainedTickMixin",
+    "blockFixes.IceBlock_breakMixin",
     "blockFixes.JukeboxBlock_itemOffsetMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PistonBlock_illegalBreakingMixin",
