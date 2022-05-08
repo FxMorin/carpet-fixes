@@ -1182,6 +1182,14 @@ public class CFSettings {
     )
     public static boolean spawnInsideGatewayFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes sweeping edge not applying fire aspect",
+            extra = "[MC-93669](https://bugs.mojang.com/browse/MC-93669)",
+            category = BUGFIX
+    )
+    public static boolean sweepingIgnoresFireAspectFix = false;
+
 
     /*
 

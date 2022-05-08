@@ -197,6 +197,7 @@
     "parity.PistonBlock_movableLightMixin",
     "playerFixes.Entity_blockCollisionMixin",
     "playerFixes.LivingEntity_sleepingKillsMixin",
+    "playerFixes.PlayerEntity_sweepingFireMixin",
     "playerFixes.PlayerManager_endPortalEffectsMixin",
     "playerFixes.ServerPlayerEntity_dimensionStatusMixin",
     "playerFixes.ServerPlayerEntity_endPortalEffectsMixin",
