@@ -128,6 +128,7 @@
     "entityFixes.TntMinecartEntity_horizontalCollisionMixin",
     "entityFixes.TridentEntity_fallingMixin",
     "entityFixes.TridentEntity_voidLoyaltyMixin",
+    "entityFixes.VillagerEntity_fireworkMixin",
     "entityFixes.VillagerEntity_offlinePlayersMixin",
     "entityFixes.VillagerEntity_witchBedMixin",
     "entityFixes.WitherSkullEntity_chargedMixin",

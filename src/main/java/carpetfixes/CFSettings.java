@@ -1150,6 +1150,14 @@ public class CFSettings {
     )
     public static boolean endermanPainfulTeleportFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes villagers being hurt by there own fireworks",
+            extra = "[MC-195326](https://bugs.mojang.com/browse/MC-195326) & [MC-233250](https://bugs.mojang.com/browse/MC-233250)",
+            category = BUGFIX
+    )
+    public static boolean badVillagerPyrotechnicsFix = false;
+
 
     /*
 
