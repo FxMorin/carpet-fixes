@@ -1245,6 +1245,14 @@ public class CFSettings {
     )
     public static boolean doubleBlocksSkipEntityCheckFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes mobs attacking themselves. Self-Harm should not be taught to kids ;)",
+            extra = "[MC-110386](https://bugs.mojang.com/browse/MC-110386)",
+            category = BUGFIX
+    )
+    public static boolean selfHarmFix = false;
+
 
     /*
 
