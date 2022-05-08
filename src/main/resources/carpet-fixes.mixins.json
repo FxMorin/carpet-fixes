@@ -9,6 +9,7 @@
     "advanced.ThreadedAnvilChunkStorage_chunkTimingsMixin",
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",
     "blockEntityFixes.BeehiveBlockEntity_stuckMixin",
+    "blockEntityFixes.BrewingStandBlockEntity_brewingItemMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
     "blockFixes.AbstractButtonBlock_collisionOnPlaceMixin",

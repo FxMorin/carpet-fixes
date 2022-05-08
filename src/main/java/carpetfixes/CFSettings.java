@@ -1087,6 +1087,14 @@ public class CFSettings {
     )
     public static boolean comparatorSkipsBlockedChestFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes brewing stands resetting there brewTime when being unloaded",
+            extra = "[MC-26304](https://bugs.mojang.com/browse/MC-26304)",
+            category = BUGFIX
+    )
+    public static boolean brewingResetsOnUnloadFix = false;
+
 
     /*
 
