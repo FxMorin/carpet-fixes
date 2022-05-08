@@ -13,6 +13,7 @@
     "blockEntityFixes.BeehiveBlockEntity_stuckMixin",
     "blockEntityFixes.BrewingStandBlockEntity_brewingItemMixin",
     "blockEntityFixes.EndGatewayBlockEntity_insideMixin",
+    "blockEntityFixes.HopperBlockEntity_randomMinecartMixin",
     "blockEntityFixes.PistonBlockEntity_pushTooFarMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",
