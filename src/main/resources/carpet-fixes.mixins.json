@@ -34,6 +34,7 @@
     "blockFixes.FlowableFluid_chainedTickMixin",
     "blockFixes.IceBlock_breakMixin",
     "blockFixes.JukeboxBlock_itemOffsetMixin",
+    "blockFixes.LavaFluid_wrongStateMixin",
     "blockFixes.NoteBlock_placedMixin",
     "blockFixes.PistonBlock_headlessMixin",
     "blockFixes.PistonBlock_illegalBreakingMixin",

@@ -1567,6 +1567,14 @@ public class CFSettings {
     )
     public static boolean powderSnowOnlySlowIfFeetInBlockFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes lava creating fire with incorrect block states",
+            extra = "[MC-250048](https://bugs.mojang.com/browse/MC-250048)",
+            category = BUGFIX
+    )
+    public static boolean lavaCalculatesWrongFireStateFix = false;
+
 
     /*
 
