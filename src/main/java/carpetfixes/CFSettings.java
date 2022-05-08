@@ -1510,6 +1510,14 @@ public class CFSettings {
     )
     public static boolean doorBreakNotStoppedOnDeathFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes shipwrecks having different block palettes and heights between chunk borders",
+            extra = "[MC-131745](https://bugs.mojang.com/browse/MC-131745)",
+            category = BUGFIX
+    )
+    public static boolean shipwreckChunkBorderIssuesFix = false;
+
 
     /*
 
