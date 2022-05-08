@@ -1479,6 +1479,13 @@ public class CFSettings {
     )
     public static boolean duplicateEntityUUIDFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes giant trees creating an extra single log at the top corner",
+            category = BUGFIX
+    )
+    public static boolean giantTreesHaveExtraLogFix = false;
+
 
     /*
 

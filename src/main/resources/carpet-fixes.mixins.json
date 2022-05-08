@@ -169,6 +169,7 @@
     "entityFixes.convertingFixes.SkeletonEntity_convertingMixin",
     "entityFixes.convertingFixes.ZombieEntity_convertingMixin",
     "featureFixes.BuriedTreasureFeature_centerMixin",
+    "featureFixes.GiantTrunkPlacer_extraWoodMixin",
     "featureFixes.SwampHutGenerator_samePosMixin",
     "gameEventFixes.BoatEntity_missingOcclusionMixin",
     "gameEventFixes.MinecartItem_missingOcclusionMixin",
