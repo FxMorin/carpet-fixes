@@ -1237,6 +1237,14 @@ public class CFSettings {
     )
     public static boolean dripstoneSkipsEntityCheckFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes double blocks like beds & doors from skipping the entity check",
+            extra = "[MC-123619](https://bugs.mojang.com/browse/MC-123619)",
+            category = BUGFIX
+    )
+    public static boolean doubleBlocksSkipEntityCheckFix = false;
+
 
     /*
 

@@ -36,6 +36,8 @@
     "blockFixes.SlimeBlock_incorrectLogicMixin",
     "blockFixes.TntBlock_extendedCollisionMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
+    "blockFixes.doubleBlocksSkipEntityChecks.BedBlock_entityChecksMixin",
+    "blockFixes.doubleBlocksSkipEntityChecks.DoorBlock_entityChecksMixin",
     "blockFixes.movableCoral.DeadCoralFanBlock_movableMixin",
     "blockFixes.movableCoral.DeadCoralWallFanBlock_movableMixin",
     "blockUpdates.AbstractPressurePlateBlock_uselessMixin",
