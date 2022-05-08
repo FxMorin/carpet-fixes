@@ -1486,6 +1486,14 @@ public class CFSettings {
     )
     public static boolean giantTreesHaveExtraLogFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes players unable to jump off the edge of blocks while sneaking and having a block above them",
+            extra = "[MC-197647](https://bugs.mojang.com/browse/MC-197647)",
+            category = BUGFIX
+    )
+    public static boolean cantJumpOffBlockWhenSneakingFix = false;
+
 
     /*
 
