@@ -63,6 +63,7 @@
     "blockUpdates.AbstractRailBlock_missingUpdateOnPushMixin",
     "blockUpdates.AbstractRedstoneGateBlock_updatesMixin",
     "blockUpdates.DetectorRailBlock_comparatorMixin",
+    "blockUpdates.DetectorRailBlock_invalidUpdateMixin",
     "blockUpdates.HopperBlock_missingUpdateMixin",
     "blockUpdates.ObserverBlock_missingUpdateMixin",
     "blockUpdates.RedstoneTorchBlock_updateOrderOnBreakMixin",
