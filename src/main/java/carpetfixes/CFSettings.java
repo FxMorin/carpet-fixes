@@ -1174,6 +1174,14 @@ public class CFSettings {
     )
     public static boolean enderDragonDoesntDropBlocksFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the end gateway teleport check using blocks that should be invalid as valid for teleporting",
+            extra = "[MC-193421](https://bugs.mojang.com/browse/MC-193421)",
+            category = BUGFIX
+    )
+    public static boolean spawnInsideGatewayFix = false;
+
 
     /*
 
