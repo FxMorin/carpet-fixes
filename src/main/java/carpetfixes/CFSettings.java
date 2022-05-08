@@ -1624,6 +1624,14 @@ public class CFSettings {
     )
     public static boolean eatCakeFromAllSidesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes some events / actions not triggering observers",
+            extra = "[MC-107664](https://bugs.mojang.com/browse/MC-107664)",
+            category = BUGFIX
+    )
+    public static boolean missingObserverUpdatesFix = false;
+
 
     /*
 
