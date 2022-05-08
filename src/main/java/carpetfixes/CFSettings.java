@@ -1319,6 +1319,14 @@ public class CFSettings {
     )
     public static boolean bucketableMobsNotDetachingLeashesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes snowman creating snow while not touching the ground",
+            extra = "[MC-214344](https://bugs.mojang.com/browse/MC-214344)",
+            category = BUGFIX
+    )
+    public static boolean snowmanCreateSnowWhileFloatingFix = false;
+
 
     /*
 
