@@ -1343,6 +1343,14 @@ public class CFSettings {
     )
     public static boolean ocelotsAndCatsTryToFleeInVehicleFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes enchanting in creative mode still deducting experience",
+            extra = "[MC-12656](https://bugs.mojang.com/browse/MC-12656)",
+            category = {BUGFIX,CREATIVE}
+    )
+    public static boolean creativeEnchantingCostsExperienceFix = false;
+
 
     /*
 

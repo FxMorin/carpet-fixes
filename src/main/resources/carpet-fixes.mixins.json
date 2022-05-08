@@ -220,6 +220,7 @@
     "parity.PistonBlock_movableLightMixin",
     "playerFixes.Entity_blockCollisionMixin",
     "playerFixes.LivingEntity_sleepingKillsMixin",
+    "playerFixes.PlayerEntity_enchantmentCostMixin",
     "playerFixes.PlayerEntity_sweepingFireMixin",
     "playerFixes.PlayerManager_endPortalEffectsMixin",
     "playerFixes.ServerPlayerEntity_bedTeleportMixin",
