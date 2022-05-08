@@ -166,6 +166,7 @@
     "gameEventFixes.stepEvent.ServerPlayNetworkHandler_stepEventMixin",
     "goalFixes.BreakDoorGoal_breakAnythingMixin",
     "goalFixes.CatEntity$SleepWithOwnerGoal_breakLeashMixin",
+    "goalFixes.EatGrassGoal_slabMixin",
     "goalFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "goalFixes.FollowParentGoal_movementMixin",
     "goalFixes.FoxEntity$AvoidDaylightGoal_originMixin",

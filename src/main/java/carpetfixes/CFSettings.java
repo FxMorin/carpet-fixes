@@ -1327,6 +1327,14 @@ public class CFSettings {
     )
     public static boolean snowmanCreateSnowWhileFloatingFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes sheep being able to eat grass through full blocks",
+            extra = "[MC-76490](https://bugs.mojang.com/browse/MC-76490)",
+            category = BUGFIX
+    )
+    public static boolean sheepEatGrassThroughBlocksFix = false;
+
 
     /*
 
