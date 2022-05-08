@@ -1616,6 +1616,14 @@ public class CFSettings {
     )
     public static boolean merchantTradePacketExceptionFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes cakes being eaten from all sides",
+            extra = "[MC-249685](https://bugs.mojang.com/browse/MC-249685)",
+            category = BUGFIX
+    )
+    public static boolean eatCakeFromAllSidesFix = false;
+
 
     /*
 

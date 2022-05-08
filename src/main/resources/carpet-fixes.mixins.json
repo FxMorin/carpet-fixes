@@ -26,6 +26,7 @@
     "blockFixes.AbstractButtonBlock_collisionOnPlaceMixin",
     "blockFixes.Block_itemPositionMixin",
     "blockFixes.CactusBlock_movingBlockMixin",
+    "blockFixes.CakeBlock_eatSideMixin",
     "blockFixes.CarvedPumpkinBlock_spawningMixin",
     "blockFixes.ChestBlock_blockedComparatorMixin",
     "blockFixes.ChestBlock_worldBorderMixin",
