@@ -1542,6 +1542,14 @@ public class CFSettings {
     )
     public static boolean zeroDamageHurtsWolvesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes absorption effect not going away even after the absorption hearts are gone",
+            extra = "[MC-202432](https://bugs.mojang.com/browse/MC-202432)",
+            category = BUGFIX
+    )
+    public static boolean absorptionStaysWithoutHeartsFix = false;
+
 
     /*
 
