@@ -1406,6 +1406,14 @@ public class CFSettings {
     )
     public static boolean beaconsAlwaysPlaySoundOnBreakFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes falling block damage bounding box being offset",
+            extra = "[MC-203302](https://bugs.mojang.com/browse/MC-203302)",
+            category = BUGFIX
+    )
+    public static boolean fallingBlockDamageIsOffsetFix = false;
+
 
     /*
 

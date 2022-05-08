@@ -125,6 +125,7 @@
     "entityFixes.Entity_incorrectLogicMixin",
     "entityFixes.Entity_velocityFailMixin",
     "entityFixes.ExperienceOrbEntity_lavaCollisionMixin",
+    "entityFixes.FallingBlockEntity_anvilDamageMixin",
     "entityFixes.FallingBlockEntity_netherPortalMixin",
     "entityFixes.FallingBlockEntity_teleportRefreshMixin",
     "entityFixes.FishingBobberEntity_outsideWaterMixin",
