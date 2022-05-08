@@ -1214,6 +1214,13 @@ public class CFSettings {
     )
     public static boolean viewerCountNegativesFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes a 8x teleport exploit using beds",
+            category = BUGFIX
+    )
+    public static boolean bedTeleportExploitFix = false;
+
 
     /*
 
