@@ -40,7 +40,7 @@
     "blockFixes.PistonBlock_worldBorderMixin",
     "blockFixes.PistonExtensionBlock_spawningMixin",
     "blockFixes.PointedDripstoneBlock_entityChecksMixin",
-    "blockFixes.PowderSnowBlock_centerCollisionMixin",
+    "blockFixes.PowderSnowBlock_feetAndCenterMixin",
     "blockFixes.PowderSnowBlock_lightMixin",
     "blockFixes.PressurePlateBlock_collisionOnPlaceMixin",
     "blockFixes.RedstoneTorchBlock_inconsistentMixin",

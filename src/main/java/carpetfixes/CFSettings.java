@@ -1559,6 +1559,14 @@ public class CFSettings {
     )
     public static boolean brokenHiddenStatusEffectFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes powder snow only slowing down players when there feet are in the block",
+            extra = "[MC-205242](https://bugs.mojang.com/browse/MC-205242)",
+            category = BUGFIX
+    )
+    public static boolean powderSnowOnlySlowIfFeetInBlockFix = false;
+
 
     /*
 
