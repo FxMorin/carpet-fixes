@@ -1134,6 +1134,14 @@ public class CFSettings {
     )
     public static boolean comparatorTransparencyFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes enderman doing teleporting effects and sounds and avoiding projectiles while in a vehicle",
+            extra = "[MC-183446](https://bugs.mojang.com/browse/MC-183446)",
+            category = BUGFIX
+    )
+    public static boolean endermanAvoidProjectilesInVehicleFix = false;
+
 
     /*
 
