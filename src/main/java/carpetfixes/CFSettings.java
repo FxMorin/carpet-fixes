@@ -1471,6 +1471,14 @@ public class CFSettings {
     )
     public static boolean iceWaterSkipsWaterloggedFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes entities created with duplicate uuid's",
+            extra = "[MC-137370](https://bugs.mojang.com/browse/MC-137370)",
+            category = {BUGFIX,EXPERIMENTAL}
+    )
+    public static boolean duplicateEntityUUIDFix = false;
+
 
     /*
 

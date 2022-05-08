@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_16",
   "plugin": "carpetfixes.settings.CarpetFixesMixinConfigPlugin",
   "mixins": [
+    "accessors.EntityAccessor",
     "accessors.MobEntityAccessor",
     "accessors.TagKeyAccessor",
     "advanced.MinecraftServer_autosaveDelayMixin",
@@ -76,6 +77,7 @@
     "coreSystemFixes.EnderDragonFight_twoCrystalMixin",
     "coreSystemFixes.Explosion_exposureMixin",
     "coreSystemFixes.Explosion_worldBorderMixin",
+    "coreSystemFixes.ServerEntityManager_duplicateMixin",
     "coreSystemFixes.ServerWorld_rainTimerMixin",
     "coreSystemFixes.ServerWorld_spawnChunksMixin",
     "coreSystemFixes.StatusEffectInstance_nbtSuffixMixin",
