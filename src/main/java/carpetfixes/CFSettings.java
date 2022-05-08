@@ -1229,6 +1229,14 @@ public class CFSettings {
     )
     public static boolean recordWorldEventFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes pointed dripstone skipping the entity check",
+            extra = "[MC-206599](https://bugs.mojang.com/browse/MC-206599)",
+            category = BUGFIX
+    )
+    public static boolean dripstoneSkipsEntityCheckFix = false;
+
 
     /*
 
