@@ -1705,6 +1705,14 @@ public class CFSettings {
     )
     public static boolean movableCoralFanFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the end obsidian platform breaking blocks above the platform every time you travel to the end",
+            extra = "[MC-902](https://bugs.mojang.com/browse/MC-902)",
+            category = BUGFIX
+    )
+    public static boolean obsidianPlatformDestroysBlocksFix = false;
+
 
     /*
 
