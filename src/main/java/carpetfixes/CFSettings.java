@@ -1685,6 +1685,14 @@ public class CFSettings {
     )
     public static boolean obsidianPlatformDestroysBlocksFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes grindstones not being movable",
+            extra = "[MC-140498](https://bugs.mojang.com/browse/MC-140498)",
+            category = BUGFIX
+    )
+    public static boolean grindstonesNotMovableFix = false;
+
 
     /*
 

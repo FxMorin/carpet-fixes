@@ -35,6 +35,7 @@
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.EnchantingTableBlock_transparentMixin",
     "blockFixes.FlowableFluid_chainedTickMixin",
+    "blockFixes.GrindstoneBlock_movableMixin",
     "blockFixes.IceBlock_breakMixin",
     "blockFixes.JukeboxBlock_itemOffsetMixin",
     "blockFixes.LavaFluid_wrongStateMixin",
