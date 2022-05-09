@@ -1,4 +1,4 @@
-package carpetfixes.mixins.entityFixes;
+/*package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CFSettings;
 import net.minecraft.entity.Bucketable;
@@ -17,6 +17,7 @@ import java.util.Optional;
 @Mixin(Bucketable.class)
 public interface Bucketable_leashDetachMixin {
 
+    // TODO: Figure out why this seems to crash when used outside of the IDE
 
     @Inject(
             method = "tryBucket",
@@ -29,4 +30,4 @@ public interface Bucketable_leashDetachMixin {
         if (CFSettings.bucketableMobsNotDetachingLeashesFix && entity instanceof MobEntity mobEntity)
             mobEntity.detachLeash(false,true);
     }
-}
+}*/
