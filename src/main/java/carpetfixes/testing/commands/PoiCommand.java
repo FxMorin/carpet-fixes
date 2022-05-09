@@ -7,6 +7,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.command.argument.BlockPosArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.DebugInfoSender;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
@@ -54,6 +55,7 @@ public class PoiCommand {
         if (optionalType.isPresent()) {
             source.sendFeedback(Text.of("Removed POI - "+optionalType.get()), false);
             poiStorage.remove(pos);
+            DebugInfoSender.sendPoiRemoval(world, pos);
         } else {
             source.sendFeedback(Text.of("There is no POI at this position!"), false);
         }
