@@ -12,7 +12,7 @@
 
 If you enjoy the mod, help me out by giving this project a star, thanks.
 
-The mod currently has over 250+ Fixes!
+The mod currently has over 220+ Fixes!
 
 ## Settings
 
