@@ -3,6 +3,7 @@ package carpetfixes;
 import carpet.CarpetServer;
 import carpet.settings.Rule;
 import carpetfixes.helpers.UpdateScheduler;
+import carpetfixes.settings.Conditions;
 import carpetfixes.settings.Validators;
 import carpetfixes.settings.VersionConditions;
 import net.minecraft.block.BlockState;
@@ -996,7 +997,8 @@ public class CFSettings {
             extra = "[MC-248621](https://bugs.mojang.com/browse/MC-248621)",
             category = {BUGFIX,CRASHFIX,RECOMMENDED},
             validate = Validators.TagKeyMemoryLeakFixValidator.class,
-            condition = VersionConditions.GT_22w05a.class
+            condition = {VersionConditions.GT_22w05a.class,
+                    Conditions.ConflictTechReborn.class}
     )
     public static boolean tagKeyMemoryLeakFix = false;
 
