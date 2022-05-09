@@ -12,6 +12,8 @@
 
 If you enjoy the mod, help me out by giving this project a star, thanks.
 
+The mod currently has over 250+ Fixes!
+
 ## Settings
 
 See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings)
