@@ -23,6 +23,6 @@ public class ChorusFruitItem_fallDamageMixin {
             )
     )
     private void finishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
-        if (CFSettings.chorusFruitFallDamageFix) user.fallDistance = 0;
+        if (CFSettings.chorusFruitFallDamageFix) user.onLanding();
     }
 }
