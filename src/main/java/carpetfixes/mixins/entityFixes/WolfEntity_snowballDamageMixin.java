@@ -12,7 +12,11 @@ public class WolfEntity_snowballDamageMixin {
 
     @ModifyVariable(
             method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
-            at = @At("LOAD"),
+            at = @At(
+                    value = "LOAD",
+                    ordinal = 0
+            ),
+            require = 0,
             name = "amount"
     )
     private float modifyAmount(float amount) {
