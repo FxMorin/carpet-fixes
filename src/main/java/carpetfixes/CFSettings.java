@@ -1721,6 +1721,14 @@ public class CFSettings {
     )
     public static boolean grindstonesNotMovableFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes depth strider slowing down riptide, causing riptide to be slower in water and messing up the launching",
+            extra = "[MC-136249](https://bugs.mojang.com/browse/MC-136249)",
+            category = {BUGFIX,CLIENT}
+    )
+    public static boolean depthStriderSlowsRiptideFix = false;
+
 
     /*
 

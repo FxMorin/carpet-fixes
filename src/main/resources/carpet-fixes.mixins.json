@@ -183,6 +183,7 @@
     "entityFixes.LivingEntity_potionEffectsMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
     "entityFixes.LivingEntity_totemMixin",
+    "entityFixes.LivingEntity_tridentStriderMixin",
     "entityFixes.MobEntity_attackRangeMixin",
     "entityFixes.MobEntity_deadTargetMixin",
     "entityFixes.MobEntity_leashDetachMixin",
