@@ -182,6 +182,7 @@
     "entityFixes.LivingEntity_momentumCancelledMixin",
     "entityFixes.LivingEntity_potionEffectsMixin",
     "entityFixes.LivingEntity_soulSpeedMixin",
+    "entityFixes.LivingEntity_teleportWorldBorderMixin",
     "entityFixes.LivingEntity_totemMixin",
     "entityFixes.LivingEntity_tridentStriderMixin",
     "entityFixes.MobEntity_attackRangeMixin",
