@@ -1753,6 +1753,15 @@ public class CFSettings {
     )
     public static boolean lavaIgnoresBubbleColumnFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes minecart colliding when standing still",
+            extra = "[MC-14850](https://bugs.mojang.com/browse/MC-14850)",
+            category = BUGFIX
+    )
+    public static boolean directionalMinecartCollisionFix = false;
+
+
     /*
 
     OPTIMIZATIONS

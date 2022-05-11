@@ -142,6 +142,7 @@
     "dupeFixes.saferItemTransfer.DropperBlock_dontCopyMixin",
     "entityFixes.AbstractDecorationEntity_triggersTrapsMixin",
     "entityFixes.AbstractMinecartEntity_armorStandMixin",
+    "entityFixes.AbstractMinecartEntity_incorrectBoundsMixin",
     "entityFixes.AllayEntity_itemPickupMixin",
     "entityFixes.AllayEntity_itemSavingMixin",
     "entityFixes.AllayEntity_voidMixin",
