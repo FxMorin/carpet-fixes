@@ -1761,6 +1761,14 @@ public class CFSettings {
     )
     public static boolean directionalMinecartCollisionFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes minecart not bouncing from any transparent block with a full face",
+            extra = "[MC-6311](https://bugs.mojang.com/browse/MC-6311) & [MC-171903](https://bugs.mojang.com/browse/MC-171903)",
+            category = BUGFIX
+    )
+    public static boolean minecartWontBounceFix = false;
+
 
     /*
 
