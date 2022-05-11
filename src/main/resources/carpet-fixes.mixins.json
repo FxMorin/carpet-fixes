@@ -56,6 +56,7 @@
     "blockFixes.RedstoneTorchBlock_inconsistentMixin",
     "blockFixes.RedstoneTorchBlock_oldInconsistentMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
+    "blockFixes.SpreadableBlock_snowLayersMixin",
     "blockFixes.TargetBlock_missingShapeUpdateMixin",
     "blockFixes.TntBlock_extendedCollisionMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
