@@ -1745,6 +1745,14 @@ public class CFSettings {
     )
     public static boolean grassSnowLayersFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes lava not being able to convert bubble columns to stone",
+            extra = "[MC-137713](https://bugs.mojang.com/browse/MC-137713)",
+            category = BUGFIX
+    )
+    public static boolean lavaIgnoresBubbleColumnFix = false;
+
     /*
 
     OPTIMIZATIONS
