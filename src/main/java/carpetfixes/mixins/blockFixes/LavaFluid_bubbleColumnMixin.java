@@ -30,7 +30,6 @@ public class LavaFluid_bubbleColumnMixin {
     )
     private void moreFlow(WorldAccess world, BlockPos blockPos, BlockState blockState, Direction direction,
                         FluidState fluidState, CallbackInfo ci) {
-        System.out.println(blockState.toString());
         if (CFSettings.lavaIgnoresBubbleColumnFix && blockState.getBlock() instanceof BubbleColumnBlock) {
             world.setBlockState(blockPos, Blocks.STONE.getDefaultState(), Block.NOTIFY_ALL);
         }
