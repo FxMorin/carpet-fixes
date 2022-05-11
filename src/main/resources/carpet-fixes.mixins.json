@@ -33,6 +33,7 @@
     "blockFixes.ChestBlock_blockedComparatorMixin",
     "blockFixes.ChestBlock_worldBorderMixin",
     "blockFixes.DaylightDetectorBlock_placedMixin",
+    "blockFixes.DetectorRailBlock_detectCenterMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.EnchantingTableBlock_transparentMixin",
     "blockFixes.FlowableFluid_bubbleColumnMixin",
