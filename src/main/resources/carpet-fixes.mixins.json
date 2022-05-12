@@ -34,6 +34,7 @@
     "blockFixes.DaylightDetectorBlock_placedMixin",
     "blockFixes.DirtPathBlock_movingBlockMixin",
     "blockFixes.EnchantingTableBlock_transparentMixin",
+    "blockFixes.FlowableFluid_bubbleColumnMixin",
     "blockFixes.FlowableFluid_chainedTickMixin",
     "blockFixes.GrindstoneBlock_movableMixin",
     "blockFixes.IceBlock_breakMixin",
