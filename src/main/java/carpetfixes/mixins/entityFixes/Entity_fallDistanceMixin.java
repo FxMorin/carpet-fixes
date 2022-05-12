@@ -49,9 +49,9 @@ public abstract class Entity_fallDistanceMixin {
                 }
                 this.fallDistance = 0.0F;
             } else if (heightDifference < 0.0D) {
-                this.fallDistance = (float) ((double) this.fallDistance-heightDifference);
+                this.fallDistance -= (float)heightDifference;
             } else if (heightDifference > 0.0D) { //Add back in the heightDifference if going upwards
-                this.fallDistance = Math.max((float)((double) this.fallDistance-heightDifference),0);
+                this.fallDistance = Math.max((float)((double)this.fallDistance-heightDifference),0);
             }
             ci.cancel();
         }
