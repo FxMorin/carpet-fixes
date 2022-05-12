@@ -1745,8 +1745,8 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes minecart not bouncing from any transparent block with a full face",
-            extra = "[MC-6311](https://bugs.mojang.com/browse/MC-6311) & [MC-171903](https://bugs.mojang.com/browse/MC-171903)",
+            desc = "Fixes detector rails detecting the minecarts to early and causing minecarts to go in the wrong direction",
+            extra = "[MC-868](https://bugs.mojang.com/browse/MC-868)",
             category = BUGFIX
     )
     public static boolean detectorRailDetectsTooEarlyFix = false;
