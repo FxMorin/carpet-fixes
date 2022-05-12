@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.lang.reflect.Method;
@@ -85,6 +86,11 @@ public class Utils {
             mutable.set(pos, direction);
             world.getBlockState(mutable).getStateForNeighborUpdate(direction.getOpposite(), Blocks.AIR.getDefaultState(), world, mutable, pos);
         }
+    }
+
+    // Doing vec.equals(Vec3d.ZERO) does not work due to double precision
+    public static boolean isZero(Vec3d vec) {
+        return vec.x == 0.0 && vec.y == 0.0 && vec.z == 0.0;
     }
 
     //If I was actually implementing this, the color values would have been binary in order for fast calculations.
