@@ -1711,6 +1711,14 @@ public class CFSettings {
     )
     public static boolean teleportPastWorldBorderFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes grass turning to dirt if more then 1 snow layer is on top of it.",
+            extra = "[MC-150654](https://bugs.mojang.com/browse/MC-150654)",
+            category = BUGFIX
+    )
+    public static boolean grassSnowLayersFix = false;
+
 
     /*
 
