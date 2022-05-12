@@ -1703,6 +1703,14 @@ public class CFSettings {
     )
     public static boolean depthStriderSlowsRiptideFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes enderman, chorus fruit, and some other teleports from teleporting past the world border",
+            extra = "[MC-106416](https://bugs.mojang.com/browse/MC-106416)",
+            category = BUGFIX
+    )
+    public static boolean teleportPastWorldBorderFix = false;
+
 
     /*
 
