@@ -130,6 +130,7 @@
     "entityFixes.AbstractDecorationEntity_triggersTrapsMixin",
     "entityFixes.AbstractMinecartEntity_armorStandMixin",
     "entityFixes.AbstractMinecartEntity_directionalMixin",
+    "entityFixes.AbstractMinecartEntity_hitBlockMixin",
     "entityFixes.ArmorStandEntity_aggroMechanicsMixin",
     "entityFixes.ArmorStandEntity_damageMixin",
     "entityFixes.ArmorStandEntity_markerMixin",
