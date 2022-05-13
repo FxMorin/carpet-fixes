@@ -1,5 +1,6 @@
 package carpetfixes.mixins.other;
 
+import carpetfixes.testing.commands.FillSummonCommand;
 import carpetfixes.testing.commands.PoiCommand;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.loader.api.FabricLoader;
@@ -33,6 +34,7 @@ public class CommandManager_devMixin {
             DebugPathCommand.register(this.dispatcher);
             RaidCommand.register(this.dispatcher);
             PoiCommand.register(this.dispatcher); //Custom
+            FillSummonCommand.register(this.dispatcher); //Custom
         }
     }
 }
