@@ -1777,6 +1777,14 @@ public class CFSettings {
     )
     public static boolean detectorRailDetectsTooEarlyFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes detector rails not powering powered rails diagonally",
+            extra = "[MC-3430](https://bugs.mojang.com/browse/MC-3430)",
+            category = BUGFIX
+    )
+    public static boolean detectorRailsDontPowerDiagonallyFix = false;
+
 
     /*
 
