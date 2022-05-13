@@ -10,9 +10,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ZombieEntity.class)
-public class ZombieEntity_reinforcementMixin extends HostileEntity {
+public class ZombieEntity_reinforcementTypeMixin extends HostileEntity {
 
-    protected ZombieEntity_reinforcementMixin(EntityType<? extends HostileEntity> entityType, World world) {
+    protected ZombieEntity_reinforcementTypeMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
 

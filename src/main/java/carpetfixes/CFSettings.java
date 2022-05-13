@@ -1785,6 +1785,14 @@ public class CFSettings {
     )
     public static boolean detectorRailsDontPowerDiagonallyFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes zombie type reinforcements spawning off centered instead of centered on a block",
+            extra = "[MC-114016](https://bugs.mojang.com/browse/MC-114016)",
+            category = BUGFIX
+    )
+    public static boolean reinforcementsSpawnOffCenteredFix = false;
+
 
     /*
 
