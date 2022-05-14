@@ -12,6 +12,8 @@ public class RuleCategory {
 
     public static final String PARITY = "parity"; //These are parity bugs, this is a meme category.
 
+    public static final String MODDED = "modded"; //Fixes Modded Issues, stuff that might be present in other mod's but not vanilla
+
     // Marked as `Works as Intended` on the bug tracker. I don't like these, usually will only implement for reIntroduce or backport
     // It's not Vanilla if you aren't playing the game as the developers intended it to be played :thonk:
     // Although sometimes, it's just stupid that it's not fixed. So we fix it anyway, hence why it's here.
