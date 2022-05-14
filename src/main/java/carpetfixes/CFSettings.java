@@ -1761,6 +1761,14 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
+            desc = "Fixes zombie type reinforcements spawning off centered instead of centered on a block",
+            extra = "[MC-114016](https://bugs.mojang.com/browse/MC-114016)",
+            category = BUGFIX
+    )
+    public static boolean reinforcementsSpawnOffCenteredFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
             desc = "Fixes Palette copy() using the same `listener` which can cause data corruption",
             extra = {"Warning! Some mods might actually use this bug as part of there design. Use this to test if your mod is affected!",
                     "[MC-251664](https://bugs.mojang.com/browse/MC-251664)"},

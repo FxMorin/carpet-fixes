@@ -203,6 +203,7 @@
     "entityFixes.VillagerEntity_witchBedMixin",
     "entityFixes.WitherSkullEntity_chargedMixin",
     "entityFixes.WolfEntity_snowballDamageMixin",
+    "entityFixes.ZombieEntity_reinforcementCenterMixin",
     "entityFixes.ZombieEntity_reinforcementMixin",
     "entityFixes.ZombieVillagerEntity_convertingMixin",
     "entityFixes.ZombieVillagerEntity_offlinePlayerMixin",
