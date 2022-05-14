@@ -49,6 +49,7 @@
     "blockFixes.PistonBlock_pushOrderMixin",
     "blockFixes.PistonBlock_worldBorderMixin",
     "blockFixes.PistonExtensionBlock_spawningMixin",
+    "blockFixes.PointedDripstoneBlock_collisionMixin",
     "blockFixes.PointedDripstoneBlock_entityChecksMixin",
     "blockFixes.PowderSnowBlock_feetAndCenterMixin",
     "blockFixes.PowderSnowBlock_lightMixin",
