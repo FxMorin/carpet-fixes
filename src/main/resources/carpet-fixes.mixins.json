@@ -21,6 +21,7 @@
     "blockEntityFixes.EndGatewayBlockEntity_insideMixin",
     "blockEntityFixes.HopperBlockEntity_randomMinecartMixin",
     "blockEntityFixes.PistonBlockEntity_lastProgressMixin",
+    "blockEntityFixes.PistonBlockEntity_pushMixin",
     "blockEntityFixes.PistonBlockEntity_pushTooFarMixin",
     "blockEntityFixes.PistonBlockEntity_waterloggedMixin",
     "blockEntityFixes.SculkSensorBlockEntity_roundMixin",

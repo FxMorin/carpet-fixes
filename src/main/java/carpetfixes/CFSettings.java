@@ -1826,6 +1826,14 @@ public class CFSettings {
     )
     public static boolean paletteCopyDataCorruptionFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes pistons pushing entities behind it, which was the original cause of the item frame dupe",
+            extra = "This only fixes modded pistons that use different speeds!",
+            category = {BUGFIX,MODDED}
+    )
+    public static boolean pistonsPushEntitiesBehindThemFix = false;
+
 
     /*
 
