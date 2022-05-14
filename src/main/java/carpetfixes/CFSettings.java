@@ -569,6 +569,14 @@ public class CFSettings {
     )
     public static boolean foxesDropItemsWithLootOffFix = false;
 
+    //by Jack
+    @Rule(
+            desc = "Fixes Foxes not Respecting Powder Snow as a Snow Like block, Therefore Powder Snow would not have the same effect as Snow does",
+            extra = "[MC-230660](https://bugs.mojang.com/browse/MC-230660)",
+            category = BUGFIX
+    )
+    public static boolean foxesDisregardPowderSnowFix = false;
+
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes fluids being able to instantly flow!",
