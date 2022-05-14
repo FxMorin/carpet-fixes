@@ -1753,6 +1753,14 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
+            desc = "Fixes detector rails not powering powered rails diagonally",
+            extra = "[MC-3430](https://bugs.mojang.com/browse/MC-3430)",
+            category = BUGFIX
+    )
+    public static boolean detectorRailsDontPowerDiagonallyFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
             desc = "Fixes Palette copy() using the same `listener` which can cause data corruption",
             extra = {"Warning! Some mods might actually use this bug as part of there design. Use this to test if your mod is affected!",
                     "[MC-251664](https://bugs.mojang.com/browse/MC-251664)"},

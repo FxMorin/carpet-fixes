@@ -304,6 +304,7 @@
     "redstoneFixes.AbstractRedstoneGateBlock_repeaterPriorityMixin",
     "redstoneFixes.ComparatorBlock_opaqueFullMixin",
     "redstoneFixes.PistonBlock_doubleRetractionMixin",
+    "redstoneFixes.PoweredRailBlock_detectorRailMixin",
     "redstoneFixes.World_ComparatorNotUpdatingMixin",
     "reIntroduced.AbstractFireBlock_flintAndSteelMixin",
     "reIntroduced.FallingBlockEntity_entityPhaseMixin",
