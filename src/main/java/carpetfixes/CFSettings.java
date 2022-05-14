@@ -1793,6 +1793,14 @@ public class CFSettings {
     )
     public static boolean reinforcementsSpawnOffCenteredFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to step on turtle eggs without colliding with the collision shape",
+            extra = "[MC-132187](https://bugs.mojang.com/browse/MC-132187)",
+            category = BUGFIX
+    )
+    public static boolean turtleEggWrongCollisionCheckFix = false;
+
 
     /*
 

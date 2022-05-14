@@ -62,6 +62,7 @@
     "blockFixes.SpreadableBlock_snowLayersMixin",
     "blockFixes.TargetBlock_missingShapeUpdateMixin",
     "blockFixes.TntBlock_extendedCollisionMixin",
+    "blockFixes.TurtleEggBlock_stepCollisionMixin",
     "blockFixes.WitherSkullBlock_spawningMixin",
     "blockFixes.doubleBlocksSkipEntityChecks.BedBlock_entityChecksMixin",
     "blockFixes.doubleBlocksSkipEntityChecks.DoorBlock_entityCheckMixin",
