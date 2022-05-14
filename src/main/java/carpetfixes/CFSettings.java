@@ -1801,6 +1801,14 @@ public class CFSettings {
     )
     public static boolean turtleEggWrongCollisionCheckFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes being hurt by pointed dripstone when landing on the block above",
+            extra = "[MC-248947](https://bugs.mojang.com/browse/MC-248947)",
+            category = BUGFIX
+    )
+    public static boolean pointedDripstoneWrongCollisionFix = false;
+
 
     /*
 
