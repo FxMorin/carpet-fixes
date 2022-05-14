@@ -1809,6 +1809,14 @@ public class CFSettings {
     )
     public static boolean pointedDripstoneWrongCollisionFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to land on a trapdoor on top of a bed and get less fall damage even though you haven't touched the bed",
+            extra = "[MC-248947](https://bugs.mojang.com/browse/MC-248947)",
+            category = BUGFIX
+    )
+    public static boolean bedLandingWrongCollisionFix = false;
+
 
     /*
 

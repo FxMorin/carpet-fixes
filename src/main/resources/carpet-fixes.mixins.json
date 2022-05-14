@@ -26,6 +26,7 @@
     "blockEntityFixes.ViewerCountManager_inventoryMixin",
     "blockEntityFixes.dispenserBehavior.BoatDispenserBehavior_offsetMixin",
     "blockFixes.AbstractButtonBlock_collisionOnPlaceMixin",
+    "blockFixes.BedBlock_collisionMixin",
     "blockFixes.Block_itemPositionMixin",
     "blockFixes.CactusBlock_movingBlockMixin",
     "blockFixes.CakeBlock_eatSideMixin",
