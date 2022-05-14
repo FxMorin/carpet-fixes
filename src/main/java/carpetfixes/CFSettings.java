@@ -1785,6 +1785,14 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
+            desc = "Fixes being able to land on a trapdoor on top of a bed and get less fall damage even though you haven't touched the bed",
+            extra = "[MC-248947](https://bugs.mojang.com/browse/MC-248947)",
+            category = BUGFIX
+    )
+    public static boolean bedLandingWrongCollisionFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
             desc = "Fixes Palette copy() using the same `listener` which can cause data corruption",
             extra = {"Warning! Some mods might actually use this bug as part of there design. Use this to test if your mod is affected!",
                     "[MC-251664](https://bugs.mojang.com/browse/MC-251664)"},
