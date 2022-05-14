@@ -1801,6 +1801,30 @@ public class CFSettings {
     )
     public static boolean reinforcementsSpawnOffCenteredFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to step on turtle eggs without colliding with the collision shape",
+            extra = "[MC-132187](https://bugs.mojang.com/browse/MC-132187)",
+            category = BUGFIX
+    )
+    public static boolean turtleEggWrongCollisionCheckFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes being hurt by pointed dripstone when landing on the block above",
+            extra = "[MC-248947](https://bugs.mojang.com/browse/MC-248947)",
+            category = BUGFIX
+    )
+    public static boolean pointedDripstoneWrongCollisionFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes being able to land on a trapdoor on top of a bed and get less fall damage even though you haven't touched the bed",
+            extra = "[MC-248947](https://bugs.mojang.com/browse/MC-248947)",
+            category = BUGFIX
+    )
+    public static boolean bedLandingWrongCollisionFix = false;
+
 
     /*
 
