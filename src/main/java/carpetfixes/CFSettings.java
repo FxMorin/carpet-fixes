@@ -558,7 +558,7 @@ public class CFSettings {
             extra = "[MC-230660](https://bugs.mojang.com/browse/MC-230660)",
             category = BUGFIX
     )
-    public static boolean foxesDisregardPowderSnowFix = false;
+    public static boolean foxesDisreguardPowderSnowFix = false;
 
     //by FX - PR0CESS
     @Rule(
