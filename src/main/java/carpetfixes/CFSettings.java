@@ -1825,6 +1825,23 @@ public class CFSettings {
     )
     public static boolean bedLandingWrongCollisionFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes Palette copy() using the same `listener` which can cause data corruption",
+            extra = {"Warning! Some mods might actually use this bug as part of there design. Use this to test if your mod is affected!",
+                    "[MC-251664](https://bugs.mojang.com/browse/MC-251664)"},
+            category = {BUGFIX,MODDED}
+    )
+    public static boolean paletteCopyDataCorruptionFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes pistons pushing entities behind it, which was the original cause of the item frame dupe",
+            extra = "This only fixes modded pistons that use different speeds!",
+            category = {BUGFIX,MODDED}
+    )
+    public static boolean pistonsPushEntitiesBehindThemFix = false;
+
 
     /*
 
