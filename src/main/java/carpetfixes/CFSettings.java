@@ -1808,6 +1808,14 @@ public class CFSettings {
     )
     public static boolean pistonsPushEntitiesBehindThemFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes tall grass not spreading water",
+            extra = "[MC-130890](https://bugs.mojang.com/browse/MC-130890)",
+            category = BUGFIX
+    )
+    public static boolean tallGrassWaterWontSpreadFix = false;
+
 
     /*
 
