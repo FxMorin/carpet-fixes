@@ -19,8 +19,7 @@ public class FoxEntity$JumpChasingGoal_TickMixin {
             target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"
         )
     )
-    public boolean FoxEntity_SnowCheckFix(BlockState instance, Block block) {
-            return instance.getBlock().equals(Blocks.SNOW) || (CFSettings.foxesDisreguardPowderSnowFix &&
-                                                               instance.getBlock().equals(Blocks.POWDER_SNOW));
+    public boolean isOfSnowOrPoweredSnow(BlockState state, Block block) {
+            return state.isOf(block) || (CFSettings.foxesDisregardPowderSnowFix && state.isOf(Blocks.POWDER_SNOW));
     }
 }
