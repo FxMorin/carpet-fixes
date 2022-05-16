@@ -64,6 +64,7 @@
     "blockFixes.RedstoneTorchBlock_oldInconsistentMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
     "blockFixes.SpreadableBlock_snowLayersMixin",
+    "blockFixes.TallSeagrassBlock_waterMixin",
     "blockFixes.TargetBlock_missingShapeUpdateMixin",
     "blockFixes.TntBlock_extendedCollisionMixin",
     "blockFixes.TurtleEggBlock_stepCollisionMixin",
