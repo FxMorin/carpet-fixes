@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(targets = "net.minecraft.entity.passive.FoxEntity$JumpChasingGoal")
-public class FoxEntity$JumpChasingGoal_TickMixin {
+public class FoxEntity$JumpChasingGoal_poweredSnowMixin {
 
     
     @Redirect(
