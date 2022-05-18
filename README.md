@@ -25,6 +25,9 @@ See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wik
 ## Contributing
 *coming soon*
 
+## ModPacks
+Go for it! I absolutly don't mind as long as you mention that the mod is in the modpack.
+
 ## More detail
 This mod works for both Singleplayer & Multiplayer, although it only modifies server-side functionality!
 The mod does **not** fix any client-side bugs!
