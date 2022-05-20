@@ -23,7 +23,7 @@ public class PowderSnowBlock_feetAndCenterMixin {
             )
     )
     private BlockState powderSnowNotJustFeet(Entity entity) {
-        if (CFSettings.playerBlockCollisionUsingCenterFix && entity instanceof PlayerEntity)
+        if (CFSettings.entityBlockCollisionUsingCenterFix && entity instanceof PlayerEntity)
             return Blocks.POWDER_SNOW.getDefaultState();
         if (CFSettings.powderSnowOnlySlowIfFeetInBlockFix && entity instanceof PlayerEntity) {
             BlockState stateAbove = entity.world.getBlockState(entity.getBlockPos().up());
