@@ -18,8 +18,8 @@ public class CenterUtils {
 
     public static void checkStepOnCollision(Entity entity) {
         Box box = entity.getBoundingBox();
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
+        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY - 0.2F, box.minZ + OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - 0.2F, box.maxZ - OFFSET);
         if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
