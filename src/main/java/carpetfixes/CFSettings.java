@@ -275,11 +275,11 @@ public class CFSettings {
     //by FX - PR0CESS
     //Also fixes: MC-158154
     @Rule(
-            desc = "Fixes multiple bugs related to effects happening only when player center in block instead of hitbox",
+            desc = "Fixes multiple bugs related to effects happening only when the entity center is in the block instead of hitbox",
             extra = "[MC-1133](https://bugs.mojang.com/browse/MC-1133)",
             category = BUGFIX
     )
-    public static boolean playerBlockCollisionUsingCenterFix = false;
+    public static boolean entityBlockCollisionUsingCenterFix = false;
 
     //by FX - PR0CESS
     @Rule(

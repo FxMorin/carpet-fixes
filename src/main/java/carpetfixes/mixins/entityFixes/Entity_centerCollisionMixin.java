@@ -48,7 +48,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             )
     )
     public void onSteppingCollisionCheck(Block block, World world, BlockPos pos, BlockState state, Entity entity) {
-        if (CFSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.entityBlockCollisionUsingCenterFix) {
             CenterUtils.checkStepOnCollision(entity);
         } else {
             block.onSteppedOn(world, pos, state, entity);
@@ -65,7 +65,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             )
     )
     public void onEntityLandCollisionCheck(Block block, BlockView world, Entity entity) {
-        if (CFSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.entityBlockCollisionUsingCenterFix) {
             CenterUtils.checkEntityLandOnCollision(entity);
         } else {
             block.onEntityLand(world, entity);
@@ -84,7 +84,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     )
     public void onFallCollisionCheck(Block block, World world, BlockState state,
                                      BlockPos pos, Entity entity, float fallDistance) {
-        if (CFSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.entityBlockCollisionUsingCenterFix) {
             CenterUtils.checkFallCollision(entity,fallDistance);
         } else {
             block.onLandedUpon(world, state, pos, entity, fallDistance);
@@ -105,7 +105,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     )
     public void onFallStopVibration(double heightDifference, boolean onGround,
                                     BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
-        if (CFSettings.playerBlockCollisionUsingCenterFix) {
+        if (CFSettings.entityBlockCollisionUsingCenterFix) {
             this.onLanding();
             ci.cancel();
         }
@@ -118,7 +118,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             cancellable = true
     )
     public void onJumpVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
-        if (CFSettings.playerBlockCollisionUsingCenterFix)
+        if (CFSettings.entityBlockCollisionUsingCenterFix)
             cir.setReturnValue(CenterUtils.checkJumpVelocityOnCollision(this.getBoundingBox(),this.world));
     }
 
@@ -129,7 +129,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             cancellable = true
     )
     public void onVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
-        if (CFSettings.playerBlockCollisionUsingCenterFix)
+        if (CFSettings.entityBlockCollisionUsingCenterFix)
             cir.setReturnValue(CenterUtils.checkVelocityOnCollision(this.getBoundingBox(),this.world));
     }
 }
