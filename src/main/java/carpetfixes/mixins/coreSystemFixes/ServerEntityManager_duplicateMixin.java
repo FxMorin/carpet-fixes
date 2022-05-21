@@ -39,19 +39,16 @@ public class ServerEntityManager_duplicateMixin<T extends EntityLike> {
     )
     private boolean addEntityUuidOrSwitchUuid(ServerEntityManager<T> manager, T entity) {
         if (CFSettings.duplicateEntityUUIDFix) {
-            if (!this.entityUuids.add(entity.getUuid())) {
-                if (entity instanceof Entity e) {
-                    int attempt = 0;
-                    do {
-                        UUID newUuid = MathHelper.randomUuid(((EntityAccessor) e).getRandom());
-                        if (this.entityUuids.add(newUuid)) {
-                            ((EntityAccessor) e).setUuid(newUuid);
-                            CarpetFixesServer.LOGGER.info("Fixed duplicate uuid for: {}", entity);
-                            return true;
-                        }
-                    } while (attempt++ < 3); //Collision protection (near impossible)
-                }
-                return false;
+            if (!this.entityUuids.add(entity.getUuid()) && entity instanceof Entity e) {
+                int attempt = 0;
+                do {
+                    UUID newUuid = MathHelper.randomUuid(((EntityAccessor) e).getRandom());
+                    if (this.entityUuids.add(newUuid)) {
+                        ((EntityAccessor) e).setUuid(newUuid);
+                        CarpetFixesServer.LOGGER.info("Fixed duplicate uuid for: {}", entity);
+                        return true;
+                    }
+                } while (attempt++ < 3); //Collision protection (near impossible)
             }
             return true;
         }
