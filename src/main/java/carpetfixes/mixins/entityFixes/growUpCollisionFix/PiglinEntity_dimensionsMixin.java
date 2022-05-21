@@ -1,7 +1,7 @@
 package carpetfixes.mixins.entityFixes.growUpCollisionFix;
 
 import carpetfixes.CFSettings;
-import carpetfixes.patches.EntityCalculateDimensions;
+import carpetfixes.patches.EntityUtils;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.mob.PiglinEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +24,7 @@ public class PiglinEntity_dimensionsMixin {
     )
     public void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
         if (CFSettings.entityGrowingUpCollisionClippingFix) {
-            ((EntityCalculateDimensions)this).calculateDimensionsWithoutHeight();
+            ((EntityUtils)this).calculateDimensionsWithoutHeight();
             ci.cancel();
         }
     }

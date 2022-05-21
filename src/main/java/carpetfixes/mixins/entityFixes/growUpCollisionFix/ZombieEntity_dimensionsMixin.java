@@ -1,7 +1,7 @@
 package carpetfixes.mixins.entityFixes.growUpCollisionFix;
 
 import carpetfixes.CFSettings;
-import carpetfixes.patches.EntityCalculateDimensions;
+import carpetfixes.patches.EntityUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.TrackedData;
@@ -31,7 +31,7 @@ public abstract class ZombieEntity_dimensionsMixin extends Entity {
     )
     public void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
         if (CFSettings.entityGrowingUpCollisionClippingFix) {
-            ((EntityCalculateDimensions)this).calculateDimensionsWithoutHeight();
+            ((EntityUtils)this).calculateDimensionsWithoutHeight();
             super.onTrackedDataSet(data);
             ci.cancel();
         }

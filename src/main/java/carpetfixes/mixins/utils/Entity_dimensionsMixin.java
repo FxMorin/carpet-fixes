@@ -1,6 +1,6 @@
-package carpetfixes.mixins.entityFixes.growUpCollisionFix;
+package carpetfixes.mixins.utils;
 
-import carpetfixes.patches.EntityCalculateDimensions;
+import carpetfixes.patches.EntityUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Entity.class)
-public abstract class Entity_dimensionsMixin implements EntityCalculateDimensions {
+public abstract class Entity_dimensionsMixin implements EntityUtils {
 
     private final Entity self = (Entity)(Object)this;
 
@@ -57,7 +57,6 @@ public abstract class Entity_dimensionsMixin implements EntityCalculateDimension
 
     @Shadow
     public abstract BlockPos getBlockPos();
-
 
     @Override
     public void calculateDimensionsWithoutHeight() {

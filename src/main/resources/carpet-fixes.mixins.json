@@ -179,6 +179,7 @@
     "entityFixes.EndermanEntity_teleportingMixin",
     "entityFixes.EndermanEntity_vehicleMixin",
     "entityFixes.EndermanEntity_witherMixin",
+    "entityFixes.EnderPearlEntity_clipMixin",
     "entityFixes.Entity_centerCollisionMixin",
     "entityFixes.Entity_directionalBlockSlowdownMixin",
     "entityFixes.Entity_fallDistanceMixin",
@@ -231,7 +232,6 @@
     "entityFixes.bucketableLeashDetach.TadpoleEntity_leashDetachMixin",
     "entityFixes.convertingFixes.SkeletonEntity_convertingMixin",
     "entityFixes.convertingFixes.ZombieEntity_convertingMixin",
-    "entityFixes.growUpCollisionFix.Entity_dimensionsMixin",
     "entityFixes.growUpCollisionFix.PassiveEntity_dimensionsMixin",
     "entityFixes.growUpCollisionFix.PiglinEntity_dimensionsMixin",
     "entityFixes.growUpCollisionFix.ZoglinEntity_dimensionsMixin",
@@ -339,7 +339,8 @@
     "reIntroduced.ServerWorld_zeroTickMixin",
     "reIntroduced.TargetBlock_PermanentlyPoweredMixin",
     "reIntroduced.ThreadedAnvilChunkStorage_oldSavingMixin",
-    "screenHandlerFixes.MerchantScreenHandler_distanceMixin"
+    "screenHandlerFixes.MerchantScreenHandler_distanceMixin",
+    "utils.Entity_dimensionsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
