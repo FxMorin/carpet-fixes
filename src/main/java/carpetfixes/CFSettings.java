@@ -1852,7 +1852,7 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes enderpearls allowing you to clip through blocks horizontally",
+            desc = "Fixes enderpearls allowing you to clip through blocks",
             extra = "[MC-2164](https://bugs.mojang.com/browse/MC-2164)",
             category = BUGFIX
     )
