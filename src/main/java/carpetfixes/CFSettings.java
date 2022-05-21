@@ -1850,6 +1850,14 @@ public class CFSettings {
     )
     public static boolean tallGrassWaterWontSpreadFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes enderpearls allowing you to clip through blocks horizontally",
+            extra = "[MC-2164](https://bugs.mojang.com/browse/MC-2164)",
+            category = BUGFIX
+    )
+    public static boolean enderpearlClipFix = false;
+
 
     /*
 
