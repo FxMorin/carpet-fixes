@@ -1155,6 +1155,14 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
+            desc = "Fixes entities falling through sculk that converted from soul sand or mud",
+            extra = "[MC-251030](https://bugs.mojang.com/browse/MC-251030)",
+            category = BUGFIX
+    )
+    public static boolean entitiesFallThroughSculkFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
             desc = "Fixes allays being able to see players in spectator mode",
             extra = "[MC-249790](https://bugs.mojang.com/browse/MC-249790)",
             category = BUGFIX

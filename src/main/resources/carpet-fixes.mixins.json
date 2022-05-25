@@ -62,6 +62,8 @@
     "blockFixes.PressurePlateBlock_collisionOnPlaceMixin",
     "blockFixes.RedstoneTorchBlock_inconsistentMixin",
     "blockFixes.RedstoneTorchBlock_oldInconsistentMixin",
+    "blockFixes.SculkBlock_pushEntitiesUpMixin",
+    "blockFixes.SculkVeinBlock_pushEntitiesUpMixin",
     "blockFixes.SlimeBlock_incorrectLogicMixin",
     "blockFixes.SpreadableBlock_snowLayersMixin",
     "blockFixes.TallSeagrassBlock_waterMixin",
