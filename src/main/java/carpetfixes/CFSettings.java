@@ -1,9 +1,7 @@
 package carpetfixes;
 
-import carpet.CarpetServer;
 import carpet.settings.Rule;
 import carpetfixes.settings.Validators;
-import carpetfixes.settings.VersionConditions;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
@@ -64,16 +62,6 @@ public class CFSettings {
             category = BUGFIX
     )
     public static boolean targetBlockUpdateFix = false;
-
-    //By FX - PR0CESS
-    //Not putting it in the dupe fix category since technically there is no way to dupe with it anymore. Although there probably will be
-    @Rule(
-            desc = "Fixes StringTag Exploits due to StringTag writeUTF() not respecting readUTF() Limits causing crashes internally",
-            extra = {"This was the cause of ChunkRegen, and the book dupe. Both patched, although StringTag is still broken",
-                    "[MC-134892](https://bugs.mojang.com/browse/MC-134892)"},
-            category = {BUGFIX,CRASHFIX,RECOMMENDED,VANILLA,DUPE}
-    )
-    public static boolean stringTagExploitFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -350,14 +338,6 @@ public class CFSettings {
     )
     public static boolean sleepingResetsThunderFix = false;
 
-    //by FX - PR0CESS
-    /*@Rule(
-            desc = "Fixes changing between spactator lowering your player",
-            extra = "[MC-146582](https://bugs.mojang.com/browse/MC-146582)",
-            category = {BUGFIX,CLIENT}
-    )
-    public static boolean spectatorLowersPlayerFix = false;*/
-
     //code by FX - PR0CESS
     //solution by DawNemo
     @Rule(
@@ -416,14 +396,6 @@ public class CFSettings {
             category = {BUGFIX,EXPERIMENTAL}
     )
     public static boolean invulnerableEndCrystalFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes signal strength being inaccurate and skipping odd signal strengths due to precision loss with distance",
-            extra = "[MC-218222](https://bugs.mojang.com/browse/MC-218222)",
-            category = {BUGFIX,EXPERIMENTAL}
-    )
-    public static boolean sculkSensorPrecisionLossFix = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -575,14 +547,6 @@ public class CFSettings {
             category = {BUGFIX,RECOMMENDED,DUPE}
     )
     public static boolean saferItemTransfers = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes the sculk sensor having a directional bias with wool occlusion",
-            extra = "[MC-207289](https://bugs.mojang.com/browse/MC-207289) & [MC-207635](https://bugs.mojang.com/browse/MC-207635)",
-            category = {BUGFIX,RECOMMENDED}
-    )
-    public static boolean sculkSensorBiasFix = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -748,16 +712,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes players being able to crack there player seed",
-            extra = {"This makes it so random is shared between all entities. Which is a good performance boost",
-                    "recommended that you set this on permanently, and restart the server for best results"},
-            category = {BUGFIX,OPTIMIZATION},
-            condition = VersionConditions.LT_22w14a.class
-    )
-    public static boolean entityRandomCrackingFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes world border collision rounding to blocks for entity collisions",
             extra = "[MC-88482](https://bugs.mojang.com/browse/MC-88482) & [MC-247422](https://bugs.mojang.com/browse/MC-247422)",
             validate = Validators.WorldBorderCollisionRoundingFixValidator.class,
@@ -800,26 +754,10 @@ public class CFSettings {
     //by FX - PR0CESS
     @Rule(
             desc = "Fixes players sending the STEP event before the HIT_GROUND event",
-            extra = "[MC-247417](https://bugs.mojang.com/browse/MC-247417)",
+            extra = "[MC-247417](https://bugs.mojang.com/browse/MC-247417) & [MC-207393](https://bugs.mojang.com/browse/MC-207393)",
             category = BUGFIX
     )
     public static boolean playerStepEventFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes projectiles sending the PROJECTILE_LAND event when landing on a vibration occluding block",
-            extra = "[MC-208771](https://bugs.mojang.com/browse/MC-208771)",
-            category = BUGFIX
-    )
-    public static boolean projectileMissingOcclusionFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes boats sending the SPLASH event when ridden over a vibration occluding block",
-            extra = "[MC-208597](https://bugs.mojang.com/browse/MC-208597)",
-            category = BUGFIX
-    )
-    public static boolean boatMissingOcclusionFix = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -833,7 +771,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes Spawning entities using spawn eggs on vibration occluding blocks not occluding",
             extra = "[MC-247645](https://bugs.mojang.com/browse/MC-247645)",
-            category = BUGFIX
+            category = {BUGFIX,INTENDED}
     )
     public static boolean spawnEggMissingOcclusionFix = false;
 
@@ -847,28 +785,11 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Fixes minecarts sending the ENTITY_PLACE event when placed on a vibration occluding block",
-            extra = "[MC-213823](https://bugs.mojang.com/browse/MC-213823)",
-            category = BUGFIX
-    )
-    public static boolean minecartMissingOcclusionFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Fixes villagers not giving a discount if you log out while they are being cured",
             extra = "[MC-247647](https://bugs.mojang.com/browse/MC-247647)",
             category = BUGFIX
     )
     public static boolean villagerDiscountIgnoresOfflinePlayersFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes foxes pathfinding to origin (0,0) during a thunderstorm",
-            extra = "[MC-179916](https://bugs.mojang.com/browse/MC-179916)",
-            condition = VersionConditions.LT_22w12a.class,
-            category = BUGFIX
-    )
-    public static boolean foxesGoToOriginDuringThunderFix = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -951,16 +872,6 @@ public class CFSettings {
     )
     public static boolean blueWitherSkullNotSavedFix = false;
 
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Fixes a memory leak within the new TagKey system",
-            extra = "[MC-248621](https://bugs.mojang.com/browse/MC-248621)",
-            category = {BUGFIX,CRASHFIX,RECOMMENDED},
-            condition = VersionConditions.LT_22w12a.class,
-            validate = Validators.TagKeyMemoryLeakFixValidator.class
-    )
-    public static boolean tagKeyMemoryLeakFix = false;
-
     //By FX - PR0CESS
     @Rule(
             desc = "Prevents the NoCom Exploit from being able to crash the server",
@@ -1030,15 +941,6 @@ public class CFSettings {
             category = BUGFIX
     )
     public static boolean mobsTargetDeadEntitiesFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes striders with noAi still getting cold",
-            extra = "[MC-176081](https://bugs.mojang.com/browse/MC-176081)",
-            condition = VersionConditions.LT_22w12a.class,
-            category = BUGFIX
-    )
-    public static boolean noAIStriderGetsColdFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -1131,43 +1033,11 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            desc = "Fixes allay going to the wrong noteblock in another dimension",
-            extra = "[MC-250027](https://bugs.mojang.com/browse/MC-250027)",
-            category = BUGFIX
-    )
-    public static boolean allayWrongNoteblockFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
             desc = "Fixes lava creating fire with incorrect block states",
             extra = "[MC-250048](https://bugs.mojang.com/browse/MC-250048)",
             category = BUGFIX
     )
     public static boolean lavaCalculatesWrongFireStateFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes entities falling through clay that was generated from mud",
-            extra = "[MC-250034](https://bugs.mojang.com/browse/MC-250034)",
-            category = BUGFIX
-    )
-    public static boolean entitiesFallThroughClayFromMudFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes entities falling through sculk that converted from soul sand or mud",
-            extra = "[MC-251030](https://bugs.mojang.com/browse/MC-251030)",
-            category = BUGFIX
-    )
-    public static boolean entitiesFallThroughSculkFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes allays being able to see players in spectator mode",
-            extra = "[MC-249790](https://bugs.mojang.com/browse/MC-249790)",
-            category = BUGFIX
-    )
-    public static boolean allaySeesSpectatorsFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -1202,30 +1072,6 @@ public class CFSettings {
             category = BUGFIX
     )
     public static boolean absorptionStaysWithoutHeartsFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes end crystal explosions giving the wrong game event",
-            extra = "[MC-249962](https://bugs.mojang.com/browse/MC-249962)",
-            category = BUGFIX
-    )
-    public static boolean crystalExplosionGivesWrongEventFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes being able to equip an allay with armor",
-            extra = "[MC-249745](https://bugs.mojang.com/browse/MC-249745)",
-            category = BUGFIX
-    )
-    public static boolean allayCanBeEquippedWithArmorFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes allays losing picked up items on world restart",
-            extra = "[MC-249745](https://bugs.mojang.com/browse/MC-249745)",
-            category = {BUGFIX,NBT}
-    )
-    public static boolean allayLosesItemOnUnloadFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -1273,14 +1119,6 @@ public class CFSettings {
             category = BUGFIX
     )
     public static boolean projectileKeepsVelocityFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes players unable to jump off the edge of blocks while sneaking and having a block above them",
-            extra = "[MC-197647](https://bugs.mojang.com/browse/MC-197647)",
-            category = {BUGFIX,CLIENT}
-    )
-    public static boolean cantJumpOffBlockWhenSneakingFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -1911,16 +1749,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            desc = "Changes many of the main Random() calls to use XoroShiro128++ instead",
-            extra = {"This will break anything related to random, technically still possible to crack*",
-                    "recommended that you set this on permanently, and restart the server for best results"},
-            category = OPTIMIZATION,
-            condition = VersionConditions.LT_22w14a.class
-    )
-    public static boolean optimizedRandom = false;
-
-    //by FX - PR0CESS
-    @Rule(
             desc = "Optimized the getBiome call to be 25% - 75% faster",
             extra = "This is a fully vanilla optimization. This can optimize the client also, go check Blanket-client-tweaks for that",
             category = {OPTIMIZATION,VANILLA,CLIENT,RECOMMENDED}
@@ -1936,21 +1764,10 @@ public class CFSettings {
     )
     public static boolean optimizedRecipeManager = false;
 
-    //by FX - PR0CESS
-    @Rule(
-            desc = "Optimized the Furnace code drastically. Improving expensive checks, and expensive recipe lookups",
-            extra = {"This is a fully vanilla optimization. Improves: Furnace, Blast Furnace, Smoker, & any furnace extension",
-                    "This is incredibly visible in modded scenarios"},
-            condition = VersionConditions.LT_22w12a.class,
-            category = {OPTIMIZATION,VANILLA,CLIENT,RECOMMENDED}
-    )
-    public static boolean optimizedFurnaces = false;
-
     //By Hilligans
     @Rule(
             desc = "A memory efficient implementation of the new NeighborUpdater",
             validate = Validators.optimizedNeighborUpdaterValidator.class,
-            condition = VersionConditions.GT_22w11a.class,
             category = {OPTIMIZATION,VANILLA,EXPERIMENTAL}
     )
     public static boolean optimizedNeighborUpdater = false;
@@ -2136,7 +1953,6 @@ public class CFSettings {
     @Rule(
             desc = "Re-introduces instant block updates which changed in 22w11a",
             validate = Validators.reIntroduceInstantBlockUpdatesValidator.class,
-            condition = VersionConditions.GT_22w11a.class,
             category = REINTRODUCE
     )
     public static boolean reIntroduceInstantBlockUpdates = false;
@@ -2276,48 +2092,6 @@ public class CFSettings {
             category = ADVANCED
     )
     public static long statusUpdateDelay = 5000000000L;
-
-    //TODO: load these advanced options correctly
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Allows you to toggle onlineMode without needing to restart the server",
-            validate = Validators.onlineModeValidator.class,
-            category = {ADVANCED,EXPERIMENTAL}
-    )
-    public static boolean toggleOnlineMode = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isOnlineMode();
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Allows you to toggle preventing proxy connections without needing to restart the server",
-            validate = Validators.preventProxyConnectionsValidator.class,
-            category = {ADVANCED,EXPERIMENTAL}
-    )
-    public static boolean togglePreventProxyConnections = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.shouldPreventProxyConnections();
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Allows you to toggle pvpEnabled without needing to restart the server",
-            validate = Validators.pvpEnabledValidator.class,
-            category = ADVANCED
-    )
-    public static boolean togglePvpEnabled = CarpetServer.minecraft_server == null || CarpetServer.minecraft_server.isPvpEnabled();
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Allows you to toggle flightEnabled without needing to restart the server",
-            validate = Validators.flightEnabledValidator.class,
-            category = ADVANCED
-    )
-    public static boolean toggleFlightEnabled = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isFlightEnabled();
-
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Allows you to toggle enforcing the whitelist without needing to restart the server",
-            validate = Validators.enforceWhitelistValidator.class,
-            category = ADVANCED
-    )
-    public static boolean toggleEnforceWhitelist = CarpetServer.minecraft_server != null && CarpetServer.minecraft_server.isEnforceWhitelist();
 
     //By FX - PR0CESS
     @Rule(

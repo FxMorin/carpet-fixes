@@ -2,7 +2,8 @@ package carpetfixes.helpers;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.gen.random.Xoroshiro128PlusPlusRandom;
+
+import java.util.Random;
 
 public class DirectionUtils {
 
@@ -18,7 +19,7 @@ public class DirectionUtils {
             Direction.DOWN, Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST
     };
 
-    private static final Xoroshiro128PlusPlusRandom random = new Xoroshiro128PlusPlusRandom(0);
+    private static final Random random = new Random();
 
     public static Direction[] randomDirectionArray(BlockPos pos) {
         random.setSeed(pos.asLong());

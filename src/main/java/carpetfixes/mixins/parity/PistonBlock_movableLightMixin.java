@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(PistonBlock.class)
 public class PistonBlock_movableLightMixin {
 
+
     @Redirect(
             method = "isMovable(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
                     "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;" +

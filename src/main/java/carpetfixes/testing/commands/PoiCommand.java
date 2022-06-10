@@ -12,6 +12,7 @@ import net.minecraft.server.network.DebugInfoSender;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.poi.PointOfInterestStorage;
 import net.minecraft.world.poi.PointOfInterestType;
 
@@ -49,9 +50,9 @@ public class PoiCommand {
         BlockPos pos = BlockPosArgumentType.getLoadedBlockPos(context, "blockpos");
         ServerWorld world = source.getWorld();
         PointOfInterestStorage poiStorage = ((ThreadedAnvilChunkStorageAccessor) world.getChunkManager().threadedAnvilChunkStorage).getPoiStorage();
-        Optional<PointOfInterestType> optionalType = poiStorage.getType(pos);
+        Optional<RegistryEntry<PointOfInterestType>> optionalType = poiStorage.getType(pos);
         if (optionalType.isPresent()) {
-            source.sendFeedback(Text.of(optionalType.get().getId()), false);
+            source.sendFeedback(Text.of(optionalType.get().getType().toString()), false);
         } else {
             source.sendFeedback(Text.of("There is no POI at this position!"), false);
         }
@@ -63,7 +64,7 @@ public class PoiCommand {
         BlockPos pos = BlockPosArgumentType.getLoadedBlockPos(context, "blockpos");
         ServerWorld world = source.getWorld();
         PointOfInterestStorage poiStorage = ((ThreadedAnvilChunkStorageAccessor) world.getChunkManager().threadedAnvilChunkStorage).getPoiStorage();
-        Optional<PointOfInterestType> optionalType = poiStorage.getType(pos);
+        Optional<RegistryEntry<PointOfInterestType>> optionalType = poiStorage.getType(pos);
         if (optionalType.isPresent()) {
             source.sendFeedback(Text.of("Removed POI - "+optionalType.get()), false);
             poiStorage.remove(pos);

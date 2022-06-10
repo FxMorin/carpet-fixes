@@ -4,15 +4,9 @@ import carpet.settings.Condition;
 import carpetfixes.helpers.Utils;
 
 public class VersionConditions {
-    public static class GT_22w11a extends CustomCondition {
+    /*public static class GT_22w11a extends CustomCondition {
         @Override public String getPredicate() {return VersionPredicates.GT_22w11a;}
-    }
-    public static class LT_22w14a extends CustomCondition {
-        @Override public String getPredicate() {return VersionPredicates.LT_22w14a;}
-    }
-    public static class LT_22w12a extends CustomCondition {
-        @Override public String getPredicate() {return VersionPredicates.LT_22w12a;}
-    }
+    }*/
 
     public static class CustomCondition implements Condition, hasVersionPredicate {
         @Override

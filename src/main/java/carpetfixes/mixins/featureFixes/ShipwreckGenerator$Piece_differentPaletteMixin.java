@@ -2,19 +2,19 @@ package carpetfixes.mixins.featureFixes;
 
 import carpetfixes.CFSettings;
 import net.minecraft.structure.SimpleStructurePiece;
-import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.structure.StructurePlacementData;
+import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.random.AbstractRandom;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -56,27 +56,27 @@ public abstract class ShipwreckGenerator$Piece_differentPaletteMixin extends Sim
     private boolean grounded;
 
     public ShipwreckGenerator$Piece_differentPaletteMixin(StructurePieceType type, int length,
-                                                          StructureManager structureManager, Identifier id,
-                                                          String template, StructurePlacementData placementData,
-                                                          BlockPos pos) {
-        super(type, length, structureManager, id, template, placementData, pos);
+                                                          StructureTemplateManager structureTemplateManager,
+                                                          Identifier id, String template,
+                                                          StructurePlacementData placementData, BlockPos pos) {
+        super(type, length, structureTemplateManager, id, template, placementData, pos);
     }
 
 
     @Inject(
-            method = "generate(Lnet/minecraft/world/StructureWorldAccess;" +
-                    "Lnet/minecraft/world/gen/StructureAccessor;Lnet/minecraft/world/gen/chunk/ChunkGenerator;" +
-                    "Lnet/minecraft/world/gen/random/AbstractRandom;Lnet/minecraft/util/math/BlockBox;" +
-                    "Lnet/minecraft/util/math/ChunkPos;Lnet/minecraft/util/math/BlockPos;)V",
+            method = "generate(Lnet/minecraft/world/StructureWorldAccess;Lnet/minecraft/world/gen/StructureAccessor;" +
+                    "Lnet/minecraft/world/gen/chunk/ChunkGenerator;Lnet/minecraft/util/math/random/Random;" +
+                    "Lnet/minecraft/util/math/BlockBox;Lnet/minecraft/util/math/ChunkPos;" +
+                    "Lnet/minecraft/util/math/BlockPos;)V",
             at = @At("HEAD"),
             cancellable = true
     )
     private void customBlockPos(StructureWorldAccess world, StructureAccessor structureAccessor,
-                                ChunkGenerator chunkGenerator, AbstractRandom abstractRandom, BlockBox chunkBox,
+                                ChunkGenerator chunkGenerator, Random random, BlockBox chunkBox,
                                 ChunkPos chunkPos, BlockPos pos, CallbackInfo ci) {
         if (CFSettings.shipwreckChunkBorderIssuesFix) {
             int topY = world.getTopY(), avgY = 0;
-            Vec3i size = this.structure.getSize();
+            Vec3i size = this.template.getSize();
             Heightmap.Type type = this.grounded ? Heightmap.Type.WORLD_SURFACE_WG : Heightmap.Type.OCEAN_FLOOR_WG;
             int surface = size.getX() * size.getZ();
             if (surface == 0) {
@@ -96,7 +96,7 @@ public abstract class ShipwreckGenerator$Piece_differentPaletteMixin extends Sim
             } else {
                 this.pos = this.pos.withY(avgY);
             }
-            super.generate(world, structureAccessor, chunkGenerator, abstractRandom, chunkBox, chunkPos, pos);
+            super.generate(world, structureAccessor, chunkGenerator, random, chunkBox, chunkPos, pos);
             ci.cancel();
         }
     }

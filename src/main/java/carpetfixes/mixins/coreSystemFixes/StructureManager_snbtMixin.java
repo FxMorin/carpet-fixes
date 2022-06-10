@@ -5,8 +5,8 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.data.validate.StructureValidatorProvider;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
-import net.minecraft.structure.Structure;
-import net.minecraft.structure.StructureManager;
+import net.minecraft.structure.StructureTemplate;
+import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.util.Identifier;
 import org.apache.commons.io.IOUtils;
 import org.spongepowered.asm.mixin.Final;
@@ -26,7 +26,7 @@ import java.util.Optional;
 
 import static carpetfixes.CarpetFixesServer.LOGGER;
 
-@Mixin(StructureManager.class)
+@Mixin(StructureTemplateManager.class)
 public abstract class StructureManager_snbtMixin {
 
     @Shadow
@@ -36,39 +36,42 @@ public abstract class StructureManager_snbtMixin {
     private Identifier id = null;
 
     @Shadow
-    protected abstract Path getAndCheckStructurePath(Identifier id, String extension);
+    private static Path getAndCheckTemplatePath(Path path, Identifier id, String extension) {
+        return null;
+    }
 
     @Shadow
-    public abstract Structure createStructure(NbtCompound nbt);
+    public abstract StructureTemplate createTemplate(NbtCompound nbt);
 
 
     @Inject(
-            method = "loadStructureFromFile(Lnet/minecraft/util/Identifier;)Ljava/util/Optional;",
+            method = "loadTemplateFromFile(Lnet/minecraft/util/Identifier;)Ljava/util/Optional;",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/structure/StructureManager;getAndCheckStructurePath(" +
-                            "Lnet/minecraft/util/Identifier;Ljava/lang/String;)Ljava/nio/file/Path;"
+                    target = "Lnet/minecraft/structure/StructureTemplateManager;getAndCheckTemplatePath(" +
+                            "Ljava/nio/file/Path;Lnet/minecraft/util/Identifier;Ljava/lang/String;)" +
+                            "Ljava/nio/file/Path;"
             )
     )
-    private void onLoadStructureFromFileReturn(Identifier id, CallbackInfoReturnable<Optional<Structure>> cir) {
+    private void onLoadStructureFromFileReturn(Identifier id, CallbackInfoReturnable<Optional<StructureTemplate>> cir) {
         if (CFSettings.structureManagerCantLoadSnbtFix) this.id = id;
     }
 
 
     @Redirect(
-            method = "loadStructureFromFile(Lnet/minecraft/util/Identifier;)Ljava/util/Optional;",
+            method = "loadTemplateFromFile(Lnet/minecraft/util/Identifier;)Ljava/util/Optional;",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/Optional;empty()Ljava/util/Optional;"
             )
     )
-    private Optional<Structure> loadSnbtStructureFromFile() {
-        Optional<Structure> returnValue = Optional.empty();
+    private Optional<StructureTemplate> loadSnbtStructureFromFile() {
+        Optional<StructureTemplate> returnValue = Optional.empty();
         if (CFSettings.structureManagerCantLoadSnbtFix && id != null && this.generatedPath.toFile().isDirectory()) {
             if (this.generatedPath.toFile().isDirectory()) {
-                Path path = this.getAndCheckStructurePath(id, ".snbt");
+                Path path = getAndCheckTemplatePath(this.generatedPath, id, ".snbt");
                 try {
-                    returnValue = Optional.of(this.createStructure(this.toNbtCompound(path, id.getPath())));
+                    returnValue = Optional.of(this.createTemplate(this.toNbtCompound(path, id.getPath())));
                 } catch (FileNotFoundException ignored) {
                 } catch (IOException var9) {
                     LOGGER.error("Couldn't load structure from {}", path, var9);

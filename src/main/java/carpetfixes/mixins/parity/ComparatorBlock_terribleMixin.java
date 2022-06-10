@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Mixin(ComparatorBlock.class)
 public class ComparatorBlock_terribleMixin {
 
+
     @ModifyConstant(
             method = "getPower(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
                     "Lnet/minecraft/block/BlockState;)I",

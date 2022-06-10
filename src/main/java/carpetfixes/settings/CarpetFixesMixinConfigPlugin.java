@@ -19,10 +19,7 @@ public class CarpetFixesMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
 
 
     @Override
-    protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
-        //Don't log this since we have a lot of them and its just version checks
-        //LOGGER.info("[Carpet-Fixes] Disabled mixin {} due to {}", mixinClassName, reason);
-    }
+    protected void onRestrictionCheckFailed(String mixinClassName, String reason) {}
 
     @Override
     public void onLoad(String mixinPackage) {

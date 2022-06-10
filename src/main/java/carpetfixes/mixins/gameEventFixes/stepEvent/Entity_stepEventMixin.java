@@ -4,6 +4,8 @@ import carpetfixes.CFSettings;
 import carpetfixes.patches.ServerPlayerEntityEmitStep;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,20 +21,22 @@ public abstract class Entity_stepEventMixin {
      * To fix this, we prevent the STEP event from being emitted within move() and call it after the fall() call.
      */
 
+    private final Entity self = (Entity)(Object)this;
+
 
     @Redirect(
             method = "move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/Entity;emitGameEvent(Lnet/minecraft/world/event/GameEvent;)V",
-                    ordinal = 1
+                    target = "Lnet/minecraft/world/World;emitGameEvent(Lnet/minecraft/world/event/GameEvent;" +
+                            "Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/world/event/GameEvent$Emitter;)V"
             )
     )
-    public void cancelEmitGameEvent(Entity instance, GameEvent event) {
-        if (CFSettings.playerStepEventFix && instance instanceof ServerPlayerEntity) {
+    public void cancelEmitGameEvent(World instance, GameEvent gameEvent, Vec3d vec3d, GameEvent.Emitter emitter) {
+        if (CFSettings.playerStepEventFix && self instanceof ServerPlayerEntity) {
             ((ServerPlayerEntityEmitStep) instance).setShouldStep();
         } else {
-            instance.emitGameEvent(event);
+            instance.emitGameEvent(gameEvent, vec3d, emitter);
         }
     }
 }

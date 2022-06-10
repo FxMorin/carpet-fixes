@@ -1,7 +1,7 @@
 package carpetfixes.mixins.dupeFixes;
 
 import carpetfixes.CFSettings;
-import net.minecraft.entity.passive.HorseBaseEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.HorseScreenHandler;
@@ -17,7 +17,7 @@ public class HorseScreenHandler_dupeMixin {
 
     @Shadow
     @Final
-    private HorseBaseEntity entity;
+    private AbstractHorseEntity entity;
 
 
     @Inject(

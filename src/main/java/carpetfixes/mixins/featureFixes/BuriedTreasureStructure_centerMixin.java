@@ -5,8 +5,8 @@ import net.minecraft.structure.BuriedTreasureGenerator;
 import net.minecraft.structure.StructurePiecesCollector;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.gen.feature.BuriedTreasureFeature;
-import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.structure.BuriedTreasureStructure;
+import net.minecraft.world.gen.structure.Structure;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,21 +14,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(BuriedTreasureFeature.class)
-public abstract class BuriedTreasureFeature_centerMixin extends StructureFeature {
+@Mixin(BuriedTreasureStructure.class)
+public abstract class BuriedTreasureStructure_centerMixin extends Structure {
 
-    protected BuriedTreasureFeature_centerMixin(Config arg) {
+    protected BuriedTreasureStructure_centerMixin(Config arg) {
         super(arg);
     }
 
     @Inject(
             method = "addPieces(Lnet/minecraft/structure/StructurePiecesCollector;" +
-                    "Lnet/minecraft/world/gen/feature/StructureFeature$Context;)V",
+                    "Lnet/minecraft/world/gen/structure/Structure$Context;)V",
             at = @At("HEAD"),
             cancellable = true
     )
     private static void customPiecePosition(StructurePiecesCollector collector,
-                                            StructureFeature.Context arg,
+                                            Structure.Context arg,
                                             CallbackInfo ci) {
         if (CFSettings.buriedTreasureAlwaysCenterFix) {
             ChunkPos chunkPos = arg.chunkPos();

@@ -13,7 +13,7 @@ public class LavaFluid_wrongStateMixin {
 
     @ModifyArg(
             method = "onRandomTick(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
-                    "Lnet/minecraft/fluid/FluidState;Lnet/minecraft/world/gen/random/AbstractRandom;)V",
+                    "Lnet/minecraft/fluid/FluidState;Lnet/minecraft/util/math/random/Random;)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/block/AbstractFireBlock;getState(Lnet/minecraft/world/BlockView;" +

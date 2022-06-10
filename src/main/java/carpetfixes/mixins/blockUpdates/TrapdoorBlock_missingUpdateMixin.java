@@ -52,8 +52,7 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/World;" +
                             "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"
-            ),
-            cancellable = true
+            )
     )
     private void updateOnUseCorrectly(BlockState state, World world, BlockPos pos, PlayerEntity player,
                                       Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {

@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(SwampHutGenerator.class)
 public abstract class SwampHutGenerator_samePosMixin extends ShiftableStructurePiece {
 
-    protected SwampHutGenerator_samePosMixin(StructurePieceType type, int x, int y, int z, int width, int height, int depth, Direction orientation) {
+    protected SwampHutGenerator_samePosMixin(StructurePieceType type, int x, int y, int z, int width,
+                                             int height, int depth, Direction orientation) {
         super(type, x, y, z, width, height, depth, orientation);
     }
 
