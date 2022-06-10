@@ -1704,6 +1704,13 @@ public class CFSettings {
     )
     public static boolean enderpearlClipFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the warden being able to consume armor dispensed onto it",
+            category = BUGFIX
+    )
+    public static boolean wardenEatsArmorFix = false;
+
 
     /*
 
