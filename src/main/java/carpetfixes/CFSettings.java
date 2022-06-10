@@ -1711,6 +1711,13 @@ public class CFSettings {
     )
     public static boolean wardenEatsArmorFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes end crystals not attempting to respawn the dragon when being pushed by a piston",
+            category = BUGFIX
+    )
+    public static boolean endCrystalsOnPushDontSummonDragonFix = false;
+
 
     /*
 
