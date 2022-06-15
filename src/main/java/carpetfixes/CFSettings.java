@@ -1871,6 +1871,13 @@ public class CFSettings {
     )
     public static boolean horseDupeFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes MULTIPLE dupes using chest boats",
+            category = {BUGFIX,DUPE}
+    )
+    public static boolean chestBoatDupeFix = false;
+
 
     /*
 

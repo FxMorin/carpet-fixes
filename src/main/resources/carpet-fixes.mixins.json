@@ -141,6 +141,8 @@
     "dupeFixes.SimpleInventory_dataDupeMixin",
     "dupeFixes.TripwireBlock_stringDupeMixin",
     "dupeFixes.TripwireHookBlock_hookDupeMixin",
+    "dupeFixes.chestBoatDupe.ChestBoatEntity_screenDupeMixin",
+    "dupeFixes.chestBoatDupe.GenericContainerScreenHandler_dupeMixin",
     "dupeFixes.saferItemTransfer.DropperBlock_dontCopyMixin",
     "entityFixes.AbstractDecorationEntity_triggersTrapsMixin",
     "entityFixes.AbstractMinecartEntity_armorStandMixin",
