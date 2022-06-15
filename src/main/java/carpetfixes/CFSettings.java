@@ -1878,6 +1878,13 @@ public class CFSettings {
     )
     public static boolean chestBoatDupeFix = false;
 
+    //by FX - PR0CESS
+    @Rule(
+            desc = "Fixes a lectern block dupe, it just dupes the lectern block",
+            category = {BUGFIX,DUPE}
+    )
+    public static boolean lecternBlockDupeFix = false;
+
 
     /*
 

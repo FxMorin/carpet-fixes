@@ -136,6 +136,7 @@
     "dupeFixes.FallingBlockEntity_duplicationMixin",
     "dupeFixes.HopperBlockEntity_giveMixin",
     "dupeFixes.HorseScreenHandler_dupeMixin",
+    "dupeFixes.LecternBlockEntity_blockDupeMixin",
     "dupeFixes.PistonBlock_tntDupingFixMixin",
     "dupeFixes.ShulkerBoxBlock_breakSwapDupeMixin",
     "dupeFixes.SimpleInventory_dataDupeMixin",
