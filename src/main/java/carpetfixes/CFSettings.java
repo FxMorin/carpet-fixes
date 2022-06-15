@@ -2118,6 +2118,46 @@ public class CFSettings {
     )
     public static int chunkSaveCooldownDelay = 10000;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle onlineMode without needing to restart the server",
+            validate = Validators.onlineModeValidator.class,
+            category = {ADVANCED,EXPERIMENTAL}
+    )
+    public static boolean toggleOnlineMode = true;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle preventing proxy connections without needing to restart the server",
+            validate = Validators.preventProxyConnectionsValidator.class,
+            category = {ADVANCED,EXPERIMENTAL}
+    )
+    public static boolean togglePreventProxyConnections = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle pvpEnabled without needing to restart the server",
+            validate = Validators.pvpEnabledValidator.class,
+            category = {ADVANCED,EXPERIMENTAL}
+    )
+    public static boolean togglePvpEnabled = true;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle flightEnabled without needing to restart the server",
+            validate = Validators.flightEnabledValidator.class,
+            category = {ADVANCED,EXPERIMENTAL}
+    )
+    public static boolean toggleFlightEnabled = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Allows you to toggle enforcing the whitelist without needing to restart the server",
+            validate = Validators.enforceWhitelistValidator.class,
+            category = {ADVANCED,EXPERIMENTAL}
+    )
+    public static boolean toggleEnforceWhitelist = false;
+
 
     /*
 

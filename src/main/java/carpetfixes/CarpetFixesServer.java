@@ -3,6 +3,7 @@ package carpetfixes;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
+import carpetfixes.helpers.RuleScheduler;
 import carpetfixes.settings.CustomSettingsManager;
 import carpetfixes.testing.tests.TestManager;
 import net.fabricmc.api.ModInitializer;
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
     private static final SettingsManager carpetFixesSettingsManager;
+    public static final RuleScheduler ruleScheduler;
 
     public static final Logger LOGGER = LoggerFactory.getLogger(CarpetFixesServer.class);
 
@@ -39,6 +41,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
         MOD_NAME = metadata.getName();
         MOD_VERSION = metadata.getVersion();
         carpetFixesSettingsManager = new CustomSettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
+        ruleScheduler = new RuleScheduler();
     }
 
     @Override
@@ -61,7 +64,9 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     public void onServerLoaded(MinecraftServer server) {}
 
     @Override
-    public void onServerLoadedWorlds(MinecraftServer minecraftServer) {}
+    public void onServerLoadedWorlds(MinecraftServer minecraftServer) {
+        ruleScheduler.onWorldLoaded(minecraftServer);
+    }
 
     @Override
     public void onTick(MinecraftServer server) {

@@ -3,15 +3,15 @@ package carpetfixes.settings;
 import carpet.settings.ParsedRule;
 import carpet.settings.Validator;
 import carpetfixes.CFSettings;
+import carpetfixes.CarpetFixesServer;
 import carpetfixes.helpers.BlockUpdateUtils;
 import carpetfixes.helpers.DirectionUtils;
 import carpetfixes.helpers.MemEfficientNeighborUpdater;
 import carpetfixes.mixins.accessors.AbstractPressurePlateBlockAccessor;
-import carpetfixes.mixins.accessors.TagKeyAccessor;
 import carpetfixes.mixins.accessors.WorldAccessor;
-import com.google.common.collect.Interners;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
@@ -36,46 +36,57 @@ public class Validators {
         }
     }
 
-    public static class TagKeyMemoryLeakFixValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (currentRule.get() != newValue) {
-                TagKeyAccessor.setInterner(newValue ? Interners.newWeakInterner() : Interners.newStrongInterner());
-            }
-            return newValue;
-        }
-    }
-
     public static class onlineModeValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setOnlineMode(newValue);
+            if (source != null) {
+                source.getServer().setOnlineMode(newValue);
+            } else {
+                CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::isOnlineMode);
+            }
             return newValue;
         }
     }
 
     public static class preventProxyConnectionsValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setPreventProxyConnections(newValue);
+            if (source != null) {
+                source.getServer().setPreventProxyConnections(newValue);
+            } else {
+                CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::shouldPreventProxyConnections);
+            }
             return newValue;
         }
     }
 
     public static class pvpEnabledValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setPvpEnabled(newValue);
+            if (source != null) {
+                source.getServer().setPvpEnabled(newValue);
+            } else {
+                CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::isPvpEnabled);
+            }
             return newValue;
         }
     }
 
     public static class flightEnabledValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setFlightEnabled(newValue);
+            if (source != null) {
+                source.getServer().setFlightEnabled(newValue);
+            } else {
+                CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::isFlightEnabled);
+            }
             return newValue;
         }
     }
 
     public static class enforceWhitelistValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) source.getServer().setEnforceWhitelist(newValue);
+            if (source != null) {
+                source.getServer().setEnforceWhitelist(newValue);
+            } else {
+                CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::isEnforceWhitelist);
+            }
             return newValue;
         }
     }
@@ -92,7 +103,7 @@ public class Validators {
                     );
                 }
             } else {
-                newValue = !newValue;
+                CarpetFixesServer.ruleScheduler.addRule(this, currentRule, newValue, string);
             }
             return newValue;
         }
@@ -138,7 +149,7 @@ public class Validators {
                     }
                 }
             } else {
-                newValue = !newValue;
+                CarpetFixesServer.ruleScheduler.addRule(this, currentRule, newValue, string);
             }
             return newValue;
         }
