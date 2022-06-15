@@ -38,7 +38,7 @@ public class Validators {
 
     public static class onlineModeValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
+            if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setOnlineMode(newValue);
             } else {
                 CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::isOnlineMode);
@@ -49,7 +49,7 @@ public class Validators {
 
     public static class preventProxyConnectionsValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
+            if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setPreventProxyConnections(newValue);
             } else {
                 CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::shouldPreventProxyConnections);
@@ -60,7 +60,7 @@ public class Validators {
 
     public static class pvpEnabledValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
+            if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setPvpEnabled(newValue);
             } else {
                 CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::isPvpEnabled);
@@ -71,7 +71,7 @@ public class Validators {
 
     public static class flightEnabledValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
+            if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setFlightEnabled(newValue);
             } else {
                 CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::isFlightEnabled);
@@ -82,7 +82,7 @@ public class Validators {
 
     public static class enforceWhitelistValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
+            if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setEnforceWhitelist(newValue);
             } else {
                 CarpetFixesServer.ruleScheduler.addDefaultRule(this, currentRule, newValue, string, MinecraftServer::isEnforceWhitelist);
@@ -93,7 +93,7 @@ public class Validators {
 
     public static class reIntroduceInstantBlockUpdatesValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
+            if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 for (ServerWorld world : source.getServer().getWorlds()) {
                     ((WorldAccessor)world).setNeighborUpdater(newValue ?
                             new SimpleNeighborUpdater(world) : // Instant
@@ -139,7 +139,7 @@ public class Validators {
 
     public static class optimizedNeighborUpdaterValidator extends Validator<Boolean> {
         @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            if (source != null) {
+            if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 if (!CFSettings.reIntroduceInstantBlockUpdates) {
                     for (ServerWorld world : source.getServer().getWorlds()) {
                         ((WorldAccessor) world).setNeighborUpdater(newValue ?

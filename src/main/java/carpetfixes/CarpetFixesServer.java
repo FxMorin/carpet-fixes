@@ -20,6 +20,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
 
     private static final SettingsManager carpetFixesSettingsManager;
     public static final RuleScheduler ruleScheduler;
+    public static boolean areWorldsLoaded;
 
     public static final Logger LOGGER = LoggerFactory.getLogger(CarpetFixesServer.class);
 
@@ -40,6 +41,7 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
                 .orElseThrow(RuntimeException::new).getMetadata();
         MOD_NAME = metadata.getName();
         MOD_VERSION = metadata.getVersion();
+        areWorldsLoaded = false;
         carpetFixesSettingsManager = new CustomSettingsManager(MOD_VERSION.getFriendlyString(),MOD_ID,MOD_NAME);
         ruleScheduler = new RuleScheduler();
     }
@@ -61,10 +63,13 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     }
 
     @Override
-    public void onServerLoaded(MinecraftServer server) {}
+    public void onServerLoaded(MinecraftServer server) {
+        areWorldsLoaded = false;
+    }
 
     @Override
     public void onServerLoadedWorlds(MinecraftServer minecraftServer) {
+        areWorldsLoaded = true;
         ruleScheduler.onWorldLoaded(minecraftServer);
     }
 
