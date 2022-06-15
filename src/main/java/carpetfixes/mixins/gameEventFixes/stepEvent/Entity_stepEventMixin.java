@@ -34,7 +34,7 @@ public abstract class Entity_stepEventMixin {
     )
     public void cancelEmitGameEvent(World instance, GameEvent gameEvent, Vec3d vec3d, GameEvent.Emitter emitter) {
         if (CFSettings.playerStepEventFix && self instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntityEmitStep) instance).setShouldStep();
+            ((ServerPlayerEntityEmitStep) self).setShouldStep();
         } else {
             instance.emitGameEvent(gameEvent, vec3d, emitter);
         }
