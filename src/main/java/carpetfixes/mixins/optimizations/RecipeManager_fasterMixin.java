@@ -48,11 +48,18 @@ public abstract class RecipeManager_fasterMixin {
                 if (!inventory.getStack(slot).isEmpty()) slots++;
             for (Recipe<C> recipe : this.getAllOfType(type).values()) {
                 count = 0;
-                for (Ingredient ingredient : recipe.getIngredients())
-                    if (ingredient != Ingredient.EMPTY) count++;
-                if (count == slots && recipe.matches(inventory,world)) {
-                    cir.setReturnValue((Optional<T>)Optional.of(recipe));
-                    return;
+                if (recipe.isIgnoredInRecipeBook()) {
+                    if (recipe.matches(inventory, world)) {
+                        cir.setReturnValue((Optional<T>) Optional.of(recipe));
+                        return;
+                    }
+                } else {
+                    for (Ingredient ingredient : recipe.getIngredients())
+                        if (ingredient != Ingredient.EMPTY) count++;
+                    if (count == slots && recipe.matches(inventory, world)) {
+                        cir.setReturnValue((Optional<T>) Optional.of(recipe));
+                        return;
+                    }
                 }
             }
             cir.setReturnValue(Optional.empty());
