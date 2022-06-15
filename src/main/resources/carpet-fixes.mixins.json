@@ -129,6 +129,8 @@
     "coreSystemFixes.paletteDataCorruption.ArrayPalette_dataCorruptionMixin",
     "coreSystemFixes.paletteDataCorruption.BiMapPalette_dataCorruptionMixin",
     "coreSystemFixes.paletteDataCorruption.SingularPalette_dataCorruptionMixin",
+    "coreSystemFixes.updateSuppression.MinecraftServer_crashFixMixin",
+    "coreSystemFixes.updateSuppression.NeighborUpdater_updateSuppressMixin",
     "debugging.TurtleEggBlock_stackMixin",
     "dupeFixes.AbstractRailBlock_duplicationMixin",
     "dupeFixes.FallingBlockEntity_duplicationMixin",

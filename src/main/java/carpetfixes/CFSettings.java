@@ -2029,6 +2029,13 @@ public class CFSettings {
     )
     public static boolean repeaterPriorityFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "No longer fixes an actual crash, the crash is only possible if you use: `reIntroduceInstantBlockUpdates`",
+            category = EXPERIMENTAL
+    )
+    public static boolean updateSuppressionCrashFix = false;
+
 
     /*
 
