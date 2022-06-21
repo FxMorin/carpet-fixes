@@ -2,14 +2,17 @@ package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.CenterUtils;
+import carpetfixes.helpers.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.entity.EntityLike;
+import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -86,6 +89,18 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
                                      BlockPos pos, Entity entity, float fallDistance) {
         if (CFSettings.entityBlockCollisionUsingCenterFix) {
             CenterUtils.checkFallCollision(entity,fallDistance);
+        } else if (CFSettings.silentWoolDrop){ //this looks ugly, but this fix needs to be placed both here and up above, in case the above rule is false
+            Box box = entity.getBoundingBox();
+            BlockPos blockPos = new BlockPos(box.minX, box.minY, box.minZ);
+            if (entity.world.isRegionLoaded(blockPos, blockPos)) {
+                BlockPos.Mutable mutable = new BlockPos.Mutable();
+                mutable.set(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                state.getBlock().onLandedUpon(entity.world, state, mutable, entity, fallDistance);
+                if (!state.isAir() && !state.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS) && Utils.checkOccludesDrop(entity)) {
+                    entity.emitGameEvent(GameEvent.HIT_GROUND);
+                }
+            }
+
         } else {
             block.onLandedUpon(world, state, pos, entity, fallDistance);
         }

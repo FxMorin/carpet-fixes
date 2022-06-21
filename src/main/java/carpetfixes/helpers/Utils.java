@@ -1,5 +1,6 @@
 package carpetfixes.helpers;
 
+import carpetfixes.CFSettings;
 import carpetfixes.CarpetFixesServer;
 import carpetfixes.settings.CarpetFixesMixinConfigPlugin;
 import net.fabricmc.loader.api.Version;
@@ -7,6 +8,9 @@ import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -150,5 +154,13 @@ public class Utils {
             case BLACK -> {if (col2.equals(DyeColor.WHITE)) return DyeColor.GRAY;}
         }
         return null;
+    }
+
+    /**
+     * Checks whether an entity should occlude signals when it drops.
+     * Basically used to make wool and carpet items drop silently
+     */
+    public static boolean checkOccludesDrop(Entity entity){
+        return !CFSettings.silentWoolDrop &&  entity instanceof ItemEntity itemEntity && itemEntity.getStack().isIn(ItemTags.DAMPENS_VIBRATIONS);
     }
 }

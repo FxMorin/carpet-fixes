@@ -2210,4 +2210,12 @@ public class CFSettings {
             category = PARITY
     )
     public static boolean parityTerribleComparators = false;
+
+    //By Ghoulboy
+    @Rule(
+            desc = "Dropping wool or carpet item generates a noise",
+            extra = "Fixes [MC-252258](https://bugs.mojang.com/browse/MC-252258)",
+            category = BUGFIX
+    )
+    public static boolean silentWoolDrop = false;
 }

@@ -60,7 +60,7 @@ public class CenterUtils {
                     mutable.set(i, blockPos.getY(), k);
                     BlockState state = entity.world.getBlockState(mutable);
                     state.getBlock().onLandedUpon(entity.world, state, mutable, entity, fallDistance);
-                    if (!createdEvent && !state.isAir() && !state.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
+                    if (!createdEvent && !state.isAir() && !state.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS) && Utils.checkOccludesDrop(entity)) {
                         entity.emitGameEvent(GameEvent.HIT_GROUND);
                         createdEvent = true;
                     }
