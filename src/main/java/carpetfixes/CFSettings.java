@@ -2215,7 +2215,7 @@ public class CFSettings {
     @Rule(
             desc = "Dropping wool or carpet item generates a noise",
             extra = "Fixes [MC-252258](https://bugs.mojang.com/browse/MC-252258)",
-            category = BUGFIX
+            category = {BUGFIX, VANILLA}
     )
     public static boolean silentWoolDrop = false;
 }
