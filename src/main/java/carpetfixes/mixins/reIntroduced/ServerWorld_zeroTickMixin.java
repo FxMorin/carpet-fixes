@@ -37,14 +37,13 @@ public abstract class ServerWorld_zeroTickMixin extends World {
             require = 0,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;scheduledTick(" +
-                            "Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;" +
-                            "Lnet/minecraft/world/gen/random/AbstractRandom;)V",
+                    target = "Lnet/minecraft/block/BlockState;scheduledTick(Lnet/minecraft/server/world/ServerWorld;" +
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)V",
                     shift = At.Shift.AFTER
             )
     )
     private void zeroTickBlock(BlockPos pos, Block block, CallbackInfo ci, BlockState state) {
-        if (CFSettings.reIntroduceZeroTickFarms && !this.isAir(pos) && state.hasRandomTicks())
+        if (CFSettings.reIntroduceZeroTickFarms && !this.getBlockState(pos).isOf(block) && state.hasRandomTicks())
             state.randomTick(self,pos,this.random);
     }
 }
