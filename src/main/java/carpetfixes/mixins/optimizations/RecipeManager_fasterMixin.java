@@ -2,10 +2,7 @@ package carpetfixes.mixins.optimizations;
 
 import carpetfixes.CFSettings;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeManager;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -48,7 +45,7 @@ public abstract class RecipeManager_fasterMixin {
                 if (!inventory.getStack(slot).isEmpty()) slots++;
             for (Recipe<C> recipe : this.getAllOfType(type).values()) {
                 count = 0;
-                if (recipe.isIgnoredInRecipeBook()) {
+                if (recipe instanceof SpecialCraftingRecipe) {
                     if (recipe.matches(inventory, world)) {
                         cir.setReturnValue((Optional<T>) Optional.of(recipe));
                         return;
