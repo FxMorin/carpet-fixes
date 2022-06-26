@@ -38,9 +38,11 @@ public class LecternBlockEntity_blockDupeMixin extends BlockEntity {
     )
     void onBookRemovedCheckIfBlockStillThere(CallbackInfo ci) {
         if (CFSettings.lecternBlockDupeFix) {
-            BlockState state = this.getWorld().getBlockState(this.getPos());
-            if (state.isOf(Blocks.LECTERN))
-                LecternBlock.setHasBook(this.getWorld(), this.getPos(), state, false);
+            if (!this.isRemoved()) { // If the lectern block entity is removed, no world interactions should be done
+                BlockState state = this.getWorld().getBlockState(this.getPos());
+                if (state.isOf(Blocks.LECTERN))
+                    LecternBlock.setHasBook(this.getWorld(), this.getPos(), state, false);
+            }
             ci.cancel();
         }
     }
