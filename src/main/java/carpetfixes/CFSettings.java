@@ -1781,6 +1781,7 @@ public class CFSettings {
     //By Hilligans
     @Rule(
             desc = "A memory efficient implementation of the new NeighborUpdater",
+            extra = "Does not work with updateSuppressionBlock",
             validate = Validators.optimizedNeighborUpdaterValidator.class,
             category = {OPTIMIZATION,VANILLA,EXPERIMENTAL}
     )
