@@ -29,11 +29,11 @@ See [List of all available settings](https://github.com/fxmorin/carpet-fixes/wik
 - [How to use item shadowing in 1.19](https://github.com/fxmorin/carpet-fixes/wiki/How-to-use-item-shadowing-in-1.19-using-carpet-fixes)
 
 ## ModPacks
-Go for it! I absolutely don't mind as long as you mention that the mod is in the modpack.
+Go for it! I absolutely don't mind as long as you mention that the mod is in the modpack.  
 
 ## More detail
-This mod works for both Singleplayer & Multiplayer, although it only modifies server-side functionality!
-The mod does fix some client-side bugs (not many), and only if carpet-fixes is on the server as well.
+This mod works for both Singleplayer & Multiplayer, although it only modifies server-side functionality!  
+The mod does fix some client-side bugs (not many), and only if carpet-fixes is on the server as well.  
 For Client-Side fixes, go check out: [blanket](https://github.com/BlanketMC/blanket-client-tweaks)
 
 
