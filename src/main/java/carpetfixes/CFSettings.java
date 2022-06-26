@@ -1718,6 +1718,14 @@ public class CFSettings {
     )
     public static boolean endCrystalsOnPushDontSummonDragonFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes the SitGoal continuously restarting if the owner is offline, instead of doing the checks normally",
+            extra = "Currently does not change any vanilla mechanics. Although this bug might cause issues in other mods!",
+            category = {BUGFIX, MODDED}
+    )
+    public static boolean sitGoalAlwaysResettingFix = false;
+
 
     /*
 

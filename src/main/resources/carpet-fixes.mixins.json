@@ -249,6 +249,7 @@
     "goalFixes.OcelotEntity$FleeGoal_vehicleMixin",
     "goalFixes.ProjectileAttackGoal_deadMixin",
     "goalFixes.RevengeGoal_selfHarmMixin",
+    "goalFixes.SitGoal_goalLoopMixin",
     "goalFixes.StepAndDestroyBlockGoal_originMixin",
     "goalFixes.slowedGoalFix.DolphinEntity$PlayWithItemsGoal_slowMixin",
     "goalFixes.slowedGoalFix.EatGrassGoal_slowMixin",
