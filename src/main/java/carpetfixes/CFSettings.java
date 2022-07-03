@@ -2099,8 +2099,7 @@ public class CFSettings {
     public static boolean debugStackTrace = false;
 
     @Rule(
-            desc = "Placing a powered rail on a jigsaw block will make it throw a real out of memory exception when the rail turns off",
-            extra = "Works a lot like `updateSuppressionBlock` although can only be toggled",
+            desc = "A jigsaw block with a lightning rod ontop of itself will make it throw a real out of memory exception when receiving a block update",
             category = DEBUG
     )
     public static boolean debugSimulatedOutOfMemory = false;
