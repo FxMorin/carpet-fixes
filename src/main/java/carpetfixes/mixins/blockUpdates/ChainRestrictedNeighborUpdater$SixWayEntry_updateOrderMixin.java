@@ -41,6 +41,9 @@ public class ChainRestrictedNeighborUpdater$SixWayEntry_updateOrderMixin {
     private @Nullable Direction except;
 
 
+    //TODO: Don't inject head then replace the method. Use a grouped rule instead (TODO: Create grouped rules xD)
+    // When making this inject conditional. Make sure to redirect the `NeighborUpdate` in the original method so that
+    // it uses `BlockUpdateUtils.doNeighborUpdate()`, otherwise the rule `someUpdatesDontCatchExceptionsFix` will break
     @Inject(
             method = "update(Lnet/minecraft/world/World;)Z",
             at = @At("HEAD"),
@@ -50,7 +53,7 @@ public class ChainRestrictedNeighborUpdater$SixWayEntry_updateOrderMixin {
         Direction[] directions = BlockUpdateUtils.blockUpdateDirections.apply(this.pos);
         BlockPos blockPos = this.pos.offset(directions[this.currentDirectionIndex++]);
         BlockState blockState = world.getBlockState(blockPos);
-        blockState.neighborUpdate(world, blockPos, this.sourceBlock, this.pos, false);
+        BlockUpdateUtils.doNeighborUpdate(blockState, world, blockPos, this.sourceBlock, this.pos, false);
         if (this.currentDirectionIndex < directions.length && directions[this.currentDirectionIndex] == this.except)
             ++this.currentDirectionIndex;
         cir.setReturnValue(this.currentDirectionIndex < directions.length);

@@ -2,9 +2,11 @@ package carpetfixes.helpers;
 
 import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.minecraft.world.block.NeighborUpdater;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -64,6 +66,18 @@ public class BlockUpdateUtils {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * I use this method since there are multiple places where I need to call neighborUpdate, so we do this from here
+     * and add the required checks all at the same place.
+     */
+    public static void doNeighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+        if (CFSettings.someUpdatesDontCatchExceptionsFix) {
+            NeighborUpdater.tryNeighborUpdate(world, state, pos, block, fromPos, notify);
+        } else {
+            state.neighborUpdate(world, pos, block, fromPos, notify);
         }
     }
 }

@@ -1726,6 +1726,22 @@ public class CFSettings {
     )
     public static boolean sitGoalAlwaysResettingFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes crashes caused by `debugSimulatedOutOfMemory`",
+            extra = "Should only be used if you know what you are doing!",
+            category = EXPERIMENTAL
+    )
+    public static boolean simulatedOutOfMemoryCrashFix = false;
+
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes crashes caused by block updates using the SixWayEntry update. Currently only useful for OOM!",
+            extra = "When enabled, this might lower performance. Should only be used for testing!",
+            category = EXPERIMENTAL
+    )
+    public static boolean someUpdatesDontCatchExceptionsFix = false;
+
 
     /*
 
@@ -2081,6 +2097,13 @@ public class CFSettings {
             category = DEBUG
     )
     public static boolean debugStackTrace = false;
+
+    @Rule(
+            desc = "Placing a powered rail on a jigsaw block will make it throw a real out of memory exception when the rail turns off",
+            extra = "Works a lot like `updateSuppressionBlock` although can only be toggled",
+            category = DEBUG
+    )
+    public static boolean debugSimulatedOutOfMemory = false;
 
 
     /*
