@@ -1747,6 +1747,13 @@ public class CFSettings {
     )
     public static boolean someUpdatesDontCatchExceptionsFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes falling blocks only being able to use end gateways once",
+            category = BUGFIX
+    )
+    public static boolean fallingBlocksCantReuseGatewaysFix = false;
+
 
     /*
 

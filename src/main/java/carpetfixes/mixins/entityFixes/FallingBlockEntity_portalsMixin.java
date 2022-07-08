@@ -11,14 +11,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FallingBlockEntity.class)
-public abstract class FallingBlockEntity_netherPortalMixin extends Entity {
+public abstract class FallingBlockEntity_portalsMixin extends Entity {
 
     /**
      * Since falling blocks override the tick() method, they "forgot" to add the nether portal ticking
      */
 
 
-    public FallingBlockEntity_netherPortalMixin(EntityType<?> type, World world) {
+    public FallingBlockEntity_portalsMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 
@@ -28,6 +28,10 @@ public abstract class FallingBlockEntity_netherPortalMixin extends Entity {
             at = @At("HEAD")
     )
     public void tickNetherPortal(CallbackInfo ci) {
-        if (CFSettings.fallingBlocksCantUseNetherPortalsFix) this.tickNetherPortal();
+        if (CFSettings.fallingBlocksCantUseNetherPortalsFix) {
+            this.tickNetherPortal();
+        } else if (CFSettings.fallingBlocksCantReuseGatewaysFix) {
+            this.tickNetherPortalCooldown(); // Improperly named, it's used for gateways too
+        }
     }
 }
