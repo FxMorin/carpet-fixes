@@ -1,5 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.BlockUpdateUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneTorchBlock;
@@ -24,10 +25,12 @@ public class RedstoneTorchBlock_updateOrderOnBreakMixin {
     )
     public void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos,
                                                BlockState newState, boolean moved, CallbackInfo ci) {
-        if (!moved) {
-            boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.isOf(self);
-            BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,doExtraEarlyUpdate,true);
+        if (CFSettings.useCustomRedstoneUpdates) {
+            if (!moved) {
+                boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.isOf(self);
+                BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, doExtraEarlyUpdate, true);
+            }
+            ci.cancel();
         }
-        ci.cancel();
     }
 }

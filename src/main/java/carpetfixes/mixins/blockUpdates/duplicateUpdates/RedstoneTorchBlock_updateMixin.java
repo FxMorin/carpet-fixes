@@ -41,12 +41,15 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
                             true
                     );
                 }
+                ci.cancel();
             } else { // Do Settings.uselessSelfBlockUpdateFix here
-                boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.equals(state);
-                BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,doExtraEarlyUpdate,true);
+                if (CFSettings.useCustomRedstoneUpdates) {
+                    boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.equals(state);
+                    BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, doExtraEarlyUpdate, true);
+                    ci.cancel();
+                }
             }
         }
-        ci.cancel();
     }
 
 
@@ -57,7 +60,9 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
     )
     public void onBlockAddedBetter(BlockState state, World world, BlockPos pos,
                                    BlockState newState, boolean moved, CallbackInfo ci) {
-        BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,false,true);
-        ci.cancel();
+        if (CFSettings.useCustomRedstoneUpdates) {
+            BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, false, true);
+            ci.cancel();
+        }
     }
 }

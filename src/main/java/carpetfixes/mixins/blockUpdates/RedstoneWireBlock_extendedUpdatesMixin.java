@@ -1,5 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.BlockUpdateUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneWireBlock;
@@ -35,8 +36,10 @@ public class RedstoneWireBlock_extendedUpdatesMixin {
             cancellable = true
     )
     private void onUpdateExtendedNeighbors(World world, BlockPos pos, CallbackInfo ci) {
-        BlockUpdateUtils.doExtendedBlockUpdates(world,pos,self,false,false);
-        ci.cancel();
+        if (CFSettings.useCustomRedstoneUpdates) {
+            BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, false, false);
+            ci.cancel();
+        }
     }
 
 
@@ -54,12 +57,14 @@ public class RedstoneWireBlock_extendedUpdatesMixin {
     )
     private void onStateReplacedExtendedUpdates(BlockState state, World world, BlockPos pos,
                                                 BlockState newState, boolean moved, CallbackInfo ci) {
-        if (!world.isClient) {
-            boolean doExtraEarlyUpdate = state.get(RedstoneWireBlock.POWER) > 0 && !newState.isOf(self);
-		    BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, doExtraEarlyUpdate,false);
-			this.update(world, pos, state);
-			this.updateOffsetNeighbors(world, pos);
-		}
-        ci.cancel();
+        if (CFSettings.useCustomRedstoneUpdates) {
+            if (!world.isClient) {
+                boolean doExtraEarlyUpdate = state.get(RedstoneWireBlock.POWER) > 0 && !newState.isOf(self);
+                BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, doExtraEarlyUpdate, false);
+                this.update(world, pos, state);
+                this.updateOffsetNeighbors(world, pos);
+            }
+            ci.cancel();
+        }
     }
 }

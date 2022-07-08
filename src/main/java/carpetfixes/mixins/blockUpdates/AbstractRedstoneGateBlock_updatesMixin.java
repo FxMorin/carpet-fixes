@@ -1,5 +1,6 @@
 package carpetfixes.mixins.blockUpdates;
 
+import carpetfixes.CFSettings;
 import carpetfixes.helpers.BlockUpdateUtils;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
@@ -28,7 +29,9 @@ public class AbstractRedstoneGateBlock_updatesMixin {
     )
     public void neighborUpdate(BlockState state, World world, BlockPos pos,
                                Block block,BlockPos fromPos, boolean notify, CallbackInfo ci) {
-        BlockUpdateUtils.doExtendedBlockUpdates(world,pos,block,state.get(AbstractRedstoneGateBlock.POWERED),false);
-        ci.cancel();
+        if (CFSettings.useCustomRedstoneUpdates) {
+            BlockUpdateUtils.doExtendedBlockUpdates(world, pos, block, state.get(AbstractRedstoneGateBlock.POWERED), false);
+            ci.cancel();
+        }
     }
 }

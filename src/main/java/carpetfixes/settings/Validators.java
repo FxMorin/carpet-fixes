@@ -164,4 +164,20 @@ public class Validators {
             return newValue;
         }
     }
+
+    // Changes how block updates use updateNeighbor instead of updateNeighbors
+    public static class enableCustomRedstoneRuleValidator extends Validator<Boolean> {
+        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+            if (newValue) {
+                CFSettings.useCustomRedstoneUpdates = true;
+            } else {
+                CFSettings.useCustomRedstoneUpdates = CFSettings.duplicateBlockUpdatesFix ||
+                        CFSettings.extendedBlockUpdateOrderFix ||
+                        CFSettings.redstoneComponentUpdateOrderOnBreakFix ||
+                        CFSettings.uselessSelfBlockUpdateFix ||
+                        CFSettings.parityRandomBlockUpdates;
+            }
+            return newValue;
+        }
+    }
 }

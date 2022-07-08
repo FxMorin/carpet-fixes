@@ -18,6 +18,7 @@ public class CFSettings {
 
     // Global Variables
     public static boolean scheduleWorldBorderReset = false;
+    public static boolean useCustomRedstoneUpdates = false;
     public static final ThreadLocal<Set<BlockPos>> LAST_DIRT = ThreadLocal.withInitial(HashSet::new);
     public static final Predicate<BlockState> IS_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
     public static final ThreadLocal<Boolean> IS_TICK_SAVE = ThreadLocal.withInitial(() -> false);
@@ -87,6 +88,7 @@ public class CFSettings {
             desc = "Changes block updates that go 2 blocks out, so they have the same block update order",
             extra = {"Changes extended block update order from YZX to XZY",
                     "Warning! This changes how some block updates are done and could effect some contraptions"},
+            validate = Validators.enableCustomRedstoneRuleValidator.class,
             category = BUGFIX
     )
     public static boolean extendedBlockUpdateOrderFix = false;
@@ -354,6 +356,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes some redstone components sending duplicated block updates",
             extra = "[MC-231071](https://bugs.mojang.com/browse/MC-231071)",
+            validate = Validators.enableCustomRedstoneRuleValidator.class,
             category = {BUGFIX,EXPERIMENTAL,RECOMMENDED,VANILLA,OPTIMIZATION}
     )
     public static boolean duplicateBlockUpdatesFix = false;
@@ -440,6 +443,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes blocks using updateNeighbors() on blocks next to them, making itself get a block update even though it does not accept block updates",
             extra = "Some blocks do accept block updates, although we make sure to update them correctly",
+            validate = Validators.enableCustomRedstoneRuleValidator.class,
             category = {BUGFIX,RECOMMENDED,VANILLA,OPTIMIZATION}
     )
     public static boolean uselessSelfBlockUpdateFix = false;
@@ -657,6 +661,7 @@ public class CFSettings {
     @Rule(
             desc = "Fixes redstone torch/repeater/comparator update order when being broken, causing incorrect update order",
             extra = "[MC-157644](https://bugs.mojang.com/browse/MC-157644)",
+            validate = Validators.enableCustomRedstoneRuleValidator.class,
             category = BUGFIX
     )
     public static boolean redstoneComponentUpdateOrderOnBreakFix = false;
@@ -2222,7 +2227,10 @@ public class CFSettings {
     //By FX - PR0CESS
     @Rule(
             desc = "Makes block update order random",
-            validate = Validators.parityRandomBlockUpdatesValidator.class,
+            validate = {
+                    Validators.parityRandomBlockUpdatesValidator.class,
+                    Validators.enableCustomRedstoneRuleValidator.class
+            },
             category = PARITY
     )
     public static boolean parityRandomBlockUpdates = false;

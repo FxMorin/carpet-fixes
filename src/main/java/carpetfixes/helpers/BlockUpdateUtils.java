@@ -42,12 +42,6 @@ public class BlockUpdateUtils {
                 CFSettings.parityRandomBlockUpdates ?
                         DirectionUtils.randomDirectionArray(pos) :
                         Direction.values();
-        //Set the direction update order
-        Direction[] directions = CFSettings.blockUpdateOrderFix ?
-                DirectionUtils.directions :
-                CFSettings.parityRandomBlockUpdates ?
-                        DirectionUtils.randomDirectionArray(pos) :
-                        UPDATE_ORDER;
         //If redstone component should update blocks closer to itself before giving extended block updates
         if (CFSettings.redstoneComponentUpdateOrderOnBreakFix && removedAndEmitsPower) {
             //Do block updates around block first. Preventing wrong order
