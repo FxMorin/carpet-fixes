@@ -1754,6 +1754,14 @@ public class CFSettings {
     )
     public static boolean fallingBlocksCantReuseGatewaysFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes villagers not releasing there tickets & positional memories when changing dimension, causing them to attempt to pathfind to them causing insane lag",
+            extra = "[MC-248208](https://bugs.mojang.com/browse/MC-248208)",
+            category = {BUGFIX,CRASHFIX,RECOMMENDED}
+    )
+    public static boolean villagersDontReleaseMemoryFix = false;
+
 
     /*
 

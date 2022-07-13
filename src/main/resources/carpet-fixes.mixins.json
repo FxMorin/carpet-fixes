@@ -216,6 +216,7 @@
     "entityFixes.VillagerEntity_fireworkMixin",
     "entityFixes.VillagerEntity_offlinePlayersMixin",
     "entityFixes.VillagerEntity_witchBedMixin",
+    "entityFixes.VillagerEntity_worldPoiMixin",
     "entityFixes.WardenEntity_eatsArmorMixin",
     "entityFixes.WitherSkullEntity_chargedMixin",
     "entityFixes.WolfEntity_snowballDamageMixin",

@@ -121,6 +121,7 @@ public abstract class Entity_dimensionsMixin implements EntityUtils {
         }
     }
 
+
     @Override
     public Vec3d adjustMovementForCollisionsAtPos(EntityDimensions dimensions, Vec3d movement,
                                                   Vec3d pos, boolean includeEntities) {
