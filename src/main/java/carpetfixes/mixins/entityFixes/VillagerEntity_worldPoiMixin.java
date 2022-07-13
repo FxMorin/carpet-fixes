@@ -8,7 +8,6 @@ import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.village.VillagerData;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,14 +22,12 @@ public abstract class VillagerEntity_worldPoiMixin extends MerchantEntity {
     @Shadow
     protected abstract void releaseAllTickets();
 
+    @Shadow
+    public abstract Brain<VillagerEntity> getBrain();
 
-    @Shadow public abstract Brain<VillagerEntity> getBrain();
+    @Shadow
+    public abstract void reinitializeBrain(ServerWorld world);
 
-    @Shadow public abstract void setVillagerData(VillagerData villagerData);
-
-    @Shadow public abstract VillagerData getVillagerData();
-
-    @Shadow public abstract void reinitializeBrain(ServerWorld world);
 
     @Override
     public Entity moveToWorld(ServerWorld destination) {
