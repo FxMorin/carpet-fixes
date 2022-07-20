@@ -1445,14 +1445,6 @@ public class CFSettings {
     )
     public static boolean enderDragonDoesntDropBlocksFix = false;
 
-    //By FX - PR0CESS
-    @Rule(
-            desc = "Fixes the projectileAttackGoal targetting dead entities",
-            extra = "[MC-165516](https://bugs.mojang.com/browse/MC-165516)",
-            category = BUGFIX
-    )
-    public static boolean projectileGoalTargetsDeadEntitiesFix = false;
-
     //By Max Henkel, & FX
     @Rule(
             desc = "Fixes InhabitedTime not always updating in some chunks",
