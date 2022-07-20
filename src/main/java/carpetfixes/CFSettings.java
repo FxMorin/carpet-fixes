@@ -1754,6 +1754,15 @@ public class CFSettings {
     )
     public static boolean villagersDontReleaseMemoryFix = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            desc = "Fixes structure blocks not being able to save entities with passengers",
+            extra = {"It will still usually fail since both entities have the same UUID, use the rule: `duplicateEntityUUIDFix` to get around this",
+                    "[MC-103452](https://bugs.mojang.com/browse/MC-103452)"},
+            category = BUGFIX
+    )
+    public static boolean structuresIgnorePassengersFix = false;
+
 
     /*
 

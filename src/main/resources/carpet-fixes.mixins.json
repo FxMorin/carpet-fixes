@@ -123,6 +123,7 @@
     "coreSystemFixes.StatusEffectInstance_nbtSuffixMixin",
     "coreSystemFixes.StatusEffectInstance_wrongEffectMixin",
     "coreSystemFixes.StructureManager_snbtMixin",
+    "coreSystemFixes.StructureTemplate_entityPassengersMixin",
     "coreSystemFixes.ThreadedAnvilChunkStorage_tickSaveMixin",
     "coreSystemFixes.TradeOffer_demandUnderflowMixin",
     "coreSystemFixes.World_seaLevelMixin",
