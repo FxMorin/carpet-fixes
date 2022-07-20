@@ -7,6 +7,10 @@ import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -150,5 +154,16 @@ public class Utils {
             case BLACK -> {if (col2.equals(DyeColor.WHITE)) return DyeColor.GRAY;}
         }
         return null;
+    }
+
+    public static void reIntroduceDonkeyRidingDupe_replaceVehicle(NbtCompound nbt, World world) {
+        EntityType.loadEntityWithPassengers(nbt, world, (vehicle) -> {
+            Entity before = ((ServerWorld) world).getEntity(vehicle.getUuid());
+            if (before != null) {
+                before.readNbt(vehicle.writeNbt(new NbtCompound()));
+                return before;
+            }
+            return !((ServerWorld) world).tryLoadEntity(vehicle) ? null : vehicle;
+        });
     }
 }
