@@ -1,7 +1,7 @@
 package carpetfixes.mixins.utils;
 
 import carpetfixes.mixins.accessors.EntityAccessor;
-import carpetfixes.patches.EntityUtils;
+import carpetfixes.patches.ExtendedEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.List;
 
 @Mixin(Entity.class)
-public abstract class Entity_dimensionsMixin implements EntityUtils {
+public abstract class Entity_dimensionsMixin implements ExtendedEntity {
 
     private final Entity self = (Entity)(Object)this;
 

@@ -1,7 +1,7 @@
 package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CFSettings;
-import carpetfixes.patches.EntityUtils;
+import carpetfixes.patches.ExtendedEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -45,7 +45,7 @@ public abstract class EnderPearlEntity_clipMixin extends ThrownItemEntity {
                     Math.floor(this.getY()) + 0.5,
                     Math.floor(this.getZ()) + 0.5
             );
-            this.setPosition(blockBoundPos.add(((EntityUtils) owner).adjustMovementForCollisionsAtPos(
+            this.setPosition(blockBoundPos.add(((ExtendedEntity) owner).adjustMovementForCollisionsAtPos(
                     dimensions,
                     this.getPos().subtract(blockBoundPos),
                     blockBoundPos,

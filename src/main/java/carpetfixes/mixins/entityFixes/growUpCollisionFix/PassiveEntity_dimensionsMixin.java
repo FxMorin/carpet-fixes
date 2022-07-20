@@ -1,7 +1,7 @@
 package carpetfixes.mixins.entityFixes.growUpCollisionFix;
 
 import carpetfixes.CFSettings;
-import carpetfixes.patches.EntityUtils;
+import carpetfixes.patches.ExtendedEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.TrackedData;
@@ -31,7 +31,7 @@ public abstract class PassiveEntity_dimensionsMixin extends Entity {
     )
     public void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
         if (CFSettings.entityGrowingUpCollisionClippingFix) {
-            ((EntityUtils)this).calculateDimensionsWithoutHeight();
+            ((ExtendedEntity)this).calculateDimensionsWithoutHeight();
             super.onTrackedDataSet(data);
             ci.cancel();
         }
