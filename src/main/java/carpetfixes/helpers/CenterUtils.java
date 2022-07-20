@@ -9,49 +9,29 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
+import java.util.function.Consumer;
+
 public class CenterUtils {
 
-    private static final double VELOCITY_AFFECTING_POS_Y_OFFSET = 0.5;
+    private static final double VELOCITY_AFFECTING_POS_Y_OFFSET = 0.5000001;
     private static final double OFFSET = 0.0001;
 
-    //TODO: Change some of these to work with consumers, to minimize duplicate code
-
-    public static void checkStepOnCollision(Entity entity) {
+    public static void iterateTouchingBlocks(Entity entity, Consumer<BlockPos.Mutable> perBlock) {
         Box box = entity.getBoundingBox();
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY - 0.2F, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - 0.2F, box.maxZ - OFFSET);
+        BlockPos blockPos = new BlockPos(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
         if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
-            for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
-                for(int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k) {
-                    mutable.set(i, blockPos.getY(), k);
-                    BlockState blockState = entity.world.getBlockState(mutable);
-                    blockState.getBlock().onSteppedOn(entity.world, mutable, blockState, entity);
-                }
-            }
-        }
-    }
-
-    public static void checkEntityLandOnCollision(Entity entity) {
-        Box box = entity.getBoundingBox();
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
-        if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
-            BlockPos.Mutable mutable = new BlockPos.Mutable();
-            for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
-                for(int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k) {
-                    mutable.set(i, blockPos.getY(), k);
-                    BlockState blockState = entity.world.getBlockState(mutable);
-                    blockState.getBlock().onEntityLand(entity.world, entity);
-                }
-            }
+            for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i)
+                for(int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k)
+                    perBlock.accept(mutable.set(i, blockPos.getY(), k));
         }
     }
 
     public static void checkFallCollision(Entity entity, float fallDistance) {
         Box box = entity.getBoundingBox();
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
+        BlockPos blockPos = new BlockPos(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
         if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             boolean createdEvent = false;
@@ -69,10 +49,12 @@ public class CenterUtils {
         }
     }
 
-    public static float checkJumpVelocityOnCollision(Box box, World world) {
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
+    public static float checkJumpVelocityOnCollision(Entity entity, World world) {
+        Box box = entity.getBoundingBox();
+        BlockPos blockPos = new BlockPos(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
         if (world.isRegionLoaded(blockPos, blockPos2)) {
+            double newY = box.minY - VELOCITY_AFFECTING_POS_Y_OFFSET;
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             float fastestBlock = 1.0F; //Highest value
             float slowestBlock = 1.0F; //Smallest value
@@ -81,7 +63,7 @@ public class CenterUtils {
                     mutable.set(i, blockPos.getY(), k);
                     float topBlock = world.getBlockState(mutable).getBlock().getJumpVelocityMultiplier();
                     if ((double)topBlock == 1.0D) {
-                        mutable.set(i, box.minY-VELOCITY_AFFECTING_POS_Y_OFFSET, k);
+                        mutable.set(i, newY, k);
                         float affectingBlock = world.getBlockState(mutable).getBlock().getJumpVelocityMultiplier();
                         slowestBlock = Math.min(affectingBlock, slowestBlock);
                         fastestBlock = Math.max(affectingBlock, fastestBlock);
@@ -96,10 +78,12 @@ public class CenterUtils {
         return 1.0F;
     }
 
-    public static float checkVelocityOnCollision(Box box, World world) {
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, box.minY + OFFSET, box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, box.minY - OFFSET, box.maxZ - OFFSET);
+    public static float checkVelocityOnCollision(Entity entity, World world) {
+        Box box = entity.getBoundingBox();
+        BlockPos blockPos = new BlockPos(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
+        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
         if (world.isRegionLoaded(blockPos, blockPos2)) {
+            double newY = box.minY - VELOCITY_AFFECTING_POS_Y_OFFSET;
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             float fastestBlock = 1.0F; //Highest value
             float slowestBlock = 1.0F; //Smallest value
@@ -110,7 +94,7 @@ public class CenterUtils {
                     float topBlock = blockState.getBlock().getVelocityMultiplier();
                     if ((double) topBlock == 1.0D &&
                             !blockState.isOf(Blocks.WATER) && !blockState.isOf(Blocks.BUBBLE_COLUMN)) {
-                        mutable.set(i, box.minY - VELOCITY_AFFECTING_POS_Y_OFFSET, k);
+                        mutable.set(i, newY, k);
                         float affectingBlock = world.getBlockState(mutable).getBlock().getVelocityMultiplier();
                         slowestBlock = Math.min(affectingBlock, slowestBlock);
                         fastestBlock = Math.max(affectingBlock, fastestBlock);

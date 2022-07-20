@@ -32,10 +32,12 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     public abstract Box getBoundingBox();
 
     @Shadow
-    public World world;
+    public abstract void onLanding();
 
     @Shadow
-    public abstract void onLanding();
+    public World world;
+
+    private final Entity self = (Entity)(Object)this;
 
 
     @Redirect(
@@ -49,7 +51,10 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     )
     public void onSteppingCollisionCheck(Block block, World world, BlockPos pos, BlockState state, Entity entity) {
         if (CFSettings.entityBlockCollisionUsingCenterFix) {
-            CenterUtils.checkStepOnCollision(entity);
+            CenterUtils.iterateTouchingBlocks(entity, blockPos -> {
+                BlockState blockState = world.getBlockState(blockPos);
+                blockState.getBlock().onSteppedOn(world, blockPos, blockState, entity);
+            });
         } else {
             block.onSteppedOn(world, pos, state, entity);
         }
@@ -66,7 +71,10 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     )
     public void onEntityLandCollisionCheck(Block block, BlockView world, Entity entity) {
         if (CFSettings.entityBlockCollisionUsingCenterFix) {
-            CenterUtils.checkEntityLandOnCollision(entity);
+            CenterUtils.iterateTouchingBlocks(entity, blockPos -> {
+                BlockState blockState = world.getBlockState(blockPos);
+                blockState.getBlock().onEntityLand(world, entity);
+            });
         } else {
             block.onEntityLand(world, entity);
         }
@@ -85,7 +93,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     public void onFallCollisionCheck(Block block, World world, BlockState state,
                                      BlockPos pos, Entity entity, float fallDistance) {
         if (CFSettings.entityBlockCollisionUsingCenterFix) {
-            CenterUtils.checkFallCollision(entity,fallDistance);
+            CenterUtils.checkFallCollision(entity, fallDistance);
         } else {
             block.onLandedUpon(world, state, pos, entity, fallDistance);
         }
@@ -119,7 +127,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     )
     public void onJumpVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
         if (CFSettings.entityBlockCollisionUsingCenterFix)
-            cir.setReturnValue(CenterUtils.checkJumpVelocityOnCollision(this.getBoundingBox(),this.world));
+            cir.setReturnValue(CenterUtils.checkJumpVelocityOnCollision(self, this.world));
     }
 
 
@@ -130,6 +138,6 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
     )
     public void onVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
         if (CFSettings.entityBlockCollisionUsingCenterFix)
-            cir.setReturnValue(CenterUtils.checkVelocityOnCollision(this.getBoundingBox(),this.world));
+            cir.setReturnValue(CenterUtils.checkVelocityOnCollision(self, this.world));
     }
 }
