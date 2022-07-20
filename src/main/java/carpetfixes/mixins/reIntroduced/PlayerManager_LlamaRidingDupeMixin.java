@@ -28,7 +28,7 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
 
     @Dynamic
     @ModifyArg(
-            method = {"onPlayerConnect", "vmp$mountSavedVehicles", "c2me$mountSavedVehicles"},
+            method = "onPlayerConnect",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/entity/EntityType;loadEntityWithPassengers(" +
@@ -62,6 +62,7 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
                             "Lnet/minecraft/entity/Entity;",
                     shift = At.Shift.BEFORE
             ),
+            require = 0,
             cancellable = true
     )
     private void llamaDupeOnRemove(ServerPlayerEntity player, CallbackInfo ci){
