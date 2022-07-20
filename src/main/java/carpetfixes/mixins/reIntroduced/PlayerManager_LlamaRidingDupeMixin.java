@@ -7,6 +7,7 @@ import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,8 +26,9 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
      */
 
 
+    @Dynamic
     @ModifyArg(
-            method = "onPlayerConnect",
+            method = {"onPlayerConnect", "vmp$mountSavedVehicles", "c2me$mountSavedVehicles"},
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/entity/EntityType;loadEntityWithPassengers(" +
