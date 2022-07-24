@@ -303,6 +303,7 @@
     "reIntroduced.MobEntity_portalGeneralItemMixin",
     "reIntroduced.PistonBlockEntity_translocationMixin",
     "reIntroduced.PlayerManager_LlamaRidingDupeMixin",
+    "reIntroduced.PlayerManager_LlamaRidingDupeMixin_VMPCompat",
     "reIntroduced.ScreenHandler_itemShadowingMixin",
     "reIntroduced.ServerWorld_zeroTickMixin",
     "reIntroduced.TargetBlock_PermanentlyPoweredMixin",

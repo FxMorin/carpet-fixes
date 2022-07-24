@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.function.Function;
 
 @Mixin(PlayerManager.class)
-public abstract class PlayerManager_LlamaRidingDupeMixin {
+public abstract class PlayerManager_LlamaRidingDupeMixin_VMPCompat {
 
     /**
      * Reimplements the dupe method where player1 can look into a Llama's inventory. Then player2 gets on the llama
@@ -27,8 +27,9 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
      */
 
 
+    @Dynamic
     @ModifyArg(
-            method = "onPlayerConnect",
+            method = {"vmp$mountSavedVehicles", "c2me$mountSavedVehicles"},
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/entity/EntityType;loadEntityWithPassengers(" +
@@ -46,19 +47,4 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
         return entityProcessor;
     }
 
-
-    @Inject(
-            method = "remove",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;getRootVehicle()" +
-                            "Lnet/minecraft/entity/Entity;",
-                    shift = At.Shift.BEFORE
-            ),
-            require = 0,
-            cancellable = true
-    )
-    private void llamaDupeOnRemove(ServerPlayerEntity player, CallbackInfo ci){
-        if(CFSettings.reIntroduceDonkeyRidingDupe) ci.cancel();
-    }
 }
