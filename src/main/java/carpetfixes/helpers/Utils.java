@@ -2,6 +2,8 @@ package carpetfixes.helpers;
 
 import carpetfixes.CarpetFixesServer;
 import carpetfixes.settings.CarpetFixesMixinConfigPlugin;
+import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
+import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 import net.minecraft.block.Block;
@@ -166,4 +168,14 @@ public class Utils {
             return !((ServerWorld) world).tryLoadEntity(vehicle) ? null : vehicle;
         });
     }
+
+    public static class VMPConditionalPredicate implements ConditionTester {
+
+        @Override
+        public boolean isSatisfied(String mixinClassName) {
+            return FabricLoader.getInstance().isModLoaded("vmp");
+        }
+
+    }
+
 }
