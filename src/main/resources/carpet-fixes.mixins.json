@@ -238,7 +238,7 @@
     "goalFixes.EndermanEntity$PlaceBlockGoal_updatePlaceMixin",
     "goalFixes.FollowParentGoal_movementMixin",
     "goalFixes.FoxEntity$AvoidDaylightGoal_originMixin",
-    "goalFixes.FoxEntity$JumpChasingGoal_poweredSnowMixin",
+    "goalFixes.FoxEntity$JumpChasingGoal_powderedSnowMixin",
     "goalFixes.MobEntity_stopGoalOnDeathMixin",
     "goalFixes.OcelotEntity$FleeGoal_vehicleMixin",
     "goalFixes.ProjectileAttackGoal_deadMixin",
