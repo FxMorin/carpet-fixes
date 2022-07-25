@@ -22,7 +22,7 @@ import java.util.function.Function;
 @Restriction(
         require = @Condition(type = Condition.Type.TESTER, tester = Utils.VMPConditionalPredicate.class)
 )
-@Mixin(PlayerManager.class)
+@Mixin(value = PlayerManager.class, priority = 1060)
 public abstract class PlayerManager_LlamaRidingDupeMixin_VMPCompat {
 
     /**
