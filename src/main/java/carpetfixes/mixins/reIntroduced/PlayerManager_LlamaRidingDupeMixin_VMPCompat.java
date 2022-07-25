@@ -2,6 +2,8 @@ package carpetfixes.mixins.reIntroduced;
 
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.Utils;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.PlayerManager;
@@ -17,6 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Function;
 
+@Restriction(
+        require = @Condition(type = Condition.Type.TESTER, tester = Utils.VMPConditionalPredicate.class)
+)
 @Mixin(PlayerManager.class)
 public abstract class PlayerManager_LlamaRidingDupeMixin_VMPCompat {
 
