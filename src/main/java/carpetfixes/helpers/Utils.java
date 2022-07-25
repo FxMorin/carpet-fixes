@@ -2,19 +2,26 @@ package carpetfixes.helpers;
 
 import carpetfixes.CarpetFixesServer;
 import carpetfixes.settings.CarpetFixesMixinConfigPlugin;
+import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
+import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
+import java.util.function.Function;
 
 import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
@@ -151,4 +158,26 @@ public class Utils {
         }
         return null;
     }
+
+    @NotNull
+    public static Function<Entity, Entity> reIntroduceDonkeyRidingDupe_entityFetcherFunction(ServerWorld world) {
+        return (vehicle) -> {
+            Entity before = world.getEntity(vehicle.getUuid());
+            if (before != null) {
+                before.readNbt(vehicle.writeNbt(new NbtCompound()));
+                return before;
+            }
+            return !world.tryLoadEntity(vehicle) ? null : vehicle;
+        };
+    }
+
+    public static class VMPConditionalPredicate implements ConditionTester {
+
+        @Override
+        public boolean isSatisfied(String mixinClassName) {
+            return FabricLoader.getInstance().isModLoaded("vmp") || FabricLoader.getInstance().isModLoaded("c2me-opts-chunkio");
+        }
+
+    }
+
 }
