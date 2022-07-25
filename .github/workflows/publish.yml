@@ -20,11 +20,11 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
-      - uses: Kir-Antipov/mc-publish@v3.0
+      - uses: Kir-Antipov/mc-publish@v3.1
         with:
           modrinth-featured: true
           version-type: release
-          version-resolver: all
+          version-resolver: releases
           dependencies: |
             carpet | depends
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
