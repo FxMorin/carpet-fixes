@@ -33,17 +33,18 @@ public abstract class ServerWorld_zeroTickMixin extends World {
 
     @Inject(
             method = "tickBlock(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V",
-            locals = LocalCapture.CAPTURE_FAILSOFT,
+            locals = LocalCapture.CAPTURE_FAILHARD,
             require = 0,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;scheduledTick(Lnet/minecraft/server/world/ServerWorld;" +
-                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)V",
+                    target = "Lnet/minecraft/block/BlockState;scheduledTick(" +
+                            "Lnet/minecraft/server/world/ServerWorld;" +
+                            "Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
                     shift = At.Shift.AFTER
             )
     )
     private void zeroTickBlock(BlockPos pos, Block block, CallbackInfo ci, BlockState state) {
         if (CFSettings.reIntroduceZeroTickFarms && !this.getBlockState(pos).isOf(block) && state.hasRandomTicks())
-            state.randomTick(self,pos,this.random);
+            state.randomTick(self, pos, this.random);
     }
 }
