@@ -229,16 +229,14 @@ public class MemEfficientNeighborUpdater implements NeighborUpdater {
         } else if(type == 3) {
             int dir = queuedUpdates[getPointer() + 4];
             int currentDirIndex = queuedUpdates[getPointer() + 5];
-            boolean ret = false;
             if (dir != 6 && currentDirIndex < UPDATE_AMT && UPDATE_ORDER[currentDirIndex] == Direction.byId(dir)) {
                 currentDirIndex++;
-                ret = true;
             }
             queuedUpdates[getPointer() + 5] = currentDirIndex + 1;
-            if (currentDirIndex != UPDATE_AMT) pointer++;
-            if (ret || currentDirIndex == UPDATE_AMT) return;
+            if (currentDirIndex == UPDATE_AMT) return;
             BlockPos pos = getPos(getPointer() + 1);
             BlockPos blockPos = pos.offset(UPDATE_ORDER[currentDirIndex]);
+            if (currentDirIndex != UPDATE_AMT) pointer++;
             world.getBlockState(blockPos).neighborUpdate(
                     world,                                     // World
                     blockPos,                                  // Pos
