@@ -20,8 +20,8 @@ public abstract class LivingEntity_bedTeleportMixin extends Entity {
 
 
     @Override
-    protected void tickNetherPortal() {
+    protected void tickPortal() {
         if (CFSettings.bedTeleportExploitFix && this.isSleeping()) return;
-        super.tickNetherPortal();
+        super.tickPortal();
     }
 }

@@ -28,6 +28,6 @@ public abstract class TntEntity_netherPortalMixin extends Entity  {
             at = @At("HEAD")
     )
     public void tickNetherPortal(CallbackInfo ci) {
-        if (CFSettings.tntCantUseNetherPortalsFix) this.tickNetherPortal();
+        if (CFSettings.tntCantUseNetherPortalsFix) this.tickPortal();
     }
 }

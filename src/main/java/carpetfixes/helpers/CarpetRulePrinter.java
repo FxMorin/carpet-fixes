@@ -1,5 +1,6 @@
 package carpetfixes.helpers;
 
+import carpet.utils.Translations;
 import carpetfixes.CFSettings;
 import carpetfixes.CarpetFixesServer;
 import net.fabricmc.api.DedicatedServerModInitializer;
@@ -22,7 +23,7 @@ public class CarpetRulePrinter implements DedicatedServerModInitializer, PreLaun
         // our simple parser doesn't like that. So we change it back
         System.setOut(OLD_OUT);
         CarpetFixesServer.getCarpetFixesSettingsManager().parseSettingsClass(CFSettings.class);
-        CarpetFixesServer.getCarpetFixesSettingsManager().printAllRulesToLog(null);
+        CarpetFixesServer.getCarpetFixesSettingsManager().dumpAllRulesToStream(System.out, null);
         System.exit(0);
     }
 

@@ -1,7 +1,7 @@
 package carpetfixes.helpers;
 
-import carpet.settings.ParsedRule;
-import carpet.settings.Validator;
+import carpet.api.settings.CarpetRule;
+import carpet.api.settings.Validator;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class RuleScheduler {
     /*
      * Adds a rule that needs to be called once the validator is set
      */
-    public <T> void addRule(Validator<T> validator, ParsedRule<T> currentRule, T newValue, String string) {
+    public <T> void addRule(Validator<T> validator, CarpetRule<T> currentRule, T newValue, String string) {
         addRule(new RuleChange<>(validator, currentRule, newValue, string));
     }
 
@@ -36,7 +36,7 @@ public class RuleScheduler {
      * carpet does not really provide any better alternative.
      * The string value should be ignored for default values!
      */
-    public <T> void addDefaultRule(Validator<T> validator, ParsedRule<T> currentRule, T newValue, String string, Function<MinecraftServer,T> setDefault) {
+    public <T> void addDefaultRule(Validator<T> validator, CarpetRule<T> currentRule, T newValue, String string, Function<MinecraftServer,T> setDefault) {
         addRule(new RuleChange<>(validator, currentRule, newValue, string, setDefault));
     }
 
@@ -48,11 +48,11 @@ public class RuleScheduler {
 
     static class RuleChange<T> {
         private final Validator<T> validator;
-        private final ParsedRule<T> currentRule;
+        private final CarpetRule<T> currentRule;
         private final T newValue;
         private final String string;
         private final Function<MinecraftServer,T> setDefault;
-        public RuleChange(Validator<T> validator, ParsedRule<T> currentRule, T newValue, String string, Function<MinecraftServer,T> setDefault) {
+        public RuleChange(Validator<T> validator, CarpetRule<T> currentRule, T newValue, String string, Function<MinecraftServer,T> setDefault) {
             this.validator = validator;
             this.currentRule = currentRule;
             this.newValue = newValue;
@@ -60,7 +60,7 @@ public class RuleScheduler {
             this.setDefault = setDefault;
         }
 
-        public RuleChange(Validator<T> validator, ParsedRule<T> currentRule, T newValue, String string) {
+        public RuleChange(Validator<T> validator, CarpetRule<T> currentRule, T newValue, String string) {
             this(validator, currentRule, newValue, string, null);
         }
 

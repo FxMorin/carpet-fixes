@@ -4,7 +4,7 @@ accessible field net/minecraft/entity/ItemEntity pickupDelay I
 accessible field net/minecraft/block/CarvedPumpkinBlock ironGolemDispenserPattern Lnet/minecraft/block/pattern/BlockPattern;
 accessible field net/minecraft/block/CarvedPumpkinBlock ironGolemPattern Lnet/minecraft/block/pattern/BlockPattern;
 accessible field net/minecraft/entity/boss/dragon/EnderDragonFight dragonSpawnState Lnet/minecraft/entity/boss/dragon/EnderDragonSpawnState;
-accessible field net/minecraft/entity/Entity netherPortalCooldown I
+accessible field net/minecraft/entity/Entity portalCooldown I
 accessible field net/minecraft/entity/Entity lastNetherPortalPosition Lnet/minecraft/util/math/BlockPos;
 accessible field net/minecraft/entity/mob/CreeperEntity lastFuseTime I
 accessible field net/minecraft/entity/mob/CreeperEntity currentFuseTime I

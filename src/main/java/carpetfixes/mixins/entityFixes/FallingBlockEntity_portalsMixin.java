@@ -27,11 +27,11 @@ public abstract class FallingBlockEntity_portalsMixin extends Entity {
             method = "tick()V",
             at = @At("HEAD")
     )
-    public void tickNetherPortal(CallbackInfo ci) {
+    public void tickPortal(CallbackInfo ci) {
         if (CFSettings.fallingBlocksCantUseNetherPortalsFix) {
-            this.tickNetherPortal();
+            this.tickPortal();
         } else if (CFSettings.fallingBlocksCantReuseGatewaysFix) {
-            this.tickNetherPortalCooldown(); // Improperly named, it's used for gateways too
+            this.tickPortal(); // Improperly named, it's used for gateways too
         }
     }
 }
