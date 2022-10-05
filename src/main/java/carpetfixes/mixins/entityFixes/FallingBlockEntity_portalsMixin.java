@@ -31,7 +31,7 @@ public abstract class FallingBlockEntity_portalsMixin extends Entity {
         if (CFSettings.fallingBlocksCantUseNetherPortalsFix) {
             this.tickPortal();
         } else if (CFSettings.fallingBlocksCantReuseGatewaysFix) {
-            this.tickPortal(); // Improperly named, it's used for gateways too
+            this.tickPortal();
         }
     }
 }

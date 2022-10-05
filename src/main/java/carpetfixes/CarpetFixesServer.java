@@ -7,9 +7,6 @@ import carpet.utils.Translations;
 import carpetfixes.helpers.RuleScheduler;
 import carpetfixes.settings.CustomSettingsManager;
 import carpetfixes.testing.tests.TestManager;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -20,14 +17,9 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.world.border.WorldBorder;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.Map;
 
 public class CarpetFixesServer implements CarpetExtension, ModInitializer {

@@ -1,7 +1,6 @@
 package carpetfixes.settings;
 
 import carpet.api.settings.*;
-import carpet.api.settings.Validators;
 import carpet.api.settings.Rule.Condition;
 import carpet.utils.TranslationKeys;
 import carpet.utils.Translations;
@@ -10,10 +9,7 @@ import carpetfixes.CFSettings;
 import java.io.PrintStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static carpet.api.settings.RuleCategory.BUGFIX;
@@ -67,12 +63,16 @@ public class CustomSettingsManager extends SettingsManager {
                 if (categories.contains(ADVANCED)) totalAdvanced++;
             }
             ps.println("## " + f.getName());
-            ps.println(RuleHelper.translatedName((CarpetRule<?>) rule) + "  ");
-            for (String extra : RuleHelper.translatedDescription((CarpetRule<?>) rule).split(" ")) {
-                if (extra != null) {
-                    if (extra.startsWith("[MC-")) extra = "Fixes: " + extra;
+            CarpetRule<?> parsedRule = this.getCarpetRule(f.getName());
+            ps.println(RuleHelper.translatedDescription(parsedRule) + "  ");
+            String extra = Translations.trOrNull(String.format(TranslationKeys.BASE_RULE_PATTERN + "extra", parsedRule.settingsManager().identifier(), parsedRule.name()));
+            if (Objects.nonNull(extra)) {
+                for (String extraSection :
+                        extra.split("\n")
+                ) {
+                    if (extraSection.startsWith("[MC-")) extraSection = "Fixes: " + extraSection;
                     ps.println(
-                            extra.replace("Warning!", "**Warning!**")
+                            extraSection.replace("Warning!", "**Warning!**")
                                     + "  "
                     );
                 }
