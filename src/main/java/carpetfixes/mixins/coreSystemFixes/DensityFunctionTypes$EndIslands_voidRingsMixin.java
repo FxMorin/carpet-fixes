@@ -21,7 +21,7 @@ public class DensityFunctionTypes$EndIslands_voidRingsMixin {
 
 
     @Inject(
-            method = "method_41529(Lnet/minecraft/util/math/noise/SimplexNoiseSampler;II)F",
+            method = "sample(Lnet/minecraft/util/math/noise/SimplexNoiseSampler;II)F",
             at = @At("HEAD"),
             cancellable = true
     )

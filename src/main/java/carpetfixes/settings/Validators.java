@@ -1,7 +1,7 @@
 package carpetfixes.settings;
 
-import carpet.settings.ParsedRule;
-import carpet.settings.Validator;
+import carpet.api.settings.CarpetRule;
+import carpet.api.settings.Validator;
 import carpetfixes.CFSettings;
 import carpetfixes.CarpetFixesServer;
 import carpetfixes.helpers.BlockUpdateUtils;
@@ -21,23 +21,28 @@ import net.minecraft.world.block.SimpleNeighborUpdater;
 import static net.minecraft.world.block.NeighborUpdater.UPDATE_ORDER;
 
 public class Validators {
+
+
     public static class WitherGolemSpawningFixValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
-            ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemPattern = null;
-            ((CarvedPumpkinBlock)(Blocks.CARVED_PUMPKIN)).ironGolemDispenserPattern = null;
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
+            ((CarvedPumpkinBlock) (Blocks.CARVED_PUMPKIN)).ironGolemPattern = null;
+            ((CarvedPumpkinBlock) (Blocks.CARVED_PUMPKIN)).ironGolemDispenserPattern = null;
             return newValue;
         }
     }
 
     public static class WorldBorderCollisionRoundingFixValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             CFSettings.scheduleWorldBorderReset = true;
             return newValue;
         }
     }
 
     public static class onlineModeValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setOnlineMode(newValue);
             } else {
@@ -48,7 +53,8 @@ public class Validators {
     }
 
     public static class preventProxyConnectionsValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setPreventProxyConnections(newValue);
             } else {
@@ -59,7 +65,8 @@ public class Validators {
     }
 
     public static class pvpEnabledValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setPvpEnabled(newValue);
             } else {
@@ -70,7 +77,8 @@ public class Validators {
     }
 
     public static class flightEnabledValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setFlightEnabled(newValue);
             } else {
@@ -81,7 +89,8 @@ public class Validators {
     }
 
     public static class enforceWhitelistValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 source.getServer().setEnforceWhitelist(newValue);
             } else {
@@ -92,14 +101,15 @@ public class Validators {
     }
 
     public static class reIntroduceInstantBlockUpdatesValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 for (ServerWorld world : source.getServer().getWorlds()) {
-                    ((WorldAccessor)world).setNeighborUpdater(newValue ?
+                    ((WorldAccessor) world).setNeighborUpdater(newValue ?
                             new SimpleNeighborUpdater(world) : // Instant
                             CFSettings.optimizedNeighborUpdater ?
-                                    new MemEfficientNeighborUpdater(world,source.getServer().getMaxChainedNeighborUpdates()) :
-                                    new ChainRestrictedNeighborUpdater(world,source.getServer().getMaxChainedNeighborUpdates())
+                                    new MemEfficientNeighborUpdater(world, source.getServer().getMaxChainedNeighborUpdates()) :
+                                    new ChainRestrictedNeighborUpdater(world, source.getServer().getMaxChainedNeighborUpdates())
                     );
                 }
             } else {
@@ -110,7 +120,8 @@ public class Validators {
     }
 
     public static class blockUpdateOrderValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (newValue) {
                 BlockUpdateUtils.blockUpdateDirections = (b) -> DirectionUtils.directions;
             } else {
@@ -125,7 +136,8 @@ public class Validators {
     }
 
     public static class parityRandomBlockUpdatesValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (newValue) {
                 if (!CFSettings.blockUpdateOrderFix) {
                     BlockUpdateUtils.blockUpdateDirections = DirectionUtils::randomDirectionArray;
@@ -138,7 +150,8 @@ public class Validators {
     }
 
     public static class optimizedNeighborUpdaterValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (source != null && CarpetFixesServer.areWorldsLoaded) {
                 if (!CFSettings.reIntroduceInstantBlockUpdates) {
                     for (ServerWorld world : source.getServer().getWorlds()) {
@@ -156,7 +169,8 @@ public class Validators {
     }
 
     public static class wrongPressurePlateHitboxValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             AbstractPressurePlateBlockAccessor.setBox(newValue ?
                     new Box(0.075, 0.0, 0.075, 0.925, 0.25, 0.925) :
                     new Box(0.125, 0.0, 0.125, 0.875, 0.25, 0.875)
@@ -167,7 +181,8 @@ public class Validators {
 
     // Changes how block updates use updateNeighbor instead of updateNeighbors
     public static class enableCustomRedstoneRuleValidator extends Validator<Boolean> {
-        @Override public Boolean validate(ServerCommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string) {
+        @Override
+        public Boolean validate(ServerCommandSource source, CarpetRule<Boolean> currentRule, Boolean newValue, String string) {
             if (newValue) {
                 CFSettings.useCustomRedstoneUpdates = true;
             } else {

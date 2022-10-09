@@ -1,6 +1,6 @@
 package carpetfixes.settings;
 
-import carpet.settings.Condition;
+import carpet.api.settings.Rule.Condition;
 import carpetfixes.helpers.Utils;
 
 public class VersionConditions {
@@ -15,7 +15,7 @@ public class VersionConditions {
         }
 
         @Override
-        public boolean isTrue() {
+        public boolean shouldRegister() {
             return Utils.isMCVersionCompat(getPredicate());
         }
     }
