@@ -97,6 +97,10 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
         return carpetFixesSettingsManager;
     }
 
+    public SettingsManager extensionSettingsManager() {
+        return carpetFixesSettingsManager;
+    }
+
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return Translations.getTranslationFromResourcePath("assets/carpet-fixes/lang/%s.json".formatted(lang));
