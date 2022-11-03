@@ -22,9 +22,7 @@ public class CarpetFixesMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
     protected void onRestrictionCheckFailed(String mixinClassName, String reason) {}
 
     @Override
-    public void onLoad(String mixinPackage) {
-        MixinExtrasBootstrap.init();
-    }
+    public void onLoad(String mixinPackage) {}
 
     @Override
     public String getRefMapperConfig() {
