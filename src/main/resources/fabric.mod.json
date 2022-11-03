@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "carpetfixes.CarpetFixesServer"
+    ],
+    "preLaunch": [
+      "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
     ]
   },
   "mixins": [
