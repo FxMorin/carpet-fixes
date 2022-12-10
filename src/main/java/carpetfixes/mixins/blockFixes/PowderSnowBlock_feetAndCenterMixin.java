@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes powder snow not affecting you when your feet are not in powdered snow, and your center is not in powered snow
+ */
+
 @Mixin(PowderSnowBlock.class)
 public class PowderSnowBlock_feetAndCenterMixin {
 
@@ -20,7 +24,8 @@ public class PowderSnowBlock_feetAndCenterMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/entity/Entity;getBlockStateAtPos()Lnet/minecraft/block/BlockState;"
-            )
+            ),
+            require = 0
     )
     private BlockState powderSnowNotJustFeet(Entity entity) {
         if (CFSettings.entityBlockCollisionUsingCenterFix && entity instanceof PlayerEntity)

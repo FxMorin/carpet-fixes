@@ -19,13 +19,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Prevents Headless pistons from existing, since headless pistons are able to break any block in the game.
+ * This fix should prevent being able to break most blocks such as bedrock!
+ */
+
 @Mixin(PistonBlock.class)
 public abstract class PistonBlock_headlessMixin extends FacingBlock {
-
-    /**
-     * Prevents Headless pistons from existing, since headless pistons are able to break any block in the game.
-     * This fix prevents should prevent being able to break most blocks such as bedrock!
-     */
 
 
     @Shadow

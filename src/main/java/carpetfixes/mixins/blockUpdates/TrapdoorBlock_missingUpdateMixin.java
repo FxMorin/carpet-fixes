@@ -23,6 +23,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Adds missing block updates to the trapdoor when it opens
+ */
+
 @Mixin(TrapdoorBlock.class)
 public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingBlock {
 

@@ -12,6 +12,10 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Fixes a memory leak when villagers get moved to another world
+ */
+
 @Mixin(VillagerEntity.class)
 public abstract class VillagerEntity_worldPoiMixin extends MerchantEntity {
 

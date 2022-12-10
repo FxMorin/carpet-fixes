@@ -16,6 +16,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Fixes records not creating the record item in the correct location, causing it to clip in the block above
+ */
+
 @Mixin(JukeboxBlock.class)
 public class JukeboxBlock_itemOffsetMixin {
 

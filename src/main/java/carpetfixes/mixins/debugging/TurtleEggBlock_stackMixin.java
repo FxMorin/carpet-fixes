@@ -15,6 +15,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+/**
+ * A debug tool to determine the complexity of the block update stack.
+ * To get the current depth, put turtle effs on a barrier block and give an update to the turtle eggs.
+ * To get a stack trace in the logs, place the turtle eggs on a jigsaw block and give them an update.
+ */
+
 @Mixin(TurtleEggBlock.class)
 public abstract class TurtleEggBlock_stackMixin extends Block {
 

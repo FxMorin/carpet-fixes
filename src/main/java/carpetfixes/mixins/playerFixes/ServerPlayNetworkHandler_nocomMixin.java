@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Prevents the nocom exploit from working
+ */
+
 @Mixin(ServerPlayNetworkHandler.class)
 public class ServerPlayNetworkHandler_nocomMixin {
 

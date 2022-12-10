@@ -8,6 +8,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes lava being able to touch bubble columns just fine
+ */
 @Mixin(FlowableFluid.class)
 public class FlowableFluid_bubbleColumnMixin {
 

@@ -14,6 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Predicate;
 
+/**
+ * Fixes detector rails detecting minecarts on the rail too early
+ */
 @Mixin(DetectorRailBlock.class)
 public class DetectorRailBlock_detectCenterMixin {
 

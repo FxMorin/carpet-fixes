@@ -14,16 +14,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * This fix is based on the block update order. Vanilla block update order is XYZ, resulting in directional
+ * behaviour. In this fix we change the block update order to XZY, which fixes all directional problems based
+ * on block updates.
+ * We also add parity Random Block Update Order here as a meme, through BlockUpdateUtils.blockUpdateDirections
+ */
+
 @Mixin(targets = "net/minecraft/world/block/ChainRestrictedNeighborUpdater$SixWayEntry")
 public class ChainRestrictedNeighborUpdater$SixWayEntry_updateOrderMixin {
-
-    /**
-     * This fix is based on the block update order. Vanilla block update order is XYZ, resulting in directional
-     * behaviour. In this fix we change the block update order to XZY, which fixes all directional problems based
-     * on block updates.
-     * We also add parity Random Block Update Order here as a meme, through BlockUpdateUtils.blockUpdateDirections
-     */
-
 
     @Shadow
     @Final

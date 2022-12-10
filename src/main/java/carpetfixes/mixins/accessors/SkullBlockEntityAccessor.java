@@ -8,10 +8,13 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface SkullBlockEntityAccessor {
     @Accessor("powered")
     boolean getPowered();
+
     @Accessor("powered")
     void setPowered(boolean powered);
-    @Accessor("ticksPowered")
+
+    @Accessor("poweredTicks")
     int getTicksPowered();
-    @Accessor("ticksPowered")
+
+    @Accessor("poweredTicks")
     void setTicksPowered(int ticks);
 }

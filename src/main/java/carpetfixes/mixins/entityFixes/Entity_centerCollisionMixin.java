@@ -18,14 +18,14 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Player effects for blocks that you stand on are chosen based on which block is directly below the center of the
+ * player. What I am doing here is checking each block you are standing on instead of only the one directly below you.
+ * I am also doing hitboxes, not just blocks the player is standing on.
+ */
+
 @Mixin(Entity.class)
 public abstract class Entity_centerCollisionMixin implements EntityLike {
-
-    /**
-     * Player effects for blocks that you stand on are chosen based on which block is directly below the center of the
-     * player. Instead of checking all the blocks you are standing on. What I am doing here is checking each block you
-     * are standing on. I am also doing hitboxes, not just blocks the player is standing on.
-     */
 
 
     @Shadow
@@ -111,7 +111,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             ),
             cancellable = true
     )
-    public void onFallStopVibration(double heightDifference, boolean onGround,
+    private void onFallStopVibration(double heightDifference, boolean onGround,
                                     BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
         if (CFSettings.entityBlockCollisionUsingCenterFix) {
             this.onLanding();
@@ -125,7 +125,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onJumpVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
+    private void onJumpVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
         if (CFSettings.entityBlockCollisionUsingCenterFix)
             cir.setReturnValue(CenterUtils.checkJumpVelocityOnCollision(self, this.world));
     }
@@ -136,7 +136,7 @@ public abstract class Entity_centerCollisionMixin implements EntityLike {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
+    private void onVelocityCollisionCheck(CallbackInfoReturnable<Float> cir) {
         if (CFSettings.entityBlockCollisionUsingCenterFix)
             cir.setReturnValue(CenterUtils.checkVelocityOnCollision(self, this.world));
     }

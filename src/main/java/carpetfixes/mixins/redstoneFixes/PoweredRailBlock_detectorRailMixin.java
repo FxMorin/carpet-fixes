@@ -15,6 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import static net.minecraft.block.DetectorRailBlock.POWERED;
 
+/**
+ * Fixes detector rails not being able to power diagonal powered rails
+ */
+
 @Mixin(PoweredRailBlock.class)
 public class PoweredRailBlock_detectorRailMixin {
 

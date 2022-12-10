@@ -9,15 +9,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * I use a very interesting way of getting around the problem here. I look for the hidden tag called CAN_PLACE
+ * and if I find it, then it means that the block can be placed, so the repairCost tag can be removed from it
+ * by just placing it on the ground, so don't add a repairCost nbt tag to it, since it's useless.
+ */
+
 @Mixin(ItemStack.class)
 public class ItemStack_repairCostMixin {
-
-    /**
-     * I use a very interesting way of getting around the problem here. I look for the hidden tag called CAN_PLACE
-     * and if I find it, then it means that the block can be placed, so the repairCost tag can be removed from it
-     * by just placing it on the ground, so don't add a repairCost nbt tag to it, since it's useless.
-     */
-
 
     @Shadow
     private NbtCompound nbt;

@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes Observers not correctly updating shapes around itself when its placed
+ */
+
 @Mixin(ObserverBlock.class)
 public class ObserverBlock_missingShapeUpdateMixin {
 

@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fix duplicate block updates in the detector rail code
+ */
+
 @Mixin(DetectorRailBlock.class)
 public class DetectorRailBlock_updateMixin {
 

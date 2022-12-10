@@ -8,6 +8,12 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Fixes tridents not causing any damage when falling from a block.
+ * This happens because the trident does not cause damage if the inGroundTime is not 0, or if the dealtDamage is true,
+ * both of which are set when a trident hits a block.
+ */
+
 @Mixin(TridentEntity.class)
 public abstract class TridentEntity_fallingMixin extends PersistentProjectileEntity {
 

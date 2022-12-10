@@ -11,6 +11,11 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.UUID;
 
+/**
+ * This call simply implements VillagerEntityInteraction to make an onInteractionWith that does not require the entity
+ * to exist, this fixes gossip not being stored in entities when relogging
+ */
+
 @Mixin(VillagerEntity.class)
 public class VillagerEntity_offlinePlayersMixin implements VillagerEntityInteraction {
 

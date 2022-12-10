@@ -14,11 +14,13 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fix makes it so that the bee only enters hive if either its raining where it currently is or its raining next
+ * to the hive. Instead of sitting in the rain and contemplating life
+ */
+
 @Mixin(BeeEntity.class)
 public abstract class BeeEntity_rainMixin extends Entity {
-
-    // Fix makes it so that the bee only enters hive if either its raining where it currently is or its raining next
-    // to the hive
 
     public BeeEntity_rainMixin(EntityType<?> type, World world) {
         super(type, world);

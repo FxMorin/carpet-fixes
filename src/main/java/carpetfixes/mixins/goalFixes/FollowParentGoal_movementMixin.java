@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.EnumSet;
 
+/**
+ * Fixes the follow parent goal breaking the movement controls, causing some funky behavior
+ */
+
 @Mixin(FollowParentGoal.class)
 public abstract class FollowParentGoal_movementMixin extends Goal {
 

@@ -10,15 +10,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * A very simple and nice fix, basically if the multiplier is not 0 (default)
+ * then we know there was a block that set the slowdown before us. So we check
+ * which block is the slowest and use that for the multiplier. Very simple and nice
+ */
+
 @Mixin(Entity.class)
 public class Entity_directionalBlockSlowdownMixin {
-
-    /**
-     * A very simple and nice fix, basically if the multiplier is not 0 (default)
-     * then we know there was a block that set the slowdown before us. So we check
-     * which block is the slowest and use that for the multiplier. Very simple and nice
-     */
-
 
     @Shadow
     public float fallDistance;
@@ -32,7 +31,7 @@ public class Entity_directionalBlockSlowdownMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void slowMovement(BlockState state, Vec3d m, CallbackInfo ci) {
+    private void slowMovement(BlockState state, Vec3d m, CallbackInfo ci) {
         if (CFSettings.directionalBlockSlowdownFix) {
             this.fallDistance = 0.0F;
             if (this.movementMultiplier.length() > 0.0) {

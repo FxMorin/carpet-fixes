@@ -23,19 +23,16 @@ import java.util.Map;
  * Implementation by Carpet-TIS-Addition
  * Thank you very much, the fact that this supports MBE/MTE is also very nice ;)
  * Link: https://github.com/TISUnion/Carpet-TIS-Addition
+ *
+ * Set all blocks to be moved to air without any kind of update first (yeeted block updaters like dead coral),
+ * then let vanilla codes to set the air blocks into b36
+ * Before setting a block to air, store the block state right before setting it to air to make sure no block desync
+ * will happen (yeeted onRemoved block updater like lit observer).
  */
 
 
 @Mixin(PistonBlock.class)
 public abstract class PistonBlock_tntDupingFixMixin {
-
-    /**
-     * Set all blocks to be moved to air without any kind of update first (yeeted block updaters like dead coral),
-     * then let vanilla codes to set the air blocks into b36
-     * Before setting a block to air, store the block state right before setting it to air to make sure no block desync
-     * will happen (yeeted onRemoved block updater like lit observer).
-     */
-
 
     private final ThreadLocal<Boolean> isDupeFixed = ThreadLocal.withInitial(() -> false);
 

@@ -11,6 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.minecraft.server.world.ServerWorld.END_SPAWN_POS;
 
+/**
+ * When the obsidian platform is generated in the end, it breaks all the blocks above. Instead we remove all end stone
+ * and if the 2 middle blocks are not empty we break a larger area with block drop.
+ */
+
 @Mixin(ServerWorld.class)
 public class ServerWorld_spawnPlatformMixin {
 

@@ -15,6 +15,10 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 
+/**
+ * Fixes projectiles not being detected when placing a pressure plate
+ */
+
 @Mixin(PressurePlateBlock.class)
 public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractPressurePlateBlock {
 
@@ -50,6 +54,6 @@ public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractP
                 world.emitGameEvent(list.stream().findFirst().orElse(null), GameEvent.BLOCK_ACTIVATE, pos);
             }
         }
-        if (bl) world.createAndScheduleBlockTick(new BlockPos(pos), this, this.getTickRate());
+        if (bl) world.scheduleBlockTick(new BlockPos(pos), this, this.getTickRate());
     }
 }

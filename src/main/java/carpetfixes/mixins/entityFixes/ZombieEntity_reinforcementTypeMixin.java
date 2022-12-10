@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes other zombie variants not spawning the correct variants for the reinforcements
+ */
+
 @Mixin(ZombieEntity.class)
 public class ZombieEntity_reinforcementTypeMixin extends HostileEntity {
 
@@ -25,7 +29,7 @@ public class ZombieEntity_reinforcementTypeMixin extends HostileEntity {
                     ordinal = 0
             )
     )
-    public ZombieEntity modifyType(World instance) {
+    private ZombieEntity modifyType(World instance) {
         return CFSettings.reinforcementsOnlySpawnZombiesFix ?
                 (ZombieEntity)this.getType().create(this.world) :
                 new ZombieEntity(this.world);

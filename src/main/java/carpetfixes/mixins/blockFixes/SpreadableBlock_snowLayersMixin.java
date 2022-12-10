@@ -8,6 +8,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Allow grass blocks to survive with up to 7 snow layers above them instead of 1
+ */
+
 @Mixin(SpreadableBlock.class)
 public class SpreadableBlock_snowLayersMixin {
 

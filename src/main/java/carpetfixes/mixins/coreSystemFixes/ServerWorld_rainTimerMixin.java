@@ -9,15 +9,14 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * When players sleeps, the ThunderTime of the game gets reset. This means that it will take
+ * much longer until there's thunder again. If you sleep every time there's rain, you will never see thunder.
+ * This fix makes it so that the ThunderTime only gets reset when players sleep, and it's thundering.
+ */
+
 @Mixin(ServerWorld.class)
 public abstract class ServerWorld_rainTimerMixin {
-
-    /**
-     * When players sleeps, the ThunderTime of the game gets reset. This means that it will take
-     * much longer until there's thunder again. If you sleep every time there's rain, you will never see thunder.
-     * This fix makes it so that the ThunderTime only gets reset when players sleep, and it's thundering.
-     */
-
 
     @Shadow
     @Final

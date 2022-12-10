@@ -33,7 +33,7 @@ public abstract class ArmorStandEntity_damageMixin {
         } else if (CFSettings.armorStandNegateCactusDamageFix && DamageSource.CACTUS.equals(source)) {
             this.updateHealth(source, amount);
             cir.setReturnValue(false);
-        } else if (CFSettings.armorStandNegateAnvilDamageFix && DamageSource.ANVIL.equals(source)) {
+        } else if (CFSettings.armorStandNegateAnvilDamageFix && source.isFallingBlock()) {
             this.updateHealth(source, amount * 3.0F);
             cir.setReturnValue(false);
         }

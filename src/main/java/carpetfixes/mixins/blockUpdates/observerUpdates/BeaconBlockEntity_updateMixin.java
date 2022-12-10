@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Add missing observer updates when a beacon changes power level
+ */
+
 @Mixin(BeaconBlockEntity.class)
 public class BeaconBlockEntity_updateMixin extends BlockEntity {
 

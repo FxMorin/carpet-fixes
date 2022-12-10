@@ -10,13 +10,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Since falling blocks override the tick() method, they "forgot" to add the nether portal ticking.
+ * We also fix portal cooldown not being reset here
+ */
+
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntity_portalsMixin extends Entity {
-
-    /**
-     * Since falling blocks override the tick() method, they "forgot" to add the nether portal ticking
-     */
-
 
     public FallingBlockEntity_portalsMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -27,11 +27,12 @@ public abstract class FallingBlockEntity_portalsMixin extends Entity {
             method = "tick()V",
             at = @At("HEAD")
     )
-    public void tickPortal(CallbackInfo ci) {
+    private void tickNetherPortal(CallbackInfo ci) {
         if (CFSettings.fallingBlocksCantUseNetherPortalsFix) {
             this.tickPortal();
-        } else if (CFSettings.fallingBlocksCantReuseGatewaysFix) {
-            this.tickPortal();
+        }
+        if (CFSettings.fallingBlocksCantReuseGatewaysFix) {
+            this.tickPortalCooldown();
         }
     }
 }

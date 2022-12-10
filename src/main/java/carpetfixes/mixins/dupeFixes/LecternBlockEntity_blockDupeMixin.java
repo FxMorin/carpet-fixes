@@ -13,17 +13,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes a bug allowing you to dupe the lectern block upon breaking it
+ */
+
 @Mixin(LecternBlockEntity.class)
 public class LecternBlockEntity_blockDupeMixin extends BlockEntity {
 
     public LecternBlockEntity_blockDupeMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
-
-    /*
-     * Fixes a bug allowing you to dupe the lectern block upon breaking it
-     */
-
 
     @Inject(
             method = "onBookRemoved",
@@ -36,7 +35,7 @@ public class LecternBlockEntity_blockDupeMixin extends BlockEntity {
             ),
             cancellable = true
     )
-    void onBookRemovedCheckIfBlockStillThere(CallbackInfo ci) {
+    private void onBookRemovedCheckIfBlockStillThere(CallbackInfo ci) {
         if (CFSettings.lecternBlockDupeFix) {
             if (!this.isRemoved()) { // If the lectern block entity is removed, no world interactions should be done
                 BlockState state = this.getWorld().getBlockState(this.getPos());

@@ -10,13 +10,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.function.Predicate;
 
+/**
+ * Allows replaceable materials to be within the iron golem structure when the iron golem attempts to spawn.
+ */
 @Mixin(CarvedPumpkinBlock.class)
 public abstract class CarvedPumpkinBlock_spawningMixin {
-
-    /**
-     * Allows replaceable materials to be within the iron golem structure
-     * when the iron golem attempts to spawn.
-     */
 
 
     @Redirect(

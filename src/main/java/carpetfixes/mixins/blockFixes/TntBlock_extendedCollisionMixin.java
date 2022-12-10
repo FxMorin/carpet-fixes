@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Adds a tiny bit of upwards velocity to tnt blocks, enough so that they don't fall through fences when lit
+ */
+
 @Mixin(TntBlock.class)
 public class TntBlock_extendedCollisionMixin {
 

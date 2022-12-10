@@ -11,14 +11,13 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Add the onPlaced() condition after the placeBlock which will make sure that blocks placed by the enderman
+ * will be able to trigger special events such as summoning a wither. How else am I suppose to summon the wither...
+ */
+
 @Mixin(targets="net/minecraft/entity/mob/EndermanEntity$PlaceBlockGoal")
 public class EndermanEntity$PlaceBlockGoal_updatePlaceMixin {
-
-    /**
-     * Add the onPlaced() condition after the placeBlock which will make sure that blocks placed by the enderman
-     * will be able to trigger special events such as summoning a wither
-     */
-
 
     @Shadow
     @Final

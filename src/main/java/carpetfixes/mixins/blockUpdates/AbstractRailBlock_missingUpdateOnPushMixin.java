@@ -15,15 +15,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * When pushing rails, we don't update blocks right after turning into a B36 (Moving_Piston) so some blocks do not
+ * realize that they are no longer powered or are curved incorrectly. Therefore, the fix is to give the extra block
+ * updates to make sure the rails are updated correctly.
+ */
+
 @Mixin(AbstractRailBlock.class)
 public abstract class AbstractRailBlock_missingUpdateOnPushMixin extends Block {
-
-    /**
-     * When pushing rails, we don't update blocks right after turning into a B36 (Moving_Piston) so some blocks do not
-     * realize that they are no longer powered or are curved incorrectly. Therefore, the fix is to give the extra block
-     * updates to make sure the rails are updated correctly.
-     */
-
 
     @Shadow
     public abstract Property<RailShape> getShapeProperty();
@@ -42,8 +41,8 @@ public abstract class AbstractRailBlock_missingUpdateOnPushMixin extends Block {
                     "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At("HEAD")
     )
-    protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
-                                    BlockState newState, boolean moved, CallbackInfo ci) {
+    private void alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
+                                  BlockState newState, boolean moved, CallbackInfo ci) {
         if (moved && CFSettings.railMissingUpdateOnPushFix) {
             super.onStateReplaced(state, world, pos, newState, true);
             if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);

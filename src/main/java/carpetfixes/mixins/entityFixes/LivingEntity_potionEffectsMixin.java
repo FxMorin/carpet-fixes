@@ -8,6 +8,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes potion affects being able to affect dead entities, resulting in a couple neat exploits
+ */
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_potionEffectsMixin {
 

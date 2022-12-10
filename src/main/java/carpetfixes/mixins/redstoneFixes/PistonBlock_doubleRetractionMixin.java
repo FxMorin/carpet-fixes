@@ -10,14 +10,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Double piston retraction is something that used to happen in 1.8.9
+ * It's when 2 pistons are depowered in the same tick, allowing both to be pulled together.
+ */
+
 @Mixin(PistonBlock.class)
 public abstract class PistonBlock_doubleRetractionMixin {
-
-    /**
-     * Double piston retraction is something that used to happen in 1.8.9
-     * It's when 2 pistons are depowered in the same tick, allowing both to be pulled together.
-     */
-
 
     @Inject(
             method = "tryMove",

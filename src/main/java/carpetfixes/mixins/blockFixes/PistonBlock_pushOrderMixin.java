@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.HashMap;
 
+/**
+ * Fixes the piston update order being locational
+ */
+
 @Mixin(PistonBlock.class)
 public class PistonBlock_pushOrderMixin {
 

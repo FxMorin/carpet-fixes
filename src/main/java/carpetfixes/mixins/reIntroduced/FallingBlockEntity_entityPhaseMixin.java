@@ -15,6 +15,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * This puts the falling block back into the entity phase. Basically making it so that the block gets removed/set
+ * during the entity tick. This is done since a lot of contraptions use the fact that the sand block is done in the
+ * entity phase for more accurate timings
+ */
+
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntity_entityPhaseMixin extends Entity {
 

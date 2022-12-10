@@ -17,6 +17,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Fixes the enderdragon block breaking not dropping the blocks it breaks
+ */
+
 @Mixin(EnderDragonEntity.class)
 public class EnderDragonEntity_blockDropsMixin extends MobEntity {
 

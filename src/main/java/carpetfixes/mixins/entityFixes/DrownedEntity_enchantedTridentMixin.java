@@ -17,13 +17,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Map;
 
+/**
+ * The trident wielding Drowned, do not actually use the enchantments that are on the tridents.
+ * So here we check if they are holding an enchanted trident, and if so apply the enchantments.
+ */
+
 @Mixin(DrownedEntity.class)
 public class DrownedEntity_enchantedTridentMixin extends ZombieEntity {
-
-    /**
-     * The trident wielding Drowned, do not actually use the enchantments that are on the tridents.
-     * So here we check if they are holding an enchanted trident, and if so apply the enchantments.
-     */
 
 
     public DrownedEntity_enchantedTridentMixin(EntityType<? extends ZombieEntity> entityType, World world) {

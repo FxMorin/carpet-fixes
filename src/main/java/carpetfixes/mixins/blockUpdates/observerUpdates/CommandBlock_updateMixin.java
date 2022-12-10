@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Add missing observer updates when a command block finishes an execution
+ */
+
 @Mixin(CommandBlock.class)
 public class CommandBlock_updateMixin {
 

@@ -9,6 +9,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes the step and destroy block goal using the default origin blockpos [0,0,0] as a valid first check without
+ * proper checks for distance.
+ */
+
 @Mixin(StepAndDestroyBlockGoal.class)
 public abstract class StepAndDestroyBlockGoal_originMixin extends MoveToTargetPosGoal {
 

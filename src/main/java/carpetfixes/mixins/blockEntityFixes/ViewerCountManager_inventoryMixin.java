@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes the byproduct of some really cringe code. Basically makes it so chests don't stay open when a player moves
+ * too far away from it.
+ */
 @Mixin(ViewerCountManager.class)
 public class ViewerCountManager_inventoryMixin {
 

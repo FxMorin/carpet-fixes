@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes pistons pushing entities 0.01 too far instead of an exact block
+ */
 @Mixin(PistonBlockEntity.class)
 public class PistonBlockEntity_pushTooFarMixin {
 

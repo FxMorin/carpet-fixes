@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Use carpet-fixes custom redstone update system instead
+ */
+
 @Mixin(RedstoneTorchBlock.class)
 public class RedstoneTorchBlock_updateOrderOnBreakMixin {
 
@@ -23,8 +27,8 @@ public class RedstoneTorchBlock_updateOrderOnBreakMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos,
-                                               BlockState newState, boolean moved, CallbackInfo ci) {
+    private void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos,
+                                                BlockState newState, boolean moved, CallbackInfo ci) {
         if (CFSettings.useCustomRedstoneUpdates) {
             if (!moved) {
                 boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.isOf(self);

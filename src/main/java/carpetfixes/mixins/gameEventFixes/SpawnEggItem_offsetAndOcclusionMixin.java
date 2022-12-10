@@ -9,8 +9,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -25,6 +25,11 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Optional;
 
+/**
+ * Fixes two separate issues with the spawn eggs. Firstly it fixes the game event being sent from the wrong location
+ * when using the egg against a block. Secondly it fixes a missing occlusion when using it on an occlusion block
+ */
+
 @Mixin(SpawnEggItem.class)
 public class SpawnEggItem_offsetAndOcclusionMixin {
 
@@ -38,8 +43,8 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
                             "Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
             )
     )
-    public void newEventCall(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir,
-                             World world, ItemStack itemStack, BlockPos pos) {
+    private void newEventCall(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir,
+                              World world, ItemStack itemStack, BlockPos pos) {
         if (CFSettings.spawnEggOffsetEventFix) {
             BlockState state = world.getBlockState(pos);
             BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ? pos : pos.offset(context.getSide());
@@ -70,9 +75,9 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
                     shift = At.Shift.BEFORE
             )
     )
-    public void spawnBaby(PlayerEntity user, MobEntity entity, EntityType<? extends MobEntity> entityType,
-                          ServerWorld world, Vec3d pos, ItemStack stack,
-                          CallbackInfoReturnable<Optional<MobEntity>> cir) { //Using blockpos for backwards compat
+    private void spawnBaby(PlayerEntity user, MobEntity entity, EntityType<? extends MobEntity> entityType,
+                           ServerWorld world, Vec3d pos, ItemStack stack,
+                           CallbackInfoReturnable<Optional<MobEntity>> cir) { //Using blockpos for backwards compat
         if (CFSettings.spawnEggMissingEventFix) world.emitGameEvent(entity,GameEvent.ENTITY_PLACE, new BlockPos(pos));
     }
 

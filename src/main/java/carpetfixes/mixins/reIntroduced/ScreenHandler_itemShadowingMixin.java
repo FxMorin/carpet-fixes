@@ -16,6 +16,11 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Adds back item shadowing! Why would mojang patch quantum mechanics in minecraft (*except for the 20 dupes it had*)
+ * TODO: Currently broken, not sure why
+ */
+
 @Mixin(ScreenHandler.class)
 public abstract class ScreenHandler_itemShadowingMixin {
 

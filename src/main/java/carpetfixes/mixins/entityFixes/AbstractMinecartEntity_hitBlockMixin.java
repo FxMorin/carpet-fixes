@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes minecart not bouncing from any transparent block with a full face
+ */
+
 @Mixin(AbstractMinecartEntity.class)
 public abstract class AbstractMinecartEntity_hitBlockMixin extends Entity {
 

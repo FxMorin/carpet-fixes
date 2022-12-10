@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes entities with the revenge goal from being able to hurt themselves. Think of the kids Mojang!
+ */
+
 @Mixin(RevengeGoal.class)
 public class RevengeGoal_selfHarmMixin {
 
@@ -18,7 +22,7 @@ public class RevengeGoal_selfHarmMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void setMobEntityTarget(MobEntity mob, LivingEntity target, CallbackInfo ci) {
+    private void setMobEntityTarget(MobEntity mob, LivingEntity target, CallbackInfo ci) {
         if (CFSettings.selfHarmFix && mob == target) ci.cancel();
     }
 }

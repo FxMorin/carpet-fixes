@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import static carpetfixes.CFSettings.breakAnythingDoorGoalFix;
 
+/**
+ * Fixes zombies being able to break any block
+ */
+
 @Mixin(BreakDoorGoal.class)
 public abstract class BreakDoorGoal_breakAnythingMixin extends DoorInteractGoal {
 

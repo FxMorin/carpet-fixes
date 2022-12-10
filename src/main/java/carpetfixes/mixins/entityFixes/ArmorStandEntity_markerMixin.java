@@ -8,6 +8,10 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Fix marker armorstands being able to trigger traps
+ */
+
 @Mixin(ArmorStandEntity.class)
 public abstract class ArmorStandEntity_markerMixin extends LivingEntity {
 

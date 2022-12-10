@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes Allays being unable to fly once they hit the void, resulting in them getting stuck
+ */
+
 @Mixin(AllayEntity.class)
 public class AllayEntity_voidMixin {
 

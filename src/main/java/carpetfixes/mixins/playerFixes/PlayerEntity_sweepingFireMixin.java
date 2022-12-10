@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes sweeping edge not applying fire aspect
+ */
+
 @Mixin(PlayerEntity.class)
 public class PlayerEntity_sweepingFireMixin {
 
@@ -25,7 +29,7 @@ public class PlayerEntity_sweepingFireMixin {
                     shift = At.Shift.AFTER
             )
     )
-    public void attack(Entity target, CallbackInfo ci) {
+    private void attack(Entity target, CallbackInfo ci) {
         if (CFSettings.sweepingIgnoresFireAspectFix && target instanceof LivingEntity &&
                 EnchantmentHelper.getFireAspect(self) > 0 && !target.isOnFire())
             target.setOnFireFor(1);

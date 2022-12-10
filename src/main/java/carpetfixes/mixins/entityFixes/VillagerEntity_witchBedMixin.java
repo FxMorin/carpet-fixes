@@ -13,6 +13,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * When a villager in a bed gets struck by lightning, the villager gets converted to a witch. The bed however does not
+ * get set to unoccupied
+ */
+
 @Mixin(VillagerEntity.class)
 public abstract class VillagerEntity_witchBedMixin extends MerchantEntity {
 
@@ -34,7 +39,7 @@ public abstract class VillagerEntity_witchBedMixin extends MerchantEntity {
                     shift = At.Shift.BEFORE
             )
     )
-    public void onStruckByLightning(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
+    private void onStruckByLightning(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
         //Sets bed occupied to false
         //As a side note, this also places the villager in a valid spot, right before the witch gets created
         //with the villagers position. So the witch will be placed correctly, which is an unreported bug!

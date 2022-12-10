@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Fixes projectiles lossing piercing when not hitting an enderman
+ */
+
 @Mixin(PersistentProjectileEntity.class)
 public class PersistentProjectileEntity_piercingMixin {
 
@@ -28,7 +32,7 @@ public class PersistentProjectileEntity_piercingMixin {
                     shift = At.Shift.BEFORE
             )
     )
-    protected void onEndermanCheck(EntityHitResult entityHitResult, CallbackInfo ci, Entity entity, float f, int i) {
+    private void onEndermanCheck(EntityHitResult entityHitResult, CallbackInfo ci, Entity entity, float f, int i) {
         lastEntity.set(entity);
     }
 

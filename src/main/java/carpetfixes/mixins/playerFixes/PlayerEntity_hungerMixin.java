@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes hunger going down in peaceful mode even though there is no hunger bar in peaceful
+ */
+
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntity_hungerMixin extends LivingEntity {
 

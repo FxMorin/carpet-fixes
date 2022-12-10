@@ -16,6 +16,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * Fix multiple entities having the same UUID, causing conflicts
+ */
+
 @Mixin(ServerEntityManager.class)
 public class ServerEntityManager_duplicateMixin<T extends EntityLike> {
 

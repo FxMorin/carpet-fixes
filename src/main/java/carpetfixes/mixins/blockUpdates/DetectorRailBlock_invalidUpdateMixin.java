@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * When detector rails are pushed, they don't always give the correct updates. This fixes that
+ */
+
 @Mixin(DetectorRailBlock.class)
 public abstract class DetectorRailBlock_invalidUpdateMixin extends AbstractRailBlock {
 

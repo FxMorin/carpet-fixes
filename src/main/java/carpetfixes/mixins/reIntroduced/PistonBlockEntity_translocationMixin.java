@@ -19,6 +19,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+/**
+ * Adds Piston translocation into the modern version of minecraft. This is mostly for fun xD
+ */
+
 @Mixin(PistonBlockEntity.class)
 public abstract class PistonBlockEntity_translocationMixin {
 

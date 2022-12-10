@@ -10,13 +10,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Since TntEntity overrides the tick() method, they "forgot" to add the nether portal ticking
+ */
+
 @Mixin(TntEntity.class)
-public abstract class TntEntity_netherPortalMixin extends Entity  {
-
-    /**
-     * Since TntEntity overrides the tick() method, they "forgot" to add the nether portal ticking
-     */
-
+public abstract class TntEntity_netherPortalMixin extends Entity {
 
     public TntEntity_netherPortalMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -27,7 +26,7 @@ public abstract class TntEntity_netherPortalMixin extends Entity  {
             method = "tick()V",
             at = @At("HEAD")
     )
-    public void tickNetherPortal(CallbackInfo ci) {
+    private void tickNetherPortal(CallbackInfo ci) {
         if (CFSettings.tntCantUseNetherPortalsFix) this.tickPortal();
     }
 }

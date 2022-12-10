@@ -16,6 +16,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Fixes end crystals not triggering the ender dragon to spawn if the end crystal was moved into position using pistons
+ */
+
 @Mixin(EndCrystalEntity.class)
 public abstract class EndCrystalEntity_pushRespawnMixin extends Entity {
 

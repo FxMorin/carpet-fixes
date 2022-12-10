@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes pistons loading with the incorrect progress due to a missing tag
+ */
 @Mixin(PistonBlockEntity.class)
 public class PistonBlockEntity_lastProgressMixin {
 

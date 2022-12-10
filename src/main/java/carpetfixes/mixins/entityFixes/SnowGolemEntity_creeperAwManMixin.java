@@ -7,6 +7,10 @@ import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * Fixes snow golems attacking creepers, resulting in their inevitable doom
+ */
+
 @Mixin(SnowGolemEntity.class)
 public class SnowGolemEntity_creeperAwManMixin extends GolemEntity {
 

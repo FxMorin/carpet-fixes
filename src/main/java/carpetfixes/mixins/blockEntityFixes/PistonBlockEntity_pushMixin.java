@@ -10,6 +10,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes entities behind modded pistons being pushed backwards due to a non-clamped piston hitbox
+ */
 @Mixin(PistonBlockEntity.class)
 public class PistonBlockEntity_pushMixin {
 

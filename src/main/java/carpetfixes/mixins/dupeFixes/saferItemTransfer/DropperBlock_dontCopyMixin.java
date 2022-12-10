@@ -12,6 +12,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * A smarter way to write the dropper code so that it doesn't needlessly copy item stacks around.
+ * This prevents exploits such as item shadowing from being able to duplicate items using droppers.
+ */
+
 @Mixin(DropperBlock.class)
 public class DropperBlock_dontCopyMixin {
 
@@ -63,7 +68,7 @@ public class DropperBlock_dontCopyMixin {
             method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At("TAIL")
     )
-    protected void removeInstance(ServerWorld world, BlockPos pos, CallbackInfo ci) {
+    private void removeInstance(ServerWorld world, BlockPos pos, CallbackInfo ci) {
         stack = ItemStack.EMPTY;
     }
 }

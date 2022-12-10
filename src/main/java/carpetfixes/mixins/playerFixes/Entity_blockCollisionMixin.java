@@ -17,18 +17,18 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Due to how minecraft handles prediction, some collisions are not handled correctly.
+ * So here we move the collision checks to be executed at the correct position in the code to prevent collisions
+ * from being run when the player position has not been adjusted for normal block collisions yet.
+ * This bug makes the following possible:
+ * - x8 coords multiplication using end portal
+ * - Clipping blocks that you are not actually touching
+ * This patches both
+ */
+
 @Mixin(Entity.class)
 public abstract class Entity_blockCollisionMixin {
-
-    /**
-     * Due to how minecraft handles prediction, some collisions are not handled correctly.
-     * So here we move the collision checks to be executed at the correct position in the code to prevent collisions
-     * from being executed at the wrong time in the code.
-     * This bug makes the following possible:
-     * - x8 coords multiplication using end portal
-     * - Clipping blocks that you are not actually touching
-     */
-
 
     @Shadow
     protected void checkBlockCollision() {}
@@ -63,7 +63,7 @@ public abstract class Entity_blockCollisionMixin {
                             "Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;"
             )
     )
-    protected void InjectOnEntityCollisionHere(MovementType type, Vec3d movement, CallbackInfo ci) {
+    private void InjectOnEntityCollisionHere(MovementType type, Vec3d movement, CallbackInfo ci) {
         if (CFSettings.blockCollisionCheckFix) {
             ORDER.set(false);
             this.checkBlockCollision();

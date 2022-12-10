@@ -12,18 +12,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static carpetfixes.helpers.Utils.isZero;
 
+/**
+ * This is a hackfix, the current implementation of the minecart would require me to change the internal values
+ * used for yaw in order to properly implement it. I might attempt to make the changes at some point, although
+ * it's going to require a lot of mixins!
+ *
+ * Since then 2no2name made a mod that fixes it properly with a complete rewrite
+ */
+
 @Mixin(AbstractMinecartEntity.class)
 public abstract class AbstractMinecartEntity_directionalMixin extends Entity {
 
     public AbstractMinecartEntity_directionalMixin(EntityType<?> type, World world) {
         super(type, world);
     }
-
-    /*
-     * This is a hackfix, the current implementation of the minecart would require me to change the internal values
-     * used for yaw in order to properly implement it. I might attempt to make the changes at some point, although
-     * it's going to require a lot of mixins!
-     */
 
 
     @Inject(

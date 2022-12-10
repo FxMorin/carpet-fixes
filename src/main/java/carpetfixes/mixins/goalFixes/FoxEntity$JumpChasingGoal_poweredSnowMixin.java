@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes foxes not considering powdered snow as a snow block
+ */
+
 @Mixin(FoxEntity.JumpChasingGoal.class)
 public class FoxEntity$JumpChasingGoal_poweredSnowMixin {
 

@@ -13,14 +13,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * TNT Calculations are directional due to an offset in the calculation code.
+ * This fix changes the exposure code to use the correct calculation.
+ */
+
 @Mixin(Explosion.class)
 public class Explosion_exposureMixin {
-
-    /**
-     * TNT Calculations are directional due to an offset in the calculation code.
-     * This fix changes the exposure code to use the correct calculation.
-     */
-
 
     @Inject(
             method = "getExposure(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/entity/Entity;)F",

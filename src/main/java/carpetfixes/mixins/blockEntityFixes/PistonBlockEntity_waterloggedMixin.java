@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fix pistons being able to push waterlogged blocks if it's a 2-tick pulse
+ */
 @Mixin(PistonBlockEntity.class)
 public class PistonBlockEntity_waterloggedMixin {
 

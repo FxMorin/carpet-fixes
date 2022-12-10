@@ -8,6 +8,12 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Use the marker entity if you want something which acts exactly like an armor stand set to isMarker or isInvisible
+ * Also, please stop making "optimizations" which removed behaviour or limit what's possible
+ * At least make the armorstand able to bypass these optimizations for data packs
+ */
+
 @Mixin(ArmorStandEntity.class)
 public abstract class ArmorStandEntity_aggroMechanicsMixin extends LivingEntity {
 

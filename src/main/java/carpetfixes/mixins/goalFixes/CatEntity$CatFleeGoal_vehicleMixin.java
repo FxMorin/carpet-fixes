@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes cats trying to flee while in a vehicle. Just give up already!
+ */
+
 @Mixin(targets = "net/minecraft/entity/passive/CatEntity$CatFleeGoal")
 public class CatEntity$CatFleeGoal_vehicleMixin {
 

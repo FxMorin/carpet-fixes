@@ -14,6 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
+/**
+ * Buried treasure always generates in the center of the chunk, this can be easily fixed by simply settings the random
+ * based on the chunk pos so that it's always the same.
+ */
+
 @Mixin(BuriedTreasureStructure.class)
 public abstract class BuriedTreasureStructure_centerMixin extends Structure {
 
@@ -28,7 +33,7 @@ public abstract class BuriedTreasureStructure_centerMixin extends Structure {
             cancellable = true
     )
     private static void customPiecePosition(StructurePiecesCollector collector,
-                                            Structure.Context arg,
+                                            Context arg,
                                             CallbackInfo ci) {
         if (CFSettings.buriedTreasureAlwaysCenterFix) {
             ChunkPos chunkPos = arg.chunkPos();

@@ -34,14 +34,6 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     private static final String MOD_NAME;
     private static final Version MOD_VERSION;
 
-    public static String modId() {
-        return MOD_ID;
-    }
-
-    public static String modName() {
-        return MOD_NAME;
-    }
-
     static {
         ModMetadata metadata = FabricLoader.getInstance().getModContainer(MOD_ID)
                 .orElseThrow(RuntimeException::new).getMetadata();

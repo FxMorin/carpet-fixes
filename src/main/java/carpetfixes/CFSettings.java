@@ -102,12 +102,6 @@ public class CFSettings {
     @Rule(
             categories = {BUGFIX, RECOMMENDED}
     )
-    public static boolean catsBreakLeadsDuringGiftFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX, RECOMMENDED}
-    )
     public static boolean petsBreakLeadsDuringReloadFix = false;
 
     //by FX - PR0CESS
@@ -461,12 +455,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean incorrectFallDamageFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             categories = {BUGFIX, INTENDED}
     )
     public static boolean voidKillsLoyaltyTridentsFix = false;
@@ -758,19 +746,6 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean merchantTradePacketExceptionFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            validators = Validators.wrongPressurePlateHitboxValidator.class,
-            categories = {BUGFIX}
-    )
-    public static boolean wrongPressurePlateHitboxFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
             categories = {BUGFIX, EXPERIMENTAL, INTENDED}
     )
     public static boolean unableToModifyPlayerDataFix = false;
@@ -797,12 +772,6 @@ public class CFSettings {
     @Rule(
             categories = {BUGFIX}
     )
-    public static boolean frogJumpsIgnoreTemptedFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
     public static boolean powderSnowOnlySlowIfFeetInBlockFix = false;
 
     //By FX - PR0CESS
@@ -816,12 +785,6 @@ public class CFSettings {
             categories = {BUGFIX}
     )
     public static boolean absorptionStaysWithoutHeartsFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean shulkersAreLowerInChestBoatFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -876,12 +839,6 @@ public class CFSettings {
             categories = {BUGFIX}
     )
     public static boolean witchAndCatSpawnMergedFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean deathTimeCorruptsMobsFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -1343,7 +1300,6 @@ public class CFSettings {
      */
 
     //by FX - PR0CESS
-    //Soon this will fix all update suppression with rails
     @Rule(
             categories = {OPTIMIZATION}
     )
@@ -1354,18 +1310,6 @@ public class CFSettings {
             categories = {OPTIMIZATION}
     )
     public static boolean optimizedTicketManager = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            categories = {OPTIMIZATION, CLIENT}
-    )
-    public static boolean optimizedRounding = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            categories = {OPTIMIZATION}
-    )
-    public static boolean optimizedHypot = false;
 
     //by FX - PR0CESS
     @Rule(
@@ -1421,12 +1365,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            categories = {BUGFIX, RECOMMENDED, VANILLA, DUPE}
-    )
-    public static boolean nbtDataDupeFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             categories = {BUGFIX, EXPERIMENTAL, DUPE}
     )
     public static boolean beeDupeFix = false;
@@ -1448,18 +1386,6 @@ public class CFSettings {
             categories = {BUGFIX, DUPE}
     )
     public static boolean tripwireHookDupeFix = false;
-
-    //by Captain_S0L0
-    @Rule(
-            categories = {BUGFIX, DUPE}
-    )
-    public static boolean horseDupeFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX, DUPE}
-    )
-    public static boolean chestBoatDupeFix = false;
 
     //by FX - PR0CESS
     @Rule(

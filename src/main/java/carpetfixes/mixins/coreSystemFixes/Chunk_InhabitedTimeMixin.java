@@ -9,6 +9,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Chunk inhabited time does not get saved unless the chunk gets modified, so the values is nearly always incorrect.
+ * This will make sure that all these chunks are when unloaded if they where not planned to be saved already
+ */
+
 @Mixin(Chunk.class)
 public class Chunk_InhabitedTimeMixin {
 

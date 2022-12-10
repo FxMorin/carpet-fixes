@@ -12,14 +12,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Consumer;
 
+/**
+ * Clear the shulker box inventory after its stacks are dropped
+ * This might break custom loot tables that intentionally duplicate items but fixes other dupes in vanilla
+ */
+
 @Mixin(ShulkerBoxBlock.class)
 public class ShulkerBoxBlock_breakSwapDupeMixin {
-
-    /**
-     * Clear the shulker box inventory after its stacks are dropped
-     * This might break custom loot tables that intentionally duplicate items but fixes other dupes in vanilla
-     */
-
 
     @Inject(
             method = "method_10524",

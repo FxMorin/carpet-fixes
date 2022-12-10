@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes enchanting in creative mode still deducting experience
+ */
+
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntity_enchantmentCostMixin extends Entity {
 
@@ -31,7 +35,7 @@ public abstract class PlayerEntity_enchantmentCostMixin extends Entity {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void applyEnchantmentCosts(ItemStack enchantedItem, int experienceLevels, CallbackInfo ci) {
+    private void applyEnchantmentCosts(ItemStack enchantedItem, int experienceLevels, CallbackInfo ci) {
         if (CFSettings.creativeEnchantingCostsExperienceFix && this.isCreative()) {
             this.enchantmentTableSeed = this.random.nextInt();
             ci.cancel();

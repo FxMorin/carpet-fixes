@@ -8,6 +8,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * Fixes powered snow not letting light pass though it
+ */
+
 @Mixin(PowderSnowBlock.class)
 public abstract class PowderSnowBlock_lightMixin extends Block {
 

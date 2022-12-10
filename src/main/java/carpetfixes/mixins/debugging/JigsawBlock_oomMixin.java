@@ -12,6 +12,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A tool that allows you to execute an OOM exception on demand. All you need to do is put a lightning rod on a
+ * jigsaw block and then give the jigsaw block a block update.
+ */
+
 @Mixin(JigsawBlock.class)
 public class JigsawBlock_oomMixin extends Block {
     public JigsawBlock_oomMixin(Settings settings) {

@@ -22,7 +22,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashMap;
 
-@Mixin(value = PoweredRailBlock.class,priority = 990)
+/**
+ * Full Rewrite of the powered rail iteration logic.
+ * This rewrite brings a massive performance boost while keeping the vanilla order. This is achieved by running all the
+ * powered rail logic from a single rail instead of each block iterating separately. Which was not only very
+ * expensive but also completely unnecessary and with a lot of massive overhead
+ */
+
+@Mixin(value = PoweredRailBlock.class, priority = 990)
 public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
 
     @Shadow
@@ -88,16 +95,16 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
         int k = pos.getZ();
         boolean bl2 = true;
         RailShape railShape = state.get(SHAPE);
-        switch(railShape.ordinal()) {
-            case 0:
+        switch (railShape.ordinal()) {
+            case 0 -> {
                 if (bl) ++k;
                 else --k;
-                break;
-            case 1:
+            }
+            case 1 -> {
                 if (bl) --i;
                 else ++i;
-                break;
-            case 2:
+            }
+            case 2 -> {
                 if (bl) {
                     --i;
                 } else {
@@ -106,8 +113,8 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     bl2 = false;
                 }
                 railShape = RailShape.EAST_WEST;
-                break;
-            case 3:
+            }
+            case 3 -> {
                 if (bl) {
                     --i;
                     ++j;
@@ -116,8 +123,8 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     ++i;
                 }
                 railShape = RailShape.EAST_WEST;
-                break;
-            case 4:
+            }
+            case 4 -> {
                 if (bl) {
                     ++k;
                 } else {
@@ -126,8 +133,8 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     bl2 = false;
                 }
                 railShape = RailShape.NORTH_SOUTH;
-                break;
-            case 5:
+            }
+            case 5 -> {
                 if (bl) {
                     ++k;
                     ++j;
@@ -136,6 +143,7 @@ public abstract class PoweredRailBlock_fasterMixin extends AbstractRailBlock {
                     --k;
                 }
                 railShape = RailShape.NORTH_SOUTH;
+            }
         }
         return this.isPoweredByOtherRailsFaster(
                 world, new BlockPos(i, j, k),

@@ -22,34 +22,33 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Shipwrecks are multiple pieces when split between chunks. Like all structures they use the same position for
+ * each piece. Except that's actually not the case, the position passed to generate() in the Shipwreck piece
+ * does not have the same y value for each piece. I will work on a fix for this later.
+ * The secondary problem is that the shipwreck piece uses abstractRandom.nextInt(3) to know the offset on the
+ * Y axis that it should have. Here's 2 reason why this is not great:
+ * 1. The blockPos (including the new Y axis) is used to generate the random that will be used to pick the
+ *    palette that the ship should use. Hence, causing different palettes using between 2 chunk borders<br>
+ * 2. The abstractRandom can be used by multiple pieces of the same structure one after another. Which means that
+ *    the next structure will have a different value for the Y axis.<br>
+ * This is why you only ever see the bug when both halves are at different heights, since the height and the
+ * palette are one in the same, they use the same random.
+ * <br><br>
+ * So how do we go about fixing this. Firstly, the structure should not receive different positions even in the Y
+ * axis. That's just asking for trouble in the future, and also makes the fix slightly more complicated.
+ * Secondly, you are going to want to use a positional random like you do for most others structure randoms, in
+ * this fix I used that random `this.placementData.getRandom(pos)` if the position is the same, so will the random.
+ * Although as mentioned before, the position is not the same, although it's very close. Since the ship cannot be
+ * near another ship and checks to make sure its on the surface, we don't need to worry about 2 ships appearing at
+ * the same position. So we set the Y value to 0 for the position that we use in the positional random.
+ * This results in the randoms having the same values for all pieces!
+ *
+ * @author FX - PR0CESS
+ */
+
 @Mixin(net.minecraft.structure.ShipwreckGenerator.Piece.class)
 public abstract class ShipwreckGenerator$Piece_differentPaletteMixin extends SimpleStructurePiece {
-
-    /*
-     * Shipwrecks are multiple pieces when split between chunks. Like all structures they use the same position for
-     * each piece. Except that's actually not the case, the position passed to generate() in the Shipwreck piece
-     * does not have the same y value for each piece. I will work on a fix for this later.
-     * The secondary problem is that the shipwreck piece uses abstractRandom.nextInt(3) to know the offset on the
-     * Y axis that it should have. Here's 2 reason why this is not great:
-     * 1. The blockPos (including the new Y axis) is used to generate the random that will be used to pick the
-     *    palette that the ship should use. Hence, causing different palettes using between 2 chunk borders
-     * 2. The abstractRandom can be used by multiple pieces of the same structure one after another. Which means that
-     *    the next structure will have a different value for the Y axis.
-     * This is why you only ever see the bug when both halves are at different heights, since the height and the
-     * palette are one in the same, they use the same random.
-     *
-     * So how do we go about fixing this. Firstly, the structure should not receive different positions even in the Y
-     * axis. That's just asking for trouble in the future, and also makes the fix slightly more complicated.
-     * Secondly, you are going to want to use a positional random like you do for most others structure randoms, in
-     * this fix I used that random `this.placementData.getRandom(pos)` if the position is the same, so will the random.
-     * Although as mentioned before, the position is not the same, although it's very close. Since the ship cannot be
-     * near another ship and checks to make sure its on the surface, we don't need to worry about 2 ships appearing at
-     * the same position. So we set the Y value to 0 for the position that we use in the positional random.
-     * This results in the randoms having the same values for all pieces!
-     *
-     * By FX Morin
-     */
-
 
     @Shadow
     @Final

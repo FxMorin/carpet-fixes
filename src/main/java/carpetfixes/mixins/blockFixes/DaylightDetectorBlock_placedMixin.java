@@ -1,7 +1,6 @@
 package carpetfixes.mixins.blockFixes;
 
 import carpetfixes.CFSettings;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DaylightDetectorBlock;
@@ -16,10 +15,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import static net.minecraft.block.DaylightDetectorBlock.INVERTED;
 import static net.minecraft.block.DaylightDetectorBlock.POWER;
 
+/**
+ * Fixes daylight detector nor being in the correct state when being placed down
+ */
 @Mixin(DaylightDetectorBlock.class)
 public abstract class DaylightDetectorBlock_placedMixin extends Block {
 
-    public DaylightDetectorBlock_placedMixin(AbstractBlock.Settings settings) {
+    public DaylightDetectorBlock_placedMixin(Settings settings) {
         super(settings);
     }
 

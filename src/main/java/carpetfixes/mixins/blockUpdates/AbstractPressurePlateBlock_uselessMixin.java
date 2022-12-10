@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Removes useless block updates from the pressure plate to itself
+ */
+
 @Mixin(AbstractPressurePlateBlock.class)
 public class AbstractPressurePlateBlock_uselessMixin {
 

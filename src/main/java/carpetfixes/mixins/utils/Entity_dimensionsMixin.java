@@ -21,6 +21,10 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 
+/**
+ * A bunch of entity utilities I use in a bunch of fixes
+ */
+
 @Mixin(Entity.class)
 public abstract class Entity_dimensionsMixin implements ExtendedEntity {
 

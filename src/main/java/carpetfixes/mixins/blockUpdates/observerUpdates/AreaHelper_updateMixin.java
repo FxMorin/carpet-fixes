@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.dimension.AreaHelper;
+import net.minecraft.world.dimension.NetherPortal;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +15,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(AreaHelper.class)
+/**
+ * Add missing observer updates when a nether portal is made
+ */
+
+@Mixin(NetherPortal.class)
 public class AreaHelper_updateMixin {
 
     @Shadow
@@ -45,7 +49,7 @@ public class AreaHelper_updateMixin {
             method = "createPortal()V",
             at = @At("RETURN")
     )
-    public void createPortal(CallbackInfo ci) {
+    private void createPortal(CallbackInfo ci) {
         if (CFSettings.missingObserverUpdatesFix) {
             BlockPos.iterate(
                     this.lowerCorner,

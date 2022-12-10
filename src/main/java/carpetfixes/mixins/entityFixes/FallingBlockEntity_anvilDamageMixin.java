@@ -16,6 +16,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * When a falling block hits the ground, if the falling block damages entities it does the following:
+ * 1) Checks what entities its currently touching & applied damage to those entities
+ * 2) Places itself as a block
+ * Boats have a hard hitbox, so the falling block does not fall through it and instead sits on it. Causing the boat
+ * not to be affected by the check, and then the falling block places itself inside the boat.
+ * The fix is to get all the entities that the falling block is in and also the ones where its about to be, so we
+ * extend the damage hitbox area to do this. We use the entities blockpos since this is where is places the falling
+ * block.
+ */
+
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntity_anvilDamageMixin extends Entity {
 

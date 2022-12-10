@@ -15,6 +15,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes entities with the eat grass goal being able to eat grass through other blocks like slabs
+ */
+
 @Mixin(EatGrassGoal.class)
 public abstract class EatGrassGoal_slabMixin extends Goal {
 

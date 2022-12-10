@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Fixes tridents falling into the void and never coming back
+ */
+
 @Mixin(TridentEntity.class)
 public abstract class TridentEntity_voidLoyaltyMixin extends Entity {
 

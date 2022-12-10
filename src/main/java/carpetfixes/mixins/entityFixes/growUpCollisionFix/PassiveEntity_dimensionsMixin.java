@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes some entities doing the wrong collision calculation when growing up
+ */
+
 @Mixin(PassiveEntity.class)
 public abstract class PassiveEntity_dimensionsMixin extends Entity {
 
@@ -29,7 +33,7 @@ public abstract class PassiveEntity_dimensionsMixin extends Entity {
             ),
             cancellable = true
     )
-    public void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
+    private void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
         if (CFSettings.entityGrowingUpCollisionClippingFix) {
             ((ExtendedEntity)this).calculateDimensionsWithoutHeight();
             super.onTrackedDataSet(data);

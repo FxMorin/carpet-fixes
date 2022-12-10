@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes soul speed applying damage to your armor when riding a boat over soul sand/soil.
+ */
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_soulSpeedMixin extends Entity {
 
@@ -29,7 +33,7 @@ public abstract class LivingEntity_soulSpeedMixin extends Entity {
             ),
             cancellable = true
     )
-    protected void dontDamageIfRidingEntity(CallbackInfo ci) {
+    private void dontDamageIfRidingEntity(CallbackInfo ci) {
         if (CFSettings.soulSpeedIncorrectDamageFix && this.hasVehicle()) ci.cancel();
     }
 }

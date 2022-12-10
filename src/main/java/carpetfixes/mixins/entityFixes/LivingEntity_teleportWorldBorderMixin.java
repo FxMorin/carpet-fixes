@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Prevents teleports from working past the world border
+ */
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_teleportWorldBorderMixin extends Entity {
 

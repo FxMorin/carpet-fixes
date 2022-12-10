@@ -7,6 +7,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+/**
+ * When lava creates fire around itself, it detects the wrong blocks to create the fire state with
+ */
+
 @Mixin(LavaFluid.class)
 public class LavaFluid_wrongStateMixin {
 

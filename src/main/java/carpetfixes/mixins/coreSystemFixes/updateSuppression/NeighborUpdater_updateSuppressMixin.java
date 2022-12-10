@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Fix update suppression crashes by creating a new exception and catching it later
+ */
+
 @Mixin(NeighborUpdater.class)
 public interface NeighborUpdater_updateSuppressMixin {
 

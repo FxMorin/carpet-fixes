@@ -12,15 +12,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Move comparator updates over to neighbor updates like everything else.
+ * To do this we first prevent the other updates from working, then add the comparator update if they have a
+ * comparator output into updateNeighbor()
+ */
+
 @Mixin(World.class)
 public class World_ComparatorNotUpdatingMixin {
-
-    /**
-     * Move comparator updates over to neighbor updates like everything else.
-     * To do this we first prevent the other updates from working, then add the comparator update if they have a
-     * comparator output into updateNeighbor()
-     */
-
 
     @Shadow
     public void updateComparators(BlockPos pos, Block block) {}

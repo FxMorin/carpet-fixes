@@ -1,6 +1,5 @@
 package carpetfixes.patches;
 
-import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.mob.MobEntity;
 
@@ -12,7 +11,7 @@ public class TouchWaterGoal extends SwimGoal {
     public TouchWaterGoal(MobEntity mob) {
         super(mob);
         this.mob = mob;
-        this.setControls(EnumSet.of(Goal.Control.JUMP));
+        this.setControls(EnumSet.of(Control.JUMP));
         mob.getNavigation().setCanSwim(true);
     }
 

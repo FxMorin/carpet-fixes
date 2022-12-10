@@ -16,6 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.BooleanSupplier;
 
+/**
+ * Reverts a change that mojang made which made all chunks save nearly constantly. Makes it only save while auto
+ * saving like before.
+ */
+
 @Mixin(ThreadedAnvilChunkStorage.class)
 public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
 
@@ -32,7 +37,7 @@ public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void reIntroduceOldMechanics(boolean flush, CallbackInfo ci) {
+    private void reIntroduceOldMechanics(boolean flush, CallbackInfo ci) {
         if (CFSettings.reIntroduceOnlyAutoSaveSaving && !flush) {
             this.chunkHolders.values().stream().filter(ChunkHolder::isAccessible).forEach(holder -> {
                 Chunk chunk = holder.getSavingFuture().getNow(null);

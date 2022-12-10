@@ -5,6 +5,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.PistonExtensionBlock;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * Fixes mobs being able to spawn on moving pistons
+ */
+
 @Mixin(PistonExtensionBlock.class)
 public class PistonExtensionBlock_spawningMixin extends Block {
 

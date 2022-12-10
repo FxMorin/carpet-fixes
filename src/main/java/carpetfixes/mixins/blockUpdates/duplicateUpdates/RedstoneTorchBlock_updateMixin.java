@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fix duplicate block updates in the redstone torch code
+ */
+
 @Mixin(RedstoneTorchBlock.class)
 public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
 
@@ -28,7 +32,7 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onStateReplacedBetter(BlockState state, World world, BlockPos pos,
+    private void onStateReplacedBetter(BlockState state, World world, BlockPos pos,
                                       BlockState newState, boolean moved, CallbackInfo ci) {
         if (!moved) { //Was missing: !state.isOf(newState.getBlock()) && state.get(LIT)
             if (CFSettings.duplicateBlockUpdatesFix) {
@@ -58,7 +62,7 @@ public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void onBlockAddedBetter(BlockState state, World world, BlockPos pos,
+    private void onBlockAddedBetter(BlockState state, World world, BlockPos pos,
                                    BlockState newState, boolean moved, CallbackInfo ci) {
         if (CFSettings.useCustomRedstoneUpdates) {
             BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, false, true);

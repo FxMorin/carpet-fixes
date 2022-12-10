@@ -20,15 +20,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Function;
 
+/**
+ * Reimplements the dupe method where player1 can look into a Llama's inventory. Then player2 gets on the llama
+ * and disconnects. Player1 can then take the items out of the llama's inventory.
+ * Then when player2 logs back in, the items will still be in the llama's inventory. Duping it.
+ */
+
 @Mixin(PlayerManager.class)
 public abstract class PlayerManager_LlamaRidingDupeMixin {
-
-    /**
-     * Reimplements the dupe method where player1 can look into a Llama's inventory. Then player2 gets on the llama
-     * and disconnects. Player1 can then take the items out of the llama's inventory.
-     * Then when player2 logs back in, the items will still be in the llama's inventory. Duping it.
-     */
-
 
     @ModifyArg(
             method = "onPlayerConnect",

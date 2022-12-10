@@ -10,12 +10,12 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.function.Predicate;
 
+/**
+ * Allows replaceable materials to be within the wither structure when the wither is spawning
+ */
+
 @Mixin(WitherSkullBlock.class)
 public class WitherSkullBlock_spawningMixin {
-
-    /**
-     * Allows replaceable materials to be within the wither structure when the wither is spawning
-     */
 
 
     @Redirect(

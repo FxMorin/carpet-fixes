@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.BiConsumer;
 
+/**
+ * Adds the last dirt blocks to a set so they can be skipped later
+ */
+
 @Mixin(TrunkPlacer.class)
 public class TrunkPlacer_logMixin {
 

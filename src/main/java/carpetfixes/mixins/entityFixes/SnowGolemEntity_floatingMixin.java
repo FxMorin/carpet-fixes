@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes snow golems creating snow on the ground when they are not touching the ground
+ */
+
 @Mixin(SnowGolemEntity.class)
 public abstract class SnowGolemEntity_floatingMixin extends Entity {
 

@@ -8,6 +8,10 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Prevents you from being able to teleport while sleeping, fixing two 8x coord multiplication exploits
+ */
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_bedTeleportMixin extends Entity {
 

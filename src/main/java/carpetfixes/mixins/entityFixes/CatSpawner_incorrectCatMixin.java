@@ -12,14 +12,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Cats in witch huts that spawn with world gen will sometimes not be a black cat. This is due to the cat not being
+ * initialized in the right order. We make sure the initializations are done in the right order to prevent this.
+ */
+
 @Mixin(CatSpawner.class)
 public class CatSpawner_incorrectCatMixin {
-
-    /**
-     * Cats in witch huts that spawn with world gen will sometimes not be a black cat. This is due to the cat not being
-     * initialized in the right order. We make sure the initializations are done in the right order to prevent this.
-     */
-
 
     @Inject(
             method = "spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",

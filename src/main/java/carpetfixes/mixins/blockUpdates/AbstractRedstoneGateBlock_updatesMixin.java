@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Use carpet-fixes custom redstone update system instead
+ */
+
 @Mixin(AbstractRedstoneGateBlock.class)
 public class AbstractRedstoneGateBlock_updatesMixin {
 

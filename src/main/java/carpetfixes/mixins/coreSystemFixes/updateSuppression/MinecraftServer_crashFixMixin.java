@@ -15,6 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.BooleanSupplier;
 
+/**
+ * Managing how exceptions are handled during ticks
+ */
+
 @Mixin(MinecraftServer.class)
 public class MinecraftServer_crashFixMixin {
 

@@ -10,14 +10,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Mooshroom convert into cows when sheared. When they convert, they do not transfer all the correct data to the
+ * new entity. The fix is simply to transfer the missing information over to the new entity.
+ */
+
 @Mixin(MooshroomEntity.class)
 public abstract class MooshroomEntity_conversionMixin {
-
-    /**
-     * Mooshroom convert into cows when sheared. When they convert, they do not transfer all the correct data to the
-     * new entity. The fix is simply to transfer the missing information over to the new entity.
-     */
-
 
     private final CowEntity self = (CowEntity)(Object)this;
 

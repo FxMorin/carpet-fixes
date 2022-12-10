@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.BooleanSupplier;
 
+/**
+ * Keeps track of chunk ticks phases for the chunk saving
+ */
+
 @Mixin(ThreadedAnvilChunkStorage.class)
 public class ThreadedAnvilChunkStorage_tickSaveMixin {
 

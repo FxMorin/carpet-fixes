@@ -13,6 +13,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes bed blocks being collided against without actually touching the bed
+ */
 @Mixin(BedBlock.class)
 public class BedBlock_collisionMixin extends Block {
 

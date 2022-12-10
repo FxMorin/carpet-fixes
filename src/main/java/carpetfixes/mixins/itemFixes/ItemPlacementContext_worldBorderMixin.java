@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes the ability to place blocks outside the world border
+ */
+
 @Mixin(ItemPlacementContext.class)
 public abstract class ItemPlacementContext_worldBorderMixin extends ItemUsageContext {
 
@@ -30,7 +34,7 @@ public abstract class ItemPlacementContext_worldBorderMixin extends ItemUsageCon
             at = @At("HEAD"),
             cancellable = true
     )
-    public void canPlace(CallbackInfoReturnable<Boolean> cir) {
+    private void canPlace(CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.placeBlocksOutsideWorldBorderFix) {
             cir.setReturnValue(
                     this.getWorld().getWorldBorder().contains(this.getBlockPos()) && (

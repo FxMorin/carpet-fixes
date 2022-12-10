@@ -12,6 +12,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * The game determines the child sheep's color by getting a wool block from the parents, putting them in a crafting
+ * recipe, getting the output wool and getting the color from that.
+ * I don't know in what world we would consider a data-driven method with that much overhead as a smart idea. Instead,
+ * we used a prebaked list of all the possible colors and combinations, however this means that you can't use a
+ * datapack to change it.
+ */
+
 @Mixin(SheepEntity.class)
 public abstract class SheepEntity_childColorMixin extends AnimalEntity {
 

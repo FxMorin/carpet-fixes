@@ -12,23 +12,23 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * This `update` method is currently only called in: `LivingEntity.tickStatusEffects()`
+ * It calls onRemoved & onApplied for the same effect instance. Which for example the Absorption Effect will
+ * remove absorption hearts based on the new effect.
+ * Example:
+ * 1. Eat an enchanted golden apple (Gives you absorption 3) - 8 hearts
+ * 2. Eat a normal golden apple (Adds hidden effect of strength 1 to absorption) - 2 hearts
+ * When the absorption runs out, instead of losing 6 hearts, you lose 2.
+ * Allows you to stack absorption infinitely!
+ *
+ * An easier for mojang to do would actually be to just move the `overwriteCallback.run();` before the
+ * `this.copyFrom(this.hiddenEffect);` call, and then it would work. Although if you ever have an effect which
+ * does different things during onRemove & onApplied, you will run into issues which is why I split them up!
+ */
+
 @Mixin(StatusEffectInstance.class)
 public abstract class StatusEffectInstance_wrongEffectMixin {
-
-    /*
-     * This `update` method is currently only called in: `LivingEntity.tickStatusEffects()`
-     * It calls onRemoved & onApplied for the same effect instance. Which for example the Absorption Effect will
-     * remove absorption hearts based on the new effect.
-     * Example:
-     * 1. Eat an enchanted golden apple (Gives you absorption 3) - 8 hearts
-     * 2. Eat a normal golden apple (Adds hidden effect of strength 1 to absorption) - 2 hearts
-     * When the absorption runs out, instead of losing 6 hearts, you lose 2.
-     * Allows you to stack absorption infinitely!
-     *
-     * An easier for mojang to do would actually be to just move the `overwriteCallback.run();` before the
-     * `this.copyFrom(this.hiddenEffect);` call, and then it would work. Although if you ever have an effect which
-     * does different things during onRemove & onApplied, you will run into issues which is why I split them up!
-     */
 
     @Shadow
     public abstract StatusEffect getEffectType();

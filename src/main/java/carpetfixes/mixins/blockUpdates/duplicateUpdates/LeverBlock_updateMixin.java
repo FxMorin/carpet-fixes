@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fix duplicate block updates in the lever code
+ */
+
 @Mixin(LeverBlock.class)
 public abstract class LeverBlock_updateMixin extends WallMountedBlock {
 

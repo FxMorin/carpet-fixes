@@ -7,6 +7,9 @@ import net.minecraft.block.DeadCoralFanBlock;
 import net.minecraft.block.piston.PistonBehavior;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * Fixes corals being movable
+ */
 @Mixin(DeadCoralFanBlock.class)
 public class DeadCoralFanBlock_movableMixin extends Block {
 
@@ -17,7 +20,6 @@ public class DeadCoralFanBlock_movableMixin extends Block {
 
     @Override
     public PistonBehavior getPistonBehavior(BlockState state) {
-        if (CFSettings.movableCoralFanFix) return PistonBehavior.DESTROY;
-        return super.getPistonBehavior(state);
+        return CFSettings.movableCoralFanFix ? PistonBehavior.DESTROY : super.getPistonBehavior(state);
     }
 }

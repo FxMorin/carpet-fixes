@@ -6,13 +6,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Enderman will sometimes attempt to teleport while they are in a minecart. There is no reason for them to do this
+ * So we prevent them from doing so by changing the brightness that they see.
+ */
+
 @Mixin(EndermanEntity.class)
 public class EndermanEntity_teleportingMixin {
-
-    /**
-     * Enderman will sometimes attempt to teleport while they are in a minecart. There is no reason for them to do this
-     * So we prevent them from doing so by changing the brightness that they see.
-     */
 
 
     @Redirect(

@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes explosions being limited by the world border
+ */
+
 @Mixin(Explosion.class)
 public class Explosion_worldBorderMixin {
 

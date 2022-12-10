@@ -10,6 +10,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes being able to place a double block within an entity due to a missing check in the second block
+ */
 @Mixin(DoorBlock.class)
 public class DoorBlock_entityCheckMixin {
 

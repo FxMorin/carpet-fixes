@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes boats taking or not taking fall damage
+ */
+
 @Mixin(BoatEntity.class)
 public abstract class BoatEntity_fallDamageMixin extends Entity {
 
@@ -35,8 +39,8 @@ public abstract class BoatEntity_fallDamageMixin extends Entity {
             ),
             cancellable = true
     )
-    protected void fall(double heightDifference, boolean onGround, BlockState landedState,
-                        BlockPos landedPosition, CallbackInfo ci) {
+    private void fall(double heightDifference, boolean onGround, BlockState landedState,
+                      BlockPos landedPosition, CallbackInfo ci) {
         if (CFSettings.boatsTakeFallDamageFix) {
             this.fallDistance = 0.0F;
             ci.cancel();

@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes being able to push blocks through the world border
+ */
+
 @Mixin(PistonBlock.class)
 public class PistonBlock_worldBorderMixin {
 

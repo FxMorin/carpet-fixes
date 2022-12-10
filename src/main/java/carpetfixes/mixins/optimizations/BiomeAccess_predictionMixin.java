@@ -1,9 +1,9 @@
 package carpetfixes.mixins.optimizations;
 
 import carpetfixes.CFSettings;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.SeedMixer;
@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Optimized getBiome call: Reduce the number of calls to the mess of
- * {@link net.minecraft.world.biome.source.SeedMixer#mixSeed(long, long)} which is pretty heavy on performance.
+ * {@link SeedMixer#mixSeed(long, long)} which is pretty heavy on performance.
  *
  * We are able to do this by skipping around 370 of 512 possible calls to getBiome() by predicting the outcome
  * before doing the seed mixing. This seems to be around 25% - 75% faster depending on the use case.

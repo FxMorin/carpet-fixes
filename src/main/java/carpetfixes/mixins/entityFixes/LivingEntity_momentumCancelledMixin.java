@@ -13,6 +13,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Fixes velocity being cancelled per axis instead of combined. Resulting in weird behavior at very low velocities.
+ * Although its pretty easy to notice on ice, and feels pretty broken
+ */
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_momentumCancelledMixin extends Entity {
 
@@ -30,7 +35,7 @@ public abstract class LivingEntity_momentumCancelledMixin extends Entity {
                     shift = At.Shift.BEFORE
             )
     )
-    public void customVelocityCheck(CallbackInfo ci, Vec3d d, double h, double i, double j) {
+    private void customVelocityCheck(CallbackInfo ci, Vec3d d, double h, double i, double j) {
         if (CFSettings.velocitySeparateAxisCancellingFix) {
             double x = d.x, y = d.y, z = d.z;
             if (Math.abs(x) + Math.abs(z) < 0.003D) {

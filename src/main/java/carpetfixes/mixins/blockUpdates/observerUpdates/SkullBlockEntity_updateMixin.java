@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Add missing observer updates when the skull block changes powered state
+ */
+
 @Mixin(SkullBlockEntity.class)
 public class SkullBlockEntity_updateMixin {
 

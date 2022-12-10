@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Add missing observer updates when an entity goes through an end gateway
+ */
+
 @Mixin(EndGatewayBlockEntity.class)
 public class EndGatewayBlockEntity_updateMixin extends BlockEntity {
 

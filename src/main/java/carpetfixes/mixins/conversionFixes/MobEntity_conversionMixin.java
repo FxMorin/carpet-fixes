@@ -12,15 +12,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Some mobs can convert into other mobs. Most of them use the convertTo() method. When mobs convert, they do not
+ * transfer all the correct data to the new entity. The fix is simply to transfer the missing information over to
+ * the new entity.
+ */
+
 @Mixin(MobEntity.class)
 public abstract class MobEntity_conversionMixin extends LivingEntity  {
-
-    /**
-     * Some mobs can convert into other mobs. Most of them use the convertTo() method. When mobs convert, they do not
-     * transfer all the correct data to the new entity. The fix is simply to transfer the missing information over to
-     * the new entity.
-    */
-
 
     protected MobEntity_conversionMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);

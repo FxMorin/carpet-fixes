@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes the end portal removing all your status effects
+ */
+
 @Mixin(PlayerManager.class)
 public class PlayerManager_endPortalEffectsMixin {
 
@@ -17,8 +21,8 @@ public class PlayerManager_endPortalEffectsMixin {
             method = "respawnPlayer",
             at = @At("RETURN")
     )
-    public void respawnPlayer(ServerPlayerEntity player, boolean alive,
-                              CallbackInfoReturnable<ServerPlayerEntity> cir) {
+    private void respawnPlayer(ServerPlayerEntity player, boolean alive,
+                               CallbackInfoReturnable<ServerPlayerEntity> cir) {
         if (alive && CFSettings.endPortalRemovesEffectsFix) {
             ServerPlayerEntity newPlayer = cir.getReturnValue();
             newPlayer.activeStatusEffects.forEach((key,effect) ->

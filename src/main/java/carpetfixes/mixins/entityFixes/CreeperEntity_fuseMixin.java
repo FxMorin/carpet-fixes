@@ -10,6 +10,10 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * This adds the last fuse time and current fuse time to the entity data that is transfered over dimensions
+ */
+
 @Mixin(CreeperEntity.class)
 public abstract class CreeperEntity_fuseMixin extends HostileEntity {
 

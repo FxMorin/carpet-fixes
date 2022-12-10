@@ -11,15 +11,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * ServerPlayerEntity overrides fall() and then calls super within ServerPlayNetworkHandler although
+ * within ServerPlayNetworkHandler they call fall after move() which means that the STEP event will have
+ * priority over the HIT_GROUND event because it was the first to happen within the tick.
+ * To fix this, we prevent the STEP event from being emitted within move() and call it after the fall() call.
+ */
+
 @Mixin(Entity.class)
 public abstract class Entity_stepEventMixin {
-
-    /**
-     * ServerPlayerEntity overrides fall() and then calls super within ServerPlayNetworkHandler although
-     * within ServerPlayNetworkHandler they call fall after move() which means that the STEP event will have
-     * priority over the HIT_GROUND event because it was the first to happen within the tick.
-     * To fix this, we prevent the STEP event from being emitted within move() and call it after the fall() call.
-     */
 
     private final Entity self = (Entity)(Object)this;
 

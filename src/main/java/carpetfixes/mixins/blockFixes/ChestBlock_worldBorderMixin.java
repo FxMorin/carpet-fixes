@@ -16,6 +16,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes being able to access a chest past the world border by preventing chest from connecting through the border
+ */
 @Mixin(ChestBlock.class)
 public class ChestBlock_worldBorderMixin {
 

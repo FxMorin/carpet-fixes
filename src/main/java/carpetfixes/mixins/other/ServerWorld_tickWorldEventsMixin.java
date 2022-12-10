@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.BooleanSupplier;
 
+/**
+ * Runs delayed world events at the end of the tick
+ */
+
 @Mixin(ServerWorld.class)
 public class ServerWorld_tickWorldEventsMixin {
 

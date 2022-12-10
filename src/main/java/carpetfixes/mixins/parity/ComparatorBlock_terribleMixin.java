@@ -6,6 +6,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
+/**
+ * Makes the comparator act like it does in bedrock edition (stupid)
+ */
+
 @Mixin(ComparatorBlock.class)
 public class ComparatorBlock_terribleMixin {
 

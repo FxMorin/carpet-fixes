@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Tnt minecarts can do two explosions in the same tick if timed correctly, resulting in all the items being destroyed
+ */
+
 @Mixin(TntMinecartEntity.class)
 public abstract class TntMinecartEntity_doubleExplodeMixin extends Entity {
 

@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes ice not turning to water when broken above a waterlogged block like when its broken above water
+ */
+
 @Mixin(IceBlock.class)
 public class IceBlock_breakMixin {
 

@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.injection.Slice;
 
 import java.util.function.Predicate;
 
+/**
+ * Fixes hoppers choosing minecarts randomly every time
+ */
 @Mixin(HopperBlockEntity.class)
 public class HopperBlockEntity_randomMinecartMixin {
 

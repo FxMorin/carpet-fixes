@@ -10,14 +10,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Cancel the entity removal if the entity is already considered dead. This prevents duplication of the
+ * falling block entity using portals.
+ */
+
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntity_duplicationMixin extends Entity {
-
-    /**
-     * Cancel the entity removal if the entity is already considered dead. This prevents duplication of the
-     * falling block entity using portals.
-     */
-
 
     public FallingBlockEntity_duplicationMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -33,7 +32,7 @@ public abstract class FallingBlockEntity_duplicationMixin extends Entity {
             ),
             cancellable = true
     )
-    public void cancelDupe(CallbackInfo ci) {
-        if(CFSettings.fallingBlockDuplicationFix && this.isRemoved()) ci.cancel();
+    private void cancelDupe(CallbackInfo ci) {
+        if (CFSettings.fallingBlockDuplicationFix && this.isRemoved()) ci.cancel();
     }
 }

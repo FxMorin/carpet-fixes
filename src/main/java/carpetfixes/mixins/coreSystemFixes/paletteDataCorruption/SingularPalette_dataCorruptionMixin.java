@@ -16,6 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
+/**
+ * Fixes a data corruption bug in the Palette code.
+ * It's caused by the listeners being copied over to the palette clone when instead a new listener should be made
+ */
+
 @Mixin(SingularPalette.class)
 public class SingularPalette_dataCorruptionMixin<T> {
 

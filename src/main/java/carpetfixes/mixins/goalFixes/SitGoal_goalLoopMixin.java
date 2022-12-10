@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes the Sit goal continuously resetting when the owner is offline
+ */
+
 @Mixin(SitGoal.class)
 public class SitGoal_goalLoopMixin {
 

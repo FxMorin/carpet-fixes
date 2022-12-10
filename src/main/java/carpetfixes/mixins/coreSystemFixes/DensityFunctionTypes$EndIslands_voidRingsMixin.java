@@ -8,17 +8,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * In the end, there are large rings where terrain does not generate. This is due to a floating-point calculation.
+ * Original code by: Shadew, I then improved performance a bit. Not only does this fix the end void rings,
+ * but the equation is actually much faster than the vanilla equation, without changing vanilla behaviour!
+ * It's 10-22% faster than vanilla in all cases!
+ * The code is now completely different from the one originally made by: Shadew
+ */
+
 @Mixin(targets = "net/minecraft/world/gen/densityfunction/DensityFunctionTypes$EndIslands")
 public class DensityFunctionTypes$EndIslands_voidRingsMixin {
-
-    /**
-     * In the end, there are large rings where terrain does not generate. This is due to a floating-point calculation.
-     * Original code by: Shadew, I then improved performance a bit. Not only does this fix the end void rings,
-     * but the equation is actually much faster than the vanilla equation, without changing vanilla behaviour!
-     * It's 10-22% faster than vanilla in all cases!
-     * The code is now completely different then the one originally made by: Shadew
-     */
-
 
     @Inject(
             method = "sample(Lnet/minecraft/util/math/noise/SimplexNoiseSampler;II)F",

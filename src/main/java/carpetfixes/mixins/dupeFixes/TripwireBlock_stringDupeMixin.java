@@ -6,6 +6,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+/**
+ * Fixes the wring dupe at the cost of removing the ability to disarm tripwire. Wait you didn't know you could do that?
+ * That's why I decided to do it xD
+ */
+
 @Mixin(TripwireBlock.class)
 public class TripwireBlock_stringDupeMixin {
 

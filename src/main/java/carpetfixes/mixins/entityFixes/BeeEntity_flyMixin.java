@@ -10,6 +10,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * When bee navigation is set to idle, they get downwards velocity and drop like boulders.
+ * Just spawn a ton using bee spawn eggs and a dispenser and you will see it xD
+ */
+
 @Mixin(BeeEntity.class)
 public abstract class BeeEntity_flyMixin extends AnimalEntity {
 

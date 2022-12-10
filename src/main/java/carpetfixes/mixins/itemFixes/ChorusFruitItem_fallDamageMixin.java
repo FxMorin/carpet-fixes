@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fix chorus fruit not removing fall damage when teleporting you down.
+ */
+
 @Mixin(ChorusFruitItem.class)
 public class ChorusFruitItem_fallDamageMixin {
 

@@ -13,14 +13,18 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes leash not being detached when picking up a fish using a bucket
+ *
+ * Added to fish in-case some mod makes it possible to leash fish
+ */
+
 @Mixin(FishEntity.class)
 public abstract class FishEntity_leashDetachMixin extends WaterCreatureEntity {
 
     protected FishEntity_leashDetachMixin(EntityType<? extends WaterCreatureEntity> entityType, World world) {
         super(entityType, world);
     }
-
-    // Added to fish in-case some mod makes it possible to leash fish
 
 
     @Inject(

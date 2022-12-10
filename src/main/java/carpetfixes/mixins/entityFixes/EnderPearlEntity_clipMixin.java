@@ -17,6 +17,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * When using enderpearls, you can easily glitch through walls by throwing pearls at specific angles. This happens
+ * because the enderpearl just teleports the player to its current position, which nearly always causes you to clip
+ * into the block unless it hit the block straight down. This fix works by offsetting the location at which you get
+ * placed based on your hitbox. Works for all entities not just players, for modded scenarios.
+ */
+
 @Mixin(EnderPearlEntity.class)
 public abstract class EnderPearlEntity_clipMixin extends ThrownItemEntity {
 
@@ -25,6 +32,7 @@ public abstract class EnderPearlEntity_clipMixin extends ThrownItemEntity {
     }
 
 
+    //TODO: Still missing multiple edge cases
     @Inject(
             method = "onCollision",
             at = @At(

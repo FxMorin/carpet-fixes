@@ -18,6 +18,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fix duplicate block updates in the powered rail code
+ */
+
 @Mixin(PoweredRailBlock.class)
 public abstract class PoweredRailBlock_updateMixin {
 
@@ -57,7 +61,7 @@ public abstract class PoweredRailBlock_updateMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
+    private void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
         if (!CFSettings.optimizedPoweredRails && CFSettings.uselessSelfBlockUpdateFix) {
             boolean bl2 = world.isReceivingRedstonePower(pos) ||
                     this.isPoweredByOtherRails(world, pos, state, true, 0) ||

@@ -15,15 +15,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Due to how rails work if you push them they don't give any updates once
+ * they arrive at their new spot, causing some illegal states that should
+ * not be happening. We fix this by giving the correct updates.
+ */
+
 @Mixin(AbstractRailBlock.class)
 public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Block {
-
-    /**
-     * Due to how rails work if you push them they don't give any updates once
-     * they arrive at their new spot, causing some illegal states that should
-     * not be happening. We fix this by giving the correct updates.
-     */
-
 
     @Shadow
     public abstract Property<RailShape> getShapeProperty();
@@ -43,8 +42,8 @@ public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Bloc
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
-                                    BlockState oldState, boolean notify, CallbackInfo ci) {
+    private void alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
+                                  BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CFSettings.railMissingUpdateAfterPushFix) {
             if (!oldState.isOf(state.getBlock())) {
                 if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);

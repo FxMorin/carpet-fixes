@@ -13,6 +13,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Add all of Mojang's debug commands to minecraft if you are in a development environment.
+ * Also adds my own custom commands
+ */
+
 @Mixin(CommandManager.class)
 public class CommandManager_devMixin {
 
@@ -34,7 +39,7 @@ public class CommandManager_devMixin {
             DebugPathCommand.register(this.dispatcher);
             RaidCommand.register(this.dispatcher);
             PoiCommand.register(this.dispatcher); //Custom
-            FillSummonCommand.register(this.dispatcher); //Custom
+            FillSummonCommand.register(this.dispatcher, arg); //Custom
         }
     }
 }

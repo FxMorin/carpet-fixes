@@ -12,15 +12,14 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import java.util.Set;
 
+/**
+ * For an in-depth explanation please check GoatBrain_frictionMixin.java
+ *
+ * Any reason why the sets are not constants?
+ */
+
 @Mixin(FrogBrain.class)
 public class FrogBrain_frictionMixin {
-
-    /**
-     * For an in-depth explanation please check GoatBrain_frictionMixin.java
-     *
-     * Any reason why the sets are not constants?
-     */
-
 
     private static final Set<Pair<MemoryModuleType<?>, MemoryModuleState>> idleFrogRequiredMemories = ImmutableSet.of(
             Pair.of(MemoryModuleType.LONG_JUMP_COOLING_DOWN, MemoryModuleState.VALUE_PRESENT),

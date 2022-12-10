@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Fixes the break door goal not stopping when the entity dies, causing the block breaking effect to stay for a while
+ */
+
 @Mixin(MobEntity.class)
 public abstract class MobEntity_stopGoalOnDeathMixin extends LivingEntity {
 

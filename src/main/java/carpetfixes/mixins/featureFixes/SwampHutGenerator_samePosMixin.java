@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes swamp huts spawning the witch and cat in the same position
+ */
+
 @Mixin(SwampHutGenerator.class)
 public abstract class SwampHutGenerator_samePosMixin extends ShiftableStructurePiece {
 

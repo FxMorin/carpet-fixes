@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Add missing observer updates when a bell gets rung
+ */
+
 @Mixin(BellBlockEntity.class)
 public class BellBlockEntity_updateMixin extends BlockEntity {
 

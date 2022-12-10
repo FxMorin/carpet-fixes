@@ -15,6 +15,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes lava treating bubble columns as full blocks
+ */
+
 @Mixin(LavaFluid.class)
 public class LavaFluid_bubbleColumnMixin {
 

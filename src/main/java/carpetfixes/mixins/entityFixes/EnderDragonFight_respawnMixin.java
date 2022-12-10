@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes the ender dragon not respawning if you place the end crystals before the dragon is fully killed
+ */
+
 @Mixin(EnderDragonFight.class)
 public abstract class EnderDragonFight_respawnMixin {
 
@@ -24,7 +28,7 @@ public abstract class EnderDragonFight_respawnMixin {
                     target = "Lnet/minecraft/entity/boss/dragon/EnderDragonFight;dragonKilled:Z"
             )
     )
-    public void dragonKilled(EnderDragonEntity dragon, CallbackInfo ci) {
+    private void dragonKilled(EnderDragonEntity dragon, CallbackInfo ci) {
         if (CFSettings.endCrystalPlacingTooEarlyFix) this.respawnDragon();
     }
 }

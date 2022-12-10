@@ -3,9 +3,9 @@ package carpetfixes.mixins.coreSystemFixes;
 import carpetfixes.CFSettings;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -25,6 +25,11 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+
+/**
+ * Fixes block entities in a chunk being loaded in the wrong order. This can cause a lot of things to break, including
+ * hopper update order and piston execution order.
+ */
 
 @Mixin(Chunk.class)
 public class Chunk_BEHashMixin {
@@ -59,7 +64,7 @@ public class Chunk_BEHashMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void getBlockEntityPositions(CallbackInfoReturnable<Set<BlockPos>> cir) {
+    private void getBlockEntityPositions(CallbackInfoReturnable<Set<BlockPos>> cir) {
         if (CFSettings.reloadUpdateOrderFix) { //Use a Linked Hash Set instead of just a HashSet
             Set<BlockPos> set = new LinkedHashSet<>(this.blockEntityNbts.keySet());
             set.addAll(this.blockEntities.keySet());

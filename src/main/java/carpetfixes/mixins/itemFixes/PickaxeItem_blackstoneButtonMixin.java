@@ -10,10 +10,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.tag.TagKey;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(value=PickaxeItem.class,priority=1010)
+/**
+ * Fixes blackstone buttons taking longer to mine due to them not having a tool assigned to them
+ */
+
+@Mixin(value = PickaxeItem.class, priority = 1010)
 public class PickaxeItem_blackstoneButtonMixin extends MiningToolItem {
 
     //TODO: Might be broken by carpet now

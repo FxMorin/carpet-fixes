@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes the end gateway spawning you inside of blocks, due to the placement search ignoring bedrock
+ */
 @Mixin(EndGatewayBlockEntity.class)
 public class EndGatewayBlockEntity_insideMixin {
 

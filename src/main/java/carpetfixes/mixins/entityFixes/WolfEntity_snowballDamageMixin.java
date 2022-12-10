@@ -6,6 +6,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
+/**
+ * Fix wolves taking damage from snowballs
+ */
+
 @Mixin(WolfEntity.class)
 public class WolfEntity_snowballDamageMixin {
 

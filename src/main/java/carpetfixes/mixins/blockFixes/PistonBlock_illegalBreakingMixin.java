@@ -8,13 +8,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value=PistonBlock.class, priority=1010)
-public class PistonBlock_illegalBreakingMixin {
+/**
+ * Prevents pistons from being able to break blocks with a hardness value of -1.0F
+ * You need headless pistons to be able to break these blocks using pistons.
+ */
 
-    /**
-     * Prevents pistons from being able to break blocks with a hardness value of -1.0F
-     * Headless pistons should be required to be able to break these blocks using pistons.
-     */
+@Mixin(value = PistonBlock.class, priority = 1010)
+public class PistonBlock_illegalBreakingMixin {
 
 
     @Redirect(

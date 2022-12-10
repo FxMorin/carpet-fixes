@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes bees continuously touching the water and dying
+ */
+
 @Mixin(BeeEntity.class)
 public class BeeEntity_swimGoalMixin {
 

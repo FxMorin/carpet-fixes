@@ -22,6 +22,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Iterator;
 
+/**
+ * Structures don't create passenger entities since they call the wrong method.
+ */
+
 @Mixin(StructureTemplate.class)
 public class StructureTemplate_entityPassengersMixin {
 

@@ -15,6 +15,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes being able to create invulnerable end crystals
+ */
+
 @Mixin(EndCrystalEntity.class)
 public abstract class EndCrystalEntity_InvulnerableMixin extends Entity {
 
@@ -34,7 +38,7 @@ public abstract class EndCrystalEntity_InvulnerableMixin extends Entity {
             method = "tick",
             at = @At("RETURN")
     )
-    public void tick(CallbackInfo ci) {
+    private void tick(CallbackInfo ci) {
         if (CFSettings.invulnerableEndCrystalFix && this.isInvulnerable() && this.getBeamTarget() != null) {
             ServerWorld serverWorld = (ServerWorld)this.world;
             if (this.world.getRegistryKey() != World.END || serverWorld.getEnderDragonFight() == null ||

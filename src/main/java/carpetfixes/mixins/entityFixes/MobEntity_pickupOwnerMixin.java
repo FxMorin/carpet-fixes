@@ -7,6 +7,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes mobs being able to pickup items with owner tags
+ */
+
 @Mixin(MobEntity.class)
 public class MobEntity_pickupOwnerMixin {
 
@@ -18,7 +22,7 @@ public class MobEntity_pickupOwnerMixin {
                     target = "Lnet/minecraft/entity/ItemEntity;isRemoved()Z"
             )
     )
-    public boolean doesItemHaveOwnerTag(ItemEntity instance) {
+    private boolean doesItemHaveOwnerTag(ItemEntity instance) {
         return instance.isRemoved() || CFSettings.mobsIgnoreOwnerOnPickupFix && instance.getOwner() != null;
     }
 }

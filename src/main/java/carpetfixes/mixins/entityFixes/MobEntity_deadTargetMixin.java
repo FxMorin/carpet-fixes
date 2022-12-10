@@ -12,16 +12,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * As explained in my code analysis here: https://bugs.mojang.com/browse/MC-183990
+ * Mobs that have the goal `RevengeGoal` with the option `setGroupRevenge()` will lead to mobs targeting
+ * dead entities. We simply fix this by checking if the target is dead in the baseTick(), and if so we
+ * set it to null.
+ * This check is nearly identical to how other entity checks for tasks and mobs is handled
+ */
+
 @Mixin(MobEntity.class)
 public abstract class MobEntity_deadTargetMixin extends LivingEntity {
-
-    /**
-     * As explained in my code analysis here: https://bugs.mojang.com/browse/MC-183990
-     * Mobs that have the goal `RevengeGoal` with the option `setGroupRevenge()` will lead to mobs targeting
-     * dead entities. We simply fix this by checking if the target is dead in the baseTick(), and if so we
-     * set it to null
-     */
-
 
     @Shadow
     private @Nullable LivingEntity target;
@@ -42,7 +42,7 @@ public abstract class MobEntity_deadTargetMixin extends LivingEntity {
                     shift = At.Shift.BEFORE
             )
     )
-    public void removeDeadTarget(CallbackInfo ci) {
+    private void removeDeadTarget(CallbackInfo ci) {
         if (CFSettings.mobsTargetDeadEntitiesFix && this.target != null && target.isDead()) this.setTarget(null);
     }
 }

@@ -10,14 +10,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Remove the part where it sets all stack counts to 0, allows for some interesting general item dupes to work.
+ * (Mostly just the dolphin one)
+ */
+
 @Mixin(MobEntity.class)
 public abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
-
-    /**
-     * Remove the part where it sets all stack counts to 0, allows for some interesting general item dupes to work.
-     * (Mostly just the dolphin one)
-     */
-
 
     protected MobEntity_portalGeneralItemMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -33,7 +32,7 @@ public abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
             ),
             cancellable = true
     )
-    protected void reEnableGeneralItemDupe(CallbackInfo ci) {
+    private void reEnableGeneralItemDupe(CallbackInfo ci) {
         if (CFSettings.reIntroducePortalGeneralItemDupe) ci.cancel();
     }
 }

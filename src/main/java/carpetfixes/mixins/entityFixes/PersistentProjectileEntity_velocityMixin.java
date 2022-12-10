@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes projectiles not losing there velocity when hitting a block
+ */
+
 @Mixin(PersistentProjectileEntity.class)
 public abstract class PersistentProjectileEntity_velocityMixin extends Entity {
 

@@ -16,6 +16,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Set;
 
+/**
+ * When redstone dust gets redirected by having a block that redstone dust can point to next to it. It does not update
+ * the original position that the redstone dust was looking at. This is known as redstone dust redirection, we fix this
+ * by providing the valid updates.
+ */
+
 @Mixin(RedstoneWireBlock.class)
 public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
 
@@ -36,8 +42,8 @@ public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
                             "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;II)V"
             )
     )
-    public void shouldUpdate(BlockState state, WorldAccess world, BlockPos pos,
-                             int flags, int maxUpdateDepth, CallbackInfo ci) {
+    private void shouldUpdate(BlockState state, WorldAccess world, BlockPos pos,
+                              int flags, int maxUpdateDepth, CallbackInfo ci) {
         needsUpdate.set(true);
     }
 
@@ -47,7 +53,7 @@ public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
                     "Lnet/minecraft/util/math/BlockPos;II)V",
             at = @At("TAIL")
     )
-    public void doUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int d, CallbackInfo ci) {
+    private void doUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int d, CallbackInfo ci) {
         if (CFSettings.redstoneRedirectionMissingUpdateFix && needsUpdate.get()) {
             Set<BlockPos> set = Sets.newHashSet();
             set.add(pos);

@@ -16,6 +16,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import static net.minecraft.block.PointedDripstoneBlock.THICKNESS;
 import static net.minecraft.block.PointedDripstoneBlock.VERTICAL_DIRECTION;
 
+/**
+ * Prevents you from being able to place dripstone within an entity
+ */
+
 @Mixin(PointedDripstoneBlock.class)
 public class PointedDripstoneBlock_entityChecksMixin extends Block {
 

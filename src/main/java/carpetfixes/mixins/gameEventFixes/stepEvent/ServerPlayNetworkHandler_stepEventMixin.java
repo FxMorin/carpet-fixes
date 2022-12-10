@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes the player step gameEvent happening at the wrong time
+ */
+
 @Mixin(ServerPlayNetworkHandler.class)
 public class ServerPlayNetworkHandler_stepEventMixin {
 
@@ -25,7 +29,7 @@ public class ServerPlayNetworkHandler_stepEventMixin {
                     target = "Lnet/minecraft/server/network/ServerPlayerEntity;setOnGround(Z)V"
             )
     )
-    public void afterOnGround(PlayerMoveC2SPacket packet, CallbackInfo ci) {
+    private void afterOnGround(PlayerMoveC2SPacket packet, CallbackInfo ci) {
         if (((ServerPlayerEntityEmitStep)this.player).shouldStep()) this.player.emitGameEvent(GameEvent.STEP);
     }
 }

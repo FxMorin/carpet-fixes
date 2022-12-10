@@ -13,6 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static net.minecraft.block.ChestBlock.getInventory;
 
+/**
+ * Fixes comparators checking blocked chests
+ */
 @Mixin(ChestBlock.class)
 public class ChestBlock_blockedComparatorMixin {
 

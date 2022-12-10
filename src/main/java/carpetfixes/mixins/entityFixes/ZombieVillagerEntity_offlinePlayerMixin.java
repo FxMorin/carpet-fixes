@@ -20,6 +20,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.UUID;
 
+/**
+ * Fixes villagers ignoring the fact that you healed them and saved there life.
+ */
+
 @Mixin(ZombieVillagerEntity.class)
 public class ZombieVillagerEntity_offlinePlayerMixin {
 

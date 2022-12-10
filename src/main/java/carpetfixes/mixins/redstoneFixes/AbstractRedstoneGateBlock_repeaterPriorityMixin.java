@@ -9,14 +9,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Repeater Priority is an interesting problem. DeadlyMC's original implementation was slightly broken,
+ * although we were able to fix it so that it works perfectly
+ */
+
 @Mixin(AbstractRedstoneGateBlock.class)
 public class AbstractRedstoneGateBlock_repeaterPriorityMixin extends HorizontalFacingBlock  {
-
-    /**
-     * Repeater Priority is an interesting problem. DeadlyMC's original implementation was slightly broken,
-     * although we were able to fix it so that it works perfectly
-     */
-
 
     protected AbstractRedstoneGateBlock_repeaterPriorityMixin(Settings settings) {
         super(settings);

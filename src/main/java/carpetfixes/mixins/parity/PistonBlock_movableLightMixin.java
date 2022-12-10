@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes light blocks not being movable. They are in bedrock edition
+ */
+
 @Mixin(PistonBlock.class)
 public class PistonBlock_movableLightMixin {
 

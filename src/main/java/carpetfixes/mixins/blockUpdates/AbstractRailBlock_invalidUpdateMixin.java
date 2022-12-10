@@ -14,14 +14,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * The issue here is that the rail updates the other rails near it before checking if it's in a valid place.
+ * This should be the other way round, we check if it's in a valid place and if it's not, then we break the rail.
+ * Once we know it's in a valid place, then we can update the other rails. Simple come on Mojang
+ */
+
 @Mixin(AbstractRailBlock.class)
 public abstract class AbstractRailBlock_invalidUpdateMixin extends Block {
-
-    /**
-     * The issue here is that the rail updates the other rails near it before checking if it's in a valid place.
-     * This should be the other way round, we check if it's in a valid place and if it's not, then we break the rail.
-     * Once we know it's in a valid place, then we can update the other rails.
-     */
 
 
     public AbstractRailBlock_invalidUpdateMixin(Settings settings) {

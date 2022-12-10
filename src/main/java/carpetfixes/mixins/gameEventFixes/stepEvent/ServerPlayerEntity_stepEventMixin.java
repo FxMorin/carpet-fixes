@@ -4,6 +4,10 @@ import carpetfixes.patches.ServerPlayerEntityEmitStep;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * This class implements ServerPlayerEntityEmitStep to keep track of the shouldStep state in serverPlayerEntity
+ */
+
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntity_stepEventMixin implements ServerPlayerEntityEmitStep {
 

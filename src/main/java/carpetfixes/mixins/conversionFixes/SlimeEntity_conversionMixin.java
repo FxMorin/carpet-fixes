@@ -13,17 +13,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Slime convert into smaller slimes when killed. When they die, they do not transfer all the correct data to the
+ * new entities. The fix is simply to transfer the missing information over to the new entity.
+ *
+ * Since slime is not a full conversion and instead splits into multiple entities PortalCooldown, Rotation,
+ * effects, & Health are ignored. DeathLootTable & tags still need to be implemented!
+ */
+
 @Mixin(SlimeEntity.class)
 public abstract class SlimeEntity_conversionMixin extends MobEntity implements Monster {
-
-    /**
-     * Slime convert into smaller slimes when killed. When they die, they do not transfer all the correct data to the
-     * new entities. The fix is simply to transfer the missing information over to the new entity.
-     *
-     * Since slime is not a full conversion and instead splits into multiple entities PortalCooldown, Rotation,
-     * effects, & Health are ignored. DeathLootTable & tags still need to be implemented!
-     */
-
 
     protected SlimeEntity_conversionMixin(EntityType<? extends MobEntity> entityType, World world) {
         super(entityType, world);

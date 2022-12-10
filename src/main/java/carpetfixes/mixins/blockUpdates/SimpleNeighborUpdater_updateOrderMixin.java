@@ -9,13 +9,17 @@ import net.minecraft.world.block.SimpleNeighborUpdater;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(SimpleNeighborUpdater.class) // InstantNeighborUpdater
+/**
+ * Changes the block update order
+ */
+
+@Mixin(SimpleNeighborUpdater.class)
 public abstract class SimpleNeighborUpdater_updateOrderMixin implements NeighborUpdater {
 
 
     @Override
     public void updateNeighbors(BlockPos blockPos, Block block, @Nullable Direction direction) {
-        for(Direction direction2 : BlockUpdateUtils.blockUpdateDirections.apply(blockPos)) {
+        for (Direction direction2 : BlockUpdateUtils.blockUpdateDirections.apply(blockPos)) {
             if (direction2 != direction) this.updateNeighbor(blockPos.offset(direction2), block, blockPos);
         }
     }

@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fix a missing shape update in the target block when its being placed
+ */
+
 @Mixin(TargetBlock.class)
 public class TargetBlock_missingShapeUpdateMixin {
 

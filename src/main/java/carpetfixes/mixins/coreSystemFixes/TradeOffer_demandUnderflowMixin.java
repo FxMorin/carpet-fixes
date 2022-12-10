@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes trade offers indefinitely increasing in demand, causing multiple weird behaviors
+ */
+
 @Mixin(TradeOffer.class)
 public class TradeOffer_demandUnderflowMixin {
 

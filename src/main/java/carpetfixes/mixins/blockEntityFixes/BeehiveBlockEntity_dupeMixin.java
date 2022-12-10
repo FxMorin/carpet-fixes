@@ -13,6 +13,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes bee duplication by preventing bees from interacting with unloaded chunks
+ */
 @Mixin(BeehiveBlockEntity.class)
 public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
 
@@ -22,11 +25,11 @@ public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
 
 
     @Inject(
-            method= "tryEnterHive(Lnet/minecraft/entity/Entity;ZI)V",
+            method = "tryEnterHive(Lnet/minecraft/entity/Entity;ZI)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    public void tryEnterHiveIfLoaded(Entity entity, boolean hasNectar, int ticksInHive, CallbackInfo ci) {
+    private void tryEnterHiveIfLoaded(Entity entity, boolean hasNectar, int ticksInHive, CallbackInfo ci) {
         if (CFSettings.beeDupeFix && !entity.world.isChunkLoaded(
                 ChunkSectionPos.getSectionCoord(this.pos.getX()),
                 ChunkSectionPos.getSectionCoord(this.pos.getY())

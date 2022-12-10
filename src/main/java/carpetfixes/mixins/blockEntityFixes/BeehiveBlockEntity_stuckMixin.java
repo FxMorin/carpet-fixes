@@ -7,6 +7,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes bees not leaving there hive in the nether, due to the isRaining tag being checked without a dimension check
+ */
 @Mixin(BeehiveBlockEntity.class)
 public class BeehiveBlockEntity_stuckMixin {
 

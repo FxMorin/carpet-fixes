@@ -14,6 +14,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * There are two fixes here. One to fix some useless block updates that the detector rail gives to itself,
+ * the other is to fix the detector rail giving updates to comparators facing the wrong way
+ */
+
 @Mixin(DetectorRailBlock.class)
 public class DetectorRailBlock_comparatorMixin {
 
@@ -36,7 +41,7 @@ public class DetectorRailBlock_comparatorMixin {
             ),
             cancellable = true
     )
-    public void updateComparatorsSpecial(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
+    private void updateComparatorsSpecial(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
         if (CFSettings.uselessDetectorRailUpdateFix) {
             if (state.get(POWERED)) {
                 if (CFSettings.detectorRailOffsetUpdateFix) {

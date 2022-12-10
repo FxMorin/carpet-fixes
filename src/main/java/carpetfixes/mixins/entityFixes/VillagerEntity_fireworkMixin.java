@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.Objects;
 
+/**
+ * Fixes villagers getting killed by their own fireworks
+ */
+
 @Mixin(VillagerEntity.class)
 public abstract class VillagerEntity_fireworkMixin extends LivingEntity {
 

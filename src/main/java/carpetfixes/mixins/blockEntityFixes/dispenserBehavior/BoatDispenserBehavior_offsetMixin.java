@@ -6,6 +6,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
+/**
+ * Fixes boats placement when using a dispenser
+ */
 @Mixin(BoatDispenserBehavior.class)
 public class BoatDispenserBehavior_offsetMixin {
 

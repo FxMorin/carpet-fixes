@@ -11,15 +11,19 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes tnt minecarts blowing up when turning a rail touching a block
+ *
+ * This is kinda expensive, a better solution would be to cache a boolean to specify if the minecart is on rails
+ * in the AbstractMinecartEntity tick(), then reusing that here instead
+ */
+
 @Mixin(TntMinecartEntity.class)
 public abstract class TntMinecartEntity_horizontalCollisionMixin extends AbstractMinecartEntity {
 
     protected TntMinecartEntity_horizontalCollisionMixin(EntityType<?> entityType, World world) {
         super(entityType, world);
     }
-
-    // This is kinda expensive, a better solution would be to cache a boolean to specify if the minecart is on rails
-    // in the AbstractMinecartEntity tick(), then reusing that here instead
 
 
     @Inject(

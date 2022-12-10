@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.function.BiConsumer;
 
+/**
+ * Fixes giant trunks having an extra log at the very top
+ */
+
 @Mixin(GiantTrunkPlacer.class)
 public abstract class GiantTrunkPlacer_extraWoodMixin {
 

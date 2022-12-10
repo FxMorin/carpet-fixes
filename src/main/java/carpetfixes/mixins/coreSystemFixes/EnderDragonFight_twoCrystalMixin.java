@@ -6,6 +6,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+/**
+ * Fixes a bug in the distance calculation allowing you to spawn the ender dragon with only 2 end crystals instead of 4
+ */
+
 @Mixin(EnderDragonFight.class)
 public class EnderDragonFight_twoCrystalMixin {
 

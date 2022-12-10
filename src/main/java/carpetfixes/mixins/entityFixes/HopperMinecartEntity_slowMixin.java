@@ -7,6 +7,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes the hopper minecart being slower at [0,0,0] due to some stupid check
+ * TODO: Fixed in the next snapshot xD
+ */
+
 @Mixin(HopperMinecartEntity.class)
 public class HopperMinecartEntity_slowMixin {
 

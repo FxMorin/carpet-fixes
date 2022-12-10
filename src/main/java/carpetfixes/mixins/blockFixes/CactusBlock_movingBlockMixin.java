@@ -12,13 +12,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;
 
+/**
+ * Fixes cactus breaking when touching a moving piston, it does not do the correct check for pistons. So we make sure
+ * to get the correct blockState from within the piston block entity and running the check against that instead.
+ */
 @Mixin(CactusBlock.class)
 public class CactusBlock_movingBlockMixin {
-
-    /**
-     * When a cactus checks if it's in a valid spot, it does not do the correct check for pistons. So we make sure
-     * to get the correct blockState from within the piston block entity
-     */
 
 
     @Redirect(

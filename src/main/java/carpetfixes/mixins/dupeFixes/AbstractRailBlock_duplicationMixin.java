@@ -11,14 +11,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Thanks to Carpet-TIS-Addition for the clean fix
+ * Link: https://github.com/TISUnion/Carpet-TIS-Addition
+ *
+ * Fixes a rail duplication exploit
+ */
+
 @Mixin(AbstractRailBlock.class)
 public class AbstractRailBlock_duplicationMixin {
-
-    /**
-     * Thanks to Carpet-TIS-Addition for the clean fix
-     * Link: https://github.com/TISUnion/Carpet-TIS-Addition
-     */
-
 
     @Inject(
             method = "neighborUpdate",

@@ -15,6 +15,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes inconsistent redstone torch behavior
+ */
+
 @Mixin(RedstoneTorchBlock.class)
 public class RedstoneTorchBlock_inconsistentMixin {
 
@@ -39,11 +43,11 @@ public class RedstoneTorchBlock_inconsistentMixin {
             ),
             cancellable = true
     )
-    public void onScheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random r, CallbackInfo ci) {
+    private void onScheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random r, CallbackInfo ci) {
         if (CFSettings.inconsistentRedstoneTorchFix) {
             if (isBurnedOut(world, pos, true)) {
                 world.syncWorldEvent(1502, pos, 0);
-                world.createAndScheduleBlockTick(pos, world.getBlockState(pos).getBlock(), 160);
+                world.scheduleBlockTick(pos, world.getBlockState(pos).getBlock(), 160);
             }
             world.setBlockState(pos, state.with(LIT, false), 3);
             ci.cancel();

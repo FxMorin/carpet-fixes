@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.function.Predicate;
 
+/**
+ * Fixes armorstand being unable to ride boats
+ */
+
 @Mixin(BoatEntity.class)
 public class BoatEntity_armorStandMixin {
 

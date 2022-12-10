@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import static net.minecraft.block.TripwireHookBlock.*;
 
+/**
+ * Fix the tripwire hook duplication bug. We have to do all the correct checks in all the correct locations to make
+ * sure that the hooks are handled correctly
+ */
 
 @Mixin(TripwireHookBlock.class)
 public abstract class TripwireHookBlock_hookDupeMixin extends Block {
@@ -59,7 +63,7 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
                 on |= armed && blockState2.get(TripwireBlock.POWERED);
                 blockStates[k] = blockState2;
                 if (k == i) {
-                    world.createAndScheduleBlockTick(pos, this, 10);
+                    world.scheduleBlockTick(pos, this, 10);
                     notRemoving &= armed;
                 }
             }

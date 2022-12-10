@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes being able to start the conversion of zombie villagers while they are already converting
+ */
+
 @Mixin(ZombieVillagerEntity.class)
 public abstract class ZombieVillagerEntity_convertingMixin extends ZombieEntity {
 

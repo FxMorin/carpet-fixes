@@ -11,6 +11,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * When an enderman is in a vehicle, its able to teleport away from projectiles, although it then snaps back to the
+ * vehicle. It should have taken damage since its not able to teleport away, this makes sure of it
+ */
+
 @Mixin(EndermanEntity.class)
 public abstract class EndermanEntity_vehicleMixin extends LivingEntity {
 

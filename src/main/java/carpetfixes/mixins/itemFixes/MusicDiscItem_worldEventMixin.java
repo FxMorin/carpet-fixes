@@ -10,6 +10,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes being able to play multiple music disks at the same time.
+ * We do this by delaying the world events and synchronizing them to all happen at the end of the tick
+ */
+
 @Mixin(MusicDiscItem.class)
 public class MusicDiscItem_worldEventMixin {
 

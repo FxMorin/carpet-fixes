@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import static net.minecraft.block.NoteBlock.POWERED;
 
+/**
+ * Fixes noteblocks placed in a spot where they should be powered, resulting in them not being powered. Budded
+ */
+
 @Mixin(NoteBlock.class)
 public abstract class NoteBlock_placedMixin extends Block {
 

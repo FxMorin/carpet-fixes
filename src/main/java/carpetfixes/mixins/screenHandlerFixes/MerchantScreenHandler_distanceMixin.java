@@ -12,6 +12,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes void trading, the ability to trade endlessly with a villager by teleporting away while in its gui.
+ * Usually done in the end using end gateways, hence why its called "void" trading.
+ */
+
 @Mixin(MerchantScreenHandler.class)
 public class MerchantScreenHandler_distanceMixin {
 

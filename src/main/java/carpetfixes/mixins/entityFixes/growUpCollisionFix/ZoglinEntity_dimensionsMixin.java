@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes zoglins doing the wrong collision calculation when growing up
+ */
+
 @Mixin(ZoglinEntity.class)
 public class ZoglinEntity_dimensionsMixin {
 
@@ -22,7 +26,7 @@ public class ZoglinEntity_dimensionsMixin {
             ),
             cancellable = true
     )
-    public void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
+    private void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
         if (CFSettings.entityGrowingUpCollisionClippingFix) {
             ((ExtendedEntity)this).calculateDimensionsWithoutHeight();
             ci.cancel();

@@ -17,6 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Supplier;
 
+/**
+ * Fixes blocks dropping items in the wrong position due to floating point precision
+ */
 @Mixin(Block.class)
 public class Block_itemPositionMixin {
 

@@ -26,6 +26,11 @@ import java.util.Optional;
 
 import static carpetfixes.CarpetFixesServer.LOGGER;
 
+/**
+ * Allow the structure template manager to load snbt files if nbt versions are not found.
+ * Should only be used for debugging
+ */
+
 @Mixin(StructureTemplateManager.class)
 public abstract class StructureManager_snbtMixin {
 

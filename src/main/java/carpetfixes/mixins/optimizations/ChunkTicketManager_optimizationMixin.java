@@ -18,6 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.function.Predicate;
 
+/**
+ * Optimization that did not make it into Lithium, to change the way chunk tickets are handled
+ */
+
 @Mixin(ChunkTicketManager.class)
 public abstract class ChunkTicketManager_optimizationMixin {
 

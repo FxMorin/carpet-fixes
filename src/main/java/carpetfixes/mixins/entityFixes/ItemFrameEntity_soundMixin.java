@@ -8,6 +8,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * The item frame plays sound whenever its loaded, this is one of the funniest bugs out there.
+ * Easily reproducible by making a large area full of item frames in a superflat world and loading the world.
+ */
+
 @Mixin(ItemFrameEntity.class)
 public class ItemFrameEntity_soundMixin {
 
@@ -21,7 +26,7 @@ public class ItemFrameEntity_soundMixin {
                     shift = At.Shift.AFTER
             )
     )
-    public void setHeldItemStackBefore(ItemStack value, boolean update, CallbackInfo ci) {
+    private void setHeldItemStackBefore(ItemStack value, boolean update, CallbackInfo ci) {
         if (CFSettings.itemFramePlaysSoundOnReadFix && !update) value.setCount(0);
     }
 
@@ -30,7 +35,7 @@ public class ItemFrameEntity_soundMixin {
             method = "setHeldItemStack(Lnet/minecraft/item/ItemStack;Z)V",
             at = @At("RETURN")
     )
-    public void setHeldItemStackAfter(ItemStack value, boolean update, CallbackInfo ci) {
+    private void setHeldItemStackAfter(ItemStack value, boolean update, CallbackInfo ci) {
         if (CFSettings.itemFramePlaysSoundOnReadFix && !update) value.setCount(1);
     }
 }

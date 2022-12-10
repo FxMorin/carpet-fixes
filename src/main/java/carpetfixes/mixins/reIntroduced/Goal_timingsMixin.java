@@ -7,6 +7,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Reverts Mojang's "optimization" that simply makes most goals run twice as slow instead of actually making the goal
+ * system event based. Classic Mojang
+ */
+
 @Mixin(Goal.class)
 public class Goal_timingsMixin {
 

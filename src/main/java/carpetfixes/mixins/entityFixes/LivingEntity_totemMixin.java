@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * This class implements the EntityUsedTotem interface to correctly set the usedTotem value to calculate totem damage
+ */
+
 @Mixin(LivingEntity.class)
 public class LivingEntity_totemMixin implements EntityUsedTotem {
 
@@ -24,7 +28,7 @@ public class LivingEntity_totemMixin implements EntityUsedTotem {
             method = "tick()V",
             at = @At("HEAD")
     )
-    public void tickStart(CallbackInfo ci) {
+    private void tickStart(CallbackInfo ci) {
         usedTotem = false;
     }
 

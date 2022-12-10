@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.function.Predicate;
 
+/**
+ * Fixes armorstands not being able to ride minecarts
+ */
+
 @Mixin(AbstractMinecartEntity.class)
 public class AbstractMinecartEntity_armorStandMixin {
 

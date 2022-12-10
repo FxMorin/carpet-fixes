@@ -14,6 +14,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+/**
+ * Fixes being able to place a double block within an entity due to a missing check in the second block
+ */
 @Mixin(BedBlock.class)
 public class BedBlock_entityChecksMixin {
 

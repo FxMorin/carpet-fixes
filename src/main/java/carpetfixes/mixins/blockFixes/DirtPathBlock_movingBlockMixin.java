@@ -11,13 +11,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Makes it so that path blocks get the blockState that the moving piston is carrying instead of checking the
+ * pistons material directly. Should fix a few more bugs!
+ */
 @Mixin(DirtPathBlock.class)
 public class DirtPathBlock_movingBlockMixin {
-
-    /**
-     * Makes it so that path blocks get the blockState that the moving piston is carrying instead of checking the
-     * pistons material directly. Should fix a few more bugs!
-     */
 
 
     @Redirect(

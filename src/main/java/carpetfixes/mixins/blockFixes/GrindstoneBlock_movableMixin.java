@@ -7,6 +7,10 @@ import net.minecraft.block.GrindstoneBlock;
 import net.minecraft.block.piston.PistonBehavior;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * Makes the Grindstone movable
+ */
+
 @Mixin(GrindstoneBlock.class)
 public class GrindstoneBlock_movableMixin extends Block {
     public GrindstoneBlock_movableMixin(Settings settings) {

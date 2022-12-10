@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Set;
 
+/**
+ * Grabs the last dirt positions and removes them from the trunk positions so that no incorrect updates are made
+ */
+
 @Mixin(TreeFeature.class)
 public class TreeFeature_removeDirtMixin {
 

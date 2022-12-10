@@ -17,6 +17,9 @@ import java.util.List;
 
 import static net.minecraft.block.entity.BeaconBlockEntity.playSound;
 
+/**
+ * Fixes beacons always playing a sound when being broken
+ */
 @Mixin(BeaconBlockEntity.class)
 public abstract class BeaconBlockEntity_soundMixin extends BlockEntity {
 

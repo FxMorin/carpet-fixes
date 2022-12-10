@@ -8,6 +8,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fixes enchanting tables being blocked by non-full blocks. Such as snow and carpet
+ */
 @Mixin(EnchantingTableBlock.class)
 public class EnchantingTableBlock_transparentMixin {
 

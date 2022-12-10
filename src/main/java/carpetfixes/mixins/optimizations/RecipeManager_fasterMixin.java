@@ -16,6 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * RecipeManager optimization.
+ * Optimized by taking out streams & doing extra early checks to quickly remove unrelated recipes
+ */
+
 @Mixin(RecipeManager.class)
 public abstract class RecipeManager_fasterMixin {
 

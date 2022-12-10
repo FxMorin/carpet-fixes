@@ -5,6 +5,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * Fix the world border collisions being incorrectly rounded, allowing entities to stand halfway in the border instead
+ * of against it
+ */
+
 @Mixin(targets = "net.minecraft.world.border.WorldBorder$StaticArea")
 public class WorldBorder$StaticArea_collisionMixin {
 

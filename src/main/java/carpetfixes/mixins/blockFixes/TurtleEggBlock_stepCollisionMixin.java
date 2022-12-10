@@ -17,6 +17,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Fixes turtle eggs being stepped on even though you are not touching them
+ */
+
 @Mixin(TurtleEggBlock.class)
 public abstract class TurtleEggBlock_stepCollisionMixin extends Block {
 

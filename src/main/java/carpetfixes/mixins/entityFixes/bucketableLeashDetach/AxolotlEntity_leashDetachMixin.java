@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Fixes leash not being detached when picking up an axolotl using a bucket
+ */
+
 @Mixin(AxolotlEntity.class)
 public abstract class AxolotlEntity_leashDetachMixin extends AnimalEntity {
 

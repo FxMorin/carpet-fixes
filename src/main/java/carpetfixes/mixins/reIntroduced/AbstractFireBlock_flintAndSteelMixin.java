@@ -11,13 +11,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Allows flint and steel to be used against the side of blocks. Useful for flying machines and nether portals.
+ */
+
 @Mixin(AbstractFireBlock.class)
 public class AbstractFireBlock_flintAndSteelMixin {
-
-    /**
-     * Allows flint and steel to be used against the side of blocks. Useful for flying machines and nether portals.
-     */
-
 
     @Inject(
             method = "canPlaceAt",
@@ -31,7 +30,7 @@ public class AbstractFireBlock_flintAndSteelMixin {
     )
     private static void canPlaceAt(World world, BlockPos blockPos,
                                    Direction direction, CallbackInfoReturnable<Boolean> cir) {
-        if(CFSettings.reIntroduceFlintAndSteelBehavior &&
+        if (CFSettings.reIntroduceFlintAndSteelBehavior &&
                 world.getBlockState(blockPos.down()).getBlock() != Blocks.FIRE) cir.setReturnValue(true);
     }
 }

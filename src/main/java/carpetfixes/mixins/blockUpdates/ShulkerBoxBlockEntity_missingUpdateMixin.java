@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * Adds a shape update when the shulker box opens
+ */
+
 @Mixin(ShulkerBoxBlockEntity.class)
 public class ShulkerBoxBlockEntity_missingUpdateMixin {
 

@@ -4,9 +4,12 @@ import carpetfixes.CFSettings;
 import net.minecraft.entity.ai.goal.Goal;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * Fixes the pufferfish inflate goal being twice as slow as before
+ */
+
 @Mixin(targets = "net/minecraft/entity/passive/PufferfishEntity$InflateGoal")
 public abstract class PufferfishEntity$InflateGoal_slowMixin extends Goal {
-
 
     @Override
     public boolean shouldRunEveryTick() {
