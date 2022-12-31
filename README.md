@@ -36,14 +36,8 @@ This mod works for both Singleplayer & Multiplayer, although it only modifies se
 The mod does fix some client-side bugs (not many), and only if carpet-fixes is on the server as well.  
 For Client-Side fixes, go check out: [blanket](https://github.com/BlanketMC/blanket-client-tweaks)
 
-
 ---
 
-[![YourKit](https://www.yourkit.com/images/yklogo.png)](https://www.yourkit.com/)
-
-### YourKit supports open source projects with innovative and intelligent tools for monitoring and profiling Java and .NET applications.
-### YourKit is the creator of [YourKit Java Profiler](https://www.yourkit.com/java/profiler/), [YourKit .NET Profiler](https://www.yourkit.com/.net/profiler/), and [YourKit YouMonitor](https://www.yourkit.com/youmonitor/)
-
-I'm using YourKit's Java Profiler for this project, to make sure that this mod does not cause any memory leaks or degrade performance!
+<a href="https://client.kinetichosting.net/aff.php?aff=42"><img alt="Kinetic Hosting" src="https://media.discordapp.net/attachments/1058184491476197427/1058799080672854126/FX.png"></a>
 
 ---
