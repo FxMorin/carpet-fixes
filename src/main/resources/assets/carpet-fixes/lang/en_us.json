@@ -164,6 +164,8 @@
 	"carpet-fixes.rule.followParentGoalBreaksMovementFix.extra": "[MC-149838](https://bugs.mojang.com/browse/MC-149838)",
 	"carpet-fixes.rule.foxesDisregardPowderSnowFix.desc": "Fixes Foxes not Respecting Powder Snow as a Snow Like block, Therefore Powder Snow would not have the same effect as Snow does",
 	"carpet-fixes.rule.foxesDisregardPowderSnowFix.extra": "[MC-230660](https://bugs.mojang.com/browse/MC-230660)",
+	"carpet-fixes.rule.spectatorAdvancementGrantingFix.desc": "Fixes advancement criteria being granted to players in Spectator mode",
+	"carpet-fixes.rule.spectatorAdvancementGrantingFix.extra": "[MC-120083](https://bugs.mojang.com/browse/MC-120083)",
 	"carpet-fixes.rule.foxesDropItemsWithLootOffFix.desc": "Fixes gamerule doMobLoot not effecting foxes from dropping their items",
 	"carpet-fixes.rule.foxesDropItemsWithLootOffFix.extra": "[MC-153010](https://bugs.mojang.com/browse/MC-153010)",
 	"carpet-fixes.rule.frictionlessEntitiesFix.desc": "Fixes frictionless goats & frogs, currently requires to be modified per mob",
