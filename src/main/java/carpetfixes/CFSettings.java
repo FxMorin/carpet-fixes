@@ -404,6 +404,12 @@ public class CFSettings {
     )
     public static boolean foxesDisregardPowderSnowFix = false;
 
+    //by Jack
+    @Rule(
+            categories = {BUGFIX}
+    )
+    public static boolean spectatorAdvancementGrantingFix = false;
+
     //by FX - PR0CESS
     @Rule(
             categories = {BUGFIX}

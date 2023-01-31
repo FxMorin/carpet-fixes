@@ -266,6 +266,7 @@
     "playerFixes.Entity_blockCollisionMixin",
     "playerFixes.EntityDataObject_dataPlayerMixin",
     "playerFixes.LivingEntity_sleepingKillsMixin",
+    "playerFixes.PlayerAdvancementTracker_grantCriterionMixin",
     "playerFixes.PlayerEntity_absorptionMixin",
     "playerFixes.PlayerEntity_enchantmentCostMixin",
     "playerFixes.PlayerEntity_hungerMixin",
