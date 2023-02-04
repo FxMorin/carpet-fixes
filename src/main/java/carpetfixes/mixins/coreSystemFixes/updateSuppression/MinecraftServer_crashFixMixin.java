@@ -7,12 +7,16 @@ import carpetfixes.mixins.accessors.MinecraftServerAccessor;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.crash.CrashException;
+import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.NoSuchElementException;
 import java.util.function.BooleanSupplier;
 
 /**
@@ -22,6 +26,7 @@ import java.util.function.BooleanSupplier;
 @Mixin(MinecraftServer.class)
 public class MinecraftServer_crashFixMixin {
 
+    @Shadow @Final private static Logger LOGGER;
     private final MinecraftServer self = (MinecraftServer)(Object)this;
     private final MinecraftServerAccessor selfAccessor = (MinecraftServerAccessor)self;
 
@@ -39,10 +44,12 @@ public class MinecraftServer_crashFixMixin {
             return;
         }
         try {
+
             serverWorld.tick(shouldKeepTicking);
         } catch (CrashException e) {
+            LOGGER.info("TICK TEST 1");
             Throwable cause = e.getCause();
-            if (CFSettings.updateSuppressionCrashFix && cause instanceof UpdateSuppressionException) {
+            if (CFSettings.updateSuppressionCrashFix && (cause instanceof UpdateSuppressionException || cause instanceof NoSuchElementException)) {
                 logException("UpdateSuppression","world tick");
             } else if (CFSettings.simulatedOutOfMemoryCrashFix && cause instanceof OutOfMemoryError) {
                 logException("OOM","world tick");
@@ -53,6 +60,9 @@ public class MinecraftServer_crashFixMixin {
             logException("UpdateSuppression","world tick");
         } catch (OutOfMemoryError e) {
             logException("OOM","world tick");
+        } catch (NoSuchElementException e) {
+            logException("UpdateSuppression", "world tick: NoSuchElementException");
+
         }
     }
 
