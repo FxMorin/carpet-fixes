@@ -44,7 +44,7 @@ public class MinecraftServer_crashFixMixin {
             serverWorld.tick(shouldKeepTicking);
         } catch (CrashException e) {
             Throwable cause = e.getCause();
-            if (CFSettings.updateSuppressionCrashFix && (cause instanceof UpdateSuppressionException || cause instanceof NoSuchElementException)) {
+            if (CFSettings.updateSuppressionCrashFix && (cause instanceof UpdateSuppressionException || cause instanceof NoSuchElementException || cause instanceof ArrayIndexOutOfBoundsException)) {
                 logException("UpdateSuppression","world tick");
             } else if (CFSettings.simulatedOutOfMemoryCrashFix && cause instanceof OutOfMemoryError) {
                 logException("OOM","world tick");
@@ -57,6 +57,8 @@ public class MinecraftServer_crashFixMixin {
             logException("OOM","world tick");
         } catch (NoSuchElementException e) {
             logException("UpdateSuppression", "world tick: NoSuchElementException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            logException("UpdateSuppression", "world tick: ArrayIndexOutOfBoundsException");
 
         }
     }
@@ -87,7 +89,7 @@ public class MinecraftServer_crashFixMixin {
     private void logException(String source, String location) {
         Messenger.print_server_message(
                 (MinecraftServer)(Object)this,
-                source+") You just caused a server crash in "+location
+                "("+source+") You just caused a server crash in "+location
         );
     }
 }
