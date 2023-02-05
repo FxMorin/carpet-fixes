@@ -81,6 +81,8 @@ public class MemEfficientNeighborUpdater implements NeighborUpdater {
     }
 
 
+
+
     @Override // Shape Updates
     public void replaceWithStateForNeighborUpdate(Direction dir, BlockState state,
                                                   BlockPos blockPos, BlockPos sourcePos, int i, int j) {
@@ -147,6 +149,8 @@ public class MemEfficientNeighborUpdater implements NeighborUpdater {
             CarpetFixesServer.LOGGER.error("Too many chained neighbor updates. Skipping the rest.");
             return;
         }
+
+
         if(pointer == 0 && pendingPointer == 0) {
             System.arraycopy(data, 0, queuedUpdates, 0, data.length);
             pointer++;
