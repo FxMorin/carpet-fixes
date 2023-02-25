@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 /**
  * Fix update suppression crashes by creating a new exception and catching it later
@@ -20,23 +19,20 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(NeighborUpdater.class)
 public interface NeighborUpdater_updateSuppressMixin {
 
-
     @Inject(
-            method = "tryNeighborUpdate(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;" +
-                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;" +
-                    "Lnet/minecraft/util/math/BlockPos;Z)V",
-            locals = LocalCapture.CAPTURE_FAILSOFT,
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/util/crash/CrashReport;create(Ljava/lang/Throwable;Ljava/lang/String;)" +
-                            "Lnet/minecraft/util/crash/CrashReport;",
-                    shift = At.Shift.BEFORE
-            )
+            method = "tryNeighborUpdate",
+            at = @At("HEAD"),
+            cancellable = true
     )
-    private static void skipCrashReport(World world, BlockState state, BlockPos pos,
-                                        Block sourceBlock, BlockPos sourcePos, boolean notify,
-                                        CallbackInfo ci, Throwable throwable) {
-        if (CFSettings.updateSuppressionCrashFix)
-            throw new UpdateSuppressionException("Update suppression");
+    private static void catchNeighborUpdates(World world, BlockState state, BlockPos pos, Block sourceBlock,
+                                             BlockPos sourcePos, boolean notify, CallbackInfo ci) {
+        if (CFSettings.updateSuppressionCrashFix) {
+            ci.cancel();
+            try {
+                state.neighborUpdate(world, pos, sourceBlock, sourcePos, notify);
+            } catch (StackOverflowError | UpdateSuppressionException e) {
+                throw new UpdateSuppressionException("Update suppression");
+            }
+        }
     }
 }

@@ -281,6 +281,14 @@ public class MemEfficientNeighborUpdater implements NeighborUpdater {
         }
     }
 
+    public void setDepth(int depth) {
+        this.pointer = depth;
+    }
+
+    public int getMaxSize() {
+        return this.maxSize;
+    }
+
     private static int createDataType(Block block, int extra) {
         return getID(block.getDefaultState()) | (extra << 29);
     }

@@ -50,9 +50,17 @@ public class MinecraftServer_crashFixMixin {
                 throw e;
             }
         } catch (UpdateSuppressionException e) {
-            logException("UpdateSuppression","world tick");
+            if (CFSettings.updateSuppressionCrashFix) {
+                logException("UpdateSuppression","world tick");
+            } else {
+                throw e;
+            }
         } catch (OutOfMemoryError e) {
-            logException("OOM","world tick");
+            if (CFSettings.simulatedOutOfMemoryCrashFix) {
+                logException("OOM", "world tick");
+            } else {
+                throw e;
+            }
         }
     }
 
@@ -75,7 +83,11 @@ public class MinecraftServer_crashFixMixin {
                 throw e;
             }
         } catch (OutOfMemoryError e) {
-            logException("OOM","packets");
+            if (CFSettings.simulatedOutOfMemoryCrashFix) {
+                logException("OOM", "packets");
+            } else {
+                throw e;
+            }
         }
     }
 
