@@ -39,7 +39,7 @@ public abstract class ServerWorld_zeroTickMixin extends World {
                     value = "INVOKE",
                     target = "Lnet/minecraft/block/BlockState;scheduledTick(" +
                             "Lnet/minecraft/server/world/ServerWorld;" +
-                            "Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)V",
                     shift = At.Shift.AFTER
             )
     )
