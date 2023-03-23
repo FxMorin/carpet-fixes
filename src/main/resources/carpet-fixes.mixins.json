@@ -165,6 +165,7 @@
     "entityFixes.EndCrystalEntity_pushRespawnMixin",
     "entityFixes.EnderDragonEntity_blockDropsMixin",
     "entityFixes.EnderDragonFight_respawnMixin",
+    "entityFixes.EndermanEntity_explosionDamageMixin",
     "entityFixes.EndermanEntity_noAiTeleportMixin",
     "entityFixes.EndermanEntity_teleportingMixin",
     "entityFixes.EndermanEntity_vehicleMixin",
