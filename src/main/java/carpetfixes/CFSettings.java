@@ -116,6 +116,12 @@ public class CFSettings {
     )
     public static boolean endermanUselessMinecartTeleportingFix = false;
 
+    //by B14CK313
+    @Rule(
+            categories = {BUGFIX, VANILLA}
+    )
+    public static boolean endermanDontTakeExplosionDamageFix = false;
+
     //by FX - PR0CESS
     @Rule(
             categories = {BUGFIX}
