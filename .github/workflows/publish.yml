@@ -28,7 +28,6 @@ jobs:
           dependencies: |
             carpet | depends
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
   Update-Rules-Wiki:
     runs-on: ubuntu-latest
