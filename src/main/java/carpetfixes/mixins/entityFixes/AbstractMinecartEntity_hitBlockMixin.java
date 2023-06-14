@@ -28,7 +28,7 @@ public abstract class AbstractMinecartEntity_hitBlockMixin extends Entity {
 
 
     private boolean willHitBlockWithDirection(BlockPos pos, Direction dir) {
-        return this.world.isDirectionSolid(pos, this, dir.getOpposite()) || this.willHitBlockAt(pos);
+        return this.getWorld().isDirectionSolid(pos, this, dir.getOpposite()) || this.willHitBlockAt(pos);
     }
 
 

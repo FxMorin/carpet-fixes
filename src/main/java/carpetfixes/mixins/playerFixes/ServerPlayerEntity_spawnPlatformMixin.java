@@ -84,7 +84,7 @@ public abstract class ServerPlayerEntity_spawnPlatformMixin extends PlayerEntity
     private void getCustomTeleportTarget(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir) {
         if (CFSettings.obsidianPlatformDestroysBlocksFix) {
             TeleportTarget teleportTarget = super.getTeleportTarget(destination);
-            if (teleportTarget != null && this.world.getRegistryKey() == World.OVERWORLD && destination.getRegistryKey() == World.END) {
+            if (teleportTarget != null && this.getWorld().getRegistryKey() == World.OVERWORLD && destination.getRegistryKey() == World.END) {
                 Vec3d vec3d = teleportTarget.position.add(0.0, -1.0, 0.0);
                 BlockPos centerPos = BlockPos.ofFloored(vec3d);
                 createEndSpawnObsidian(destination, centerPos); // Create Floor

@@ -30,7 +30,7 @@ public abstract class FoxEntity_lootDropMixin extends AnimalEntity {
             cancellable = true
     )
     private void drop(DamageSource source, CallbackInfo ci) {
-        if (CFSettings.foxesDropItemsWithLootOffFix && !this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT))
+        if (CFSettings.foxesDropItemsWithLootOffFix && !this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT))
             ci.cancel();
     }
 }

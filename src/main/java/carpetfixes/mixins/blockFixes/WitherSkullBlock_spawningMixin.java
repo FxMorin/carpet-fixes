@@ -3,12 +3,9 @@ package carpetfixes.mixins.blockFixes;
 import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WitherSkullBlock;
-import net.minecraft.block.pattern.CachedBlockPosition;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-
-import java.util.function.Predicate;
 
 /**
  * Allows replaceable materials to be within the wither structure when the wither is spawning
@@ -19,30 +16,25 @@ public class WitherSkullBlock_spawningMixin {
 
 
     @Redirect(
-            method = "getWitherBossPattern()Lnet/minecraft/block/pattern/BlockPattern;",
+            method = "method_51174",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/pattern/CachedBlockPosition;" +
-                            "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
-                    ordinal = 1
+                    target = "Lnet/minecraft/block/BlockState;isAir()Z"
             )
     )
-    private static Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state) {
-        if (CFSettings.witherGolemSpawningFix) state = CFSettings.IS_REPLACEABLE;
-        return CachedBlockPosition.matchesBlockState(state);
+    private static boolean replaceableMaterialPredicate(BlockState state) {
+        return CFSettings.witherGolemSpawningFix ? state.isReplaceable() : state.isAir();
     }
 
 
     @Redirect(
-            method = "getWitherDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;",
+            method = "method_51175",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/pattern/CachedBlockPosition;" +
-                            "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;"
+                    target = "Lnet/minecraft/block/BlockState;isAir()Z"
             )
     )
-    private static Predicate<CachedBlockPosition> replaceableMaterialPredicateDispenser(Predicate<BlockState> state) {
-        if (CFSettings.witherGolemSpawningFix) state = CFSettings.IS_REPLACEABLE;
-        return CachedBlockPosition.matchesBlockState(state);
+    private static boolean replaceableMaterialPredicateDispenser(BlockState state) {
+        return CFSettings.witherGolemSpawningFix ? state.isReplaceable() : state.isAir();
     }
 }

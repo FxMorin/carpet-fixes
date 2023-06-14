@@ -3,12 +3,9 @@ package carpetfixes.mixins.blockFixes;
 import carpetfixes.CFSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CarvedPumpkinBlock;
-import net.minecraft.block.pattern.CachedBlockPosition;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-
-import java.util.function.Predicate;
 
 /**
  * Allows replaceable materials to be within the iron golem structure when the iron golem attempts to spawn.
@@ -18,31 +15,25 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
 
 
     @Redirect(
-            method = "getIronGolemPattern()Lnet/minecraft/block/pattern/BlockPattern;",
+            method = "method_51167",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/pattern/CachedBlockPosition;" +
-                            "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
-                    ordinal = 2
+                    target = "Lnet/minecraft/block/BlockState;isAir()Z"
             )
     )
-    private Predicate<CachedBlockPosition> replaceableMaterialPredicate(Predicate<BlockState> state){
-        if (CFSettings.witherGolemSpawningFix) state = CFSettings.IS_REPLACEABLE;
-        return CachedBlockPosition.matchesBlockState(state);
+    private static boolean replaceableMaterialPredicate(BlockState state) {
+        return CFSettings.witherGolemSpawningFix ? state.isReplaceable() : state.isAir();
     }
 
 
     @Redirect(
-            method = "getIronGolemDispenserPattern()Lnet/minecraft/block/pattern/BlockPattern;",
+            method = "method_51168",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/pattern/CachedBlockPosition;" +
-                            "matchesBlockState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
-                    ordinal = 1
+                    target = "Lnet/minecraft/block/BlockState;isAir()Z"
             )
     )
-    private Predicate<CachedBlockPosition> replaceableMaterialPredicateDispenser(Predicate<BlockState> state){
-        if (CFSettings.witherGolemSpawningFix) state = CFSettings.IS_REPLACEABLE;
-        return CachedBlockPosition.matchesBlockState(state);
+    private static boolean replaceableMaterialPredicateDispenser(BlockState state) {
+        return CFSettings.witherGolemSpawningFix ? state.isReplaceable() : state.isAir();
     }
 }

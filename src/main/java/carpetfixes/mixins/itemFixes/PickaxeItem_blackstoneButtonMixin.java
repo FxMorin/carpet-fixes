@@ -5,12 +5,12 @@ import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.sound.BlockSoundGroup;
 import org.spongepowered.asm.mixin.Mixin;
 
 /**
@@ -30,7 +30,7 @@ public class PickaxeItem_blackstoneButtonMixin extends MiningToolItem {
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
         return ((CFSettings.blackstoneButtonBreakSpeedFix && state.isOf(Blocks.POLISHED_BLACKSTONE_BUTTON)) ||
-                (CarpetSettings.missingTools && state.getMaterial() == Material.GLASS)) ?
+                (CarpetSettings.missingTools && state.getBlock().getSoundGroup(state) == BlockSoundGroup.GLASS)) ?
                 miningSpeed :
                 super.getMiningSpeedMultiplier(stack, state);
     }

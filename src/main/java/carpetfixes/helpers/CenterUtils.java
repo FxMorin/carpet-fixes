@@ -20,7 +20,7 @@ public class CenterUtils {
         Box box = entity.getBoundingBox();
         BlockPos blockPos = BlockPos.ofFloored(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
         BlockPos blockPos2 = BlockPos.ofFloored(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
-        if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
+        if (entity.getWorld().isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i)
                 for(int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k)
@@ -32,14 +32,14 @@ public class CenterUtils {
         Box box = entity.getBoundingBox();
         BlockPos blockPos = BlockPos.ofFloored(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
         BlockPos blockPos2 = BlockPos.ofFloored(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
-        if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
+        if (entity.getWorld().isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             boolean createdEvent = false;
             for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
                 for(int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k) {
                     mutable.set(i, blockPos.getY(), k);
-                    BlockState state = entity.world.getBlockState(mutable);
-                    state.getBlock().onLandedUpon(entity.world, state, mutable, entity, fallDistance);
+                    BlockState state = entity.getWorld().getBlockState(mutable);
+                    state.getBlock().onLandedUpon(entity.getWorld(), state, mutable, entity, fallDistance);
                     if (!createdEvent && !state.isAir() && !state.isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
                         entity.emitGameEvent(GameEvent.HIT_GROUND);
                         createdEvent = true;

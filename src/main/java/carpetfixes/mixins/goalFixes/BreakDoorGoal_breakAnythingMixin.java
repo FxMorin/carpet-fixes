@@ -36,7 +36,7 @@ public abstract class BreakDoorGoal_breakAnythingMixin extends DoorInteractGoal 
             )
     )
     public boolean mightAlsoWannaCheckTheDoor_ItsNotThatHard(BreakDoorGoal breakDoorGoal, Difficulty difficulty) {
-        return (!breakAnythingDoorGoalFix || DoorBlock.isWoodenDoor(this.mob.world, this.doorPos)) &&
+        return (!breakAnythingDoorGoalFix || DoorBlock.canOpenByHand(this.mob.getWorld(), this.doorPos)) &&
                 isDifficultySufficient(difficulty);
     }
 }

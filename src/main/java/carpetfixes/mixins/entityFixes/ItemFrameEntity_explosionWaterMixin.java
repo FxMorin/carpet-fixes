@@ -30,7 +30,7 @@ public abstract class ItemFrameEntity_explosionWaterMixin {
     )
     private void isInvulnerableOrWater(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.explosionBreaksItemFrameInWaterFix && source.isIn(DamageTypeTags.IS_EXPLOSION) &&
-                self.world.getFluidState(self.getBlockPos()).getFluid().matchesType(Fluids.WATER))
+                self.getWorld().getFluidState(self.getBlockPos()).getFluid().matchesType(Fluids.WATER))
             cir.setReturnValue(true);
     }
 }

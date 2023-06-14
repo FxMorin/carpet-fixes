@@ -32,6 +32,6 @@ public abstract class SnowGolemEntity_floatingMixin extends Entity {
             cancellable = true
     )
     private void cancelIfNotOnGround(CallbackInfo ci) {
-        if (CFSettings.snowmanCreateSnowWhileFloatingFix && !this.onGround) ci.cancel();
+        if (CFSettings.snowmanCreateSnowWhileFloatingFix && !this.isOnGround()) ci.cancel();
     }
 }

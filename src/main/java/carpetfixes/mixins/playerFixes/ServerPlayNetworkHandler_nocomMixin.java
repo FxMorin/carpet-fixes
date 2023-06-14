@@ -34,10 +34,10 @@ public class ServerPlayNetworkHandler_nocomMixin {
             illegalInteractionAttempts = 0;
         } else {
             if (illegalInteractionAttempts > 50) {
-                resetAfter = this.player.world.getTime() + 12000; // (10m)
+                resetAfter = this.player.getWorld().getTime() + 12000; // (10m)
                 illegalInteractionAttempts = 0;
                 //Disable players ability to run playerInteractBlock for 1 min
-                timeoutUntil = this.player.world.getTime() + 1200;
+                timeoutUntil = this.player.getWorld().getTime() + 1200;
                 CarpetFixesServer.LOGGER.warn(player.getName().getString() + " is probably using a nocom" +
                         " exploit in an attempt to crash the server");
             }
@@ -57,8 +57,8 @@ public class ServerPlayNetworkHandler_nocomMixin {
             cancellable = true
     )
     private void patch(PlayerInteractBlockC2SPacket p, CallbackInfo ci) {
-        if (!CFSettings.nocomExploitFix || this.player.world.getServer() == null) return;
-        long currentTime = this.player.world.getTime();
+        if (!CFSettings.nocomExploitFix || this.player.getWorld().getServer() == null) return;
+        long currentTime = this.player.getWorld().getTime();
         if (timeoutUntil != 0) { // If player is timed out due to using this action illegally over 50 times
             if (timeoutUntil >= currentTime) {
                 ci.cancel();
@@ -71,7 +71,7 @@ public class ServerPlayNetworkHandler_nocomMixin {
         if (currentDistance > 256) { //If further than 16 chunks, don't allow it, and run addIllegalAction instantly
             addIllegalAction(currentTime);
             ci.cancel(); //It's high enough that we're pretty sure there hacking, so we can cancel it
-        } else if (currentDistance > (this.player.world.getServer().getPlayerManager().getViewDistance() - 2) << 4) {
+        } else if (currentDistance > (this.player.getWorld().getServer().getPlayerManager().getViewDistance() - 2) << 4) {
             addIllegalAction(currentTime); //If the action was (ViewDistance-2)*16 blocks away, that's kinda sus
         }
     }

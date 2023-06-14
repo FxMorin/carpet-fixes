@@ -2,6 +2,7 @@ package carpetfixes;
 
 import carpet.api.settings.Rule;
 import carpetfixes.settings.Validators;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
@@ -20,7 +21,7 @@ public class CFSettings {
     public static boolean scheduleWorldBorderReset = false;
     public static boolean useCustomRedstoneUpdates = false;
     public static final ThreadLocal<Set<BlockPos>> LAST_DIRT = ThreadLocal.withInitial(HashSet::new);
-    public static final Predicate<BlockState> IS_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
+    public static final Predicate<BlockState> IS_REPLACEABLE = AbstractBlock.AbstractBlockState::isReplaceable;
     public static final ThreadLocal<Boolean> IS_TICK_SAVE = ThreadLocal.withInitial(() -> false);
 
     //By FX - PR0CESS
@@ -580,12 +581,6 @@ public class CFSettings {
     @Rule(
             categories = {BUGFIX}
     )
-    public static boolean playerStepEventFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
     public static boolean spawnEggOffsetEventFix = false;
 
     //by FX - PR0CESS
@@ -898,13 +893,7 @@ public class CFSettings {
     @Rule(
             categories = {BUGFIX}
     )
-    public static boolean boatsCreatedTooHighFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean boatsStuckInDispensersFix = false;
+    public static boolean boatTooFarFromDispenserFix = false;
 
     //By FX - PR0CESS
     @Rule(
@@ -1126,19 +1115,7 @@ public class CFSettings {
     @Rule(
             categories = {BUGFIX}
     )
-    public static boolean movableCoralFanFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
     public static boolean obsidianPlatformDestroysBlocksFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean grindstonesNotMovableFix = false;
 
     //By FX - PR0CESS
     @Rule(

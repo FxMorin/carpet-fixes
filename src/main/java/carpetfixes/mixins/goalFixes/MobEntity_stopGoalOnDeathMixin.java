@@ -29,7 +29,7 @@ public abstract class MobEntity_stopGoalOnDeathMixin extends LivingEntity {
 
     @Override
     protected void updatePostDeath() {
-        if (CFSettings.doorBreakNotStoppedOnDeathFix && this.deathTime == 0 && !this.world.isClient())
+        if (CFSettings.doorBreakNotStoppedOnDeathFix && this.deathTime == 0 && !this.getWorld().isClient())
             this.goalSelector.getRunningGoals().forEach((goal) -> {
                 if (goal.getGoal() instanceof BreakDoorGoal) goal.stop();
             });

@@ -15,33 +15,12 @@ public class BoatDispenserBehavior_offsetMixin {
 
     @ModifyConstant(
             method = "dispenseSilently",
-            constant = @Constant(doubleValue = 1.0)
-    )
-    private double offsetLower(double constant) {
-        return CFSettings.boatsCreatedTooHighFix ? 0.5 : constant;
-    }
-
-
-    @ModifyConstant(
-            method = "dispenseSilently",
             constant = @Constant(
-                    floatValue = 1.125F,
+                    doubleValue = 0.5625,
                     ordinal = 0
             )
     )
-    private float spawnFurtherX(float constant) {
-        return CFSettings.boatsStuckInDispensersFix ? 1.2F : constant;
-    }
-
-
-    @ModifyConstant(
-            method = "dispenseSilently",
-            constant = @Constant(
-                    floatValue = 1.125F,
-                    ordinal = 2
-            )
-    )
-    private float spawnFurtherZ(float constant) {
-        return CFSettings.boatsStuckInDispensersFix ? 1.2F : constant;
+    private double spawnFurther(double constant) {
+        return CFSettings.boatTooFarFromDispenserFix ? 0.50001 : constant;
     }
 }

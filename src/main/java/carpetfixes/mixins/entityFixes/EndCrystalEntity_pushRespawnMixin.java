@@ -52,9 +52,9 @@ public abstract class EndCrystalEntity_pushRespawnMixin extends Entity {
     )
     private void onTick(CallbackInfo ci, BlockPos blockPos) {
         if (shouldTryReSpawningDragon && this.endCrystalAge % 2 == 0 &&
-                this.world.getBlockState(blockPos.down()).isOf(Blocks.BEDROCK)) {
+                this.getWorld().getBlockState(blockPos.down()).isOf(Blocks.BEDROCK)) {
             shouldTryReSpawningDragon = false;
-            ((ServerWorld) this.world).getEnderDragonFight().respawnDragon();
+            ((ServerWorld) this.getWorld()).getEnderDragonFight().respawnDragon();
         }
     }
 }

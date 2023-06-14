@@ -25,8 +25,8 @@ public class ShulkerBoxBlock_breakSwapDupeMixin {
             at = @At("TAIL"),
             remap = false
     )
-    private static void clearAfterGetDroppedStack(ShulkerBoxBlockEntity shulkerBox, LootContext lootContext,
-                                                  Consumer<ItemStack> consumer, CallbackInfo ci) {
-        if (CFSettings.breakSwapGeneralItemDupeFix) shulkerBox.clear();
+    private static void clearAfterGetDroppedStack(ShulkerBoxBlockEntity shulkerBoxBlockEntity,
+                                                  Consumer lootConsumer, CallbackInfo ci) {
+        if (CFSettings.breakSwapGeneralItemDupeFix) shulkerBoxBlockEntity.clear();
     }
 }

@@ -40,7 +40,7 @@ public abstract class SheepEntity_childColorMixin extends AnimalEntity {
             DyeColor firstColor = ((SheepEntity)firstParent).getColor();
             DyeColor secondColor = ((SheepEntity)secondParent).getColor();
             DyeColor col = Utils.properDyeMixin(firstColor,secondColor);
-            if (col == null) col = this.world.random.nextBoolean() ? firstColor : secondColor;
+            if (col == null) col = this.getWorld().random.nextBoolean() ? firstColor : secondColor;
             cir.setReturnValue(col);
         }
     }

@@ -81,7 +81,8 @@ public class FillSummonCommand {
             }
             if (!serverWorld.spawnNewEntityAndPassengers(entity2)) throw FAILED_UUID_EXCEPTION.create();
         }
-        source.sendFeedback(Text.of("Successfully summoned "+count+" "+entityType.registryKey().getValue().toString()), true);
+        int finalCount = count;
+        source.sendFeedback(() -> Text.of("Successfully summoned "+ finalCount +" "+entityType.registryKey().getValue().toString()), true);
         return 1;
     }
 }

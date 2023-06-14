@@ -40,7 +40,7 @@ public abstract class ExperienceOrbEntity_lavaCollisionMixin extends Entity {
     )
     public FluidState betterCollision(World world, BlockPos pos) {
         return (!CFSettings.xpOrbCollisionFix || this.isSubmergedIn(FluidTags.LAVA)) ?
-                this.world.getFluidState(this.getBlockPos()) :
+                this.getWorld().getFluidState(this.getBlockPos()) :
                 Fluids.EMPTY.getDefaultState();
     }
 }

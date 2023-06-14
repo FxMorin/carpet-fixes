@@ -31,7 +31,7 @@ public class ZombieEntity_reinforcementTypeMixin extends HostileEntity {
     )
     private ZombieEntity modifyType(World instance) {
         return CFSettings.reinforcementsOnlySpawnZombiesFix ?
-                (ZombieEntity)this.getType().create(this.world) :
-                new ZombieEntity(this.world);
+                (ZombieEntity)this.getType().create(this.getWorld()) :
+                new ZombieEntity(this.getWorld());
     }
 }

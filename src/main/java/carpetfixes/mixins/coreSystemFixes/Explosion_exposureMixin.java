@@ -43,7 +43,7 @@ public class Explosion_exposureMixin {
                             double o = MathHelper.lerp(l, box.minY, box.maxY);
                             double p = MathHelper.lerp(m + h, box.minZ, box.maxZ);
                             Vec3d vec3d = new Vec3d(n, o, p);
-                            if (entity.world.raycast(
+                            if (entity.getWorld().raycast(
                                     new RaycastContext(
                                             vec3d,
                                             source,

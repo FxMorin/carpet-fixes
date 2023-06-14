@@ -31,7 +31,7 @@ public abstract class LeashKnotEntity_detachMixin extends Entity implements Leas
     @Override
     public void onDetachLeash(MobEntity caller) {
         double d = 7.0;
-        List<MobEntity> list = this.world
+        List<MobEntity> list = this.getWorld()
                 .getNonSpectatingEntities(
                         MobEntity.class, new Box(this.getX() - d, this.getY() - d, this.getZ() - d, this.getX() + d, this.getY() + d, this.getZ() + d)
                 );

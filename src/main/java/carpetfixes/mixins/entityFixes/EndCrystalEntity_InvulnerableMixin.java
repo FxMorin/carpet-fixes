@@ -40,8 +40,8 @@ public abstract class EndCrystalEntity_InvulnerableMixin extends Entity {
     )
     private void tick(CallbackInfo ci) {
         if (CFSettings.invulnerableEndCrystalFix && this.isInvulnerable() && this.getBeamTarget() != null) {
-            ServerWorld serverWorld = (ServerWorld)this.world;
-            if (this.world.getRegistryKey() != World.END || serverWorld.getEnderDragonFight() == null ||
+            ServerWorld serverWorld = (ServerWorld)this.getWorld();
+            if (this.getWorld().getRegistryKey() != World.END || serverWorld.getEnderDragonFight() == null ||
                     serverWorld.getEnderDragonFight().dragonSpawnState == null ||
                     serverWorld.getEnderDragonFight().dragonSpawnState.ordinal() >
                             EnderDragonSpawnState.SUMMONING_DRAGON.ordinal()

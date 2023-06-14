@@ -66,9 +66,9 @@ public abstract class FallingBlockEntity_entityPhaseMixin extends Entity {
     private void onTick(CallbackInfo ci) {
         if (CFSettings.reIntroduceFallingBlockEntityPhase && this.timeFalling == 0) {
             BlockPos pos = this.getFallingBlockPos();
-            if (this.world.getBlockState(pos).isOf(this.block.getBlock())) {
-                this.world.removeBlock(pos, false);
-            } else if (!this.world.isClient) {
+            if (this.getWorld().getBlockState(pos).isOf(this.block.getBlock())) {
+                this.getWorld().removeBlock(pos, false);
+            } else if (!this.getWorld().isClient) {
                 this.discard();
                 ci.cancel();
             }

@@ -5,8 +5,8 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import net.minecraft.server.world.ChunkHolder;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.ReadOnlyChunk;
 import net.minecraft.world.chunk.WorldChunk;
+import net.minecraft.world.chunk.WrapperProtoChunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -41,7 +41,7 @@ public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
         if (CFSettings.reIntroduceOnlyAutoSaveSaving && !flush) {
             this.chunkHolders.values().stream().filter(ChunkHolder::isAccessible).forEach(holder -> {
                 Chunk chunk = holder.getSavingFuture().getNow(null);
-                if (chunk instanceof ReadOnlyChunk || chunk instanceof WorldChunk) {
+                if (chunk instanceof WrapperProtoChunk || chunk instanceof WorldChunk) {
                     this.save(chunk);
                     holder.updateAccessibleStatus();
                 }

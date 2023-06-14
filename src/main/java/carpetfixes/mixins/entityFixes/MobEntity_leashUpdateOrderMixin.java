@@ -34,7 +34,7 @@ public abstract class MobEntity_leashUpdateOrderMixin extends LivingEntity {
             at = @At("HEAD")
     )
     private void dontTickEarly(CallbackInfo ci) {
-        if (CFSettings.petsBreakLeadsDuringReloadFix && !this.world.isClient) this.updateLeash();
+        if (CFSettings.petsBreakLeadsDuringReloadFix && !this.getWorld().isClient) this.updateLeash();
     }
 
 

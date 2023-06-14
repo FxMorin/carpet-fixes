@@ -16,7 +16,7 @@ public class VoidFlightMoveControl extends FlightMoveControl {
 
     @Override
     public void tick() {
-        if (isRuleActive.get() && this.entity.getY() <= this.entity.world.getBottomY())
+        if (isRuleActive.get() && this.entity.getY() <= this.entity.getWorld().getBottomY())
             this.entity.setNoGravity(false);
         super.tick();
     }

@@ -41,7 +41,7 @@ public class PoiCommand {
         ServerWorld world = source.getWorld();
         PointOfInterestStorage poiStorage = ((ThreadedAnvilChunkStorageAccessor) world.getChunkManager().threadedAnvilChunkStorage).getPoiStorage();
         int totalChunks = ((RegionBasedStorageLeak<?>)poiStorage).getTotalElements();
-        source.sendFeedback(Text.of("There are currently "+totalChunks+" loaded poi chunks!"), false);
+        source.sendFeedback(() -> Text.of("There are currently "+totalChunks+" loaded poi chunks!"), false);
         return 0;
     }
 
@@ -52,9 +52,9 @@ public class PoiCommand {
         PointOfInterestStorage poiStorage = ((ThreadedAnvilChunkStorageAccessor) world.getChunkManager().threadedAnvilChunkStorage).getPoiStorage();
         Optional<RegistryEntry<PointOfInterestType>> optionalType = poiStorage.getType(pos);
         if (optionalType.isPresent()) {
-            source.sendFeedback(Text.of(optionalType.get().getType().toString()), false);
+            source.sendFeedback(() -> Text.of(optionalType.get().getType().toString()), false);
         } else {
-            source.sendFeedback(Text.of("There is no POI at this position!"), false);
+            source.sendFeedback(() -> Text.of("There is no POI at this position!"), false);
         }
         return 0;
     }
@@ -66,11 +66,11 @@ public class PoiCommand {
         PointOfInterestStorage poiStorage = ((ThreadedAnvilChunkStorageAccessor) world.getChunkManager().threadedAnvilChunkStorage).getPoiStorage();
         Optional<RegistryEntry<PointOfInterestType>> optionalType = poiStorage.getType(pos);
         if (optionalType.isPresent()) {
-            source.sendFeedback(Text.of("Removed POI - "+optionalType.get()), false);
+            source.sendFeedback(() -> Text.of("Removed POI - "+optionalType.get()), false);
             poiStorage.remove(pos);
             DebugInfoSender.sendPoiRemoval(world, pos);
         } else {
-            source.sendFeedback(Text.of("There is no POI at this position!"), false);
+            source.sendFeedback(() -> Text.of("There is no POI at this position!"), false);
         }
         return 0;
     }

@@ -42,7 +42,7 @@ public abstract class EndermanEntity_explosionDamageMixin extends LivingEntity {
                 && !source.isIn(DamageTypeTags.IS_PROJECTILE)
                 && !(source.getSource() instanceof PotionEntity)) {
             boolean bl = super.damage(source, amount);
-            if (!this.world.isClient() && !(source.getAttacker() instanceof LivingEntity) && this.random.nextInt(10) != 0) {
+            if (!this.getWorld().isClient() && !(source.getAttacker() instanceof LivingEntity) && this.random.nextInt(10) != 0) {
                 this.invokeTeleportRandomly();
             }
             cir.setReturnValue(bl);
