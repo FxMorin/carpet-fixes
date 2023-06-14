@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -24,9 +25,11 @@ public abstract class VillagerEntity_fireworkMixin extends LivingEntity {
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        if (CFSettings.badVillagerPyrotechnicsFix && source.isProjectile() && source.isExplosive() &&
-                Objects.equals(source.getName(), "fireworks") && source.getAttacker() instanceof VillagerEntity)
+        if (CFSettings.badVillagerPyrotechnicsFix && source.isIn(DamageTypeTags.IS_PROJECTILE) &&
+                source.isIn(DamageTypeTags.IS_EXPLOSION) && Objects.equals(source.getName(), "fireworks") &&
+                source.getAttacker() instanceof VillagerEntity) {
             return false;
+        }
         return super.damage(source, amount);
     }
 }

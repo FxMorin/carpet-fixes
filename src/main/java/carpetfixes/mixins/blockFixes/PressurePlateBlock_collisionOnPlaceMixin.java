@@ -2,9 +2,11 @@ package carpetfixes.mixins.blockFixes;
 
 import carpetfixes.CFSettings;
 import net.minecraft.block.AbstractPressurePlateBlock;
+import net.minecraft.block.BlockSetType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,8 +28,8 @@ public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractP
     @Final
     public static BooleanProperty POWERED;
 
-    public PressurePlateBlock_collisionOnPlaceMixin(Settings settings) {
-        super(settings);
+    public PressurePlateBlock_collisionOnPlaceMixin(Settings settings, BlockSetType blockSetType) {
+        super(settings, blockSetType);
     }
 
     @Override
@@ -47,10 +49,10 @@ public abstract class PressurePlateBlock_collisionOnPlaceMixin extends AbstractP
             world.setBlockState(pos, state.with(POWERED, bl), 3);
             this.updateNeighbors(world, pos);
             if (bl) {
-                this.playPressSound(world, pos);
+                world.playSound(null, pos, this.blockSetType.pressurePlateClickOff(), SoundCategory.BLOCKS);
                 world.emitGameEvent(list.stream().findFirst().orElse(null), GameEvent.BLOCK_DEACTIVATE, pos);
             } else {
-                this.playDepressSound(world, pos);
+                world.playSound(null, pos, this.blockSetType.pressurePlateClickOn(), SoundCategory.BLOCKS);
                 world.emitGameEvent(list.stream().findFirst().orElse(null), GameEvent.BLOCK_ACTIVATE, pos);
             }
         }

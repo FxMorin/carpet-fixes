@@ -3,6 +3,7 @@ package carpetfixes.mixins.entityFixes;
 import carpetfixes.CFSettings;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.EndCrystalEntity;
+import net.minecraft.registry.tag.TagKey;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -20,10 +21,10 @@ public class EndCrystalEntity_ExplosionChainingMixin {
             method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/damage/DamageSource;isExplosive()Z"
+                    target = "Lnet/minecraft/entity/damage/DamageSource;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"
             )
     )
-    public boolean isExplosiveBypass(DamageSource fakeSource, DamageSource source, float amount) {
-        return !CFSettings.crystalExplodeOnExplodedFix && source.isExplosive();
+    private boolean isExplosiveBypass(DamageSource source, TagKey tagKey) {
+        return !CFSettings.crystalExplodeOnExplodedFix && source.isIn(tagKey);
     }
 }

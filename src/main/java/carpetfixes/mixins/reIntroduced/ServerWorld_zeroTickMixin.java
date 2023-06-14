@@ -3,6 +3,7 @@ package carpetfixes.mixins.reIntroduced;
 import carpetfixes.CFSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
@@ -25,9 +26,12 @@ public abstract class ServerWorld_zeroTickMixin extends World {
     private final ServerWorld self = (ServerWorld)(Object)this;
 
     protected ServerWorld_zeroTickMixin(MutableWorldProperties properties, RegistryKey<World> registryRef,
-                                        RegistryEntry<DimensionType> registryEntry, Supplier<Profiler> profiler,
-                                        boolean isClient, boolean debugWorld, long seed, int i) {
-        super(properties, registryRef, registryEntry, profiler, isClient, debugWorld, seed, i);
+                                        DynamicRegistryManager registryManager,
+                                        RegistryEntry<DimensionType> dimensionEntry, Supplier<Profiler> profiler,
+                                        boolean isClient, boolean debugWorld, long biomeAccess,
+                                        int maxChainedNeighborUpdates) {
+        super(properties, registryRef, registryManager, dimensionEntry, profiler, isClient,
+                debugWorld, biomeAccess, maxChainedNeighborUpdates);
     }
 
 

@@ -2,7 +2,9 @@ package carpetfixes.helpers;
 
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,13 +16,13 @@ public class DelayedWorldEventManager {
 
     private static final HashMap<World,List<Pair<Integer,DelayedWorldEvent>>> delayedWorldEvents = new HashMap<>();
 
-    public static void addDelayedWorldEvent(World world, int eventId, BlockPos pos, int data) {
-        addDelayedWorldEvent(world, eventId, pos, data, 1);
+    public static void addDelayedWorldEvent(World world, GameEvent gameEvent, Vec3d emitterPos, GameEvent.Emitter emitter) {
+        addDelayedWorldEvent(world, gameEvent, emitterPos, emitter, 1);
     }
 
-    public static void addDelayedWorldEvent(World world, int eventId, BlockPos pos, int data, int delay) {
+    public static void addDelayedWorldEvent(World world, GameEvent gameEvent, Vec3d emitterPos, GameEvent.Emitter emitter, int delay) {
         delayedWorldEvents.computeIfAbsent(world,(a) -> new ArrayList<>())
-                .add(new Pair<>(delay,new DelayedWorldEvent(eventId, pos, data)));
+                .add(new Pair<>(delay, new DelayedWorldEvent(gameEvent, emitterPos, emitter)));
     }
 
     public static void tick(World world) {
@@ -38,18 +40,18 @@ public class DelayedWorldEventManager {
 
     static class DelayedWorldEvent {
 
-        private final int eventId;
-        private final BlockPos pos;
-        private final int data;
+        private final GameEvent event;
+        private final Vec3d emitterPos;
+        private final GameEvent.Emitter emitter;
 
-        DelayedWorldEvent(int eventId, BlockPos pos, int data) {
-            this.eventId = eventId;
-            this.pos = pos;
-            this.data = data;
+        DelayedWorldEvent(GameEvent event, Vec3d emitterPos, GameEvent.Emitter emitter) {
+            this.event = event;
+            this.emitterPos = emitterPos;
+            this.emitter = emitter;
         }
 
         public void sendWorldEvent(World world) {
-            world.syncWorldEvent(null, this.eventId, this.pos, this.data);
+            world.emitGameEvent(this.event, this.emitterPos, this.emitter);
         }
     }
 }

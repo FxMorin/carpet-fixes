@@ -16,3 +16,4 @@ extendable method net/minecraft/entity/projectile/PersistentProjectileEntity fal
 accessible class net/minecraft/world/chunk/PaletteResizeListener
 accessible method net/minecraft/world/chunk/ArrayPalette <init> (Lnet/minecraft/util/collection/IndexedIterable;[Ljava/lang/Object;Lnet/minecraft/world/chunk/PaletteResizeListener;II)V
 accessible method net/minecraft/world/chunk/BiMapPalette <init> (Lnet/minecraft/util/collection/IndexedIterable;ILnet/minecraft/world/chunk/PaletteResizeListener;Lnet/minecraft/util/collection/Int2ObjectBiMap;)V
+accessible field net/minecraft/block/AbstractPressurePlateBlock blockSetType Lnet/minecraft/block/BlockSetType;

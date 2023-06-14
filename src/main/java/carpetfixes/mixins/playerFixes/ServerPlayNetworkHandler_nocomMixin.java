@@ -50,7 +50,7 @@ public class ServerPlayNetworkHandler_nocomMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/network/NetworkThreadUtils;forceMainThread(" +
-                            "Lnet/minecraft/network/Packet;Lnet/minecraft/network/listener/PacketListener;" +
+                            "Lnet/minecraft/network/packet/Packet;Lnet/minecraft/network/listener/PacketListener;" +
                             "Lnet/minecraft/server/world/ServerWorld;)V",
                     shift = At.Shift.AFTER
             ),

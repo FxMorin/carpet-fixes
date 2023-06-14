@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -38,7 +39,7 @@ public abstract class EndermanEntity_explosionDamageMixin extends LivingEntity {
     )
     private void damageFromExplosion(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.endermanDontTakeExplosionDamageFix
-                && !source.isProjectile()
+                && !source.isIn(DamageTypeTags.IS_PROJECTILE)
                 && !(source.getSource() instanceof PotionEntity)) {
             boolean bl = super.damage(source, amount);
             if (!this.world.isClient() && !(source.getAttacker() instanceof LivingEntity) && this.random.nextInt(10) != 0) {

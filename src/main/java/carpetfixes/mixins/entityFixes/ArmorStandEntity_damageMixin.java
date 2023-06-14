@@ -2,7 +2,9 @@ package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CFSettings;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.registry.tag.DamageTypeTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,13 +29,13 @@ public abstract class ArmorStandEntity_damageMixin {
             cancellable = true
     )
     private void beforeProjectileCheck(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.armorStandNegateLavaDamageFix && DamageSource.LAVA.equals(source)) {
+        if (CFSettings.armorStandNegateLavaDamageFix && source.isOf(DamageTypes.LAVA)) {
             this.updateHealth(source, 4.0F);
             cir.setReturnValue(false);
-        } else if (CFSettings.armorStandNegateCactusDamageFix && DamageSource.CACTUS.equals(source)) {
+        } else if (CFSettings.armorStandNegateCactusDamageFix && source.isOf(DamageTypes.CACTUS)) {
             this.updateHealth(source, amount);
             cir.setReturnValue(false);
-        } else if (CFSettings.armorStandNegateAnvilDamageFix && source.isFallingBlock()) {
+        } else if (CFSettings.armorStandNegateAnvilDamageFix && source.isOf(DamageTypes.FALLING_BLOCK)) {
             this.updateHealth(source, amount * 3.0F);
             cir.setReturnValue(false);
         }

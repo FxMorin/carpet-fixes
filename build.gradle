@@ -71,8 +71,6 @@ dependencies {
 	include "com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}"
 	implementation("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
-
-	modRuntimeOnly "com.github.astei:lazydfu:0.1.2"
 }
 
 processResources {

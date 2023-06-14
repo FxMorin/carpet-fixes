@@ -2,10 +2,11 @@ package carpetfixes.mixins.itemFixes;
 
 import carpetfixes.CFSettings;
 import carpetfixes.helpers.DelayedWorldEventManager;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -23,15 +24,15 @@ public class MusicDiscItem_worldEventMixin {
             method = "useOnBlock",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;syncWorldEvent(" +
-                            "Lnet/minecraft/entity/player/PlayerEntity;ILnet/minecraft/util/math/BlockPos;I)V"
+                    target = "Lnet/minecraft/world/World;emitGameEvent(Lnet/minecraft/world/event/GameEvent;" +
+                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/event/GameEvent$Emitter;)V"
             )
     )
-    private void worldEvent(World world, PlayerEntity playerEntity, int eventId, BlockPos blockPos, int data) {
+    private void worldEvent(World world, GameEvent gameEvent, BlockPos blockPos, GameEvent.Emitter emitter) {
         if (CFSettings.recordWorldEventFix) {
-            DelayedWorldEventManager.addDelayedWorldEvent(world, eventId, blockPos, data);
+            DelayedWorldEventManager.addDelayedWorldEvent(world, gameEvent, Vec3d.ofCenter(blockPos), emitter);
         } else {
-            world.syncWorldEvent(playerEntity, eventId, blockPos, data);
+            world.emitGameEvent(gameEvent, blockPos, emitter);
         }
     }
 }

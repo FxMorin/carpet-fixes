@@ -678,18 +678,6 @@ public class CFSettings {
     )
     public static boolean structureManagerCantLoadSnbtFix = false;
 
-    //by FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean stepAndDestroyBlockGoalUsesOriginFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean hopperMinecartSlowerAtOriginFix = false;
-
     //By FX - PR0CESS
     @Rule(
             categories = {BUGFIX}
@@ -851,12 +839,6 @@ public class CFSettings {
             categories = {BUGFIX}
     )
     public static boolean witchAndCatSpawnMergedFix = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            categories = {BUGFIX}
-    )
-    public static boolean jukeboxDiscItemOffsetOnBreakFix = false;
 
     //By FX - PR0CESS
     @Rule(

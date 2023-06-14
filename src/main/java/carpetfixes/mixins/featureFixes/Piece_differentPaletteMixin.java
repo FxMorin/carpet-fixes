@@ -48,13 +48,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 
 @Mixin(net.minecraft.structure.ShipwreckGenerator.Piece.class)
-public abstract class ShipwreckGenerator$Piece_differentPaletteMixin extends SimpleStructurePiece {
+public abstract class Piece_differentPaletteMixin extends SimpleStructurePiece {
 
     @Shadow
     @Final
     private boolean grounded;
 
-    public ShipwreckGenerator$Piece_differentPaletteMixin(StructurePieceType type, int length,
+    public Piece_differentPaletteMixin(StructurePieceType type, int length,
                                                           StructureTemplateManager structureTemplateManager,
                                                           Identifier id, String template,
                                                           StructurePlacementData placementData, BlockPos pos) {

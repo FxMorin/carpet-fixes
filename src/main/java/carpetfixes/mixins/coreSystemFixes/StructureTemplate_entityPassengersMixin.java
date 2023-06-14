@@ -57,7 +57,7 @@ public class StructureTemplate_entityPassengersMixin {
                 if (initializeMobs && entity instanceof MobEntity) {
                     ((MobEntity) entity).initialize(
                             world,
-                            world.getLocalDifficulty(new BlockPos(vec3d2)),
+                            world.getLocalDifficulty(BlockPos.ofFloored(vec3d2)),
                             SpawnReason.STRUCTURE,
                             null,
                             nbtCompound

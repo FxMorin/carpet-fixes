@@ -78,7 +78,9 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
     private void spawnBaby(PlayerEntity user, MobEntity entity, EntityType<? extends MobEntity> entityType,
                            ServerWorld world, Vec3d pos, ItemStack stack,
                            CallbackInfoReturnable<Optional<MobEntity>> cir) { //Using blockpos for backwards compat
-        if (CFSettings.spawnEggMissingEventFix) world.emitGameEvent(entity,GameEvent.ENTITY_PLACE, new BlockPos(pos));
+        if (CFSettings.spawnEggMissingEventFix) {
+            world.emitGameEvent(entity,GameEvent.ENTITY_PLACE, BlockPos.ofFloored(pos));
+        }
     }
 
 

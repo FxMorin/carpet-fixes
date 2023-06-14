@@ -28,7 +28,7 @@ public class LecternBlockEntity_blockDupeMixin extends BlockEntity {
             method = "onBookRemoved",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/LecternBlock;setHasBook(" +
+                    target = "Lnet/minecraft/block/LecternBlock;setHasBook(Lnet/minecraft/entity/Entity;" +
                             "Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
                             "Lnet/minecraft/block/BlockState;Z)V",
                     shift = At.Shift.BEFORE
@@ -39,8 +39,9 @@ public class LecternBlockEntity_blockDupeMixin extends BlockEntity {
         if (CFSettings.lecternBlockDupeFix) {
             if (!this.isRemoved()) { // If the lectern block entity is removed, no world interactions should be done
                 BlockState state = this.getWorld().getBlockState(this.getPos());
-                if (state.isOf(Blocks.LECTERN))
-                    LecternBlock.setHasBook(this.getWorld(), this.getPos(), state, false);
+                if (state.isOf(Blocks.LECTERN)) {
+                    LecternBlock.setHasBook(null, this.getWorld(), this.getPos(), state, false);
+                }
             }
             ci.cancel();
         }

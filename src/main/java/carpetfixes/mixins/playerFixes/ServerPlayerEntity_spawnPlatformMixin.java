@@ -86,7 +86,7 @@ public abstract class ServerPlayerEntity_spawnPlatformMixin extends PlayerEntity
             TeleportTarget teleportTarget = super.getTeleportTarget(destination);
             if (teleportTarget != null && this.world.getRegistryKey() == World.OVERWORLD && destination.getRegistryKey() == World.END) {
                 Vec3d vec3d = teleportTarget.position.add(0.0, -1.0, 0.0);
-                BlockPos centerPos = new BlockPos(vec3d);
+                BlockPos centerPos = BlockPos.ofFloored(vec3d);
                 createEndSpawnObsidian(destination, centerPos); // Create Floor
                 // Find a valid place to teleport to on the platform
                 Optional<Vec3d> opt = findValidSpawnPosition(EntityType.PLAYER, destination, centerPos);

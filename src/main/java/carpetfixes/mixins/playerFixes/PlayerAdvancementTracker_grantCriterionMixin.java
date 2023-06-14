@@ -25,13 +25,12 @@ public class PlayerAdvancementTracker_grantCriterionMixin {
     @Inject(
             method = "grantCriterion",
             at = @At("HEAD"),
-            cancellable = true)
-    public void grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
-
+            cancellable = true
+    )
+    private void grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.spectatorAdvancementGrantingFix &&
-                owner.interactionManager.getGameMode().equals(GameMode.SPECTATOR))
+                owner.interactionManager.getGameMode().equals(GameMode.SPECTATOR)) {
             cir.cancel();
-
-
+        }
     }
 }

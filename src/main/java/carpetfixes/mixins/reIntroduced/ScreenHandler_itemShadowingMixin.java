@@ -151,7 +151,7 @@ public abstract class ScreenHandler_itemShadowingMixin {
                                                PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory,
                                                ClickType clickType, Slot slot, ItemStack itemStack,
                                                ItemStack itemStack5) {
-        if (CFSettings.reIntroduceItemShadowing) slot.setStack(itemStack5);
+        if (CFSettings.reIntroduceItemShadowing) slot.setStackNoCallbacks(itemStack5);
     }
 
 
@@ -179,6 +179,6 @@ public abstract class ScreenHandler_itemShadowingMixin {
             require = 0
     )
     private void dontRunBeforeThirdInventoryUpdate(Slot slot, ItemStack stack) {
-        if (!CFSettings.reIntroduceItemShadowing) slot.setStack(stack);
+        if (!CFSettings.reIntroduceItemShadowing) slot.setStackNoCallbacks(stack);
     }
 }

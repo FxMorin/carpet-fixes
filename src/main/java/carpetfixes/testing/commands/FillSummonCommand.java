@@ -40,8 +40,8 @@ public class FillSummonCommand {
                                                 .executes(context -> execute(
                                                         context.getSource(),
                                                         RegistryEntryArgumentType.getSummonableEntityType(context, "entity"),
-                                                        BlockPosArgumentType.getBlockPos(context, "fromPos"),
-                                                        BlockPosArgumentType.getBlockPos(context, "toPos"),
+                                                        BlockPosArgumentType.getValidBlockPos(context, "fromPos"),
+                                                        BlockPosArgumentType.getValidBlockPos(context, "toPos"),
                                                         new NbtCompound(),
                                                         true
                                                 ))
@@ -49,8 +49,8 @@ public class FillSummonCommand {
                                                         .executes(context -> execute(
                                                                 context.getSource(),
                                                                 RegistryEntryArgumentType.getSummonableEntityType(context, "entity"),
-                                                                BlockPosArgumentType.getBlockPos(context, "fromPos"),
-                                                                BlockPosArgumentType.getBlockPos(context, "toPos"),
+                                                                BlockPosArgumentType.getValidBlockPos(context, "fromPos"),
+                                                                BlockPosArgumentType.getValidBlockPos(context, "toPos"),
                                                                 NbtCompoundArgumentType.getNbtCompound(context, "nbt"),
                                                                 false
                                                         )))))));

@@ -18,8 +18,8 @@ public class CenterUtils {
 
     public static void iterateTouchingBlocks(Entity entity, Consumer<BlockPos.Mutable> perBlock) {
         Box box = entity.getBoundingBox();
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
+        BlockPos blockPos = BlockPos.ofFloored(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
+        BlockPos blockPos2 = BlockPos.ofFloored(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
         if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             for(int i = blockPos.getX(); i <= blockPos2.getX(); ++i)
@@ -30,8 +30,8 @@ public class CenterUtils {
 
     public static void checkFallCollision(Entity entity, float fallDistance) {
         Box box = entity.getBoundingBox();
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
+        BlockPos blockPos = BlockPos.ofFloored(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
+        BlockPos blockPos2 = BlockPos.ofFloored(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
         if (entity.world.isRegionLoaded(blockPos, blockPos2)) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             boolean createdEvent = false;
@@ -51,8 +51,8 @@ public class CenterUtils {
 
     public static float checkJumpVelocityOnCollision(Entity entity, World world) {
         Box box = entity.getBoundingBox();
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
+        BlockPos blockPos = BlockPos.ofFloored(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
+        BlockPos blockPos2 = BlockPos.ofFloored(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
         if (world.isRegionLoaded(blockPos, blockPos2)) {
             double newY = box.minY - VELOCITY_AFFECTING_POS_Y_OFFSET;
             BlockPos.Mutable mutable = new BlockPos.Mutable();
@@ -80,8 +80,8 @@ public class CenterUtils {
 
     public static float checkVelocityOnCollision(Entity entity, World world) {
         Box box = entity.getBoundingBox();
-        BlockPos blockPos = new BlockPos(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
-        BlockPos blockPos2 = new BlockPos(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
+        BlockPos blockPos = BlockPos.ofFloored(box.minX + OFFSET, entity.getBlockY(), box.minZ + OFFSET);
+        BlockPos blockPos2 = BlockPos.ofFloored(box.maxX - OFFSET, entity.getBlockY(), box.maxZ - OFFSET);
         if (world.isRegionLoaded(blockPos, blockPos2)) {
             double newY = box.minY - VELOCITY_AFFECTING_POS_Y_OFFSET;
             BlockPos.Mutable mutable = new BlockPos.Mutable();
