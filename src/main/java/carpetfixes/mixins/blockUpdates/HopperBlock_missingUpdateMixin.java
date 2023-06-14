@@ -25,8 +25,8 @@ public class HopperBlock_missingUpdateMixin extends Block {
 
 
     @ModifyArg(
-            method = "updateEnabled(Lnet/minecraft/world/World;" +
-                    "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V",
+            method = "updateEnabled(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
+                    "Lnet/minecraft/block/BlockState;I)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/World;" +
