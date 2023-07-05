@@ -33,7 +33,8 @@ public class MinecraftServer_crashFixMixin {
                     target = "Lnet/minecraft/server/world/ServerWorld;tick(Ljava/util/function/BooleanSupplier;)V"
             )
     )
-    private void catchExceptions(ServerWorld serverWorld, BooleanSupplier shouldKeepTicking){
+    private void replacedThisMethodIgnoreIt_CarpetFixesIsNotCausingLag(ServerWorld serverWorld,
+                                                                       BooleanSupplier shouldKeepTicking) {
         if (!CFSettings.updateSuppressionCrashFix && !CFSettings.simulatedOutOfMemoryCrashFix) {
             serverWorld.tick(shouldKeepTicking);
             return;
