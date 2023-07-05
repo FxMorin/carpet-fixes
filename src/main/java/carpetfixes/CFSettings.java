@@ -1276,12 +1276,6 @@ public class CFSettings {
     )
     public static boolean optimizedPoweredRails = false;
 
-    //by 2No2Name, JellySquid
-    @Rule(
-            categories = {OPTIMIZATION}
-    )
-    public static boolean optimizedTicketManager = false;
-
     //by FX - PR0CESS
     @Rule(
             categories = {OPTIMIZATION, VANILLA, CLIENT, RECOMMENDED}

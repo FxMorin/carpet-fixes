@@ -265,8 +265,6 @@
 	"carpet-fixes.rule.optimizedPoweredRails.extra": "This kind of prevents update suppression using a normal suppressor. It requires an angled suppressor to work!\nThis probably changes some rail behavior although so far does not seem to do so. Does change amount of block updates tho",
 	"carpet-fixes.rule.optimizedPoweredRails.desc": "Makes rails faster by removing most updates on themselves, duplicate updates, and doing rail search internally",
 	"carpet-fixes.rule.optimizedRecipeManager.extra": "This is a fully vanilla optimization. Improves: [Blast]Furnace/Campfire/Smoker/Stonecutter/Crafting/Sheep Color Choosing\nThis was mostly made for the auto crafting table, since the performance boost is much more visible while using that mod",
-	"carpet-fixes.rule.optimizedRecipeManager.desc": "Optimized the RecipeManager getFirstMatch call to be up to 3x faster",
-	"carpet-fixes.rule.optimizedTicketManager.desc": "Initial made for Lithium, although was not exactly vanilla behavior. This is a very small optimization!",
 	"carpet-fixes.rule.oresDontDropXpWhenBlownUpFix.desc": "Fixes ore blocks not dropping experience when blown up - sculk use the same block as ores",
 	"carpet-fixes.rule.oresDontDropXpWhenBlownUpFix.extra": "[MC-176840](https://bugs.mojang.com/browse/MC-176840) & [MC-249190](https://bugs.mojang.com/browse/MC-249190)",
 	"carpet-fixes.rule.paletteCopyDataCorruptionFix.extra": "Warning! Some mods might actually use this bug as part of there design. Use this to test if your mod is affected!\n[MC-251664](https://bugs.mojang.com/browse/MC-251664)",
