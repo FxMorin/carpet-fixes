@@ -66,9 +66,7 @@ dependencies {
 	include "com.github.Fallen-Breath:conditional-mixin:${project.conditionalmixin_version}"
 	modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditionalmixin_version}"
 
-	include "com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}"
-	implementation("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
-	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
+	include(implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixinextras_version}")))
 }
 
 processResources {
