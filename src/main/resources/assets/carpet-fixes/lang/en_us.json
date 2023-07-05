@@ -331,6 +331,8 @@
 	"carpet-fixes.rule.reIntroduceVeryAggressiveSaving.desc": "Re-introduces very aggressive saving by removing the chunk save cooldown that was added in 22w05a",
 	"carpet-fixes.rule.reIntroduceZeroTickFarms.desc": "Re-introduces zero tick farms",
 	"carpet-fixes.rule.reIntroduceZeroTickFarms.extra": "Reverts [MC-113809](https://bugs.mojang.com/browse/MC-113809) from 20w12a",
+	"carpet-fixes.rule.reIntroduceTrapdoorUpdateSkipping.desc": "Re-introduces compact update skippers using trapdoors",
+	"carpet-fixes.rule.reIntroduceTrapdoorUpdateSkipping.extra": "This was patched in 1.20",
 	"carpet-fixes.rule.recordWorldEventFix.desc": "Fixes record world events being sent at the wrong time, causing multiple disks to play at the same time",
 	"carpet-fixes.rule.recordWorldEventFix.extra": "[MC-112245](https://bugs.mojang.com/browse/MC-112245)",
 	"carpet-fixes.rule.redstoneComponentUpdateOrderOnBreakFix.desc": "Fixes redstone torch/repeater/comparator update order when being broken, causing incorrect update order",

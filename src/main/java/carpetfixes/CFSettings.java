@@ -1461,6 +1461,12 @@ public class CFSettings {
     )
     public static boolean reIntroducePistonTranslocation = false;
 
+    //By FX - PR0CESS
+    @Rule(
+            categories = {REINTRODUCE}
+    )
+    public static boolean reIntroduceTrapdoorUpdateSkipping = false;
+
 
     /*
 
