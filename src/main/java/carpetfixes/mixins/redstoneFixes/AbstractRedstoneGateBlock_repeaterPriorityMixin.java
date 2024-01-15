@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  */
 
 @Mixin(AbstractRedstoneGateBlock.class)
-public class AbstractRedstoneGateBlock_repeaterPriorityMixin extends HorizontalFacingBlock  {
+abstract public class AbstractRedstoneGateBlock_repeaterPriorityMixin extends HorizontalFacingBlock  {
 
     protected AbstractRedstoneGateBlock_repeaterPriorityMixin(Settings settings) {
         super(settings);

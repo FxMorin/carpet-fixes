@@ -2,6 +2,7 @@ package carpetfixes.mixins.playerFixes;
 
 import carpetfixes.CFSettings;
 import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.GameMode;
@@ -27,7 +28,7 @@ public class PlayerAdvancementTracker_grantCriterionMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
+    private void grantCriterion(AdvancementEntry advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.spectatorAdvancementGrantingFix &&
                 owner.interactionManager.getGameMode().equals(GameMode.SPECTATOR)) {
             cir.cancel();
