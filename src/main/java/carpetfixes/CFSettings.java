@@ -185,13 +185,6 @@ public class CFSettings {
     public static boolean drownedEnchantedTridentsFix = false;
 
     //by FX - PR0CESS
-    //Also fixes: MC-158154
-    @Rule(
-            categories = {BUGFIX, CLIENT}
-    )
-    public static boolean entityBlockCollisionUsingCenterFix = false;
-
-    //by FX - PR0CESS
     @Rule(
             categories = {BUGFIX, RECOMMENDED, WONTFIX, VANILLA}
     )

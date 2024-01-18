@@ -167,7 +167,6 @@
     "entityFixes.EndermanEntity_vehicleMixin",
     "entityFixes.EndermanEntity_witherMixin",
     "entityFixes.EnderPearlEntity_clipMixin",
-    "entityFixes.Entity_centerCollisionMixin",
     "entityFixes.Entity_directionalBlockSlowdownMixin",
     "entityFixes.Entity_incorrectLogicMixin",
     "entityFixes.ExperienceOrbEntity_lavaCollisionMixin",
