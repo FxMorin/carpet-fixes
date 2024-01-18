@@ -192,7 +192,7 @@ public abstract class Entity_dimensionsMixin implements ExtendedEntity {
     }
 
     private static boolean canWorldBorderCollideAtPos(WorldBorder worldBorder, Vec3d pos, Box box) {
-        double d = Math.max(MathHelper.absMax(box.getXLength(), box.getZLength()), 1.0);
+        double d = Math.max(MathHelper.absMax(box.getLengthX(), box.getLengthZ()), 1.0);
         return worldBorder.getDistanceInsideBorder(pos.getX(), pos.getZ()) < d * 2.0 &&
                 worldBorder.contains(pos.getX(), pos.getZ(), d);
     }

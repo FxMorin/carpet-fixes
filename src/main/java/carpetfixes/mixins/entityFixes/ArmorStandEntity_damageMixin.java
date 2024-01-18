@@ -22,7 +22,7 @@ public abstract class ArmorStandEntity_damageMixin {
             method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/damage/DamageSource;getSource()Lnet/minecraft/entity/Entity;",
+                    target = "Lnet/minecraft/entity/damage/DamageSource;getAttacker()Lnet/minecraft/entity/Entity;",
                     ordinal = 0,
                     shift = At.Shift.BEFORE
             ),

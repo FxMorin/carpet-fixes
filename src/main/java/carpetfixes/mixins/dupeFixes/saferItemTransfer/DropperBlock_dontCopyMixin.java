@@ -1,6 +1,7 @@
 package carpetfixes.mixins.dupeFixes.saferItemTransfer;
 
 import carpetfixes.CFSettings;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.DropperBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +25,7 @@ public class DropperBlock_dontCopyMixin {
 
 
     @Redirect(
-            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V",
+            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
             slice = @Slice(
                     from = @At("HEAD"),
                     to = @At(
@@ -46,7 +47,7 @@ public class DropperBlock_dontCopyMixin {
 
 
     @Redirect(
-            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V",
+            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
             slice = @Slice(
                     from = @At(
                             value = "INVOKE",
@@ -65,10 +66,10 @@ public class DropperBlock_dontCopyMixin {
 
 
     @Inject(
-            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;)V",
+            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At("TAIL")
     )
-    private void removeInstance(ServerWorld world, BlockPos pos, CallbackInfo ci) {
+    private void removeInstance(ServerWorld world, BlockState state, BlockPos pos, CallbackInfo ci) {
         stack = ItemStack.EMPTY;
     }
 }

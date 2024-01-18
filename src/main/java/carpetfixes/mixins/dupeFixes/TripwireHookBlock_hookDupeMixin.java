@@ -26,10 +26,10 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
     }
 
     @Shadow
-    protected abstract void playSound(World w, BlockPos pos, boolean a, boolean on, boolean detached, boolean off);
+    protected static void playSound(World w, BlockPos pos, boolean a, boolean on, boolean detached, boolean off) { }
 
     @Shadow
-    protected abstract void updateNeighborsOnAxis(World world, BlockPos pos, Direction direction);
+    protected static void updateNeighborsOnAxis(Block block, World world, BlockPos pos, Direction direction) { }
 
 
     /**
@@ -37,11 +37,12 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
      * @reason Fix for the tripwire hook duplication bug
      */
     @Overwrite
-    public void update(World world, BlockPos pos, BlockState state, boolean beingRemoved,
+    public static void update(World world, BlockPos pos, BlockState state, boolean beingRemoved,
                        boolean bl, int i, @Nullable BlockState blockState) {
         Direction direction = state.get(FACING);
         boolean attached = state.get(ATTACHED);
         boolean powered = state.get(POWERED);
+        Block block = state.getBlock();
         boolean notRemoving = !beingRemoved;
         boolean on = false;
         int index = 0;
@@ -63,32 +64,32 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
                 on |= armed && blockState2.get(TripwireBlock.POWERED);
                 blockStates[k] = blockState2;
                 if (k == i) {
-                    world.scheduleBlockTick(pos, this, 10);
+                    world.scheduleBlockTick(pos, block, 10);
                     notRemoving &= armed;
                 }
             }
         }
         notRemoving &= index > 1;
         on &= notRemoving;
-        BlockState newState = this.getDefaultState().with(ATTACHED, notRemoving).with(POWERED, on);
+        BlockState newState = block.getDefaultState().with(ATTACHED, notRemoving).with(POWERED, on);
         if (index > 0) {
             blockPos = pos.offset(direction, index);
             Direction blockState2 = direction.getOpposite();
             world.setBlockState(blockPos, newState.with(FACING, blockState2), Block.NOTIFY_ALL);
-            this.updateNeighborsOnAxis(world, blockPos, blockState2);
-            this.playSound(world, blockPos, notRemoving, on, attached, powered);
+            updateNeighborsOnAxis(block, world, blockPos, blockState2);
+            playSound(world, blockPos, notRemoving, on, attached, powered);
         }
-        this.playSound(world, pos, notRemoving, on, attached, powered);
-        if (!beingRemoved && (!CFSettings.tripwireHookDupeFix || world.getBlockState(pos).isOf(this))) {
+        playSound(world, pos, notRemoving, on, attached, powered);
+        if (!beingRemoved && (!CFSettings.tripwireHookDupeFix || world.getBlockState(pos).isOf(Blocks.TRIPWIRE_HOOK))) {
             world.setBlockState(pos, newState.with(FACING, direction), Block.NOTIFY_ALL);
-            if (bl) this.updateNeighborsOnAxis(world, pos, direction);
+            if (bl) updateNeighborsOnAxis(block, world, pos, direction);
         }
         if (attached != notRemoving) {
             for(int x = 1; x < index; ++x) {
                 BlockPos pos2 = pos.offset(direction, x);
                 BlockState state2 = blockStates[x];
                 if (state2 != null) {
-                    if (!CFSettings.tripwireNotDisarmingFix || world.getBlockState(pos2).isOf(this)) {
+                    if (!CFSettings.tripwireNotDisarmingFix || world.getBlockState(pos2).isOf(Blocks.TRIPWIRE_HOOK)) {
                         world.setBlockState(pos2, state2.with(ATTACHED, notRemoving), Block.NOTIFY_ALL);
                     }
                 }

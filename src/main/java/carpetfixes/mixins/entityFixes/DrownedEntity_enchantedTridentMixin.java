@@ -32,7 +32,7 @@ public class DrownedEntity_enchantedTridentMixin extends ZombieEntity {
 
 
     @Redirect(
-            method = "attack",
+            method = "shootAt",
             at = @At(
                     value = "NEW",
                     target = "net/minecraft/item/ItemStack"

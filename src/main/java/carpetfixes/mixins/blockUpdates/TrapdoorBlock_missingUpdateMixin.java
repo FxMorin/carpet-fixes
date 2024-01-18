@@ -50,7 +50,7 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
 
 
     @Inject(
-            method = "onUse",
+            method = "flip",
             at = @At(
                     shift = At.Shift.AFTER,
                     value = "INVOKE",
@@ -59,7 +59,7 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
             )
     )
     private void updateOnUseCorrectly(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                                      Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+                                      CallbackInfo ci) {
         if (CFSettings.trapdoorMissingUpdateFix)
             world.updateNeighbor(pos.offset(directionToUpdate(state)),state.getBlock(),pos);
     }

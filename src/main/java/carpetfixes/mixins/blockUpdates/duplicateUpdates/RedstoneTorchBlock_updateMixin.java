@@ -4,7 +4,7 @@ import carpetfixes.CFSettings;
 import carpetfixes.helpers.BlockUpdateUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneTorchBlock;
-import net.minecraft.block.TorchBlock;
+import net.minecraft.block.AbstractTorchBlock;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -18,12 +18,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 
 @Mixin(RedstoneTorchBlock.class)
-public abstract class RedstoneTorchBlock_updateMixin extends TorchBlock {
+public abstract class RedstoneTorchBlock_updateMixin extends AbstractTorchBlock {
 
     RedstoneTorchBlock self = (RedstoneTorchBlock)(Object)this;
 
-    protected RedstoneTorchBlock_updateMixin(Settings settings, ParticleEffect particle) {
-        super(settings, particle);
+    protected RedstoneTorchBlock_updateMixin(Settings settings) {
+        super(settings);
     }
 
 

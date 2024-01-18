@@ -28,7 +28,7 @@ public abstract class PlayerEntity_absorptionMixin extends LivingEntity {
 
 
     @Inject(
-            method = "setAbsorptionAmount(F)V",
+            method = "setAbsorptionAmountUnclamped(F)V",
             at = @At("RETURN")
     )
     private void onAbsorptionChanged(float amount, CallbackInfo ci) {

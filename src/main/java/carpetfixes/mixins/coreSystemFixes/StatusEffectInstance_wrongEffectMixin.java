@@ -49,7 +49,7 @@ public abstract class StatusEffectInstance_wrongEffectMixin {
     private void addHere(LivingEntity entity, Runnable overwriteCallback, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.brokenHiddenStatusEffectFix) {
             ((LivingEntityAccessor)entity).setEffectsChanged(true);
-            this.getEffectType().onRemoved(entity, entity.getAttributes(), this.getAmplifier());
+            this.getEffectType().onRemoved(entity.getAttributes());
         }
     }
 
@@ -63,7 +63,7 @@ public abstract class StatusEffectInstance_wrongEffectMixin {
     )
     private void removeHere(LivingEntity entity, Runnable overwriteCallback, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.brokenHiddenStatusEffectFix) {
-            this.getEffectType().onApplied(entity, entity.getAttributes(), this.getAmplifier());
+            this.getEffectType().onApplied(entity.getAttributes(), this.getAmplifier());
         }
     }
 

@@ -16,7 +16,7 @@ public class EnchantingTableBlock_transparentMixin {
 
 
     @Redirect(
-            method = "canAccessBookshelf(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
+            method = "canAccessPowerProvider(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;" +
                     "Lnet/minecraft/util/math/BlockPos;)Z",
             at = @At(
                     value = "INVOKE",
