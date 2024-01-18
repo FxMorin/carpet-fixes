@@ -13,7 +13,6 @@
     "accessors.SkullBlockEntityAccessor",
     "accessors.TagKeyAccessor",
     "accessors.WorldAccessor",
-    "advanced.MinecraftServer_autosaveDelayMixin",
     "advanced.ThreadedAnvilChunkStorage_chunkTimingsMixin",
     "blockEntityFixes.BeaconBlockEntity_soundMixin",
     "blockEntityFixes.BeehiveBlockEntity_dupeMixin",

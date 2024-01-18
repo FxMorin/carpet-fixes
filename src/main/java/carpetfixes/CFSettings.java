@@ -1537,27 +1537,6 @@ public class CFSettings {
 
     //By FX - PR0CESS
     @Rule(
-            options = {"12000", "6000", "3600", "1200"},
-            categories = {ADVANCED, OPTIMIZATION}
-    )
-    public static int delayBetweenAutoSaves = 6000;
-
-    //By FX - PR0CESS
-    @Rule(
-            options = {"12", "6", "3", "1"},
-            categories = {ADVANCED, EXPERIMENTAL}
-    )
-    public static int maxTickLatency = 3;
-
-    //By FX - PR0CESS
-    @Rule(
-            options = {"60000000000", "10000000000", "5000000000", "1000000000"},
-            categories = {ADVANCED}
-    )
-    public static long statusUpdateDelay = 5000000000L;
-
-    //By FX - PR0CESS
-    @Rule(
             options = {"120000", "60000", "10000", "1000", "0"},
             categories = {ADVANCED, OPTIMIZATION}
     )
