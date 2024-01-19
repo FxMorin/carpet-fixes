@@ -23,8 +23,10 @@ public class LivingEntity_tridentStriderMixin {
                             "getDepthStrider(Lnet/minecraft/entity/LivingEntity;)I"
             )
     )
-    private int modifyDepthStriderIfUsingRiptide(LivingEntity entity) {
-        if (CFSettings.depthStriderSlowsRiptideFix && entity.isUsingRiptide()) return 0;
+    private int cf$modifyDepthStriderIfUsingRiptide(LivingEntity entity) {
+        if (CFSettings.depthStriderSlowsRiptideFix && entity.isUsingRiptide()) {
+            return 0;
+        }
         return EnchantmentHelper.getDepthStrider(entity);
     }
 }

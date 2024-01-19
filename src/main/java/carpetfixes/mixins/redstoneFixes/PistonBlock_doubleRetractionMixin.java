@@ -28,8 +28,9 @@ public abstract class PistonBlock_doubleRetractionMixin {
                             "Lnet/minecraft/block/Block;II)V"
             )
     )
-    private void onTryMove(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (CFSettings.doubleRetraction)
+    private void cf$onTryMove(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
+        if (CFSettings.doubleRetraction) {
             world.setBlockState(pos, state.with(PistonBlock.EXTENDED, false), 2);
+        }
     }
 }

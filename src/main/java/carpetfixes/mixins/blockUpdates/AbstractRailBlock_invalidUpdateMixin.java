@@ -49,8 +49,8 @@ public abstract class AbstractRailBlock_invalidUpdateMixin extends Block {
             ),
             cancellable = true
     )
-    private void updateNeighborsExceptWithBetterDirection(BlockState state, World world, BlockPos pos,
-                                                          BlockState oldState, boolean notify, CallbackInfo ci) {
+    private void cf$updateNeighborsExceptWithBetterDirection(BlockState state, World world, BlockPos pos,
+                                                             BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CFSettings.railInvalidUpdateOnPushFix) {
             RailShape railShape = state.get(this.getShapeProperty());
             if (shouldDropRail(pos, world, railShape)) {

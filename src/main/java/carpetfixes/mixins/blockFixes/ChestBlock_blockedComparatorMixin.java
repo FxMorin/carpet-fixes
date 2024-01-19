@@ -19,16 +19,19 @@ import static net.minecraft.block.ChestBlock.getInventory;
 @Mixin(ChestBlock.class)
 public class ChestBlock_blockedComparatorMixin {
 
-    ChestBlock self = (ChestBlock)(Object)this;
-
 
     @Inject(
             method = "getComparatorOutput",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void modifyCompOutput(BlockState state, World world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-        if (!CFSettings.comparatorSkipsBlockedChestFix) return;
-        cir.setReturnValue(ScreenHandler.calculateComparatorOutput(getInventory(self, state, world, pos, true)));
+    private void cf$modifyCompOutput(BlockState state, World world,
+                                     BlockPos pos, CallbackInfoReturnable<Integer> cir) {
+        if (!CFSettings.comparatorSkipsBlockedChestFix) {
+            return;
+        }
+        cir.setReturnValue(ScreenHandler.calculateComparatorOutput(
+                getInventory((ChestBlock)(Object)this, state, world, pos, true)
+        ));
     }
 }

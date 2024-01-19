@@ -34,13 +34,15 @@ public abstract class SheepEntity_childColorMixin extends AnimalEntity {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void getChildColor(AnimalEntity firstParent, AnimalEntity secondParent,
-                               CallbackInfoReturnable<DyeColor> cir) {
+    private void cf$getChildColor(AnimalEntity firstParent, AnimalEntity secondParent,
+                                  CallbackInfoReturnable<DyeColor> cir) {
         if (CFSettings.optimizedRecipeManager) {
             DyeColor firstColor = ((SheepEntity)firstParent).getColor();
             DyeColor secondColor = ((SheepEntity)secondParent).getColor();
             DyeColor col = Utils.properDyeMixin(firstColor,secondColor);
-            if (col == null) col = this.getWorld().random.nextBoolean() ? firstColor : secondColor;
+            if (col == null) {
+                col = this.getWorld().random.nextBoolean() ? firstColor : secondColor;
+            }
             cir.setReturnValue(col);
         }
     }

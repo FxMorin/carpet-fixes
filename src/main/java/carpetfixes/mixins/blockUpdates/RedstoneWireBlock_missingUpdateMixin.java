@@ -2,6 +2,8 @@ package carpetfixes.mixins.blockUpdates;
 
 import carpetfixes.CFSettings;
 import com.google.common.collect.Sets;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneWireBlock;
@@ -25,8 +27,6 @@ import java.util.Set;
 @Mixin(RedstoneWireBlock.class)
 public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
 
-    ThreadLocal<Boolean> needsUpdate = ThreadLocal.withInitial(() -> false);
-
     public RedstoneWireBlock_missingUpdateMixin(Settings settings) {
         super(settings);
     }
@@ -42,9 +42,9 @@ public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
                             "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;II)V"
             )
     )
-    private void shouldUpdate(BlockState state, WorldAccess world, BlockPos pos,
-                              int flags, int maxUpdateDepth, CallbackInfo ci) {
-        needsUpdate.set(true);
+    private void cf$shouldUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int maxUpdateDepth,
+                                 CallbackInfo ci, @Share("needsUpdate") LocalBooleanRef needsUpdateRef) {
+        needsUpdateRef.set(true);
     }
 
 
@@ -53,14 +53,17 @@ public abstract class RedstoneWireBlock_missingUpdateMixin extends Block {
                     "Lnet/minecraft/util/math/BlockPos;II)V",
             at = @At("TAIL")
     )
-    private void doUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int d, CallbackInfo ci) {
-        if (CFSettings.redstoneRedirectionMissingUpdateFix && needsUpdate.get()) {
+    private void cf$doUpdate(BlockState state, WorldAccess world, BlockPos pos, int flags, int d, CallbackInfo ci,
+                             @Share("needsUpdate") LocalBooleanRef needsUpdateRef) {
+        if (CFSettings.redstoneRedirectionMissingUpdateFix && needsUpdateRef.get()) {
             Set<BlockPos> set = Sets.newHashSet();
             set.add(pos);
-            Direction[] var6 = Direction.values();
-            for (Direction direction : var6) set.add(pos.offset(direction));
-            for (BlockPos blockPos : set) ((World) world).updateNeighborsAlways(blockPos, this);
+            for (Direction direction : Direction.values()) {
+                set.add(pos.offset(direction));
+            }
+            for (BlockPos blockPos : set) {
+                ((World) world).updateNeighborsAlways(blockPos, this);
+            }
         }
-        needsUpdate.set(false);
     }
 }

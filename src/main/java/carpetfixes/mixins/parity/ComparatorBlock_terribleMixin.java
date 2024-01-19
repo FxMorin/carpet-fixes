@@ -22,7 +22,7 @@ public class ComparatorBlock_terribleMixin {
                     ordinal = 0
             )
     )
-    protected int modifyPower(int constant) {
+    private int cf$modifyPower(int constant) {
         return CFSettings.parityTerribleComparators ? 16 : constant;
     }
 }

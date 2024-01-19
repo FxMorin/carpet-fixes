@@ -11,12 +11,13 @@ import org.spongepowered.asm.mixin.injection.Constant;
 @Mixin(RedstoneWireBlock.class)
 public class RedstoneWireBlock_skipperMixin {
 
+
     @WrapOperation(
             method = "getRenderConnectionType(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;" +
                     "Lnet/minecraft/util/math/Direction;Z)Lnet/minecraft/block/enums/WireConnection;",
             constant = @Constant(classValue = TrapdoorBlock.class)
     )
-    private boolean trapdoorUpdateSkipping(Object obj, Operation<Boolean> original) {
+    private boolean cf$trapdoorUpdateSkipping(Object obj, Operation<Boolean> original) {
         return !CFSettings.reIntroduceTrapdoorUpdateSkipping && original.call(obj);
     }
 }

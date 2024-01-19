@@ -43,11 +43,12 @@ public class StructureTemplate_entityPassengersMixin {
             ),
             cancellable = true
     )
-    private void getEntityWithPassengers(ServerWorldAccess world, BlockPos pos, BlockMirror mirror,
-                                         BlockRotation rotation, BlockPos pivot, BlockBox area, boolean initializeMobs,
-                                         CallbackInfo ci, Iterator<StructureTemplate.StructureEntityInfo> iterator,
-                                         StructureTemplate.StructureEntityInfo entityInfo, NbtCompound nbtCompound,
-                                         Vec3d vec3d, Vec3d vec3d2, NbtList nbtList) {
+    private void cf$getEntityWithPassengers(ServerWorldAccess world, BlockPos pos, BlockMirror mirror,
+                                            BlockRotation rotation, BlockPos pivot, BlockBox area,
+                                            boolean initializeMobs, CallbackInfo ci,
+                                            Iterator<StructureTemplate.StructureEntityInfo> iterator,
+                                            StructureTemplate.StructureEntityInfo entityInfo, NbtCompound nbtCompound,
+                                            Vec3d vec3d, Vec3d vec3d2, NbtList nbtList) {
         if (CFSettings.structuresIgnorePassengersFix) {
             Entity entity = EntityType.loadEntityWithPassengers(nbtCompound, world.toServerWorld(), e -> e);
             if (entity != null) {

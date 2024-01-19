@@ -25,8 +25,9 @@ import java.util.Optional;
 public abstract class RecipeManager_fasterMixin {
 
     @Shadow
-    protected abstract <C extends Inventory, T extends Recipe<C>> Map<Identifier, Recipe<C>>
-    getAllOfType(RecipeType<T> type);
+    protected abstract <C extends Inventory, T extends Recipe<C>> Map<Identifier, Recipe<C>> getAllOfType(
+            RecipeType<T> type
+    );
 
 
     @SuppressWarnings("unchecked")
@@ -36,7 +37,7 @@ public abstract class RecipeManager_fasterMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private <C extends Inventory, T extends Recipe<C>> void getOptimizedFirstMatch(
+    private <C extends Inventory, T extends Recipe<C>> void cf$getOptimizedFirstMatch(
             RecipeType<T> type,
             C inventory,
             World world,
@@ -47,7 +48,9 @@ public abstract class RecipeManager_fasterMixin {
             int count;
             //compare size to quickly remove recipes that are not even close. Plus remove streams
             for (int slot = 0; slot < inventory.size(); slot++)
-                if (!inventory.getStack(slot).isEmpty()) slots++;
+                if (!inventory.getStack(slot).isEmpty()) {
+                    slots++;
+                }
             for (Recipe<C> recipe : this.getAllOfType(type).values()) {
                 count = 0;
                 if (recipe instanceof SpecialCraftingRecipe) {
@@ -57,7 +60,9 @@ public abstract class RecipeManager_fasterMixin {
                     }
                 } else {
                     for (Ingredient ingredient : recipe.getIngredients())
-                        if (ingredient != Ingredient.EMPTY) count++;
+                        if (ingredient != Ingredient.EMPTY) {
+                            count++;
+                        }
                     if (count == slots && recipe.matches(inventory, world)) {
                         cir.setReturnValue((Optional<T>) Optional.of(recipe));
                         return;
@@ -75,7 +80,7 @@ public abstract class RecipeManager_fasterMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private <C extends Inventory, T extends Recipe<C>> void getOptimizedListAllOfType(
+    private <C extends Inventory, T extends Recipe<C>> void cf$getOptimizedListAllOfType(
             RecipeType<T> type,
             CallbackInfoReturnable<List<T>> cir
     ) {

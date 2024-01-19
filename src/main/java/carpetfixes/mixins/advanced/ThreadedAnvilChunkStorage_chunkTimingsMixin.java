@@ -16,7 +16,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             method = "unloadChunks(Ljava/util/function/BooleanSupplier;)V",
             constant = @Constant(intValue = 20)
     )
-    private static int modifyMaxChunksUnloadedPerTick(int original) {
+    private static int cf$modifyMaxChunksUnloadedPerTick(int original) {
         return CFSettings.maxChunksSavedPerTick;
     }
 
@@ -25,7 +25,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             method = "unloadChunks(Ljava/util/function/BooleanSupplier;)V",
             constant = @Constant(intValue = 200)
     )
-    private static int modifyMaxChunksUnloadedPerAutoSave(int original) {
+    private static int cf$modifyMaxChunksUnloadedPerAutoSave(int original) {
         return CFSettings.maxChunksSavedPerAutoSave;
     }
 
@@ -34,7 +34,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
             method = "save(Lnet/minecraft/server/world/ChunkHolder;)Z",
             constant = @Constant(longValue = 10000L)
     )
-    private static long modifyChunkSavingCooldown(long original) {
+    private static long cf$modifyChunkSavingCooldown(long original) {
         return CFSettings.reIntroduceVeryAggressiveSaving ? -1L : (long)CFSettings.chunkSaveCooldownDelay;
     }
 
@@ -46,7 +46,7 @@ public class ThreadedAnvilChunkStorage_chunkTimingsMixin {
                     target = "Ljava/lang/System;currentTimeMillis()J"
             )
     )
-    private long shouldRespectCooldown() {
+    private long cf$shouldRespectCooldown() {
         return CFSettings.reIntroduceVeryAggressiveSaving ? Long.MAX_VALUE : System.currentTimeMillis();
     }
 }

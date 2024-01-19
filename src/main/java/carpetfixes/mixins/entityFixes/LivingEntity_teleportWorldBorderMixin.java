@@ -31,8 +31,9 @@ public abstract class LivingEntity_teleportWorldBorderMixin extends Entity {
             ),
             cancellable = true
     )
-    private void cancelTeleport(double x, double y, double z, boolean pe, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.teleportPastWorldBorderFix && !this.getWorld().getWorldBorder().contains(x, y, z))
+    private void cf$cancelTeleport(double x, double y, double z, boolean pe, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.teleportPastWorldBorderFix && !this.getWorld().getWorldBorder().contains(x, y, z)) {
             cir.setReturnValue(false);
+        }
     }
 }

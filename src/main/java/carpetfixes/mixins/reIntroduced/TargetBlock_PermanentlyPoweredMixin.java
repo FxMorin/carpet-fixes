@@ -18,14 +18,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(TargetBlock.class)
 public class TargetBlock_PermanentlyPoweredMixin {
 
+
     @Inject(
             method = "onBlockAdded(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
                     "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onBlockAdded(BlockState state, World world, BlockPos pos,
-                             BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CFSettings.reIntroduceTargetBlockPermanentlyPowered) ci.cancel();
+    private void cf$onBlockAdded(BlockState state, World world, BlockPos pos,
+                                 BlockState oldState, boolean notify, CallbackInfo ci) {
+        if (CFSettings.reIntroduceTargetBlockPermanentlyPowered) {
+            ci.cancel();
+        }
     }
 }

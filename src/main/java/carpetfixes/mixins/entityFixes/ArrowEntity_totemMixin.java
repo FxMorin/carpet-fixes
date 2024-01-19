@@ -27,11 +27,13 @@ public abstract class ArrowEntity_totemMixin {
                             "Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z"
             )
     )
-    protected boolean onHit(LivingEntity instance, StatusEffectInstance effect, Entity source) {
+    private boolean cf$onHit(LivingEntity instance, StatusEffectInstance effect, Entity source) {
         if (CFSettings.arrowEffectsBypassTotemsFix &&
                 effect.getEffectType() == StatusEffects.INSTANT_DAMAGE &&
                 ((EntityUsedTotem)instance).hasUsedTotem()
-        ) return false;
+        ) {
+            return false;
+        }
         return instance.addStatusEffect(effect,source);
     }
 }

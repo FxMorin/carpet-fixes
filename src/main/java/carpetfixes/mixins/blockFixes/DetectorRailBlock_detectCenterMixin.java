@@ -1,6 +1,8 @@
 package carpetfixes.mixins.blockFixes;
 
 import carpetfixes.CFSettings;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DetectorRailBlock;
 import net.minecraft.entity.Entity;
@@ -20,8 +22,6 @@ import java.util.function.Predicate;
 @Mixin(DetectorRailBlock.class)
 public class DetectorRailBlock_detectCenterMixin {
 
-    private BlockPos pos = BlockPos.ORIGIN;
-
     // Client Rendering will make the minecart look a bit weird due to interpolation
 
 
@@ -35,8 +35,9 @@ public class DetectorRailBlock_detectCenterMixin {
                     shift = At.Shift.BEFORE
             )
     )
-    private void getRailPos(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
-        this.pos = pos;
+    private void cf$getRailPos(World world, BlockPos pos, BlockState state, CallbackInfo ci,
+                               @Share("pos") LocalRef<BlockPos> posRef) {
+        posRef.set(pos);
     }
 
 
@@ -50,7 +51,8 @@ public class DetectorRailBlock_detectCenterMixin {
             ),
             index = 3
     )
-    private Predicate<Entity> detectIfOnRail(Predicate<Entity> entityPredicate) {
-        return CFSettings.detectorRailDetectsTooEarlyFix ? e -> e.getBlockPos().equals(this.pos) : entityPredicate;
+    private Predicate<Entity> cf$detectIfOnRail(Predicate<Entity> entityPredicate,
+                                                @Share("pos") LocalRef<BlockPos> posRef) {
+        return CFSettings.detectorRailDetectsTooEarlyFix ? e -> e.getBlockPos().equals(posRef.get()) : entityPredicate;
     }
 }

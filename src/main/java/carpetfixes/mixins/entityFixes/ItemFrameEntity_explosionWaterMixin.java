@@ -1,10 +1,13 @@
 package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CFSettings;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,9 +21,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  */
 
 @Mixin(ItemFrameEntity.class)
-public abstract class ItemFrameEntity_explosionWaterMixin {
+public abstract class ItemFrameEntity_explosionWaterMixin extends Entity {
 
-    ItemFrameEntity self = (ItemFrameEntity)(Object)this;
+    public ItemFrameEntity_explosionWaterMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
 
     @Inject(
@@ -28,9 +33,10 @@ public abstract class ItemFrameEntity_explosionWaterMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void isInvulnerableOrWater(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void cf$isInvulnerableOrWater(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.explosionBreaksItemFrameInWaterFix && source.isIn(DamageTypeTags.IS_EXPLOSION) &&
-                self.getWorld().getFluidState(self.getBlockPos()).getFluid().matchesType(Fluids.WATER))
+                this.getWorld().getFluidState(this.getBlockPos()).getFluid().matchesType(Fluids.WATER)) {
             cir.setReturnValue(true);
+        }
     }
 }

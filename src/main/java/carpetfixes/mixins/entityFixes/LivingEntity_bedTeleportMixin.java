@@ -25,7 +25,9 @@ public abstract class LivingEntity_bedTeleportMixin extends Entity {
 
     @Override
     protected void tickPortal() {
-        if (CFSettings.bedTeleportExploitFix && this.isSleeping()) return;
+        if (CFSettings.bedTeleportExploitFix && this.isSleeping()) {
+            return;
+        }
         super.tickPortal();
     }
 }

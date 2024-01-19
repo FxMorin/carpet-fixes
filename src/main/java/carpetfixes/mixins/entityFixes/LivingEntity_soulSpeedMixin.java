@@ -17,7 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntity_soulSpeedMixin extends Entity {
 
-
     public LivingEntity_soulSpeedMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -33,7 +32,9 @@ public abstract class LivingEntity_soulSpeedMixin extends Entity {
             ),
             cancellable = true
     )
-    private void dontDamageIfRidingEntity(CallbackInfo ci) {
-        if (CFSettings.soulSpeedIncorrectDamageFix && this.hasVehicle()) ci.cancel();
+    private void cf$dontDamageIfRidingEntity(CallbackInfo ci) {
+        if (CFSettings.soulSpeedIncorrectDamageFix && this.hasVehicle()) {
+            ci.cancel();
+        }
     }
 }

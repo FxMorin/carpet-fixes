@@ -36,11 +36,12 @@ public class CactusBlock_movingBlockMixin {
                             "Lnet/minecraft/block/BlockState;"
             )
     )
-    private BlockState getCorrectBlockStateIfMovingPiston(WorldView world, BlockPos pos) {
+    private BlockState cf$getCorrectBlockStateIfMovingPiston(WorldView world, BlockPos pos) {
         if (CFSettings.nonSolidBlocksBreakCactusIfPushedFix) {
             BlockState state = world.getBlockState(pos);
-            if (state.isOf(Blocks.MOVING_PISTON) && world.getBlockEntity(pos) instanceof PistonBlockEntity pbe)
+            if (state.isOf(Blocks.MOVING_PISTON) && world.getBlockEntity(pos) instanceof PistonBlockEntity pbe) {
                 return pbe.getPushedBlock();
+            }
             return state;
         }
         return world.getBlockState(pos);

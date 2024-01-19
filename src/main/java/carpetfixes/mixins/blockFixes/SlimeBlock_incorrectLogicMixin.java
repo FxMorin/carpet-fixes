@@ -25,7 +25,9 @@ public class SlimeBlock_incorrectLogicMixin {
                     target = "Lnet/minecraft/entity/Entity;setVelocity(DDD)V"
             )
     )
-    private void entityHittingSlimeBlockBeLike(Entity entity, CallbackInfo ci) {
-        if (CFSettings.incorrectBounceLogicFix) entity.setOnGround(entity.getVelocity().y > -0.15);
+    private void cf$entityHittingSlimeBlockBeLike(Entity entity, CallbackInfo ci) {
+        if (CFSettings.incorrectBounceLogicFix) {
+            entity.setOnGround(entity.getVelocity().y > -0.15);
+        }
     }
 }

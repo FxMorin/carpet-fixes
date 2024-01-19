@@ -20,7 +20,7 @@ public class BoatDispenserBehavior_offsetMixin {
                     ordinal = 0
             )
     )
-    private double spawnFurther(double constant) {
+    private double cf$spawnFurther(double constant) {
         return CFSettings.boatTooFarFromDispenserFix ? 0.50001 : constant;
     }
 }

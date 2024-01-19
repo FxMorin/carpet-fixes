@@ -37,7 +37,7 @@ public abstract class World_seaLevelMixin implements WorldAccess  {
             cancellable = true,
             require = 0
     )
-    private void getSeaLevel(CallbackInfoReturnable<Integer> cir) {
+    private void cf$getSeaLevel(CallbackInfoReturnable<Integer> cir) {
         if (CFSettings.hardcodedSeaLevelFix)
             cir.setReturnValue(
                     this.getServer().getWorld(this.registryKey).getChunkManager().getChunkGenerator().getSeaLevel()

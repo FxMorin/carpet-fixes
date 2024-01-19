@@ -23,8 +23,6 @@ import java.util.function.Supplier;
 @Mixin(ServerWorld.class)
 public abstract class ServerWorld_zeroTickMixin extends World {
 
-    private final ServerWorld self = (ServerWorld)(Object)this;
-
     protected ServerWorld_zeroTickMixin(MutableWorldProperties properties, RegistryKey<World> registryRef,
                                         DynamicRegistryManager registryManager,
                                         RegistryEntry<DimensionType> dimensionEntry, Supplier<Profiler> profiler,
@@ -47,8 +45,9 @@ public abstract class ServerWorld_zeroTickMixin extends World {
                     shift = At.Shift.AFTER
             )
     )
-    private void zeroTickBlock(BlockPos pos, Block block, CallbackInfo ci, BlockState state) {
-        if (CFSettings.reIntroduceZeroTickFarms && !this.getBlockState(pos).isOf(block) && state.hasRandomTicks())
-            state.randomTick(self, pos, this.random);
+    private void cf$zeroTickBlock(BlockPos pos, Block block, CallbackInfo ci, BlockState state) {
+        if (CFSettings.reIntroduceZeroTickFarms && !this.getBlockState(pos).isOf(block) && state.hasRandomTicks()) {
+            state.randomTick((ServerWorld) (Object) this, pos, this.random);
+        }
     }
 }

@@ -27,10 +27,11 @@ public class BedBlock_entityChecksMixin {
             at = @At("RETURN"),
             cancellable = true
     )
-    private void canPlaceBed(ItemPlacementContext ctx, CallbackInfoReturnable<BlockState> cir,
-                             Direction direction, BlockPos pos, BlockPos pos2, World world) {
+    private void cf$canPlaceBed(ItemPlacementContext ctx, CallbackInfoReturnable<BlockState> cir,
+                                Direction direction, BlockPos pos, BlockPos pos2, World world) {
         if (CFSettings.doubleBlocksSkipEntityCheckFix && cir.getReturnValue() != null &&
-                !world.canPlace(cir.getReturnValue(), pos2, ShapeContext.absent()))
+                !world.canPlace(cir.getReturnValue(), pos2, ShapeContext.absent())) {
             cir.setReturnValue(null);
+        }
     }
 }

@@ -4,7 +4,6 @@ import carpetfixes.CFSettings;
 import carpetfixes.mixins.accessors.SingularPaletteAccessor;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.world.chunk.Palette;
-import net.minecraft.world.chunk.PaletteResizeListener;
 import net.minecraft.world.chunk.SingularPalette;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -31,8 +30,6 @@ public class SingularPalette_dataCorruptionMixin<T> {
     @Shadow
     private @Nullable T entry;
 
-    private final PaletteResizeListener<T> dummyListener = (newSize, added) -> 0;
-
 
     @SuppressWarnings("unchecked")
     @Inject(
@@ -40,9 +37,9 @@ public class SingularPalette_dataCorruptionMixin<T> {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void copyWithoutListener(CallbackInfoReturnable<Palette<T>> cir) {
+    private void cf$copyWithoutListener(CallbackInfoReturnable<Palette<T>> cir) {
         if (CFSettings.paletteCopyDataCorruptionFix) {
-            SingularPalette<T> singularPalette = new SingularPalette<>(idList, dummyListener, List.of());
+            SingularPalette<T> singularPalette = new SingularPalette<>(idList, (newSize, added) -> 0, List.of());
             ((SingularPaletteAccessor<T>)singularPalette).setEntry(entry);
             cir.setReturnValue(singularPalette);
         }

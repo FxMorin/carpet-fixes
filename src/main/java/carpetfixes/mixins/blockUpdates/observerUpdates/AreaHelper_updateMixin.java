@@ -49,7 +49,7 @@ public class AreaHelper_updateMixin {
             method = "createPortal()V",
             at = @At("RETURN")
     )
-    private void createPortal(CallbackInfo ci) {
+    private void cf$createPortal(CallbackInfo ci) {
         if (CFSettings.missingObserverUpdatesFix) {
             BlockPos.iterate(
                     this.lowerCorner,

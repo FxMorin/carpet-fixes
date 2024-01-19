@@ -9,19 +9,16 @@ import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Adds missing block updates to the trapdoor when it opens
@@ -42,7 +39,8 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
         super(settings);
     }
 
-    private Direction directionToUpdate(BlockState state) {
+    @Unique
+    private Direction cf$directionToUpdate(BlockState state) {
         return state.get(OPEN) ?
                 ((state.get(HALF) == BlockHalf.TOP) ? Direction.UP : Direction.DOWN) :
                 state.get(FACING).getOpposite();
@@ -60,8 +58,9 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
     )
     private void updateOnUseCorrectly(BlockState state, World world, BlockPos pos, PlayerEntity player,
                                       CallbackInfo ci) {
-        if (CFSettings.trapdoorMissingUpdateFix)
-            world.updateNeighbor(pos.offset(directionToUpdate(state)),state.getBlock(),pos);
+        if (CFSettings.trapdoorMissingUpdateFix) {
+            world.updateNeighbor(pos.offset(cf$directionToUpdate(state)), state.getBlock(), pos);
+        }
     }
 
 
@@ -76,7 +75,8 @@ public abstract class TrapdoorBlock_missingUpdateMixin extends HorizontalFacingB
     )
     private void updateCorrectly(BlockState state, World world, BlockPos pos, Block block,
                                  BlockPos fromPos, boolean notify, CallbackInfo ci) {
-        if (CFSettings.trapdoorMissingUpdateFix)
-            world.updateNeighbor(pos.offset(directionToUpdate(state)),state.getBlock(),pos);
+        if (CFSettings.trapdoorMissingUpdateFix) {
+            world.updateNeighbor(pos.offset(cf$directionToUpdate(state)), state.getBlock(), pos);
+        }
     }
 }

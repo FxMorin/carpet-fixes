@@ -5,6 +5,7 @@ import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.Inventory;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Slice;
@@ -17,6 +18,7 @@ import java.util.function.Predicate;
 @Mixin(HopperBlockEntity.class)
 public class HopperBlockEntity_randomMinecartMixin {
 
+    @Unique
     private static final Predicate<Entity> VALID_NOT_EMPTY_INVENTORIES = entity ->
             entity.isAlive() && entity instanceof Inventory inv && !inv.isEmpty();
 
@@ -42,7 +44,7 @@ public class HopperBlockEntity_randomMinecartMixin {
             ),
             index = 2
     )
-    private static Predicate<? super Entity> modifyPredicate(Predicate<? super Entity> predicate) {
+    private static Predicate<? super Entity> cf$modifyPredicate(Predicate<? super Entity> predicate) {
         return CFSettings.hoppersSelectMinecartsRandomlyFix ? VALID_NOT_EMPTY_INVENTORIES : predicate;
     }
 }

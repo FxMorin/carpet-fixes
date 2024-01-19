@@ -30,7 +30,7 @@ public class MerchantScreenHandler_distanceMixin {
             at = @At("RETURN"),
             cancellable = true
     )
-    private void canUseIfWithinDistance(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
+    private void cf$canUseIfWithinDistance(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.voidTradingFix && cir.getReturnValue()) {
             if (this.merchant instanceof MerchantEntity merchGuy && merchGuy.hasCustomer()) {
                 double distance = merchGuy.getBlockPos().getManhattanDistance(merchGuy.getCustomer().getBlockPos());

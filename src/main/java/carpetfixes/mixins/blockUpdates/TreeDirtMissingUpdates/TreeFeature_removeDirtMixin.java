@@ -26,11 +26,12 @@ public class TreeFeature_removeDirtMixin {
                     "Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;)Lnet/minecraft/util/shape/VoxelSet;",
             at = @At("HEAD")
     )
-    private static void placeLogsAndLeaves(WorldAccess world, BlockBox box, Set<BlockPos> trunkPositions,
-                                           Set<BlockPos> decorationPositions, Set<BlockPos> set,
-                                           CallbackInfoReturnable<VoxelSet> cir) {
-        if (CFSettings.treeTrunkLogicFix)
+    private static void cf$placeLogsAndLeaves(WorldAccess world, BlockBox box, Set<BlockPos> trunkPositions,
+                                              Set<BlockPos> decorationPositions, Set<BlockPos> set,
+                                              CallbackInfoReturnable<VoxelSet> cir) {
+        if (CFSettings.treeTrunkLogicFix) {
             trunkPositions.removeAll(CFSettings.LAST_DIRT.get());
+        }
         CFSettings.LAST_DIRT.get().clear();
     }
 }

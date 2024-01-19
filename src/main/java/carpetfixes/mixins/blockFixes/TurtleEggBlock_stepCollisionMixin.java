@@ -37,7 +37,8 @@ public abstract class TurtleEggBlock_stepCollisionMixin extends Block {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onStepOnCheckCollision(World world, BlockPos pos, BlockState state, Entity entity, CallbackInfo ci) {
+    private void cf$onStepOnCheckCollision(World world, BlockPos pos, BlockState state,
+                                           Entity entity, CallbackInfo ci) {
         if (CFSettings.turtleEggWrongCollisionCheckFix &&
                 !CollisionUtils.isEntityTouchingState(world, pos, entity, state)) {
             super.onSteppedOn(world, pos, state, entity);
@@ -51,7 +52,7 @@ public abstract class TurtleEggBlock_stepCollisionMixin extends Block {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onLandedUponCheckCollision(World world, BlockState state, BlockPos pos,
+    private void cf$onLandedUponCheckCollision(World world, BlockState state, BlockPos pos,
                               Entity entity, float fallDistance, CallbackInfo ci) {
         if (CFSettings.turtleEggWrongCollisionCheckFix &&
                 !CollisionUtils.isEntityTouchingState(world, pos, entity, state)) {

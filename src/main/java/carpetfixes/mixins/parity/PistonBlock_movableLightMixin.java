@@ -28,7 +28,7 @@ public class PistonBlock_movableLightMixin {
                             "getHardness(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)F"
             )
     )
-    private static float movableLight(BlockState state, BlockView view, BlockPos pos) {
+    private static float cf$movableLight(BlockState state, BlockView view, BlockPos pos) {
         return CFSettings.parityMovableLightBlocks && state.isOf(Blocks.LIGHT) ? 0 : state.getHardness(view, pos);
     }
 }

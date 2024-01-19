@@ -33,7 +33,9 @@ public class EndGatewayBlockEntity_updateMixin extends BlockEntity {
                     opcode = Opcodes.PUTFIELD
             )
     )
-    private void onSyncedBlockEvent(int type, int data, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.missingObserverUpdatesFix) Utils.giveObserverUpdates(this.world,this.pos);
+    private void cf$onSyncedBlockEvent(int type, int data, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.missingObserverUpdatesFix) {
+            Utils.giveObserverUpdates(this.world,this.pos);
+        }
     }
 }

@@ -28,9 +28,9 @@ public class TrunkPlacer_logMixin {
                     "Lnet/minecraft/world/gen/feature/TreeFeatureConfig;)V",
             at = @At("HEAD")
     )
-    private static void setToDirtNotTrunk(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer,
-                                          Random random, BlockPos pos, TreeFeatureConfig config,
-                                          CallbackInfo ci) {
+    private static void cf$setToDirtNotTrunk(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer,
+                                             Random random, BlockPos pos, TreeFeatureConfig config,
+                                             CallbackInfo ci) {
         CFSettings.LAST_DIRT.get().add(pos);
     }
 }

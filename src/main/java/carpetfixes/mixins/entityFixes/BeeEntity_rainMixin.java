@@ -27,7 +27,8 @@ public abstract class BeeEntity_rainMixin extends Entity {
     }
 
     @Shadow
-    private @Nullable BlockPos hivePos;
+    @Nullable
+    BlockPos hivePos;
 
 
     @Redirect(
@@ -37,14 +38,17 @@ public abstract class BeeEntity_rainMixin extends Entity {
                     target = "Lnet/minecraft/world/World;isRaining()Z"
             )
     )
-    boolean canEnterHive(World world) {
+    private boolean cf$canEnterHive(World world) {
         if (CFSettings.beesFearRainFix && world.isRaining()) {
-            if (world.hasRain(this.getBlockPos())) return true;
+            if (world.hasRain(this.getBlockPos())) {
+                return true;
+            }
             if (this.hivePos != null) {
                 BlockPos pos = this.hivePos;
                 for (Direction direction : DirectionUtils.horizontal) {
-                    if (world.hasRain(pos.offset(direction)))
+                    if (world.hasRain(pos.offset(direction))) {
                         return true;
+                    }
                 }
             }
             return false;

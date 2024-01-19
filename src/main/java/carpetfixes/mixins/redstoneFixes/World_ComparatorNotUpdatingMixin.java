@@ -37,7 +37,7 @@ public class World_ComparatorNotUpdatingMixin {
                     target = "Lnet/minecraft/block/BlockState;hasComparatorOutput()Z"
             )
     )
-    private boolean updateNeighborsAlwaysWithBetterDirection(BlockState blockState) {
+    private boolean cf$updateNeighborsAlwaysWithBetterDirection(BlockState blockState) {
         return !CFSettings.comparatorUpdateFix && blockState.hasComparatorOutput();
     }
 
@@ -47,12 +47,12 @@ public class World_ComparatorNotUpdatingMixin {
                     "Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At("HEAD")
     )
-    private void updateNeighborsAlwaysWithBetterDirection(BlockPos sourcePos, Block sourceBlock,
-                                                          BlockPos neighborPos, CallbackInfo ci) {
-        if (CFSettings.comparatorUpdateFix) {
-            if(sourceBlock.getDefaultState().hasComparatorOutput() ||
-                    this.getBlockState(sourcePos).hasComparatorOutput())
-                this.updateComparators(sourcePos, sourceBlock);
+    private void cf$updateNeighborsAlwaysWithBetterDirection(BlockPos sourcePos, Block sourceBlock,
+                                                             BlockPos neighborPos, CallbackInfo ci) {
+        if (CFSettings.comparatorUpdateFix &&
+                (sourceBlock.getDefaultState().hasComparatorOutput() ||
+                        this.getBlockState(sourcePos).hasComparatorOutput())) {
+            this.updateComparators(sourcePos, sourceBlock);
         }
     }
 }

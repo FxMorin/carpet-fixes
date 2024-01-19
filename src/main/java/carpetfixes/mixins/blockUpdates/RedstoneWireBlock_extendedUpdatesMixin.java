@@ -25,8 +25,6 @@ public class RedstoneWireBlock_extendedUpdatesMixin {
     @Shadow
     private void update(World world, BlockPos pos, BlockState state) {}
 
-    private final RedstoneWireBlock self = (RedstoneWireBlock)(Object)this;
-
 
     @Inject(
             method = "updateNeighbors(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
@@ -39,9 +37,15 @@ public class RedstoneWireBlock_extendedUpdatesMixin {
             ),
             cancellable = true
     )
-    private void onUpdateExtendedNeighbors(World world, BlockPos pos, CallbackInfo ci) {
+    private void cf$onUpdateExtendedNeighbors(World world, BlockPos pos, CallbackInfo ci) {
         if (CFSettings.useCustomRedstoneUpdates) {
-            BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, false, false);
+            BlockUpdateUtils.doExtendedBlockUpdates(
+                    world,
+                    pos,
+                    (RedstoneWireBlock)(Object)this,
+                    false,
+                    false
+            );
             ci.cancel();
         }
     }
@@ -59,12 +63,19 @@ public class RedstoneWireBlock_extendedUpdatesMixin {
             ),
             cancellable = true
     )
-    private void onStateReplacedExtendedUpdates(BlockState state, World world, BlockPos pos,
-                                                BlockState newState, boolean moved, CallbackInfo ci) {
+    private void cf$onStateReplacedExtendedUpdates(BlockState state, World world, BlockPos pos,
+                                                   BlockState newState, boolean moved, CallbackInfo ci) {
         if (CFSettings.useCustomRedstoneUpdates) {
             if (!world.isClient) {
-                boolean doExtraEarlyUpdate = state.get(RedstoneWireBlock.POWER) > 0 && !newState.isOf(self);
-                BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, doExtraEarlyUpdate, false);
+                boolean doExtraEarlyUpdate = state.get(RedstoneWireBlock.POWER) > 0 &&
+                        !newState.isOf((RedstoneWireBlock)(Object)this);
+                BlockUpdateUtils.doExtendedBlockUpdates(
+                        world,
+                        pos,
+                        (RedstoneWireBlock)(Object)this,
+                        doExtraEarlyUpdate,
+                        false
+                );
                 this.update(world, pos, state);
                 this.updateOffsetNeighbors(world, pos);
             }

@@ -24,8 +24,9 @@ public abstract class FollowParentGoal_movementMixin extends Goal {
             method = "canStart()Z",
             at = @At("RETURN")
     )
-    private void canStart(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.followParentGoalBreaksMovementFix & cir.getReturnValue())
+    private void cf$canStart(CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.followParentGoalBreaksMovementFix & cir.getReturnValue()) {
             this.setControls(EnumSet.of(Control.MOVE));
+        }
     }
 }

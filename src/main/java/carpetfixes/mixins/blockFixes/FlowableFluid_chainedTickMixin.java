@@ -29,10 +29,12 @@ public abstract class FlowableFluid_chainedTickMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void delayNextScheduleTick(BlockView world, BlockPos fluidPos, BlockState fluidBlockState,
-                                       Direction flowDirection, BlockPos flowTo, BlockState flowToBlockState,
-                                       FluidState fluidState, Fluid fluid, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.instantFluidFlowingFix && ((WorldAccess)world).getFluidTickScheduler().isTicking(flowTo, fluid))
+    private void cf$delayNextScheduleTick(BlockView world, BlockPos fluidPos, BlockState fluidBlockState,
+                                          Direction flowDirection, BlockPos flowTo, BlockState flowToBlockState,
+                                          FluidState fluidState, Fluid fluid, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.instantFluidFlowingFix &&
+                ((WorldAccess)world).getFluidTickScheduler().isTicking(flowTo, fluid)) {
             cir.setReturnValue(false);
+        }
     }
 }

@@ -21,7 +21,7 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
                     target = "Lnet/minecraft/block/BlockState;isAir()Z"
             )
     )
-    private static boolean replaceableMaterialPredicate(BlockState state) {
+    private static boolean cf$replaceableMaterialPredicate(BlockState state) {
         return CFSettings.witherGolemSpawningFix ? state.isReplaceable() : state.isAir();
     }
 
@@ -33,7 +33,7 @@ public abstract class CarvedPumpkinBlock_spawningMixin {
                     target = "Lnet/minecraft/block/BlockState;isAir()Z"
             )
     )
-    private static boolean replaceableMaterialPredicateDispenser(BlockState state) {
+    private static boolean cf$replaceableMaterialPredicateDispenser(BlockState state) {
         return CFSettings.witherGolemSpawningFix ? state.isReplaceable() : state.isAir();
     }
 }

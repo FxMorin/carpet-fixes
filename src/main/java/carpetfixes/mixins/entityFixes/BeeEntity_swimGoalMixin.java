@@ -23,7 +23,7 @@ public class BeeEntity_swimGoalMixin {
             method = "mobTick()V",
             constant = @Constant(intValue = 20)
     )
-    protected int mobTick(int constant) {
+    private int cf$mobTick(int constant) {
         return CFSettings.beesSwimInWaterAndDieFix ? 40 : constant;
     }
 
@@ -33,9 +33,10 @@ public class BeeEntity_swimGoalMixin {
             at = @At(
                     value = "NEW",
                     target = "net/minecraft/entity/ai/goal/SwimGoal"
-            )
+            ),
+            require = 0
     )
-    protected SwimGoal initGoals(MobEntity mob) {
+    private SwimGoal cf$initGoals(MobEntity mob) {
         return CFSettings.beesSwimInWaterAndDieFix ? new TouchWaterGoal(mob) : new SwimGoal(mob);
     }
 }

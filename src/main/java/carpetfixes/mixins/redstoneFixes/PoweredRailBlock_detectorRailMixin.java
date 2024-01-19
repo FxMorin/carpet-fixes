@@ -35,9 +35,10 @@ public class PoweredRailBlock_detectorRailMixin {
             ),
             cancellable = true
     )
-    private void isPoweredByOtherRails(World world, BlockPos pos, boolean arg2, int arg3, RailShape arg4,
-                                       CallbackInfoReturnable<Boolean> cir, BlockState blockState) {
-        if (CFSettings.detectorRailsDontPowerDiagonallyFix && blockState.isOf(Blocks.DETECTOR_RAIL))
+    private void cf$isPoweredByOtherRails(World world, BlockPos pos, boolean arg2, int arg3, RailShape arg4,
+                                          CallbackInfoReturnable<Boolean> cir, BlockState blockState) {
+        if (CFSettings.detectorRailsDontPowerDiagonallyFix && blockState.isOf(Blocks.DETECTOR_RAIL)) {
             cir.setReturnValue(blockState.get(POWERED));
+        }
     }
 }

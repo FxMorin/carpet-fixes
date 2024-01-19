@@ -42,7 +42,9 @@ public abstract class MobEntity_deadTargetMixin extends LivingEntity {
                     shift = At.Shift.BEFORE
             )
     )
-    private void removeDeadTarget(CallbackInfo ci) {
-        if (CFSettings.mobsTargetDeadEntitiesFix && this.target != null && target.isDead()) this.setTarget(null);
+    private void cf$removeDeadTarget(CallbackInfo ci) {
+        if (CFSettings.mobsTargetDeadEntitiesFix && this.target != null && target.isDead()) {
+            this.setTarget(null);
+        }
     }
 }

@@ -40,9 +40,9 @@ public class PointedDripstoneBlock_entityChecksMixin extends Block {
             ),
             cancellable = true
     )
-    private void canPlaceDripstone(ItemPlacementContext ctx, CallbackInfoReturnable<BlockState> cir,
-                                   WorldAccess world, BlockPos pos, Direction dir,
-                                   Direction dir2, boolean bl, Thickness thickness) {
+    private void cf$canPlaceDripstone(ItemPlacementContext ctx, CallbackInfoReturnable<BlockState> cir,
+                                      WorldAccess world, BlockPos pos, Direction dir,
+                                      Direction dir2, boolean bl, Thickness thickness) {
         if (CFSettings.dripstoneSkipsEntityCheckFix && thickness.ordinal() < 4) {
             BlockPos moveDir = pos.offset(dir2.getOpposite());
             if (world.getBlockState(moveDir).isOf(Blocks.POINTED_DRIPSTONE)) {
@@ -56,7 +56,9 @@ public class PointedDripstoneBlock_entityChecksMixin extends Block {
                 if (thickness.ordinal() < 3 && world.getBlockState(moveDir).isOf(Blocks.POINTED_DRIPSTONE)) {
                     replaceState = this.getDefaultState().with(VERTICAL_DIRECTION, dir2)
                             .with(THICKNESS, Thickness.values()[thickness.ordinal() + 2]);
-                    if (!world.canPlace(replaceState, moveDir, ShapeContext.absent())) cir.setReturnValue(null);
+                    if (!world.canPlace(replaceState, moveDir, ShapeContext.absent())) {
+                        cir.setReturnValue(null);
+                    }
                 }
             }
         }

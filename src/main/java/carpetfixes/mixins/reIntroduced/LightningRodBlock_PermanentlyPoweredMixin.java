@@ -24,9 +24,11 @@ public class LightningRodBlock_PermanentlyPoweredMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onBlockAdded(BlockState state, World world, BlockPos pos,
-                             BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CFSettings.reIntroduceLightningRodPermanentlyPowered) ci.cancel();
+    private void cf$onBlockAdded(BlockState state, World world, BlockPos pos,
+                                 BlockState oldState, boolean notify, CallbackInfo ci) {
+        if (CFSettings.reIntroduceLightningRodPermanentlyPowered) {
+            ci.cancel();
+        }
     }
 
 
@@ -36,8 +38,10 @@ public class LightningRodBlock_PermanentlyPoweredMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onStateReplaced(BlockState state, World world, BlockPos pos,
-                                BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CFSettings.reIntroduceLightningRodPermanentlyPowered) ci.cancel();
+    private void cf$onStateReplaced(BlockState state, World world, BlockPos pos,
+                                    BlockState oldState, boolean notify, CallbackInfo ci) {
+        if (CFSettings.reIntroduceLightningRodPermanentlyPowered) {
+            ci.cancel();
+        }
     }
 }

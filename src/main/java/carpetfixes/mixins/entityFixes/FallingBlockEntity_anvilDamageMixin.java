@@ -10,6 +10,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -35,7 +36,8 @@ public abstract class FallingBlockEntity_anvilDamageMixin extends Entity {
     }
 
 
-    private Box calculateBoundsForPos(BlockPos pos) {
+    @Unique
+    private Box cf$calculateBoundsForPos(BlockPos pos) {
         EntityDimensions entityDimensions = this.getDimensions(this.getPose());
         float half = entityDimensions.width / 2.0F;
         Vec3d min = new Vec3d(
@@ -60,9 +62,11 @@ public abstract class FallingBlockEntity_anvilDamageMixin extends Entity {
                             "Lnet/minecraft/util/math/Box;Ljava/util/function/Predicate;)Ljava/util/List;"
             )
     )
-    private List<Entity> handleFallDamage(World world, Entity except, Box box, Predicate<? super Entity> predicate) {
-        if (CFSettings.fallingBlockDamageIsOffsetFix)
-            return world.getOtherEntities(except, calculateBoundsForPos(this.getBlockPos()), predicate);
+    private List<Entity> cf$handleFallDamage(World world, Entity except, Box box,
+                                             Predicate<? super Entity> predicate) {
+        if (CFSettings.fallingBlockDamageIsOffsetFix) {
+            return world.getOtherEntities(except, cf$calculateBoundsForPos(this.getBlockPos()), predicate);
+        }
         return world.getOtherEntities(except, box, predicate);
     }
 }

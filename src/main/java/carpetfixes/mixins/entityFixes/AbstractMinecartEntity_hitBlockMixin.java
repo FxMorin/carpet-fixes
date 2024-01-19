@@ -9,6 +9,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -27,7 +28,8 @@ public abstract class AbstractMinecartEntity_hitBlockMixin extends Entity {
     protected abstract boolean willHitBlockAt(BlockPos pos);
 
 
-    private boolean willHitBlockWithDirection(BlockPos pos, Direction dir) {
+    @Unique
+    private boolean cf$willHitBlockWithDirection(BlockPos pos, Direction dir) {
         return this.getWorld().isDirectionSolid(pos, this, dir.getOpposite()) || this.willHitBlockAt(pos);
     }
 
@@ -43,7 +45,7 @@ public abstract class AbstractMinecartEntity_hitBlockMixin extends Entity {
     )
     private boolean getHitBlockWest(AbstractMinecartEntity instance, BlockPos pos) {
         return CFSettings.minecartWontBounceFix ?
-                willHitBlockWithDirection(pos, Direction.WEST) : this.willHitBlockAt(pos);
+                cf$willHitBlockWithDirection(pos, Direction.WEST) : this.willHitBlockAt(pos);
     }
 
 
@@ -58,7 +60,7 @@ public abstract class AbstractMinecartEntity_hitBlockMixin extends Entity {
     )
     private boolean getHitBlockEast(AbstractMinecartEntity instance, BlockPos pos) {
         return CFSettings.minecartWontBounceFix ?
-                willHitBlockWithDirection(pos, Direction.EAST) : this.willHitBlockAt(pos);
+                cf$willHitBlockWithDirection(pos, Direction.EAST) : this.willHitBlockAt(pos);
     }
 
 
@@ -73,7 +75,7 @@ public abstract class AbstractMinecartEntity_hitBlockMixin extends Entity {
     )
     private boolean getHitBlockNorth(AbstractMinecartEntity instance, BlockPos pos) {
         return CFSettings.minecartWontBounceFix ?
-                willHitBlockWithDirection(pos, Direction.NORTH) : this.willHitBlockAt(pos);
+                cf$willHitBlockWithDirection(pos, Direction.NORTH) : this.willHitBlockAt(pos);
     }
 
 
@@ -88,6 +90,6 @@ public abstract class AbstractMinecartEntity_hitBlockMixin extends Entity {
     )
     private boolean getHitBlockSouth(AbstractMinecartEntity instance, BlockPos pos) {
         return CFSettings.minecartWontBounceFix ?
-                willHitBlockWithDirection(pos, Direction.SOUTH) : this.willHitBlockAt(pos);
+                cf$willHitBlockWithDirection(pos, Direction.SOUTH) : this.willHitBlockAt(pos);
     }
 }

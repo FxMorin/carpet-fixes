@@ -33,7 +33,9 @@ public class ViewerCountManager_inventoryMixin {
                     shift = At.Shift.AFTER
             )
     )
-    public void clampViewerCount(PlayerEntity player, World world, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (CFSettings.viewerCountNegativesFix && this.viewerCount < 0) this.viewerCount = 0;
+    private void cf$clampViewerCount(PlayerEntity player, World world, BlockPos pos, BlockState state, CallbackInfo ci) {
+        if (CFSettings.viewerCountNegativesFix && this.viewerCount < 0) {
+            this.viewerCount = 0;
+        }
     }
 }

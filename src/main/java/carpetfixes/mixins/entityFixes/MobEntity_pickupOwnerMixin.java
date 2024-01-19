@@ -22,7 +22,7 @@ public class MobEntity_pickupOwnerMixin {
                     target = "Lnet/minecraft/entity/ItemEntity;isRemoved()Z"
             )
     )
-    private boolean doesItemHaveOwnerTag(ItemEntity instance) {
+    private boolean cf$doesItemHaveOwnerTag(ItemEntity instance) {
         return instance.isRemoved() || CFSettings.mobsIgnoreOwnerOnPickupFix && instance.getOwner() != null;
     }
 }

@@ -28,7 +28,7 @@ public class MusicDiscItem_worldEventMixin {
                             "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/event/GameEvent$Emitter;)V"
             )
     )
-    private void worldEvent(World world, GameEvent gameEvent, BlockPos blockPos, GameEvent.Emitter emitter) {
+    private void cf$worldEvent(World world, GameEvent gameEvent, BlockPos blockPos, GameEvent.Emitter emitter) {
         if (CFSettings.recordWorldEventFix) {
             DelayedWorldEventManager.addDelayedWorldEvent(world, gameEvent, Vec3d.ofCenter(blockPos), emitter);
         } else {

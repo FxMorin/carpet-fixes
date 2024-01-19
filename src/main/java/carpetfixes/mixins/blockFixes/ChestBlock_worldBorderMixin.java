@@ -18,13 +18,13 @@ public class ChestBlock_worldBorderMixin {
 
 
     @Inject(
-            method= "getNeighborChestDirection(Lnet/minecraft/item/ItemPlacementContext;" +
+            method = "getNeighborChestDirection(Lnet/minecraft/item/ItemPlacementContext;" +
                     "Lnet/minecraft/util/math/Direction;)Lnet/minecraft/util/math/Direction;",
-            at=@At("HEAD"),
+            at = @At("HEAD"),
             cancellable = true
     )
-    private void getNeighborChestDirection(ItemPlacementContext ctx, Direction dir,
-                                           CallbackInfoReturnable<Direction> cir) {
+    private void cf$makeSureChestIsWithinWorldBorder(ItemPlacementContext ctx, Direction dir,
+                                                     CallbackInfoReturnable<Direction> cir) {
         if (CFSettings.chestUsablePastWorldBorderFix) {
             BlockPos blockPos = ctx.getBlockPos().offset(dir);
             if (!ctx.getWorld().getWorldBorder().contains(blockPos)) {

@@ -10,6 +10,7 @@ import net.minecraft.world.biome.source.SeedMixer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -41,7 +42,8 @@ public class BiomeAccess_predictionMixin {
         return 0;
     }
 
-    private static final double maxOffset = 0.4500000001D;
+    @Unique
+    private static final double cf$maxOffset = 0.4500000001D;
 
 
     @Inject(
@@ -49,7 +51,7 @@ public class BiomeAccess_predictionMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void optimizedGetBiome(BlockPos pos, CallbackInfoReturnable<RegistryEntry<Biome>> cir) {
+    private void cf$optimizedGetBiome(BlockPos pos, CallbackInfoReturnable<RegistryEntry<Biome>> cir) {
         if (CFSettings.optimizedBiomeAccess) {
             int xMinus2 = pos.getX() - 2;
             int yMinus2 = pos.getY() - 2;
@@ -73,9 +75,11 @@ public class BiomeAccess_predictionMixin {
                 //This code block is new
                 double maxQuartYY = 0.0D, maxQuartZZ = 0.0D;
                 if (biomeX != 0) {
-                    maxQuartYY = MathHelper.square(Math.max(quartYY + maxOffset, Math.abs(quartYY - maxOffset)));
-                    maxQuartZZ = MathHelper.square(Math.max(quartZZ + maxOffset, Math.abs(quartZZ - maxOffset)));
-                    double maxQuartXX = MathHelper.square(Math.max(quartXX + maxOffset,Math.abs(quartXX - maxOffset)));
+                    maxQuartYY = MathHelper.square(Math.max(quartYY + cf$maxOffset, Math.abs(quartYY - cf$maxOffset)));
+                    maxQuartZZ = MathHelper.square(Math.max(quartZZ + cf$maxOffset, Math.abs(quartZZ - cf$maxOffset)));
+                    double maxQuartXX = MathHelper.square(
+                            Math.max(quartXX + cf$maxOffset,Math.abs(quartXX - cf$maxOffset))
+                    );
                     if (smallestDist < maxQuartXX + maxQuartYY + maxQuartZZ) continue;
                 }
 

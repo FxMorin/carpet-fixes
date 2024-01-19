@@ -22,9 +22,10 @@ public class BeeEntity_voidMixin {
             at = @At(
                     value = "NEW",
                     target = "net/minecraft/entity/ai/control/FlightMoveControl"
-            )
+            ),
+            require = 0
     )
-    public FlightMoveControl ModifiedFlightController(MobEntity entity, int maxPitchChange, boolean noGravity) {
+    private FlightMoveControl cf$modifiedFlightController(MobEntity entity, int maxPitchChange, boolean noGravity) {
         return new VoidFlightMoveControl(entity, maxPitchChange, noGravity, () -> CFSettings.beeStuckInVoidFix);
     }
 }

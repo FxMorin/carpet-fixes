@@ -29,9 +29,11 @@ public class ObserverBlock_missingShapeUpdateMixin {
                     shift = At.Shift.AFTER
             )
     )
-    private void observerUpdate(BlockState state, World world, BlockPos pos,
-                                BlockState oldState, boolean notify, CallbackInfo ci) {
+    private void cf$observerUpdate(BlockState state, World world, BlockPos pos,
+                                   BlockState oldState, boolean notify, CallbackInfo ci) {
         // They use FORCE_STATE which now requires a separate shape update call
-        if (CFSettings.observerUpdateFix) state.updateNeighbors(world, pos, Block.NOTIFY_LISTENERS);
+        if (CFSettings.observerUpdateFix) {
+            state.updateNeighbors(world, pos, Block.NOTIFY_LISTENERS);
+        }
     }
 }

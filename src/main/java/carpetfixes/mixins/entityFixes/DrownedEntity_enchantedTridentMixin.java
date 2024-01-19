@@ -36,9 +36,10 @@ public class DrownedEntity_enchantedTridentMixin extends ZombieEntity {
             at = @At(
                     value = "NEW",
                     target = "net/minecraft/item/ItemStack"
-            )
+            ),
+            require = 0
     )
-    private ItemStack createItemStack(ItemConvertible item) {
+    private ItemStack cf$createItemStack(ItemConvertible item) {
         ItemStack trident = new ItemStack(item);
         if (CFSettings.drownedEnchantedTridentsFix) {
             ItemStack holding = this.getActiveItem();

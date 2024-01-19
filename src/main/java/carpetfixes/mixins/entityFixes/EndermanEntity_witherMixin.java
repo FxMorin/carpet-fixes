@@ -29,7 +29,10 @@ public class EndermanEntity_witherMixin {
             ),
             cancellable = true
     )
-    private void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir, boolean bl, int i) {
-        if (CFSettings.endermanPainfulTeleportFix) cir.setReturnValue(bl);
+    private void cf$onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir,
+                             boolean bl, int i) {
+        if (CFSettings.endermanPainfulTeleportFix) {
+            cir.setReturnValue(bl);
+        }
     }
 }

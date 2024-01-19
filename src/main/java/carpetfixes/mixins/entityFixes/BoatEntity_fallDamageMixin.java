@@ -39,8 +39,8 @@ public abstract class BoatEntity_fallDamageMixin extends Entity {
             ),
             cancellable = true
     )
-    private void fall(double heightDifference, boolean onGround, BlockState landedState,
-                      BlockPos landedPosition, CallbackInfo ci) {
+    private void cf$onFall(double heightDifference, boolean onGround, BlockState landedState,
+                           BlockPos landedPosition, CallbackInfo ci) {
         if (CFSettings.boatsTakeFallDamageFix) {
             this.fallDistance = 0.0F;
             ci.cancel();
@@ -56,7 +56,7 @@ public abstract class BoatEntity_fallDamageMixin extends Entity {
                             "Lnet/minecraft/entity/vehicle/BoatEntity$Location;"
             )
     )
-    protected BoatEntity.Location fall(BoatEntity instance) {
+    private BoatEntity.Location cf$onFall(BoatEntity instance) {
         return CFSettings.boatsDontTakeFallDamageFix ? BoatEntity.Location.ON_LAND : this.location;
     }
 }

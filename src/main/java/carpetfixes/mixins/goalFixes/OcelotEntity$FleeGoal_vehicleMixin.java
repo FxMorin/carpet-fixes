@@ -26,8 +26,10 @@ public class OcelotEntity$FleeGoal_vehicleMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void isNotInVehicle1(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.ocelotsAndCatsTryToFleeInVehicleFix && this.ocelot.hasVehicle()) cir.setReturnValue(false);
+    private void cf$isNotInVehicle1(CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.ocelotsAndCatsTryToFleeInVehicleFix && this.ocelot.hasVehicle()) {
+            cir.setReturnValue(false);
+        }
     }
 
 
@@ -36,7 +38,9 @@ public class OcelotEntity$FleeGoal_vehicleMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void isNotInVehicle2(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.ocelotsAndCatsTryToFleeInVehicleFix && this.ocelot.hasVehicle()) cir.setReturnValue(false);
+    private void cf$isNotInVehicle2(CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.ocelotsAndCatsTryToFleeInVehicleFix && this.ocelot.hasVehicle()) {
+            cir.setReturnValue(false);
+        }
     }
 }

@@ -38,7 +38,7 @@ public abstract class EndCrystalEntity_InvulnerableMixin extends Entity {
             method = "tick",
             at = @At("RETURN")
     )
-    private void tick(CallbackInfo ci) {
+    private void cf$onTick(CallbackInfo ci) {
         if (CFSettings.invulnerableEndCrystalFix && this.isInvulnerable() && this.getBeamTarget() != null) {
             ServerWorld serverWorld = (ServerWorld)this.getWorld();
             if (this.getWorld().getRegistryKey() != World.END || serverWorld.getEnderDragonFight() == null ||

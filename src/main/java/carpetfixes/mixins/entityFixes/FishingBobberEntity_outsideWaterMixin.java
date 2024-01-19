@@ -38,7 +38,7 @@ public abstract class FishingBobberEntity_outsideWaterMixin {
                             "Lnet/minecraft/fluid/FluidState;"
             )
     )
-    private FluidState checkAfterBeingSet(World instance, BlockPos pos) {
+    private FluidState cf$checkAfterBeingSet(World instance, BlockPos pos) {
         FluidState state = instance.getFluidState(pos);
         if (CFSettings.fishingOutsideWaterFix && !state.isIn(FluidTags.WATER)) {
             this.state = FishingBobberEntity.State.FLYING;

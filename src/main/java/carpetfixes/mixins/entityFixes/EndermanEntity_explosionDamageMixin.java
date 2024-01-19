@@ -37,12 +37,13 @@ public abstract class EndermanEntity_explosionDamageMixin extends LivingEntity {
             at = @At(value = "HEAD"),
             cancellable = true
     )
-    private void damageFromExplosion(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void cf$damageFromExplosion(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.endermanDontTakeExplosionDamageFix
                 && !source.isIn(DamageTypeTags.IS_PROJECTILE)
                 && !(source.getSource() instanceof PotionEntity)) {
             boolean bl = super.damage(source, amount);
-            if (!this.getWorld().isClient() && !(source.getAttacker() instanceof LivingEntity) && this.random.nextInt(10) != 0) {
+            if (!this.getWorld().isClient() && !(source.getAttacker() instanceof LivingEntity) &&
+                    this.random.nextInt(10) != 0) {
                 this.invokeTeleportRandomly();
             }
             cir.setReturnValue(bl);

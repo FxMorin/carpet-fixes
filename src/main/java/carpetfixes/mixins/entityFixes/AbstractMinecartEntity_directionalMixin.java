@@ -36,10 +36,12 @@ public abstract class AbstractMinecartEntity_directionalMixin extends Entity {
                     ordinal = 0,
                     shift = At.Shift.BEFORE
             ),
+            require = 0,
             cancellable = true
     )
-    private void pushAwayFromCorrectly(Entity entity, CallbackInfo ci) {
-        if (CFSettings.directionalMinecartCollisionFix && isZero(this.getVelocity()) && isZero(entity.getVelocity()))
+    private void cf$pushAwayFromCorrectly(Entity entity, CallbackInfo ci) {
+        if (CFSettings.directionalMinecartCollisionFix && isZero(this.getVelocity()) && isZero(entity.getVelocity())) {
             ci.cancel();
+        }
     }
 }

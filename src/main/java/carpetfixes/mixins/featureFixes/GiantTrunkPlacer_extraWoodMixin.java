@@ -26,6 +26,7 @@ public abstract class GiantTrunkPlacer_extraWoodMixin {
                                    Random random, BlockPos.Mutable mutable,
                                    TreeFeatureConfig treeFeatureConfig, BlockPos blockPos, int i, int j, int k);
 
+
     @Redirect(
             method = "generate(Lnet/minecraft/world/TestableWorld;Ljava/util/function/BiConsumer;" +
                     "Lnet/minecraft/util/math/random/Random;ILnet/minecraft/util/math/BlockPos;" +
@@ -40,10 +41,10 @@ public abstract class GiantTrunkPlacer_extraWoodMixin {
                     ordinal = 1
             )
     )
-    private void addSetLog(GiantTrunkPlacer placer, TestableWorld world, BiConsumer<BlockPos, BlockState> biConsumer,
-                           Random random, BlockPos.Mutable mutable, TreeFeatureConfig config,
-                            BlockPos blockPos, int i, int j, int k) {
-        if (CFSettings.giantTreesHaveExtraLogFix)
+    private void cf$addSetLog(GiantTrunkPlacer placer, TestableWorld world,
+                              BiConsumer<BlockPos, BlockState> biConsumer, Random random, BlockPos.Mutable mutable,
+                              TreeFeatureConfig config, BlockPos blockPos, int i, int j, int k) {
+        if (CFSettings.giantTreesHaveExtraLogFix) {
             this.setLog(
                     world,
                     biConsumer,
@@ -55,6 +56,7 @@ public abstract class GiantTrunkPlacer_extraWoodMixin {
                     j,
                     0
             );
+        }
         this.setLog(
                 world,
                 biConsumer,
@@ -83,10 +85,11 @@ public abstract class GiantTrunkPlacer_extraWoodMixin {
                     ordinal = 0
             )
     )
-    private void dontSetLog(GiantTrunkPlacer placer, TestableWorld world, BiConsumer<BlockPos, BlockState> replace,
-                            Random random, BlockPos.Mutable m, TreeFeatureConfig config,
-                        BlockPos blockPos, int i, int j, int k) {
-        if (!CFSettings.giantTreesHaveExtraLogFix)
+    private void cf$dontSetLog(GiantTrunkPlacer placer, TestableWorld world, BiConsumer<BlockPos, BlockState> replace,
+                               Random random, BlockPos.Mutable m, TreeFeatureConfig config,
+                               BlockPos blockPos, int i, int j, int k) {
+        if (!CFSettings.giantTreesHaveExtraLogFix) {
             this.setLog(world, replace, random, m, config, blockPos, i, j, k);
+        }
     }
 }

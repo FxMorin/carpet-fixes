@@ -39,10 +39,12 @@ public abstract class VillagerEntity_witchBedMixin extends MerchantEntity {
                     shift = At.Shift.BEFORE
             )
     )
-    private void onStruckByLightning(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
+    private void cf$onStruckByLightning(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
         //Sets bed occupied to false
         //As a side note, this also places the villager in a valid spot, right before the witch gets created
         //with the villagers position. So the witch will be placed correctly, which is an unreported bug!
-        if (CFSettings.villagerToWitchBedOccupiedFix && this.isSleeping()) this.wakeUp();
+        if (CFSettings.villagerToWitchBedOccupiedFix && this.isSleeping()) {
+            this.wakeUp();
+        }
     }
 }

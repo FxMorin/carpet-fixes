@@ -42,11 +42,13 @@ public abstract class AbstractRailBlock_missingUpdateAfterPushMixin extends Bloc
             at = @At("HEAD"),
             cancellable = true
     )
-    private void alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
-                                  BlockState oldState, boolean notify, CallbackInfo ci) {
+    private void cf$alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
+                                     BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CFSettings.railMissingUpdateAfterPushFix) {
             if (!oldState.isOf(state.getBlock())) {
-                if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);
+                if ((state.get(this.getShapeProperty())).isAscending()) {
+                    world.updateNeighborsAlways(pos.up(), this);
+                }
                 if (this.forbidCurves) {
                     world.updateNeighborsAlways(pos, this);
                     world.updateNeighborsAlways(pos.down(), this);

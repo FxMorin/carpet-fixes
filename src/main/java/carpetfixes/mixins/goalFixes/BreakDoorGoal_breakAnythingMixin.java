@@ -35,7 +35,7 @@ public abstract class BreakDoorGoal_breakAnythingMixin extends DoorInteractGoal 
                             "isDifficultySufficient(Lnet/minecraft/world/Difficulty;)Z"
             )
     )
-    public boolean mightAlsoWannaCheckTheDoor_ItsNotThatHard(BreakDoorGoal breakDoorGoal, Difficulty difficulty) {
+    private boolean cf$mightAlsoWannaCheckTheDoor_ItsNotThatHard(BreakDoorGoal breakDoorGoal, Difficulty difficulty) {
         return (!breakAnythingDoorGoalFix || DoorBlock.canOpenByHand(this.mob.getWorld(), this.doorPos)) &&
                 isDifficultySufficient(difficulty);
     }

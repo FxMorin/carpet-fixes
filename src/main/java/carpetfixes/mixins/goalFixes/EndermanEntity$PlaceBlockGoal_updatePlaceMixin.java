@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  * will be able to trigger special events such as summoning a wither. How else am I suppose to summon the wither...
  */
 
-@Mixin(targets="net/minecraft/entity/mob/EndermanEntity$PlaceBlockGoal")
+@Mixin(targets = "net/minecraft/entity/mob/EndermanEntity$PlaceBlockGoal")
 public class EndermanEntity$PlaceBlockGoal_updatePlaceMixin {
 
     @Shadow
@@ -32,7 +32,7 @@ public class EndermanEntity$PlaceBlockGoal_updatePlaceMixin {
                             "Lnet/minecraft/block/BlockState;I)Z"
             )
     )
-    public boolean placeCorrectly(World world, BlockPos pos, BlockState state, int flags){
+    private boolean cf$placeCorrectly(World world, BlockPos pos, BlockState state, int flags){
         if (CFSettings.endermanDontUpdateOnPlaceFix) {
             if (world.setBlockState(pos, state, 3)) {
                 state.getBlock().onPlaced(world, pos, state, enderman, state.getBlock().asItem().getDefaultStack());

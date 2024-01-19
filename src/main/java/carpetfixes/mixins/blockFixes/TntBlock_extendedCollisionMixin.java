@@ -27,7 +27,7 @@ public class TntBlock_extendedCollisionMixin {
                     target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"
             )
     )
-    private static boolean adjustVelocityBeforeSpawn(World world, Entity entity) {
+    private static boolean cf$adjustVelocityBeforeSpawn(World world, Entity entity) {
         if (CFSettings.tntExtendedHitboxClipFix) {
             Vec3d velocity = entity.getVelocity();
             entity.setVelocity(velocity.x,0.22649273522,velocity.z); // I personally don't like this fix much

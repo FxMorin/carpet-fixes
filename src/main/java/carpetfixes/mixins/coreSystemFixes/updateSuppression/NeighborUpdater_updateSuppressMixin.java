@@ -24,8 +24,8 @@ public interface NeighborUpdater_updateSuppressMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void catchNeighborUpdates(World world, BlockState state, BlockPos pos, Block sourceBlock,
-                                             BlockPos sourcePos, boolean notify, CallbackInfo ci) {
+    private static void cf$catchNeighborUpdates(World world, BlockState state, BlockPos pos, Block sourceBlock,
+                                                BlockPos sourcePos, boolean notify, CallbackInfo ci) {
         if (CFSettings.updateSuppressionCrashFix) {
             ci.cancel();
             try {

@@ -21,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractRailBlock.class)
 public class AbstractRailBlock_duplicationMixin {
 
+
     @Inject(
             method = "neighborUpdate",
             require = 1,
@@ -32,8 +33,8 @@ public class AbstractRailBlock_duplicationMixin {
             ),
             cancellable = true
     )
-    private void IfRailIsSetCorrectly(BlockState state, World world, BlockPos pos, Block block,
-                                      BlockPos neighborPos, boolean moved, CallbackInfo ci) {
+    private void cf$ifRailIsSetCorrectly(BlockState state, World world, BlockPos pos, Block block,
+                                         BlockPos neighborPos, boolean moved, CallbackInfo ci) {
         if (CFSettings.railDuplicationFix && !(world.getBlockState(pos).getBlock() instanceof AbstractRailBlock)) {
             ci.cancel();
         }

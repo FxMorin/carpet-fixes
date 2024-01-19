@@ -32,7 +32,9 @@ public abstract class PlayerEntity_hungerMixin extends LivingEntity {
             ),
             cancellable = true
     )
-    private void addExhaustion(float exhaustion, CallbackInfo ci) {
-        if (CFSettings.hungerGoesDownInPeacefulFix && this.getWorld().getDifficulty() == Difficulty.PEACEFUL) ci.cancel();
+    private void cf$addExhaustion(float exhaustion, CallbackInfo ci) {
+        if (CFSettings.hungerGoesDownInPeacefulFix && this.getWorld().getDifficulty() == Difficulty.PEACEFUL) {
+            ci.cancel();
+        }
     }
 }

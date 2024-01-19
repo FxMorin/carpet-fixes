@@ -30,12 +30,16 @@ public abstract class WitherSkullEntity_chargedMixin extends ExplosiveProjectile
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        if (CFSettings.blueWitherSkullNotSavedFix && this.isCharged()) nbt.putBoolean("charged", true);
+        if (CFSettings.blueWitherSkullNotSavedFix && this.isCharged()) {
+            nbt.putBoolean("charged", true);
+        }
     }
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        if (CFSettings.blueWitherSkullNotSavedFix) this.setCharged(nbt.getBoolean("charged"));
+        if (CFSettings.blueWitherSkullNotSavedFix) {
+            this.setCharged(nbt.getBoolean("charged"));
+        }
     }
 }

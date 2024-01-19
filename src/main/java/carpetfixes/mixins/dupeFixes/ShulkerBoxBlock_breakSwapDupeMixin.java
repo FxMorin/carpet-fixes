@@ -20,13 +20,16 @@ import java.util.function.Consumer;
 @Mixin(ShulkerBoxBlock.class)
 public class ShulkerBoxBlock_breakSwapDupeMixin {
 
+
     @Inject(
             method = "method_10524",
             at = @At("TAIL"),
             remap = false
     )
-    private static void clearAfterGetDroppedStack(ShulkerBoxBlockEntity shulkerBoxBlockEntity,
-                                                  Consumer lootConsumer, CallbackInfo ci) {
-        if (CFSettings.breakSwapGeneralItemDupeFix) shulkerBoxBlockEntity.clear();
+    private static void cf$clearAfterGetDroppedStack(ShulkerBoxBlockEntity shulkerBoxBlockEntity,
+                                                     Consumer lootConsumer, CallbackInfo ci) {
+        if (CFSettings.breakSwapGeneralItemDupeFix) {
+            shulkerBoxBlockEntity.clear();
+        }
     }
 }

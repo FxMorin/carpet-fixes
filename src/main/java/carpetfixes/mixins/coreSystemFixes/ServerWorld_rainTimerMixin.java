@@ -30,7 +30,7 @@ public abstract class ServerWorld_rainTimerMixin {
                     target = "Lnet/minecraft/server/world/ServerWorld;resetWeather()V"
             )
     )
-    public void onResetWeather(ServerWorld serverWorld) {
+    private void cf$onResetWeather(ServerWorld serverWorld) {
         this.worldProperties.setRainTime(0);
         this.worldProperties.setRaining(false);
         if (!CFSettings.sleepingResetsThunderFix || this.worldProperties.isThundering()) {

@@ -1,17 +1,14 @@
 package carpetfixes.mixins.dupeFixes.saferItemTransfer;
 
 import carpetfixes.CFSettings;
-import net.minecraft.block.BlockState;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.block.DropperBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * A smarter way to write the dropper code so that it doesn't needlessly copy item stacks around.
@@ -21,11 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DropperBlock.class)
 public class DropperBlock_dontCopyMixin {
 
-    private static ItemStack stack = ItemStack.EMPTY;
-
 
     @Redirect(
-            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
+            method = "dispense(Lnet/minecraft/server/world/ServerWorld;" +
+                    "Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
             slice = @Slice(
                     from = @At("HEAD"),
                     to = @At(
@@ -40,14 +36,15 @@ public class DropperBlock_dontCopyMixin {
                     ordinal = 0
             )
     )
-    protected ItemStack shouldCopyFirst(ItemStack itemStack) {
-        stack = itemStack.copy();
-        return CFSettings.saferItemTransfers ? itemStack : stack;
+    private ItemStack cf$shouldCopyFirst(ItemStack itemStack, @Share("stack") LocalRef<ItemStack> stackRef) {
+        stackRef.set(itemStack.copy());
+        return CFSettings.saferItemTransfers ? itemStack : stackRef.get();
     }
 
 
     @Redirect(
-            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
+            method = "dispense(Lnet/minecraft/server/world/ServerWorld;" +
+                    "Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
             slice = @Slice(
                     from = @At(
                             value = "INVOKE",
@@ -60,16 +57,7 @@ public class DropperBlock_dontCopyMixin {
                     target = "Lnet/minecraft/item/ItemStack;copy()Lnet/minecraft/item/ItemStack;"
             )
     )
-    protected ItemStack shouldCopy(ItemStack itemStack) {
-        return CFSettings.saferItemTransfers ? stack : itemStack.copy();
-    }
-
-
-    @Inject(
-            method = "dispense(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V",
-            at = @At("TAIL")
-    )
-    private void removeInstance(ServerWorld world, BlockState state, BlockPos pos, CallbackInfo ci) {
-        stack = ItemStack.EMPTY;
+    private ItemStack cf$shouldCopy(ItemStack itemStack, @Share("stack") LocalRef<ItemStack> stackRef) {
+        return CFSettings.saferItemTransfers ? stackRef.get() : itemStack.copy();
     }
 }

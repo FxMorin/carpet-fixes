@@ -59,7 +59,7 @@ public abstract class PistonBlock_headlessMixin extends FacingBlock {
             ),
             cancellable = true
     )
-    private void stopHeadlessPiston(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
+    private void cf$stopHeadlessPiston(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
         if (CFSettings.headlessPistonFix && state.get(EXTENDED)) {
             Direction direction = state.get(FACING);
             BlockState blockState = world.getBlockState(pos.offset(direction));

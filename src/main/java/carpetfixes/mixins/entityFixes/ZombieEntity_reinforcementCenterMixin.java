@@ -23,7 +23,7 @@ public class ZombieEntity_reinforcementCenterMixin {
                     ordinal = 0
             )
     )
-    private void modifyType(ZombieEntity entity, double x, double y, double z) {
+    private void cf$modifyType(ZombieEntity entity, double x, double y, double z) {
         if (CFSettings.reinforcementsSpawnOffCenteredFix) {
             entity.setPosition(x+.5,y,z+.5);
         } else {

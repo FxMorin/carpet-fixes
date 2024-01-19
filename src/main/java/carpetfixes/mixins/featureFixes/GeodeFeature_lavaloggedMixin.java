@@ -25,7 +25,7 @@ public class GeodeFeature_lavaloggedMixin {
                     target = "Lnet/minecraft/fluid/FluidState;isStill()Z"
             )
     )
-    public boolean isStillAndWater(FluidState state) {
+    private boolean cf$isStillAndWater(FluidState state) {
         return CFSettings.geodeLavalogFix ? state.isEqualAndStill(Fluids.WATER) : state.isStill();
     }
 }

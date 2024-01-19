@@ -25,15 +25,16 @@ public class ServerWorld_spawnPlatformMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void createCustomEndSpawnPlatform(ServerWorld world, CallbackInfo ci) {
+    private static void cf$createCustomEndSpawnPlatform(ServerWorld world, CallbackInfo ci) {
         if (CFSettings.obsidianPlatformDestroysBlocksFix) {
             BlockPos blockPos = END_SPAWN_POS;
             int x = blockPos.getX();
             int y = blockPos.getY() - 2;
             int z = blockPos.getZ();
             BlockPos.iterate(x - 2, y + 1, z - 2, x + 2, y + 3, z + 2).forEach(pos -> {
-                if (world.getBlockState(pos).isOf(Blocks.END_STONE))
+                if (world.getBlockState(pos).isOf(Blocks.END_STONE)) {
                     world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                }
             });
             BlockPos.iterate(x - 2, y, z - 2, x + 2, y, z + 2).forEach(pos ->
                     world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState())

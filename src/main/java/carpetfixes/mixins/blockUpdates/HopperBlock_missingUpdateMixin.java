@@ -34,9 +34,13 @@ public class HopperBlock_missingUpdateMixin extends Block {
             ),
             index = 2
     )
-    protected int hopperUpdate(int value) {
-        if (CFSettings.hopperUpdateFix) return value | Block.NOTIFY_NEIGHBORS;
-        if (CFSettings.invisibleHopperFix) return (value & ~Block.NO_REDRAW) | Block.NOTIFY_LISTENERS;
+    private int cf$hopperUpdate(int value) {
+        if (CFSettings.hopperUpdateFix) {
+            return value | Block.NOTIFY_NEIGHBORS;
+        }
+        if (CFSettings.invisibleHopperFix) {
+            return (value & ~Block.NO_REDRAW) | Block.NOTIFY_LISTENERS;
+        }
         return value;
     }
 }

@@ -27,8 +27,10 @@ public class SitGoal_goalLoopMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void properShouldContinue(CallbackInfoReturnable<Boolean> cir) {
-        if (!CFSettings.sitGoalAlwaysResettingFix) return;
+    private void cf$properShouldContinue(CallbackInfoReturnable<Boolean> cir) {
+        if (!CFSettings.sitGoalAlwaysResettingFix) {
+            return;
+        }
         if (!this.tameable.isTamed() || this.tameable.isInsideWaterOrBubbleColumn() || !this.tameable.isOnGround()) {
             cir.setReturnValue(false);
         } else if (this.tameable.getOwner() == null) {

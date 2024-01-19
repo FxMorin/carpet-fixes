@@ -30,7 +30,9 @@ public abstract class PersistentProjectileEntity_velocityMixin extends Entity {
                     target = "Lnet/minecraft/entity/projectile/PersistentProjectileEntity;age()V"
             )
     )
-    private void removeVelocity(CallbackInfo ci) {
-        if (CFSettings.projectileKeepsVelocityFix) this.setVelocity(Vec3d.ZERO);
+    private void cf$removeVelocity(CallbackInfo ci) {
+        if (CFSettings.projectileKeepsVelocityFix) {
+            this.setVelocity(Vec3d.ZERO);
+        }
     }
 }

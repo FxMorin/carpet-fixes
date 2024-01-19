@@ -32,7 +32,7 @@ abstract public class AbstractRedstoneGateBlock_repeaterPriorityMixin extends Ho
                     ordinal = 1
             )
     )
-    private <T extends Comparable<T>> T onIsTargetNotAligned(BlockState blockState, Property<T> property) {
+    private <T extends Comparable<T>> T cf$onIsTargetNotAligned(BlockState blockState, Property<T> property) {
         return (CFSettings.repeaterPriorityFix) ?
                 (T) blockState.get(FACING).getOpposite() :
                 (T) blockState.get(FACING);

@@ -21,7 +21,7 @@ public class BeehiveBlockEntity_stuckMixin {
                     target = "Lnet/minecraft/world/World;isRaining()Z"
             )
     )
-    private static boolean isRainingBetter(World world) {
+    private static boolean cf$isRainingBetter(World world) {
         return CFSettings.beeNotLeavingHiveFix ?
                 !world.getDimension().hasFixedTime() && world.getDimension().hasSkyLight() && world.isRaining() :
                 world.isRaining();

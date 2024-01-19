@@ -20,12 +20,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CatSpawner.class)
 public class CatSpawner_incorrectCatMixin {
 
+
     @Inject(
             method = "spawn(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/server/world/ServerWorld;)I",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void spawn(BlockPos pos, ServerWorld world, CallbackInfoReturnable<Integer> cir) {
+    private void cf$onSpawn(BlockPos pos, ServerWorld world, CallbackInfoReturnable<Integer> cir) {
         if (CFSettings.witchHutsSpawnIncorrectCatFix) {
             CatEntity catEntity = EntityType.CAT.create(world);
             if (catEntity != null) {

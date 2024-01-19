@@ -25,8 +25,6 @@ public abstract class LeashKnotEntity_detachMixin extends Entity implements Leas
         super(type, world);
     }
 
-    private final LeashKnotEntity self = (LeashKnotEntity)(Object)this;
-
 
     @Override
     public void onDetachLeash(MobEntity caller) {
@@ -37,13 +35,17 @@ public abstract class LeashKnotEntity_detachMixin extends Entity implements Leas
                 );
         boolean shouldDestroy = true;
         for(MobEntity mobEntity : list) {
-            if (mobEntity == caller) continue;
+            if (mobEntity == caller) {
+                continue;
+            }
             Entity holdingEntity = ((MobEntityAccessor)mobEntity).getHoldingEntity();
-            if (holdingEntity != null && holdingEntity == self) {
+            if (holdingEntity != null && holdingEntity == this) {
                 shouldDestroy = false;
                 break;
             }
         }
-        if (shouldDestroy) self.kill();
+        if (shouldDestroy) {
+            this.kill();
+        }
     }
 }

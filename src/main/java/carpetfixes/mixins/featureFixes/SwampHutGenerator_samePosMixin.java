@@ -31,7 +31,7 @@ public abstract class SwampHutGenerator_samePosMixin extends ShiftableStructureP
                             "offsetPos(III)Lnet/minecraft/util/math/BlockPos$Mutable;"
             )
     )
-    private BlockPos.Mutable spawnCatOffset(SwampHutGenerator instance, int x, int y, int z) {
+    private BlockPos.Mutable cf$spawnCatOffset(SwampHutGenerator instance, int x, int y, int z) {
         return this.offsetPos(x + (CFSettings.witchAndCatSpawnMergedFix ? 1 : 0), y, z);
     }
 }

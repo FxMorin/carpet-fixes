@@ -33,9 +33,10 @@ public abstract class EndermanEntity_vehicleMixin extends LivingEntity {
             ),
             cancellable = true
     )
-    private void damageIfNotRidingInStyle(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.endermanAvoidProjectilesInVehicleFix && this.hasVehicle())
+    private void cf$damageIfNotRidingInStyle(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.endermanAvoidProjectilesInVehicleFix && this.hasVehicle()) {
             cir.setReturnValue(super.damage(source, amount));
+        }
     }
 
 
@@ -49,8 +50,9 @@ public abstract class EndermanEntity_vehicleMixin extends LivingEntity {
             ),
             cancellable = true
     )
-    private void skipTeleportWhenRiding(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.endermanAvoidProjectilesInVehicleFix && this.hasVehicle())
+    private void cf$skipTeleportWhenRiding(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.endermanAvoidProjectilesInVehicleFix && this.hasVehicle()) {
             cir.setReturnValue(super.damage(source, amount));
+        }
     }
 }

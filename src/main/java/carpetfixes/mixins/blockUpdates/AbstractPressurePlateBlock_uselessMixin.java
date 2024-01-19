@@ -17,18 +17,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractPressurePlateBlock.class)
 public class AbstractPressurePlateBlock_uselessMixin {
 
-    AbstractPressurePlateBlock self = (AbstractPressurePlateBlock)(Object)this;
-
 
     @Inject(
             method = "updateNeighbors(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void updateNeighbors(World world, BlockPos pos, CallbackInfo ci) {
+    private void cf$updateNeighbors(World world, BlockPos pos, CallbackInfo ci) {
         if (CFSettings.uselessSelfBlockUpdateFix) {
-            world.updateNeighborsAlways(pos, self);
-            world.updateNeighborsExcept(pos.down(),self, Direction.UP);
+            world.updateNeighborsAlways(pos, (AbstractPressurePlateBlock)(Object)this);
+            world.updateNeighborsExcept(pos.down(), (AbstractPressurePlateBlock)(Object)this, Direction.UP);
             ci.cancel();
         }
     }

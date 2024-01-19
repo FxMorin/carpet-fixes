@@ -19,13 +19,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(targets = "net/minecraft/world/gen/densityfunction/DensityFunctionTypes$EndIslands")
 public class DensityFunctionTypes$EndIslands_voidRingsMixin {
 
+
     @Inject(
             method = "sample(Lnet/minecraft/util/math/noise/SimplexNoiseSampler;II)F",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void getModifiedNoiseAt(SimplexNoiseSampler simplexNoiseSampler,
-                                           int x, int z, CallbackInfoReturnable<Float> cir) {
+    private static void cf$getModifiedNoiseAt(SimplexNoiseSampler simplexNoiseSampler,
+                                              int x, int z, CallbackInfoReturnable<Float> cir) {
         if (CFSettings.endVoidRingsFix) {
             int chunkX = x / 2, chunkZ = z / 2, chunkSectionX = x % 2, chunkSectionZ = z % 2;
             float noiseShift = (MathHelper.abs(chunkX) < 200 && MathHelper.abs(chunkZ) < 200) ?

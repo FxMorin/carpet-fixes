@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.brain.MemoryModuleState;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.passive.FrogBrain;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
@@ -21,17 +22,20 @@ import java.util.Set;
 @Mixin(FrogBrain.class)
 public class FrogBrain_frictionMixin {
 
-    private static final Set<Pair<MemoryModuleType<?>, MemoryModuleState>> idleFrogRequiredMemories = ImmutableSet.of(
+    @Unique
+    private static final Set<Pair<MemoryModuleType<?>, MemoryModuleState>> cf$idleFrogRequiredMemories = ImmutableSet.of(
             Pair.of(MemoryModuleType.LONG_JUMP_COOLING_DOWN, MemoryModuleState.VALUE_PRESENT),
             Pair.of(MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_ABSENT)
     );
 
-    private static final Set<Pair<MemoryModuleType<?>, MemoryModuleState>> swimFrogRequiredMemories = ImmutableSet.of(
+    @Unique
+    private static final Set<Pair<MemoryModuleType<?>, MemoryModuleState>> cf$swimFrogRequiredMemories = ImmutableSet.of(
             Pair.of(MemoryModuleType.LONG_JUMP_COOLING_DOWN, MemoryModuleState.VALUE_PRESENT),
             Pair.of(MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_PRESENT)
     );
 
-    private static final Set<Pair<MemoryModuleType<?>, MemoryModuleState>> layFrogRequiredMemories = ImmutableSet.of(
+    @Unique
+    private static final Set<Pair<MemoryModuleType<?>, MemoryModuleState>> cf$layFrogRequiredMemories = ImmutableSet.of(
             Pair.of(MemoryModuleType.LONG_JUMP_COOLING_DOWN, MemoryModuleState.VALUE_PRESENT),
             Pair.of(MemoryModuleType.IS_PREGNANT, MemoryModuleState.VALUE_PRESENT)
     );
@@ -47,10 +51,10 @@ public class FrogBrain_frictionMixin {
             ),
             index = 2
     )
-    private static Set<Pair<MemoryModuleType<?>, MemoryModuleState>> modifyRequiredIdleActivities(
+    private static Set<Pair<MemoryModuleType<?>, MemoryModuleState>> cf$modifyRequiredIdleActivities(
             Set<Pair<MemoryModuleType<?>, MemoryModuleState>> requiredMemories
     ) {
-        return CFSettings.frictionlessEntitiesFix ? idleFrogRequiredMemories : requiredMemories;
+        return CFSettings.frictionlessEntitiesFix ? cf$idleFrogRequiredMemories : requiredMemories;
     }
 
 
@@ -64,10 +68,10 @@ public class FrogBrain_frictionMixin {
             ),
             index = 2
     )
-    private static Set<Pair<MemoryModuleType<?>, MemoryModuleState>> modifyRequiredSwimActivities(
+    private static Set<Pair<MemoryModuleType<?>, MemoryModuleState>> cf$modifyRequiredSwimActivities(
             Set<Pair<MemoryModuleType<?>, MemoryModuleState>> requiredMemories
     ) {
-        return CFSettings.frictionlessEntitiesFix ? swimFrogRequiredMemories : requiredMemories;
+        return CFSettings.frictionlessEntitiesFix ? cf$swimFrogRequiredMemories : requiredMemories;
     }
 
 
@@ -81,9 +85,9 @@ public class FrogBrain_frictionMixin {
             ),
             index = 2
     )
-    private static Set<Pair<MemoryModuleType<?>, MemoryModuleState>> modifyRequiredLaySpawnActivities(
+    private static Set<Pair<MemoryModuleType<?>, MemoryModuleState>> cf$modifyRequiredLaySpawnActivities(
             Set<Pair<MemoryModuleType<?>, MemoryModuleState>> requiredMemories
     ) {
-        return CFSettings.frictionlessEntitiesFix ? layFrogRequiredMemories : requiredMemories;
+        return CFSettings.frictionlessEntitiesFix ? cf$layFrogRequiredMemories : requiredMemories;
     }
 }

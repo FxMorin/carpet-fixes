@@ -24,7 +24,7 @@ import static net.minecraft.block.entity.BeaconBlockEntity.playSound;
 public abstract class BeaconBlockEntity_soundMixin extends BlockEntity {
 
     @Shadow
-    private List<BeaconBlockEntity.BeamSegment> beamSegments;
+    List<BeaconBlockEntity.BeamSegment> beamSegments;
 
     public BeaconBlockEntity_soundMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -36,9 +36,11 @@ public abstract class BeaconBlockEntity_soundMixin extends BlockEntity {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void markRemoved(CallbackInfo ci) {
+    private void cf$markRemoved(CallbackInfo ci) {
         if (CFSettings.beaconsAlwaysPlaySoundOnBreakFix) {
-            if (!this.beamSegments.isEmpty()) playSound(this.world, this.pos, SoundEvents.BLOCK_BEACON_DEACTIVATE);
+            if (!this.beamSegments.isEmpty()) {
+                playSound(this.world, this.pos, SoundEvents.BLOCK_BEACON_DEACTIVATE);
+            }
             super.markRemoved();
             ci.cancel();
         }

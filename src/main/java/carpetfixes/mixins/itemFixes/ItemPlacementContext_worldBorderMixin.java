@@ -22,8 +22,6 @@ public abstract class ItemPlacementContext_worldBorderMixin extends ItemUsageCon
     @Shadow
     protected boolean canReplaceExisting;
 
-    private final ItemPlacementContext self = (ItemPlacementContext) (Object) this;
-
     public ItemPlacementContext_worldBorderMixin(PlayerEntity player, Hand hand, BlockHitResult hit) {
         super(player, hand, hit);
     }
@@ -34,12 +32,13 @@ public abstract class ItemPlacementContext_worldBorderMixin extends ItemUsageCon
             at = @At("HEAD"),
             cancellable = true
     )
-    private void canPlace(CallbackInfoReturnable<Boolean> cir) {
+    private void cf$canPlace(CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.placeBlocksOutsideWorldBorderFix) {
             cir.setReturnValue(
                     this.getWorld().getWorldBorder().contains(this.getBlockPos()) && (
                                     this.canReplaceExisting ||
-                                    this.getWorld().getBlockState(this.getBlockPos()).canReplace(self)
+                                    this.getWorld().getBlockState(this.getBlockPos())
+                                            .canReplace((ItemPlacementContext) (Object) this)
                     )
             );
         }

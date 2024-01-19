@@ -18,8 +18,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(MooshroomEntity.class)
 public abstract class MooshroomEntity_conversionMixin {
 
-    private final CowEntity self = (CowEntity)(Object)this;
-
 
     @Redirect(
             method = "sheared(Lnet/minecraft/sound/SoundCategory;)V",
@@ -29,8 +27,9 @@ public abstract class MooshroomEntity_conversionMixin {
                 ordinal = 0
             )
     )
-    public boolean ConversionFix(World world, Entity cowEntity) {
+    private boolean cf$conversionFix(World world, Entity cowEntity) {
         if (CFSettings.conversionFix && cowEntity instanceof CowEntity) {
+            CowEntity self = (CowEntity)(Object)this;
             cowEntity.setVelocity(self.getVelocity()); //Motion
             cowEntity.setNoGravity(self.hasNoGravity()); //noGravity
             cowEntity.setFireTicks(self.getFireTicks()); //Fire

@@ -32,7 +32,9 @@ public abstract class MobEntity_portalGeneralItemMixin extends LivingEntity {
             ),
             cancellable = true
     )
-    private void reEnableGeneralItemDupe(CallbackInfo ci) {
-        if (CFSettings.reIntroducePortalGeneralItemDupe) ci.cancel();
+    private void cf$reEnableGeneralItemDupe(CallbackInfo ci) {
+        if (CFSettings.reIntroducePortalGeneralItemDupe) {
+            ci.cancel();
+        }
     }
 }

@@ -42,8 +42,8 @@ public class ZombieVillagerEntity_offlinePlayerMixin {
                     shift = At.Shift.AFTER
             )
     )
-    private void allowHandlingWithoutPlayer(ServerWorld world, CallbackInfo ci, VillagerEntity villagerEntity,
-                                            EquipmentSlot var3[], int var4, int var5) {
+    private void cf$allowHandlingWithoutPlayer(ServerWorld world, CallbackInfo ci, VillagerEntity villagerEntity,
+                                               EquipmentSlot var3[], int var4, int var5) {
         if (CFSettings.villagerDiscountIgnoresOfflinePlayersFix) {
             ((VillagerEntityInteraction)villagerEntity).onInteractionWith(
                     EntityInteraction.ZOMBIE_VILLAGER_CURED,
@@ -62,9 +62,10 @@ public class ZombieVillagerEntity_offlinePlayerMixin {
                             "Lnet/minecraft/entity/InteractionObserver;)V"
             )
     )
-    private void dontHandleInteraction(ServerWorld instance, EntityInteraction interaction,
-                                       Entity entity, InteractionObserver observer) {
-        if (!CFSettings.villagerDiscountIgnoresOfflinePlayersFix)
+    private void cf$dontHandleInteraction(ServerWorld instance, EntityInteraction interaction,
+                                          Entity entity, InteractionObserver observer) {
+        if (!CFSettings.villagerDiscountIgnoresOfflinePlayersFix) {
             instance.handleInteraction(interaction, entity, observer);
+        }
     }
 }

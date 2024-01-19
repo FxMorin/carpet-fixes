@@ -28,7 +28,7 @@ public class IceBlock_breakMixin {
                             "Lnet/minecraft/block/BlockState;"
             )
     )
-    private BlockState getBlockStateModify(World world, BlockPos pos) {
+    private BlockState cf$getBlockStateModify(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
         return CFSettings.iceWaterSkipsWaterloggedFix && state.getFluidState().isStill() ?
                 Blocks.WATER.getDefaultState() : state;

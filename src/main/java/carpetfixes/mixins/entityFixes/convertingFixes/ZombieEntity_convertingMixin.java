@@ -34,7 +34,7 @@ public abstract class ZombieEntity_convertingMixin extends HostileEntity {
             at = @At("RETURN"),
             cancellable = true
     )
-    private void isConverting(CallbackInfoReturnable<Boolean> cir) {
+    private void cf$isConverting(CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.mobsConvertingWithoutBlocksFix) {
             cir.setReturnValue(
                     cir.getReturnValue() && this.canConvertInWater() && this.isSubmergedIn(FluidTags.WATER)

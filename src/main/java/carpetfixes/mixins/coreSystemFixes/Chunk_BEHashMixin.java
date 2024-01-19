@@ -49,9 +49,9 @@ public class Chunk_BEHashMixin {
             method = "<init>",
             at = @At("RETURN")
     )
-    private void reloadNewHashMap(ChunkPos pos, UpgradeData upgradeData, HeightLimitView heightLimitView,
-                                  Registry<Biome> biome, long inhabitedTime, ChunkSection[] sectionArrayInitializer,
-                                  BlendingData blendingData, CallbackInfo ci) {
+    private void cf$reloadNewHashMap(ChunkPos pos, UpgradeData upgradeData, HeightLimitView heightLimitView,
+                                     Registry<Biome> biome, long inhabitedTime, ChunkSection[] sectionArrayInitializer,
+                                     BlendingData blendingData, CallbackInfo ci) {
         if (CFSettings.reloadUpdateOrderFix) {
             blockEntityNbts = new LinkedHashMap<>();
             blockEntities = new LinkedHashMap<>();
@@ -64,7 +64,7 @@ public class Chunk_BEHashMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void getBlockEntityPositions(CallbackInfoReturnable<Set<BlockPos>> cir) {
+    private void cf$getBlockEntityPositions(CallbackInfoReturnable<Set<BlockPos>> cir) {
         if (CFSettings.reloadUpdateOrderFix) { //Use a Linked Hash Set instead of just a HashSet
             Set<BlockPos> set = new LinkedHashSet<>(this.blockEntityNbts.keySet());
             set.addAll(this.blockEntities.keySet());

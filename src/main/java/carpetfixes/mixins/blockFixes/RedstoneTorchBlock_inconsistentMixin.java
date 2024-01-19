@@ -43,7 +43,7 @@ public class RedstoneTorchBlock_inconsistentMixin {
             ),
             cancellable = true
     )
-    private void onScheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random r, CallbackInfo ci) {
+    private void cf$onScheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random r, CallbackInfo ci) {
         if (CFSettings.inconsistentRedstoneTorchFix) {
             if (isBurnedOut(world, pos, true)) {
                 world.syncWorldEvent(1502, pos, 0);

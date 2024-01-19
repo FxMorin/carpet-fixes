@@ -23,8 +23,10 @@ public class StatusEffectInstance_nbtSuffixMixin {
             ),
             index = 1
     )
-    private static int incorrectNbtCheck(int value) {
-        if (value == 1) return CFSettings.incorrectNbtChecks ? 99 : 1;
+    private static int cf$incorrectNbtCheck(int value) {
+        if (value == 1) {
+            return CFSettings.incorrectNbtChecks ? 99 : 1;
+        }
         return value;
     }
 }

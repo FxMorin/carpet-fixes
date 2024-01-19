@@ -53,11 +53,13 @@ public abstract class ServerPlayerEntity_dimensionStatusMixin extends PlayerEnti
                     shift = At.Shift.AFTER
             )
     )
-    private void tpToWorld(ServerWorld world, double x, double y, double z, float yaw, float pitch, CallbackInfo ci) {
+    private void cf$tpToWorld(ServerWorld world, double x, double y, double z,
+                              float yaw, float pitch, CallbackInfo ci) {
         if (CFSettings.crossDimensionTeleportLosesStatsFix) {
             this.networkHandler.sendPacket(new PlayerAbilitiesS2CPacket(this.getAbilities()));
-            for(StatusEffectInstance effect : this.getStatusEffects())
+            for(StatusEffectInstance effect : this.getStatusEffects()) {
                 this.networkHandler.sendPacket(new EntityStatusEffectS2CPacket(this.getId(), effect));
+            }
             this.syncedExperience = -1;
             this.syncedHealth = -1.0F;
             this.syncedFoodLevel = -1;

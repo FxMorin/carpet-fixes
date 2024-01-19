@@ -25,8 +25,9 @@ public class TallSeagrassBlock_waterMixin extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
                                                 WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (CFSettings.tallGrassWaterWontSpreadFix)
+        if (CFSettings.tallGrassWaterWontSpreadFix) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 }

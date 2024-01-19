@@ -4,7 +4,6 @@ import carpetfixes.CFSettings;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.world.chunk.ArrayPalette;
 import net.minecraft.world.chunk.Palette;
-import net.minecraft.world.chunk.PaletteResizeListener;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,16 +34,15 @@ public class ArrayPalette_dataCorruptionMixin<T> {
     @Shadow
     private int size;
 
-    private final PaletteResizeListener<T> dummyListener = (newSize, added) -> 0;
-
 
     @Inject(
             method = "copy",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void copyWithoutListener(CallbackInfoReturnable<Palette<T>> cir) {
-        if (CFSettings.paletteCopyDataCorruptionFix)
-            cir.setReturnValue(new ArrayPalette<>(idList, array.clone(), dummyListener, indexBits, size));
+    private void cf$copyWithoutListener(CallbackInfoReturnable<Palette<T>> cir) {
+        if (CFSettings.paletteCopyDataCorruptionFix) {
+            cir.setReturnValue(new ArrayPalette<>(idList, array.clone(), (newSize, added) -> 0, indexBits, size));
+        }
     }
 }

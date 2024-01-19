@@ -34,9 +34,10 @@ public class CakeBlock_eatSideMixin {
             ),
             cancellable = true
     )
-    private void onUseFromSpecificSide(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                                       Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        if (CFSettings.eatCakeFromAllSidesFix && hit.getSide() != Direction.WEST)
+    private void cf$onUseFromSpecificSide(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                                          Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+        if (CFSettings.eatCakeFromAllSidesFix && hit.getSide() != Direction.WEST) {
             cir.setReturnValue(ActionResult.PASS);
+        }
     }
 }

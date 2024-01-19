@@ -28,8 +28,9 @@ public class PistonBlock_worldBorderMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void customWorldBorderCheck(BlockState state, World world, BlockPos pos, Direction dir, boolean b,
-                                               Direction pistonDir, CallbackInfoReturnable<Boolean> cir) {
+    private static void cf$customWorldBorderCheck(BlockState state, World world, BlockPos pos, Direction dir,
+                                                  boolean b, Direction pistonDir,
+                                                  CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.incorrectPistonWorldBorderCheckFix && !world.getWorldBorder().contains(pos.offset(dir))) {
             cir.setReturnValue(false);
         }
@@ -45,7 +46,7 @@ public class PistonBlock_worldBorderMixin {
                     target = "Lnet/minecraft/world/border/WorldBorder;contains(Lnet/minecraft/util/math/BlockPos;)Z"
             )
     )
-    private static boolean customWorldBorderCheck(WorldBorder instance, BlockPos pos) {
+    private static boolean cf$customWorldBorderCheck(WorldBorder instance, BlockPos pos) {
         return CFSettings.incorrectPistonWorldBorderCheckFix || instance.contains(pos);
     }
 }

@@ -21,12 +21,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Explosion.class)
 public class Explosion_exposureMixin {
 
+
     @Inject(
             method = "getExposure(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/entity/Entity;)F",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void getExposure(Vec3d source, Entity entity, CallbackInfoReturnable<Float> cir) {
+    private static void cf$getExposure(Vec3d source, Entity entity, CallbackInfoReturnable<Float> cir) {
         if (CFSettings.incorrectExplosionExposureFix) {
             Box box = entity.getBoundingBox();
             double d = 1.0 / ((box.maxX - box.minX) * 2.0 + 1.0);
@@ -51,7 +52,9 @@ public class Explosion_exposureMixin {
                                             RaycastContext.FluidHandling.NONE,
                                             entity
                                     )
-                            ).getType() == HitResult.Type.MISS) ++i;
+                            ).getType() == HitResult.Type.MISS) {
+                                ++i;
+                            }
                             ++j;
                         }
                     }

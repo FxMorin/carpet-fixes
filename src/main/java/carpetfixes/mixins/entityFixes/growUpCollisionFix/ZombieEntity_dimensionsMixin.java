@@ -33,7 +33,7 @@ public abstract class ZombieEntity_dimensionsMixin extends Entity {
             ),
             cancellable = true
     )
-    private void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
+    private void cf$calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
         if (CFSettings.entityGrowingUpCollisionClippingFix) {
             ((ExtendedEntity)this).calculateDimensionsWithoutHeight();
             super.onTrackedDataSet(data);

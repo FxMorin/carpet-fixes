@@ -21,8 +21,8 @@ public class PlayerManager_endPortalEffectsMixin {
             method = "respawnPlayer",
             at = @At("RETURN")
     )
-    private void respawnPlayer(ServerPlayerEntity player, boolean alive,
-                               CallbackInfoReturnable<ServerPlayerEntity> cir) {
+    private void cf$onRespawnPlayer(ServerPlayerEntity player, boolean alive,
+                                    CallbackInfoReturnable<ServerPlayerEntity> cir) {
         if (alive && CFSettings.endPortalRemovesEffectsFix) {
             ServerPlayerEntity newPlayer = cir.getReturnValue();
             newPlayer.activeStatusEffects.forEach((key,effect) ->

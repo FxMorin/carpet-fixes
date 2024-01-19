@@ -21,8 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ButtonBlock.class)
 public abstract class ButtonBlock_updateMixin extends WallMountedBlock {
 
-    ButtonBlock self = (ButtonBlock)(Object)this;
-
     protected ButtonBlock_updateMixin(Settings settings) {
         super(settings);
     }
@@ -37,7 +35,7 @@ public abstract class ButtonBlock_updateMixin extends WallMountedBlock {
             ),
             index = 2
     )
-    private int modifyProjectileUpdate(int val) {
+    private int cf$modifyProjectileUpdate(int val) {
         return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
@@ -51,7 +49,7 @@ public abstract class ButtonBlock_updateMixin extends WallMountedBlock {
             ),
             index = 2
     )
-    private int modifyPowerUpdate(int val) {
+    private int cf$modifyPowerUpdate(int val) {
         return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
@@ -62,11 +60,11 @@ public abstract class ButtonBlock_updateMixin extends WallMountedBlock {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void updateNeighborsBetter(BlockState state, World world, BlockPos pos, CallbackInfo ci) {
+    private void cf$updateNeighborsBetter(BlockState state, World world, BlockPos pos, CallbackInfo ci) {
         if (CFSettings.duplicateBlockUpdatesFix) {
-            world.updateNeighborsAlways(pos, self);
+            world.updateNeighborsAlways(pos, (ButtonBlock)(Object)this);
             Direction dir = getDirection(state);
-            world.updateNeighborsExcept(pos.offset(dir.getOpposite()), self, dir);
+            world.updateNeighborsExcept(pos.offset(dir.getOpposite()), (ButtonBlock)(Object)this, dir);
             ci.cancel();
         }
     }

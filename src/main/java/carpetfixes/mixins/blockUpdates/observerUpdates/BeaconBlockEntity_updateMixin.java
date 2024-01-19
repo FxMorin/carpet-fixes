@@ -31,9 +31,8 @@ public class BeaconBlockEntity_updateMixin extends BlockEntity {
         if (type == 1) { // Custom SyncedBlockEvent
             Utils.giveObserverUpdates(this.world,this.pos);
             return true;
-        } else {
-            return super.onSyncedBlockEvent(type, data);
         }
+        return super.onSyncedBlockEvent(type, data);
     }
 
 
@@ -52,8 +51,10 @@ public class BeaconBlockEntity_updateMixin extends BlockEntity {
                             "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/sound/SoundEvent;)V"
             )
     )
-    private static void onBeaconPowerChange(World world, BlockPos pos, BlockState state,
-                                            BeaconBlockEntity blockEntity, CallbackInfo ci) {
-        if (CFSettings.missingObserverUpdatesFix) world.addSyncedBlockEvent(pos, state.getBlock(), 1, 0);
+    private static void cf$onBeaconPowerChange(World world, BlockPos pos, BlockState state,
+                                               BeaconBlockEntity blockEntity, CallbackInfo ci) {
+        if (CFSettings.missingObserverUpdatesFix) {
+            world.addSyncedBlockEvent(pos, state.getBlock(), 1, 0);
+        }
     }
 }

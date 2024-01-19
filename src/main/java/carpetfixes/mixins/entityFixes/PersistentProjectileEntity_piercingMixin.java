@@ -1,6 +1,8 @@
 package carpetfixes.mixins.entityFixes;
 
 import carpetfixes.CFSettings;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -19,8 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(PersistentProjectileEntity.class)
 public class PersistentProjectileEntity_piercingMixin {
 
-    private final ThreadLocal<Entity> lastEntity = new ThreadLocal<>();
-
 
     @Inject(
             method = "onEntityHit(Lnet/minecraft/util/hit/EntityHitResult;)V",
@@ -32,10 +32,10 @@ public class PersistentProjectileEntity_piercingMixin {
                     shift = At.Shift.BEFORE
             )
     )
-    private void onEndermanCheck(EntityHitResult entityHitResult, CallbackInfo ci, Entity entity, float f, int i) {
-        lastEntity.set(entity);
+    private void cf$onEndermanCheck(EntityHitResult entityHitResult, CallbackInfo ci, Entity entity, float f, int i,
+                                    @Share("lastEntity") LocalRef<Entity> lastEntityRef) {
+        lastEntityRef.set(entity);
     }
-
 
     @Redirect(
             method = "onEntityHit(Lnet/minecraft/util/hit/EntityHitResult;)V",
@@ -45,8 +45,9 @@ public class PersistentProjectileEntity_piercingMixin {
                     ordinal = 0
             )
     )
-    protected byte skipForEnderman(PersistentProjectileEntity instance) {
-        return CFSettings.endermanLowerPiercingFix ? lastEntity.get().getType() == EntityType.ENDERMAN ?
+    private byte cf$skipForEnderman(PersistentProjectileEntity instance,
+                                    @Share("lastEntity") LocalRef<Entity> lastEntityRef) {
+        return CFSettings.endermanLowerPiercingFix ? lastEntityRef.get().getType() == EntityType.ENDERMAN ?
                 0 :
                 instance.getPierceLevel() : instance.getPierceLevel();
     }

@@ -31,10 +31,16 @@ public class AbstractRedstoneGateBlock_updatesMixin {
             ),
             cancellable = true
     )
-    public void neighborUpdate(BlockState state, World world, BlockPos pos,
-                               Block block,BlockPos fromPos, boolean notify, CallbackInfo ci) {
+    private void cf$customRedstoneUpdates(BlockState state, World world, BlockPos pos,
+                                          Block block,BlockPos fromPos, boolean notify, CallbackInfo ci) {
         if (CFSettings.useCustomRedstoneUpdates) {
-            BlockUpdateUtils.doExtendedBlockUpdates(world, pos, block, state.get(AbstractRedstoneGateBlock.POWERED), false);
+            BlockUpdateUtils.doExtendedBlockUpdates(
+                    world,
+                    pos,
+                    block,
+                    state.get(AbstractRedstoneGateBlock.POWERED),
+                    false
+            );
             ci.cancel();
         }
     }

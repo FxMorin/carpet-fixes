@@ -34,8 +34,8 @@ public class PointedDripstoneBlock_collisionMixin extends Block {
             ),
             cancellable = true
     )
-    private void onLandedUponCheckCollision(World world, BlockState state, BlockPos pos,
-                              Entity entity, float fallDistance, CallbackInfo ci) {
+    private void cf$onLandedUponCheckCollision(World world, BlockState state, BlockPos pos,
+                                               Entity entity, float fallDistance, CallbackInfo ci) {
         if (CFSettings.pointedDripstoneWrongCollisionFix &&
                 !CollisionUtils.isEntityTouchingState(world, pos, entity, state)) {
             super.onLandedUpon(world, state, pos, entity, fallDistance);

@@ -39,8 +39,8 @@ public class EnderDragonEntity_blockDropsMixin extends MobEntity {
             ),
             require = 0
     )
-    private void letsDropTheBlocks(Box box, CallbackInfoReturnable<Boolean> cir, int i, int j, int k, int l, int m,
-                                   int n, boolean bl, boolean bl2, int o, int p, int q, BlockPos pos) {
+    private void cf$letsDropTheBlocks(Box box, CallbackInfoReturnable<Boolean> cir, int i, int j, int k, int l, int m,
+                                      int n, boolean bl, boolean bl2, int o, int p, int q, BlockPos pos) {
         if (CFSettings.enderDragonDoesntDropBlocksFix) {
             BlockState blockState = this.getWorld().getBlockState(pos);
             BlockEntity blockEntity = blockState.hasBlockEntity() ? this.getWorld().getBlockEntity(pos) : null;

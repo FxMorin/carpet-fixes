@@ -11,6 +11,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -26,7 +27,8 @@ public abstract class EndCrystalEntity_pushRespawnMixin extends Entity {
     @Shadow
     public int endCrystalAge;
 
-    private boolean shouldTryReSpawningDragon = false;
+    @Unique
+    private boolean cf$shouldTryReSpawningDragon = false;
 
     public EndCrystalEntity_pushRespawnMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -35,7 +37,9 @@ public abstract class EndCrystalEntity_pushRespawnMixin extends Entity {
 
     @Override
     protected Vec3d adjustMovementForPiston(Vec3d movement) {
-        if (CFSettings.endCrystalsOnPushDontSummonDragonFix) shouldTryReSpawningDragon = true;
+        if (CFSettings.endCrystalsOnPushDontSummonDragonFix) {
+            cf$shouldTryReSpawningDragon = true;
+        }
         return super.adjustMovementForPiston(movement);
     }
 
@@ -50,10 +54,10 @@ public abstract class EndCrystalEntity_pushRespawnMixin extends Entity {
                     shift = At.Shift.BEFORE
             )
     )
-    private void onTick(CallbackInfo ci, BlockPos blockPos) {
-        if (shouldTryReSpawningDragon && this.endCrystalAge % 2 == 0 &&
+    private void cf$onTick(CallbackInfo ci, BlockPos blockPos) {
+        if (cf$shouldTryReSpawningDragon && this.endCrystalAge % 2 == 0 &&
                 this.getWorld().getBlockState(blockPos.down()).isOf(Blocks.BEDROCK)) {
-            shouldTryReSpawningDragon = false;
+            cf$shouldTryReSpawningDragon = false;
             ((ServerWorld) this.getWorld()).getEnderDragonFight().respawnDragon();
         }
     }

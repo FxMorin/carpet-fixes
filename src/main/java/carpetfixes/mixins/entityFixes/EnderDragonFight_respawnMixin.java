@@ -28,7 +28,9 @@ public abstract class EnderDragonFight_respawnMixin {
                     target = "Lnet/minecraft/entity/boss/dragon/EnderDragonFight;dragonKilled:Z"
             )
     )
-    private void dragonKilled(EnderDragonEntity dragon, CallbackInfo ci) {
-        if (CFSettings.endCrystalPlacingTooEarlyFix) this.respawnDragon();
+    private void cf$dragonKilled(EnderDragonEntity dragon, CallbackInfo ci) {
+        if (CFSettings.endCrystalPlacingTooEarlyFix) {
+            this.respawnDragon();
+        }
     }
 }

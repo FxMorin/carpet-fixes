@@ -25,12 +25,15 @@ public abstract class MobEntity_attackRangeMixin extends LivingEntity {
         super(entityType, world);
     }
 
+
     @Inject(
             method = "tryAttack(Lnet/minecraft/entity/Entity;)Z",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void tryAttack(Entity target, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.mobsAttackThroughBlocksFix && !this.canSee(target)) cir.setReturnValue(false);
+    private void cf$tryAttack(Entity target, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.mobsAttackThroughBlocksFix && !this.canSee(target)) {
+            cir.setReturnValue(false);
+        }
     }
 }

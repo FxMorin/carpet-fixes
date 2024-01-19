@@ -26,7 +26,9 @@ public abstract class TntEntity_netherPortalMixin extends Entity {
             method = "tick()V",
             at = @At("HEAD")
     )
-    private void tickNetherPortal(CallbackInfo ci) {
-        if (CFSettings.tntCantUseNetherPortalsFix) this.tickPortal();
+    private void cf$tickNetherPortal(CallbackInfo ci) {
+        if (CFSettings.tntCantUseNetherPortalsFix) {
+            this.tickPortal();
+        }
     }
 }

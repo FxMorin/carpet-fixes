@@ -22,9 +22,10 @@ public class AllayEntity_voidMixin {
             at = @At(
                     value = "NEW",
                     target = "net/minecraft/entity/ai/control/FlightMoveControl"
-            )
+            ),
+            require = 0
     )
-    public FlightMoveControl ModifiedFlightController(MobEntity entity, int maxPitchChange, boolean noGravity) {
+    public FlightMoveControl cf$ModifiedFlightController(MobEntity entity, int maxPitchChange, boolean noGravity) {
         return new VoidFlightMoveControl(entity, maxPitchChange, noGravity, () -> CFSettings.allayStuckInVoidFix);
     }
 }

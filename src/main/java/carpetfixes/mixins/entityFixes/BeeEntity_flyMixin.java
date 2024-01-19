@@ -31,8 +31,9 @@ public abstract class BeeEntity_flyMixin extends AnimalEntity {
                     shift = At.Shift.AFTER
             )
     )
-    private void dontDropLikeABoulder(CallbackInfo ci) {
-        if (CFSettings.beesDropLikeBouldersFix && !this.isOnGround() && this.getVelocity().y < 0.0 && this.navigation.isIdle()) {
+    private void cf$dontDropLikeABoulder(CallbackInfo ci) {
+        if (CFSettings.beesDropLikeBouldersFix && !this.isOnGround() &&
+                this.getVelocity().y < 0.0 && this.navigation.isIdle()) {
             this.setVelocity(this.getVelocity().multiply(1.0, 0.6, 1.0));
         }
     }

@@ -46,7 +46,7 @@ public abstract class StatusEffectInstance_wrongEffectMixin {
                     shift = At.Shift.BEFORE
             )
     )
-    private void addHere(LivingEntity entity, Runnable overwriteCallback, CallbackInfoReturnable<Boolean> cir) {
+    private void cf$addHere(LivingEntity entity, Runnable overwriteCallback, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.brokenHiddenStatusEffectFix) {
             ((LivingEntityAccessor)entity).setEffectsChanged(true);
             this.getEffectType().onRemoved(entity.getAttributes());
@@ -61,7 +61,7 @@ public abstract class StatusEffectInstance_wrongEffectMixin {
                     target = "Ljava/lang/Runnable;run()V"
             )
     )
-    private void removeHere(LivingEntity entity, Runnable overwriteCallback, CallbackInfoReturnable<Boolean> cir) {
+    private void cf$removeHere(LivingEntity entity, Runnable overwriteCallback, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.brokenHiddenStatusEffectFix) {
             this.getEffectType().onApplied(entity.getAttributes(), this.getAmplifier());
         }
@@ -75,7 +75,9 @@ public abstract class StatusEffectInstance_wrongEffectMixin {
                     target = "Ljava/lang/Runnable;run()V"
             )
     )
-    private void dontUpdate(Runnable instance) {
-        if (!CFSettings.brokenHiddenStatusEffectFix) instance.run();
+    private void cf$dontUpdate(Runnable instance) {
+        if (!CFSettings.brokenHiddenStatusEffectFix) {
+            instance.run();
+        }
     }
 }

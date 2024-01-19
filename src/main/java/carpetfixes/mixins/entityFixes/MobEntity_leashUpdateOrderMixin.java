@@ -33,10 +33,11 @@ public abstract class MobEntity_leashUpdateOrderMixin extends LivingEntity {
             method = "tick()V",
             at = @At("HEAD")
     )
-    private void dontTickEarly(CallbackInfo ci) {
-        if (CFSettings.petsBreakLeadsDuringReloadFix && !this.getWorld().isClient) this.updateLeash();
+    private void cf$dontTickEarly(CallbackInfo ci) {
+        if (CFSettings.petsBreakLeadsDuringReloadFix && !this.getWorld().isClient) {
+            this.updateLeash();
+        }
     }
-
 
     @Redirect(
             method = "tick()V",
@@ -45,7 +46,9 @@ public abstract class MobEntity_leashUpdateOrderMixin extends LivingEntity {
                     target = "Lnet/minecraft/entity/mob/MobEntity;updateLeash()V"
             )
     )
-    private void weAlreadyUpdatedLeash(MobEntity mobEntity) {
-        if (!CFSettings.petsBreakLeadsDuringReloadFix) this.updateLeash();
+    private void cf$weAlreadyUpdatedLeash(MobEntity mobEntity) {
+        if (!CFSettings.petsBreakLeadsDuringReloadFix) {
+            this.updateLeash();
+        }
     }
 }

@@ -37,7 +37,7 @@ public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void reIntroduceOldMechanics(boolean flush, CallbackInfo ci) {
+    private void cf$reIntroduceOldMechanics(boolean flush, CallbackInfo ci) {
         if (CFSettings.reIntroduceOnlyAutoSaveSaving && !flush) {
             this.chunkHolders.values().stream().filter(ChunkHolder::isAccessible).forEach(holder -> {
                 Chunk chunk = holder.getSavingFuture().getNow(null);
@@ -59,8 +59,10 @@ public abstract class ThreadedAnvilChunkStorage_oldSavingMixin {
                     ordinal = 2
             )
     )
-    protected boolean dontUnloadRandomly(BooleanSupplier instance) {
-        if (CFSettings.reIntroduceOnlyAutoSaveSaving) return false;
+    protected boolean cf$dontUnloadRandomly(BooleanSupplier instance) {
+        if (CFSettings.reIntroduceOnlyAutoSaveSaving) {
+            return false;
+        }
         return instance.getAsBoolean();
     }
 }

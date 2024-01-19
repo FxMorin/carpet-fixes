@@ -29,7 +29,9 @@ public abstract class LivingEntity_sleepingKillsMixin extends Entity {
             method = "setPositionInBed(Lnet/minecraft/util/math/BlockPos;)V",
             at = @At("HEAD")
     )
-    private void saferSleep(BlockPos pos, CallbackInfo ci) {
-        if (CFSettings.sleepingDelaysFallDamageFix) this.fallDistance = 0.0F;
+    private void cf$saferSleep(BlockPos pos, CallbackInfo ci) {
+        if (CFSettings.sleepingDelaysFallDamageFix) {
+            this.fallDistance = 0.0F;
+        }
     }
 }

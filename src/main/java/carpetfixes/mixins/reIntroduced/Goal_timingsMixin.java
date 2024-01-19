@@ -21,8 +21,10 @@ public class Goal_timingsMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void shouldRunEveryTickBypass(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.reIntroduceProperGoalTimings) cir.setReturnValue(true);
+    private void cf$shouldRunEveryTickBypass(CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.reIntroduceProperGoalTimings) {
+            cir.setReturnValue(true);
+        }
     }
 
 
@@ -31,7 +33,9 @@ public class Goal_timingsMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void toGoalTicksBypass(int ticks, CallbackInfoReturnable<Integer> cir) {
-        if (CFSettings.reIntroduceProperGoalTimings) cir.setReturnValue(ticks);
+    private static void cf$toGoalTicksBypass(int ticks, CallbackInfoReturnable<Integer> cir) {
+        if (CFSettings.reIntroduceProperGoalTimings) {
+            cir.setReturnValue(ticks);
+        }
     }
 }

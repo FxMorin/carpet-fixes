@@ -48,13 +48,14 @@ public class ChainRestrictedNeighborUpdater$SixWayEntry_updateOrderMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void customRunNext(World world, CallbackInfoReturnable<Boolean> cir) {
+    private void cf$customRunNext(World world, CallbackInfoReturnable<Boolean> cir) {
         Direction[] directions = BlockUpdateUtils.blockUpdateDirections.apply(this.pos);
         BlockPos blockPos = this.pos.offset(directions[this.currentDirectionIndex++]);
         BlockState blockState = world.getBlockState(blockPos);
         BlockUpdateUtils.doNeighborUpdate(blockState, world, blockPos, this.sourceBlock, this.pos, false);
-        if (this.currentDirectionIndex < directions.length && directions[this.currentDirectionIndex] == this.except)
+        if (this.currentDirectionIndex < directions.length && directions[this.currentDirectionIndex] == this.except) {
             ++this.currentDirectionIndex;
+        }
         cir.setReturnValue(this.currentDirectionIndex < directions.length);
     }
 }

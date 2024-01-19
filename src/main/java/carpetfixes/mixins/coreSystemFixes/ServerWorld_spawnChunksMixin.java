@@ -21,7 +21,7 @@ public class ServerWorld_spawnChunksMixin {
                     target = "Ljava/util/List;isEmpty()Z"
             )
     )
-    private boolean spawnChunksStayLoaded(boolean isEmpty) {
+    private boolean cf$spawnChunksStayLoaded(boolean isEmpty) {
         return !CFSettings.spawnChunkEntitiesUnloadingFix && isEmpty;
     }
 }

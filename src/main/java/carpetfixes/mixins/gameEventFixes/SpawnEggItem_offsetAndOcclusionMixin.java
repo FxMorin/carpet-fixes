@@ -43,13 +43,15 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
                             "Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
             )
     )
-    private void newEventCall(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir,
-                              World world, ItemStack itemStack, BlockPos pos) {
+    private void cf$newEventCall(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir,
+                                 World world, ItemStack itemStack, BlockPos pos) {
         if (CFSettings.spawnEggOffsetEventFix) {
             BlockState state = world.getBlockState(pos);
             BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ? pos : pos.offset(context.getSide());
             if (CFSettings.spawnEggMissingOcclusionFix) {
-                if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return;
+                if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
+                    return;
+                }
             }
             world.emitGameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, spawnPos);
         } else {
@@ -58,7 +60,9 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
                 BlockPos spawnPos = state.getCollisionShape(world, pos).isEmpty() ?
                         pos :
                         pos.offset(context.getSide());
-                if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) return;
+                if (world.getBlockState(spawnPos.down()).isIn(BlockTags.OCCLUDES_VIBRATION_SIGNALS)) {
+                    return;
+                }
             }
             world.emitGameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, pos);
         }
@@ -75,11 +79,11 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
                     shift = At.Shift.BEFORE
             )
     )
-    private void spawnBaby(PlayerEntity user, MobEntity entity, EntityType<? extends MobEntity> entityType,
-                           ServerWorld world, Vec3d pos, ItemStack stack,
-                           CallbackInfoReturnable<Optional<MobEntity>> cir) { //Using blockpos for backwards compat
+    private void cf$spawnBaby(PlayerEntity user, MobEntity entity, EntityType<? extends MobEntity> entityType,
+                              ServerWorld world, Vec3d pos, ItemStack stack,
+                              CallbackInfoReturnable<Optional<MobEntity>> cir) { //Using blockpos for backwards compat
         if (CFSettings.spawnEggMissingEventFix) {
-            world.emitGameEvent(entity,GameEvent.ENTITY_PLACE, BlockPos.ofFloored(pos));
+            world.emitGameEvent(entity, GameEvent.ENTITY_PLACE, BlockPos.ofFloored(pos));
         }
     }
 
@@ -92,5 +96,5 @@ public class SpawnEggItem_offsetAndOcclusionMixin {
                             "Lnet/minecraft/world/event/GameEvent;Lnet/minecraft/util/math/BlockPos;)V"
             )
     )
-    public void cancelEvent(World instance, Entity entity, GameEvent gameEvent, BlockPos blockPos) {}
+    private void cf$cancelEvent(World instance, Entity entity, GameEvent gameEvent, BlockPos blockPos) {}
 }

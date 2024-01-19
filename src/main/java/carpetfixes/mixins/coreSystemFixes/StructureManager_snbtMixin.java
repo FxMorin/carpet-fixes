@@ -1,6 +1,8 @@
 package carpetfixes.mixins.coreSystemFixes;
 
 import carpetfixes.CFSettings;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.data.validate.StructureValidatorProvider;
 import net.minecraft.nbt.NbtCompound;
@@ -12,6 +14,7 @@ import org.apache.commons.io.IOUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -38,8 +41,6 @@ public abstract class StructureManager_snbtMixin {
     @Final
     private Path generatedPath;
 
-    private Identifier id = null;
-
     @Shadow
     private static Path getAndCheckTemplatePath(Path path, Identifier id, String extension) {
         return null;
@@ -58,8 +59,14 @@ public abstract class StructureManager_snbtMixin {
                             "Ljava/nio/file/Path;"
             )
     )
-    private void onLoadStructureFromFileReturn(Identifier id, CallbackInfoReturnable<Optional<StructureTemplate>> cir) {
-        if (CFSettings.structureManagerCantLoadSnbtFix) this.id = id;
+    private void cf$onLoadStructureFromFileReturn(
+            Identifier id,
+            CallbackInfoReturnable<Optional<StructureTemplate>> cir,
+            @Share("id") LocalRef<Identifier> idRef
+    ) {
+        if (CFSettings.structureManagerCantLoadSnbtFix) {
+            idRef.set(id);
+        }
     }
 
 
@@ -70,33 +77,33 @@ public abstract class StructureManager_snbtMixin {
                     target = "Ljava/util/Optional;empty()Ljava/util/Optional;"
             )
     )
-    private Optional<StructureTemplate> loadSnbtStructureFromFile() {
+    private Optional<StructureTemplate> cf$loadSnbtStructureFromFile(@Share("id") LocalRef<Identifier> idRef) {
         Optional<StructureTemplate> returnValue = Optional.empty();
-        if (CFSettings.structureManagerCantLoadSnbtFix && id != null && this.generatedPath.toFile().isDirectory()) {
-            if (this.generatedPath.toFile().isDirectory()) {
-                Path path = getAndCheckTemplatePath(this.generatedPath, id, ".snbt");
-                try {
-                    returnValue = Optional.of(this.createTemplate(this.toNbtCompound(path, id.getPath())));
-                } catch (FileNotFoundException ignored) {
-                } catch (IOException var9) {
-                    LOGGER.error("Couldn't load structure from {}", path, var9);
+        if (CFSettings.structureManagerCantLoadSnbtFix) {
+            Identifier id = idRef.get();
+            if (id != null && this.generatedPath.toFile().isDirectory()) {
+                if (this.generatedPath.toFile().isDirectory()) {
+                    Path path = getAndCheckTemplatePath(this.generatedPath, id, ".snbt");
+                    try {
+                        returnValue = Optional.of(this.createTemplate(this.cf$toNbtCompound(path, id.getPath())));
+                    } catch (FileNotFoundException ignored) {
+                    } catch (IOException var9) {
+                        LOGGER.error("Couldn't load structure from {}", path, var9);
+                    }
                 }
             }
         }
         return returnValue;
     }
 
-    private NbtCompound toNbtCompound(Path path, String name) throws IOException {
+    @Unique
+    private NbtCompound cf$toNbtCompound(Path path, String name) throws IOException {
         try {
             BufferedReader bufferedReader = Files.newBufferedReader(path);
             String string = IOUtils.toString(bufferedReader);
-            return this.write(name, NbtHelper.fromNbtProviderString(string));
+            return new StructureValidatorProvider().write(name, NbtHelper.fromNbtProviderString(string));
         } catch (CommandSyntaxException err) {
             throw new IOException();
         }
-    }
-
-    private NbtCompound write(String key, NbtCompound compound) {
-        return new StructureValidatorProvider().write(key, compound);
     }
 }

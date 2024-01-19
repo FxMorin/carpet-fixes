@@ -31,7 +31,7 @@ public class Entity_directionalBlockSlowdownMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void slowMovement(BlockState state, Vec3d m, CallbackInfo ci) {
+    private void cf$slowMovement(BlockState state, Vec3d m, CallbackInfo ci) {
         if (CFSettings.directionalBlockSlowdownFix) {
             this.fallDistance = 0.0F;
             if (this.movementMultiplier.length() > 0.0) {

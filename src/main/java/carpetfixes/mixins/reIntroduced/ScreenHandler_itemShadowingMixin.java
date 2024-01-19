@@ -9,6 +9,7 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.ClickType;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -24,7 +25,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(ScreenHandler.class)
 public abstract class ScreenHandler_itemShadowingMixin {
 
-    private int lastButton = 0;
+    @Unique
+    private int cf$lastButton = 0;
 
 
     @Redirect(
@@ -44,8 +46,10 @@ public abstract class ScreenHandler_itemShadowingMixin {
             ),
             require = 0
     )
-    private void dontRunBeforeInventoryUpdate(PlayerInventory instance, int slot, ItemStack stack) {
-        if (!CFSettings.reIntroduceItemShadowing) instance.setStack(slot, stack);
+    private void cf$dontRunBeforeInventoryUpdate(PlayerInventory instance, int slot, ItemStack stack) {
+        if (!CFSettings.reIntroduceItemShadowing) {
+            instance.setStack(slot, stack);
+        }
     }
 
 
@@ -67,9 +71,11 @@ public abstract class ScreenHandler_itemShadowingMixin {
             ),
             require = 0
     )
-    private void RunAfterInventoryUpdate(int slotIndex, int button, SlotActionType actionType,
+    private void cf$runAfterInventoryUpdate(int slotIndex, int button, SlotActionType actionType,
                                          PlayerEntity player, CallbackInfo ci) {
-        if (CFSettings.reIntroduceItemShadowing) player.getInventory().setStack(button, ItemStack.EMPTY);
+        if (CFSettings.reIntroduceItemShadowing) {
+            player.getInventory().setStack(button, ItemStack.EMPTY);
+        }
     }
 
 
@@ -90,11 +96,11 @@ public abstract class ScreenHandler_itemShadowingMixin {
             ),
             require = 0
     )
-    private void dontRunBeforeSecondInventoryUpdate(PlayerInventory instance, int slot, ItemStack stack) {
+    private void cf$dontRunBeforeSecondInventoryUpdate(PlayerInventory instance, int slot, ItemStack stack) {
         if (!CFSettings.reIntroduceItemShadowing) {
             instance.setStack(slot, stack);
         } else {
-            lastButton = slot;
+            cf$lastButton = slot;
         }
     }
 
@@ -117,8 +123,10 @@ public abstract class ScreenHandler_itemShadowingMixin {
             ),
             require = 0
     )
-    private void RunAfterSecondInventoryUpdate(Slot instance, PlayerEntity player, ItemStack stack) {
-        if (CFSettings.reIntroduceItemShadowing) player.getInventory().setStack(lastButton, stack);
+    private void cf$runAfterSecondInventoryUpdate(Slot instance, PlayerEntity player, ItemStack stack) {
+        if (CFSettings.reIntroduceItemShadowing) {
+            player.getInventory().setStack(cf$lastButton, stack);
+        }
         instance.onTakeItem(player,stack);
     }
 
@@ -147,11 +155,13 @@ public abstract class ScreenHandler_itemShadowingMixin {
             ),
             require = 0
     )
-    private void runBeforeThirdInventoryUpdate(int slotIndex, int button, SlotActionType actionType,
-                                               PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory,
-                                               ClickType clickType, Slot slot, ItemStack itemStack,
-                                               ItemStack itemStack5) {
-        if (CFSettings.reIntroduceItemShadowing) slot.setStackNoCallbacks(itemStack5);
+    private void cf$runBeforeThirdInventoryUpdate(int slotIndex, int button, SlotActionType actionType,
+                                                  PlayerEntity player, CallbackInfo ci, PlayerInventory inventory,
+                                                  ClickType clickType, Slot slot, ItemStack itemStack,
+                                                  ItemStack itemStack5) {
+        if (CFSettings.reIntroduceItemShadowing) {
+            slot.setStackNoCallbacks(itemStack5);
+        }
     }
 
 
@@ -178,7 +188,9 @@ public abstract class ScreenHandler_itemShadowingMixin {
             ),
             require = 0
     )
-    private void dontRunBeforeThirdInventoryUpdate(Slot slot, ItemStack stack) {
-        if (!CFSettings.reIntroduceItemShadowing) slot.setStackNoCallbacks(stack);
+    private void cf$dontRunBeforeThirdInventoryUpdate(Slot slot, ItemStack stack) {
+        if (!CFSettings.reIntroduceItemShadowing) {
+            slot.setStackNoCallbacks(stack);
+        }
     }
 }

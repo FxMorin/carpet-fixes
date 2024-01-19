@@ -25,7 +25,7 @@ public class TripwireBlock_stringDupeMixin {
             ),
             index = 5
     )
-    private int alwaysNegativeOne(int i) {
+    private int cf$alwaysNegativeOne(int i) {
         return CFSettings.stringDupeFix ? -1 : i;
     }
 }

@@ -25,7 +25,7 @@ public class PistonBlockEntity_pushMixin {
                             "Lnet/minecraft/util/math/Direction;D)Lnet/minecraft/util/math/Box;"
             )
     )
-    private static Box stretchCorrectly(Box box, Direction direction, double length) {
+    private static Box cf$stretchCorrectly(Box box, Direction direction, double length) {
         return CFSettings.pistonsPushEntitiesBehindThemFix ?
                 Utils.stretchBlockBound(box, direction, length)  : Boxes.stretch(box, direction, length);
     }

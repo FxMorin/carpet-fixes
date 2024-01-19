@@ -34,7 +34,7 @@ public abstract class MobEntity_conversionMixin extends LivingEntity  {
                 ordinal = 0
             )
     )
-    public boolean ConversionFix(World world, Entity entity) {
+    private boolean cf$conversionFix(World world, Entity entity) {
         if (CFSettings.conversionFix) {
             entity.setFireTicks(this.getFireTicks()); //Fire
             entity.setVelocity(this.getVelocity()); //Motion

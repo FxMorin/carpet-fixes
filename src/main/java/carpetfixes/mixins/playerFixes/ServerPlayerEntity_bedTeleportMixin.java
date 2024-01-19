@@ -20,17 +20,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntity_bedTeleportMixin extends PlayerEntity {
 
-
     public ServerPlayerEntity_bedTeleportMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
         super(world, pos, yaw, gameProfile);
     }
+
 
     @Inject(
             method = "moveToWorld",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void moveToWorldIfNotSleeping(ServerWorld destination, CallbackInfoReturnable<Entity> cir) {
-        if (CFSettings.bedTeleportExploitFix && this.isSleeping()) cir.setReturnValue(this);
+    private void cf$moveToWorldIfNotSleeping(ServerWorld destination, CallbackInfoReturnable<Entity> cir) {
+        if (CFSettings.bedTeleportExploitFix && this.isSleeping()) {
+            cir.setReturnValue(this);
+        }
     }
 }

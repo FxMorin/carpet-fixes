@@ -24,6 +24,7 @@ public class LecternBlockEntity_blockDupeMixin extends BlockEntity {
         super(type, pos, state);
     }
 
+
     @Inject(
             method = "onBookRemoved",
             at = @At(
@@ -35,7 +36,7 @@ public class LecternBlockEntity_blockDupeMixin extends BlockEntity {
             ),
             cancellable = true
     )
-    private void onBookRemovedCheckIfBlockStillThere(CallbackInfo ci) {
+    private void cf$onBookRemovedCheckIfBlockStillThere(CallbackInfo ci) {
         if (CFSettings.lecternBlockDupeFix) {
             if (!this.isRemoved()) { // If the lectern block entity is removed, no world interactions should be done
                 BlockState state = this.getWorld().getBlockState(this.getPos());

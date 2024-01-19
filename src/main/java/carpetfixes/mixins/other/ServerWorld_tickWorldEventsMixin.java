@@ -16,14 +16,12 @@ import java.util.function.BooleanSupplier;
 @Mixin(ServerWorld.class)
 public class ServerWorld_tickWorldEventsMixin {
 
-    private final ServerWorld self = (ServerWorld)(Object)this;
-
 
     @Inject(
             method = "tick",
             at = @At("TAIL")
     )
-    public void tick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-        DelayedWorldEventManager.tick(self);
+    private void cf$tick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
+        DelayedWorldEventManager.tick((ServerWorld)(Object)this);
     }
 }

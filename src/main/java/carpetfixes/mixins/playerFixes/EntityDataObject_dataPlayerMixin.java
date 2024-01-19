@@ -33,7 +33,7 @@ public class EntityDataObject_dataPlayerMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void setNbt(NbtCompound nbt, CallbackInfo ci) {
+    private void cf$setNbt(NbtCompound nbt, CallbackInfo ci) {
         if (CFSettings.unableToModifyPlayerDataFix) {
             UUID uUID = this.entity.getUuid();
             this.entity.readNbt(nbt);

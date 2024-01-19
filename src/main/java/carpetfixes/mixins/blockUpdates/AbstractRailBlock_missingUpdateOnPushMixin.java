@@ -41,11 +41,13 @@ public abstract class AbstractRailBlock_missingUpdateOnPushMixin extends Block {
                     "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V",
             at = @At("HEAD")
     )
-    private void alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
-                                  BlockState newState, boolean moved, CallbackInfo ci) {
+    private void cf$alwaysGiveUpdate(BlockState state, World world, BlockPos pos,
+                                     BlockState newState, boolean moved, CallbackInfo ci) {
         if (moved && CFSettings.railMissingUpdateOnPushFix) {
             super.onStateReplaced(state, world, pos, newState, true);
-            if ((state.get(this.getShapeProperty())).isAscending()) world.updateNeighborsAlways(pos.up(), this);
+            if ((state.get(this.getShapeProperty())).isAscending()) {
+                world.updateNeighborsAlways(pos.up(), this);
+            }
             if (this.forbidCurves) {
                 world.updateNeighborsAlways(pos, this);
                 world.updateNeighborsAlways(pos.down(), this);

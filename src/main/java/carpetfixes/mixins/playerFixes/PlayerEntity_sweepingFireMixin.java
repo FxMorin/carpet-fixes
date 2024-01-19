@@ -17,8 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PlayerEntity.class)
 public class PlayerEntity_sweepingFireMixin {
 
-    private final PlayerEntity self = (PlayerEntity)(Object)this;
-
 
     @Inject(
             method = "attack",
@@ -29,9 +27,10 @@ public class PlayerEntity_sweepingFireMixin {
                     shift = At.Shift.AFTER
             )
     )
-    private void attack(Entity target, CallbackInfo ci) {
+    private void cf$onAttack(Entity target, CallbackInfo ci) {
         if (CFSettings.sweepingIgnoresFireAspectFix && target instanceof LivingEntity &&
-                EnchantmentHelper.getFireAspect(self) > 0 && !target.isOnFire())
+                EnchantmentHelper.getFireAspect((PlayerEntity)(Object)this) > 0 && !target.isOnFire()) {
             target.setOnFireFor(1);
+        }
     }
 }

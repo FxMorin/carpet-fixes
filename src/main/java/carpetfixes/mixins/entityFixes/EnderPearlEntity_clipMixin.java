@@ -41,13 +41,16 @@ public abstract class EnderPearlEntity_clipMixin extends ThrownItemEntity {
                     shift = At.Shift.AFTER
             )
     )
-    private void movePearlToValidCollisionSpot(HitResult hitResult, CallbackInfo ci) {
+    private void cf$movePearlToValidCollisionSpot(HitResult hitResult, CallbackInfo ci) {
         if (CFSettings.enderpearlClipFix && hitResult instanceof BlockHitResult blockHitResult) {
             Entity owner = this.getOwner();
-            if (owner == null) return;
+            if (owner == null) {
+                return;
+            }
             EntityDimensions dimensions = owner.getDimensions(owner.getPose());
-            if (blockHitResult.getSide() == Direction.DOWN)
+            if (blockHitResult.getSide() == Direction.DOWN) {
                 this.setPos(this.getX(), (this.getY() - dimensions.height / 2) + 0.5, this.getZ());
+            }
             Vec3d blockBoundPos = new Vec3d(
                     Math.floor(this.getX()) + 0.5,
                     Math.floor(this.getY()) + 0.5,

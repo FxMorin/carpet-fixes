@@ -29,9 +29,10 @@ public class CommandBlock_updateMixin {
                     shift = At.Shift.AFTER
             )
     )
-    private void execute(BlockState state, World world, BlockPos pos,
-                         CommandBlockExecutor executor, boolean hasCommand, CallbackInfo ci) {
-        if (CFSettings.missingObserverUpdatesFix && executor.getSuccessCount() > 0)
-            Utils.giveObserverUpdates(world,pos);
+    private void cf$execute(BlockState state, World world, BlockPos pos,
+                            CommandBlockExecutor executor, boolean hasCommand, CallbackInfo ci) {
+        if (CFSettings.missingObserverUpdatesFix && executor.getSuccessCount() > 0) {
+            Utils.giveObserverUpdates(world, pos);
+        }
     }
 }

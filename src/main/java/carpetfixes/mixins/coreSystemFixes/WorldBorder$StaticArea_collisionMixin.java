@@ -21,7 +21,7 @@ public class WorldBorder$StaticArea_collisionMixin {
                     target = "Ljava/lang/Math;floor(D)D"
             )
     )
-    private double dontFloor(double a) {
+    private double cf$dontFloor(double a) {
         return CFSettings.worldBorderCollisionRoundingFix ? a : Math.floor(a);
     }
 
@@ -33,7 +33,7 @@ public class WorldBorder$StaticArea_collisionMixin {
                     target = "Ljava/lang/Math;ceil(D)D"
             )
     )
-    private double dontCeil(double a) {
+    private double cf$dontCeil(double a) {
         return CFSettings.worldBorderCollisionRoundingFix ? a : Math.ceil(a);
     }
 }

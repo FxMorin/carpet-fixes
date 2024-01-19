@@ -12,6 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -33,10 +34,12 @@ public abstract class Entity_blockCollisionMixin {
     @Shadow
     protected void checkBlockCollision() {}
 
+    @Unique
     private static final ThreadLocal<Boolean> ORDER = ThreadLocal.withInitial(() -> true);
 
 
-    public boolean shouldCheckCollision(Block block) {
+    @Unique
+    public boolean cf$shouldCheckCollision(Block block) {
         return block != Blocks.END_PORTAL && block != Blocks.NETHER_PORTAL &&
                 block != Blocks.CACTUS && block != Blocks.FIRE && block != Blocks.LAVA;
     }
@@ -49,7 +52,7 @@ public abstract class Entity_blockCollisionMixin {
                     target = "Lnet/minecraft/entity/Entity;tryCheckBlockCollision()V"
             )
     )
-    protected void onEntityCollision(Entity entity) {
+    private void cf$onEntityCollision(Entity entity) {
         ORDER.set(true);
         this.checkBlockCollision();
     }
@@ -63,7 +66,7 @@ public abstract class Entity_blockCollisionMixin {
                             "Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;"
             )
     )
-    private void InjectOnEntityCollisionHere(MovementType type, Vec3d movement, CallbackInfo ci) {
+    private void cf$injectOnEntityCollisionHere(MovementType type, Vec3d movement, CallbackInfo ci) {
         if (CFSettings.blockCollisionCheckFix) {
             ORDER.set(false);
             this.checkBlockCollision();
@@ -79,10 +82,11 @@ public abstract class Entity_blockCollisionMixin {
                             "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V"
             )
     )
-    public void checkBlockCollisionBetter(BlockState blockState, World world, BlockPos pos, Entity entity) {
-        boolean pass = shouldCheckCollision(blockState.getBlock());
+    private void cf$checkBlockCollisionBetter(BlockState blockState, World world, BlockPos pos, Entity entity) {
+        boolean pass = cf$shouldCheckCollision(blockState.getBlock());
         if (!CFSettings.blockCollisionCheckFix || !(entity instanceof PlayerEntity) ||
-                (ORDER.get() && pass) || (!ORDER.get() && !pass))
+                (ORDER.get() && pass) || (!ORDER.get() && !pass)) {
             blockState.onEntityCollision(world, pos, entity);
+        }
     }
 }

@@ -26,7 +26,10 @@ public class ChorusFruitItem_fallDamageMixin {
                             "Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/world/event/GameEvent$Emitter;)V"
             )
     )
-    private void finishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
-        if (CFSettings.chorusFruitFallDamageFix) user.onLanding();
+    private void cf$finishUsing(ItemStack stack, World world, LivingEntity user,
+                                CallbackInfoReturnable<ItemStack> cir) {
+        if (CFSettings.chorusFruitFallDamageFix) {
+            user.onLanding();
+        }
     }
 }

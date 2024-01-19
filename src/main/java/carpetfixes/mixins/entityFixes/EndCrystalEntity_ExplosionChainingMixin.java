@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(EndCrystalEntity.class)
 public class EndCrystalEntity_ExplosionChainingMixin {
 
+
     @Redirect(
             method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
             at = @At(
@@ -24,7 +25,7 @@ public class EndCrystalEntity_ExplosionChainingMixin {
                     target = "Lnet/minecraft/entity/damage/DamageSource;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"
             )
     )
-    private boolean isExplosiveBypass(DamageSource source, TagKey tagKey) {
+    private boolean cf$isExplosiveBypass(DamageSource source, TagKey tagKey) {
         return !CFSettings.crystalExplodeOnExplodedFix && source.isIn(tagKey);
     }
 }

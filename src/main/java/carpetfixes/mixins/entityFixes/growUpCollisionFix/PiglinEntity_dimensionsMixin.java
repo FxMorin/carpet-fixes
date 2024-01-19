@@ -26,7 +26,7 @@ public class PiglinEntity_dimensionsMixin {
             ),
             cancellable = true
     )
-    private void calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
+    private void cf$calculateCustomDimensions(TrackedData<?> data, CallbackInfo ci) {
         if (CFSettings.entityGrowingUpCollisionClippingFix) {
             ((ExtendedEntity)this).calculateDimensionsWithoutHeight();
             ci.cancel();

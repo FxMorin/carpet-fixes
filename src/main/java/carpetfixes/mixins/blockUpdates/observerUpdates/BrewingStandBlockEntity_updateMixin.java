@@ -25,7 +25,9 @@ public class BrewingStandBlockEntity_updateMixin {
                     "Lnet/minecraft/util/collection/DefaultedList;)V",
             at = @At("TAIL")
     )
-    private static void onCraft(World world, BlockPos pos, DefaultedList<ItemStack> slots, CallbackInfo ci) {
-        if (CFSettings.missingObserverUpdatesFix) Utils.giveObserverUpdates(world, pos);
+    private static void cf$onCraft(World world, BlockPos pos, DefaultedList<ItemStack> slots, CallbackInfo ci) {
+        if (CFSettings.missingObserverUpdatesFix) {
+            Utils.giveObserverUpdates(world, pos);
+        }
     }
 }

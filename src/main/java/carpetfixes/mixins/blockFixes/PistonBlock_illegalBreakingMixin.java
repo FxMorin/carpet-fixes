@@ -25,8 +25,10 @@ public class PistonBlock_illegalBreakingMixin {
                     target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z"
             )
     )
-    public boolean removeBlock(World world, BlockPos pos, boolean move) {
-        if (CFSettings.illegalBreakingFix && world.getBlockState(pos).getHardness(world,pos) == -1.0F) return false;
+    private boolean cf$removeBlock(World world, BlockPos pos, boolean move) {
+        if (CFSettings.illegalBreakingFix && world.getBlockState(pos).getHardness(world,pos) == -1.0F) {
+            return false;
+        }
         return world.removeBlock(pos, move);
     }
 }

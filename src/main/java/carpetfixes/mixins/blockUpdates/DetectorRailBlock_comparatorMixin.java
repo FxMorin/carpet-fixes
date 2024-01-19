@@ -26,8 +26,6 @@ public class DetectorRailBlock_comparatorMixin {
     @Final
     public static BooleanProperty POWERED;
 
-    DetectorRailBlock self = (DetectorRailBlock)(Object)this;
-
 
     @Inject(
             method = "updatePoweredStatus(Lnet/minecraft/world/World;" +
@@ -41,18 +39,18 @@ public class DetectorRailBlock_comparatorMixin {
             ),
             cancellable = true
     )
-    private void updateComparatorsSpecial(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
+    private void cf$updateComparatorsSpecial(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
         if (CFSettings.uselessDetectorRailUpdateFix) {
             if (state.get(POWERED)) {
                 if (CFSettings.detectorRailOffsetUpdateFix) {
-                    Utils.updateComparatorsRespectFacing(world, pos, self);
+                    Utils.updateComparatorsRespectFacing(world, pos, (DetectorRailBlock)(Object)this);
                 } else {
-                    world.updateComparators(pos, self);
+                    world.updateComparators(pos, (DetectorRailBlock)(Object)this);
                 }
             }
             ci.cancel();
         } else if (CFSettings.detectorRailOffsetUpdateFix) {
-            Utils.updateComparatorsRespectFacing(world, pos, self);
+            Utils.updateComparatorsRespectFacing(world, pos, (DetectorRailBlock)(Object)this);
             ci.cancel();
         }
     }

@@ -29,7 +29,7 @@ public class BedBlock_collisionMixin extends Block {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onLandedCheckCollision(World world, BlockState state, BlockPos pos,
+    private void cf$onLandedCheckCollision(World world, BlockState state, BlockPos pos,
                                         Entity entity, float fallDistance, CallbackInfo ci) {
         if (CFSettings.bedLandingWrongCollisionFix &&
                 !CollisionUtils.isEntityTouchingState(world, pos, entity, state)) {

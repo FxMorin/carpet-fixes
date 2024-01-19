@@ -33,15 +33,19 @@ public abstract class PistonBlockEntity_translocationMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void simulatePistonTranslocation(World world, BlockPos pos, float f,
-                                                    PistonBlockEntity pbe, CallbackInfo ci) {
+    private static void cf$simulatePistonTranslocation(World world, BlockPos pos, float f,
+                                                       PistonBlockEntity pbe, CallbackInfo ci) {
         if (CFSettings.reIntroducePistonTranslocation) {
             ci.cancel();
             VoxelShape vs = pbe.getPushedBlock().getCollisionShape(world, pos);
-            if (vs.isEmpty()) return;
+            if (vs.isEmpty()) {
+                return;
+            }
             Box box = vs.getBoundingBox().offset(pos).expand(0.01D); // Cheating ;)
             List<Entity> list = world.getOtherEntities(null, box);
-            if (list.isEmpty()) return;
+            if (list.isEmpty()) {
+                return;
+            }
             boolean isSlime = pbe.getPushedBlock().isOf(Blocks.SLIME_BLOCK);
             Direction dir = pbe.getMovementDirection();
             for (Entity entity : list) {

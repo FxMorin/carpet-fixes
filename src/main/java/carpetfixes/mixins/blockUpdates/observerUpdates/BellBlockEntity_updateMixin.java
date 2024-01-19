@@ -31,7 +31,9 @@ public class BellBlockEntity_updateMixin extends BlockEntity {
                     target = "Lnet/minecraft/block/entity/BellBlockEntity;notifyMemoriesOfBell()V"
             )
     )
-    private void onSyncedBlockEventGiveObserverUpdate(int type, int data, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.missingObserverUpdatesFix) Utils.giveObserverUpdates(this.world,this.pos);
+    private void cf$onSyncedBlockEventGiveObserverUpdate(int type, int data, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.missingObserverUpdatesFix) {
+            Utils.giveObserverUpdates(this.world,this.pos);
+        }
     }
 }

@@ -33,7 +33,9 @@ public abstract class TridentEntity_voidLoyaltyMixin extends Entity {
         if (this.getY() < (double) (this.getWorld().getBottomY() - 64)) {
             if (CFSettings.voidKillsLoyaltyTridentsFix && this.dataTracker.get(LOYALTY) > 0) {
                 this.dealtDamage = true;
-                if (this.getY() < (double) (this.getWorld().getBottomY() - 128)) this.tickInVoid();
+                if (this.getY() < (double) (this.getWorld().getBottomY() - 128)) {
+                    this.tickInVoid();
+                }
             } else {
                 this.tickInVoid();
             }

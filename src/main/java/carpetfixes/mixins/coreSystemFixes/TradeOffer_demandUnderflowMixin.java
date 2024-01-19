@@ -32,7 +32,7 @@ public class TradeOffer_demandUnderflowMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onUpdateDemandBonus(CallbackInfo ci) {
+    private void cf$onUpdateDemandBonus(CallbackInfo ci) {
         if (CFSettings.tradeDemandDecreasesIndefinitelyFix) {
             this.demandBonus = Math.max(0,this.demandBonus + this.uses - (this.maxUses - this.uses));
             ci.cancel();

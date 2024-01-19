@@ -35,7 +35,7 @@ public abstract class PlayerEntity_enchantmentCostMixin extends Entity {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void applyEnchantmentCosts(ItemStack enchantedItem, int experienceLevels, CallbackInfo ci) {
+    private void cf$applyEnchantmentCosts(ItemStack enchantedItem, int experienceLevels, CallbackInfo ci) {
         if (CFSettings.creativeEnchantingCostsExperienceFix && this.isCreative()) {
             this.enchantmentTableSeed = this.random.nextInt();
             ci.cancel();

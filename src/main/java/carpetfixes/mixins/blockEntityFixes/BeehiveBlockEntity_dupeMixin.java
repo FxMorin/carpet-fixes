@@ -29,10 +29,12 @@ public abstract class BeehiveBlockEntity_dupeMixin extends BlockEntity {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void tryEnterHiveIfLoaded(Entity entity, boolean hasNectar, int ticksInHive, CallbackInfo ci) {
+    private void cf$tryEnterHiveIfLoaded(Entity entity, boolean hasNectar, int ticksInHive, CallbackInfo ci) {
         if (CFSettings.beeDupeFix && !entity.getWorld().isChunkLoaded(
                 ChunkSectionPos.getSectionCoord(this.pos.getX()),
                 ChunkSectionPos.getSectionCoord(this.pos.getY())
-        )) ci.cancel();
+        )) {
+            ci.cancel();
+        }
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.block.JigsawBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,8 @@ public class JigsawBlock_oomMixin extends Block {
         super(settings);
     }
 
-    private void simulateOOM() {
+    @Unique
+    private void cf$simulateOOM() {
         List<byte[]> OutOfMemoryList = new ArrayList<>(); // Filled to cause an OutOfMemory Error
         try {
             while (true) OutOfMemoryList.add(new byte[10 * 1024 * 1024]); // Use 10MB of memory
@@ -35,8 +37,9 @@ public class JigsawBlock_oomMixin extends Block {
 
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean n) {
-        if (CFSettings.debugSimulatedOutOfMemory && !fromPos.equals(pos.up()))
-            if (world.getBlockState(pos.up()).isOf(Blocks.LIGHTNING_ROD))
-                simulateOOM();
+        if (CFSettings.debugSimulatedOutOfMemory && !fromPos.equals(pos.up()) &&
+                world.getBlockState(pos.up()).isOf(Blocks.LIGHTNING_ROD)) {
+            cf$simulateOOM();
+        }
     }
 }

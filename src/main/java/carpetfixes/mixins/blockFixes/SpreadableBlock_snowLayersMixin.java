@@ -24,7 +24,7 @@ public class SpreadableBlock_snowLayersMixin {
                             "get(Lnet/minecraft/state/property/Property;)Ljava/lang/Comparable;"
             )
     )
-    private static Comparable<Integer> allowUpTo7(BlockState instance, Property<Integer> property) {
+    private static Comparable<Integer> cf$allowUpTo7(BlockState instance, Property<Integer> property) {
         int layers = instance.get(property);
         return CFSettings.grassSnowLayersFix && layers < 8 ? 1 : layers;
     }

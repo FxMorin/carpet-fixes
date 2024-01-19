@@ -35,7 +35,7 @@ public abstract class LivingEntity_momentumCancelledMixin extends Entity {
                     shift = At.Shift.BEFORE
             )
     )
-    private void customVelocityCheck(CallbackInfo ci, Vec3d d, double h, double i, double j) {
+    private void cf$customVelocityCheck(CallbackInfo ci, Vec3d d, double h, double i, double j) {
         if (CFSettings.velocitySeparateAxisCancellingFix) {
             double x = d.x, y = d.y, z = d.z;
             if (Math.abs(x) + Math.abs(z) < 0.003D) {
@@ -59,5 +59,5 @@ public abstract class LivingEntity_momentumCancelledMixin extends Entity {
                     target = "Lnet/minecraft/entity/LivingEntity;setVelocity(DDD)V"
             )
     )
-    public void cancelSetVelocity(LivingEntity instance, double x, double y, double z) {}
+    private void cf$cancelSetVelocity(LivingEntity instance, double x, double y, double z) {}
 }

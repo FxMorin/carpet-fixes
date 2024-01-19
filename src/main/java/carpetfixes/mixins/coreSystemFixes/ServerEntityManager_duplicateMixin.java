@@ -30,7 +30,7 @@ public class ServerEntityManager_duplicateMixin<T extends EntityLike> {
 
     @Shadow
     @Final
-    private Set<UUID> entityUuids;
+    Set<UUID> entityUuids;
 
 
     @Redirect(
@@ -41,7 +41,7 @@ public class ServerEntityManager_duplicateMixin<T extends EntityLike> {
                             "addEntityUuid(Lnet/minecraft/world/entity/EntityLike;)Z"
             )
     )
-    private boolean addEntityUuidOrSwitchUuid(ServerEntityManager<T> manager, T entity) {
+    private boolean cf$addEntityUuidOrSwitchUuid(ServerEntityManager<T> manager, T entity) {
         if (CFSettings.duplicateEntityUUIDFix) {
             if (!this.entityUuids.add(entity.getUuid()) && entity instanceof Entity e) {
                 int attempt = 0;

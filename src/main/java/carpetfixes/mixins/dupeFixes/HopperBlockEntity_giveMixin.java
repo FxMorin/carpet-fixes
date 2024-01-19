@@ -23,12 +23,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(HopperBlockEntity.class)
 public class HopperBlockEntity_giveMixin {
 
+
     @Inject(
             method = "extract(Lnet/minecraft/inventory/Inventory;Lnet/minecraft/entity/ItemEntity;)Z",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void extract(Inventory inventory, ItemEntity itemEntity, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.giveCommandDupeFix && itemEntity.pickupDelay == 32767) cir.setReturnValue(true);
+    private static void cf$extract(Inventory inventory, ItemEntity itemEntity, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.giveCommandDupeFix && itemEntity.pickupDelay == 32767) {
+            cir.setReturnValue(true);
+        }
     }
 }

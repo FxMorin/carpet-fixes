@@ -21,8 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LeverBlock.class)
 public abstract class LeverBlock_updateMixin extends WallMountedBlock {
 
-    LeverBlock self = (LeverBlock)(Object)this;
-
     protected LeverBlock_updateMixin(Settings settings) {super(settings);}
 
 
@@ -35,7 +33,7 @@ public abstract class LeverBlock_updateMixin extends WallMountedBlock {
             ),
             index = 2
     )
-    private int modifyUpdate(int val) {
+    private int cf$modifyUpdate(int val) {
         return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
@@ -46,14 +44,14 @@ public abstract class LeverBlock_updateMixin extends WallMountedBlock {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void updateNeighborsBetter(BlockState state, World world, BlockPos pos, CallbackInfo ci) {
+    private void cf$updateNeighborsBetter(BlockState state, World world, BlockPos pos, CallbackInfo ci) {
         if (CFSettings.duplicateBlockUpdatesFix) {
-            world.updateNeighborsAlways(pos, self);
+            world.updateNeighborsAlways(pos, (LeverBlock)(Object)this);
             Direction dir = getDirection(state);
             if (CFSettings.uselessSelfBlockUpdateFix) {
-                world.updateNeighborsExcept(pos.offset(dir.getOpposite()), self, dir);
+                world.updateNeighborsExcept(pos.offset(dir.getOpposite()), (LeverBlock)(Object)this, dir);
             } else {
-                world.updateNeighborsAlways(pos.offset(dir.getOpposite()), self);
+                world.updateNeighborsAlways(pos.offset(dir.getOpposite()), (LeverBlock)(Object)this);
             }
             ci.cancel();
         }

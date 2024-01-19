@@ -20,8 +20,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MobEntity.class)
 public class MobEntity_leashDetachMixin {
 
-    private final MobEntity self = (MobEntity)(Object)this;
-
     @Shadow
     private @Nullable Entity holdingEntity;
 
@@ -30,9 +28,10 @@ public class MobEntity_leashDetachMixin {
             method = "detachLeash",
             at = @At("HEAD")
     )
-    private void detachLeash(boolean sendPacket, boolean dropItem, CallbackInfo ci) {
+    private void cf$detachLeash(boolean sendPacket, boolean dropItem, CallbackInfo ci) {
         if (CFSettings.leashKnotNotUpdatingOnBreakFix && this.holdingEntity != null &&
-                this.holdingEntity instanceof LeashKnotEntity leashKnotEntity)
-            ((LeashKnotDetach)leashKnotEntity).onDetachLeash(self);
+                this.holdingEntity instanceof LeashKnotEntity leashKnotEntity) {
+            ((LeashKnotDetach) leashKnotEntity).onDetachLeash((MobEntity)(Object)this);
+        }
     }
 }

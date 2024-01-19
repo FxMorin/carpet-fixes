@@ -32,7 +32,9 @@ public abstract class FallingBlockEntity_duplicationMixin extends Entity {
             ),
             cancellable = true
     )
-    private void cancelDupe(CallbackInfo ci) {
-        if (CFSettings.fallingBlockDuplicationFix && this.isRemoved()) ci.cancel();
+    private void cf$cancelDupe(CallbackInfo ci) {
+        if (CFSettings.fallingBlockDuplicationFix && this.isRemoved()) {
+            ci.cancel();
+        }
     }
 }

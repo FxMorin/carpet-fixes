@@ -26,6 +26,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(ComparatorBlock.class)
 public class ComparatorBlock_opaqueFullMixin {
 
+
     @Redirect(
             method = "getPower",
             at = @At(
@@ -34,7 +35,7 @@ public class ComparatorBlock_opaqueFullMixin {
                             "Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Z"
             )
     )
-    private boolean checkOpaqueFullCubeInstead(BlockState state, BlockView world, BlockPos pos) {
+    private boolean cf$checkOpaqueFullCubeInstead(BlockState state, BlockView world, BlockPos pos) {
         return CFSettings.comparatorTransparencyFix ?
                 state.isOpaqueFullCube(world, pos) : state.isSolidBlock(world, pos);
     }

@@ -25,9 +25,10 @@ public class DoorBlock_entityCheckMixin {
             ),
             cancellable = true
     )
-    private void canPlaceBed(ItemPlacementContext ctx, CallbackInfoReturnable<BlockState> cir) {
+    private void cf$canPlaceBed(ItemPlacementContext ctx, CallbackInfoReturnable<BlockState> cir) {
         if (CFSettings.doubleBlocksSkipEntityCheckFix &&
-                !ctx.getWorld().canPlace(cir.getReturnValue(), ctx.getBlockPos().up(), ShapeContext.absent()))
+                !ctx.getWorld().canPlace(cir.getReturnValue(), ctx.getBlockPos().up(), ShapeContext.absent())) {
             cir.setReturnValue(null);
+        }
     }
 }

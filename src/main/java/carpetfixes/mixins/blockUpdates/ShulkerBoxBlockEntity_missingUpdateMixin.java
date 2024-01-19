@@ -23,7 +23,7 @@ public class ShulkerBoxBlockEntity_missingUpdateMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void updateNeighborStates(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
+    private static void cf$updateNeighborStates(World world, BlockPos pos, BlockState state, CallbackInfo ci) {
         if (CFSettings.shulkerBoxMissingUpdateFix) {
             world.updateNeighborsAlways(pos, state.getBlock());
             ci.cancel();

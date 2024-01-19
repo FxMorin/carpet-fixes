@@ -4,6 +4,7 @@ import carpetfixes.CFSettings;
 import net.minecraft.world.chunk.Chunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -20,7 +21,8 @@ public class Chunk_InhabitedTimeMixin {
     // This boolean value states if a chunk needs to be saved when shutting down, unloading, or auto-saving
     // Basically skip saving during every tick, and only do it during auto saves/unloading
     // TODO: When adding the api, make sure to allow other mods to use the needsFinalSaving option
-    private volatile boolean needsFinalSaving;
+    @Unique
+    private volatile boolean cf$needsFinalSaving;
 
     @Shadow
     protected volatile boolean needsSaving;
@@ -30,12 +32,12 @@ public class Chunk_InhabitedTimeMixin {
             method = "increaseInhabitedTime",
             at = @At("RETURN")
     )
-    private void increaseInhabitedTime(long l, CallbackInfo ci) {
+    private void cf$increaseInhabitedTime(long l, CallbackInfo ci) {
         if (CFSettings.inhabitedTimeFix) {
             if (CFSettings.reIntroduceOnlyAutoSaveSaving) {
                 this.needsSaving = true;
             } else {
-                this.needsFinalSaving = true;
+                this.cf$needsFinalSaving = true;
             }
         }
     }
@@ -45,8 +47,10 @@ public class Chunk_InhabitedTimeMixin {
             method = "setNeedsSaving",
             at = @At("RETURN")
     )
-    private void setNeedsSaving(boolean needsSaving, CallbackInfo ci) {
-        if (!needsSaving) this.needsFinalSaving = false; // On saved, reset value
+    private void cf$setNeedsSaving(boolean needsSaving, CallbackInfo ci) {
+        if (!needsSaving) {
+            this.cf$needsFinalSaving = false; // On saved, reset value
+        }
     }
 
 
@@ -55,7 +59,9 @@ public class Chunk_InhabitedTimeMixin {
             at = @At("RETURN"),
             cancellable = true
     )
-    private void needsSavingOrFinalSaving(CallbackInfoReturnable<Boolean> cir) {
-        if (this.needsFinalSaving && !cir.getReturnValue()) cir.setReturnValue(!CFSettings.IS_TICK_SAVE.get());
+    private void cf$needsSavingOrFinalSaving(CallbackInfoReturnable<Boolean> cir) {
+        if (this.cf$needsFinalSaving && !cir.getReturnValue()) {
+            cir.setReturnValue(!CFSettings.IS_TICK_SAVE.get());
+        }
     }
 }

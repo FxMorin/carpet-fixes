@@ -28,9 +28,10 @@ public class BrewingStandBlockEntity_brewingItemMixin {
             method = "readNbt",
             at = @At("TAIL")
     )
-    private void readNbt(NbtCompound nbt, CallbackInfo ci) {
-        if (CFSettings.brewingResetsOnUnloadFix)
+    private void cf$readNbt(NbtCompound nbt, CallbackInfo ci) {
+        if (CFSettings.brewingResetsOnUnloadFix) {
             this.itemBrewing = Registries.ITEM.get(new Identifier(nbt.getString("itemBrewing")));
+        }
     }
 
 
@@ -38,8 +39,9 @@ public class BrewingStandBlockEntity_brewingItemMixin {
             method = "writeNbt",
             at = @At("TAIL")
     )
-    private void writeNbt(NbtCompound nbt, CallbackInfo ci) {
-        if (CFSettings.brewingResetsOnUnloadFix)
+    private void cf$writeNbt(NbtCompound nbt, CallbackInfo ci) {
+        if (CFSettings.brewingResetsOnUnloadFix) {
             nbt.putString("itemBrewing", Registries.ITEM.getId(this.itemBrewing).toString());
+        }
     }
 }

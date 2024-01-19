@@ -24,8 +24,10 @@ public class Explosion_worldBorderMixin {
                     target = "Lnet/minecraft/world/World;isInBuildLimit(Lnet/minecraft/util/math/BlockPos;)Z"
             )
     )
-    public boolean collectBlocksAndDamageEntities(World instance, BlockPos pos) {
-        if (CFSettings.explosionsBypassWorldBorderFix) return Utils.isInModifiableLimit(instance, pos);
+    private boolean cf$collectBlocksAndDamageEntities(World instance, BlockPos pos) {
+        if (CFSettings.explosionsBypassWorldBorderFix) {
+            return Utils.isInModifiableLimit(instance, pos);
+        }
         return instance.isInBuildLimit(pos);
     }
 }

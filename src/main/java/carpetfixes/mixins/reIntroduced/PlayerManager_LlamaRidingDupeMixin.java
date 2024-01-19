@@ -29,6 +29,7 @@ import java.util.function.Function;
 @Mixin(PlayerManager.class)
 public abstract class PlayerManager_LlamaRidingDupeMixin {
 
+
     @ModifyArg(
             method = "onPlayerConnect",
             at = @At(
@@ -40,10 +41,11 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             index = 2,
             require = 0
     )
-    private Function<Entity, Entity> llamaReplaceOnConnect(NbtCompound nbt, World world,
-                                                           Function<Entity, Entity> entityProcessor) {
-        if (CFSettings.reIntroduceDonkeyRidingDupe)
+    private Function<Entity, Entity> cf$llamaReplaceOnConnect(NbtCompound nbt, World world,
+                                                              Function<Entity, Entity> entityProcessor) {
+        if (CFSettings.reIntroduceDonkeyRidingDupe) {
             return Utils.reIntroduceDonkeyRidingDupe_entityFetcherFunction((ServerWorld) world);
+        }
         return entityProcessor;
     }
 
@@ -59,8 +61,10 @@ public abstract class PlayerManager_LlamaRidingDupeMixin {
             require = 0,
             cancellable = true
     )
-    private void llamaDupeOnRemove(ServerPlayerEntity player, CallbackInfo ci){
-        if(CFSettings.reIntroduceDonkeyRidingDupe) ci.cancel();
+    private void cf$llamaDupeOnRemove(ServerPlayerEntity player, CallbackInfo ci){
+        if (CFSettings.reIntroduceDonkeyRidingDupe) {
+            ci.cancel();
+        }
     }
 }
 
@@ -82,10 +86,11 @@ abstract class PlayerManager_LlamaRidingDupeMixin_VMPCompat {
             index = 2,
             require = 0
     )
-    private Function<Entity, Entity> llamaReplaceOnConnect(NbtCompound nbt, World world,
-                                                           Function<Entity, Entity> entityProcessor) {
-        if (CFSettings.reIntroduceDonkeyRidingDupe)
+    private Function<Entity, Entity> cf$llamaReplaceOnConnect(NbtCompound nbt, World world,
+                                                              Function<Entity, Entity> entityProcessor) {
+        if (CFSettings.reIntroduceDonkeyRidingDupe) {
             return Utils.reIntroduceDonkeyRidingDupe_entityFetcherFunction((ServerWorld) world);
+        }
         return entityProcessor;
     }
 }

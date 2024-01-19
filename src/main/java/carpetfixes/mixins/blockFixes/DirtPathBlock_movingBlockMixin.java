@@ -22,17 +22,18 @@ public class DirtPathBlock_movingBlockMixin {
     @Redirect(
             method = "canPlaceAt(Lnet/minecraft/block/BlockState;" +
                     "Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z",
-            at=@At(
+            at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/WorldView;getBlockState(Lnet/minecraft/util/math/BlockPos;)" +
                             "Lnet/minecraft/block/BlockState;"
             )
     )
-    private BlockState canPlaceAt(WorldView world, BlockPos pos) {
+    private BlockState cf$doneDestroyPaths(WorldView world, BlockPos pos) {
         if (CFSettings.movingBlocksDestroyPathFix) {
             BlockState state = world.getBlockState(pos);
-            if (state.isOf(Blocks.MOVING_PISTON) && world.getBlockEntity(pos) instanceof PistonBlockEntity pbe)
+            if (state.isOf(Blocks.MOVING_PISTON) && world.getBlockEntity(pos) instanceof PistonBlockEntity pbe) {
                 return pbe.getPushedBlock();
+            }
             return state;
         }
         return world.getBlockState(pos);

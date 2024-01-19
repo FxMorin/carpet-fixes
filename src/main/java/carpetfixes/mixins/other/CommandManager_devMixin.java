@@ -30,8 +30,8 @@ public class CommandManager_devMixin {
             method = "<init>",
             at = @At("RETURN")
     )
-    private void onInit(CommandManager.RegistrationEnvironment environment,
-                        CommandRegistryAccess arg, CallbackInfo ci) {
+    private void cf$onInit(CommandManager.RegistrationEnvironment environment,
+                           CommandRegistryAccess arg, CallbackInfo ci) {
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
             ResetChunksCommand.register(this.dispatcher);
             ChaseCommand.register(this.dispatcher);

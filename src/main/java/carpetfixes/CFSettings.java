@@ -1422,12 +1422,6 @@ public class CFSettings {
     @Rule(
             categories = {REINTRODUCE}
     )
-    public static boolean reIntroduceReverseRailUpdateOrder = false;
-
-    //By FX - PR0CESS
-    @Rule(
-            categories = {REINTRODUCE}
-    )
     public static boolean reIntroduceProperGoalTimings = false;
 
     //By FX - PR0CESS

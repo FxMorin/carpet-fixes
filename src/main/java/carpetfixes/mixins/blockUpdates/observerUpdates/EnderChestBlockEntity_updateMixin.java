@@ -8,6 +8,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.EnderChestBlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -19,7 +20,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(EnderChestBlockEntity.class)
 public class EnderChestBlockEntity_updateMixin extends BlockEntity {
 
-    private int lastCount = 0;
+    @Unique
+    private int cf$lastCount = 0;
 
     public EnderChestBlockEntity_updateMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -33,9 +35,9 @@ public class EnderChestBlockEntity_updateMixin extends BlockEntity {
                     target = "Lnet/minecraft/block/entity/ChestLidAnimator;setOpen(Z)V"
             )
     )
-    public void addObserverUpdateOnOpenAndClose(int type, int data, CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.missingObserverUpdatesFix && lastCount != data) {
-            lastCount = data;
+    private void cf$addObserverUpdateOnOpenAndClose(int type, int data, CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.missingObserverUpdatesFix && cf$lastCount != data) {
+            cf$lastCount = data;
             Utils.giveObserverUpdates(this.world, this.pos);
         }
     }

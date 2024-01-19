@@ -8,6 +8,7 @@ import net.minecraft.block.enums.RailShape;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -36,11 +37,11 @@ public abstract class DetectorRailBlock_invalidUpdateMixin extends AbstractRailB
             ),
             cancellable = true
     )
-    private void updateNeighborsExceptWithBetterDirection(BlockState state, World world, BlockPos pos,
-                                                          BlockState oldState, boolean notify, CallbackInfo ci) {
+    private void cf$updateNeighborsExceptWithBetterDirection(BlockState state, World world, BlockPos pos,
+                                                             BlockState oldState, boolean notify, CallbackInfo ci) {
         if (CFSettings.railInvalidUpdateOnPushFix) {
             RailShape railShape = state.get(this.getShapeProperty());
-            if (shouldDropRail(pos, world, railShape)) {
+            if (cf$shouldDropRail(pos, world, railShape)) {
                 dropStacks(state, world, pos);
                 world.removeBlock(pos, notify);
                 ci.cancel();
@@ -48,7 +49,8 @@ public abstract class DetectorRailBlock_invalidUpdateMixin extends AbstractRailB
         }
     }
 
-    private static boolean shouldDropRail(BlockPos pos, World world, RailShape shape) {
+    @Unique
+    private static boolean cf$shouldDropRail(BlockPos pos, World world, RailShape shape) {
         if (hasTopRim(world, pos.down())) {
             return switch (shape) {
                 case ASCENDING_EAST -> !hasTopRim(world, pos.east());

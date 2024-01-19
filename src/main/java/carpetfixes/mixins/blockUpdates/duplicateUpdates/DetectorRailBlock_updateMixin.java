@@ -27,7 +27,7 @@ public class DetectorRailBlock_updateMixin {
             ),
             index = 2
     )
-    private int modifyUpdate(int val) {
+    private int cf$modifyUpdate(int val) {
         return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
@@ -40,7 +40,9 @@ public class DetectorRailBlock_updateMixin {
                             "updateNeighborsAlways(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V"
             )
     )
-    private void removeUpdate(World world, BlockPos pos, Block block) {
-        if (!CFSettings.duplicateBlockUpdatesFix) world.updateNeighborsAlways(pos,block);
+    private void cf$removeUpdate(World world, BlockPos pos, Block block) {
+        if (!CFSettings.duplicateBlockUpdatesFix) {
+            world.updateNeighborsAlways(pos,block);
+        }
     }
 }

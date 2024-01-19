@@ -1,6 +1,8 @@
 package carpetfixes.mixins.dupeFixes;
 
 import carpetfixes.CFSettings;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -34,8 +36,6 @@ import java.util.Map;
 @Mixin(PistonBlock.class)
 public abstract class PistonBlock_tntDupingFixMixin {
 
-    private final ThreadLocal<Boolean> isDupeFixed = ThreadLocal.withInitial(() -> false);
-
 
     @SuppressWarnings("all")
     @Inject(
@@ -54,15 +54,16 @@ public abstract class PistonBlock_tntDupingFixMixin {
         ),
         locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void setAllToBeMovedBlockToAirFirst(World world, BlockPos pos, Direction dir, boolean retract,
-                                                CallbackInfoReturnable<Boolean> cir, BlockPos blockPos,
-                                                PistonHandler pistonHandler, Map<BlockPos, BlockState> map,
-                                                List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3,
-                                                BlockState blockStates[], Direction direction, int j) {
+    private void cf$setAllToBeMovedBlockToAirFirst(World world, BlockPos pos, Direction dir, boolean retract,
+                                                   CallbackInfoReturnable<Boolean> cir, BlockPos blockPos,
+                                                   PistonHandler pistonHandler, Map<BlockPos, BlockState> map,
+                                                   List<BlockPos> list, List<BlockState> list2, List<BlockPos> list3,
+                                                   BlockState blockStates[], Direction direction, int j,
+                                                   @Share("isFixed") LocalBooleanRef isFixedRef) {
         // just in case the rule gets changed halfway
-        this.isDupeFixed.set(CFSettings.pistonDupingFix);
+        isFixedRef.set(CFSettings.pistonDupingFix);
 
-        if (this.isDupeFixed.get()) {
+        if (isFixedRef.get()) {
             // vanilla iterating order
             for (int l = list.size() - 1; l >= 0; --l) {
                 BlockPos toBeMovedBlockPos = list.get(l);
@@ -118,13 +119,14 @@ public abstract class PistonBlock_tntDupingFixMixin {
         ),
         locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void makeSureStatesInBlockStatesIsCorrect(World world, BlockPos pos, Direction dir, boolean retract,
-                                                      CallbackInfoReturnable<Boolean> cir, BlockPos blockPos,
-                                                      PistonHandler pistonHandler, Map<BlockPos, BlockState> map,
-                                                      List<BlockPos> list, List<BlockState> list2,
-                                                      List<BlockPos> list3, BlockState[] blockStates,
-                                                      BlockState blockState6) {
-        if (this.isDupeFixed.get()) {
+    private void cf$makeSureStatesInBlockStatesIsCorrect(World world, BlockPos pos, Direction dir, boolean retract,
+                                                         CallbackInfoReturnable<Boolean> cir, BlockPos blockPos,
+                                                         PistonHandler pistonHandler, Map<BlockPos, BlockState> map,
+                                                         List<BlockPos> list, List<BlockState> list2,
+                                                         List<BlockPos> list3, BlockState[] blockStates,
+                                                         BlockState blockState6,
+                                                         @Share("isFixed") LocalBooleanRef isFixedRef) {
+        if (isFixedRef.get()) {
             // since blockState8 = world.getBlockState(blockPos4) always return AIR due to the changes above
             // some states value in blockStates array need to be corrected
             // list and list2 has the same size and indicating the same block

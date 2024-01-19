@@ -55,9 +55,9 @@ public abstract class Piece_differentPaletteMixin extends SimpleStructurePiece {
     private boolean grounded;
 
     public Piece_differentPaletteMixin(StructurePieceType type, int length,
-                                                          StructureTemplateManager structureTemplateManager,
-                                                          Identifier id, String template,
-                                                          StructurePlacementData placementData, BlockPos pos) {
+                                       StructureTemplateManager structureTemplateManager,
+                                       Identifier id, String template,
+                                       StructurePlacementData placementData, BlockPos pos) {
         super(type, length, structureTemplateManager, id, template, placementData, pos);
     }
 
@@ -70,9 +70,9 @@ public abstract class Piece_differentPaletteMixin extends SimpleStructurePiece {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void customBlockPos(StructureWorldAccess world, StructureAccessor structureAccessor,
-                                ChunkGenerator chunkGenerator, Random random, BlockBox chunkBox,
-                                ChunkPos chunkPos, BlockPos pos, CallbackInfo ci) {
+    private void cf$customBlockPos(StructureWorldAccess world, StructureAccessor structureAccessor,
+                                   ChunkGenerator chunkGenerator, Random random, BlockBox chunkBox,
+                                   ChunkPos chunkPos, BlockPos pos, CallbackInfo ci) {
         if (CFSettings.shipwreckChunkBorderIssuesFix) {
             int topY = world.getTopY(), avgY = 0;
             Vec3i size = this.template.getSize();

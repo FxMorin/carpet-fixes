@@ -24,8 +24,10 @@ public abstract class Entity_incorrectLogicMixin {
             method = "onBubbleColumnCollision(Z)V",
             at = @At("HEAD")
     )
-    private void onBubbleColumnCollision(boolean drag, CallbackInfo ci) {
-        if (CFSettings.incorrectBubbleColumnLogicFix) this.setOnGround(false);
+    private void cf$onBubbleColumnCollision(boolean drag, CallbackInfo ci) {
+        if (CFSettings.incorrectBubbleColumnLogicFix) {
+            this.setOnGround(false);
+        }
     }
 
 
@@ -33,7 +35,9 @@ public abstract class Entity_incorrectLogicMixin {
             method = "onBubbleColumnSurfaceCollision(Z)V",
             at = @At("HEAD")
     )
-    private void onBubbleColumnSurfaceCollision(boolean drag, CallbackInfo ci) {
-        if (CFSettings.incorrectBubbleColumnLogicFix) this.setOnGround(false);
+    private void cf$onBubbleColumnSurfaceCollision(boolean drag, CallbackInfo ci) {
+        if (CFSettings.incorrectBubbleColumnLogicFix) {
+            this.setOnGround(false);
+        }
     }
 }

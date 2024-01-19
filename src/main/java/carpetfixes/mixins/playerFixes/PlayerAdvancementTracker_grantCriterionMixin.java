@@ -28,7 +28,8 @@ public class PlayerAdvancementTracker_grantCriterionMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void grantCriterion(AdvancementEntry advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
+    private void cf$grantCriterion(AdvancementEntry advancement, String criterionName,
+                                   CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.spectatorAdvancementGrantingFix &&
                 owner.interactionManager.getGameMode().equals(GameMode.SPECTATOR)) {
             cir.cancel();

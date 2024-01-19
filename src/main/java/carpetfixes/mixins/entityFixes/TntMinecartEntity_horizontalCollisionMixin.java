@@ -36,8 +36,10 @@ public abstract class TntMinecartEntity_horizontalCollisionMixin extends Abstrac
             ),
             cancellable = true
     )
-    private void tick(CallbackInfo ci) {
+    private void cf$onTick(CallbackInfo ci) {
         if (CFSettings.tntMinecartTerribleCollisionFix &&
-                AbstractRailBlock.isRail(this.getWorld().getBlockState(this.getBlockPos()))) ci.cancel();
+                AbstractRailBlock.isRail(this.getWorld().getBlockState(this.getBlockPos()))) {
+            ci.cancel();
+        }
     }
 }

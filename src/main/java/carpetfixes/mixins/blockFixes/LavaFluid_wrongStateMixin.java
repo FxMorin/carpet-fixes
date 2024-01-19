@@ -26,7 +26,7 @@ public class LavaFluid_wrongStateMixin {
             ),
             index = 1
     )
-    private BlockPos modifyBlockPosHeight(BlockPos pos) {
+    private BlockPos cf$modifyBlockPosHeight(BlockPos pos) {
         return CFSettings.lavaCalculatesWrongFireStateFix ? pos.up() : pos;
     }
 }

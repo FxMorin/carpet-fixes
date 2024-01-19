@@ -26,15 +26,15 @@ public abstract class BuriedTreasureStructure_centerMixin extends Structure {
         super(arg);
     }
 
+
     @Inject(
             method = "addPieces(Lnet/minecraft/structure/StructurePiecesCollector;" +
                     "Lnet/minecraft/world/gen/structure/Structure$Context;)V",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void customPiecePosition(StructurePiecesCollector collector,
-                                            Context arg,
-                                            CallbackInfo ci) {
+    private static void cf$customPiecePosition(StructurePiecesCollector collector, Context arg,
+                                               CallbackInfo ci) {
         if (CFSettings.buriedTreasureAlwaysCenterFix) {
             ChunkPos chunkPos = arg.chunkPos();
             Random rand = new Random(chunkPos.toLong());

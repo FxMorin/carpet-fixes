@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(AbstractFireBlock.class)
 public class AbstractFireBlock_flintAndSteelMixin {
 
+
     @Inject(
             method = "canPlaceAt",
             require = 0,
@@ -28,9 +29,11 @@ public class AbstractFireBlock_flintAndSteelMixin {
             ),
             cancellable = true
     )
-    private static void canPlaceAt(World world, BlockPos blockPos,
-                                   Direction direction, CallbackInfoReturnable<Boolean> cir) {
+    private static void cf$canPlaceAt(World world, BlockPos blockPos,
+                                      Direction direction, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.reIntroduceFlintAndSteelBehavior &&
-                world.getBlockState(blockPos.down()).getBlock() != Blocks.FIRE) cir.setReturnValue(true);
+                world.getBlockState(blockPos.down()).getBlock() != Blocks.FIRE) {
+            cir.setReturnValue(true);
+        }
     }
 }

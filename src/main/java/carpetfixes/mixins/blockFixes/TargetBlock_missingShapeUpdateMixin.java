@@ -31,6 +31,8 @@ public class TargetBlock_missingShapeUpdateMixin {
     )
     private void targetBlockUpdate(BlockState state, World world, BlockPos pos,
                                 BlockState oldState, boolean notify, CallbackInfo ci) {
-        if (CFSettings.targetBlockUpdateFix) state.updateNeighbors(world, pos, Block.NOTIFY_LISTENERS);
+        if (CFSettings.targetBlockUpdateFix) {
+            state.updateNeighbors(world, pos, Block.NOTIFY_LISTENERS);
+        }
     }
 }

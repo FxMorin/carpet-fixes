@@ -35,8 +35,9 @@ public abstract class ZombieVillagerEntity_convertingMixin extends ZombieEntity 
             at = @At("HEAD"),
             cancellable = true
     )
-    private void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        if (CFSettings.convertConvertingZombieVillagersFix && this.isConverting())
+    private void cf$interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        if (CFSettings.convertConvertingZombieVillagersFix && this.isConverting()) {
             cir.setReturnValue(super.interactMob(player, hand));
+        }
     }
 }

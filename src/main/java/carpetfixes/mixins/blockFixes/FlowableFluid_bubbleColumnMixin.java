@@ -23,7 +23,7 @@ public class FlowableFluid_bubbleColumnMixin {
                     ordinal = 2
             )
     )
-    private boolean canFill(BlockState instance, Block block) {
+    private boolean cf$canFill(BlockState instance, Block block) {
         return !CFSettings.lavaIgnoresBubbleColumnFix && instance.isOf(block);
     }
 }

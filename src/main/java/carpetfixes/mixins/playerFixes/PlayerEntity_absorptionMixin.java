@@ -31,9 +31,10 @@ public abstract class PlayerEntity_absorptionMixin extends LivingEntity {
             method = "setAbsorptionAmountUnclamped(F)V",
             at = @At("RETURN")
     )
-    private void onAbsorptionChanged(float amount, CallbackInfo ci) {
-        if (CFSettings.absorptionStaysWithoutHeartsFix &&
-                this.getAbsorptionAmount() <= 0.0f && this.hasStatusEffect(StatusEffects.ABSORPTION))
+    private void cf$onAbsorptionChanged(float amount, CallbackInfo ci) {
+        if (CFSettings.absorptionStaysWithoutHeartsFix && this.getAbsorptionAmount() <= 0.0f &&
+                this.hasStatusEffect(StatusEffects.ABSORPTION)) {
             this.removeStatusEffect(StatusEffects.ABSORPTION);
+        }
     }
 }

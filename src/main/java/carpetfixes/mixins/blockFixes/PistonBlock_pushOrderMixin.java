@@ -27,7 +27,7 @@ public class PistonBlock_pushOrderMixin {
                     target = "Lcom/google/common/collect/Maps;newHashMap()Ljava/util/HashMap;"
             )
     )
-    private HashMap<BlockPos, BlockState> hashmapBadYeeeet() {
+    private HashMap<BlockPos, BlockState> cf$hashmapBadYeeeet() {
         return CFSettings.pistonUpdateOrderIsLocationalFix ? Maps.newLinkedHashMap() : Maps.newHashMap();
     }
 }

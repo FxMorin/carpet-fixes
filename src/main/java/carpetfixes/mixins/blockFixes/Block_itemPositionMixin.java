@@ -11,6 +11,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -33,7 +34,7 @@ public class Block_itemPositionMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void dropStack(World world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
+    private static void cf$dropStack(World world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
         if (CFSettings.tileDropsAffectedByFloatingPointFix) {
             double f = EntityType.ITEM.getHeight() / 2.0D;
             double d = ((double) pos.getX() + 0.5D) + MathHelper.nextDouble(world.random, -0.25D, 0.25D);
@@ -51,7 +52,8 @@ public class Block_itemPositionMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void dropStack(World world, BlockPos pos, Direction direction, ItemStack stack, CallbackInfo ci) {
+    private static void cf$dropStack(World world, BlockPos pos, Direction direction,
+                                     ItemStack stack, CallbackInfo ci) {
         if (CFSettings.tileDropsAffectedByFloatingPointFix) {
             int i = direction.getOffsetX(), j = direction.getOffsetY(), k = direction.getOffsetZ();
             double f = EntityType.ITEM.getWidth() / 2.0D, g = EntityType.ITEM.getHeight() / 2.0D;
@@ -67,13 +69,14 @@ public class Block_itemPositionMixin {
                     MathHelper.nextDouble(world.random, -0.25D, 0.25D) :
                     ((double) k * (0.5F + f))
             );
-            createItemEntity(world, stack, i, j, k, x, y, z);
+            cf$createItemEntity(world, stack, i, j, k, x, y, z);
             ci.cancel();
         }
     }
 
-    private static void createItemEntity(World world, ItemStack stack,
-                                         int i, int j, int k, double d, double e, double h) {
+    @Unique
+    private static void cf$createItemEntity(World world, ItemStack stack,
+                                            int i, int j, int k, double d, double e, double h) {
         double l = i == 0 ? MathHelper.nextDouble(world.random, -0.1D, 0.1D) : (double) i * 0.1D;
         double m = j == 0 ? MathHelper.nextDouble(world.random, 0.0D, 0.1D) : (double) j * 0.1D + 0.1D;
         double n = k == 0 ? MathHelper.nextDouble(world.random, -0.1D, 0.1D) : (double) k * 0.1D;

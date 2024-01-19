@@ -32,7 +32,9 @@ public abstract class OreBlock_explosionMixin extends Block {
         super.onDestroyedByExplosion(world,pos,explosion);
         if (CFSettings.oresDontDropXpWhenBlownUpFix && world instanceof ServerWorld serverWorld) {
             int i = this.experienceDropped.get(serverWorld.random);
-            if (i > 0) this.dropExperience(serverWorld, pos, i);
+            if (i > 0) {
+                this.dropExperience(serverWorld, pos, i);
+            }
         }
     }
 }

@@ -26,10 +26,10 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
     }
 
     @Shadow
-    protected static void playSound(World w, BlockPos pos, boolean a, boolean on, boolean detached, boolean off) { }
+    private static void playSound(World w, BlockPos pos, boolean a, boolean on, boolean detached, boolean off) { }
 
     @Shadow
-    protected static void updateNeighborsOnAxis(Block block, World world, BlockPos pos, Direction direction) { }
+    private static void updateNeighborsOnAxis(Block block, World world, BlockPos pos, Direction direction) { }
 
 
     /**
@@ -38,7 +38,7 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
      */
     @Overwrite
     public static void update(World world, BlockPos pos, BlockState state, boolean beingRemoved,
-                       boolean bl, int i, @Nullable BlockState blockState) {
+                              boolean bl, int i, @Nullable BlockState blockState) {
         Direction direction = state.get(FACING);
         boolean attached = state.get(ATTACHED);
         boolean powered = state.get(POWERED);
@@ -52,14 +52,18 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
             blockPos = pos.offset(direction, k);
             BlockState blockState2 = world.getBlockState(blockPos);
             if (blockState2.isOf(Blocks.TRIPWIRE_HOOK)) {
-                if (blockState2.get(FACING) == direction.getOpposite()) index = k;
+                if (blockState2.get(FACING) == direction.getOpposite()) {
+                    index = k;
+                }
                 break;
             }
             if (!blockState2.isOf(Blocks.TRIPWIRE) && k != i) {
                 blockStates[k] = null;
                 notRemoving = false;
             } else {
-                if (k == i) blockState2 = MoreObjects.firstNonNull(blockState, blockState2);
+                if (k == i) {
+                    blockState2 = MoreObjects.firstNonNull(blockState, blockState2);
+                }
                 boolean armed = !(Boolean)blockState2.get(TripwireBlock.DISARMED);
                 on |= armed && blockState2.get(TripwireBlock.POWERED);
                 blockStates[k] = blockState2;
@@ -82,7 +86,9 @@ public abstract class TripwireHookBlock_hookDupeMixin extends Block {
         playSound(world, pos, notRemoving, on, attached, powered);
         if (!beingRemoved && (!CFSettings.tripwireHookDupeFix || world.getBlockState(pos).isOf(Blocks.TRIPWIRE_HOOK))) {
             world.setBlockState(pos, newState.with(FACING, direction), Block.NOTIFY_ALL);
-            if (bl) updateNeighborsOnAxis(block, world, pos, direction);
+            if (bl) {
+                updateNeighborsOnAxis(block, world, pos, direction);
+            }
         }
         if (attached != notRemoving) {
             for(int x = 1; x < index; ++x) {

@@ -27,7 +27,7 @@ public class AbstractMinecartEntity_armorStandMixin {
                             "canBePushedBy(Lnet/minecraft/entity/Entity;)Ljava/util/function/Predicate;"
             )
     )
-    private Predicate<Entity> canBePushedOrArmorStand(Entity entity) {
+    private Predicate<Entity> cf$canBePushedOrArmorStand(Entity entity) {
         Predicate<Entity> predicate = EntityPredicates.canBePushedBy(entity);
         return CFSettings.armorStandsCantRideVehiclesFix ?
                 predicate.or(e -> e instanceof ArmorStandEntity) : predicate;

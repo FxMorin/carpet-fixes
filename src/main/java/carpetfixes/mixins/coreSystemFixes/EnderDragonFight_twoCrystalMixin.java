@@ -23,7 +23,7 @@ public class EnderDragonFight_twoCrystalMixin {
             ),
             index = 1
     )
-    private int modifyDist(int dist) {
+    private int cf$modifyDist(int dist) {
         return CFSettings.respawnDragonWithoutAllEndCrystalsFix ? 3 : dist;
     }
 }

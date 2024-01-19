@@ -47,7 +47,7 @@ public abstract class FallingBlockEntity_entityPhaseMixin extends Entity {
                             "Lnet/minecraft/block/BlockState;I)Z"
             )
     )
-    private static boolean shouldSetBlock(World world, BlockPos pos, BlockState state, int flags) {
+    private static boolean cf$shouldSetBlock(World world, BlockPos pos, BlockState state, int flags) {
         return CFSettings.reIntroduceFallingBlockEntityPhase ||
                 world.setBlockState(pos, state.getFluidState().getBlockState(), Block.NOTIFY_ALL);
     }
@@ -63,7 +63,7 @@ public abstract class FallingBlockEntity_entityPhaseMixin extends Entity {
             ),
             cancellable = true
     )
-    private void onTick(CallbackInfo ci) {
+    private void cf$onTick(CallbackInfo ci) {
         if (CFSettings.reIntroduceFallingBlockEntityPhase && this.timeFalling == 0) {
             BlockPos pos = this.getFallingBlockPos();
             if (this.getWorld().getBlockState(pos).isOf(this.block.getBlock())) {

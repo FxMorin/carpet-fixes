@@ -32,9 +32,10 @@ public class LavaFluid_bubbleColumnMixin {
                     shift = At.Shift.BEFORE
             )
     )
-    private void moreFlow(WorldAccess world, BlockPos blockPos, BlockState blockState, Direction direction,
-                        FluidState fluidState, CallbackInfo ci) {
-        if (CFSettings.lavaIgnoresBubbleColumnFix && blockState.getBlock() instanceof BubbleColumnBlock)
+    private void cf$moreFlow(WorldAccess world, BlockPos blockPos, BlockState blockState, Direction direction,
+                             FluidState fluidState, CallbackInfo ci) {
+        if (CFSettings.lavaIgnoresBubbleColumnFix && blockState.getBlock() instanceof BubbleColumnBlock) {
             world.setBlockState(blockPos, Blocks.STONE.getDefaultState(), Block.NOTIFY_ALL);
+        }
     }
 }

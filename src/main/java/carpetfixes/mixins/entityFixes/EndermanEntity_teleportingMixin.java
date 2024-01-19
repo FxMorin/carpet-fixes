@@ -22,7 +22,7 @@ public class EndermanEntity_teleportingMixin {
                     target = "Lnet/minecraft/entity/mob/EndermanEntity;getBrightnessAtEyes()F"
             )
     )
-    public float brightnessAndMinecart(EndermanEntity entity) {
+    private float cf$brightnessAndMinecart(EndermanEntity entity) {
         return (CFSettings.endermanUselessMinecartTeleportingFix && entity.hasVehicle()) ?
                 0.0f :
                 entity.getBrightnessAtEyes();

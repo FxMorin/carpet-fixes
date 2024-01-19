@@ -31,8 +31,9 @@ public abstract class FishEntity_leashDetachMixin extends WaterCreatureEntity {
             method = "interactMob",
             at = @At("RETURN")
     )
-    private void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        if (CFSettings.bucketableMobsNotDetachingLeashesFix && this.isLeashed() && cir.getReturnValue().isAccepted())
-            this.detachLeash(false,true);
+    private void cf$interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        if (CFSettings.bucketableMobsNotDetachingLeashesFix && this.isLeashed() && cir.getReturnValue().isAccepted()) {
+            this.detachLeash(false, true);
+        }
     }
 }

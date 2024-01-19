@@ -4,7 +4,6 @@ import carpetfixes.CFSettings;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.registry.tag.DamageTypeTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +27,7 @@ public abstract class ArmorStandEntity_damageMixin {
             ),
             cancellable = true
     )
-    private void beforeProjectileCheck(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void cf$beforeProjectileCheck(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (CFSettings.armorStandNegateLavaDamageFix && source.isOf(DamageTypes.LAVA)) {
             this.updateHealth(source, 4.0F);
             cir.setReturnValue(false);

@@ -26,7 +26,7 @@ public class SpongeBlock_missingUpdateMixin extends Block {
             require = 0,
             constant = @Constant(intValue = 2)
     )
-    protected int spongeUpdate(int val) {
+    private int cf$spongeUpdate(int val) {
         return CFSettings.spongeUpdateFix ? val | Block.NOTIFY_NEIGHBORS : val;
     }
 }

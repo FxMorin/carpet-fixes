@@ -24,7 +24,9 @@ public abstract class LivingEntity_potionEffectsMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void isAffectedBySplashPotions(CallbackInfoReturnable<Boolean> cir) {
-        if (CFSettings.potionEffectsAffectDeadEntitiesFix && this.isDead()) cir.setReturnValue(false);
+    private void cf$isAffectedBySplashPotions(CallbackInfoReturnable<Boolean> cir) {
+        if (CFSettings.potionEffectsAffectDeadEntitiesFix && this.isDead()) {
+            cir.setReturnValue(false);
+        }
     }
 }

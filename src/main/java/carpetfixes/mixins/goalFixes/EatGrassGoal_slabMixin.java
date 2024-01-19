@@ -35,11 +35,12 @@ public abstract class EatGrassGoal_slabMixin extends Goal {
                             "Lnet/minecraft/block/BlockState;"
             )
     )
-    private BlockState canStart(World instance, BlockPos blockPos) {
+    private BlockState cf$canStart(World instance, BlockPos blockPos) {
         if (CFSettings.sheepEatGrassThroughBlocksFix) {
             BlockPos pos = this.mob.getBlockPos();
-            if (instance.getBlockState(pos).isSolidSurface(instance, pos, this.mob, Direction.DOWN))
+            if (instance.getBlockState(pos).isSolidSurface(instance, pos, this.mob, Direction.DOWN)) {
                 return Blocks.AIR.getDefaultState();
+            }
         }
         return instance.getBlockState(blockPos);
     }

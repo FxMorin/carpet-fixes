@@ -25,7 +25,8 @@ public abstract class AbstractButtonBlock_collisionOnPlaceMixin extends Abstract
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (CFSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock()))
-            this.tryPowerWithProjectiles(state,world,pos);
+        if (CFSettings.projectileNotDetectedOnPlaceFix && !oldState.isOf(state.getBlock())) {
+            this.tryPowerWithProjectiles(state, world, pos);
+        }
     }
 }

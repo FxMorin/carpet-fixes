@@ -17,6 +17,7 @@ import java.util.function.BooleanSupplier;
 @Mixin(ThreadedAnvilChunkStorage.class)
 public class ThreadedAnvilChunkStorage_tickSaveMixin {
 
+
     @Inject(
             method = "unloadChunks",
             at = @At(
@@ -27,7 +28,7 @@ public class ThreadedAnvilChunkStorage_tickSaveMixin {
                     shift = At.Shift.BEFORE
             )
     )
-    private void setTickSaveState(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
+    private void cf$setTickSaveState(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
         CFSettings.IS_TICK_SAVE.set(true);
     }
 
@@ -36,7 +37,7 @@ public class ThreadedAnvilChunkStorage_tickSaveMixin {
             method = "unloadChunks",
             at = @At("RETURN")
     )
-    private void unsetTickSaveState(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
+    private void cf$unsetTickSaveState(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
         CFSettings.IS_TICK_SAVE.set(false);
     }
 }

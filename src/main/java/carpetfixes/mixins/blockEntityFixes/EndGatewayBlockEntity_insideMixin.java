@@ -23,18 +23,24 @@ public class EndGatewayBlockEntity_insideMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void skipAfterBedrock(BlockView world, BlockPos pos, int searchRadius,
+    private static void cf$skipAfterBedrock(BlockView world, BlockPos pos, int searchRadius,
                                     boolean force, CallbackInfoReturnable<BlockPos> cir) {
-        if (!CFSettings.spawnInsideGatewayFix) return;
+        if (!CFSettings.spawnInsideGatewayFix) {
+            return;
+        }
         BlockPos pos1 = null;
         for(int i = -searchRadius; i <= searchRadius; ++i) {
             for(int j = -searchRadius; j <= searchRadius; ++j) {
-                if (i == 0 && j == 0 && !force) continue;
+                if (i == 0 && j == 0 && !force) {
+                    continue;
+                }
                 for(int k = world.getTopY() - 1; k > (pos1 == null ? world.getBottomY() : pos1.getY()); --k) {
                     BlockPos pos2 = new BlockPos(pos.getX() + i, k, pos.getZ() + j);
                     BlockState state = world.getBlockState(pos2);
                     if (state.isOf(Blocks.BEDROCK)) {
-                        if (force) pos1 = pos2;
+                        if (force) {
+                            pos1 = pos2;
+                        }
                         break;
                     }
                     if (state.isFullCube(world, pos2)) {

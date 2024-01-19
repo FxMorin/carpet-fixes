@@ -1,6 +1,8 @@
 package carpetfixes.mixins.blockEntityFixes;
 
 import carpetfixes.CFSettings;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 import net.minecraft.block.entity.PistonBlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,8 +19,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PistonBlockEntity.class)
 public class PistonBlockEntity_pushTooFarMixin {
 
-    private static boolean finalTick = false;
-
 
     @Inject(
             method = "pushEntities",
@@ -27,8 +27,9 @@ public class PistonBlockEntity_pushTooFarMixin {
                     target = "Lnet/minecraft/util/shape/VoxelShape;getBoundingBoxes()Ljava/util/List;"
             )
     )
-    private static void isFinalTick(World world, BlockPos pos, float f, PistonBlockEntity be, CallbackInfo ci) {
-        finalTick = CFSettings.pistonsPushTooFarFix && f >= 1.0;
+    private static void cf$isFinalTick(World world, BlockPos pos, float f, PistonBlockEntity be, CallbackInfo ci,
+                                    @Share("finalTick") LocalBooleanRef finalTickRef) {
+        finalTickRef.set(CFSettings.pistonsPushTooFarFix && f >= 1.0);
     }
 
 
@@ -36,7 +37,8 @@ public class PistonBlockEntity_pushTooFarMixin {
             method = "pushEntities",
             constant = @Constant(doubleValue = 0.01)
     )
-    private static double dontPushOffsetLastTick(double constant) {
-        return finalTick ? 0.0 : constant;
+    private static double cf$dontPushOffsetLastTick(double constant,
+                                                    @Share("finalTick") LocalBooleanRef finalTickRef) {
+        return finalTickRef.get() ? 0.0 : constant;
     }
 }

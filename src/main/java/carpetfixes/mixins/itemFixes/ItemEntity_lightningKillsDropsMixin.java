@@ -30,7 +30,9 @@ public abstract class ItemEntity_lightningKillsDropsMixin extends Entity {
     @Override
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
         if (CFSettings.lightningKillsDropsFix) {
-            if (this.itemAge > 8) super.onStruckByLightning(world, lightning);
+            if (this.itemAge > 8) {
+                super.onStruckByLightning(world, lightning);
+            }
         } else {
             super.onStruckByLightning(world, lightning);
         }

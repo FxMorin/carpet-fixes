@@ -5,7 +5,6 @@ import carpetfixes.helpers.BlockUpdateUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneTorchBlock;
 import net.minecraft.block.AbstractTorchBlock;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,8 +19,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(RedstoneTorchBlock.class)
 public abstract class RedstoneTorchBlock_updateMixin extends AbstractTorchBlock {
 
-    RedstoneTorchBlock self = (RedstoneTorchBlock)(Object)this;
-
     protected RedstoneTorchBlock_updateMixin(Settings settings) {
         super(settings);
     }
@@ -32,15 +29,15 @@ public abstract class RedstoneTorchBlock_updateMixin extends AbstractTorchBlock 
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onStateReplacedBetter(BlockState state, World world, BlockPos pos,
-                                      BlockState newState, boolean moved, CallbackInfo ci) {
+    private void cf$onStateReplacedBetter(BlockState state, World world, BlockPos pos,
+                                          BlockState newState, boolean moved, CallbackInfo ci) {
         if (!moved) { //Was missing: !state.isOf(newState.getBlock()) && state.get(LIT)
             if (CFSettings.duplicateBlockUpdatesFix) {
                 if (!state.isOf(newState.getBlock()) && state.get(RedstoneTorchBlock.LIT)) {
                     BlockUpdateUtils.doExtendedBlockUpdates(
                             world,
                             pos,
-                            self,
+                            (RedstoneTorchBlock)(Object)this,
                             state.get(RedstoneTorchBlock.LIT) & !newState.equals(state),
                             true
                     );
@@ -49,7 +46,13 @@ public abstract class RedstoneTorchBlock_updateMixin extends AbstractTorchBlock 
             } else { // Do Settings.uselessSelfBlockUpdateFix here
                 if (CFSettings.useCustomRedstoneUpdates) {
                     boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.equals(state);
-                    BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, doExtraEarlyUpdate, true);
+                    BlockUpdateUtils.doExtendedBlockUpdates(
+                            world,
+                            pos,
+                            (RedstoneTorchBlock)(Object)this,
+                            doExtraEarlyUpdate,
+                            true
+                    );
                     ci.cancel();
                 }
             }
@@ -62,10 +65,16 @@ public abstract class RedstoneTorchBlock_updateMixin extends AbstractTorchBlock 
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onBlockAddedBetter(BlockState state, World world, BlockPos pos,
-                                   BlockState newState, boolean moved, CallbackInfo ci) {
+    private void cf$onBlockAddedBetter(BlockState state, World world, BlockPos pos,
+                                       BlockState newState, boolean moved, CallbackInfo ci) {
         if (CFSettings.useCustomRedstoneUpdates) {
-            BlockUpdateUtils.doExtendedBlockUpdates(world, pos, self, false, true);
+            BlockUpdateUtils.doExtendedBlockUpdates(
+                    world,
+                    pos,
+                    (RedstoneTorchBlock)(Object)this,
+                    false,
+                    true
+            );
             ci.cancel();
         }
     }

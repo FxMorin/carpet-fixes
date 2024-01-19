@@ -27,8 +27,8 @@ public class RedstoneTorchBlock_updateOrderOnBreakMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos,
-                                                BlockState newState, boolean moved, CallbackInfo ci) {
+    private void cf$onStateReplacedUpdateNextFirst(BlockState state, World world, BlockPos pos,
+                                                   BlockState newState, boolean moved, CallbackInfo ci) {
         if (CFSettings.useCustomRedstoneUpdates) {
             if (!moved) {
                 boolean doExtraEarlyUpdate = state.get(RedstoneTorchBlock.LIT) & !newState.isOf(self);

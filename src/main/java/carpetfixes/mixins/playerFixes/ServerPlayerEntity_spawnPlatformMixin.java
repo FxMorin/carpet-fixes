@@ -16,6 +16,7 @@ import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -40,7 +41,8 @@ public abstract class ServerPlayerEntity_spawnPlatformMixin extends PlayerEntity
     protected abstract void createEndSpawnPlatform(ServerWorld world, BlockPos centerPos);
 
     // Only replace end stone with air
-    private void createEndSpawnObsidian(ServerWorld world, BlockPos centerPos) {
+    @Unique
+    private void cf$createEndSpawnObsidian(ServerWorld world, BlockPos centerPos) {
         BlockPos.Mutable mutable = centerPos.mutableCopy();
         BlockState state = Blocks.OBSIDIAN.getDefaultState();
         BlockState airState = Blocks.AIR.getDefaultState();
@@ -55,7 +57,8 @@ public abstract class ServerPlayerEntity_spawnPlatformMixin extends PlayerEntity
         }
     }
 
-    private void breakAValidBox(ServerWorld world, BlockPos centerPos) {
+    @Unique
+    private void cf$breakAValidBox(ServerWorld world, BlockPos centerPos) {
         BlockPos.Mutable mutable = centerPos.mutableCopy();
         for(int i = -1; i <= 1; ++i) {
             for(int j = -1; j <= 1; ++j) {
@@ -67,7 +70,8 @@ public abstract class ServerPlayerEntity_spawnPlatformMixin extends PlayerEntity
     }
 
     // Attempt to find a valid location to spawn, with an outwards search
-    private static Optional<Vec3d> findValidSpawnPosition(EntityType<?> type, CollisionView world, BlockPos pos) {
+    @Unique
+    private static Optional<Vec3d> cf$findValidSpawnPosition(EntityType<?> type, CollisionView world, BlockPos pos) {
         for(BlockPos blockPos : BlockPos.iterateOutwards(pos, 2, 0, 2)) {
             Vec3d vec3d = Dismounting.findRespawnPos(type, world, blockPos, true);
             if (vec3d != null) return Optional.of(vec3d);
@@ -81,19 +85,20 @@ public abstract class ServerPlayerEntity_spawnPlatformMixin extends PlayerEntity
             at = @At("HEAD"),
             cancellable = true
     )
-    private void getCustomTeleportTarget(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir) {
+    private void cf$getCustomTeleportTarget(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir) {
         if (CFSettings.obsidianPlatformDestroysBlocksFix) {
             TeleportTarget teleportTarget = super.getTeleportTarget(destination);
-            if (teleportTarget != null && this.getWorld().getRegistryKey() == World.OVERWORLD && destination.getRegistryKey() == World.END) {
+            if (teleportTarget != null &&
+                    this.getWorld().getRegistryKey() == World.OVERWORLD && destination.getRegistryKey() == World.END) {
                 Vec3d vec3d = teleportTarget.position.add(0.0, -1.0, 0.0);
                 BlockPos centerPos = BlockPos.ofFloored(vec3d);
-                createEndSpawnObsidian(destination, centerPos); // Create Floor
+                cf$createEndSpawnObsidian(destination, centerPos); // Create Floor
                 // Find a valid place to teleport to on the platform
-                Optional<Vec3d> opt = findValidSpawnPosition(EntityType.PLAYER, destination, centerPos);
+                Optional<Vec3d> opt = cf$findValidSpawnPosition(EntityType.PLAYER, destination, centerPos);
                 if (opt.isPresent()) {
                     vec3d = opt.get();
                 } else {
-                    breakAValidBox(destination, centerPos);
+                    cf$breakAValidBox(destination, centerPos);
                 }
                 cir.setReturnValue(new TeleportTarget(vec3d, Vec3d.ZERO, 90.0F, 0.0F));
             } else {
@@ -112,8 +117,10 @@ public abstract class ServerPlayerEntity_spawnPlatformMixin extends PlayerEntity
                             "Lnet/minecraft/util/math/BlockPos;)V"
             )
     )
-    private void dontRecreateObsidianPlatform(ServerPlayerEntity player, ServerWorld world, BlockPos centerPos) {
-        if (CFSettings.obsidianPlatformDestroysBlocksFix) return;
+    private void cf$dontRecreateObsidianPlatform(ServerPlayerEntity player, ServerWorld world, BlockPos centerPos) {
+        if (CFSettings.obsidianPlatformDestroysBlocksFix) {
+            return;
+        }
         this.createEndSpawnPlatform(world, centerPos);
     }
 }

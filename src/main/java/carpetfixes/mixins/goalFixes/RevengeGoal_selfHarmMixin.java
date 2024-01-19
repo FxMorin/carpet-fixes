@@ -22,7 +22,9 @@ public class RevengeGoal_selfHarmMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void setMobEntityTarget(MobEntity mob, LivingEntity target, CallbackInfo ci) {
-        if (CFSettings.selfHarmFix && mob == target) ci.cancel();
+    private void cf$setMobEntityTarget(MobEntity mob, LivingEntity target, CallbackInfo ci) {
+        if (CFSettings.selfHarmFix && mob == target) {
+            ci.cancel();
+        }
     }
 }

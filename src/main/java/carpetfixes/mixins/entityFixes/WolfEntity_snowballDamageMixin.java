@@ -23,7 +23,7 @@ public class WolfEntity_snowballDamageMixin {
             require = 0,
             name = "amount"
     )
-    private float modifyAmount(float amount) {
+    private float cf$modifyAmount(float amount) {
         return CFSettings.zeroDamageHurtsWolvesFix && amount == 0.0F ? -1.0F : amount;
     }
 }

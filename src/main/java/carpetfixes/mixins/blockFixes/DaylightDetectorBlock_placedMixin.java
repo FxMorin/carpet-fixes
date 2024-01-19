@@ -39,8 +39,9 @@ public abstract class DaylightDetectorBlock_placedMixin extends Block {
                 i = Math.round((float)i * MathHelper.cos(f));
             }
             i = MathHelper.clamp(i, 0, 15);
-            if (state.get(POWER) != i)
+            if (state.get(POWER) != i) {
                 world.setBlockState(pos, state.with(POWER, i), Block.NOTIFY_LISTENERS | Block.FORCE_STATE);
+            }
         }
         super.onPlaced(world, pos, state, placer, itemStack);
     }

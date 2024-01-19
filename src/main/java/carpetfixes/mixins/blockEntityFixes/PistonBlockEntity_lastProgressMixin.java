@@ -33,8 +33,10 @@ public class PistonBlockEntity_lastProgressMixin {
                     ordinal = 0
             )
     )
-    private void getLastProgress(NbtCompound nbt, CallbackInfo ci) {
-        if (CFSettings.pistonReloadInconsistencyFix) this.lastProgress = nbt.getFloat("lastProgress");
+    private void cf$getLastProgress(NbtCompound nbt, CallbackInfo ci) {
+        if (CFSettings.pistonReloadInconsistencyFix) {
+            this.lastProgress = nbt.getFloat("lastProgress");
+        }
     }
 
 
@@ -42,7 +44,7 @@ public class PistonBlockEntity_lastProgressMixin {
             method = "writeNbt(Lnet/minecraft/nbt/NbtCompound;)V",
             constant = @Constant(stringValue = "progress")
     )
-    private String setLastProgress(String constant) {
+    private String cf$setLastProgress(String constant) {
         return CFSettings.pistonReloadInconsistencyFix ? "lastProgress" : constant;
     }
 
@@ -56,7 +58,9 @@ public class PistonBlockEntity_lastProgressMixin {
                     ordinal = 0
             )
     )
-    private void setProgress(NbtCompound nbt, CallbackInfo ci) {
-        if (CFSettings.pistonReloadInconsistencyFix) nbt.putFloat("progress", this.progress);
+    private void cf$setProgress(NbtCompound nbt, CallbackInfo ci) {
+        if (CFSettings.pistonReloadInconsistencyFix) {
+            nbt.putFloat("progress", this.progress);
+        }
     }
 }

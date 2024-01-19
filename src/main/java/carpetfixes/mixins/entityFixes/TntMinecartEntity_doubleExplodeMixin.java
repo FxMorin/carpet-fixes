@@ -31,7 +31,9 @@ public abstract class TntMinecartEntity_doubleExplodeMixin extends Entity {
             ),
             cancellable = true
     )
-    private void cancelOnceDoneExplode(CallbackInfo ci) {
-        if (CFSettings.tntMinecartExplodesTwiceFix && this.isRemoved()) ci.cancel();
+    private void cf$cancelOnceDoneExplode(CallbackInfo ci) {
+        if (CFSettings.tntMinecartExplodesTwiceFix && this.isRemoved()) {
+            ci.cancel();
+        }
     }
 }
