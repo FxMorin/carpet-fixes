@@ -358,12 +358,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            categories = {BUGFIX, RECOMMENDED}
-    )
-    public static boolean transparentBlocksNegateEnchantingFix = false;
-
-    //by FX - PR0CESS
-    @Rule(
             categories = {BUGFIX}
     )
     public static boolean chestUsablePastWorldBorderFix = false;
