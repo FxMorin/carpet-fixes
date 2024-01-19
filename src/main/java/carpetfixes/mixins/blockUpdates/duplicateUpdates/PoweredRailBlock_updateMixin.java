@@ -33,8 +33,6 @@ public abstract class PoweredRailBlock_updateMixin {
     @Final
     public static BooleanProperty POWERED;
 
-    PoweredRailBlock self = (PoweredRailBlock)(Object)this;
-
     @Shadow
     protected boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) {
         return true;
@@ -50,7 +48,7 @@ public abstract class PoweredRailBlock_updateMixin {
             ),
             index = 2
     )
-    private int modifyUpdate(int val) {
+    private int cf$modifyUpdate(int val) {
         return CFSettings.duplicateBlockUpdatesFix ? val & ~Block.NOTIFY_NEIGHBORS : val;
     }
 
@@ -61,15 +59,17 @@ public abstract class PoweredRailBlock_updateMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
-        if (!CFSettings.optimizedPoweredRails && CFSettings.uselessSelfBlockUpdateFix) {
+    private void cf$updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor, CallbackInfo ci) {
+        if (CFSettings.uselessSelfBlockUpdateFix) {
             boolean bl2 = world.isReceivingRedstonePower(pos) ||
                     this.isPoweredByOtherRails(world, pos, state, true, 0) ||
                     this.isPoweredByOtherRails(world, pos, state, false, 0);
             if (bl2 != state.get(POWERED)) {
                 world.setBlockState(pos, state.with(POWERED, bl2), 3);
-                world.updateNeighborsExcept(pos.down(),self, Direction.UP);
-                if ((state.get(SHAPE)).isAscending()) world.updateNeighborsExcept(pos.down(),self, Direction.DOWN);
+                world.updateNeighborsExcept(pos.down(),(PoweredRailBlock)(Object)this, Direction.UP);
+                if ((state.get(SHAPE)).isAscending()) {
+                    world.updateNeighborsExcept(pos.down(),(PoweredRailBlock)(Object)this, Direction.DOWN);
+                }
             }
             ci.cancel();
         }

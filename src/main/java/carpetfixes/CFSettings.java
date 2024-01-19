@@ -1259,12 +1259,6 @@ public class CFSettings {
 
     //by FX - PR0CESS
     @Rule(
-            categories = {OPTIMIZATION}
-    )
-    public static boolean optimizedPoweredRails = false;
-
-    //by FX - PR0CESS
-    @Rule(
             categories = {OPTIMIZATION, VANILLA, CLIENT, RECOMMENDED}
     )
     public static boolean optimizedBiomeAccess = false;
