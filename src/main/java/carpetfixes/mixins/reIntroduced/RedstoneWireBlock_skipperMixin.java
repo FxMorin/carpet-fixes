@@ -23,6 +23,7 @@ public class RedstoneWireBlock_skipperMixin {
         return !CFSettings.reIntroduceTrapdoorUpdateSkipping && original.call(obj);
     }
 
+    
     @ModifyExpressionValue(
             method = "getStateForNeighborUpdate",
             at = @At(
