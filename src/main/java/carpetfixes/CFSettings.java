@@ -1248,6 +1248,10 @@ public class CFSettings {
     )
     public static boolean structuresIgnorePassengersFix = false;
 
+    @Rule(
+            categories = {BUGFIX, RECOMMENDED}
+    )
+    public static boolean locateCommandDistanceFix = false;
 
     /*
 

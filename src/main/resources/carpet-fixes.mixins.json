@@ -99,6 +99,7 @@
     "blockUpdates.TreeDirtMissingUpdates.TrunkPlacer_logMixin",
     "brainFixes.FrogBrain_frictionMixin",
     "brainFixes.GoatBrain_frictionMixin",
+    "commandFixes.LocateCommand_distanceFixMixin",
     "conversionFixes.MobEntity_conversionMixin",
     "conversionFixes.MooshroomEntity_conversionMixin",
     "conversionFixes.SlimeEntity_conversionMixin",

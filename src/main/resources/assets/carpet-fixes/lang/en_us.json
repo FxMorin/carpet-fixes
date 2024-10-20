@@ -221,6 +221,7 @@
 	"carpet-fixes.rule.lecternBlockDupeFix.desc": "Fixes a lectern block dupe, it just dupes the lectern block",
 	"carpet-fixes.rule.lightningKillsDropsFix.desc": "Fixes Lightning killing the items that drop from entities it kills",
 	"carpet-fixes.rule.lightningKillsDropsFix.extra": "[MC-206922](https://bugs.mojang.com/browse/MC-206922)",
+	"carpet-fixes.rule.locateCommandDistanceFix.desc": "[MC-177381](https://bugs.mojang.com/browse/MC-177381), fixes the locate command reporting wrong distances",
 	"carpet-fixes.rule.markerArmorStandsCreateBubblesFix.desc": "Fixes marker armor stands creating bubbles in water",
 	"carpet-fixes.rule.markerArmorStandsCreateBubblesFix.extra": "[MC-78314](https://bugs.mojang.com/browse/MC-78314)",
 	"carpet-fixes.rule.markerArmorStandsTriggerBlocksFix.desc": "Fixes marker armor stands being able to trigger traps such as pressure plates, and string",
