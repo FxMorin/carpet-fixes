@@ -5,6 +5,7 @@ import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
 import carpetfixes.helpers.RuleScheduler;
+import carpetfixes.mixins.accessors.WorldAccessor;
 import carpetfixes.settings.CustomSettingsManager;
 import carpetfixes.testing.tests.TestManager;
 import com.mojang.brigadier.CommandDispatcher;
@@ -15,6 +16,8 @@ import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.SharedConstants;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.block.SimpleNeighborUpdater;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.world.border.WorldBorder;
 import org.slf4j.Logger;
@@ -69,6 +72,12 @@ public class CarpetFixesServer implements CarpetExtension, ModInitializer {
     public void onServerLoadedWorlds(MinecraftServer minecraftServer) {
         areWorldsLoaded = true;
         ruleScheduler.onWorldLoaded(minecraftServer);
+
+        if (CFSettings.reIntroduceInstantBlockUpdates) {
+            for (ServerWorld world : minecraftServer.getWorlds()) {
+                ((WorldAccessor) world).setNeighborUpdater(new SimpleNeighborUpdater(world));
+            }
+        }
     }
 
     @Override
